@@ -1,6 +1,30 @@
-# ASF links
-  - [Apache Software Foundation](http://www.apache.org)
-  - [License](http://www.apache.org/licenses/LICENSE-2.0)
-  - [Thanks](http://www.apache.org/foundation/thanks.html)
-  - [Become a Sponsor](http://www.apache.org/foundation/sponsorship.html)
+General Information
+===================
+* [What is VCL?](/about/)
+* [Requirements for using VCL](/installrequirements/)
+* [Download page](/download.cgi)
+* [Installation Guide](/installation/)
+* [Latest Release](/release/)
+* [VCL Support](/support/)
+* [License](http://www.apache.org/licenses/LICENSE-2.0)
+* [FAQ](/faq/) - do we want a FAQ page??
+
+Documentation
+=============
+* [End User Docs](/docs/enduser/)
+* [Image Maintainer Docs](/docs/imageadmins/)
+* [VCL Admin Docs](/docs/admins/)
+* [VCL Installer Docs](/docs/installers/)
+
+Community Links
+===============
+* [Mailing lists](/lists/)
+* [Getting involved](/getinvolved/)
+* [Becoming a Committer](/committerprocess/)
+
+ASF links
+=========
+* [Apache Software Foundation](http://www.apache.org)
+* [Thanks](http://www.apache.org/foundation/thanks.html)
+* [Become a Sponsor](http://www.apache.org/foundation/sponsorship.html)
   
