@@ -1,5 +1,5 @@
 package view;
-use 'ASF::View';
+use base 'ASF::View';
 1;
 
 =head1 LICENSE
