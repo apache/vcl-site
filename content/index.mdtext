@@ -1,1 +1,8 @@
 Title: Welcome to Apache VCL
+
+VCL is a modular cloud computing platform which dynamically provisions and
+brokers remote access to compute resources including virtual machines,
+bare-metal computers, and resources in other cloud platforms. A self-service
+web portal is used to request resources and for administration.
+
+VCL became an Apache Software Foundation top level project on June 20, 2012.
