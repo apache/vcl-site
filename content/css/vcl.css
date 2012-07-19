@@ -34,7 +34,7 @@ a,h1,h2,h3,h4,h5,h6 {
 
 #navigation h1 {
   font-size: 1.0em;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
   border-bottom: 1px solid #C0C0C0;
   color: #000000;
   text-transform: uppercase;
@@ -45,11 +45,20 @@ a,h1,h2,h3,h4,h5,h6 {
   padding: 0;
 }
 
+#navigation a {
+  text-decoration: none;
+}
+
 #navigation ul li {
   display: block;
   list-style-type: none;
   margin-left: 0.5em;
   padding: 0;
+}
+
+#navigation li {
+  border-bottom: 1px dotted #C0C0C0;
+  margin: 0.2em 0;
 }
 
 #footer {
