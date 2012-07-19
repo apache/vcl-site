@@ -20,7 +20,7 @@ a,h1,h2,h3,h4,h5,h6 {
 }
 
 #navigation {
-  float:right;
+  float:left;
   color:#333333;
   background-color: #EEE;
   border: solid #DDD 1px;
