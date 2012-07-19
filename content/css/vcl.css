@@ -34,7 +34,7 @@ a,h1,h2,h3,h4,h5,h6 {
 
 #navigation h1 {
   font-size: 1.0em;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   border-bottom: 1px solid #C0C0C0;
   color: #000000;
   text-transform: uppercase;
@@ -42,7 +42,7 @@ a,h1,h2,h3,h4,h5,h6 {
 
 #navigation ul {
   margin: 0;
-  padding: 0;
+  padding: 0, 0, 2px, 0;
 }
 
 #navigation a {
