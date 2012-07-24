@@ -1,3 +1,41 @@
 New Configuration System
 ========================
 This page describes a new configuration system that will be added to VCL that can be used to dynamically configure deployed systems.
+
+Database schema
+---------------
+config:
+
+* id - id of record
+* name - name of record
+* ownerid - owner of this record (reference to user.id)
+* configtypeid - type of record (reference to configtype.id)
+* data - any data associated with this (ex. puppet manifest)
+* optional - 0/1 - when this config is mapped to something, can the user specify to apply it or not
+
+configtype:
+
+* id - id of record
+* name - name of record
+* moduleid - id of module that handles this type of record (reference to module.id)
+
+ initial types: puppet, subimage, shellcommand, perlfunction
+
+configvariable:
+
+* id - id of record
+* name - name of record
+* configid - config this is associated with (reference to config.id)
+* value - default value of this variable
+* required - 0/1 - when mapped to something, is this variable always applied
+* ask - 0/1 - will the user be prompted for a value for this variable, or will the default value always be used
+* key - string in config.data to replace with the value of this variable
+* datatype - enum(int, string) - type of this variable so that the frontend knows how to validate it
+
+ There are some initial, special names:
+ * subimage - used for clusters, specifies a subimage to be deployed
+ * min - used in conjunction with subimage to specify a minimum number of those subimages
+ * max - used in conjunction with subimage to specify a maximum number of those subimages
+ * runbefore - used to relate to other configs to specify that this should be run before the ones specified in 'value'
+ * runafter - used to relate to other configs to specify that this should be run after the ones specified in 'value'
+ * getdata - ??
