@@ -39,7 +39,7 @@ h1,h2,h3,h4,h5,h6 {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-weight: bolder;
 	height: 60px;
-	background-image: url(../img/title-background.png);
+	background-image: url(/img/title-background.png);
 	background-repeat: no-repeat;
 	font-size: 42px;
 	border-bottom: thin solid #990000;
