@@ -32,10 +32,11 @@ configvariable:
 * key - string in config.data to replace with the value of this variable
 * datatype - enum(int, string) - type of this variable so that the frontend knows how to validate it
 
- There are some initial, special names:
- * subimage - used for clusters, specifies a subimage to be deployed
- * min - used in conjunction with subimage to specify a minimum number of those subimages
- * max - used in conjunction with subimage to specify a maximum number of those subimages
- * runbefore - used to relate to other configs to specify that this should be run before the ones specified in 'value'
- * runafter - used to relate to other configs to specify that this should be run after the ones specified in 'value'
- * getdata - ??
+    There are some initial, special names:
+
+    * subimage - used for clusters, specifies a subimage to be deployed
+    * min - used in conjunction with subimage to specify a minimum number of those subimages
+    * max - used in conjunction with subimage to specify a maximum number of those subimages
+    * runbefore - used to relate to other configs to specify that this should be run before the ones specified in 'value'
+    * runafter - used to relate to other configs to specify that this should be run after the ones specified in 'value'
+    * getdata - ??
