@@ -16,39 +16,43 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-## Free & Open Source
+[TOC]
+
+# Free & Open Source # {#free}
 
 There are no commercial product requirements in order to deploy a fully functional VCL cloud.
 
-## VCL Website
+# Self-Service Web Portal # {#web-portal}
 
 * Designed to present simple interface to end users
 * Scheduling
 
-## Authentication Options
+# Support for Multiple Authentication Methods # {#authentication}
 
+* Built-in
 * LDAP
 * Shibboleth
 
-## Images
+# Simple Image Creation # {#image-creation}
 
+* Image revision control 
 * Delegation of image creation
 
-## Privileges
+# Robust Privilege & Authorization Model # {#privileges}
 
 Robust privilege model allows for granular access to be granted...
 
-## Provisioning
+# Support for Multiple Provisioning Methods # {#provisioning}
 
-* Bare metal
-* Virtual machines
+* Bare Metal
+* Virtual Machines
     * VMware ESXi 4.x/5.x
     * KVM
     * VirtualBox
 * Traditional computer lab machines
 
-## Block Allocations
+# Block Allocations # {#block-allocation}
 
-## Clusters
+# Cluster Environments {#cluster}
 
-## Storage
+# Statistics & Log Data # {#statistics}
