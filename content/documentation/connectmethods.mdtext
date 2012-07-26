@@ -201,3 +201,46 @@ xRDP and that it must have already been installed in the image by the image main
 Additionally, for any Fedora 16 images, it will be listed as an assigned connect
 method by default (note: Fedora 16 does not include xRDP by default, it's just being
 used an example here).
+
+### Understanding entries created by removing a default entry from an image
+This is not something that a VCL admin would need to do manually in the
+database, but it is useful to understand what happens in the database
+when a connect method that is mapped by OS type or OS is removed from an
+image revision. Building on the xRDP example above, we start with the following
+entries in the connectmethodmap table, remember that connectmethod.id 5 is xRDP,
+OStype.id 2 is Linux, and OS.id 23 is Fedora 16:
+
+<table>
+<tr><th>connectmethodid</th><th>OStypeid</th><th>OSid</th><th>imagerevisionid</th><th>disabled</th><th>autoprovisioned</th></tr>
+<tr align="center"><td>5</td><td>2</td><td>NULL</td><td>NULL</td><td>0</td><td>0</td></tr>
+<tr align="center"><td>5</td><td>NULL</td><td>23</td><td>NULL</td><td>0</td><td>NULL</td></tr>
+</table>
+
+Let's say we've created a web server image based on Fedora 16 from which we've removed X11,
+meaning that xRDP will no longer work as a connect method for this image. Instead, we
+just want to have ssh as the only connect method available for this image. We'd go to 
+**Manage Images-&gt;Edit Image Profiles-&gt;Edit** for that image. Then, we'd expand the
+**Advanced Options** section, and click on **Modify Connection Methods**. Next, if ssh is 
+not already enabled as a connect method, we'd select it from the drop-down box and click
+**Add Method**. Finally, we'd select xRDP from the list of enabled connect methods, and
+click **Remove Selected Method(s)**. This final step of removing xRDP would add the
+following entry to the connectmethodmap table (we'll use 582 as the imagerevisionid of
+the web server image):
+
+<table>
+<tr><th>connectmethodid</th><th>OStypeid</th><th>OSid</th><th>imagerevisionid</th><th>disabled</th><th>autoprovisioned</th></tr>
+<tr align="center"><td>5</td><td>NULL</td><td>NULL</td><td>582</td><td>1</td><td>NULL</td></tr>
+</table>
+
+The above entry means, "disable connect method 5 (xRDP) for image revision 582 (web server)
+even if it is enabled for the image's OS or OS type".
+
+## Screen Shots
+Here are some screen shots to know what things look like in the web interface.
+
+This image has the Connect Methods section of the Edit Image Profile page
+highlighted.
+<img src="/documentation/connectmethodhighlight.png" alt="connect method region highlighted">
+
+This image has the Connect Methods dialog open.
+<img src="/documentation/connectmethoddialog.png" alt="connect method dialog opened">
