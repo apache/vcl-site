@@ -1,11 +1,11 @@
 * Information
     * [What is VCL?](/info/about.html)
-    * [Features](features.html)
+    * [Features](/info/features.html)
     * [Architecture](/info/architecture.html)
     * [Use Cases](/info/use-cases.html)
     * [Download](/download.cgi)
     * [License](/info/license.html)
-    * [FAQ](/faq.html)
+    * [FAQ](/info/faq.html)
 * [Documentation](/docs/index.html)
     * [Using VCL](/docs/using-vcl.html)
     * [Image Creation](/docs/image-creation.html)
