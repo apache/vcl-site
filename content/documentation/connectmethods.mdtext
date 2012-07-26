@@ -16,10 +16,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-Connect Methods
-===============
-
-### Overview
+## Overview
 
 A **connect method** is the software used to connect to a reserved node.
 
@@ -35,7 +32,7 @@ provisioned by vcld (or are considered to be part of an OS by default)
 and those that must be manually installed in the image by the image
 maintainer. Either type can be added to VCL and mapped to an image.
 
-### Connect Method schema
+## Connect Method schema
 
 Understanding the connect method database schema is key to managing the 
 available connect methods. There are two tables:
@@ -83,7 +80,7 @@ is only done to an OS type **or** an OS **or** an image revision.)
 Windows OS type, but there was an image where VNC should be used instead, entries would
 be added for any imagerevisionid of that image for RDP with disabled set to 1.
 
-### Default entries
+## Default entries
 
 The schema provided with Apache VCL 2.3 has four connect methods by default:
 
@@ -240,7 +237,9 @@ Here are some screen shots to know what things look like in the web interface.
 
 This image has the Connect Methods section of the Edit Image Profile page
 highlighted.
+
 <img src="/documentation/connectmethodhighlight.png" alt="connect method region highlighted">
 
 This image has the Connect Methods dialog open.
+
 <img src="/documentation/connectmethoddialog.png" alt="connect method dialog opened">
