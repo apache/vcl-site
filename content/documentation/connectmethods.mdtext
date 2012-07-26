@@ -138,14 +138,16 @@ First, we need to add VNC to the connectmethod table:
 
 This could be used as the connecttext:
 
->You will need to have a VNC client on your local computer to connect to the system. 
-Open your VNC client and use the following information when you are ready to connect:<br>
-&lt;UL&gt;<br>
-&lt;LI&gt;&lt;b&gt;Remote Computer&lt;/b&gt;: #connectIP#&lt;/LI&gt;<br>
-&lt;LI&gt;&lt;b&gt;Remote Port&lt;/b&gt;: #connectport#&lt;/LI&gt;<br>
-&lt;LI&gt;&lt;b&gt;User ID&lt;/b&gt;: #userid#&lt;/LI&gt;<br>
-&lt;LI&gt;&lt;b&gt;Password&lt;/b&gt;: #password#&lt;/LI&gt;<br>
-&lt;/UL&gt;
+
+    :::text
+    You will need to have a VNC client on your local computer to connect to the system. 
+    Open your VNC client and use the following information when you are ready to connect:<br>
+    <UL><br>
+    <LI><b>Remote Computer</b>: #connectIP#</LI><br>
+    <LI><b>Remote Port</b>: #connectport#</LI>;<br>
+    <LI><b>User ID</b>: #userid#</LI><br>
+    <LI><b>Password</b>: #password#</LI><br>
+    </UL>
 
 Next, we create an entry in the connectmethodmap table that allows VNC to be selected
 for any Linux images, but not as an autoprovisioned method (note that this only **allows** it to be selected, it does not
@@ -174,13 +176,14 @@ First, we need to add xRDP to the connectmethod table:
 
 This could be used as the connecttext:
 
->You will need to have an RDP client to connect to the system. 
-Open your RDP client and use the following information when you are ready to connect:<br>
-&lt;UL&gt;<br>
-&lt;LI&gt;&lt;b&gt;Remote Computer&lt;/b&gt;: #connectIP#&lt;/LI&gt;<br>
-&lt;LI&gt;&lt;b&gt;User ID&lt;/b&gt;: #userid#&lt;/LI&gt;<br>
-&lt;LI&gt;&lt;b&gt;Password&lt;/b&gt;: #password#&lt;/LI&gt;<br>
-&lt;/UL&gt;
+    :::text
+    You will need to have an RDP client to connect to the system. 
+    Open your RDP client and use the following information when you are ready to connect:<br>
+    <UL><br>
+    <LI><b>Remote Computer</b>: #connectIP#</LI><br>
+    <LI><b>User ID</b>: #userid#</LI><br>
+    <LI><b>Password</b>: #password#</LI><br>
+    </UL>
 
 Next, we create an entry in the connectmethodmap table that allows xRDP to be selected
 for any Linux images, and another entry that enables it for all Fedora 16 images.
