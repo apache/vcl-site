@@ -106,7 +106,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .codehilite {
-	margin-left: 1.5em;
+	margin: 0 0 0 1.5em;
 	border: 1px solid #a5b0ff;
 	padding: 0.5em;
 	border-radius: 5px;
