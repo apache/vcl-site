@@ -45,6 +45,11 @@ h1,h2,h3,h4,h5,h6 {
 	border-bottom: thin solid #990000;
 }
 
+#sitetitle a {
+	color: white;
+	text-decoration: none;
+}
+
 #navigation {
 	float:left;
 	width: 200px;
