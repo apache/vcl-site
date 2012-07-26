@@ -17,3 +17,5 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            under the License.
 
 [Understanding Connect Methods introduced in Apache VCL 2.3](/documentation/connectmethods.html)
+
+[Adding a New Locale to the VCL Web Frontend](/documentation/multilingualization.html)
