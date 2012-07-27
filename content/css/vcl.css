@@ -103,12 +103,14 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #navigation ul li ul li ul {
-   margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 #navigation ul li ul li ul li {
-   border-top: thin dotted #666;
-   border-bottom: none;
+	padding-top: 4px;
+	margin-top: 0;
+	border-top: thin dotted #666;
+	border-bottom: none;
 }
 
 #footer {
