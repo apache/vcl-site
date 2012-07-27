@@ -32,6 +32,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
     This will be referred to as 'vcllookup' on 
 this page. You can skip this step if anonymous binds are enabled on your LDAP server 
 and an anonymous bind will be able to look up the listed items.
+
 * If your LDAP server is behind a firewall, you will need to allow your VCL web 
 server to access tcp port 636 on your LDAP server
 
@@ -57,21 +58,21 @@ certificate](/docs/ldap-showhostname.html)).
     openssl s_client -showcerts -CAfile /etc/pki/tls/certs/ca-bundle.crt -connect 
 your.ldap.server.here:636
 
-    If you see "Verify return code: 0 (ok)" at the end of the output then it is 
+    If you see \"Verify return code: 0 (ok)" at the end of the output then it is 
 installed correctly. If you see a different return code, then you'll need to 
 troubleshoot the problem.
-* You may need to add a line to */etc/openldap/ldap.conf* to point to the 
+
+* You may need to add a line to **/etc/openldap/ldap.conf** to point to the 
 ca-bundle.crt file. If so, add the following:
 
     TLS_CACERT /etc/pki/tls/certs/ca-bundle.crt
-
 
 ## Adding LDAP Authentication to the Web Code
 
 * You will need to manually add an entry to the affiliation table in the VCL 
 database. Choose a name for the affiliation. This will be appended to all userids 
 for the affiliation to distinguish them from other affiliations you may configure 
-later. *Do not* use the Global affiliation for this. Initials or a short name of 
+later. **Do not** use the Global affiliation for this. Initials or a short name of 
 your organization are a good idea. The affiliation name cannot contain spaces. Use 
 the following to add the affiliation, replacing 'EXAMPLE' with the name you chose. 
 Take note of the id from the 2nd SQL statement as you will need it later. It is the 
@@ -126,4 +127,4 @@ this to the attribute to use to search for the user in ldap. Typical values are 
 'uid', and 'samaccountname'.
     * **help** \- this is some text that will show up on the page where users select the 
 authentication method explaining why they would select this option
-* Uncomment the *require_once* line for *ldapauth.php* toward the bottom of the file
+* Uncomment the **require_once** line for **ldapauth.php** toward the bottom of the file
