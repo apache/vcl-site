@@ -16,4 +16,42 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-Stub community index.
+Apache VCL is an open and inviting community striving to advance the support and use of VCL as a Private-Hybrid cloud solution for Education and commercial uses.
+
+[TOC]
+
+# Getting Involved # {#getInvolved}
+
+In an open-source project, there are many ways one can help. Here are some areas that are always in need in the VCL Project.
+ 
+* Join the mailing lists and answer questions or share ideas
+* Download and use VCL for yourself or your institution or company
+* Report bugs, feature requests in the issue tracking system.
+* Submit Patches to reported issues
+* Help guide the development by being a voice on the list of needed features
+* Test releases that are being voted on (monitor the dev@vcl.apache.org list for release votes
+* Documentation, Help with writing and pointing out areas that are lacking in the documentation 
+
+# Mailing Lists # {#mail-list}
+
+There are two VCL mailing list, user and dev
+
+User mailing list is for general topics, help with installation, and special topics around cloud computing.
+
+To subscribe, send an email to: [user-subscribe@vcl.apache.org][1]
+
+Dev mailing list is mainly for Development topics and items related to specific issues.
+
+To subscribe, send an email to: [dev-subscribe@vcl.apache.org][1]
+
+#How do I Join the Project
+
+Projects at Apache operate under a meritocracy, meaning those that the developers notice participating to a high extent will be invited to join the project as a committer.
+
+This is as much based on personality and ability to work with other developers and the community as it is with proven technical ability. Being unhelpful to other users, or obviously looking to become a committer for bragging rights and nothing else is frowned upon, as is asking to be made a committer without having contributed sufficiently to be invited.
+
+
+# Wiki # {#wiki}
+
+
+  [1]: mailto:dev-subscribe@vcl.apache.org
