@@ -32,4 +32,4 @@ Before being granted commit access to the code respository, you need to demonstr
 There is a private VCL list for members of the Project Management Committee (PMC) to discuss whether or not someone should be given the rights of a committer. A formal vote must happen on this list for you to be accepted as a committer.
 Once you have been accepted, your next step is to start contributing stuff!
 
-[1] If you only want to contribute documentation, you can skip step #3. However, if you later want to start contributing code, you will still need to go through step #3 and have a new vote in step #4 before being granted commit access to the code repository
+[1] If you only want to contribute documentation, you can skip the step of contributing code/patches. However, if you later want to start contributing code, you will still need to go through a code review and then have a new committership vote before being granted commit access to the code repository
