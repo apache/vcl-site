@@ -42,7 +42,7 @@ To subscribe, send an email to: [user-subscribe@vcl.apache.org][1]
 
 Dev mailing list is mainly for Development topics and items related to specific issues.
 
-To subscribe, send an email to: [dev-subscribe@vcl.apache.org][1]
+To subscribe, send an email to: [dev-subscribe@vcl.apache.org][2]
 
 #How do I Join the Project
 
@@ -50,7 +50,9 @@ Projects at Apache operate under a meritocracy, meaning those that the developer
 
 This is as much based on personality and ability to work with other developers and the community as it is with proven technical ability. Being unhelpful to other users, or obviously looking to become a committer for bragging rights and nothing else is frowned upon, as is asking to be made a committer without having contributed sufficiently to be invited.
 
-Apache VCL has some basic guidelines on the steps to become eligible for consideration to become a Apache VCL committer.
+Apache VCL has some basic [guidelines][3] on the steps to become eligible for consideration to become a Apache VCL committer.
 
 
   [1]: mailto:dev-subscribe@vcl.apache.org
+  [2]: mailto:dev-subscribe@vcl.apache.org
+  [3]: committer-guidelines
