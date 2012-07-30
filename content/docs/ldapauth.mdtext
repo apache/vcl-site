@@ -229,3 +229,17 @@ Directory LDAP system:
 
 If you add other affiliations that need to be tied in with LDAP, you can copy this
 function and rename things in a similar fashion to match the new LDAP system.
+
+### Some things to be aware of with mirrored groups
+There are a few things to be aware of when working with mirrored groups in VCL. A 
+group isn't mirrored in to VCL until someone that is a member of the group logs in 
+to VCL, or a user with the membership is looked up using the **User Lookup** page. 
+So, what is generally suggest is to create an LDAP user that you make a member of
+all user groups. Then, when you need to get a new group in to VCL, you can force
+a lookup of that user on the **User Lookup** page. 
+
+The second gotcha is that VCL 
+caches a user's LDAP information for up to 24 hours. So, if you log in to VCL, then add 
+yourself to a group on your LDAP server, you will have to wait for up to 24 hours 
+before VCL looks up your LDAP information again. Alternatively, you can
+force a lookup on the **User Lookup** page.
