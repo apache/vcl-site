@@ -18,7 +18,19 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 
 ## Why LDAP Authentication?
 
+Authenticating your users to VCL via LDAP allows you to use your enterprise managed
+accounts to log in to the VCL web site. Additionally, you can mirror certain user
+groups from your LDAP system into VCL so that you do not need to manage the user
+group memberships both in your enterprise system and in VCL.
+
 ## Overview
+
+First, you need an LDAP server with SSL enabled. You already have this if you have
+an Active Directory system set up. Next, you (probably) need to add an affiliation
+to VCL so that users logging in via the new LDAP connection will all be associated
+together. Finally, you need to modify the web code conf.php file to have information
+about how to connect to the LDAP server. You will also need to make sure your web
+server can trust the SSL certificate and access it through any firewalls.
 
 ## Prerequisites for your LDAP server:
 
@@ -128,3 +140,92 @@ this to the attribute to use to search for the user in ldap. Typical values are 
     * **help** \- this is some text that will show up on the page where users select the 
 authentication method explaining why they would select this option
 * Uncomment the **require_once** line for **ldapauth.php** toward the bottom of the file
+
+## Mirroring LDAP User Groups
+This part is a little more complicated because it actually requires modifying some
+of the VCL code. Before modifying VCL, you first need to create user groups in your
+LDAP system and configure things so that a lookup of a user in your LDAP system will
+list the groups of which the user is a member. Doing these items is beyond the scope
+of this document.
+
+In the vcl/.ht-inc/authmethods/ldapauth.php file, there is an example function at 
+the end named **updateEXAMPLE1Groups**. In a previous step, you modified conf.php 
+and changed **EXAMPLE1 LDAP** to something to match your location. **NCSU LDAP** 
+was used as an example. We'll continue using that here.
+
+You need to change the name of **updateEXAMPLE1Groups** to match your location. 
+We'll change it to **updateNCSUGroups** for our example. Next, on the 2nd line of
+the function, change **EXAMPLE1 LDAP** to match your location (ex. **NCSU LDAP**).
+Next, you need to determine what attribute is used when looking up users in your 
+LDAP system to reference user group memberships. For Active Directory, this is typically
+**memberof**. Now, if needed, change the two references in the function from **memberof**
+to the attribute used in your LDAP system. Finally, there are three example regular
+expressions in the **for** loop at the bottom of the function that match various 
+example names of user groups. You'll need to modify these to match the OU structure
+of your LDAP system.
+
+These are the three example rules in VCL 2.3:
+
+    ^CN=(.+),OU=CourseRolls,DC=example1,DC=com
+    ^CN=(Students_Enrolled),OU=Students,DC=example1,DC=com$
+    ^CN=(Staff),OU=IT,DC=example1,DC=com$
+
+The first one matches any groups under the CourseRolls OU. The second one specifically
+matches the **Students_Enrolled** group under the Students OU. The third one matches
+the **Staff** group under the IT OU. If you need help creating regular expressions
+to match your LDAP system, please feel free to ask on our user email list or via IRC.
+
+Finally, you'll also need to modify the updateLDAPUser function in the same file. 
+Toward the end of the function is a **switch** statement based on affiliation names. 
+Change the **EXAMPLE1** entry to the affiliation you created for your site. Then, 
+change the name of the function called for that affiliation to your new name for the
+**updateEXAMPLE1Groups** function. Here is an example of that part of the function:
+
+    switch(getAffiliationName($affilid)) {
+       case 'NCSU':
+          updateNCSUGroups($user);
+          break;
+       default:
+          //TODO possibly add to a default group
+    }
+
+
+
+Here is an example function using NCSU instead of EXAMPLE1, and using an Active 
+Directory LDAP system:
+
+    function updateNCSUGroups($user) {
+       global $authMechs;
+       $auth = $authMechs['NCSU LDAP'];
+       $ds = ldap_connect("ldaps://{$auth['server']}/");
+       if(! $ds)
+          return 0;
+       ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+       ldap_set_option($ds, LDAP_OPT_REFERRALS, 0);
+    
+       $res = ldap_bind($ds, $auth['masterlogin'],
+                         $auth['masterpwd']);
+       if(! $res)
+          return 0;
+    
+       $search = ldap_search($ds,
+                             $auth['binddn'],
+                             "{$auth['unityid']}={$user['unityid']}",
+                             array('memberof'), 0, 10, 15);
+       if(! $search)
+          return 0;
+    
+       $data = ldap_get_entries($ds, $search);
+       $newusergroups = array();
+       if(! array_key_exists('memberof', $data[0]))
+          return;
+       for($i = 0; $i < $data[0]['memberof']['count']; $i++) {
+          if(preg_match('/^CN=(.+),OU=VCLGroups,DC=ad,DC=ncsu,DC=edu/', $data[0]['memberof'][$i], $match))
+             array_push($newusergroups, getUserGroupID($match[1], $user['affiliationid']));
+       }
+       $newusergroups = array_unique($newusergroups);
+       updateGroups($newusergroups, $user["id"]);
+    }
+
+If you add other affiliations that need to be tied in with LDAP, you can copy this
+function and rename things in a similar fashion to match the new LDAP system.
