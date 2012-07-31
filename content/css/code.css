@@ -1,7 +1,7 @@
 .codehilite .hll { background-color: #ffffcc }
-.codehilite  { background: #f0f0f0; }
+/*.codehilite  { background: #f0f0f0; }*/ /* commented out because we set our own background for the codehilite pre element */
 .codehilite .c { color: #60a0b0; font-style: italic } /* Comment */
-.codehilite .err { border: 1px solid #FF0000 } /* Error */
+/*.codehilite .err { border: 1px solid #FF0000 }*/ /* Error - commented out because open curly brackets are getting marked as .err */
 .codehilite .k { color: #007020; font-weight: bold } /* Keyword */
 .codehilite .o { color: #666666 } /* Operator */
 .codehilite .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
