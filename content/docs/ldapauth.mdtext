@@ -16,6 +16,8 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
+[TOC]
+
 ## Why LDAP Authentication?
 
 Authenticating your users to VCL via LDAP allows you to use your enterprise managed
