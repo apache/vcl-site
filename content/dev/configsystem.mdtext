@@ -16,6 +16,8 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
+[TOC]
+
 This page describes a new configuration system that will be added to VCL that can be used to dynamically configure deployed systems.
 
 Database schema
@@ -98,6 +100,72 @@ configmaptype:
 
 Examples
 --------
+### Assigning a VLAN to an image
+This example shows how to assign a VLAN to an image.
+
+For this example, we'll use the following values from other tables:
+
+* module.id for handling VLAN config type: 67
+* image.id for the image in this example: 524
+* affiliation.id for the desired affiliation: 6
+* reservation.id for the image: 2748
+* user.id that owns the configs: 54
+
+configtype:
+<table><tr>
+<th>id</th><th>name</th><th>moduleid</th>
+</tr><tr>
+<td>5</td><td>VLAN</td><td>67</td>
+</tr></table>
+
+<br>
+config:
+<table><tr>
+<th>id</th><th>name</th><th>ownerid</th><th>configtypeid</th><th>data</th><th>optional</th>
+</tr><tr>
+<td>77</td><td>VLAN 30</td><td>54</td><td>5</td><td>30</td><td>0</td>
+</tr></table>
+
+<br>
+configvariable:
+<table><tr>
+<th>id</th><th>name</th><th>configid</th><th>value</th><th>required</th><th>ask</th><th>key</th><th>datatype</th>
+</tr><tr>
+<td>486</td><td>VLAN</td><td>77</td><td>30</td><td>1</td><td>0</td><td>(empty)</td><td>int</td>
+</tr></table>
+
+<br>
+configmaptype:
+<table><tr>
+<th>id</th><th>name</th>
+</tr><tr>
+<td>1</td><td>image</td>
+</tr></table>
+
+<br>
+configmap:
+<table><tr>
+<th>configid</th><th>subid</th><th>configmaptypeid</th><th>affiliationid</th><th>disabled</th><th>stage</th>
+</tr><tr>
+<td>77</td><td>524</td><td>1</td><td>6</td><td>0</td><td>post_load</td>
+</tr></table>
+
+<br>
+configinstance:
+<table><tr>
+<th>id</th><th>reservationid</th><th>configid</th><th>status</th>
+</tr><tr>
+<td>6854</td><td>2748</td><td>77</td><td>new</td>
+</tr></table>
+
+<br>
+configinstancevariable:
+<table><tr>
+<th>configinstanceid</th><th>configvariableid</th><th>value</th>
+</tr>
+<tr><td>6854</td><td>486</td><td>30</td></tr>
+</table>
+
 ###Hadoop cluster with variable amount of slave nodes
 
 This example shows how a hadoop cluster can be requested with 5-10 slave nodes.
