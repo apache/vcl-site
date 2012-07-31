@@ -72,7 +72,7 @@ certificate](/docs/ldap-showhostname.html)).
     openssl s_client -showcerts -CAfile /etc/pki/tls/certs/ca-bundle.crt -connect 
 your.ldap.server.here:636
 
-    If you see \"Verify return code: 0 (ok)" at the end of the output then it is 
+    If you see "Verify return code: 0 (ok)" at the end of the output then it is 
 installed correctly. If you see a different return code, then you'll need to 
 troubleshoot the problem.
 
