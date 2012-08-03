@@ -187,7 +187,7 @@ VCL currently supports the use of mysql database.
     * Modify conf.php to match your site
 
             :::BashLexer
-   	    vi conf.php
+            vi conf.php
 
 	        * Modify every entry under "Things in this section must be modified". Descriptions and pointers for each value are included within conf.php.
                 * COOKIEDOMAIN - set this to the domain name your web server is using or leave it blank if you are only accessing the web server by its IP address
@@ -201,3 +201,34 @@ VCL currently supports the use of mysql database.
         * If you set up your site to be https://my.server.org/vcl/ open https://my.server.org/vcl/testsetup.php
         * Debug any issues reported by testsetup.php
 
+3. **Log In to the VCL Website**
+    * Open the index.php page in your browser (https://my.server.org/vcl/index.php)
+        * Select Local Account
+        * Username: admin
+        * Password: adminVc1passw0rd
+
+    * Set the admin user password (optional):
+        * Click User Preferences
+        * Enter the current password: adminVc1passw0rd
+        * Enter a new password
+        * Click Submit Changes
+
+4. Add a Management Node to the Database
+    * Click the Management Nodes link
+        * Click Add
+        * Fill in these required fields:
+            * Hostname - The name of the management node server. This value doesn't necessarily need to be a name registered in DNS nor does it need to be the value displayed by the Linux hostname command. For example, if you are installing all of the VCL components on the same machine you can set this value to localhost.
+            * IP address - the public IP address of the management node
+            * SysAdmin Email Address - error emails will be sent to this address
+            * Install Path - this is parent directory under which image files will be stored - only required if doing bare metal installs or using VMWare with local disks
+            * End Node SSH Identity Key Files - enter /etc/vcl/vcl.key unless you know you are using a different SSH identity key file
+        * Optionally, fill in these fields:
+            * Address for Shadow Emails - End users are sent various emails about the status of their reservations. If this field is configured, copies of all of those emails will be sent to this address.
+            * Public NIC configuration method - this defaults to Dynamic DHCP - if DHCP is not available for the public interface of your nodes, you can set this to Static. Then, the IP configuration on the nodes will be manually set using Public Netmask, Public Gateway, Public DNS Server, and the IP address set for the computer under Manage Computers       
+        * Click Confirm Management Node
+        * Click Submit
+        * Click the Management Nodes link
+            * Select Edit Management Node Grouping
+            * Click Submit
+            * Select the checkbox for your management node
+            * Click Submit Changes
