@@ -345,6 +345,63 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 
     * Save the vcld.conf file
 
+4. **Configure the SSH Client**
 
-  [1]: http://www.phpmyadmin.net/
+The SSH client on the management node should be configured to prevent SSH processes spawned by the root user to the computers it controls from hanging because of missing or different entries in the known_hosts file. 
+
+Edit the ssh_config file:
+
+	vi /etc/ssh/ssh_config
+Set the following parameters:
+UserKnownHostsFile /dev/null
+StrictHostKeyChecking no
+*Note: If you do not want these settings applied universally on the management node the SSH configuration can also be configured to only apply these settings to certain hosts or only for the root user. Consult the SSH documentation for more information.*
+
+5. **Install and Start the VCL Daemon (vcld) Service**
+
+    * Copy the vcld service script to /etc/init.d and name it vcld:
+	
+            :::BashLexer
+            cp /usr/local/vcl/bin/S99vcld.linux /etc/init.d/vcld
+
+    * Add the vcld service using chkconfig:
+	
+            :::BashLexer
+            /sbin/chkconfig --add vcld
+
+    * Configure the vcld service to automatically run at runtime levels 3-5:
+	
+            :::BashLexer
+            /sbin/chkconfig --level 345 vcld on
+
+    * Start the vcld service:
+	
+            :::BashLexer
+            /sbin/service vcld start
+
+    * Check the vcld service by monitoring the vcld.log file:
+
+            :::BashLexer
+            tail -f /var/log/vcld.log
+
+You should see the following being added to the log file every few seconds if the management node is checking in with the database:
+2012-05-15 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2012-05-15 13:23:45
+
+
+6. **Set the vclsystem account password for xmlrpc api**
+
+Using the vcld -setup tool, set the vclsystem account. This is needed to properly use the block allocation features.
+	
+            :::BashLexer
+            /usr/local/vcl/bin/vcld -setup
+
+Select 1. VCL Base Module<br>
+Select 2. Set Local VCL User Account Password<br>
+Select 2. vclsystem<br> 
+From the vcld.conf file, paste or type the password from xmlrpc_pass variable and hit enter. 
+ 
+
+
+
+ [1]: http://www.phpmyadmin.net/
   [2]: http://www.mysql.com/
