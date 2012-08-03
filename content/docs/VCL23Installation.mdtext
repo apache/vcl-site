@@ -21,11 +21,23 @@ VCL currently supports the use of mysql database.
          <pre><code>/sbin/chkconfig --level 345 mysqld on</code></pre>
      *  Start the MySQL daemon:
          <pre><code>/sbin/service mysqld start</code></pre>
-     *  If the iptables firewall is being used and the web server and management nodes will be on different machines, port 3306 should be opend up
+     *  If the iptables firewall is being used and the web server and management nodes will be on different machines, port 3306 should be opened up
          <pre><code>vi /etc/sysconfig/iptables</code></pre>
          <pre><code>-A RH-Firewall-1-INPUT -m state --state NEW -s <web server IP> -p tcp --dport 3306 -j ACCEPT
 -A RH-Firewall-1-INPUT -m state --state NEW -s <management node IP> -p tcp --dport 3306 -j ACCEPT
-service iptables restart</code></pre>
+service iptables restart</code></pre>      
+
+ 3. Create the VCL Database
+    * Run the MySQL command-line client:
+         <pre><code>mysql</code></pre>
+   *  Create a database:
+         <pre><code>CREATE DATABASE vcl;</code></pre>
+   * Create a user with SELECT, INSERT, UPDATE, DELETE, and CREATE TEMPORARY TABLES privileges on the database you just created:
+         <pre><code>GRANT SELECT,INSERT,UPDATE,DELETE,CREATE TEMPORARY TABLES ON vcl.* TO '**vcluser**'@'localhost' IDENTIFIED BY '**vcluserpassword**';
+   * Exit the MySQL command-line client:
+         <pre><code>exit</code></pre>
+   * Import the vcl.sql file into the database. The **vcl.sql** file is included in the **mysql** directory within the Apache VCL source code
+         <pre><code>mysql vcl < apache-VCL-2.3/mysql/vcl.sql</code></pre>
 
 # Install and Configure the Web Components # {#web}
 
