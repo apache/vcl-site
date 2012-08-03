@@ -309,13 +309,15 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
             :::BashLexer
             perl /usr/local/vcl/bin/install_perl_libs.pl
 
-            The last line of the install_perl_libs.pl script output should be:
-            COMPLETE: installed all components
-            Note: The script will hang or terminate if it encounters a problem. If this occurs, you will need to troubleshoot the problem by looking at the output. 
+    The last line of the install_perl_libs.pl script output should be:
+    
+    *COMPLETE: installed all components*
+    
+    Note: The script will hang or terminate if it encounters a problem. If this occurs, you will need to troubleshoot the problem by looking at the output. 
 
-            The install_perl_libs.pl script included in the VCL distribution will attempt to download and install the required Linux packages and Perl modules. It uses the yum utility to install the required Linux packages. The required Perl modules are available from CPAN - The Comprehensive Perl Archive Network. The install_perl_libs.pl script attempts to download and install the required Perl modules by using the CPAN.pm module which is included with most Perl distributions. 
+    The install_perl_libs.pl script included in the VCL distribution will attempt to download and install the required Linux packages and Perl modules. It uses the yum utility to install the required Linux packages. The required Perl modules are available from CPAN - The Comprehensive Perl Archive Network. The install_perl_libs.pl script attempts to download and install the required Perl modules by using the CPAN.pm module which is included with most Perl distributions. 
 
-            The yum utility should exist on any modern Red Hat-based Linux distribution (Red Hat, CentOS, Fedora, etc). If yum isn't available on your management node OS, you will need to download and install the required Linux packages manually or by using another package management utility. After installing the required Linux packages, attempt to run the install_perl_libs.pl script again.
+    The yum utility should exist on any modern Red Hat-based Linux distribution (Red Hat, CentOS, Fedora, etc). If yum isn't available on your management node OS, you will need to download and install the required Linux packages manually or by using another package management utility. After installing the required Linux packages, attempt to run the install_perl_libs.pl script again.
 
 
   [1]: http://www.phpmyadmin.net/
