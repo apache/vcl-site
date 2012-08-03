@@ -352,9 +352,9 @@ The SSH client on the management node should be configured to prevent SSH proces
 Edit the ssh_config file:
 
 	vi /etc/ssh/ssh_config
-Set the following parameters:
-UserKnownHostsFile /dev/null
-StrictHostKeyChecking no
+Set the following parameters:<br>
+UserKnownHostsFile /dev/null<br>
+StrictHostKeyChecking no<br>
 *Note: If you do not want these settings applied universally on the management node the SSH configuration can also be configured to only apply these settings to certain hosts or only for the root user. Consult the SSH documentation for more information.*
 
 5. **Install and Start the VCL Daemon (vcld) Service**
@@ -384,7 +384,7 @@ StrictHostKeyChecking no
             :::BashLexer
             tail -f /var/log/vcld.log
 
-You should see the following being added to the log file every few seconds if the management node is checking in with the database:
+You should see the following being added to the log file every few seconds if the management node is checking in with the database:<br>
 2012-05-15 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2012-05-15 13:23:45
 
 
@@ -400,6 +400,30 @@ Select 2. Set Local VCL User Account Password<br>
 Select 2. vclsystem<br> 
 From the vcld.conf file, paste or type the password from xmlrpc_pass variable and hit enter. 
  
+
+7. **Install & Configure the DHCP Service**
+
+    * Install dhcp if it is not already installed:
+	
+            :::BashLexer
+            yum install dhcp -y
+
+    * Configure the dhcpd service to automatically start at runlevels 3-5:
+
+            :::BashLexer
+            /sbin/chkconfig --level 345 dhcpd on
+
+    * Configure the dhcpd.conf file.
+	
+            :::BashLexer
+            vi /etc/dhcpd.conf
+            Configure your dhcpd.conf file according to your network configuration. The contents of the dhcpd.conf file will vary based on how your network is configured. Below is an example of a basic dhcpd.conf file:
+  
+
+    * Start the dhcpd service:
+
+            :::BashLexer
+            /sbin/service dhcpd start
 
 
 
