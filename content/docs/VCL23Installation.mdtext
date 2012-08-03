@@ -36,7 +36,7 @@ VCL currently supports the use of mysql database.
             :::BashLexer
             /sbin/service mysqld start
 
-    *  If the iptables firewall is being used and the web server and management nodes will be on different machines, port 3306 should be opened up. Add the following to your iptables config and restart iptables service.
+    *  If the iptables firewall is being used and the web server and management nodes will be on different machines, port 3306 should be opened up. Add the following to your iptables config and restart iptables service. Note insert your web server and management node IP address in the right locations.
 
             :::BashLexer
             vi /etc/sysconfig/iptables
