@@ -41,6 +41,7 @@ VCL currently supports the use of mysql database.
             :::BashLexer 
             vi /etc/sysconfig/iptables
 
+
             :::BashLexer
             -A RH-Firewall-1-INPUT -m state --state NEW -s <web server IP> -p tcp --dport 3306 -j ACCEPT
             -A RH-Firewall-1-INPUT -m state --state NEW -s <management node IP> -p tcp --dport 3306 -j ACCEPT
