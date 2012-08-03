@@ -11,13 +11,13 @@ VCL currently supports the use of mysql database.
 1. Download and Extract the Apache VCL Source
     * If you have not already done so, download and the Apache VCL source to the database server:
 
-    :::BashLexer
-    wget http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2
+            :::BashLexer
+            wget http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2
 
     * Extract the files:
 
-    :::BashLexer
-    tar -jxvf apache-VCL-2.3.tar.bz2
+            :::BashLexer
+            tar -jxvf apache-VCL-2.3.tar.bz2
 
 2. Install MySQL Server
 
