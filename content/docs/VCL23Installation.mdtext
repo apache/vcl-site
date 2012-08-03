@@ -56,17 +56,17 @@ VCL currently supports the use of mysql database.
 
     * Create a database:
          
-            ::: MySqlLexer
+            :::MySqlLexer
             CREATE DATABASE vcl;
 
     * Create a user with SELECT, INSERT, UPDATE, DELETE, and CREATE TEMPORARY TABLES privileges on the database you just created:
         
-            ::: MySqlLexer
+            :::MySqlLexer
             GRANT SELECT,INSERT,UPDATE,DELETE,CREATE TEMPORARY TABLES ON vcl.* TO '**vcluser**'@'localhost' IDENTIFIED BY '**vcluserpassword**';
 
     * Exit the MySQL command-line client
 
-            ::: MySqlLexer
+            :::MySqlLexer
             exit
 
     * Import the vcl.sql file into the database. The **vcl.sql** file is included in the **mysql** directory within the Apache VCL source code
