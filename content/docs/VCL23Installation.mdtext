@@ -194,8 +194,8 @@ VCL currently supports the use of mysql database.
 
     * Set the owner of the .ht-inc/maintenance directory to the web server user (normally 'apache'):
 	
-           :::BashLexer
-           chown apache maintenance
+            :::BashLexer
+            chown apache maintenance
 
     * Open the testsetup.php page in a web browser:
         * If you set up your site to be https://my.server.org/vcl/ open https://my.server.org/vcl/testsetup.php
@@ -213,7 +213,7 @@ VCL currently supports the use of mysql database.
         * Enter a new password
         * Click Submit Changes
 
-4. Add a Management Node to the Database
+4. **Add a Management Node to the Database**
     * Click the Management Nodes link
         * Click Add
         * Fill in these required fields:
@@ -232,3 +232,87 @@ VCL currently supports the use of mysql database.
             * Click Submit
             * Select the checkbox for your management node
             * Click Submit Changes
+
+5. **Install & Configure phpMyAdmin (Optional):**
+[phpMyAdmin][1] is a free and optional tool which allows [MySQL][2] to be administered using a web browser. It makes administering the VCL database easier. This tool can be installed on the VCL web server.
+To install phpMyAdmin, follow the instructions on: VCL 2.3 phpMyAdmin Installation & Configuration
+
+---------
+
+
+# Install & Configure the Management Node Components # {#managementnode}
+
+**Prerequisites**
+The following management node installation instructions assume the instructions on the following pages have previously been completed:
+
+    * VCL 2.3 Database Installation
+    * VCL 2.3 Web Code Installation
+
+**Supported Operating Systems:**
+The VCL management node daemon (vcld) has been developed to run on an operating system based on Red Hat Enterprise Linux (RHEL). It has been tested on the following:
+
+Red Hat Enterprise Linux 4.x
+Red Hat Enterprise Linux 5.x
+Red Hat Enterprise Linux 6.x
+CentOS 5.x
+CentOS 6.x
+
+**Required Linux Packages:**
+The VCL management node daemon (vcld) requires the following Linux packages and Perl modules in order to run (see step 2 below for installation instructions):
+
+expat - A library for parsing XML
+expat-devel - Libraries and include files to develop XML applications with expat
+gcc - Various compilers (C, C++, Objective-C, Java, ...)
+krb5-libs - The shared libraries used by Kerberos 5
+krb5-devel - Development files needed to compile Kerberos 5 programs
+libxml2 - Library providing XML and HTML support
+libxml2-devel - Libraries, includes, etc. to develop XML and HTML applications
+mysql - MySQL client programs and shared libraries
+nmap - Network exploration tool and security scanner
+openssh - The OpenSSH implementation of SSH protocol versions 1 and 2
+openssl - The OpenSSL toolkit
+openssl-devel - Files for development of applications which will use OpenSSL
+perl - The Perl programming language
+perl-DBD-MySQL - A MySQL interface for perl
+xmlsec1-openssl - OpenSSL crypto plugin for XML Security Library
+
+**Required Perl Modules:**
+The VCL management node daemon (vcld) is written in Perl and has been tested on Perl 5.8.x. The following Perl modules available from CPAN are also required (see step 2 below for installation instructions):
+
+DBI - Generic Database Interface
+Digest::SHA1 - NIST SHA message digest algorithm
+Mail::Mailer - Simple mail agent interface
+Object::InsideOut - Comprehensive inside-out object support
+RPC::XML - A set of classes for core data, message and XML handling
+YAML - YAML Ain't Markup Language
+
+1. **Install the VCL Management Node Code - Perl Daemon**
+
+    * If you have not already done so, download and extract the source files on the web server:
+
+            :::BashLexer
+            wget http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2
+            tar -jxvf apache-VCL-2.3.tar.bz2
+
+    * Copy the managementnode directory to the location where you want it to reside (typically /usr/local):
+
+            :::BashLexer
+            cp -r apache-VCL-2.3/managementnode /usr/local/vcl
+
+2. Install the Required Linux Packages & Perl Modules
+    * Run the install_perl_libs.pl script located in the bin directory:
+
+            :::BashLexer
+            perl /usr/local/vcl/bin/install_perl_libs.pl
+
+The last line of the install_perl_libs.pl script output should be:
+COMPLETE: installed all components
+Note: The script will hang or terminate if it encounters a problem. If this occurs, you will need to troubleshoot the problem by looking at the output. 
+
+The install_perl_libs.pl script included in the VCL distribution will attempt to download and install the required Linux packages and Perl modules. It uses the yum utility to install the required Linux packages. The required Perl modules are available from CPAN - The Comprehensive Perl Archive Network. The install_perl_libs.pl script attempts to download and install the required Perl modules by using the CPAN.pm module which is included with most Perl distributions. 
+
+The yum utility should exist on any modern Red Hat-based Linux distribution (Red Hat, CentOS, Fedora, etc). If yum isn't available on your management node OS, you will need to download and install the required Linux packages manually or by using another package management utility. After installing the required Linux packages, attempt to run the install_perl_libs.pl script again.
+
+
+  [1]: http://www.phpmyadmin.net/
+  [2]: http://www.mysql.com/
