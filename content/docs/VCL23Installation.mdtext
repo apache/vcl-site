@@ -106,7 +106,7 @@ VCL currently supports the use of mysql database.
 
  - - -
 
-1. Install the Required Linux Packages & PHP Modules
+1. **Install the Required Linux Packages & PHP Modules**
     * If your web server is running a Red Hat-based OS, the required components can be installed with:
         For RHEL / CentOS 5
        
@@ -118,5 +118,64 @@ VCL currently supports the use of mysql database.
             :::BashLexer
             	yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap php-process -y
 
-    * Configure the web server daemon (httpd) to start automatically:      
-  
+    * Configure the web server daemon (httpd) to start automatically:
+
+            :::BashLexer
+            /sbin/chkconfig --level 345 httpd on
+
+    * Start the web server daemon
+
+            :::BashLexer
+            /sbin/service httpd start 
+
+    * If SELinux is enabled, run the following command to allow the web server to connect to the database:
+
+            :::BashLexer
+            /usr/sbin/setsebool -P httpd_can_network_connect=1
+
+    * If the iptables firewall is being used, port 80 and 443 should be opened up:
+
+            :::BashLexer
+            vi /etc/sysconfig/iptables
+            -A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT
+            -A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT
+            service iptables restart
+
+2. **Install the VCL Frontend Web Code**
+    * If you have not already done so, download and extract the source files on the web server:
+
+            :::BashLexer
+            wget http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2
+            tar -jxvf apache-VCL-2.3.tar.bz2
+
+    * Copy the **web** directory to a location under the web root of your web server and navigate to the destination **.ht-inc** subdirectory:
+
+            :::BashLexer
+            cp -r apache-VCL-2.3/web/ /var/www/html/vcl
+            cd /var/www/html/vcl/.ht-inc
+
+    * Copy secrets-default.php to secrets.php:
+
+            :::BashLexer
+            cp secrets-default.php secrets.php
+
+    * Edit the secrets.php file:
+
+            :::BashLexer	 
+            vi secrets.php
+
+Set the following variables to match your database configuration:
+$vclhost
+$vcldb
+$vclusername
+$vclpassword
+Create random passwords for the following variables:
+$cryptkey
+$pemkey
+Save the secrets.php file
+
+    * Run the genkeys.sh
+	
+            :::BashLexer
+            ./genkeys.sh
+
