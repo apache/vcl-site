@@ -249,32 +249,34 @@ The following management node installation instructions assume the instructions 
     * VCL 2.3 Web Code Installation
 
 **Supported Operating Systems:**
+
 The VCL management node daemon (vcld) has been developed to run on an operating system based on Red Hat Enterprise Linux (RHEL). It has been tested on the following:
 
-Red Hat Enterprise Linux 4.x
-Red Hat Enterprise Linux 5.x
-Red Hat Enterprise Linux 6.x
-CentOS 5.x
-CentOS 6.x
+* Red Hat Enterprise Linux 4.x
+* Red Hat Enterprise Linux 5.x
+* Red Hat Enterprise Linux 6.x
+* CentOS 5.x
+* CentOS 6.x
 
 **Required Linux Packages:**
+
 The VCL management node daemon (vcld) requires the following Linux packages and Perl modules in order to run (see step 2 below for installation instructions):
 
-    * expat - A library for parsing XML
-    * expat-devel - Libraries and include files to develop XML applications with expat
-    * gcc - Various compilers (C, C++, Objective-C, Java, ...)
-    * krb5-libs - The shared libraries used by Kerberos 5
-    * krb5-devel - Development files needed to compile Kerberos 5 programs
-    * libxml2 - Library providing XML and HTML support
-    * libxml2-devel - Libraries, includes, etc. to develop XML and HTML applications
-    * mysql - MySQL client programs and shared libraries
-    * nmap - Network exploration tool and security scanner
-    * openssh - The OpenSSH implementation of SSH protocol versions 1 and 2
-    * openssl - The OpenSSL toolkit
-    * openssl-devel - Files for development of applications which will use OpenSSL
-    * perl - The Perl programming language
-    * perl-DBD-MySQL - A MySQL interface for perl
-    * xmlsec1-openssl - OpenSSL crypto plugin for XML Security Library
+* expat - A library for parsing XML
+* expat-devel - Libraries and include files to develop XML applications with expat
+* gcc - Various compilers (C, C++, Objective-C, Java, ...)
+* krb5-libs - The shared libraries used by Kerberos 5
+* krb5-devel - Development files needed to compile Kerberos 5 programs
+* libxml2 - Library providing XML and HTML support
+* libxml2-devel - Libraries, includes, etc. to develop XML and HTML applications
+* mysql - MySQL client programs and shared libraries
+* nmap - Network exploration tool and security scanner
+* openssh - The OpenSSH implementation of SSH protocol versions 1 and 2
+* openssl - The OpenSSL toolkit
+* openssl-devel - Files for development of applications which will use OpenSSL
+* perl - The Perl programming language
+* perl-DBD-MySQL - A MySQL interface for perl
+* xmlsec1-openssl - OpenSSL crypto plugin for XML Security Library
 
 **Required Perl Modules:**
 The VCL management node daemon (vcld) is written in Perl and has been tested on Perl 5.8.x. The following Perl modules available from CPAN are also required (see step 2 below for installation instructions):
