@@ -44,7 +44,7 @@ VCL currently supports the use of mysql database.
             :::BashLexer
             -A RH-Firewall-1-INPUT -m state --state NEW -s <web server IP> -p tcp --dport 3306 -j ACCEPT
             -A RH-Firewall-1-INPUT -m state --state NEW -s <management node IP> -p tcp --dport 3306 -j ACCEPT
-            service iptables restart</code></pre>      
+            service iptables restart   
 
 3. Create the VCL Database
    
