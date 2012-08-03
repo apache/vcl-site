@@ -116,6 +116,7 @@ VCL currently supports the use of mysql database.
             yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap -y
 
         For RHEL / CentOS 6
+
             :::BashLexer
             	yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap php-process -y
 
