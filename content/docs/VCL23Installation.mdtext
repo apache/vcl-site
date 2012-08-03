@@ -279,14 +279,15 @@ The VCL management node daemon (vcld) requires the following Linux packages and 
 * xmlsec1-openssl - OpenSSL crypto plugin for XML Security Library
 
 **Required Perl Modules:**
+
 The VCL management node daemon (vcld) is written in Perl and has been tested on Perl 5.8.x. The following Perl modules available from CPAN are also required (see step 2 below for installation instructions):
 
-    * DBI - Generic Database Interface
-    * Digest::SHA1 - NIST SHA message digest algorithm
-    * Mail::Mailer - Simple mail agent interface
-    * Object::InsideOut - Comprehensive inside-out object support
-    * RPC::XML - A set of classes for core data, message and XML handling
-    * YAML - YAML Ain't Markup Language
+* DBI - Generic Database Interface
+* Digest::SHA1 - NIST SHA message digest algorithm
+* Mail::Mailer - Simple mail agent interface
+* Object::InsideOut - Comprehensive inside-out object support
+* RPC::XML - A set of classes for core data, message and XML handling
+* YAML - YAML Ain't Markup Language
 
 1. **Install the VCL Management Node Code - Perl Daemon**
 
@@ -302,18 +303,19 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
             cp -r apache-VCL-2.3/managementnode /usr/local/vcl
 
 2. Install the Required Linux Packages & Perl Modules
+
     * Run the install_perl_libs.pl script located in the bin directory:
 
             :::BashLexer
             perl /usr/local/vcl/bin/install_perl_libs.pl
 
-The last line of the install_perl_libs.pl script output should be:
-COMPLETE: installed all components
-Note: The script will hang or terminate if it encounters a problem. If this occurs, you will need to troubleshoot the problem by looking at the output. 
+            The last line of the install_perl_libs.pl script output should be:
+            COMPLETE: installed all components
+            Note: The script will hang or terminate if it encounters a problem. If this occurs, you will need to troubleshoot the problem by looking at the output. 
 
-The install_perl_libs.pl script included in the VCL distribution will attempt to download and install the required Linux packages and Perl modules. It uses the yum utility to install the required Linux packages. The required Perl modules are available from CPAN - The Comprehensive Perl Archive Network. The install_perl_libs.pl script attempts to download and install the required Perl modules by using the CPAN.pm module which is included with most Perl distributions. 
+            The install_perl_libs.pl script included in the VCL distribution will attempt to download and install the required Linux packages and Perl modules. It uses the yum utility to install the required Linux packages. The required Perl modules are available from CPAN - The Comprehensive Perl Archive Network. The install_perl_libs.pl script attempts to download and install the required Perl modules by using the CPAN.pm module which is included with most Perl distributions. 
 
-The yum utility should exist on any modern Red Hat-based Linux distribution (Red Hat, CentOS, Fedora, etc). If yum isn't available on your management node OS, you will need to download and install the required Linux packages manually or by using another package management utility. After installing the required Linux packages, attempt to run the install_perl_libs.pl script again.
+            The yum utility should exist on any modern Red Hat-based Linux distribution (Red Hat, CentOS, Fedora, etc). If yum isn't available on your management node OS, you will need to download and install the required Linux packages manually or by using another package management utility. After installing the required Linux packages, attempt to run the install_perl_libs.pl script again.
 
 
   [1]: http://www.phpmyadmin.net/
