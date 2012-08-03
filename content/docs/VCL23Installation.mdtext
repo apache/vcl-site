@@ -395,10 +395,13 @@ Using the vcld -setup tool, set the vclsystem account. This is needed to properl
             :::BashLexer
             /usr/local/vcl/bin/vcld -setup
 
-Select 1. VCL Base Module<br>
-Select 2. Set Local VCL User Account Password<br>
-Select 2. vclsystem<br> 
-From the vcld.conf file, paste or type the password from xmlrpc_pass variable and hit enter. 
+<br>
+
+            :::BashLexer
+            Select 1. VCL Base Module
+            Select 2. Set Local VCL User Account Password
+            Select 2. vclsystem
+            From the vcld.conf file, paste or type the password from xmlrpc_pass variable and hit enter. 
  
 
 7. **Install & Configure the DHCP Service**
@@ -425,6 +428,9 @@ From the vcld.conf file, paste or type the password from xmlrpc_pass variable an
             :::BashLexer
             /sbin/service dhcpd start
 
+
+------
+Still work in progress -- fapeeler
 
 
  [1]: http://www.phpmyadmin.net/
