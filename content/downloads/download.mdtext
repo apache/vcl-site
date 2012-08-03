@@ -91,13 +91,13 @@ Run the following command to verify the MD5 sum. It should give output similar t
 "apache-VCL-2.3.tar.bz2: OK":
 
     :::BashLexer
-    md5sum &#45;c apache-VCL-2.3.tar.bz2.md5
+    md5sum -c apache-VCL-2.3.tar.bz2.md5
 
 Similarly, run the following command to verify the SHA1 sum. You should get output 
 similar to "apache-VCL-2.3.tar.bz2: OK":</p>
 
     :::BashLexer
-    sha1sum &#45;c apache-VCL-2.3.tar.bz2.sha1
+    sha1sum -c apache-VCL-2.3.tar.bz2.sha1
 
 To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/) installed):
 
@@ -106,13 +106,13 @@ To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/) 
 releases, you do not need to import it again):
 
     :::BashLexer
-    gpg &#45;-import KEYS
+    gpg --import KEYS
 
 1. download the GPG Signature to the same location as the release file
 1. from the directory containing both the release file and the GPG signature, run
 
     :::BashLexer
-    gpg &#45;-verify apache-VCL-2.3.tar.bz2.asc
+    gpg --verify apache-VCL-2.3.tar.bz2.asc
 
 ## Installation
 For new installs, visit the on-line installation guide:
