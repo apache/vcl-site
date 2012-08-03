@@ -19,6 +19,8 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 This portion of the site is for documentation on installing VCL and for documentation
 explaining configuration items that an installer would typically do.
 
+[VCL 2.3 Installation Guide](/docs/VCL23Installation.html)
+
 [Configuring LDAP Authentication](/docs/ldapauth.html)
 
 [Creating Custom Themes](/docs/themes.html)
