@@ -164,15 +164,15 @@ VCL currently supports the use of mysql database.
             :::BashLexer	 
             vi secrets.php
 
-Set the following variables to match your database configuration:
-$vclhost
-$vcldb
-$vclusername
-$vclpassword
-Create random passwords for the following variables:
-$cryptkey
-$pemkey
-Save the secrets.php file
+            * Set the following variables to match your database configuration:
+                * $vclhost
+                * $vcldb
+                * $vclusername
+                * $vclpassword
+            * Create random passwords for the following variables:
+                * $cryptkey
+                * $pemkey
+            * Save the secrets.php file
 
     * Run the genkeys.sh
 	
