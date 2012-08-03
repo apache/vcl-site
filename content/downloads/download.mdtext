@@ -90,13 +90,13 @@ downloaded release files, you ensure they have not been tainted.
 Run the following command to verify the MD5 sum. It should give output similar to 
 "apache-VCL-2.3.tar.bz2: OK":
 
-    :::BashLexer
+    :::Text
     md5sum -c apache-VCL-2.3.tar.bz2.md5
 
 Similarly, run the following command to verify the SHA1 sum. You should get output 
 similar to "apache-VCL-2.3.tar.bz2: OK":</p>
 
-    :::BashLexer
+    :::Text
     sha1sum -c apache-VCL-2.3.tar.bz2.sha1
 
 To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/) installed):
@@ -105,14 +105,14 @@ To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/) 
 1. download and import the VCL KEYS file (if you've imported the KEYS file for previously 
 releases, you do not need to import it again):
 
-    :::BashLexer
-    gpg --import KEYS
+        :::Text
+        gpg --import KEYS
 
 1. download the GPG Signature to the same location as the release file
 1. from the directory containing both the release file and the GPG signature, run
 
-    :::BashLexer
-    gpg --verify apache-VCL-2.3.tar.bz2.asc
+        :::Text
+        gpg --verify apache-VCL-2.3.tar.bz2.asc
 
 ## Installation
 For new installs, visit the on-line installation guide:
