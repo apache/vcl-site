@@ -9,35 +9,59 @@ This guide will provide the necessary steps to install and configure VCL softwar
 VCL currently supports the use of mysql database.
 
  1. Download and Extract the Apache VCL Source
-     * If you have not already done so, download and the Apache VCL source to the database server:
+   * If you have not already done so, download and the Apache VCL source to the database server:
          <pre><code>wget http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2</code></pre>
-     * Extract the files:
+   * Extract the files:
         <pre><code>tar -jxvf apache-VCL-2.3.tar.bz2</code></pre>
 
  2. Install MySQL Server
-     * Install MySQL Server 5.x
-         <pre><code>yum install mysql-server -y</code></pre>
-     * Configure the MySQL daemon (mysqld) to start automatically:
-         <pre><code>/sbin/chkconfig --level 345 mysqld on</code></pre>
-     *  Start the MySQL daemon:
-         <pre><code>/sbin/service mysqld start</code></pre>
-     *  If the iptables firewall is being used and the web server and management nodes will be on different machines, port 3306 should be opened up
-         <pre><code>vi /etc/sysconfig/iptables</code></pre>
-         <pre><code>-A RH-Firewall-1-INPUT -m state --state NEW -s <web server IP> -p tcp --dport 3306 -j ACCEPT
--A RH-Firewall-1-INPUT -m state --state NEW -s <management node IP> -p tcp --dport 3306 -j ACCEPT
-service iptables restart</code></pre>      
+   * Install MySQL Server 5.x
+        :::BashLexer
+        yum install mysql-server -y
+
+   * Configure the MySQL daemon (mysqld) to start automatically:
+
+        :::BashLexer
+        /sbin/chkconfig --level 345 mysqld on
+
+   *  Start the MySQL daemon:
+        
+        :::BashLexer
+        /sbin/service mysqld start
+
+   *  If the iptables firewall is being used and the web server and management nodes will be on different machines, port 3306 should be opened up
+        :::BashLexervi 
+        /etc/sysconfig/iptables
+
+        :::BashLexer
+        -A RH-Firewall-1-INPUT -m state --state NEW -s <web server IP> -p tcp --dport 3306 -j ACCEPT
+        -A RH-Firewall-1-INPUT -m state --state NEW -s <management node IP> -p tcp --dport 3306 -j ACCEPT
+        service iptables restart</code></pre>      
 
  3. Create the VCL Database
-    * Run the MySQL command-line client:
-         <pre><code>mysql</code></pre>
+   * Run the MySQL command-line client:
+         
+        :::BashLexer
+        mysql
+
    *  Create a database:
-         <pre><code>CREATE DATABASE vcl;</code></pre>
+         
+        :::BashLexer
+        CREATE DATABASE vcl;
+
    * Create a user with SELECT, INSERT, UPDATE, DELETE, and CREATE TEMPORARY TABLES privileges on the database you just created:
-         <pre><code>GRANT SELECT,INSERT,UPDATE,DELETE,CREATE TEMPORARY TABLES ON vcl.* TO '**vcluser**'@'localhost' IDENTIFIED BY '**vcluserpassword**';
-   * Exit the MySQL command-line client:
-         <pre><code>exit</code></pre>
+        :::BashLexer
+        GRANT SELECT,INSERT,UPDATE,DELETE,CREATE TEMPORARY TABLES ON vcl.* TO '**vcluser**'@'localhost' IDENTIFIED BY '**vcluserpassword**';
+
+   * Exit the MySQL command-line client
+
+        :::BashLexer
+        exit
+
    * Import the vcl.sql file into the database. The **vcl.sql** file is included in the **mysql** directory within the Apache VCL source code
          <pre><code>mysql vcl < apache-VCL-2.3/mysql/vcl.sql</code></pre>
+
+* * * 
 
 # Install and Configure the Web Components # {#web}
 
@@ -58,15 +82,20 @@ service iptables restart</code></pre>
   - php - The PHP HTML-embedded scripting language
   - libmcrypt - Encryption algorithms library (this requirement can be removed with a patch)
 
-**Required PHP Modules:
+**Required PHP Modules:**
 
-  - php-gd
-  - php-json (required if your PHP version is 5.2 or later)
-  - php-mysql
-  - php-openssl
-  - php-sysvsem
-  - php-xml
-  - php-xmlrpc
-  - php-ldap (if you will be using LDAP authentication)
-  - php-process (for RHEL/CentOS 6)
- 
+  * php-gd
+  * php-json (required if your PHP version is 5.2 or later)
+  * php-mysql
+  * php-openssl
+  * php-sysvsem
+  * php-xml
+  * php-xmlrpc
+  * php-ldap (if you will be using LDAP authentication)
+  * php-process (for RHEL/CentOS 6)
+
+ - - -
+
+  1. Install the Required Linux Packages & PHP Modules
+   * If your web server is running a Red Hat-based OS, the required components can be installed with:
+   
