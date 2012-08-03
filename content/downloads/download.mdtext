@@ -1,0 +1,141 @@
+Title: Downloads
+Notice:    Licensed to the Apache Software Foundation (ASF) under one
+           or more contributor license agreements.  See the NOTICE file
+           distributed with this work for additional information
+           regarding copyright ownership.  The ASF licenses this file
+           to you under the Apache License, Version 2.0 (the
+           "License"); you may not use this file except in compliance
+           with the License.  You may obtain a copy of the License at
+           .
+             http://www.apache.org/licenses/LICENSE-2.0
+           .
+           Unless required by applicable law or agreed to in writing,
+           software distributed under the License is distributed on an
+           "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+           KIND, either express or implied.  See the License for the
+           specific language governing permissions and limitations
+           under the License.
+
+## Download Links
+Use the links below to download Apache VCL from one of our mirrors. You **must**
+<a href="download.cgi#verify">verify the integrity</a> of the downloaded files using 
+signatures downloaded from our main distribution directory, <strong>not</strong> from 
+a mirror.
+
+Only current recommended releases are available on the main distribution site and
+its mirrors. Older releases are available from the archive download site.
+
+Stable Release - Latest Version:
+
+* <a href="[location]?Preferred=[preferred]&action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2">apache-VCL-2.3.tar.bz2</a>
+[ <a href="http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2.asc">GPG</a> ]
+[ <a href="http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2.sha1">SHA1</a> ]
+[ <a href="http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2.md5">MD5</a> ]
+(released 2012-07-20)
+
+Previous Releases:
+
+* <a href="[location]?Preferred=http://archive.apache.org/dist/&action=download&filename=%2Fincubator%2Fvcl%2Fapache-VCL-2.2.1-incubating.tar.bz2">apache-VCL-2.2.1-incubating.tar.bz2</a>
+[ <a href="http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2.asc">GPG</a> ]
+[ <a href="http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2.sha1">SHA1</a> ]
+[ <a href="http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2.md5">MD5</a> ]
+(released 2011-04-08)
+* <a href="[location]?Preferred=http://archive.apache.org/dist/&action=download&filename=%2Fincubator%2Fvcl%2Fapache-VCL-2.2-incubating.tar.bz2">apache-VCL-2.2-incubating.tar.bz2</a>
+[ <a href="http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.asc">GPG</a> ]
+[ <a href="http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.sha1">SHA1</a> ]
+[ <a href="http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.md5">MD5</a> ]
+(released 2010-10-05)
+* <a href="[location]?Preferred=http://archive.apache.org/dist/&action=download&filename=%2Fincubator%2Fvcl%2Fapache-VCL-2.1-incubating.tar.bz2">apache-VCL-2.1-incubating.tar.bz2</a>
+[ <a href="http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.1-incubating.tar.bz2.asc">GPG</a> ]
+[ <a href="http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.1-incubating.tar.bz2.sha1">SHA1</a> ]
+[ <a href="http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.1-incubating.tar.bz2.md5">MD5</a> ]
+(released 2009-12-04)
+
+## Mirror
+The currently selected mirror is **[preferred]**. If you encounter a problem with this 
+mirror, please select another mirror. If all mirrors are failing, there are backup 
+mirrors (at the end of the mirrors list) that should be available.
+
+<form name="setmirror" method="get" action="[location]">
+Other mirrors: 
+<select name="Preferred">
+[if-any http]
+  [for http]
+    <option value="[http]">[http]</option>
+  [end]
+[end]
+[if-any ftp]
+  [for ftp]
+    <option value="[ftp]">[ftp]</option>
+  [end]
+[end]
+[if-any backup]
+  [for backup]
+    <option value="[backup]">[backup] (backup)</option>
+  [end]
+[end]
+</select>
+<input type="submit" value="Change"></input>
+</form>
+
+You may also consult the <a href="http://www.apache.org/mirrors/">complete list of mirrors</a>.
+
+<a name="verify"></a>
+## Verifying the integrity of the files
+
+It is essential that you verify the integrity of the downloaded files using the PGP or 
+MD5 signatures. Security of the mirrors cannot be guaranteed, which means malicious code 
+could be added to the downloads from the mirrors. By verifying the integrity of 
+downloaded release files, you ensure they have not been tainted.
+
+Run the following command to verify the MD5 sum. It should give output similar to 
+"apache-VCL-2.3.tar.bz2: OK":
+
+<pre>
+md5sum &#45;c apache-VCL-2.3.tar.bz2.md5
+</pre>
+
+Similarly, run the following command to verify the SHA1 sum. You should get output 
+similar to "apache-VCL-2.3.tar.bz2: OK":</p>
+<pre>
+sha1sum &#45;c apache-VCL-2.3.tar.bz2.sha1
+</pre>
+
+To verify the GPG signature (you'll need to have 
+<a href="http://www.gnupg.org/">GnuPG</a> installed):
+
+
+1. download and import the VCL KEYS file (if you've imported the KEYS file for previously releases, you do not need to import it again):<br>
+gpg &#45;-import KEYS
+1. download the GPG Signature to the same location as the release file
+1. from the directory containing both the release file and the GPG signature, run<br>
+gpg &#45;-verify apache-VCL-2.3.tar.bz2.asc
+
+## Installation
+For new installs, visit the on-line installation guide:
+
+Latest Version:
+
+* <a href="http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation">Apache VCL 2.3 Installation Guide</a>
+
+Previous Versions:
+
+* <a href="http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation">Apache VCL 2.2.1 Installation Guide</a>
+* <a href="http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation">Apache VCL 2.2 Installation Guide</a>
+* <a href="http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation">Apache VCL 2.1 Installation Guide</a>
+
+
+## Upgrading
+For upgrades, visit the on-line upgrade guide:
+
+Upgrade to latest version:
+
+* <a href="http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.2.1+to+2.3%29">upgrade 2.2.1 to 2.3</a>
+* <a href="http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.2+to+2.3%29">upgrade 2.2 to 2.3</a>
+* <a href="http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.3%29">upgrade 2.1 to 2.3</a>
+
+Upgrade really old versions to older versions:
+
+* <a href="http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.2+to+2.2.1%29">upgrade 2.2 to 2.2.1</a>
+* <a href="http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.2.1%29">upgrade 2.1 to 2.2.1</a>
+* <a href="http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version">upgrade 2.1 to 2.2</a>
