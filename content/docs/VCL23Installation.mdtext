@@ -260,31 +260,31 @@ CentOS 6.x
 **Required Linux Packages:**
 The VCL management node daemon (vcld) requires the following Linux packages and Perl modules in order to run (see step 2 below for installation instructions):
 
-expat - A library for parsing XML
-expat-devel - Libraries and include files to develop XML applications with expat
-gcc - Various compilers (C, C++, Objective-C, Java, ...)
-krb5-libs - The shared libraries used by Kerberos 5
-krb5-devel - Development files needed to compile Kerberos 5 programs
-libxml2 - Library providing XML and HTML support
-libxml2-devel - Libraries, includes, etc. to develop XML and HTML applications
-mysql - MySQL client programs and shared libraries
-nmap - Network exploration tool and security scanner
-openssh - The OpenSSH implementation of SSH protocol versions 1 and 2
-openssl - The OpenSSL toolkit
-openssl-devel - Files for development of applications which will use OpenSSL
-perl - The Perl programming language
-perl-DBD-MySQL - A MySQL interface for perl
-xmlsec1-openssl - OpenSSL crypto plugin for XML Security Library
+    * expat - A library for parsing XML
+    * expat-devel - Libraries and include files to develop XML applications with expat
+    * gcc - Various compilers (C, C++, Objective-C, Java, ...)
+    * krb5-libs - The shared libraries used by Kerberos 5
+    * krb5-devel - Development files needed to compile Kerberos 5 programs
+    * libxml2 - Library providing XML and HTML support
+    * libxml2-devel - Libraries, includes, etc. to develop XML and HTML applications
+    * mysql - MySQL client programs and shared libraries
+    * nmap - Network exploration tool and security scanner
+    * openssh - The OpenSSH implementation of SSH protocol versions 1 and 2
+    * openssl - The OpenSSL toolkit
+    * openssl-devel - Files for development of applications which will use OpenSSL
+    * perl - The Perl programming language
+    * perl-DBD-MySQL - A MySQL interface for perl
+    * xmlsec1-openssl - OpenSSL crypto plugin for XML Security Library
 
 **Required Perl Modules:**
 The VCL management node daemon (vcld) is written in Perl and has been tested on Perl 5.8.x. The following Perl modules available from CPAN are also required (see step 2 below for installation instructions):
 
-DBI - Generic Database Interface
-Digest::SHA1 - NIST SHA message digest algorithm
-Mail::Mailer - Simple mail agent interface
-Object::InsideOut - Comprehensive inside-out object support
-RPC::XML - A set of classes for core data, message and XML handling
-YAML - YAML Ain't Markup Language
+    * DBI - Generic Database Interface
+    * Digest::SHA1 - NIST SHA message digest algorithm
+    * Mail::Mailer - Simple mail agent interface
+    * Object::InsideOut - Comprehensive inside-out object support
+    * RPC::XML - A set of classes for core data, message and XML handling
+    * YAML - YAML Ain't Markup Language
 
 1. **Install the VCL Management Node Code - Perl Daemon**
 
