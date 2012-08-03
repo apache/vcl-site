@@ -335,14 +335,13 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 	
             :::BashLexer
             vi /etc/vcl/vcld.conf
-
-The following lines must be configured in order to start the VCL daemon (vcld) and allow it to check in to the database:
-* FQDN - the fully qualified name of the management node, this should match the name that was configured for the management node in the database
-* server - the IP address or FQDN of the database server
-* LockerWrtUser - database user account with write privileges
-* wrtPass - database user password
-* xmlrpc_pass - password for xmlrpc api from vcld to the web interface(can be long). This will be used later to sync the database vclsystem user account
-* xmlrpc_url - URL for xmlrpc api https://my.server.org/vcl/index.php?mode=xmlrpccall
+            The following lines must be configured in order to start the VCL daemon (vcld) and allow it to check in to the database:
+            * FQDN - the fully qualified name of the management node, this should match the name that was configured for the management node in the database
+            * server - the IP address or FQDN of the database server
+            * LockerWrtUser - database user account with write privileges
+            * wrtPass - database user password
+            * xmlrpc_pass - password for xmlrpc api from vcld to the web interface(can be long). This will be used later to sync the database vclsystem user account
+            * xmlrpc_url - URL for xmlrpc api https://my.server.org/vcl/index.php?mode=xmlrpccall
 
     * Save the vcld.conf file
 
