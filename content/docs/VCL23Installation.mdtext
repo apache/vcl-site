@@ -319,6 +319,33 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 
     The yum utility should exist on any modern Red Hat-based Linux distribution (Red Hat, CentOS, Fedora, etc). If yum isn't available on your management node OS, you will need to download and install the required Linux packages manually or by using another package management utility. After installing the required Linux packages, attempt to run the install_perl_libs.pl script again.
 
+3. **Configure vcld.conf**
+
+    * Create the /etc/vcl directory:
+
+            :::BashLexer
+            mkdir /etc/vcl
+
+    * Copy the stock vcld.conf file to /etc/vcl:
+	
+            :::BashLexer
+            cp /usr/local/vcl/etc/vcl/vcld.conf /etc/vcl
+
+    * Edit /etc/vcl/vcld.conf:
+	
+            :::BashLexer
+            vi /etc/vcl/vcld.conf
+
+The following lines must be configured in order to start the VCL daemon (vcld) and allow it to check in to the database:
+* FQDN - the fully qualified name of the management node, this should match the name that was configured for the management node in the database
+* server - the IP address or FQDN of the database server
+* LockerWrtUser - database user account with write privileges
+* wrtPass - database user password
+* xmlrpc_pass - password for xmlrpc api from vcld to the web interface(can be long). This will be used later to sync the database vclsystem user account
+* xmlrpc_url - URL for xmlrpc api https://my.server.org/vcl/index.php?mode=xmlrpccall
+
+    * Save the vcld.conf file
+
 
   [1]: http://www.phpmyadmin.net/
   [2]: http://www.mysql.com/
