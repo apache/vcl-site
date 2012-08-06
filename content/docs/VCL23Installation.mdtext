@@ -358,7 +358,8 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
             Set the following parameters:<br>
             UserKnownHostsFile /dev/null<br>
             StrictHostKeyChecking no<br>
-            Note: If you do not want these settings applied universally on the management node the SSH configuration can also be configured to only apply these settings to certain hosts or only for the root user. Consult the SSH documentation for more information.
+
+     Note: If you do not want these settings applied universally on the management node the SSH configuration can also be configured to only apply these settings to certain hosts or only for the root user. Consult the SSH documentation for more information.
 
 5. **Install and Start the VCL Daemon (vcld) Service**
 
@@ -387,13 +388,13 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
             :::BashLexer
             tail -f /var/log/vcld.log
 
-You should see the following being added to the log file every few seconds if the management node is checking in with the database:<br>
-2012-05-15 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2012-05-15 13:23:45
+     You should see the following being added to the log file every few seconds if the management node is checking in with the database:<br>
+     2012-05-15 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2012-05-15 13:23:45
 
 
 6. **Set the vclsystem account password for xmlrpc api**
 
-Using the vcld -setup tool, set the vclsystem account. This is needed to properly use the block allocation features.
+     Using the vcld -setup tool, set the vclsystem account. This is needed to properly use the block allocation features.
 	
             :::BashLexer
             /usr/local/vcl/bin/vcld -setup
