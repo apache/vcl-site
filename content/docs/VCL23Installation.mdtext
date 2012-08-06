@@ -349,9 +349,9 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 
 4. **Configure the SSH Client**
 
-     The SSH client on the management node should be configured to prevent SSH processes spawned by the root user to the computers it controls from hanging because of missing or different entries in the known_hosts file. 
+    The SSH client on the management node should be configured to prevent SSH processes spawned by the root user to the computers it controls from hanging because of missing or different entries in the known_hosts file. 
 
-     Edit the ssh_config file:
+    * Edit the ssh_config file:
 
             :::BashLexer
             vi /etc/ssh/ssh_config
@@ -359,7 +359,7 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
             UserKnownHostsFile /dev/null<br>
             StrictHostKeyChecking no<br>
 
-     Note: If you do not want these settings applied universally on the management node the SSH configuration can also be configured to only apply these settings to certain hosts or only for the root user. Consult the SSH documentation for more information.
+    Note: If you do not want these settings applied universally on the management node the SSH configuration can also be configured to only apply these settings to certain hosts or only for the root user. Consult the SSH documentation for more information.
 
 5. **Install and Start the VCL Daemon (vcld) Service**
 
@@ -409,6 +409,8 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
  
 
 7. **Install & Configure the DHCP Service**
+   
+    DHCP service is needed for the private network to provide address to provisioned machines.
 
     * Install dhcp if it is not already installed:
 	
@@ -434,7 +436,7 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 
 
 ------
-Still work in progress -- fapeeler
+
 
 
  [1]: http://www.phpmyadmin.net/
