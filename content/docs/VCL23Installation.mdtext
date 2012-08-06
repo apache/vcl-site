@@ -399,7 +399,7 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
             :::BashLexer
             /usr/local/vcl/bin/vcld -setup
 
-<br>
+    Select the options listed below to set the password.
 
             :::BashLexer
             Select 1. VCL Base Module
@@ -426,8 +426,22 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 	
             :::BashLexer
             vi /etc/dhcpd.conf
-            Configure your dhcpd.conf file according to your network configuration. The contents of the dhcpd.conf file will vary based on how your network is configured. Below is an example of a basic dhcpd.conf file:
+
+    Configure your dhcpd.conf file according to your network configuration. 
+    The contents of the dhcpd.conf file will vary based on how your network is configured. Below is an example of a basic dhcpd.conf file:
   
+            :::BashLexer
+            ddns-update-style none;
+            shared-network eth0 {
+	                subnet 10.100.0.0 netmask 255.255.255.0 {
+		                    ignore unknown-clients;
+	                }
+            }
+
+    You will add host definitions to the dhcpd.conf file after you add computers to VCL using the website. 
+    The website will display the dhcpd.conf host definitions after the computers have been added to VCL, 
+    which can be copied and pasted into the dhcpd.conf file.
+
 
     * Start the dhcpd service:
 
