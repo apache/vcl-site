@@ -399,14 +399,13 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
             :::BashLexer
             /usr/local/vcl/bin/vcld -setup
 
-    Select the options listed below to set the password.
+    Select the options listed below to set the password. When prompted paste or type the password from xmlrpc_pass variable in the vcld.conf file and hit enter. 
 
             :::BashLexer
             Select 1. VCL Base Module
             Select 2. Set Local VCL User Account Password
             Select 2. vclsystem
-            From the vcld.conf file, paste or type the password from xmlrpc_pass variable and hit enter. 
- 
+             
 
 7. **Install & Configure the DHCP Service**
    
