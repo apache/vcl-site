@@ -4,7 +4,7 @@
     * [Architecture](/info/architecture.html)
     * [Use Cases](/info/use-cases.html)
     * [Download](/downloads/download.cgi)
-    * [License](/info/license.html)
+    * [License][1]
     * [FAQ](/info/faq.html)
 * [Documentation](/docs/index.html)
     * [Using VCL](/docs/using-vcl.html)
@@ -24,3 +24,6 @@
 * [Apache Software Foundation](http://www.apache.org)
     * [Thanks](http://www.apache.org/foundation/thanks.html)
     * [Become a Sponsor](http://www.apache.org/foundation/sponsorship.html)
+
+
+  [1]: http://www.apache.org/licenses/LICENSE-2.0.html
