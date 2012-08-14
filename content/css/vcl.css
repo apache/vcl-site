@@ -49,6 +49,10 @@ h1,h2,h3,h4,h5,h6 {
 	text-decoration: none;
 }
 
+#sitetitle img {
+    border-style: none;
+}
+
 #navigation {
 	float:left;
 	width: 200px;
