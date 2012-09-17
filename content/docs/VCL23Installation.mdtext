@@ -419,12 +419,14 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
     * Configure the dhcpd service to automatically start at runlevels 3-5:
 
             :::BashLexer
-            /sbin/chkconfig --level 345 dhcpd on
+            /sbin/chkconfig dhcpd on
 
     * Configure the dhcpd.conf file.
 	
             :::BashLexer
             vi /etc/dhcpd.conf
+            -or-
+            vi /etc/dhcp/dhcpd.conf
 
     Configure your dhcpd.conf file according to your network configuration. 
     The contents of the dhcpd.conf file will vary based on how your network is configured. Below is an example of a basic dhcpd.conf file:
