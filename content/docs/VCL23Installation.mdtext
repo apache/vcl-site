@@ -1,4 +1,5 @@
 Title: VCL 2.3 Installation Guide
+
 **VCL 2.3 Installation Guide**
 
 This guide will provide the necessary steps to install and configure VCL software. It covers the set up of the database , web portal, and management node.
@@ -13,7 +14,7 @@ VCL currently supports the use of mysql database.
     * If you have not already done so, download and the Apache VCL source to the database server:
 
             :::BashLexer
-            wget http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2
+            wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2'
 
     * Extract the files:
 
