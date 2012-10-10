@@ -147,7 +147,7 @@ VCL currently supports the use of mysql database.
     * If you have not already done so, download and extract the source files on the web server:
 
             :::BashLexer
-            wget http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2
+            wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2'
             tar -jxvf apache-VCL-2.3.tar.bz2
 
     * Copy the **web** directory to a location under the web root of your web server and navigate to the destination **.ht-inc** subdirectory:
@@ -298,7 +298,7 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
     * If you have not already done so, download and extract the source files on the web server:
 
             :::BashLexer
-            wget http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2
+            wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2'
             tar -jxvf apache-VCL-2.3.tar.bz2
 
     * Copy the managementnode directory to the location where you want it to reside (typically /usr/local):
