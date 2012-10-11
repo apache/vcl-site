@@ -29,7 +29,7 @@ This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3. Plea
   - Update Management node vcl code, create a backup, copy in new, make changes 
   - Restart vcld service
 
-**Download and Extract 2.3 code**
+# Download and Extract 2.3 code #
 
 1. follow instructions on VCL 2.3 Release page to download and verify apache-VCL-2.3.tar.bz2 and put in in /root
 2. extract VCL 2.3 code
@@ -37,22 +37,22 @@ This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3. Plea
         :::BashLexer
         tar xjf apache-VCL-2.3.tar.bz2
 
-**Shutdown services**
+# Shutdown services #
 
-Shutdown the httpd and vcld services
+     Shutdown the httpd and vcld services
            
         :::BashLexer
         service httpd stop or /etc/init.d/httpd stop
         service vcld stop or /etc/init.d/vcld stop
 
-**Create a backup of vcl database**
+# Create a backup of vcl database #
 
 We will create a backup of the vcl database. This will provide a restore point if necessary.
 
         :::BashLexer
         mysqldump vcl > ~/vcl-pre2.3-upgrade.sql
 
-**Update mysql schema**
+# Update mysql schema #
 
 This step updates the mysql schema.
 
@@ -63,7 +63,7 @@ This step updates the mysql schema.
 *One item of note*: A new resource group is added in update-vcl.sql - **all profiles**. Access to manage the group is added to the VCL->admin node in the privilege tree if that node exists. If not, you will need to add it manually after starting httpd again. To add it manually, pick a node in the privilege tree, scroll to Resources, click Add Resource Group, select serverprofile/all profiles from the drop-down box, check available, administer, manageGroup, and manageMapping, and click Submit New Resource Group.
 
 
-**Update web code**
+# Update web code #
 
 This step we will move the 2.2.1 web directory out of the way, so we can copy in the new web code base. After copying in the new code, we will migrate your configuration changes. These instructions assume that you installed the vcl web code at /var/www/html/vcl. If you installed it elsewhere, replace /var/www/html/vcl with your vcl web root.
 
@@ -142,12 +142,12 @@ This step we will move the 2.2.1 web directory out of the way, so we can copy in
         $addUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
         $updateUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
 
-**Restart httpd service**
+# Restart httpd service #
 
         :::BashLexer
         service httpd start or /etc/init.d/httpd start
 
-**Update management node code**
+# Update management node code #
 
      This step will make a backup copy of the 2.2.1 vcl code base and then copy the new code over the existing code to preserve any drivers or other files you've added.
 
@@ -168,7 +168,7 @@ This step we will move the 2.2.1 web directory out of the way, so we can copy in
         :::BashLexer
         /usr/local/vcl/bin/install_perl_libs.pl
 
-**Restart vcld service**
+# Restart vcld service #
 	
         :::BashLexer
         service vcld start or /etc/init.d/vcld start
