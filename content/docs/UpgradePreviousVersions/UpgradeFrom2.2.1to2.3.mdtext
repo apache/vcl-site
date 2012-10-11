@@ -149,7 +149,7 @@ This step we will move the 2.2.1 web directory out of the way, so we can copy in
 
 # Update management node code #
 
-     This step will make a backup copy of the 2.2.1 vcl code base and then copy the new code over the existing code to preserve any drivers or other files you've added.
+This step will make a backup copy of the 2.2.1 vcl code base and then copy the new code over the existing code to preserve any drivers or other files you've added.
 
 1. Copy 2.2.1 code base to a backup location
 	
