@@ -64,8 +64,8 @@ The web code now requires access to create temporary tables in mysql. You need t
 
 7. Then, you need to issue the grant command to mysql. Using the values from above as examples, connect to mysql and then issue the grant command:
 
-        :::SQLLexer
-	mysql
+        :::BashLexer
+        mysql
         GRANT CREATE TEMPORARY TABLES ON `vcl`.* TO 'vcluser'@'localhost';
         exit
 
@@ -128,40 +128,40 @@ The web code now requires access to create temporary tables in mysql. You need t
  
     f. The way the authentication functions toward the bottom of conf.php are initialized has been simplified. Make the following changes:
 	
-            REMOVE
+            **REMOVE**
 
-                    :::BashLexer
-                    $affilValFunc
-                    $affilValFuncArgs 
-                    $addUserFunc
-                    $addUserFuncArgs
-                    $updateUserFunc
-                    $updateUserFuncArgs
+                        :::BashLexer
+                        $affilValFunc
+                        $affilValFuncArgs 
+                        $addUserFunc
+                        $addUserFuncArgs
+                        $updateUserFunc
+                        $updateUserFuncArgs
  
-            ADD
+            **ADD**
                    
-                    :::BashLexer
-                    $affilValFunc = array();
-                    $affilValFuncArgs = array();
-                    $addUserFunc = array();
-                    $addUserFuncArgs = array();
-                    $updateUserFunc = array();
-                    $updateUserFuncArgs = array();
-                    foreach($authMechs as $key => $item) {
-                       if($item['type'] == 'ldap') {
-                          $affilValFunc[$item['affiliationid']] = 'validateLDAPUser';
-                          $affilValFuncArgs[$item['affiliationid']] = $key;
-                          $addUserFunc[$item['affiliationid']] = 'addLDAPUser';
-                          $addUserFuncArgs[$item['affiliationid']] = $key;
-                          $updateUserFunc[$item['affiliationid']] = 'updateLDAPUser';
-                          $updateUserFuncArgs[$item['affiliationid']] = $key;
-                       }
-                       elseif($item['type'] == 'local') {
-                          $affilValFunc[$item['affiliationid']] = create_function('', 'return 0;');
-                          $addUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
-                          $updateUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
-                       }
-                    }
+                        :::BashLexer
+                        $affilValFunc = array();
+                        $affilValFuncArgs = array();
+                        $addUserFunc = array();
+                        $addUserFuncArgs = array();
+                        $updateUserFunc = array();
+                        $updateUserFuncArgs = array();
+                        foreach($authMechs as $key => $item) {
+                           if($item['type'] == 'ldap') {
+                              $affilValFunc[$item['affiliationid']] = 'validateLDAPUser';
+                              $affilValFuncArgs[$item['affiliationid']] = $key;
+                              $addUserFunc[$item['affiliationid']] = 'addLDAPUser';
+                              $addUserFuncArgs[$item['affiliationid']] = $key;
+                              $updateUserFunc[$item['affiliationid']] = 'updateLDAPUser';
+                              $updateUserFuncArgs[$item['affiliationid']] = $key;
+                           }
+                           elseif($item['type'] == 'local') {
+                              $affilValFunc[$item['affiliationid']] = create_function('', 'return 0;');
+                              $addUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
+                              $updateUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
+                           }
+                        }
  
 
 13. **Restart httpd service**
