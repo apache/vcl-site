@@ -29,7 +29,7 @@ This page provides information on how to upgrade from VCL 2.2 to VCL 2.3. Please
  - Update Management node vcl code, create a backup, copy in new, make changes
  - Restart vcld service
  
-# Detailed steps for upgrade from 2.2.1 to 2.3 #
+# Detailed steps for upgrade from 2.2 to 2.3 #
 
 1. follow instructions on VCL 2.3 Release page to download and verify apache-VCL-2.3.tar.bz2 and put in in /root
 2. **extract VCL 2.3 code**
@@ -129,7 +129,7 @@ The web code now requires access to create temporary tables in mysql. You need t
     f. The way the authentication functions toward the bottom of conf.php are initialized has been simplified. Make the following changes:
 	
             :::BashLexer
-            REMOVE
+            **REMOVE**
             $affilValFunc
             $affilValFuncArgs 
             $addUserFunc
@@ -137,7 +137,7 @@ The web code now requires access to create temporary tables in mysql. You need t
             $updateUserFunc
             $updateUserFuncArgs
  
-            ADD
+            **ADD**
             $affilValFunc = array();
             $affilValFuncArgs = array();
             $addUserFunc = array();
