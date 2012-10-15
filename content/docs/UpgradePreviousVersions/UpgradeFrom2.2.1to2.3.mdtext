@@ -69,9 +69,9 @@ This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3. Plea
 
 8. **Copy your 2.2.1 config files**
 	
-    :::BashLexer
-    cd ~/vcl_2.2.1_web/.ht-inc
-    cp conf.php secrets.php pubkey.pem keys.pem /var/www/html/vcl/.ht-inc
+        :::BashLexer
+        cd ~/vcl_2.2.1_web/.ht-inc
+        cp conf.php secrets.php pubkey.pem keys.pem /var/www/html/vcl/.ht-inc
 
 9. **Make the maintenance directory writable by the web server user**. Normally this is the apache user,  if using a different user change below cmd accordingly.
 	
@@ -119,7 +119,7 @@ This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3. Plea
             $addUserFunc[$item['affiliationid']] = create_function('', 'return 0;');
             $updateUserFunc[$item['affiliationid']] = create_function('', 'return 0;');
  
-            :NEW
+            NEW
             $addUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
             $updateUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
 
