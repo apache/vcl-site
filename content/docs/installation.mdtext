@@ -21,7 +21,7 @@ explaining configuration items that an installer would typically do.
 
 [VCL 2.3 Installation Guide](/docs/VCL23Installation.html)
 
-[Upgrade from Previous versions](/docs/UpgradePreviousVersions/upgrades.html)
+[Upgrade from previous versions](/docs/UpgradePreviousVersions/upgrades.html)
 
 [Configuring LDAP Authentication](/docs/ldapauth.html)
 
