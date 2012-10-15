@@ -105,7 +105,7 @@ This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3. Plea
             define("ALLOWADDSHIBUSERS", 0);
 
 
-    e. Some LDAP related items have been simplified in the code using additional options in $authMechs. For any LDAP entries, add two options. "lookupuserbeforeauth" is used if you need VCL to look up the full DN of a user and use that when doing the bind that authenticates the user (if you don't know what this means, leave it set to 0). If you need to set it to 1, then you will need to set "lookupuserfield" to what LDAP attribute to use when looking up the user's DN (typically either 'cn', 'uid', or 'samaccountname'). In conf.php, **Add the following to each LDAP** array you have in the $authMech array.
+    e. LDAP related items have been simplified in the code using additional options in $authMechs. For any LDAP entries, add two options. "lookupuserbeforeauth" is used if you need VCL to look up the full DN of a user and use that when doing the bind that authenticates the user (if you don't know what this means, leave it set to 0). If you need to set it to 1, then you will need to set "lookupuserfield" to what LDAP attribute to use when looking up the user's DN (typically either 'cn', 'uid', or 'samaccountname'). In conf.php, **Add the following to each LDAP** array you have in the $authMech array.
 	
             :::BashLexer
             "lookupuserbeforeauth" => 0,
@@ -119,9 +119,7 @@ This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3. Plea
             $addUserFunc[$item['affiliationid']] = create_function('', 'return 0;');
             $updateUserFunc[$item['affiliationid']] = create_function('', 'return 0;');
  
-
-            :::BashLexer
-            NEW
+            :NEW
             $addUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
             $updateUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
 
