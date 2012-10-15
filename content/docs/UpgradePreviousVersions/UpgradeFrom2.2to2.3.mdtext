@@ -139,7 +139,6 @@ The web code now requires access to create temporary tables in mysql. You need t
             $updateUserFuncArgs
  
                    
-            :::BashLexer
             ADD
             $affilValFunc = array();
             $affilValFuncArgs = array();
