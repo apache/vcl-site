@@ -37,8 +37,6 @@ This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3. Plea
         :::BashLexer
         tar xjf apache-VCL-2.3.tar.bz2
 
-# Shutdown services #
-
 3. Shutdown the httpd and vcld services
 
            
@@ -46,14 +44,10 @@ This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3. Plea
         service httpd stop or /etc/init.d/httpd stop
         service vcld stop or /etc/init.d/vcld stop
 
-# Create a backup of vcl database #
-
 4. We will create a backup of the vcl database. This will provide a restore point if necessary.
 
         :::BashLexer
         mysqldump vcl > ~/vcl-pre2.3-upgrade.sql
-
-# Update mysql schema #
 
 5. This step updates the mysql schema.
 
@@ -63,39 +57,37 @@ This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3. Plea
 
 **Note**: A new resource group is added in update-vcl.sql - **all profiles**. Access to manage the group is added to the VCL->admin node in the privilege tree if that node exists. If not, you will need to add it manually after starting httpd again. To add it manually, pick a node in the privilege tree, scroll to Resources, click Add Resource Group, select serverprofile/all profiles from the drop-down box, check available, administer, manageGroup, and manageMapping, and click Submit New Resource Group.
 
-# Update web code #
 
-This step we will move the 2.2.1 web directory out of the way, so we can copy in the new web code base. After copying in the new code, we will migrate your configuration changes. These instructions assume that you installed the vcl web code at /var/www/html/vcl. If you installed it elsewhere, replace /var/www/html/vcl with your vcl web root.
+6. Update the web code. This step we will move the 2.2.1 web directory out of the way, so we can copy in the new web code base. After copying in the new code, we will migrate your configuration changes. These instructions assume that you installed the vcl web code at /var/www/html/vcl. If you installed it elsewhere, replace /var/www/html/vcl with your vcl web root.
 
-6. move your old code out of the way
-	
+
         :::BashLexer
         cd /var/www/html
         mv vcl ~/vcl_2.2.1_web
 
-7. copy the new code in place
+7. Copy the new code in place
 	
         :::BashLexer
         cd /root/apache-VCL-2.3
         cp -r web /var/www/html/vcl
 
-8. copy your 2.2.1 config files
+8. Copy your 2.2.1 config files
 	
     :::BashLexer
     cd ~/vcl_2.2.1_web/.ht-inc
     cp conf.php secrets.php pubkey.pem keys.pem /var/www/html/vcl/.ht-inc
 
-4. Make the maintenance directory writable by the web server user. You will need to know what user httpd runs as on your server. This can be found with
+9. Make the maintenance directory writable by the web server user. You will need to know what user httpd runs as on your server. This can be found with
 	
-    :::BashLexer
-    ps aux | grep httpd
+        :::BashLexer
+        ps aux | grep httpd
 
-    Look at the first column. One process will be owned by root. The remaining processes will be owned by the web server user. Now, own /var/www/html/vcl/.ht-inc/maintenance to that user (replacing 'apache' with your web server user if different):
+Look at the first column. One process will be owned by root. The remaining processes will be owned by the web server user. Now, own /var/www/html/vcl/.ht-inc/maintenance to that user (replacing 'apache' with your web server user if different):
 
-    :::BashLexer
-    chown apache /var/www/html/vcl/.ht-inc/maintenance
+        :::BashLexer
+        chown apache /var/www/html/vcl/.ht-inc/maintenance
 
-5. make some changes to conf.php:
+5. Make some changes to conf.php:
 
     a. A new user group permission that controls who can manage block allocations globally or for a specific affiliation has been added. It can be granted to any user group under Privileges->Additional User Permissions->Manage Block Allocations. Users with this permission are notified of new block allocation requests. Remove
 	
