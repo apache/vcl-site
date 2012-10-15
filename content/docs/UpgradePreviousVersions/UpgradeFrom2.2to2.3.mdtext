@@ -128,9 +128,9 @@ The web code now requires access to create temporary tables in mysql. You need t
  
     f. The way the authentication functions toward the bottom of conf.php are initialized has been simplified. Make the following changes:
 	
-**REMOVE**
 
             :::BashLexer
+            REMOVE
             $affilValFunc
             $affilValFuncArgs 
             $addUserFunc
@@ -138,9 +138,9 @@ The web code now requires access to create temporary tables in mysql. You need t
             $updateUserFunc
             $updateUserFuncArgs
  
-**ADD**
                    
             :::BashLexer
+            ADD
             $affilValFunc = array();
             $affilValFuncArgs = array();
             $addUserFunc = array();
