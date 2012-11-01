@@ -23,12 +23,11 @@ executing the vcld file with the -setup argument:
 
     /usr/local/vcl/bin/vcld -setup
 
-&nbsp;
-
-    :::text
-    It is safe to run vcld -setup while the normal vcld daemon process 
-    is running on a management node. Running vcld -setup will not 
-    affect it.
+<pre class="docnote">
+It is safe to run vcld -setup while the normal vcld daemon process 
+is running on a management node. Running vcld -setup will not 
+affect it.
+</pre>
 
 You will see a menu. Enter the number next to the VCL Base Module entry:
 
