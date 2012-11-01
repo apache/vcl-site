@@ -133,9 +133,11 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .docnote {
+	display: inline-block;
+	background: url(/img/icon_i.png) center left no-repeat;
 	margin-left: 1.5em;
 	border: 1px solid #9ec49f;
-	padding: 0.5em;
+	padding: 0.5em 0.5em 0.5em 2.5em;
 	border-radius: 5px;
 	background-color: #ddfade;
 }
