@@ -15,6 +15,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            KIND, either express or implied.  See the License for the
            specific language governing permissions and limitations
            under the License.
+
 Local VCL accounts are contained within the VCL database. The admin 
 account is a local VCL account. Additional local accounts can be added 
 after the backend management node component has been installed by 
@@ -22,14 +23,14 @@ executing the vcld file with the -setup argument:
 
     /usr/local/vcl/bin/vcld -setup
 
-
-
+    :::text
     It is safe to run vcld -setup while the normal vcld daemon process 
     is running on a management node. Running vcld -setup will not 
     affect it.
 
 You will see a menu. Enter the number next to the VCL Base Module entry:
 
+    :::text
     [root@mgt-node]# /usr/local/vcl/bin/vcld -setup
     VCL Management Node Setup
     ----------------------------------------------------------------------------
@@ -43,6 +44,7 @@ You will see a menu. Enter the number next to the VCL Base Module entry:
 
 Enter the number next to the Add Local VCL User Account entry:
 
+    :::text
     ----------------------------------------------------------------------------
     Choose an operation:
     1. Add Local VCL User Account
@@ -52,6 +54,7 @@ Enter the number next to the Add Local VCL User Account entry:
 
 Enter the requested information:
 
+    :::text
     Enter the user login name ('c' to cancel): localuser
     
     Enter the first name ('c' to cancel): Local
