@@ -131,3 +131,11 @@ h1,h2,h3,h4,h5,h6 {
 	border-radius: 5px;
 	background-color: #e3e9ff;
 }
+
+.docnote {
+	margin-left: 1.5em;
+	border: 1px solid #9ec49f;
+	padding: 0.5em;
+	border-radius: 5px;
+	background-color: #ddfade;
+}
