@@ -18,7 +18,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 
 The Apache VCL project.
 
-VCL, Virtual Computing Lab. Apache VCL, the first open-source private cloud. 
+VCL, Virtual Computing Lab. Apache VCL is the first open-source private cloud. 
 
 The Apache VCL is a self-service system used to dynamically provision and broker remote access to a dedicated compute environment for an end-user. The provisioned computers are typically housed in a data center and may be physical blade servers, traditional rack mounted servers, or virtual machines. VCL can also broker access to standalone machines such as a lab computers on a university campus.
 
