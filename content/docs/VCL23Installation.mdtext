@@ -73,6 +73,11 @@ VCL currently supports the use of mysql database.
             :::BashLexer
             mysql vcl < apache-VCL-2.3/mysql/vcl.sql
 
+    * If you want to use libvirt provisioning for KVM, you need to add one entry to the database that was left out of the release.
+
+            :::BashLexer
+            echo "INSERT IGNORE provisioningOSinstalltype (provisioningid, OSinstalltypeid) SELECT provisioning.id, OSinstalltype.id FROM provisioning, OSinstalltype WHERE provisioning.name = 'libvirt' AND OSinstalltype.name = 'vmware';" | mysql vcl
+
 ----------
 
 # Install and Configure the Web Components # {#web}
