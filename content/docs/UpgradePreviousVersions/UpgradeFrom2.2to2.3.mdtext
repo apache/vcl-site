@@ -54,6 +54,11 @@ This page provides information on how to upgrade from VCL 2.2 to VCL 2.3. Please
         cd /root/apache-VCL-2.3
         mysql vcl < mysql/update-vcl.sql
 
+5. If you want to use libvirt provisioning for KVM, you need to add one entry to the database that was left out of the release.
+
+        :::BashLexer
+        echo "INSERT IGNORE provisioningOSinstalltype (provisioningid, OSinstalltypeid) SELECT provisioning.id, OSinstalltype.id FROM provisioning, OSinstalltype WHERE provisioning.name = 'libvirt' AND OSinstalltype.name = 'vmware';" | mysql vcl
+
 6. Grant CREATE TEMPORARY TABLES to mysql user
 The web code now requires access to create temporary tables in mysql. You need to grant the user your web code uses to access mysql the "CREATE TEMPORARY TABLES" permission. Look at the secrets.php file in your web code for the user and hostname. For example, if your web code is installed at /var/www/html/vcl, your secrets.php file would be /var/www/html/vcl/.ht-inc/secrets.php. Look for $vclhost and $vclusername. The secrets.php file might have something like:
 
