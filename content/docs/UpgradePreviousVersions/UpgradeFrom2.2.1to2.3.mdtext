@@ -54,6 +54,10 @@ This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3. Plea
         cd /root/apache-VCL-2.3
         mysql vcl < mysql/update-vcl.sql
 
+5. If you want to use libvirt provisioning for KVM, you need to add one entry to the database that was left out of the release.
+
+        :::BashLexer
+        echo "INSERT IGNORE provisioningOSinstalltype (provisioningid, OSinstalltypeid) SELECT provisioning.id, OSinstalltype.id FROM provisioning, OSinstalltype WHERE provisioning.name = 'libvirt' AND OSinstalltype.name = 'vmware';" | mysql vcl
 
 6. **Update the web code**. This step we will move the 2.2.1 web directory out of the way, so we can copy in the new web code base. After copying in the new code, we will migrate your configuration changes. These instructions assume that you installed the vcl web code at /var/www/html/vcl. If you installed it elsewhere, replace /var/www/html/vcl with your vcl web root.
 
