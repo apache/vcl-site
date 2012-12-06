@@ -15,7 +15,6 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            KIND, either express or implied.  See the License for the
            specific language governing permissions and limitations
            under the License.
-
 This page describes the basic network layout required in order for VCL to function. It 
 also describes the recommended network layout if a blade chassis management module is 
 used.
