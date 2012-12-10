@@ -119,7 +119,7 @@ VCL currently supports the use of mysql database.
         For RHEL / CentOS 6
 
             :::BashLexer
-            	yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap php-process -y
+            yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap php-process -y
 
     * Configure the web server daemon (httpd) to start automatically:
 
@@ -189,8 +189,13 @@ VCL currently supports the use of mysql database.
 
     * Modify conf.php to match your site using vi or your favorite text editor
 
-            * Modify every entry under "Things in this section must be modified". Descriptions and pointers for each value are included within conf.php.
-            * COOKIEDOMAIN - set this to the domain name your web server is using or leave it blank if you are only accessing the web server by its IP address
+            :::BashLexer	 
+            vi secrets.php
+         
+            * Modify every entry under "Things in this section must be modified". 
+            * Descriptions and pointers for each value are included within conf.php.
+            * COOKIEDOMAIN - set this to the domain name your web server is using 
+            * or leave it blank if you are only accessing the web server by its IP address
 
     * Set the owner of the .ht-inc/maintenance directory to the web server user (normally 'apache'):
 	
