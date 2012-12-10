@@ -41,10 +41,13 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
   - VM host profiles may be added or modified via Virtual Hosts > VM Host Profiles tab
 
 **VMware Products Supported**
+
   - VMware Server 2.x
   - VMware ESX 3.5 - 4.x
   - VMware ESXi 4.x
   - VMware ESXi 5.x
+
+ - - -
 
 **VM Host Management Options**
 
@@ -63,3 +66,81 @@ If remote management is restricted, the VM host can be managed if SSH is enabled
 
 Enable the SSH daemon and configure identity key authentication according to the underlying VM host OS
 
+**ESX/ESXi 3.5 & 4.0**
+
+  - Connect to the console of the ESX/ESXi host
+  - Press ALT-F1 - you should see a black screen with the VMware product name at the top
+  - Type the word unsupported and press Enter (you won't see the letters appear as you type them)
+  - You should see a password prompt, type in the root password and press Enter
+  - Edit the file: vi /etc/inetd.conf
+  - Uncomment the first line beginning with #ssh by deleting the # character
+  - Save the file - press Esc and then :wq
+  - Kill the inetd process
+  - Determine the PID of the inetd process: ps | grep inetd
+  - You should see a line that looks like: 5065 5065 busybox inetd
+  - Kill the process (enter the PID from the output of the previous command): kill -HUP 5065
+
+**ESXi 4.1**
+
+Beginning with ESXi 4.1, SSH can be enabled using the vSphere Client:
+
+  - Select the ESXi host
+  - Select the Configuration tab
+  - Select Security Profile under Software
+  - Click Properties
+  - Select Remote Tech Support (SSH)
+  - Click Options
+  - Select Start automatically
+  - Click Start
+  - Click OK
+
+**ESX 5.0**
+
+In the case of ESX 5.0:
+
+  - Select the ESXi host
+  - Select the Configuration tab
+  - Select Security Profile under Software
+  - Click Properties
+  - Select SSH Server
+  - Click Options
+  - Confirm that Start automatically is selected
+  - Click OK
+
+ - - -
+
+**How to configure ESX/ESXi to use SSH identity key authentication:**
+
+SSH identity key authentication must be configured if SSH is used to manage the VM host.
+
+  - Create an SSH key pair on the management node (or use a key you previously created):
+	
+            :::BashLexer
+            ssh-keygen -t rsa -f /etc/vcl/vcl.key -N '' -b 1024 -C 'VCL root account'
+
+  - Log into the ESX host via SSH (password authentication should work) and create the directory:
+	
+            :::BashLexer
+            ssh <ESXi host> 'mkdir /.ssh'
+
+  - Copy the public key to the ESXi host:
+   - ESXi 4.x:
+	
+            :::BashLexer
+            scp /etc/vcl/vcl.key.pub <ESXi host>:/.ssh/authorized_keys
+
+   - ESXi 5.x:
+
+            :::BashLexer
+            scp /etc/vcl/vcl.key.pub <ESXi host>:/etc/ssh/keys-root/authorized_keys
+
+  - Test making an SSH connection using the key:
+
+            :::BashLexer
+            ssh -i /etc/vcl/vcl.key <ESXi host>
+
+IMPORTANT: Under ESXi 4.x, the authorized_keys file is erased when the ESXi VM host is rebooted. Complete the following steps to make the authorized_keys file persistent:
+
+*Note*: VCL will perform these steps automatically when the 1st reservation assigned to the host is processed.
+
+  - Create a compressed tarball file containing the /.ssh directory:
