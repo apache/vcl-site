@@ -71,20 +71,16 @@ VCL currently supports the use of mysql database.
     * Import the vcl.sql file into the database. The **vcl.sql** file is included in the **mysql** directory within the Apache VCL source code
 
             :::BashLexer
-            mysql vcl < apache-VCL-2.3/mysql/vcl.sql
+            mysql vcl < apache-VCL-2.3.1/mysql/vcl.sql
 
-    * If you want to use libvirt provisioning for KVM, you need to add one entry to the database that was left out of the release.
-
-            :::BashLexer
-            echo "INSERT IGNORE provisioningOSinstalltype (provisioningid, OSinstalltypeid) SELECT provisioning.id, OSinstalltype.id FROM provisioning, OSinstalltype WHERE provisioning.name = 'libvirt' AND OSinstalltype.name = 'vmware';" | mysql vcl
-
+   
 ----------
 
 # Install and Configure the Web Components # {#web}
 
 **Prerequisites**
 
-  - Apache VCL 2.3 had been downloaded
+  - Apache VCL 2.3.1 had been downloaded
   - VCL database has been installed and configured
 
 **Web Server:**
@@ -152,13 +148,13 @@ VCL currently supports the use of mysql database.
     * If you have not already done so, download and extract the source files on the web server:
 
             :::BashLexer
-            wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2'
-            tar -jxvf apache-VCL-2.3.tar.bz2
+            wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.1.tar.bz2'
+            tar -jxvf apache-VCL-2.3.1.tar.bz2
 
     * Copy the **web** directory to a location under the web root of your web server and navigate to the destination **.ht-inc** subdirectory:
 
             :::BashLexer
-            cp -r apache-VCL-2.3/web/ /var/www/html/vcl
+            cp -r apache-VCL-2.3.1/web/ /var/www/html/vcl
             cd /var/www/html/vcl/.ht-inc
 
     * Copy secrets-default.php to secrets.php:
@@ -252,8 +248,8 @@ To install phpMyAdmin, follow the instructions on: VCL 2.3 phpMyAdmin Installati
 **Prerequisites**
 The following management node installation instructions assume the instructions on the following pages have previously been completed:
 
-    * VCL 2.3 Database Installation
-    * VCL 2.3 Web Code Installation
+    * VCL 2.3.1 Database Installation
+    * VCL 2.3.1 Web Code Installation
 
 **Supported Operating Systems:**
 
@@ -303,13 +299,13 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
     * If you have not already done so, download and extract the source files on the web server:
 
             :::BashLexer
-            wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2'
-            tar -jxvf apache-VCL-2.3.tar.bz2
+            wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.1.tar.bz2'
+            tar -jxvf apache-VCL-2.3.1.tar.bz2
 
     * Copy the managementnode directory to the location where you want it to reside (typically /usr/local):
 
             :::BashLexer
-            cp -r apache-VCL-2.3/managementnode /usr/local/vcl
+            cp -r apache-VCL-2.3.1/managementnode /usr/local/vcl
 
 2. **Install the Required Linux Packages & Perl Modules**
 
