@@ -164,17 +164,17 @@ SSH identity key authentication must be configured if SSH is used to manage the 
 
 ##VM Host Profile Parameters
 
-###General Parameters
+**General Parameters**
 
-####Name
+**Name**
 
  - Descriptive name of the VM host profile
 
-####Type (deprecated)
+**Type (deprecated)**
 
  - Removed in VCL 2.3
 
-####Image (optional)
+**Image (optional)**
 
  - VCL hypervisor image installed on VM host computers using xCAT
     <div class="docnote">
@@ -183,7 +183,7 @@ SSH identity key authentication must be configured if SSH is used to manage the 
  - If xCAT is not used, select "No Image"
  - VCL has the ability to install a hypervisor image on bare-metal computers using xCAT.  If the image property is configured, the image is installed when a computer's state is changed to vmhostinuse via Manage Computers > Computer Utilities
 
-####Username/Password (optional)
+**Username/Password (optional)**
 
  - Name and password of the administrative or root user residing on the VM host
  - This account is used to manage the VM host and VMs assigned to the host
@@ -191,7 +191,7 @@ SSH identity key authentication must be configured if SSH is used to manage the 
 
 ###Storage Parameters
 
-####Resource Path (optional)
+**Resource Path (optional)**
 
 Resource Path only needs to be configured if VMware vCenter is used. It defines the location where VMs will be created in the vCenter inventory tree. The inventory tree contains at least one Datacenter, and may also contain Folders, Clusters, and Resource Pools.
 Example: /DatacenterA/Folder1/Cluster2/ResourcePool3
@@ -212,10 +212,11 @@ Example: /DatacenterA/Folder1/Cluster2/ResourcePool3
    - The size of the vmdk files will approximately be equal to the amount of actual data saved in the image regardless of the size of the VM's hard drive
    - Storing images in the 2 GB sparse format is necessary to allow images to be transferred via SCP without having to transfer data equal to the entire size of the VM's hard drive
 
-####Repository Image Type
+**Repository Image Type**
+
 Virtual disk file format for images stored in the repository.
 
-####Virtual Disk Path (previously Datastore Path)
+**Virtual Disk Path (previously Datastore Path)**
 
  - Location where master copies of images are stored which are used by running VMs
  - Example: /vmfs/volumes/nfs-datastore1
@@ -233,11 +234,11 @@ Virtual disk file format for images stored in the repository.
  - VCL configures VMs to access images stored in the Virtual Disk Path in read-only mode
     - Changes made to the VM's hard drive are written to delta files located in the VM Working Directory Path dedicated for the VM
 
-####Virtual Disk Image Type
+**Virtual Disk Image Type**
 
 Virtual disk file format for images stored in the virtual disk path.
 
-####Virtual Disk Mode (previously VM Disk)
+**Virtual Disk Mode (previously VM Disk)**
 
  - Defines whether the storage where the VM host's Virtual Disk Path resides is dedicated to a single host or shared among multiple hosts:
    - dedicated (previously localdisk)
@@ -255,7 +256,7 @@ Virtual disk file format for images stored in the virtual disk path.
         These are determined by whether or not Repository Path is configured in the profile
         </div>
 
-####VM Working Directory Path (optional) (previously VM Path)
+**VM Working Directory Path (optional) (previously VM Path)**
 
  - Defines path on VM host where VM working directories will reside (contains .vmx, delta, .vswp, nvram files)
  - If not configured, the Virtual Disk Path location will be used
@@ -270,7 +271,7 @@ Virtual disk file format for images stored in the virtual disk path.
 
 ###Networking Parameters
 
-####VM Network (previously Virtual Switch)
+**VM Network (previously Virtual Switch)**
 
  - VM Network 0 (previously Virtual Switch 0) - private VCL management network
  - VM Network 1 (previously Virtual Switch 1) - public network used by user making reservation to access the VMs
@@ -284,14 +285,14 @@ Virtual disk file format for images stored in the virtual disk path.
 
  - For VMware Server 2.x, the VM Network parameters must match the Network Names configured by running vmware-config.pl
 
-#####Generate eth0/eth1 MAC
+**Generate eth0/eth1 MAC**
  
  - New in VCL 2.3
  - Determines whether VMs are assigned MAC addresses defined in the VCL database or if random MAC addresses should be assigned
 
 ###Configuration Examples
 
-####Local Disk Only - Repository Mounted via NFS
+**Local Disk Only - Repository Mounted via NFS**
 
 The diagram above shows a simple VCL configuration with 1 management node and 2 VMware ESXi hosts.  Network storage is not used.
 
@@ -309,7 +310,7 @@ During image capture, images are automatically copied to from the VM host's loca
 The VM host profile Virtual Disk Mode parameter is set to dedicated.  This indicates to the load process that the VM host's Virtual Disk Path is dedicated to the VM host and not shared by other VM hosts.  This allows images to be deleted from the VM host's local datastore (Virtual Disk Path) if another image must be copied from the repository and not enough space is available.
 
 
-####Local Disk Only - Repository Not Available via NFS
+**Local Disk Only - Repository Not Available via NFS**
 
 This example is identical to the one above except that the repository located on the management node's local disk is not exported via NFS.
 
@@ -319,7 +320,7 @@ Because of this, images must be transferred using SCP instead of vmkfstools.  Th
 
 Note that the VM host profile Repository Path parameter is set to the path on the management node's hard drive.  The code first checks if the path exists on the VM host.  If not, it assumes the repository is not mounted directly on the VM host and the Repository Path value refers to a location on the management node.
 
-####Network Storage Only - No Repository
+**Network Storage Only - No Repository**
 
 This is an example of a simple configuration where the network storage is used.
 
