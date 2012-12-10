@@ -187,10 +187,10 @@ VCL currently supports the use of mysql database.
             :::BashLexer
             cp conf-default.php conf.php
 
-    * Modify conf.php to match your site using vi or your favorite text editor
+    * Modify conf.php to match your site
 
             :::BashLexer	 
-            vi secrets.php
+            vi conf.php
          
             * Modify every entry under "Things in this section must be modified". 
             * Descriptions and pointers for each value are included within conf.php.
@@ -454,6 +454,7 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
             :::BashLexer
             /sbin/service dhcpd start
 
+    * Proceed to Base Image creation
 
 ------
 
