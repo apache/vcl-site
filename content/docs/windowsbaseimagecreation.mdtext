@@ -1,0 +1,74 @@
+Title:
+Notice:    Licensed to the Apache Software Foundation (ASF) under one
+           or more contributor license agreements.  See the NOTICE file
+           distributed with this work for additional information
+           regarding copyright ownership.  The ASF licenses this file
+           to you under the Apache License, Version 2.0 (the
+           "License"); you may not use this file except in compliance
+           with the License.  You may obtain a copy of the License at
+           .
+             http://www.apache.org/licenses/LICENSE-2.0
+           .
+           Unless required by applicable law or agreed to in writing,
+           software distributed under the License is distributed on an
+           "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+           KIND, either express or implied.  See the License for the
+           specific language governing permissions and limitations
+           under the License.
+
+This page describes how to create a Windows base image.These instructions should work regardless of the provisioning engine being used (xCAT, VMware, etc.).  Ignore the VMware Only sections if you are attempting to create an image using xCAT or some other bare metal provisioning engine.
+
+###Requirements
+
+You will need the following:
+
+ - Windows installation ISO file
+ - Windows product key or KMS server address
+ 
+The following must be done before an image can be captured:
+
+ - A computer for the machine being captured has already been added to the VCL database
+ - VMware Only:
+    - A VM host computer on which the guest is running as been added to the VCL database
+    - The guest VM has been assigned to the VM host via the Virtual Hosts link on the VCL website
+
+These instructions assume you have root access and are using a bash shell.
+
+
+####VMware Only: Create a Virtual Machine
+
+**Create a Virtual Machine**
+
+**VMware ESXi 4.x**
+
+The instructions assume that VMware has been configured with the following bridged networks:
+
+ - Private: bridged to private interface: eth0
+ - Public: bridged to public interface: eth1
+ - Launch the vSphere Client, connect to the ESXi host and login
+ - Click File > New > Virtual Machine
+ - Configuration: Custom
+ - Name: (doesn't matter)
+ - Select a datastore where the VM will reside
+ - Virtual Machine Version: 7
+ - Select the appropriate guest OS
+ - Number of virtual processors: 1
+ - Memory: 1GB
+ - How many NICs: 2
+    - NIC 1: Private, E1000
+    - NIC 2: Public, E1000
+ - SCSI controller: LSI Logic Parallel
+ - Create a new virtual disk
+    - Disk Size: at least 30 GB
+    - Allocate and commit space on demand (Thin Provisioning): Yes
+    - Location: Store with the virtual machine
+    - Virtual Device Node: SCSI (0:0)
+    - Mode: Independent, Persistent
+ - Edit the virtual machine settings before completion: Yes
+ - Select the CD/DVD device
+    - Device Type: Datastore ISO File
+    - Click Browse and browse to an ISO file that has previously been copied to the datastore   
+    - Connect at power on: Yes
+ - Click Finish
+
+VMware Server 1.x
