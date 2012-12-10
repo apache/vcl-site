@@ -33,10 +33,10 @@ the VCL web server.
     <pre class="docnote">
     PHP 4.3.2 (cgi), Copyright (c) 1997-2003 The PHP Group
     </pre>
-    * Use phpMyAdmin 3.x if the version of PHP is 5.x:
-    <pre class="docnote">
+    * Use phpMyAdmin 3.x if the version of PHP is 5.x:  
+    <div><pre class="docnote">
     PHP 5.3.11 (cli) (built: May  8 2012 15:53:27)
-    </pre>
+    </pre></div>
 
     b. Download the appropriate version of phpMyAdmin from:
         <pre>
