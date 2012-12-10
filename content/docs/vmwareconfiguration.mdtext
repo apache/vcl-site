@@ -148,13 +148,14 @@ IMPORTANT: Under ESXi 4.x, the authorized_keys file is erased when the ESXi VM h
 
  - Edit the /bootbank/boot.cfg file and append ' --- **vcl.tgz**' to modules line as shown in the following example:
 
-            :::BashLexer
-            kernel=b.z
-            kernelopt=
-            modules=k.z — s.z — c.z — oem.tgz — license.tgz — m.z — state.tgz — vcl.tgz
-            build=4.1.0-260247
-            updated=2
-            bootstate=0
+    <pre>
+    kernel=b.z
+    kernelopt=
+    modules=k.z — s.z — c.z — oem.tgz — license.tgz — m.z — state.tgz — vcl.tgz
+    build=4.1.0-260247
+    updated=2
+    bootstate=0
+    </pre>
 
             :::BashLexer
             Optionally you can run the following two commands:
@@ -176,7 +177,9 @@ IMPORTANT: Under ESXi 4.x, the authorized_keys file is erased when the ESXi VM h
 ####Image (optional)
 
  - VCL hypervisor image installed on VM host computers using xCAT
-	- xCAT is not required.  VM host computers may be installed manually or by some other means.
+    <pre class="docnote">
+    xCAT is not required.  VM host computers may be installed manually or by some other means.
+    </pre>
 
  - If xCAT is not used, select "No Image"
  - VCL has the ability to install a hypervisor image on bare-metal computers using xCAT.  If the image property is configured, the image is installed when a computer's state is changed to vmhostinuse via Manage Computers > Computer Utilities
