@@ -189,8 +189,8 @@ VCL currently supports the use of mysql database.
 
     * Modify conf.php to match your site using vi or your favorite text editor
 
-                * Modify every entry under "Things in this section must be modified". Descriptions and pointers for each value are included within conf.php.
-                * COOKIEDOMAIN - set this to the domain name your web server is using or leave it blank if you are only accessing the web server by its IP address
+            * Modify every entry under "Things in this section must be modified". Descriptions and pointers for each value are included within conf.php.
+            * COOKIEDOMAIN - set this to the domain name your web server is using or leave it blank if you are only accessing the web server by its IP address
 
     * Set the owner of the .ht-inc/maintenance directory to the web server user (normally 'apache'):
 	
