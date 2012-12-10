@@ -71,4 +71,42 @@ The instructions assume that VMware has been configured with the following bridg
     - Connect at power on: Yes
  - Click Finish
 
-VMware Server 1.x
+**VMware Server 2.x**
+
+ - Open the VMware Infrastructure Web Access page:
+     - https://<IP address or hostname>:8333
+
+ - Click the Virtual Machine menu
+ - Select Create Virtual Machine
+ - Name and Location
+    - Name: Windows XP Base
+    - Datastore: standard (This causes the VM to be created under /var/lib/vmware/Virtual Machines)
+ - Guest Operating System
+    - Operating System: Windows operating system
+    - Version: Microsoft Windows XP Professional (32-bit)
+    - Product Compatibility: 4 (Optional - the hardware version can be set to the default value of 7 if you do not have any older VMware Server 1.x hosts in your environment)
+ - Memory and Processors
+    - Memory Size: 1024 MB
+    - Processor Count: 1
+ - Hard Disk
+    - Click Create a New Virtual
+       - Capacity: at least 20 GB (This value can be adjusted to suit the size of the VMware host's disk. It is best to create the base image with a large enough hard drive to accomodate your largest image. The hard drive of a VM can be expanded but it is a manual, time-consuming process.)
+       - File Options
+           - Allocate all disk space now: no
+           - Split disk into 2 GB files: yes 
+       - Disk Mode: Independent/Persistent
+ - Network Adapter
+    - Click Add a Network Adapter
+         - Network Connection: select the name of your private network
+ - CD/DVD Drive
+     - Click Use an ISO
+         - Select the Windows ISO image you copied to the host. The ISO file must reside in /var/lib/vmware/Virtual Machines in order to be able to select it from this interface.
+ - Don't Add a Floppy Drive
+ - Don't Add a USB
+ - Click Finish
+ - Select the VM from the Inventory pane
+ - Click Add Hardware on the right side of the page
+ - Select Network Adapter
+      - Network Connection: select the name of your public network
+ - Click Next > Finish
+
