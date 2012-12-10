@@ -1,4 +1,4 @@
-Title: phpMyAdmin Installation &amp; Configuration
+Title: phpMyAdmin Installation & Configuration
 Notice:    Licensed to the Apache Software Foundation (ASF) under one
            or more contributor license agreements.  See the NOTICE file
            distributed with this work for additional information
@@ -25,7 +25,7 @@ the VCL web server.
 1. Download phpMyAdmin
 
     a. Check the version of PHP installed on the web server (you may need to perform step 
-1a of VCL 2.3 Web Code Installation to install httpd and php first):
+1a of [VCL 2.3.1 Web Code Installation][1] to install httpd and php first):
 
             :::BashLexer
             php -v
@@ -39,8 +39,10 @@ the VCL web server.
     </pre>
 
     b. Download the appropriate version of phpMyAdmin from:
-        http://www.phpmyadmin.net/home_page/downloads.php for 3.x series
-        http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/ for 2.x series
+        <pre>
+        [http://www.phpmyadmin.net/home_page/downloads.php][2] for 3.x series
+        [http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/][3] for 2.x series
+        </pre>
 
 * Extract the phpMyAdmin package:
 
@@ -74,4 +76,9 @@ information to be displayed when you hover over a value in the VCL database.
     Import the SQL file into the phpmyadmin database:
 
         :::BashLexer
-    	mysql phpmyadmin < apache-VCL-2.3/mysql/phpmyadmin.sql
+    	mysql phpmyadmin < apache-VCL-2.3.1/mysql/phpmyadmin.sql
+
+
+  [1]: VCL231InstallGuide.html
+  [2]: http://www.phpmyadmin.net/home_page/downloads.php
+  [3]: http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/
