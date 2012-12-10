@@ -113,8 +113,8 @@ SSH identity key authentication must be configured if SSH is used to manage the 
 
   - Create an SSH key pair on the management node (or use a key you previously created):
 	
-            :::BashLexer
-            ssh-keygen -t rsa -f /etc/vcl/vcl.key -N '' -b 1024 -C 'VCL root account'
+        :::BashLexer
+        ssh-keygen -t rsa -f /etc/vcl/vcl.key -N '' -b 1024 -C 'VCL root account'
 
   - Log into the ESX host via SSH (password authentication should work) and create the directory:
 	
@@ -177,10 +177,9 @@ IMPORTANT: Under ESXi 4.x, the authorized_keys file is erased when the ESXi VM h
 ####Image (optional)
 
  - VCL hypervisor image installed on VM host computers using xCAT
-    <pre class="docnote">
+    <div class="docnote">
     xCAT is not required.  VM host computers may be installed manually or by some other means.
-    </pre>
-
+    </div>
  - If xCAT is not used, select "No Image"
  - VCL has the ability to install a hypervisor image on bare-metal computers using xCAT.  If the image property is configured, the image is installed when a computer's state is changed to vmhostinuse via Manage Computers > Computer Utilities
 
