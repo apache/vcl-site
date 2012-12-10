@@ -118,35 +118,35 @@ SSH identity key authentication must be configured if SSH is used to manage the 
 
   - Log into the ESX host via SSH (password authentication should work) and create the directory:
 	
-            :::BashLexer
-            ssh <ESXi host> 'mkdir /.ssh'
+        :::BashLexer
+        ssh <ESXi host> 'mkdir /.ssh'
 
   - Copy the public key to the ESXi host:
      - ESXi 4.x:
 	
-            :::BashLexer
-            scp /etc/vcl/vcl.key.pub <ESXi host>:/.ssh/authorized_keys
+        :::BashLexer
+        scp /etc/vcl/vcl.key.pub <ESXi host>:/.ssh/authorized_keys
 
      - ESXi 5.x:
 
-            :::BashLexer
-            scp /etc/vcl/vcl.key.pub <ESXi host>:/etc/ssh/keys-root/authorized_keys
+        :::BashLexer
+        scp /etc/vcl/vcl.key.pub <ESXi host>:/etc/ssh/keys-root/authorized_keys
 
   - Test making an SSH connection using the key:
 
-            :::BashLexer
-            ssh -i /etc/vcl/vcl.key <ESXi host>
+        :::BashLexer
+        ssh -i /etc/vcl/vcl.key <ESXi host>
 
-IMPORTANT: Under ESXi 4.x, the authorized_keys file is erased when the ESXi VM host is rebooted. Complete the following steps to make the authorized_keys file persistent:
+**IMPORTANT**: Under ESXi 4.x, the authorized_keys file is erased when the ESXi VM host is rebooted. Complete the following steps to make the authorized_keys file persistent:
 
 *Note*: VCL will perform these steps automatically when the 1st reservation assigned to the host is processed.
 
   - Create a compressed tarball file containing the /.ssh directory:
 
-            :::BashLexer
-            tar -C / -czf bootbank/vcl.tgz .ssh
+        :::BashLexer
+        tar -C / -czf bootbank/vcl.tgz .ssh
 
- - Edit the /bootbank/boot.cfg file and append ' --- **vcl.tgz**' to modules line as shown in the following example:
+  - Edit the /bootbank/boot.cfg file and append ' --- **vcl.tgz**' to modules line as shown in the following example:
 
     <pre>
     kernel=b.z
@@ -157,10 +157,10 @@ IMPORTANT: Under ESXi 4.x, the authorized_keys file is erased when the ESXi VM h
     bootstate=0
     </pre>
 
-            :::BashLexer
-            Optionally you can run the following two commands:
-            tar -C / -czf vcl.tgz .ssh
-            BootModuleConfig.sh --add=vcl.tgz --verbose
+        :::BashLexer
+        Optionally you can run the following two commands:
+        tar -C / -czf vcl.tgz .ssh
+        BootModuleConfig.sh --add=vcl.tgz --verbose
 
 ##VM Host Profile Parameters
 
@@ -189,14 +189,12 @@ IMPORTANT: Under ESXi 4.x, the authorized_keys file is erased when the ESXi VM h
  - This account is used to manage the VM host and VMs assigned to the host
  - The username and password are currently only used if the vSphere SDK is used to manage the VM host and VMs
 
-####Storage Parameters
+###Storage Parameters
 
-Resource Path (optional)
+####Resource Path (optional)
+
 Resource Path only needs to be configured if VMware vCenter is used. It defines the location where VMs will be created in the vCenter inventory tree. The inventory tree contains at least one Datacenter, and may also contain Folders, Clusters, and Resource Pools.
 Example: /DatacenterA/Folder1/Cluster2/ResourcePool3
-
-
-####Repository Path (optional)
 
  - Path where master copies of images are stored which are used to transfer images to VM host datastores or to other repositories:
    - If a reservation is assigned to a host but the image does not exist in that host's datastore, it is copied from the repository to the virtual disk path when the VM is loaded
@@ -250,10 +248,12 @@ Virtual disk file format for images stored in the virtual disk path.
        - The VM host's Virtual Disk Path is located on network storage which is shared by other VM hosts
        - Repository Path is optional
 
-	The Virtual Disk Mode (VM Disk) parameter does not determine whether or not:
-...images are copied from the datastore to the repository during image capture
-...images are copied from the repository to the datastore during image load
-These are determined by whether or not Repository Path is configured in the profile
+	<div class="docnote">
+        The Virtual Disk Mode (VM Disk) parameter does not determine whether or not:
+        ...images are copied from the datastore to the repository during image capture
+        ...images are copied from the repository to the datastore during image load
+        These are determined by whether or not Repository Path is configured in the profile
+        </div>
 
 ####VM Working Directory Path (optional) (previously VM Path)
 
