@@ -266,5 +266,61 @@ These are determined by whether or not Repository Path is configured in the prof
      - VM Working Directory Paths of multiple hosts may reside on the same volume but a subdirectory should be created for each host
  - Storage where the VM Working Directory Path is located should be optimized for read-write performance
 
-####Networking Parameters
-VM Network (previously Virtual Switch)
+###Networking Parameters
+
+####VM Network (previously Virtual Switch)
+
+ - VM Network 0 (previously Virtual Switch 0) - private VCL management network
+ - VM Network 1 (previously Virtual Switch 1) - public network used by user making reservation to access the VMs
+
+ - The VM Network parameters should match the network names configured on the VM host
+    - For ESXi, the VM Network parameters must match the Virtual Machine Port Group Network Labels configured in the vSphere Client, example:
+         - VM Network 0: Public
+         - VM Network 1: Private
+              - INSERT IMAGE
+
+ - For VMware Server 2.x, the VM Network parameters must match the Network Names configured by running vmware-config.pl
+
+#####Generate eth0/eth1 MAC
+ 
+ - New in VCL 2.3
+ - Determines whether VMs are assigned MAC addresses defined in the VCL database or if random MAC addresses should be assigned
+
+###Configuration Examples
+
+####Local Disk Only - Repository Mounted via NFS
+
+ - INSERT IMAGE
+
+The diagram above shows a simple VCL configuration with 1 management node and 2 VMware ESXi hosts.  Network storage is not used.
+The local disks on the VM hosts are used to store all of the files used by running VMs including the VM's working directory and the master vmdk image.
+
+A directory on the local disk on the management node is used to as the image repository.  This directory is exported via NFS.  VM hosts mount this directory as a datastore named "repository".  Mounting the repository directly on the VM hosts allows the vmkfstools utility to be used on the VM hosts to copy and convert images directly from the repository to the local datastore in a single step.
+
+If an image is to be loaded on a VM host and that image does not already exist in the VM host's local datastore (Virtual Disk Path), it is automatically copied from the repository to the VM host's local datastore (Virtual Disk Path) at the beginning of the load process.
+
+During image capture, images are automatically copied to from the VM host's local datastore (Virtual Disk Path) to the repository.  This allows images captured on a VM host to be loaded on any other VM host.
+
+The VM host profile Virtual Disk Mode parameter is set to dedicated.  This indicates to the load process that the VM host's Virtual Disk Path is dedicated to the VM host and not shared by other VM hosts.  This allows images to be deleted from the VM host's local datastore (Virtual Disk Path) if another image must be copied from the repository and not enough space is available.
+
+
+####Local Disk Only - Repository Not Available via NFS
+
+ - INSERT IMAGE
+
+This example is identical to the one above except that the repository located on the management node's local disk is not exported via NFS.  Because of this, images must be transferred using SCP instead of vmkfstools.  This is less desirable than mounting the repository directly on the VM hosts because images cannot be copied and converted in a single step.  Images are stored in the repository in the 2GB sparse format.  This allows the images to be copied via SCP while only transferring the data stored in the image, not the entire size of the hard drive stored in the image.  VMware ESXi cannot run VMs using vmdk images stored in the 2GB sparse format.  Images are converted to the vmfs thin format so that they can be loaded on VMware ESXi.  This adds extra time to the load process if an image does not exist in the VM's local datastore (Virtual Disk Path) and must be copied from the repository.  It also requires additional space in the VM host's local datastore (Virtual Disk Path) becuase 2 copies of the image exist while it is being converted.
+Note that the VM host profile Repository Path parameter is set to the path on the management node's hard drive.  The code first checks if the path exists on the VM host.  If not, it assumes the repository is not mounted directly on the VM host and the Repository Path value refers to a location on the management node.
+
+####Network Storage Only - No Repository
+
+ - INSERT IMAGE
+
+This is an example of a simple configuration where the network storage is used.
+
+A repository is not used in this configuration.  This implies that all VM hosts which will ever be added to this VCL environment will need to be able to connect to the network storage.
+
+A datastore to be used as the Virtual Disk Path named "datastore" is mounted on every VM host.  Each of these mounts points to the same location on the network storage.  The datastore will contain the master vmdk images.  VMs loaded on the VM hosts will read from these master vmdk images.
+
+A datastore to be used as the VM Working Directory Path named "vmpath" is also mounted on each VM host.  However, the location to which each VM host points should be different.  In the example above, vmhost-a-01 points to th the /vmpath01 directory on the network storage and vmhost-a-02 points to the /vmpath02 directory.  These locations may be different network storage filesystems or may be different directories on the same network filesystem.  Even though the mounts on the VM hosts point to different locations, the datastore names configured under ESXi are identical.  This allows you to use the same VCL VM host profile for all of the VM hosts.
+
+The VM host profile Virtual Disk Mode parameter is set to shared.  This indicates to the load process that the VM host's Virtual Disk Path is shared by other VM hosts.
