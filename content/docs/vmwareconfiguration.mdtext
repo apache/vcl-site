@@ -18,27 +18,27 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 
 ##Terminology
 
-####VM Host
+**VM Host**
 
   - A VM host is a physical computer running a VMware hypervisor
   - A VCL computer entry must be added for each VM host (Manage Computers > Edit Computer Information)
   - After the computer has been added to VCL, it is designated as a VM host by changing the computer state to vmhostinuse (Manage Computers > Computer Utilities)
 
-####VM
+**VM**
 
   - A VM is a virtual machine managed by VCL
   - A computer entry must be added to VCL for each VM (Manage Computers > Edit Computer Information)
   - Each VM must be assigned to a VM host (Virtual Hosts > VM Hosts tab > Configure Host)
   - VMs do not need to be created manually in VMware, VCL automatically creates and deletes VMs
 
-####VM Host Profile
+**VM Host Profile**
 
   - A VM host profile contains several parameters which describe how a VM host is configured so that VCL knows how to manage it
   - Each VM host is assigned a VM host profile
   - A VM host profile may be assigned to multiple VM hosts if they are configured identically
   - VM host profiles may be added or modified via Virtual Hosts > VM Host Profiles tab
 
-####VMware Products Supported
+**VMware Products Supported**
 
   - VMware Server 2.x
   - VMware ESX 3.5 - 4.x
@@ -60,11 +60,11 @@ If remote management is restricted, the VM host can be managed if SSH is enabled
 
 ##How to enable SSH on the VM host:
 
-####VMware Server 2.x
+**VMware Server 2.x**
 
 Enable the SSH daemon and configure identity key authentication according to the underlying VM host OS
 
-####ESX/ESXi 3.5 & 4.0
+**ESX/ESXi 3.5 & 4.0**
 
   - Connect to the console of the ESX/ESXi host
   - Press ALT-F1 - you should see a black screen with the VMware product name at the top
@@ -78,7 +78,7 @@ Enable the SSH daemon and configure identity key authentication according to the
   - You should see a line that looks like: 5065 5065 busybox inetd
   - Kill the process (enter the PID from the output of the previous command): kill -HUP 5065
 
-####ESXi 4.1
+**ESXi 4.1**
 
 Beginning with ESXi 4.1, SSH can be enabled using the vSphere Client:
 
@@ -92,7 +92,7 @@ Beginning with ESXi 4.1, SSH can be enabled using the vSphere Client:
   - Click Start
   - Click OK
 
-####ESX 5.0
+**ESX 5.0**
 
 In the case of ESX 5.0:
 
