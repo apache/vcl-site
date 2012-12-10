@@ -19,15 +19,21 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 This portion of the site is for documentation on installing VCL and for documentation
 explaining configuration items that an installer would typically do.
 
+
 [VCL 2.3.1 Installation Guide - Current Release](/docs/VCL231InstallGuide.html)
 
-[Upgrade from previous versions](/docs/UpgradePreviousVersions/upgrades.html)
 
-[Configuring LDAP Authentication](/docs/ldapauth.html)
+Supplemental configuration guides
 
-[Creating Custom Themes](/docs/themes.html)
+ - [Upgrade from previous versions](/docs/UpgradePreviousVersions/upgrades.html)
 
-[phpMyAdmin Installation and Configuration](/docs/installphpmyadmin)
+ - [Configuring LDAP Authentication](/docs/ldapauth.html)
+
+ - [Creating Custom Themes](/docs/themes.html)
+
+ - [phpMyAdmin Installation and Configuration](/docs/installphpmyadmin)
+
+ - [VMware Configuration](/docs/vmwareconfiguration)
 
 <BR>
 <BR>
