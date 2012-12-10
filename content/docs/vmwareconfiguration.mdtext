@@ -277,7 +277,8 @@ These are determined by whether or not Repository Path is configured in the prof
     - For ESXi, the VM Network parameters must match the Virtual Machine Port Group Network Labels configured in the vSphere Client, example:
          - VM Network 0: Public
          - VM Network 1: Private
-         ![vmware-network-labels][1]
+
+![vmware-network-labels][1]
 
  - For VMware Server 2.x, the VM Network parameters must match the Network Names configured by running vmware-config.pl
 
@@ -290,9 +291,11 @@ These are determined by whether or not Repository Path is configured in the prof
 
 ####Local Disk Only - Repository Mounted via NFS
 
- - ![local-only-nfs][2]
-
 The diagram above shows a simple VCL configuration with 1 management node and 2 VMware ESXi hosts.  Network storage is not used.
+
+![local-only-nfs][2]
+
+
 The local disks on the VM hosts are used to store all of the files used by running VMs including the VM's working directory and the master vmdk image.
 
 A directory on the local disk on the management node is used to as the image repository.  This directory is exported via NFS.  VM hosts mount this directory as a datastore named "repository".  Mounting the repository directly on the VM hosts allows the vmkfstools utility to be used on the VM hosts to copy and convert images directly from the repository to the local datastore in a single step.
@@ -306,16 +309,20 @@ The VM host profile Virtual Disk Mode parameter is set to dedicated.  This indic
 
 ####Local Disk Only - Repository Not Available via NFS
 
+This example is identical to the one above except that the repository located on the management node's local disk is not exported via NFS.
+
 ![local-only-scp][3]
 
-This example is identical to the one above except that the repository located on the management node's local disk is not exported via NFS.  Because of this, images must be transferred using SCP instead of vmkfstools.  This is less desirable than mounting the repository directly on the VM hosts because images cannot be copied and converted in a single step.  Images are stored in the repository in the 2GB sparse format.  This allows the images to be copied via SCP while only transferring the data stored in the image, not the entire size of the hard drive stored in the image.  VMware ESXi cannot run VMs using vmdk images stored in the 2GB sparse format.  Images are converted to the vmfs thin format so that they can be loaded on VMware ESXi.  This adds extra time to the load process if an image does not exist in the VM's local datastore (Virtual Disk Path) and must be copied from the repository.  It also requires additional space in the VM host's local datastore (Virtual Disk Path) becuase 2 copies of the image exist while it is being converted.
+Because of this, images must be transferred using SCP instead of vmkfstools.  This is less desirable than mounting the repository directly on the VM hosts because images cannot be copied and converted in a single step.  Images are stored in the repository in the 2GB sparse format.  This allows the images to be copied via SCP while only transferring the data stored in the image, not the entire size of the hard drive stored in the image.  VMware ESXi cannot run VMs using vmdk images stored in the 2GB sparse format.  Images are converted to the vmfs thin format so that they can be loaded on VMware ESXi.  This adds extra time to the load process if an image does not exist in the VM's local datastore (Virtual Disk Path) and must be copied from the repository.  It also requires additional space in the VM host's local datastore (Virtual Disk Path) becuase 2 copies of the image exist while it is being converted.
+
 Note that the VM host profile Repository Path parameter is set to the path on the management node's hard drive.  The code first checks if the path exists on the VM host.  If not, it assumes the repository is not mounted directly on the VM host and the Repository Path value refers to a location on the management node.
 
 ####Network Storage Only - No Repository
 
+This is an example of a simple configuration where the network storage is used.
+
 ![network-only-no-repo][4]
 
-This is an example of a simple configuration where the network storage is used.
 
 A repository is not used in this configuration.  This implies that all VM hosts which will ever be added to this VCL environment will need to be able to connect to the network storage.
 
