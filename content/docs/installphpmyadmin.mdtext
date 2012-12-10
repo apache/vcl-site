@@ -1,0 +1,64 @@
+Title: phpMyAdmin Installation &amp; Configuration
+Notice:    Licensed to the Apache Software Foundation (ASF) under one
+           or more contributor license agreements.  See the NOTICE file
+           distributed with this work for additional information
+           regarding copyright ownership.  The ASF licenses this file
+           to you under the Apache License, Version 2.0 (the
+           "License"); you may not use this file except in compliance
+           with the License.  You may obtain a copy of the License at
+           .
+             http://www.apache.org/licenses/LICENSE-2.0
+           .
+           Unless required by applicable law or agreed to in writing,
+           software distributed under the License is distributed on an
+           "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+           KIND, either express or implied.  See the License for the
+           specific language governing permissions and limitations
+           under the License.
+
+phpMyAdmin is a free and optional tool which allows MySQL to be administered using a web 
+browser. It makes administering the VCL database easier. This tool can be installed on 
+the VCL web server.
+
+1. Download phpMyAdmin
+
+    a. Check the version of PHP installed on the web server (you may need to perform step 
+1a of VCL 2.3 Web Code Installation to install httpd and php first):
+
+            :::BashLexer
+            php -v
+
+        * Use phpMyAdmin 2.x if the version of PHP is < 5.2:
+            PHP 4.3.2 (cgi), Copyright (c) 1997-2003 The PHP Group
+
+        * Use phpMyAdmin 3.x if the version of PHP is 5.x:
+            PHP 5.3.11 (cli) (built: May  8 2012 15:53:27)
+
+    b. Download the appropriate version of phpMyAdmin from:
+        http://www.phpmyadmin.net/home_page/downloads.php for 3.x series
+        http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/ for 2.x series
+
+* Extract the phpMyAdmin package:
+
+        :::BashLexer
+    	tar xf phpMyAdmin-2.11.11.3-english.tar.bz2
+* Move the phpMyAdmin directory to the web server directory:
+
+        :::BashLexer
+    	mv phpMyAdmin-2.11.11.3-english /var/www/html/phpmyadmin
+* Follow the installation instructions in: /var/www/html/phpmyadmin/Documentation.txt
+    	The instructions must be followed in order to secure phpMyAdmin
+    	If you receive 403-Forbidden errors after installing phpMyAdmin, the problem is likely caused by SELinux. Run the following command to correct the problem:
+    chcon -R -t httpd_sys_content_t /var/www/html/phpmyadmin
+* Configure the phpMyAdmin-VCL Table relationships:
+
+    After following the documentation on creating the phpMyAdmin Linked-tables 
+infrastructure, you can set up the VCL table relationships. The phpmyadmin.sql file is 
+provided in the mysql directory in the Apache VCL source code. It will add entries to the 
+pma_table_info table in the phpmyadmin database. These entries cause corresponding 
+information to be displayed when you hover over a value in the VCL database.
+
+    Import the SQL file into the phpmyadmin database:
+
+        :::BashLexer
+    	mysql phpmyadmin < apache-VCL-2.3/mysql/phpmyadmin.sql
