@@ -16,4 +16,15 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-stub page
+Once VCL is installed, you will need to create base images that are ready to deploy. Below are guides to assist in getting started:
+
+####VMware or KVM based images
+
+ - Creating a Windows image
+ - Creating a Linux image
+
+
+####xCAT based images
+
+ - kickstart based images
+ - partimag-ng based images
