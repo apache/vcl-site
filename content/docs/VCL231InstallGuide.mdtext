@@ -240,7 +240,7 @@ VCL currently supports the use of mysql database.
 
 5. **Install & Configure phpMyAdmin (Optional):**
 [phpMyAdmin][1] is a free and optional tool which allows [MySQL][2] to be administered using a web browser. It makes administering the VCL database easier. This tool can be installed on the VCL web server.
-To install phpMyAdmin, follow the instructions on: VCL 2.3 phpMyAdmin Installation & Configuration
+To install phpMyAdmin, follow the instructions on: [phpMyAdmin Installation & Configuration][3]
 
 ---------
 
@@ -459,6 +459,6 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 ------
 
 
-
- [1]: http://www.phpmyadmin.net/
+  [1]: http://www.phpmyadmin.net/
   [2]: http://www.mysql.com/
+  [3]: installphpmyadmin
