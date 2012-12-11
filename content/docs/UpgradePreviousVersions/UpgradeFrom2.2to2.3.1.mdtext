@@ -105,112 +105,114 @@ different user change below cmd accordingly.
 
 1. **Make changes to conf.php**:
 
-    a. A new user group permission that controls who can manage block allocations globally or for a specific affiliation 
+    <ol type="a">
+    <li>A new user group permission that controls who can manage block allocations globally or for a specific affiliation 
 has been added. It can be granted to any user group under Privileges->Additional User Permissions->Manage Block Allocations. 
 Users with this permission are notified of new block allocation requests. **Remove the following from conf.php**.
 	
-            :::BashLexer
-            $blockNotifyUsers
+        :::PhpLexer
+        $blockNotifyUsers
 
-    b. A new user group permission that controls who can look up users globally or for a specific affiliation has been 
+    <li>A new user group permission that controls who can look up users globally or for a specific affiliation has been 
 added. It can be granted to any user group under Privileges->Additional User Permissions->User Lookup. Users with this 
 permission can look up information about other users. **Remove the following from conf.php** 
 	
-            :::BashLexer
-            $userlookupUsers
+        :::PhpLexer
+        $userlookupUsers
 
-    c. **Multilingualization** has been added VCL. So, **DEFAULTLOCALE** has been added to conf.php to set the default 
+    <li>**Multilingualization** has been added VCL. So, **DEFAULTLOCALE** has been added to conf.php to set the default 
 locale. **Add the following to conf.php**, changing en_US if needed to match your locale. You can look in 
 /var/www/html/vcl/locale to see which ones are available.
 	
-            :::BashLexer
-            define("DEFAULTLOCALE", "en_US");
+        :::PhpLexer
+        define("DEFAULTLOCALE", "en_US");
  
-    d. Users authenticated using Shibboleth without also having an LDAP server can now be added before they log in. **Add 
+    <li>Users authenticated using Shibboleth without also having an LDAP server can now be added before they log in. **Add 
 the following to conf.php**  If you are using Shibboleth and would like to be able to add users to groups before the user 
 has ever logged in to VCL, you can set this to 1. However, please note that if you typo the userid, there is no way to 
 verify it, and the user will be added with the typoed userid.
 	
-            :::BashLexer
-            define("ALLOWADDSHIBUSERS", 0);
+        :::PhpLexer
+        define("ALLOWADDSHIBUSERS", 0);
 
-    e. LDAP related items have been simplified in the code using additional options in $authMechs. For any LDAP entries, 
+    <li>LDAP related items have been simplified in the code using additional options in $authMechs. For any LDAP entries, 
 add two options. "lookupuserbeforeauth" is used if you need VCL to look up the full DN of a user and use that when doing 
 the bind that authenticates the user (if you don't know what this means, leave it set to 0). If you need to set it to 1, 
 then you will need to set "lookupuserfield" to what LDAP attribute to use when looking up the user's DN 
 (typically either 'cn', 'uid', or 'samaccountname'). In conf.php, **Add the following to each LDAP** array you have in the $authMech array.
 	
-            :::BashLexer
-            "lookupuserbeforeauth" => 0,
-            "lookupuserfield" => '',
+        :::PhpLexer
+        "lookupuserbeforeauth" => 0,
+        "lookupuserfield" => '',
  
-    f. The way the authentication functions toward the bottom of conf.php are initialized has been simplified. Make the following changes:
+    <li>The way the authentication functions toward the bottom of conf.php are initialized has been simplified. Make the following changes:
 
-        * REMOVE
+    * REMOVE
 
-                :::PhpLexer
-                $affilValFunc
-                $affilValFuncArgs 
-                $addUserFunc
-                $addUserFuncArgs
-                $updateUserFunc
-                $updateUserFuncArgs
+            :::PhpLexer
+            $affilValFunc
+            $affilValFuncArgs 
+            $addUserFunc
+            $addUserFuncArgs
+            $updateUserFunc
+            $updateUserFuncArgs
                    
-        * ADD
+    * ADD
 
-                :::PhpLexer
-                $affilValFunc = array();
-                $affilValFuncArgs = array();
-                $addUserFunc = array();
-                $addUserFuncArgs = array();
-                $updateUserFunc = array();
-                $updateUserFuncArgs = array();
-                foreach($authMechs as $key => $item) {
-                     if($item['type'] == 'ldap') {
-                        $affilValFunc[$item['affiliationid']] = 'validateLDAPUser';
-                        $affilValFuncArgs[$item['affiliationid']] = $key;
-                        $addUserFunc[$item['affiliationid']] = 'addLDAPUser';
-                        $addUserFuncArgs[$item['affiliationid']] = $key;
-                        $updateUserFunc[$item['affiliationid']] = 'updateLDAPUser';
-                        $updateUserFuncArgs[$item['affiliationid']] = $key;
-                    }
-                    elseif($item['type'] == 'local') {
-                        $affilValFunc[$item['affiliationid']] = create_function('', 'return 0;');
-                        $addUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
-                        $updateUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
-                    }
+            :::PhpLexer
+            $affilValFunc = array();
+            $affilValFuncArgs = array();
+            $addUserFunc = array();
+            $addUserFuncArgs = array();
+            $updateUserFunc = array();
+            $updateUserFuncArgs = array();
+            foreach($authMechs as $key => $item) {
+                 if($item['type'] == 'ldap') {
+                    $affilValFunc[$item['affiliationid']] = 'validateLDAPUser';
+                    $affilValFuncArgs[$item['affiliationid']] = $key;
+                    $addUserFunc[$item['affiliationid']] = 'addLDAPUser';
+                    $addUserFuncArgs[$item['affiliationid']] = $key;
+                    $updateUserFunc[$item['affiliationid']] = 'updateLDAPUser';
+                    $updateUserFuncArgs[$item['affiliationid']] = $key;
                 }
- 
+                elseif($item['type'] == 'local') {
+                    $affilValFunc[$item['affiliationid']] = create_function('', 'return 0;');
+                    $addUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
+                    $updateUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
+                }
+            }
+
+    </ol> 
 
 1. **Restart httpd service**
 
-            :::BashLexer
-            service httpd start or /etc/init.d/httpd start
+        :::BashLexer
+        service httpd start or /etc/init.d/httpd start
 
 1. **Update management node code** This step will make a backup copy of the 2.2 vcl code base and then copy the new code 
 over the existing code to preserve any drivers or other files you've added.
 	
-            :::BashLexer
-            cd <your vcl MN code root path>
-            ie. cd /usr/local/
-            cp -r vcl ~/vcl_2.2_managementnode
+        :::BashLexer
+        cd <your vcl MN code root path>
+        ie. cd /usr/local/
+        cp -r vcl ~/vcl_2.2_managementnode
 
 1. **Copy in the 2.3.1 code base to /usr/local**, copying in should preserve any drivers or other files you've added.
 	
-            :::BashLexer
-            /bin/cp -r /root/apache-VCL-2.3.1/managementnode/* /usr/local/vcl
+        :::BashLexer
+        /bin/cp -r /root/apache-VCL-2.3.1/managementnode/* /usr/local/vcl
 
 1. **Run install_perl_libs.pl** to add any new perl library requirements:
 	
-            :::BashLexer
-            /usr/local/vcl/bin/install_perl_libs.pl
+        :::BashLexer
+        /usr/local/vcl/bin/install_perl_libs.pl
 
 1. **Restart vcld service**
 	
-            :::BashLexer
-            service vcld start or /etc/init.d/vcld start
+        :::BashLexer
+        service vcld start or /etc/init.d/vcld start
 
 1. Make some test reservations and watch the vcld.log to verify everything is working correctly.
 
-            :::BashLexer
-            tail -f /var/log/vcld.log
+        :::BashLexer
+        tail -f /var/log/vcld.log
