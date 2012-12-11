@@ -41,8 +41,7 @@ These instructions assume you have root access and are using a bash shell.
 
 
 
-
-# **VMware ESXi 4.x** # {#VMware ESXi 4.x}
+####VMware ESXi 4.x
 
 The instructions assume that VMware has been configured with the following bridged networks:
 
@@ -75,7 +74,7 @@ The instructions assume that VMware has been configured with the following bridg
     - Connect at power on: Yes
  - Click Finish
 
-# **VMware Server 2.x** # {#VMware Server 2.x}
+####VMware Server 2.x
 
  - Open the VMware Infrastructure Web Access page:
          https://<IP address or hostname>:8333
@@ -114,11 +113,11 @@ The instructions assume that VMware has been configured with the following bridg
  - Click Next > **Finish**
 
 
-# **KVM** # {#KVM }
+####KVM
 
 
 
 
-# **Bare Metal via xCAT** # {#xCAT}
+####Bare Metal via xCAT
 
 The requirement in this section is to have a working xCAT system.
