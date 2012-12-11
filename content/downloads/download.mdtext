@@ -26,14 +26,19 @@ its mirrors. Older releases are available from the archive download site.
 
 Stable Release - Latest Version:
 
+* <a href="[location]?Preferred=[preferred]&action=download&filename=%2Fvcl%2Fapache-VCL-2.3.1.tar.bz2">apache-VCL-2.3.1.tar.bz2</a>
+[ [GPG](http://www.apache.org/dist/vcl/apache-VCL-2.3.1.tar.bz2.asc) ]
+[ [SHA1](http://www.apache.org/dist/vcl/apache-VCL-2.3.1.tar.bz2.sha1) ]
+[ [MD5](http://www.apache.org/dist/vcl/apache-VCL-2.3.1.tar.bz2.md5) ]
+(released TBA)
+
+Previous Releases:
+
 * <a href="[location]?Preferred=[preferred]&action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2">apache-VCL-2.3.tar.bz2</a>
 [ [GPG](http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2.asc) ]
 [ [SHA1](http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2.sha1) ]
 [ [MD5](http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2.md5) ]
 (released 2012-07-20)
-
-Previous Releases:
-
 * <a href="[location]?Preferred=http://archive.apache.org/dist/&action=download&filename=%2Fincubator%2Fvcl%2Fapache-VCL-2.2.1-incubating.tar.bz2">apache-VCL-2.2.1-incubating.tar.bz2</a>
 [ [GPG](http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2.asc) ]
 [ [SHA1](http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2.sha1) ]
@@ -88,16 +93,16 @@ could be added to the downloads from the mirrors. By verifying the integrity of
 downloaded release files, you ensure they have not been tainted.
 
 Run the following command to verify the MD5 sum. It should give output similar to 
-"apache-VCL-2.3.tar.bz2: OK":
+"apache-VCL-2.3.1.tar.bz2: OK":
 
     :::Text
-    md5sum -c apache-VCL-2.3.tar.bz2.md5
+    md5sum -c apache-VCL-2.3.1.tar.bz2.md5
 
 Similarly, run the following command to verify the SHA1 sum. You should get output 
-similar to "apache-VCL-2.3.tar.bz2: OK":</p>
+similar to "apache-VCL-2.3.1.tar.bz2: OK":</p>
 
     :::Text
-    sha1sum -c apache-VCL-2.3.tar.bz2.sha1
+    sha1sum -c apache-VCL-2.3.1.tar.bz2.sha1
 
 To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/) installed):
 
@@ -112,17 +117,18 @@ releases, you do not need to import it again):
 1. from the directory containing both the release file and the GPG signature, run
 
         :::Text
-        gpg --verify apache-VCL-2.3.tar.bz2.asc
+        gpg --verify apache-VCL-2.3.1.tar.bz2.asc
 
 ## Installation
 For new installs, visit the on-line installation guide:
 
 Latest Version:
 
-* [Apache VCL 2.3 Installation Guide](http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation)
+* [Apache VCL 2.3.1 Installation Guide](http://vcl.apache.org/docs/VCL231InstallGuide.html)
 
 Previous Versions:
 
+* [Apache VCL 2.3 Installation Guide](http://vcl.apache.org/docs/VCL23Installation.html)
 * [Apache VCL 2.2.1 Installation Guide](http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation)
 * [Apache VCL 2.2 Installation Guide](http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation)
 * [Apache VCL 2.1 Installation Guide](http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation)
@@ -133,12 +139,15 @@ For upgrades, visit the on-line upgrade guide:
 
 Upgrade to latest version:
 
-* [upgrade 2.2.1 to 2.3](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.2.1+to+2.3%29)
-* [upgrade 2.2 to 2.3](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.2+to+2.3%29)
-* [upgrade 2.1 to 2.3](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.3%29)
+* [upgrade 2.3 to 2.3.1](http://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.3to2.3.1.html)
+* [upgrade 2.2.1 to 2.3.1](http://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3.1.html)
+* [upgrade 2.2 to 2.3.1](http://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3.1.html)
 
 Upgrade really old versions to older versions:
 
+* [upgrade 2.2.1 to 2.3](http://vcl.staging.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3)
+* [upgrade 2.2 to 2.3](http://vcl.staging.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3)
+* [upgrade 2.1 to 2.3](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.3%29)
 * [upgrade 2.2 to 2.2.1](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.2+to+2.2.1%29)
 * [upgrade 2.1 to 2.2.1](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.2.1%29)
 * [upgrade 2.1 to 2.2](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version)
