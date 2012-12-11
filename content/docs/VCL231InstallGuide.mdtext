@@ -97,6 +97,7 @@ VCL currently supports the use of mysql database.
 
 **Required PHP Modules:**
 
+  * php
   * php-gd
   * php-json (required if your PHP version is 5.2 or later)
   * php-mysql
