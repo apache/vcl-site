@@ -1,3 +1,10 @@
+.codehilite pre {
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
 .codehilite .hll { background-color: #ffffcc }
 /*.codehilite  { background: #f0f0f0; }*/ /* commented out because we set our own background for the codehilite pre element */
 .codehilite .c { color: #60a0b0; font-style: italic } /* Comment */
