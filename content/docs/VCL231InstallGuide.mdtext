@@ -168,15 +168,15 @@ VCL currently supports the use of mysql database.
             :::BashLexer	 
             vi secrets.php
 
-            * Set the following variables to match your database configuration:
-                * $vclhost
-                * $vcldb
-                * $vclusername
-                * $vclpassword
-            * Create random passwords for the following variables:
-                * $cryptkey
-                * $pemkey
-            * Save the secrets.php file
+        * Set the following variables to match your database configuration:
+            * $vclhost
+            * $vcldb
+            * $vclusername
+            * $vclpassword
+        * Create random passwords for the following variables:
+            * $cryptkey
+            * $pemkey
+        * Save the secrets.php file
 
     * Run the genkeys.sh
 	
@@ -193,10 +193,10 @@ VCL currently supports the use of mysql database.
             :::BashLexer	 
             vi conf.php
          
-            * Modify every entry under "Things in this section must be modified". 
-            * Descriptions and pointers for each value are included within conf.php.
-            * COOKIEDOMAIN - set this to the domain name your web server is using 
-            * or leave it blank if you are only accessing the web server by its IP address
+        * Modify every entry under "Things in this section must be modified". 
+        Descriptions and pointers for each value are included within conf.php.
+        * COOKIEDOMAIN - set this to the domain name your web server is using 
+        or leave it blank if you are only accessing the web server by its IP address
 
     * Set the owner of the .ht-inc/maintenance directory to the web server user (normally 'apache'):
 	
@@ -249,10 +249,10 @@ To install phpMyAdmin, follow the instructions on: [phpMyAdmin Installation & Co
 # Install & Configure the Management Node Components # {#managementnode}
 
 **Prerequisites**
-The following management node installation instructions assume the instructions on the following pages have previously been completed:
+The following management node installation instructions assume the instructions in these previous sections have been completed:
 
-    * VCL 2.3.1 Database Installation
-    * VCL 2.3.1 Web Code Installation
+* VCL 2.3.1 Database Installation
+* VCL 2.3.1 Web Code Installation
 
 **Supported Operating Systems:**
 
@@ -343,13 +343,15 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 	
             :::BashLexer
             vi /etc/vcl/vcld.conf
-            The following lines must be configured in order to start the VCL daemon (vcld) and allow it to check in to the database:
-            * FQDN - the fully qualified name of the management node, this should match the name that was configured for the management node in the database
-            * server - the IP address or FQDN of the database server
-            * LockerWrtUser - database user account with write privileges
-            * wrtPass - database user password
-            * xmlrpc_pass - password for xmlrpc api from vcld to the web interface(can be long). This will be used later to sync the database vclsystem user account
-            * xmlrpc_url - URL for xmlrpc api https://my.server.org/vcl/index.php?mode=xmlrpccall
+
+        The following lines must be configured in order to start the VCL daemon (vcld) and allow it to check in to the database:
+
+        * FQDN - the fully qualified name of the management node, this should match the name that was configured for the management node in the database
+        * server - the IP address or FQDN of the database server
+        * LockerWrtUser - database user account with write privileges
+        * wrtPass - database user password
+        * xmlrpc_pass - password for xmlrpc api from vcld to the web interface(can be long). This will be used later to sync the database vclsystem user account
+        * xmlrpc_url - URL for xmlrpc api https://my.server.org/vcl/index.php?mode=xmlrpccall
 
     * Save the vcld.conf file
 
@@ -361,9 +363,10 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 
             :::BashLexer
             vi /etc/ssh/ssh_config
-            Set the following parameters:<br>
-            UserKnownHostsFile /dev/null<br>
-            StrictHostKeyChecking no<br>
+
+    * Set the following parameters:
+        * UserKnownHostsFile /dev/null
+        * StrictHostKeyChecking no
 
     Note: If you do not want these settings applied universally on the management node the SSH configuration can also be configured to only apply these settings to certain hosts or only for the root user. Consult the SSH documentation for more information.
 
@@ -394,23 +397,25 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
             :::BashLexer
             tail -f /var/log/vcld.log
 
-     You should see the following being added to the log file every few seconds if the management node is checking in with the database:<br>
-     2012-05-15 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2012-05-15 13:23:45
+    You should see the following being added to the log file every few seconds if the management node is checking in with the database:
+
+        :::BashLexer
+        2012-05-15 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2012-05-15 13:23:45
 
 
 6. **Set the vclsystem account password for xmlrpc api**
 
-     Using the vcld -setup tool, set the vclsystem account. This is needed to properly use the block allocation features.
+    Using the vcld -setup tool, set the vclsystem account. This is needed to properly use the block allocation features.
 	
-            :::BashLexer
-            /usr/local/vcl/bin/vcld -setup
+        :::BashLexer
+        /usr/local/vcl/bin/vcld -setup
 
     Select the options listed below to set the password. When prompted paste or type the password from xmlrpc_pass variable in the vcld.conf file and hit enter. 
 
-            :::BashLexer
-            Select 1. VCL Base Module
-            Select 2. Set Local VCL User Account Password
-            Select 2. vclsystem
+        :::BashLexer
+        Select 1. VCL Base Module
+        Select 2. Set Local VCL User Account Password
+        Select 2. vclsystem
              
 
 7. **Install & Configure the DHCP Service**
@@ -437,13 +442,13 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
     Configure your dhcpd.conf file according to your network configuration. 
     The contents of the dhcpd.conf file will vary based on how your network is configured. Below is an example of a basic dhcpd.conf file:
   
-            :::BashLexer
-            ddns-update-style none;
-            shared-network eth0 {
-	                subnet 10.100.0.0 netmask 255.255.255.0 {
-		                    ignore unknown-clients;
-	                }
-            }
+        :::BashLexer
+        ddns-update-style none;
+        shared-network eth0 {
+	        subnet 10.100.0.0 netmask 255.255.255.0 {
+	                 ignore unknown-clients;
+	        }
+        }
 
     You will add host definitions to the dhcpd.conf file after you add computers to VCL using the website. 
     The website will display the dhcpd.conf host definitions after the computers have been added to VCL, 
