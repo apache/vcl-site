@@ -121,5 +121,8 @@ net user root <password>
          - *Preparing your desktop*
          - *Desktop appears*
  13. If asked to set a network location, choose Work network
-        - *The root account logs in...*
+      - *The root account logs in...*
+
+
+**Windows Server 2008**
 
