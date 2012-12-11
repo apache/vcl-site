@@ -1,4 +1,4 @@
-Title: Creating Base Images from an ISO
+Title: Creating Base Images from an ISO - Part 1
 Notice:    Licensed to the Apache Software Foundation (ASF) under one
            or more contributor license agreements.  See the NOTICE file
            distributed with this work for additional information
@@ -16,16 +16,19 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-This page describes how to create a base image from an install media. These instructions are broken up into specific provisioning modules for (xCAT, VMware, and KVM).
+This page describes how to create a base image from an install media. 
+
+These instructions are broken up into parts to assist in providing detailed instructions based on the supported provisioning modules and Operating Systems. The supported provisioning methods for VCL are (xCAT, VMware, and KVM).
 
 [TOC]
 
 ###Requirements
 
-You will need the following:
+Before getting started make sure you have the following requirements completed or on hand:
  
  - A working VCL web,database, and management node
- - A Hypervisor either VMWare or KVM
+ - A Hypervisor either VMWare or KVM(if using hypervisor based images)
+ - A working xCAT system(if using bare-metal images)
  - Install media
  - Appropriate licensing for Windows or RedHat
  
@@ -40,8 +43,7 @@ The following must be done before an image can be captured:
 These instructions assume you have root access and are using a bash shell.
 
 
-
-####VMware ESXi 4.x
+###VMware ESXi 4.x
 
 The instructions assume that VMware has been configured with the following bridged networks:
 
@@ -74,7 +76,7 @@ The instructions assume that VMware has been configured with the following bridg
     - Connect at power on: Yes
  - Click Finish
 
-####VMware Server 2.x
+###VMware Server 2.x
 
  - Open the VMware Infrastructure Web Access page:
          https://<IP address or hostname>:8333
@@ -113,11 +115,16 @@ The instructions assume that VMware has been configured with the following bridg
  - Click Next > **Finish**
 
 
-####KVM
+###KVM
 
 
+ - Create guest OS on KVM host
 
-
-####Bare Metal via xCAT
+###Bare Metal via xCAT
 
 The requirement in this section is to have a working xCAT system.
+
+
+####Install Windows OS for a Base Image
+
+Next Step - Install Windows OS
