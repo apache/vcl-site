@@ -67,8 +67,8 @@ The Windows installation sequence varies by version. The next 2 sections describ
  1. Press Enter to setup up Windows XP now
  2. Press F8 to agree to the license agreement
  3. Configure the Windows partition
-         Press Enter to set up Windows XP on the selected item (should be called "Unpartitioned space")
-         Format the partition using the NTFS file system (Quick)
+       - Press Enter to set up Windows XP on the selected item (should be called "Unpartitioned space")
+       - Format the partition using the NTFS file system (Quick)
  4. Region and Language Options - click Next
  5. Name: VCL
  6. Organization: Apache.org
@@ -82,7 +82,7 @@ The Windows installation sequence varies by version. The next 2 sections describ
  14. Connect to Internet: Skip
  15. Register: no
  16. User name: root 
-       Windows XP setup should finish and the root account created during installation should automatically log on
+        - Windows XP setup should finish and the root account created during installation should automatically log on
  17. Once the desktop appears, set root's password via the Windows GUI or by executing the following command from a command prompt:
 net user root <password>
 
@@ -90,36 +90,36 @@ net user root <password>
 **Windows 7 Installation**
 
  1. Enter the regional information:
-Language to install: English
-Time and currency format: English (United States)
-Keyboard or input method: US
+      - Language to install: English
+      - Time and currency format: English (United States)
+      - Keyboard or input method: US
  2. Click Next
  3. Click Install now
-     Setup is starting...
+     *Setup is starting...*
  4. Click the checkbox next to "I accept the license terms"
  5. Click Next
  6. Click Custom (advanced)
  7. On the "Where do you want to install Windows?" page, delete all existing partitions and create a new partition using all of the available space:
-     Click Drive options (advanced)
-     Click Delete, then click OK to confirm
-     Click New
-     Click Apply (the size should be set to the maximum amount available
-     To ensure that all Windows features work correctly, Windows might create additional partitions for system files.
-     Click OK
+      - Click Drive options (advanced)
+      - Click Delete, then click OK to confirm
+      - Click New
+      - Click Apply (the size should be set to the maximum amount available
+                 *To ensure that all Windows features work correctly, Windows might create additional partitions for system files.*
+      - Click OK
  8. Click Next
-     Installing Windows...
-     Windows restarts
-     Starting Windows
-     Setup is updating registry settings
+       - *Installing Windows...*
+       - *Windows restarts*
+       - *Starting Windows*
+       - *Setup is updating registry settings*
  9. A screen titled "Set Up Windows" appears:
-     Type a user name: root
-     Type a computer name: it's best to name the computer after the OS (Example: win7sp1-ent)
+       - Type a user name: root
+       - Type a computer name: it's best to name the computer after the OS (Example: win7sp1-ent)
  10. Enter a password, password hint, and click Next
  11. Help protect your computer and improve Windows automatically: Ask me later
  12. Select a time zone, set the correct time, and click Next
-       Windows is finalizing your settings
-       Preparing your desktop
-       Desktop appears
+         - *Windows is finalizing your settings*
+         - *Preparing your desktop*
+         - *Desktop appears*
  13. If asked to set a network location, choose Work network
-      *The root account logs in...*
+        - *The root account logs in...*
 
