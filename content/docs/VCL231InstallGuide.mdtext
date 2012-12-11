@@ -11,10 +11,8 @@ This guide will provide the necessary steps to install and configure VCL softwar
 VCL currently supports the use of mysql database.
 
 1. Download and Extract the Apache VCL Source
-    * If you have not already done so, download and the Apache VCL source to the database server:
-
-            :::BashLexer
-            wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.1.tar.bz2'
+    * If you have not already done so, follow the instructions on the [download](/downloads/download.cgi)
+page to download and verify apache-VCL-2.3.1.tar.bz2, and put it in /root
 
     * Extract the files:
 
@@ -122,6 +120,7 @@ your iptables config and restart iptables service.<br>
  - - -
 
 1. **Install the Required Linux Packages & PHP Modules**
+
     * If your web server is running a Red Hat-based OS, the required components can be installed with:
         For RHEL / CentOS 5
        
@@ -166,10 +165,12 @@ config file:
                 service iptables restart
 
 2. **Install the VCL Frontend Web Code**
-    * If you have not already done so, download and extract the source files on the web server:
+    * If you have not already done so, follow the instructions on the [download](/downloads/download.cgi)
+page to download and verify apache-VCL-2.3.1.tar.bz2, and put it in /root
+
+    * Extract the files:
 
             :::BashLexer
-            wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.1.tar.bz2'
             tar -jxvf apache-VCL-2.3.1.tar.bz2
 
     * Copy the **web** directory to a location under the web root of your web server and navigate to the destination **.ht-inc** subdirectory:
@@ -318,11 +319,12 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 ---
 
 1. **Install the VCL Management Node Code - Perl Daemon**
+    * If you have not already done so, follow the instructions on the [download](/downloads/download.cgi)
+page to download and verify apache-VCL-2.3.1.tar.bz2, and put it in /root
 
-    * If you have not already done so, download and extract the source files on the web server:
+    * Extract the files:
 
             :::BashLexer
-            wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.1.tar.bz2'
             tar -jxvf apache-VCL-2.3.1.tar.bz2
 
     * Copy the managementnode directory to the location where you want it to reside (typically /usr/local):
