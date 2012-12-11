@@ -38,13 +38,24 @@ VCL currently supports the use of mysql database.
             :::BashLexer
             /sbin/service mysqld start
 
-    *  If the iptables firewall is being used and the web server and management nodes will be on different machines, port 3306 should be opened up. Add the following to your iptables config and restart iptables service. Note insert your web server and management node IP address in the right locations.
+    *  If the iptables firewall is being used and the web server and management nodes 
+will be on different machines, port 3306 should be opened up. Add the following to 
+your iptables config and restart iptables service.<br>
+**Note:** Insert your web server and management node IP address in the right locations.
 
             :::BashLexer
             vi /etc/sysconfig/iptables
-            -A RH-Firewall-1-INPUT -m state --state NEW -s <web server IP> -p tcp --dport 3306 -j ACCEPT
-            -A RH-Firewall-1-INPUT -m state --state NEW -s <management node IP> -p tcp --dport 3306 -j ACCEPT
-            service iptables restart   
+
+        * Add these rules:
+
+                :::BashLexer
+                -A RH-Firewall-1-INPUT -m state --state NEW -s <web server IP> -p tcp --dport 3306 -j ACCEPT
+                -A RH-Firewall-1-INPUT -m state --state NEW -s <management node IP> -p tcp --dport 3306 -j ACCEPT
+
+        * Restart iptables:
+
+                :::BashLexer
+                service iptables restart   
 
 3. Create the VCL Database
    
@@ -137,13 +148,22 @@ VCL currently supports the use of mysql database.
             :::BashLexer
             /usr/sbin/setsebool -P httpd_can_network_connect=1
 
-    * If the iptables firewall is being used, port 80 and 443 should be opened up:
+    * If the iptables firewall is being used, port 80 and 443 should be opened up in the iptables
+config file:
 
             :::BashLexer
             vi /etc/sysconfig/iptables
-            -A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT
-            -A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT
-            service iptables restart
+
+        * Add these rules:
+
+                :::BashLexer
+                -A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT
+                -A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT
+
+        * Restart iptables
+
+                :::BashLexer
+                service iptables restart
 
 2. **Install the VCL Frontend Web Code**
     * If you have not already done so, download and extract the source files on the web server:
