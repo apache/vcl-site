@@ -16,7 +16,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-For vcld to probably communicate on the private network to the nodes, you need to add entries for your nodes to /etc/hosts on the management node.
+For vcld to probably communicate with the nodes on the private network, you need to add entries for your nodes to /etc/hosts on the management node.
 To do go to your vcl portal and follow these steps.
 
  1. Click Manage Computers
