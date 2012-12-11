@@ -480,7 +480,27 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
             :::BashLexer
             /sbin/service dhcpd start
 
-    * Proceed to Base Image creation
+---------
+
+# Initial Administration Steps After Installing VCL
+
+After you have installed the VCL components, you need to do some initial administration of your new VCL install.
+
+1. Add Computers
+
+    * If using **bare-metal** provisioning:
+        * [Adding bare-metal computers](addcomputers)
+    * If using **VM** provisioning:
+        * [Adding VM hosts](addhypvisorservers)
+        * [Adding VMs](addingvmcomputers)
+        * [Assigning VMs to VM hosts](assignvmtohost)
+
+2. [Create Base Images](image-creation)
+
+3. Configure Authorization (follow links appropriate to your site)
+    * [Adding Local Accounts](localaccounts)
+    * [Configuring LDAP Authentication](ldapauth)
+    * [Configuring Shibboleth Authentication](shibauth)
 
 ------
 
