@@ -43,7 +43,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-632'>VCL-632</a>] -         vSphere_SDK.pm set_file_permissions does not work
 * [<a href='https://issues.apache.org/jira/browse/VCL-633'>VCL-633</a>] -         Change of vmprofile.vmdisk value can cause image capture to fail due to insufficient space
 * [<a href='https://issues.apache.org/jira/browse/VCL-634'>VCL-634</a>] -         Cluster reservations fail if node_status returns POST_LOAD
-* [<a href='https://issues.apache.org/jira/browse/VCL-641'>VCL-641</a>] -         VCL fails to properly trim whitespace from `virsh list --all`
+* [<a href='https://issues.apache.org/jira/browse/VCL-641'>VCL-641</a>] -         VCL fails to properly trim whitespace from "virsh list --all"
 * [<a href='https://issues.apache.org/jira/browse/VCL-642'>VCL-642</a>] -         colons should not be allowed in resource group names
 * [<a href='https://issues.apache.org/jira/browse/VCL-643'>VCL-643</a>] -         VM Limit can be decreased to below the current number of assigned VMs
 * [<a href='https://issues.apache.org/jira/browse/VCL-648'>VCL-648</a>] -         blockRequests re-processed at end time for skipped block time entries
