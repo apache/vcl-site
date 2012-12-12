@@ -119,12 +119,6 @@ releases, you do not need to import it again):
         :::Text
         gpg --verify apache-VCL-2.3.1.tar.bz2.asc
 
-## Release Notes
-See the [release notes page](/docs/releasenotes.html) for information about each release.
-
-## Change Log
-See the [change log page](/docs/changelog.html) for changes made in each release.
-
 ## Installation
 For new installs, visit the on-line installation guide:
 
@@ -157,3 +151,9 @@ Upgrade really old versions to older versions:
 * [upgrade 2.2 to 2.2.1](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.2+to+2.2.1%29)
 * [upgrade 2.1 to 2.2.1](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.2.1%29)
 * [upgrade 2.1 to 2.2](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version)
+
+## Release Notes
+See the [release notes page](/docs/releasenotes.html) for information about each release.
+
+## Change Log
+See the [change log page](/docs/changelog.html) for changes made in each release.
