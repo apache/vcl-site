@@ -122,15 +122,17 @@ your iptables config and restart iptables service.<br>
 1. **Install the Required Linux Packages & PHP Modules**
 
     * If your web server is running a Red Hat-based OS, the required components can be installed with:
+        
+        For RHEL / CentOS 6
+
+            :::BashLexer
+            yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap php-process -y
+
         For RHEL / CentOS 5
        
             :::BashLexer
             yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap -y
 
-        For RHEL / CentOS 6
-
-            :::BashLexer
-            yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap php-process -y
 
     * Configure the web server daemon (httpd) to start automatically:
 
