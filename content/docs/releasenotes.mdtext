@@ -19,3 +19,8 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 ## 2.3.1 Release Notes
 2.3.1 is a bugfix release. See the [Change Log](changelog.html#2.3.1) for a list of 
 issues resolved in this release.
+
+There are a few particular issues worth highlighting:
+
+* 2.3 was missing a default entry in the database that prevented KVM deploys from working that is now fixed
+* additional methods were added to the XMLRPC API - see [VCL-617](https://issues.apache.org/jira/browse/VCL-617) for the details.
