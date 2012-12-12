@@ -119,6 +119,12 @@ releases, you do not need to import it again):
         :::Text
         gpg --verify apache-VCL-2.3.1.tar.bz2.asc
 
+## Release Notes
+See the [release notes page](/docs/releasenotes.html) for information about each release.
+
+## Change Log
+See the [change log page](/docs/changelog.html) for changes made in each release.
+
 ## Installation
 For new installs, visit the on-line installation guide:
 
