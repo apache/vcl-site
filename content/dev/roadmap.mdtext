@@ -19,12 +19,12 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 ## Future
 
 <a name="2.7"></a>
-###VCL 2.7
+####VCL 2.7
 
 * develop tools for managing both system and user storage
 
 <a name="2.6"></a>
-###VCL 2.6
+####VCL 2.6
 
 * Power management
 * Improve cluster reservations
@@ -32,7 +32,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * Initial support for Libcloud
 
 <a name="2.5"></a>
-###VCL 2.5
+####VCL 2.5
 
 * Improve additional connect methods
 * NAT support
@@ -42,7 +42,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * Initial support for EC2 API and OpenStack
 
 <a name="2.4"></a>
-###VCL 2.4
+####VCL 2.4
 
 * Configuration management system
 * Scripted installation
@@ -50,14 +50,14 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 ## Current
 
 <a name="2.3.1"></a>
-###VCL 2.3.1
+####VCL 2.3.1
 
 * Bugfixes
 
 ## Past
 
 <a name="2.3"></a>
-###VCL 2.3
+####VCL 2.3
 
 * Service deployments
 * Allow for additional connect methods for environments (port, other protocols, etc)
@@ -69,7 +69,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 
 
 <a name="2.2.1"></a>
-###VCL 2.2.1
+####VCL 2.2.1
 
 * removed frontend dependency on jpgraph
 * remove any access control that is hard coded in frontend
@@ -77,14 +77,14 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * many bug fixes and improvements to VMWare support
 
 <a name="2.2"></a>
-###VCL 2.2
+####VCL 2.2
 
 * support for xCAT 2.x
 * VMWare Free Server 2.x and ESXi 4
 * improve block reservations (renamed to block allocations)
 
 <a name="2.1"></a>
-###VCL 2.1
+####VCL 2.1
 
 * completed modularization of vcld
 * xCAT 2.1 support
