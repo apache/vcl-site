@@ -16,7 +16,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-# Adding Individual VMware Servers
+## Adding Individual VMware Servers
 
 1. Click Manage Computers
 2. Select the Add Single Computer radio button
@@ -42,7 +42,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 6. Click Submit
     * The computer you just added isn't listed after clicking Submit. This is not a problem.                                                     
 
-# Adding Multiple VMWare Servers
+## Adding Multiple VMWare Servers
 
 1. Click Manage Computers
 2. Select the Add Multiple Computers radio button
