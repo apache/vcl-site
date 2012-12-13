@@ -115,7 +115,11 @@ your iptables config and restart iptables service.<br>
   * php-xml
   * php-xmlrpc
   * php-ldap (if you will be using LDAP authentication)
-  * php-process (for RHEL/CentOS 6)
+  * php-process (for RHEL/CentOS 6), 
+      * Note: You may need the optional server rpm repository for the
+         php-process package; to add this run the following command:
+         rhn-channel --add --channel=rhel-x86_64-server-optional-6
+
 
  - - -
 
