@@ -78,9 +78,9 @@ containing:
     * steps explaining how to verify artifact using signatures and checksums
     * either a link to release notes or contain them inline
     * either a link to a change log or contain it inline</s>
-* a decision needs to be made determining which, if any, previously released 
+* <s>a decision needs to be made determining which, if any, previously released 
 artifacts should be removed from the main distribution site after this 
-release is completed
+release is completed</s>
 * <s>make sure the index.php file from the web code has the correct VCL 
 version at the top of it</s>
 
