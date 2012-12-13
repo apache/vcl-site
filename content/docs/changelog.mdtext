@@ -26,7 +26,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-603'>VCL-603</a>] -         reboot hard does not work for hung windows machines
 * [<a href='https://issues.apache.org/jira/browse/VCL-607'>VCL-607</a>] -         &#39;default&#39; skin hard-coded in initialization function when it should use the global DEFAULTTHEME
 * [<a href='https://issues.apache.org/jira/browse/VCL-609'>VCL-609</a>] -         Reservations fail if cat command returns non-zero exit status when retrieving contents of /etc/hosts on management node
-* [<a href='https://issues.apache.org/jira/browse/VCL-610'>VCL-610</a>] -         minor HTML errors 
+* [<a href='https://issues.apache.org/jira/browse/VCL-610'>VCL-610</a>] -         minor HTML errors
 * [<a href='https://issues.apache.org/jira/browse/VCL-613'>VCL-613</a>] -         output from init.d startup scripts are slightly amiss
 * [<a href='https://issues.apache.org/jira/browse/VCL-616'>VCL-616</a>] -         update_cygwin.cmd fails to generate keys with current version of Cygwin
 * [<a href='https://issues.apache.org/jira/browse/VCL-619'>VCL-619</a>] -         usenls may be undefined in _() function in requests.js
@@ -51,21 +51,23 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-649'>VCL-649</a>] -         Images may fail to load if renamed in database by VMware code
 * [<a href='https://issues.apache.org/jira/browse/VCL-650'>VCL-650</a>] -         VCL breaks with PHP 5.4
 * [<a href='https://issues.apache.org/jira/browse/VCL-651'>VCL-651</a>] -         libvirt to vmware entry missing from provisioningOSinstalltype table
-* [<a href='https://issues.apache.org/jira/browse/VCL-652'>VCL-652</a>] -         xCAT nodeset failure 
+* [<a href='https://issues.apache.org/jira/browse/VCL-652'>VCL-652</a>] -         xCAT nodeset failure
 * [<a href='https://issues.apache.org/jira/browse/VCL-653'>VCL-653</a>] -         editing a federated user group sets the affiliation of the group that of the user editing the group
 * [<a href='https://issues.apache.org/jira/browse/VCL-654'>VCL-654</a>] -         Sysprep fails for 32-bit Windows 7
+* [<a href='https://issues.apache.org/jira/browse/VCL-656'>VCL-656</a>] -         VIM_SSH.pm times out too early when removing snapshots from a VM
+* [<a href='https://issues.apache.org/jira/browse/VCL-657'>VCL-657</a>] -         Prevent benign warning messages from appearing in vcld.log
 
-            
+
 ###        Improvement
 
 
 * [<a href='https://issues.apache.org/jira/browse/VCL-608'>VCL-608</a>] -         XMLRPC interface inaccessible to Shibboleth-authenticated users
 * [<a href='https://issues.apache.org/jira/browse/VCL-615'>VCL-615</a>] -         make default adminUsers group have the same level of access as the default admin user
-* [<a href='https://issues.apache.org/jira/browse/VCL-629'>VCL-629</a>] -         update ownership of existing /home/$username 
+* [<a href='https://issues.apache.org/jira/browse/VCL-629'>VCL-629</a>] -         update ownership of existing /home/$username
 * [<a href='https://issues.apache.org/jira/browse/VCL-639'>VCL-639</a>] -         server loads - reinstall
 * [<a href='https://issues.apache.org/jira/browse/VCL-640'>VCL-640</a>] -         block allocation fixes
 
-    
+
 ###        New Feature
 
 
