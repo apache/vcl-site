@@ -54,14 +54,14 @@ released
 Perl, MySQL versions in addition to perl and php modules, dojo, etc.) for 
 running VCL, any changes in dependencies since the last release must be 
 listed in the CHANGLOG file</s>
-* generate a CHANGELOG file
+* <s>generate a CHANGELOG file
     * go to the [Create Release Notes][1] page of the JIRA site
     * select the release version
     * select **text** as the style
     * click **Create**
     * scroll down to **Edit/Copy Release Notes**
     * copy/paste the contents to a new section in the CHANGELOG file
-    * make sure to add any changes in the dependencies since the last release
+    * make sure to add any changes in the dependencies since the last release</s>
 * <s>make sure INSTALLATION file is up to date with content from Confluence on 
 how to install each part</s>
 * <s>ensure LICENSE, NOTICE, RELEASE_NOTES, CHANGELOG, INSTALLATION, UPGRADE, 
