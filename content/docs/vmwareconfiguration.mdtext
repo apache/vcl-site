@@ -125,12 +125,12 @@ SSH identity key authentication must be configured if SSH is used to manage the 
      - ESXi 4.x:
 	
         :::BashLexer
-        scp /etc/vcl/vcl.key.pub <ESXi host>:/.ssh/authorized_keys
+        scp /etc/vcl/vcl.key.pub ESXi host:/.ssh/authorized_keys
 
      - ESXi 5.x:
 
         :::BashLexer
-        scp /etc/vcl/vcl.key.pub <ESXi host>:/etc/ssh/keys-root/authorized_keys
+        scp /etc/vcl/vcl.key.pub ESXi host:/etc/ssh/keys-root/authorized_keys
 
   - Test making an SSH connection using the key:
 
