@@ -20,7 +20,7 @@ There are several concepts you need to understand when administering VCL.
 
 [TOC]
 
-#Resources
+##Resources
 
 VCL manages sets of resources. There are four types of resources: images, computers, 
 management nodes, and schedules. Each of these resources types are described below.
@@ -61,7 +61,7 @@ computers in a traditional university computing lab may be available through VCL
 the lab is physically closed, but you wouldn't want to be assigning remote users to 
 those computers when the lab is open.
 
-#Groups
+##Groups
 
 Users and resources are placed into groups to make management of them easier.
 
@@ -81,7 +81,7 @@ resources and also to allow VCL to know which resources can be used in relation 
 resources. One example of this is to configure which images can be deployed to which 
 computers. Another example is which management nodes can manage which computers.
 
-#Resource Management
+##Resource Management
 
 VCL needs to know how resources related to one another. This is done by adding the 
 resources to a resource group, and then mapping one type of resource group to another.
@@ -113,7 +113,7 @@ mapping is to partition off parts of your hardware. For example, if you had a se
 users purchase their own hardware to be managed by VCL, you could map only their image 
 groups to their computer groups.
 
-#Privileges
+##Privileges
 
 Users are granted access to parts of the VCL web site and to resources through the 
 Privilege tree. User permissions and resource attributes can both be cascaded down 
