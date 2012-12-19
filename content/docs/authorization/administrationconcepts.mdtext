@@ -96,6 +96,7 @@ to assign a physical image to a virtual computer or vice versa. Some upcoming ch
 to the code will remove this restriction, but for now, keep this restriction in mind 
 while grouping computers.
 
+<a name="resourcemapping"></a>
 ###Resource Mapping
 
 After you have grouped your resources, you need to map them together. Image groups are 
