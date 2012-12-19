@@ -25,7 +25,7 @@ There are several concepts you need to understand when administering VCL.
 VCL manages sets of resources. There are four types of resources: images, computers, 
 management nodes, and schedules. Each of these resources types are described below.
 
-##Images/Environments
+###Images/Environments
 
 An image is a collection of software that is installed on an operating system. For the 
 most part, these images can be deployed, used, modified, and saved (captured). However, 
@@ -41,7 +41,7 @@ sturctured in a modularized way such that it is easy to add support for other
 provisioning technologies. We plan on adding support for other hypervisor technologies 
 in the near future.
 
-##Computers
+###Computers
 
 Images are deployed on to computers. VCL needs to know about all of the computers it 
 will be managing. Entries for both physical computers and Virtual Machines (some people 
@@ -52,7 +52,7 @@ Management nodes run the VCL backend code (vcld) that is responsible for deployi
 images to computers when users make reservations for images. Each management node can 
 manage a mix of physical and virtual computers.
 
-##Schedules
+###Schedules
 
 Each computer must have a schedule associated with it. Schedules provide a way to 
 define what times during a week a computer is available through VCL. This allows for 
@@ -65,7 +65,7 @@ those computers when the lab is open.
 
 Users and resources are placed into groups to make management of them easier.
 
-##User Groups
+###User Groups
 
 There are two types of user groups in VCL: those whose membership is manually managed 
 through the web frontend or XML RPC API, and those whose membership is automatically 
@@ -73,7 +73,7 @@ managed by mirroring user groups in an LDAP system. Each user group has certain 
 associated with it. There are various places within VCL that user groups can be used, 
 with the primary place being granting access to resources in the privilege tree.
 
-##Resource Groups
+###Resource Groups
 
 Each resource group has a type associated with it which can be one of image, computer, 
 management node, or schedule. The resource groups are used to grant users access to 
@@ -86,7 +86,7 @@ computers. Another example is which management nodes can manage which computers.
 VCL needs to know how resources related to one another. This is done by adding the 
 resources to a resource group, and then mapping one type of resource group to another.
 
-##Resource Grouping
+###Resource Grouping
 
 Resource groups can contain any number of resources. Each resource group has a resource 
 type associated with it. Only resources matching that type can be added to the group. 
@@ -96,7 +96,7 @@ to assign a physical image to a virtual computer or vice versa. Some upcoming ch
 to the code will remove this restriction, but for now, keep this restriction in mind 
 while grouping computers.
 
-##Resource Mapping
+###Resource Mapping
 
 After you have grouped your resources, you need to map them together. Image groups are 
 mapped to computer groups, and management node groups are mapped to computer groups. 
@@ -121,7 +121,7 @@ from one node to all of its children. Additionally, cascaded user permissions an
 resource attributes can be blocked at a node so that they do not cascade down to that 
 node or any of its children.
 
-##User Permissions
+###User Permissions
 
 There are nine user permissions that can be granted to users. They can be granted 
 to users directly or to user groups.
@@ -143,7 +143,7 @@ groups with administer or manageGroup granted at the same node
 * **userGrant** - grants users access to control what user permissions are assigned at 
 the same node
 
-##Resource Attributes
+###Resource Attributes
 
 There are three resource attributes that can be assigned to a resource group at any 
 node in the privilege tree.
