@@ -16,6 +16,12 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
+[Administration Concepts](authorization/administrationconcepts.html)
+
+[Granting Access to a New Image](authorization/grantaccesstonewimage.html)
+
+[Example - Granting Two Sets of Users Access to Two Different Sets of Images](authorization/example2users2images.html)
+
 [Understanding Connect Methods introduced in Apache VCL 2.3](/docs/connectmethods.html)
 
 [Adding a New Locale to the VCL Web Frontend](/docs/multilingualization.html)
