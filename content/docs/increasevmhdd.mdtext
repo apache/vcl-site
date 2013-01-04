@@ -23,9 +23,8 @@ This page describes how to increase the size of a VM's hard drive. This is usefu
  - Determine the VMware host the VM is on
  - Shutdown the VM
  - Log in to the VM host via SSH
- - Navigate to the VM's working directory (under the VM Working Directory Path configured in the VM profile)
  
-i.e  
+Navigate to the VM's working directory (under the VM Working Directory Path configured in the VM profile)
     
     ::::text
     cd /vmfs/volumes/vmpath/vclv99-77_1846-v14
@@ -80,8 +79,15 @@ After the copy has been created, reconfigure the VM to use the copy of the disk 
   - Select **Hard disk 1**
   - Click **Remove**
   - Click **Add**...
+  - Select **Hard Disk**
+  - Click **Next** 
   - Select **Use an existing virtual disk**
+  - Click **Next**
   - Navigate to the VM's working directory and select the .vmdk corresponding to the full copy of the virtual disk you created earlier (copy.vmdk)
+  - Select copy.vmdk
+  - Click **Next**
+  - Click **Next**
+  - Click **Finish**
 
 **Add a CD Drive to the VM Pointing to the GParted Live CD ISO File**
 
@@ -90,7 +96,7 @@ After the copy has been created, reconfigure the VM to use the copy of the disk 
   - **Use ISO image**
   - Navigate to the Gparted ISO image you downloaded earlier
   - Make sure Connect at power on is selected
-
+  - Click **Finish**
 
 **Increase the Power On Boot Delay**
 
@@ -99,6 +105,7 @@ It can be difficult to catch the initial boot screen when the VM is powered on i
   - Click on the **Options** tab
   - Select **Boot Options**
   - Set the **Power On Boot Delay** to a few seconds *(4000 = 4 seconds)*
+  - Click **OK**
 
 **Use GParted to Reconfigure the Partitions**
 
