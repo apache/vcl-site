@@ -20,11 +20,14 @@ This page describes how to increase the size of a VM's hard drive. This is usefu
 
 **Create a Full Copy of the Virtual Disk**
 
-  - Determine the VMware host the VM is on
-  - Shutdown the VM
-  - Log in to the VM host via SSH
-  - Navigate to the VM's working directory (under the VM Working Directory Path configured in the VM profile)
-
+ - Determine the VMware host the VM is on
+ - Shutdown the VM
+ - Log in to the VM host via SSH
+ - Navigate to the VM's working directory (under the VM Working Directory Path configured in the VM profile)
+ 
+i.e  
+    
+    ::::text
     cd /vmfs/volumes/vmpath/vclv99-77_1846-v14
 
 You should see several files in the directory:
@@ -49,6 +52,8 @@ The VM is configured to run in linked clone mode because a snapshot was created 
 A full copy of the master image and delta files needs to be created in order to be able to resize the virtual disk. Run the following command from the VM's working directory on the VM host:
 
     vmkfstools -i vmwarewin7-Windows764bit1846-v14-000001.vmdk copy.vmdk -d thin
+
+Example output of command
 
     ::::text
     /vmfs/volumes/19873c05-fcd3d912/vclv99-77_1846-v14 # vmkfstools -i vmwarewin7-Windows764bit1846-v14-000001.vmdk copy.vmdk -d thin
