@@ -1,0 +1,107 @@
+Title: Apache Derby Database
+<a name="ApacheDerbyDatabase-UsingApacheDerbyDatabase"></a>
+# Using Apache Derby Database
+
+h4.{color:red} NOTE: The current code in the trunk does not support Derby
+(21 Aug 2009) {color}
+
+<a name="ApacheDerbyDatabase-*Prerequisites*"></a>
+## *Prerequisites*
+
+You should have installed:
+* JDK (it is maybe possible to work with jre only)
+
+<a name="ApacheDerbyDatabase-*DownloadingandSettingUptheDatabaseforVCL*"></a>
+## *Downloading and Setting Up the Database for VCL*
+
+1. Download Apache Derby and install it.
+
+    cd ~
+    wget
+http://apache.g5searchmarketing.com/db/derby/db-derby-10.5.1.1/db-derby-10.5.1.1-bin.tar.gz
+    tar -xzf db-derby-10.5.1.1-bin.tar.gz
+    mkdir /opt/Apache
+    mv db-derby-10.5.1.1-bin /opt/Apache/derby
+    export DERBY_HOME="/opt/Apache/derby"
+    export
+CLASSPATH="${DERBY_HOME}/lib/derby.jar:${DERBY_HOME}/lib/derbytools.jar:${CLASSPATH}"
+    PATH="$DERBY_HOME/bin:$PATH"
+
+1. Create a database in Apache Derby. The database has to be placed in the
+path _/opt/_.
+  Replace _'vcluser'_ and _'vcluserpassword'_ with the user and password
+you want.
+
+    cd /opt/
+    ij
+    connect
+'jdbc:derby:vcl1;create=true;user='vcluser';password='vcluserpassword';';
+    exit;
+
+1. Download _'vcl.sql'_ file and the _'derby-parser.pl'_.
+  The _'derby-parser.pl'_ can be found as an attachment to this page and
+_'vcl.sql'_ fron repositories.
+  Edit the file _'derby-parser.pl'_. the variables corresponding to the
+_'user'_ and _'password'_ should match your database.
+
+    svn export https://svn.apache.org/repos/asf/vcl/trunk/mysql/vcl.sql
+    chmod a+x derby-parser.pl
+    ./derby-parser.pl
+
+1. Import vcl-derby.sql file into database. It is a good idea to direct the
+output to file and check if there were any errors.
+
+    ij vcl-derby.sql > import.log
+
+
+<a name="ApacheDerbyDatabase-Settingupthedbd_jdbcServer"></a>
+## Setting up the dbd_jdbc Server
+1. Install log4j
+
+    cd ~
+    wget
+http://www.apache.org/dyn/closer.cgi/logging/log4j/1.2.15/apache-log4j-1.2.15.tar.gz
+    tar -zxf apache-log4j-1.2.15.tar.gz
+    mv apache-log4j-1.2.15 /opt/Apache/derby/lib/
+
+1. When installing the perl modules using the _'install_perl_libs.pl'_
+(_/usr/local/vcl/bin/install_perl_libs.pl_) two extra modules need to the
+installed for Derby. Open the file _'install_perl_libs.pl'_ and in the list
+of modules to download add the following two modules.
+
+    http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Convert-BER-1.3101.tar.gz
+    http://search.cpan.org/CPAN/authors/id/V/VI/VIZDOM/DBD-JDBC-0.71.tar.gz
+
+1. Run the scrips as normal
+
+    perl /usr/local/vcl/bin/install_perl_libs.pl
+
+1. Copy some file from the modules to Derby directory
+
+    cp /tmp/perl-modules/DBD-JDBC-0.71/dbd_jdbc.jar /opt/Apache/derby/lib/
+    cp /tmp/perl-modules/DBD-JDBC-0.71/log4j.properties
+/opt/Apache/derby/lib/apache-log4j-1.2.15
+
+1. Create a script file which will launch the dbd_jdbc Server. Save it under
+any name and directory (e.g. /opt/server.sh), only remember that this
+scrips needs to be executed every time you start up the server. The file
+should contain
+
+    #!/usr/bin/bash
+    java -Djdbc.drivers=org.apache.derby.EmbeddedDriver -Ddbd.port=12345
+-classpath
+/opt/Apache/derby/lib/derby.jar:/opt/Apache/derby/lib/dbd_jdbc.jar:/opt/Apache/derby/lib/apache-log4j-1.2.15/log4j-1.2.15.jar:/opt/Apache/derby/lib/apache-log4j-1.2.15/
+ com.vizdom.dbd.jdbc.Server &
+
+Note1: if some of your paths are different you need make the changes in
+this scrips file as well
+Note2: currently port 12345 is used for connecting to Derby, this is hard
+coded. Can be changed on a later stage.
+1. Make the script executable
+
+    chmod a+x /opt/server
+
+1. Start the Server
+
+    /opt/server
+

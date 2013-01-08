@@ -1,0 +1,21 @@
+Title: Creating a Cluster enviroment
+Cluster environments are created from existing VCL images.
+
+The terms *parent* and *child* are used in this document and with the VCL
+provisioning:
+
+*parent* =&nbsp; the primary image or selectable image through the VCL New
+Reservation menu
+
+*child* = the second image or images that are also loaded and are the sub
+images associated with the parent image
+
+
+*To Create a cluster image*
+* Select Manage Images \-> Edit Image Profiles
+* Select edit beside the parent image
+* Click on&nbsp; Advanced Options&nbsp;
+* Select Manage Subimages
+* In the window select a child image
+** The child image can be the same as the parent image or another.
+* Repeat adding as many subimages as needed (or have nodes for).

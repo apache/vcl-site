@@ -1,0 +1,160 @@
+Title: Configure the Default Profile
+{excerpt}A Windows profile is the desktop environment configured for a
+particular user. It contains various settings such as desktop colors,
+backgrounds, icon placement, and Windows Explorer settings. The default
+profile is a template profile that is used when a user logs on to a Windows
+computer for the first time. The default profile can be customized by the
+image creator.{excerpt}
+
+  
+  
+
+<a name="ConfiguretheDefaultProfile-Createaprofileconfigurationaccount:"></a>
+#### Create a profile configuration account:
+
+1. While logged on as *Administrator* , create a local Windows user account
+named *Profile* and add it to the *Administrators* group
+1. Configure the profile:
+1. # Log on as *Profile*
+1. # Make desired profile, desktop, and application changes
+1. # Log out
+
+<a name="ConfiguretheDefaultProfile-Copytheprofileto"DefaultUser":"></a>
+#### Copy the profile to "Default User":
+
+1. Log back on as *Administrator*
+1. Rename the *C:\Documents and Settings\Default User* directory to
+something like *Default User Original*
+1. Open the *Control Panel*
+1. Open *System Properties*
+1. Select the *Advanced* tab
+1. Click the *Settings* button next to User Profiles
+1. Select Profile's profile, click *Copy To* :
+Copy profile to: *C:\Documents and Settings\Default User*
+Permitted to use: add the *Everyone* group
+1. Click *OK*
+
+<a name="ConfiguretheDefaultProfile-Cleanuptheprofileconfigurationaccount:"></a>
+#### Clean up the profile configuration account:
+
+1. Delete the *Profile* user
+1. Delete *C:\Documents and Settings\Profile*
+
+You can then create another account and log in using it to make sure your
+profile settings take affect for new users. Be sure to delete it once
+you're done testing.
+
+  
+  
+
+Microsoft does not support copying profiles under Windows 7 and Windows
+Server 2008.  The "Copy To" button is grayed out for all profiles except
+the default profile.  The only supported method is built into Sysprep and
+this method is itself very problematic.  The following steps are not
+supported or recommended by Microsoft but seem to work:
+
+<a name="ConfiguretheDefaultProfile-AllowDesktopBackgrounds"></a>
+#### Allow Desktop Backgrounds
+
+1. Download and edit the RDP file for your imaging reservation from the VCL
+website to allow desktop backgrounds or else you won’t be able to change
+the desktop background color
+1. # Right-click on the .rdp file and select *Edit*
+1. # Click on the *Experience* tab&nbsp;
+1. # *Enable* the checkbox next to *Desktop background*
+1. # Click on the *General* tab
+1. # Click *Save*
+1. Login as Administrator
+1. Configure Windows Explorer to show hidden and system file
+1. # Open *Windows Explorer*
+1. # Click *Organize > Folder and search options*
+1. # Select the *View* tab
+1. # Select the radio button next to *Show hidden files, folders, and drives*
+1. # Click *OK*
+
+<a name="ConfiguretheDefaultProfile-Createaprofileconfigurationaccount:"></a>
+#### Create a profile configuration account:
+
+1. Create a new local user account named Profile
+1. # Open *Control Panel > Add or remove user accounts*
+1. # If there is already an account named *Profile* and you want to start
+over with a new account, delete the existing account and then create a new
+one:
+1. ## Click on the *Profile* user
+1. ## Click *Delete the account*
+1. ## Click *Delete Files*
+1. ## Click *Delete Account*
+1. # Click *Create a new account*
+1. # Enter the account name: *Profile*
+1. # Click the radio button next to *Administrator*
+1. # Click *Create Account*
+1. Set the password for the Profile account
+1. # Click on the Profile account
+1. # Click *Create a password*
+1. # Enter the password and click *Create password*
+1. Configure the user profile for the Profile account
+1. # Logout as Administrator and login as Profile
+1. # Customize the user profile for the Profile account
+1. # Logout as Profile
+
+<a name="ConfiguretheDefaultProfile-Copytheprofileto"Default":"></a>
+#### Copy the profile to "Default":
+
+1. Rename the *Profile* user profile folder to *Default*
+1. # Login as Administrator
+1. # Open a Windows Explorer window and navigate to *C:\Users*
+1. # Rename the original default profile folder: C:\Users\{*}Default* \->
+C:\Users\{*}Default Original*
+1. # Rename the customized profile folder: C:\Users\{*}Profile* \->
+C:\Users\{*}Default*
+_Note: if you are unable to rename the Profile folder, reboot the computer,
+login as Administrator, and try again.	Run the following command from a
+command prompt to reboot the computer:_
+shutdown.exe \-r \-f \-t 0
+1. Copy the customized profile folder using the Windows profile copying
+utility
+_Note: Windows 7 only allows its built-in profile copying utility to be
+used to copy the default profile, not profiles of other user accounts. The
+profile you customized now resides in the default profile location
+(C:\Users\Default) so the utility can now be used to make a copy of it._
+1. # Open *Control Panel > System and Security > System*
+1. # Click *Advanced system settings* on the left
+1. # Click the *Settings...* button under User Profiles
+1. # Highlight *Default Profile*
+1. # Click *Copy To…*
+1. ## Copy profile to: *C:\Users\Default Copy*
+1. ## Click *Change* under Permitted to use
+1. ## Enter *Everyone* and click OK
+1. ## Click OK
+1. Replace the original customized profile directory with the one created by
+the Windows profile copying utility
+_Note: C:\Users\Default contains the original customized profile.  The same
+profile also resides in C:\Users\Default Copy.	The Default Copy folder is
+the one which has had the Windows profile copying utility transformations
+applied to it._
+1. # Open *Windows Explorer*
+1. # Delete the “C:\Users\{*}Default* folder
+1. # Rename the folder: C:\Users\{*}Default Copy* \-> C:\Users\{*}Default*
+1. Delete the Profile account
+1. # Open *Control Panel > Add or remove user accounts*
+1. # Click on the *Profile* account
+1. # Click *Delete the account*
+1. # Click *Delete Files*
+1. # Click *Delete Account*
+
+
+Any new local user accounts created on the computer should receive a user
+profile configured with the customizations you made to the Profile account.
+
+h3. *How to Force the Desktop Background to Appear on Windows 7 & Windows
+Server 2008*
+
+1. Run *gpedit.msc*
+1. # Navigate to *User Configuration* > *Scripts*
+1. # Double-click *Logon*
+1. # Click *Add*
+1. ## Script Name: reg.exe
+1. ## Script Parameters: *DELETE "HKCU\Remote\1\Control Panel\Desktop" /v
+Wallpaper /f*
+1. # Click *OK*
+1. # Run *gpupdate.exe /force*

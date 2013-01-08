@@ -1,0 +1,104 @@
+Title: Adding xCAT kickstart based image
+<a name="AddingxCATkickstartbasedimage-GuideforaddingkickstartinstallsusingxCATtotheVCLdatabase."></a>
+### Guide for adding kickstart installs using xCAT to the VCL database.
+
+
+xCAT is the bare-metal provisioning tool primarily used within VCL. It has
+the ability to install&nbsp;physical nodes with an operating system such
+as; windows Red Hat, CentOS, ESX, SLES on x86 based hardware.&nbsp; This
+guide will discuss adding support to VCL for kickstart based or diskfull
+installs.&nbsp;
+
+Prerequisites&nbsp;are that you need to have a working xCAT install. Please
+see xCAT installation guide in order to install and configure xCAT.&nbsp;
+* xCAT main page:&nbsp;[http://xcat.sourceforge.net/](http://xcat.sourceforge.net/)
+* xCAT Getting Started guide:&nbsp;[http://sourceforge.net/apps/mediawiki/xcat/index.php?title=XCAT_Documentation](http://sourceforge.net/apps/mediawiki/xcat/index.php?title=XCAT_Documentation)
+
+<a name="AddingxCATkickstartbasedimage-KickstartTemplatefiles"></a>
+### Kickstart Template files
+
+The template files used by xCAT reside in
+/opt/xcat/share/xcat/install/<distro>. distro can be rh, centos, fedora,
+esx, etc. Make sure to have a working template file. There are several
+examples in either of the distro directories that can used as a starting
+point. Once you have a working template, proceed to adding to the VCL
+database.
+
+<a name="AddingxCATkickstartbasedimage-AddingkickstartbasedinstalltotheVCLdatabase&nbsp;"></a>
+### Adding kickstart based install to the VCL database&nbsp;
+
+The name of the template file and the image.name must match. VCL uses this
+name to check for and properly load using kickstart method. The xcat name
+will have the .tmpl, for example the vcl image.name entry of
+*rhel5-base25-v0* the template file for xcat will be
+*rhel5-base25-v0.tmpl.*&nbsp;
+
+There are three tables that need to have entries before you can start using
+the image through the VCL web interface. The tables used are:
+* image
+* imagerevision
+* resource
+
+Depending on your OS and the version of VCL, you might need to also create
+a new entry in the OS table. An example of adding a new OSid is discussed
+below.
+
+In our sql statement examples we will use RedHat 5 and the image id of 25
+as above&nbsp;*rhel5-base25-v0.* &nbsp;In the below sql statement make any
+changes as needed such as ownerid, in this example it is set to 1 or the
+admin user id.
+
+
+
+{tip:icon=false}{color:#222222}INSERT INTO `image` (id, `name`,
+`prettyname`, `ownerid`, `platformid`, `OSid`, `minram`, `minprocnumber`,
+`minprocspeed`, `minnetwork`,{color}
+{color:#222222}`reloadtime`, `deleted`, `lastupdate`, `forcheckout`,
+`maxinitialtime`,`project`, `size`) VALUES (25, 'rhel5-base25-v0', 'RHEL 5
+base', 1, 1, 19, 1024, 1, 0, 10, 14, 0, NOW(), 1, 0, 'vcl',
+1045);{color}{tip}
+
+
+{tip:icon=false}INSERT INTO `imagerevision` (`imageid`, `revision`,
+`userid`, `datecreated`, `deleted`, `production`,
+`comments`, `imagename`) VALUES (25, 0, 1, NOW(), 0, 1, NULL,
+'rhel5-base25-v0');{tip}
+{tip:icon=false}
+
+{color:#222222}INSERT INTO `resource` (`resourcetypeid`, `subid`) VALUES
+(13, 25);{color}
+
+{tip} {color:}&nbsp;Again, the xCAT template .tmpl file must match the the
+entry VCL database entry of image.name. &nbsp;{color}
+{color:}﻿{color}
+VCL image.name = rhel5-base25-v0 {color:}xCAT template file name =
+rhel5-base25-v0.tmpl{color}
+{color:}At this point you will be able to manage this image through the VCL
+interface.&nbsp;{color}
+* {color:#222222}Go to Manage images&nbsp;{color}
+* {color:#222222}Edit image grouping{color}
+* {color:#222222}Select image group mapped to load onto your bare-metal blades. See{color} {color:#222222}[adding computers to VCL](https://cwiki.apache.org/VCL/vcl-221-further-steps-if-using-xcat.html)
+{color} {color:#222222}if you have not added any&nbsp;physical&nbsp;nodes
+yet.{color}
+* {color:#222222}Add '{color}{color:#222222}RHEL 5 base' to the desired
+image group{color}
+
+<a name="AddingxCATkickstartbasedimage-{color:#222222}Testingkickstartfile{color}"></a>
+### {color:#222222}Testing kickstart file{color}
+
+{color:#222222}Test the load, by either making a reservation for the new
+environment or try to reload
+a&nbsp;{color}{color:#222222}physical&nbsp;node through manage computers
+computer utilities. Watch the vcld.log file to view the processing and to
+debug any issues that may occur.{color}
+
+<a name="AddingxCATkickstartbasedimage-ExtendingtheOStable"></a>
+### Extending the OS table
+
+If VCL supports the OS, extending the OS table for a new OS is fairly
+straight forward. In this example we will use Red Hat 6.
+
+{tip:icon=false}INSERT INTO `OS` (`name`, `prettyname`, `type`,
+`installtype`, `sourcepath`, `moduleid`) VALUES('rhel6','RedHat Enterprise
+6','linux','kickstart','rhel6',(SELECT `id` FROM `module` WHERE `name` LIKE
+'os_linux'));{tip}
