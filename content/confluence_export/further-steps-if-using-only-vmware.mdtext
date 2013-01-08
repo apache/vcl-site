@@ -1,4 +1,5 @@
 Title: Further steps if using only VMWare
+
 If you are using standalone VMWare servers (i.e. ones that VCL did not
 deploy using xCAT), you first need to add the VMWare servers; then, you
 need to add the virtual machines. You can either add them individually
@@ -18,17 +19,17 @@ same thing but checking the "Add Multiple" checkbox.
 1. select the "Add Single Computer" radio button
 1. click Submit
 1. fill in
-1. * Hostname
-1. * IP Address
-1. * State - vmhostinuse - double check this because you will not be able to
+ * Hostname
+ * IP Address
+ * State - vmhostinuse - double check this because you will not be able to
 change it later
-1. * owner (admin@Local)
-1. * RAM
-1. * Proc Speed
-1. * Network Speed
-1. * Type - blade
-1. * Provisioning Engine - xCAT 2.x Provisioning
-1. * click the checkbox under "allcomputers"
+ * owner (admin@Local)
+ * RAM
+ * Proc Speed
+ * Network Speed
+ * Type - blade
+ * Provisioning Engine - xCAT 2.x Provisioning
+ * click the checkbox under "allcomputers"
 1. click Confirm Computer
 1. click Submit
 1. select a VM Host Profile to use with this host - you can edit the VM Host
@@ -51,26 +52,26 @@ virtual machines.
 1. select the "Add Multiple Computers" radio button
 1. click Submit
 1. fill in
-1. * Hostname - the hostnames of all the computers must have a numerical part
+ * Hostname - the hostnames of all the computers must have a numerical part
 that is sequential, use a % as a placeholder where that part would be
-1. * Start value - the first number of the numerical part of the hostname
-1. * End value - the last number of the numerical part of the hostname
-1. * Start IP Address - if using static public addresses, the IP addresses
+ * Start value - the first number of the numerical part of the hostname
+ * End value - the last number of the numerical part of the hostname
+ * Start IP Address - if using static public addresses, the IP addresses
 must be sequential; enter the first address here; if using DHCP, just enter
 something like 1.1.1.1
-1. * End IP address - the last IP address of the sequence; if using DHCP,
+ * End IP address - the last IP address of the sequence; if using DHCP,
 you'll need to enter something that would work out to the last address
 relative to Start IP Address (i.e. if adding 3 computers, use 1.1.1.1 for
 start and 1.1.1.3 for end)
-1. * State - vmhostinuse - double check this because you will not be able to
+ * State - vmhostinuse - double check this because you will not be able to
 change it later
-1. * Owner - owner of the computer
-1. * RAM
-1. * Processor Speed
-1. * Network Speed
-1. * Type - blade
-1. * Provisioning Engine - xCAT 2.x
-1. * check allComputers
+ * Owner - owner of the computer
+ * RAM
+ * Processor Speed
+ * Network Speed
+ * Type - blade
+ * Provisioning Engine - xCAT 2.x
+ * check allComputers
 1. click Confirm Computers
 1. click Submit
 1. select a VM Host Profile to use with these hosts - you can edit the VM
@@ -84,38 +85,37 @@ Host Profile later if needed
 1. select the "Add Multiple Computers" radio button
 1. click Submit
 1. fill in
-1. * Hostname - the hostnames of all the computers must have a numerical part
+ * Hostname - the hostnames of all the computers must have a numerical part
 that is sequential, use a % as a placeholder where that part would be
-1. * Start value - the first number of the numerical part of the hostname
-1. * End value - the last number of the numerical part of the hostname
-1. * Start IP Address - if using static public addresses, the IP addresses
+ * Start value - the first number of the numerical part of the hostname
+ * End value - the last number of the numerical part of the hostname
+ * Start IP Address - if using static public addresses, the IP addresses
 must be sequential; enter the first address here; if using DHCP, just enter
 something like 1.1.1.1
-1. * End IP address - the last IP address of the sequence; if using DHCP,
+ * End IP address - the last IP address of the sequence; if using DHCP,
 you'll need to enter something that would work out to the last address
 relative to Start IP Address (i.e. if adding 3 computers, use 1.1.1.1 for
 start and 1.1.1.3 for end)
-1. * Start private IP Address - similar to Start IP Address, but for the
+ * Start private IP Address - similar to Start IP Address, but for the
 private side
-1. * End private IP Address - similar to the End IP Address but for the
+ * End private IP Address - similar to the End IP Address but for the
 private side
-1. * Start MAC Address - if mac addresses are sequential, with the first one
+ * Start MAC Address - if mac addresses are sequential, with the first one
 being the private MAC address for the first computer, the second one being
 the public MAC address for the first computer, the third one being the
 private MAC address of the second computer, etc, you can enter the first
 one here and then have the option of generating data to add to your
 dhcpd.conf file later in the process.
-{color:#ff0000}{*}Important{*}{color}: for VMware VMs, the MAC addresses
+**Important**: for VMware VMs, the MAC addresses
 you choose must be in the range&nbsp;00:50:56:00:00:00 - 00:50:56:3F:FF:FF
-
-1. * State - maintenance
-1. * Owner - owner of the computer
-1. * RAM
-1. * Processor Speed
-1. * Network Speed
-1. * Type - virtualmachine
-1. * Provisioning Engine - VMware
-1. * check "All VM Computers" and newvmimages
+ * State - maintenance
+ * Owner - owner of the computer
+ * RAM
+ * Processor Speed
+ * Network Speed
+ * Type - virtualmachine
+ * Provisioning Engine - VMware
+ * check "All VM Computers" and newvmimages
 1. click Confirm Computers
 1. click Submit
 1. If you filled in the private address fields and the Start MAC Address,

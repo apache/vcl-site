@@ -1,17 +1,18 @@
 Title: 2.2 Database Configuration
-{excerpt}This page describes how to create the VCL MySQL database and
-import the VCL database schema.{excerpt}
+
+This page describes how to create the VCL MySQL database and
+import the VCL database schema.
 
 
 <a name="2.2DatabaseConfiguration-*Prerequisites*"></a>
-## *Prerequisites*
+## Prerequisites
 
 1. You should have mysql server 5.x installed.&nbsp;If mysql server is not
 installed:
 
-    yum install mysql-server -y
-    /sbin/chkconfig --level 345 mysqld on
-    /sbin/service mysqld start
+        yum install mysql-server -y
+        /sbin/chkconfig --level 345 mysqld on
+        /sbin/service mysqld start
 
 1. Your host based firewall (IPTables) should be configured to allow traffic
 from the web server and management server to connect to TCP port 3306
@@ -19,7 +20,7 @@ from the web server and management server to connect to TCP port 3306
 
 
 <a name="2.2DatabaseConfiguration-*SettingUptheDatabaseforVCL*"></a>
-## *Setting Up the Database for VCL*
+## Setting Up the Database for VCL
 
 1. start the mysql command line client by running 
 

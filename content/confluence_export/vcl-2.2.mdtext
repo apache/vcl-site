@@ -1,17 +1,6 @@
 Title: VCL 2.2
-<a name="VCL2.2-TableofContents"></a>
-## Table of Contents
-   * [Download links](#VCL2.2-Downloadlinks)
-   * [Release Notes](#VCL2.2-ReleaseNotes)
-         * [I. Intro and Description](#VCL2.2-I.IntroandDescription)
-         * [II. VCL Roadmap](#VCL2.2-II.VCLRoadmap)
-         * [III. Getting Involved in the ASF VCL Community](#VCL2.2-III.GettingInvolvedintheASFVCLCommunity)
-         * [IV. How to Submit Bugs and Feature Requests](#VCL2.2-IV.HowtoSubmitBugsandFeatureRequests)
-   * [Change Log](#VCL2.2-ChangeLog)
-         * [Bug](#VCL2.2-Bug)
-         * [Improvement](#VCL2.2-Improvement)
-         * [New Feature](#VCL2.2-NewFeature)
-         * [Task](#VCL2.2-Task)
+
+[TOC]
 
 <a name="VCL2.2-Downloadlinks"></a>
 ## Download links
@@ -22,38 +11,37 @@ downloading it *make sure* you verify it with MD5 or SHA1 sums *AND* the
 GPG signature (sums and signature files should be downloaded directly from
 Apache, not from mirrors).
 
-[Download ASF VCL 2.2](http://www.apache.org/dyn/closer.cgi/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2)
-[GPG Signature](http://www.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.asc)
-[MD5 Sum](http://www.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.md5)
-[SHA1 Sum](http://www.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.sha1)
-[VCL KEYS file](http://www.apache.org/dist/incubator/vcl/KEYS)
-
-
-
-
+[Download ASF VCL 2.2](http://vcl.apache.org/downloads/download.cgi?Preferred=http://archive.apache.org/dist/&action=download&filename=%2Fincubator%2Fvcl%2Fapache-VCL-2.2-incubating.tar.bz2)<br>
+[GPG Signature](http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.asc)<br>
+[MD5 Sum](http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.md5)<br>
+[SHA1 Sum](http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.sha1)<br>
+[VCL KEYS file](http://www.apache.org/dist/vcl/KEYS)
 
 Run the following command to verify the MD5 sum. You should get the same
 number that is in apache-VCL-2.2-incubating.tar.bz2.md5:
-md5sum apache-VCL-2.2-incubating.tar.bz2
+
+    md5sum apache-VCL-2.2-incubating.tar.bz2
 
 Similarly, Run the following command to verify the SHA1 sum. You should get
 the same number that is in apache-VCL-2.2-incubating.tar.bz2.sha1:
-sha1sum apache-VCL-2.2-incubating.tar.bz2
+
+    sha1sum apache-VCL-2.2-incubating.tar.bz2
 
 To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/)
  installed):
+
 1. download and import the VCL KEYS file:
-gpg \--import KEYS
+
+    gpg --import KEYS
 1. download the GPG Signature to the same location as the release file
 1. from the directory containing both the release file and the GPG
 signature, run
-gpg \--verify apache-VCL-2.2-incubating.tar.bz2.asc
 
-For new installs, visit the on-line [installation guide](vcl-2.2-installation.html)
-.
+    gpg --verify apache-VCL-2.2-incubating.tar.bz2.asc
 
-For upgrades from version 2.1, visit the on-line [upgrade guide](vcl:upgrade-from-previous-version.html)
-.
+For new installs, visit the on-line [installation guide](vcl-2.2-installation.html).
+
+For upgrades from version 2.1, visit the on-line [upgrade guide](upgrade-from-previous-version.html).
 
 
 
@@ -90,22 +78,26 @@ purchased licenses and free licenses.
 #### II. VCL Roadmap
 
 VCL 2.2 (this release)
+
 * support for xCAT 2.x
 * VMWare Free Server 2.x and ESXi 4
 * improve block reservations (renamed to block allocations)
 
 VCL 2.3
+
 * Service deployments
 * power management
 * improve cluster reservations
 
 VCL 2.4
+
 * additional and improved hypervisor support
 * KVM and possibly others (virtual box and XEN)
 * Allow for additional access methods for environments (port, other
 protocols, etc)
 
 VCL 2.5
+
 * develop tools for managing both system and user storage
 
 With each release, we'll be working toward making VCL easier to install. As
@@ -120,27 +112,24 @@ install.
 There are five ways to become involved in the ASF VCL community.
 
 * Join the mailing lists and participate in discussion. There are two
-mailing lists: vcl-user@incubator.apache.org
-vcl-dev@incubator.apache.org
-To join vcl-user, send an empty message to
-[vcl-user-subscribe@incubator.apache.org](mailto:vcl-user-subscribe@incubator.apache.org|click-to-subscribe.html)
-. To join vcl-dev, send an empty
-message to [vcl-dev-subscribe@incubator.apache.org](mailto:vcl-dev-subscribe@incubator.apache.org|click-to-subscribe.html)
-.
+mailing lists:<br>
+user@vcl.apache.org<br>
+dev@vcl.apache.org<br>
+To join user, send an empty message to
+[user-subscribe@vcl.apache.org](mailto:user-subscribe@vcl.apache.org). 
+To join dev, send an empty message to 
+[dev-subscribe@vcl.apache.org](mailto:dev-subscribe@vcl.apache.org).
 
 * Submit bug reports and feature requests to our JIRA bug tracking system.
 See section IV below for more information on doing this.
 
-* Create documentation on our Confluence site. Create an account at [http://cwiki.apache.org/confluence/display/VCL/Index](http://cwiki.apache.org/confluence/display/VCL/Index)
- and just start adding content. (Note to current community: We should
-create a page explaining the layout so new people will know where to add
-content better.)
+* [Create documentation](/comm/contribute-documentation.html) on our CMS site. 
 
-* Submit patches through the vcl-dev mailing list and via the JIRA bug
+* Submit patches through the dev mailing list and via the JIRA bug
 tracking system. Once you have become familiar with VCL, you can begin
 assisting with the development of it by picking a JIRA issue to fix or by
 adding a feature needed at your site. Then, contribute a patch of your
-changes through the JIRA tracking system and send a message to the vcl-dev
+changes through the JIRA tracking system and send a message to the dev
 list explaining what you have done.
 
 * Become an official committer to the project. Once you have shown that you
@@ -150,7 +139,7 @@ join the development work by submitting a contributor license agreement
 code to the project.
 
 * If you are interested in contributing something to the project, please
-discuss it on the vcl-dev list BEFORE starting work on it. This allows the
+discuss it on the dev list BEFORE starting work on it. This allows the
 community to be involved in decisions and allows current developers to
 provide some guidance.
 
@@ -162,12 +151,12 @@ If you find a bug, please submit a bug report to our JIRA bug tracking
 system at [http://issues.apache.org/jira/browse/VCL](http://issues.apache.org/jira/browse/VCL)
  (you will need to set up an account there if you haven't already done so -
 it's free to anyone). Also, we would appreciate it if you mentioned that
-you filed a bug on the vcl-dev list to make sure we don't miss it.
+you filed a bug on the dev list to make sure we don't miss it.
 
 If you would like to requrest a new feature, you can also submit that in
 the same way through JIRA (just select "New Feature" or "Improvement" as
 the Issue Type). Again, it would be helpful if you mentioned that you filed
-a feature request on the vcl-dev list.
+a feature request on the dev list.
 
 After you have created a JIRA issue, you have the option to vote on it to
 help us know how to prioritize issues. You can also "watch" the issue to

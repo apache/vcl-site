@@ -1,14 +1,15 @@
 Title: 2.2 Management Node Installation
-{excerpt}This page describes how to install and configure the backend VCL
+
+This page describes how to install and configure the backend VCL
 management node components including the required Perl modules, VCL daemon
-(vcld), and Windows utility dependencies.{excerpt}
+(vcld), and Windows utility dependencies.
 
 <a name="2.2ManagementNodeInstallation-Assumptions"></a>
 ## Assumptions
 
-The following instructions assume the VCL [database has been installed and configured](database-configuration.html)
- and that the managment node information has been added to the database as
-described on the [web code installation page|Web Code Installation]
+The following instructions assume the VCL [database has been installed and configured](2.2-database-configuration.html)
+ and that the management node information has been added to the database as
+described on the [web code installation page](2.2-web-code-installation.html)
 . This also assumes that the perl-DBD-MySQL-3.x and the mysql client
 (mysql-5.x) packages are installed, for database communications.
 
@@ -16,9 +17,8 @@ described on the [web code installation page|Web Code Installation]
 ## Installing VCL Management Node Code - Perl Daemon
 
 1. If you haven't already done so, download and extract a copy of the latest
-release. There is a link to it under the Project Resources section on our
-wiki [home page](apache-vcl.html)
-. Look for "Current version".
+release. There is a link to it on our [download page](/downloads/download.cgi)
+.
 1. copy the "managementnode" directory to a location, typically /usr/local
 
     cp -r managementnode /usr/local/vcl
@@ -47,6 +47,7 @@ use the package management utility for your OS \--\- yum, rpm, or other.
 
 To install these packages using yum:
 
+    yum install expat expat-devel gcc krb5-libs krb5-devel libxml2 libxml2-devel openssl openssl-devel perl-DBD-MySQL xmlsec1-openssl nmap -y
 
 
 <a name="2.2ManagementNodeInstallation-InstallRequiredPerlModules"></a>
@@ -54,9 +55,9 @@ To install these packages using yum:
 
 The VCL Perl code running on the management node requires additional Perl
 modules in order to run. These Perl modules are available from [CPAN - The Comprehensive Perl Archive Network](http://cpan.org/)
-. A search engine for CPAN modules is available at [search.cpan.org|http://search.cpan.org/]
-.  The Perl modules are licensed under the [Artistic|http://dev.perl.org/licenses/artistic.html]
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+. A search engine for CPAN modules is available at [search.cpan.org](http://search.cpan.org/)
+.  The Perl modules are licensed under the [Artistic](http://dev.perl.org/licenses/artistic.html)
+ and [GPL](http://www.opensource.org/licenses/gpl-license.php)
  licenses.
 
 * [Class-Data-Inheritable](http://search.cpan.org/dist/Class-Data-Inheritable/)
@@ -83,8 +84,9 @@ A script is provided in the managementnode/bin directory called
 *install_perl_libs.pl* which will attempt to download and install the
 required perl libraries.&nbsp; Run the script:
 
+    perl /usr/local/vcl/bin/install_perl_libs.pl
 
-
+The script will hang or terminate if it encounters a problem.  If this occurs, manually run the last command the script attempted.  The command should be listed in the output.  You will need to troubleshoot the problem.  The most likely cause of the problem is a missing Linux package.  Make sure the required packages are installed.
 
 <a name="2.2ManagementNodeInstallation-HowtoTestifRequiredPerlModulesareInstalled"></a>
 #### How to Test if Required Perl Modules are Installed
@@ -97,15 +99,16 @@ Executing utils.pm does not actually do anything but this will tell you if
 VCL will be able to run.&nbsp; If any Perl modules are missing you will see
 "Can't locate" lines:
 
+    Can't locate HTTP/Headers.pm in @INC (@INC contains:...)
 
+Once all of the required modules are installed, you should see output similar to the following:
 
+    BIN PATH: /usr/local/vcl/lib/VCL
     pre-execution: config file being used: /etc/vcl/vcld.conf
     Uncaught exception from user code:
-            VCLD : /etc/vcl/vcld.conf does not exist, exiting --  No such file
-or directory
-    BEGIN failed--compilation aborted at /usr/local/vcl/lib/VCL/utils.pm line
-616.
-     at /usr/local/vcl/lib/VCL/utils.pm line 616
+            VCLD : /etc/vcl/vcld.conf does not exist, exiting -- No such file or directory
+    BEGIN failed--compilation aborted at /usr/local/vcl/lib/VCL/utils.pm line 616.
+    at /usr/local/vcl/lib/VCL/utils.pm line 616
 
 
 <a name="2.2ManagementNodeInstallation-WhattodoifaModuleisMissing"></a>
@@ -120,97 +123,141 @@ line
 #### How to Install a Perl&nbsp;Module Manually
 
 1. Change directories to /tmp:
-*cd /tmp*&nbsp;
+
+    **cd /tmp**
+
 1. Download the module's source package using wget:
-*wget* *[http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz](http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz)
-*
+
+    **wget [http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz](http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz)**
+
 1. Unpack the source package using tar:
-*tar xzf libwww-perl-5.827.tar.gz*
+
+    **tar xzf libwww-perl-5.827.tar.gz**
+
 1. The previous command should have created a libwww-perl-5.827 directory,
 change to this directory:
-*cd libwww-perl-5.827*
+
+    **cd libwww-perl-5.827**
+
 1. Create a makefile with the following command:
-*perl Makefile.PL*
+
+    **perl Makefile.PL**
+
 1. Compile the module:
-*make*
+
+    **make**
+
 1. Test the module:
-*make test*
+
+    **make test**
+
 1. Install the module:
-*make install*
+
+    **make install**
+
 The last line you should see should be:
 
-
+    /usr/bin/make install  -- OK
 
 <a name="2.2ManagementNodeInstallation-HowtoInstallaPerlModuleUsingCPAN"></a>
 #### How to Install a Perl Module Using CPAN
 
 1. Enter the CPAN shell:
-*perl \-MCPAN \-e shell*
-1. You will need to configure CPAN if it's the first time it is being run.
-Enter *No* at the first prompt to auto-configure the CPAN module.
-1. Search for a module using the "m" command:
-*m /Zlib/*
-You should find the module you were looking for on a line like this:
 
+    **perl \-MCPAN \-e shell**
+
+1. You will need to configure CPAN if it's the first time it is being run.
+Enter **No** at the first prompt to auto-configure the CPAN module.
+
+1. Search for a module using the "m" command:
+
+    **m /Zlib/**
+
+    You should find the module you were looking for on a line like this:
+
+        Module          Compress::Zlib  (P/PM/PMQS/IO-Compress-2.020.tar.gz)
 
 1. Install the module:
-*install Compress::Zlib*
-1. Answer *yes* if asked to install any prerequisite modules
+
+    **install Compress::Zlib**
+
+1. Answer **yes** if asked to install any prerequisite modules
 The last line you should see should be:
 
-
+    /usr/bin/make install  -- OK
 
 <a name="2.2ManagementNodeInstallation-Configurevcld.conf"></a>
 ## Configure vcld.conf
 
 1. Create the /etc/vcl directory:
-*mkdir /etc/vcl*&nbsp;
+
+    **mkdir /etc/vcl**
+
 1. Copy the generic vcld.conf file to /etc/vcl:
-*cp /usr/local/vcl/etc/vcl/vcld.conf /etc/vcl*
+
+    **cp /usr/local/vcl/etc/vcl/vcld.conf /etc/vcl**
+
 1. Edit the /etc/vcl/vcld.conf file:
-*vi /etc/vcl/vcld.conf*
-The following lines must be configured in order to start the VCL daemon
+
+    **vi /etc/vcl/vcld.conf**
+
+    The following lines must be configured in order to start the VCL daemon 
 (vcld) and allow it to check in to the database:
-1. * FQDN - the fully qualified name of the management node, this should
+
+    * FQDN - the fully qualified name of the management node, this should
 match the name that was configured for the management node in the database
-1. * server - the IP address or FQDN of the database server
-1. * LockerWrtUser - database user account with write privileges
-1. * wrtPass - database user password
+    * server - the IP address or FQDN of the database server
+    * LockerWrtUser - database user account with write privileges
+    * wrtPass - database user password
+
 1. Save the vcld.conf file
 
 <a name="2.2ManagementNodeInstallation-InstalltheVCLDaemon(vcld)&nbsp;Service"></a>
 ## Install the VCL Daemon (vcld)&nbsp;Service
 
 1. Copy the vcld service script to /etc/init.d and name it vcld:
-*cp /usr/local/vcl/bin/S99vcld.linux /etc/init.d/vcld*
+
+    **cp /usr/local/vcl/bin/S99vcld.linux /etc/init.d/vcld**
+
 1. Add the vcld service using chkconfig:
-*/sbin/chkconfig \--add vcld*
+
+    **/sbin/chkconfig \--add vcld**
+
 1. Configure the vcld service to automatically run at runtime levels 3-5:
-*/sbin/chkconfig \--level 345 vcld on*
+
+    **/sbin/chkconfig \--level 345 vcld on**
 
 <a name="2.2ManagementNodeInstallation-StartandCheck&nbsp;thevcldService"></a>
 ## Start and Check&nbsp;the vcld Service
 
 1. Start the vcld service:
-*/sbin/service vcld start*
-You should see output similar to the following:
 
-    pre-execution: config file being used: /etc/vcl/vcld.conf
-    FQDN is not listed
-    pre-execution: process name is set to: vcld
-    pre-execution: verbose mode is set to: 1
-    pre-execution: testing mode is set to: 0
-    pre-execution: log file being used: /var/log/vcld.log
-    pre-execution: PID file being used: /var/run/vcld.pid
-    Created process 23696 renamed to vcld ...
-                                                               [  OK  ]
+    **/sbin/service vcld start**
 
-*/etc/init.d/vcld start*
+    You should see output similar to the following:
+
+        Starting vcld daemon: BIN PATH: /usr/local/vcl/bin
+        pre-execution: config file being used: /etc/vcl/vcld.conf
+        FQDN is not listed
+        pre-execution: process name is set to: vcld
+        pre-execution: verbose mode is set to: 1
+        pre-execution: testing mode is set to: 0
+        pre-execution: log file being used: /var/log/vcld.log
+        pre-execution: PID file being used: /var/run/vcld.pid
+        Created process 23696 renamed to vcld ...
+                                                              [ OK ]
+    Note: the vcld service can also be started by running the service script directly:
+
+    **/etc/init.d/vcld start**
+
 1. Check the vcld service by monitoring the vcld.log file:
-*tail \-f /var/log/vcld.log*
-You should see the following being added to the log file every few seconds
+
+    **tail \-f /var/log/vcld.log**
+
+    You should see the following being added to the log file every few seconds
 if the management node is checking in with the database:
 
+        2009-06-16 16:57:15|15792|vcld:main(165)|lastcheckin time updated for management node 18: 2009-06-16 16:57:15
 
 
 <a name="2.2ManagementNodeInstallation-ConfiguretheSSHClient"></a>
@@ -220,11 +267,9 @@ To insure that the management node can SSH into your virtual machines
 without problems, you will need to edit the SSH client config for the root
 user:
 
-
-
+    vi /root/.ssh/config
 
 Add the following lines to the top of the configuration file.
-
 
     Host <vmhost> <vmhost ip>
        UserKnownHostsFile /dev/null
@@ -233,14 +278,16 @@ Add the following lines to the top of the configuration file.
 
 Where:
 
-* <vmhost> - Is a wildcard reference to the hostnames for your virtual
+* &lt;vmhost&gt; - Is a wildcard reference to the hostnames for your virtual
 machines.
-** For example, if your VM hostnames look like: vmhost1, vmhost2,
+
+    * For example, if your VM hostnames look like: vmhost1, vmhost2,
 vmhost3.... then replace <vmhost> with "vmhost*"
 
-* <vmhost ip> - Is a wildcard IP reference to the IPs used by your virtual
+* &lt;vmhost ip&gt; - Is a wildcard IP reference to the IPs used by your virtual
 machines.
-** For example, if your VMs all have IP addresses starting with 10.0.0,
+
+    * For example, if your VMs all have IP addresses starting with 10.0.0,
 then replace <vmhost ip> with "10.0.0.*"
 
 This will insure that new VM hosts will not hang on the known hosts prompts
@@ -265,6 +312,7 @@ the Deployment Tools.&nbsp; You do not need to download Sysprep for Windows
 
 
 Download: [Windows XP Service Pack 3 Deployment Tools](http://www.microsoft.com/downloads/details.aspx?FamilyID=673a1019-8e3e-4be0-ac31-70dd21b5afa7&displaylang=en)
+
 Download: [System Preparation tool for Windows Server 2003 Service Pack 2 Deployment](http://www.microsoft.com/downloads/details.aspx?familyid=93F20BB1-97AA-4356-8B43-9584B7E72556&displaylang=en)
 
 
@@ -280,29 +328,27 @@ also some Linux utilities which claim to be able to extract .cab files.
 
 Copy the extracted Windows XP Sysprep files to the following directory on
 the management node after they have been extracted:
-{panel}
-/usr/local/vcl/tools/Windows_XP/Utilities/Sysprep
-{panel}Copy the extracted Windows Server 2003 Sysprep files to the
+
+    /usr/local/vcl/tools/Windows_XP/Utilities/Sysprep
+
+Copy the extracted Windows Server 2003 Sysprep files to the
 following directory on the management node after they have been extracted:
-{panel}
-/usr/local/vcl/tools/Windows_Server_2003/Utilities/Sysprep
-{panel}
+
+    /usr/local/vcl/tools/Windows_Server_2003/Utilities/Sysprep
+
 The Sysprep directories should already exist on the management node because
 they exist the Subversion repository.&nbsp; The Sysprep directories should
 contain the following files at a minimum:
-{panel}
-\-rw-rw-r-\- 1 root root 25600 Aug 18 17:32 setupcl.exe
-\-rw-rw-r-\- 1 root root 88576 Aug 18 17:32 sysprep.exe
-{panel}
+
+    -rw-rw-r- 1 root root 25600 Aug 18 17:32 setupcl.exe
+    -rw-rw-r- 1 root root 88576 Aug 18 17:32 sysprep.exe
 
 Your Windows product keys and/or KMS server addresses need to be entered
 into the VCL database in order to capture a Windows image using
 Sysprep.&nbsp; Enter the information into the database by running the the
 following command:
 
-{panel}
-/usr/local/vcl/bin/vcld \-setup
-{panel}
+    /usr/local/vcl/bin/vcld -setup
 
 Select "Windows OS Module" and follow the prompts.
 
@@ -319,61 +365,56 @@ The drivers must be copied to the appropriate directory on the management
 node. The VCL image capture process copies the driver directories to the
 computer before an image is captured. Drivers from multiple directories
 will be copied based on the version of Windows being captured. There are
-driver directories under *tools* for each version of Windows (Windows XP,
+driver directories under **tools** for each version of Windows (Windows XP,
 Windows Vista) and for each version group of Windows (version 5, 6). This
 allows drivers which are common to multiple versions of Windows to be
 shared in the management node tools directory structure.
 
 For example, if a chipset driver works for all versions of Windows, it can
 be saved in:
-*tools/Windows/Drivers/Chipset*
+**tools/Windows/Drivers/Chipset**
 
 If Windows XP and Windows Server 2003 both use the same network driver, it
 can be saved in:
-*tools/Windows_Version_5/Drivers/Network*
+**tools/Windows_Version_5/Drivers/Network**
 
 If a storage driver only works for Windows XP, it should be saved in:
-*tools/Windows_XP/Drivers/Storage*
+**tools/Windows_XP/Drivers/Storage**
 
 
 During the image capture process, each Windows version directory is copied
 to the computer under C:\Cygwin\home\root\VCL. The order in which the
 Windows version directories are copied goes from most general to most
 specific.&nbsp; In the example above, the order would be:
-1. *tools/Windows/Drivers/Chipset*
-1. *tools/Windows_Version_5/Drivers/Network*
-1. *tools/Windows_XP/Drivers/Storage*
+
+1. **tools/Windows/Drivers/Chipset**
+1. **tools/Windows_Version_5/Drivers/Network**
+1. **tools/Windows_XP/Drivers/Storage**
 
 The resulting directory structure on the Windows computer will be:
-* *C:\Cygwin\home\root\VCL\Drivers*
-** *\Chipset* \- driver works for all versions of windows
-** *\Network* \- driver works for Windows XP and Server 2003
-** *\Storage* \- driver only works for Windows XP
+
+* **C:\Cygwin\home\root\VCL\Drivers**
+    * **\Chipset** - driver works for all versions of windows
+    * **\Network** - driver works for Windows XP and Server 2003
+    * **\Storage** - driver only works for Windows XP
 
 The following list shows which driver files should be saved in the driver
 directories:
 
-* *tools/Windows/Drivers* \- drivers common to all versions of Windows
-** *tools/Windows_Version_5/Drivers* \- drivers used by Windows XP and
-Server 2003
-*** *tools/Windows_Version_XP/Drivers* \- drivers only used by Windows XP
-*** *tools/Windows_Version_Server_2003/Drivers* \- drivers only used by
-Windows Server 2003
-** *tools/Windows_Version_6/Drivers* \- drivers used by Windows Vista and
-Server 2008
-*** *tools/Windows_Vista/Drivers* \- drivers only used by Windows Vista
-*** *tools/Windows_Server_2008/Drivers* \- drivers only used by Windows
-Server 2008
+* **tools/Windows/Drivers** - drivers common to all versions of Windows
+    * **tools/Windows_Version_5/Drivers** - drivers used by Windows XP and Server 2003
+        * **tools/Windows_Version_XP/Drivers** - drivers only used by Windows XP
+        * **tools/Windows_Version_Server_2003/Drivers** - drivers only used by Windows Server 2003
+    * **tools/Windows_Version_6/Drivers** - drivers used by Windows Vista and Server 2008
+        * **tools/Windows_Vista/Drivers** - drivers only used by Windows Vista
+        * **tools/Windows_Server_2008/Drivers** - drivers only used by Windows Server 2008
 
 The directory structure under each Drivers directory does not matter. It is
 helpful to organize each directory by driver class, and each directory
 should be organized using the same theme.&nbsp; For example:
-* *tools/Windows_Version_XP/Drivers*
-** *Chipset*
-** *Network*
-** *Storage*
-** *Video*
 
-
-<a name="2.2ManagementNodeInstallation-"></a>
-### 
+* **tools/Windows_Version_XP/Drivers**
+    * **Chipset**
+    * **Network**
+    * **Storage**
+    * **Video**
