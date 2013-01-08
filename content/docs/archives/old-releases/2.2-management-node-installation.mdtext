@@ -175,7 +175,7 @@ Enter **No** at the first prompt to auto-configure the CPAN module.
 
     You should find the module you were looking for on a line like this:
 
-        Module          Compress::Zlib  (P/PM/PMQS/IO-Compress-2.020.tar.gz)
+    Module          Compress::Zlib  (P/PM/PMQS/IO-Compress-2.020.tar.gz)
 
 1. Install the module:
 
