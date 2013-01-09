@@ -1,665 +1,494 @@
 Title: Database Schema
-<a name="DatabaseSchema-affiliationtable"></a>
+
+[TOC]
+
 ### affiliation table
 This table contains a list of affiliations that can access this VCL site.
 
-id - id of entry
-name - name of entry
-shibname - for affiliations using shibboleth - the name of the shibboleth
-affiliation (the part after @ in eduPersonScopedAffiliation)
-dataUpdateText - this will be displayed on the User Preferences->Personal
-Information page to provide information on how to update things other than
-Preferred Name in that box
-sitewwwaddress - URL for login page for this affiliation; typically it is
-just the URL encoded parameters to index.php to have the authentication
-method already selected (i.e.
-https://vcl.example.org/vcl/index.php?mode=selectauth&authtype=EXAMPLE%20LDAP)
-helpaddress - support email address for this affiliation
-shibonly - 1 if this affiliation can only be authenticated via shibboleth,
-0 if LDAP is also set up
+* **id** - id of entry
+* **name** - name of entry
+* **shibname** - for affiliations using shibboleth - the name of the shibboleth affiliation (the part after @ in eduPersonScopedAffiliation)
+* **dataUpdateText** - this will be displayed on the User Preferences-&gt;Personal Information page to provide information on how to update things other than Preferred Name in that box
+* **sitewwwaddress** - URL for login page for this affiliation; typically it is just the URL encoded parameters to index.php to have the authentication method already selected (i.e. <a href="https://vcl.example.org/vcl/index.php?mode=selectauth&amp;authtype=EXAMPLE%20LDAP" class="external-link" rel="nofollow">https://vcl.example.org/vcl/index.php?mode=selectauth&amp;authtype=EXAMPLE%20LDAP</a>)
+* **helpaddress** - support email address for this affiliation
+* **shibonly** - 1 if this affiliation can only be authenticated via shibboleth, 0 if LDAP is also set up
 
-
-<a name="DatabaseSchema-blockComputerstable"></a>
 ### blockComputers table
-This table tracks which computers have been allocated to individual block
-allocation time slots.
+This table tracks which computers have been allocated to individual block allocation time slots.
 
-blockTimeid - reference to blockTimes.id
-computerid - reference to computer.id
-imageid - reference to image.id
-reloadrequestid - reference to request.id - reload reservation for
-preloading this node
+* **blockTimeid** - reference to blockTimes.id
+* **computerid** - reference to computer.id
+* **imageid** - reference to image.id
+* **reloadrequestid** - reference to request.id - reload reservation for preloading this node
 
 
-<a name="DatabaseSchema-blockRequesttable"></a>
 ### blockRequest table
-This table contains all of the block allocations that have been requested
-and their current state.
 
-id - id of entry
-name - name of entry
-imageid - reference to image.id
-numMachines - number of machines to preload for this block allocation
-groupid - reference to usergroup.id - user group that will have access to
-machines in this block allocation
-repeating - enum field - weekly, monthly, or list - how this block
-allocation repeats
-ownerid - reference to user.id - owner of the block allocation
-admingroupid - reference to usergroup.id - (to be deprecated in 2.3) - user
-group that can modify this block allocation
-managementnodeid - reference to managementnode.id - management node that is
-to process this block allocation
-expireTime - last date and time of block allocation time slots
-processing - flag used by vcld to determine if a vcld process is processing
-this block allocation
-status - enum field - requested, accepted, completed, reject - current
-status of the block allocation
-comments - any comments entered by the person that requested the block
-allocation
+This table contains all of the block allocations that have been requested and their current state.
+
+* **id** - id of entry
+* **name** - name of entry
+* **imageid** - reference to image.id
+* **numMachines** - number of machines to preload for this block allocation
+* **groupid** - reference to usergroup.id - user group that will have access to machines in this block allocation
+* **repeating** - enum field - weekly, monthly, or list - how this block allocation repeats
+* **ownerid** - reference to user.id - owner of the block allocation
+* **admingroupid** - reference to usergroup.id - (to be deprecated in 2.3) - user group that can modify this block allocation
+* **managementnodeid** - reference to managementnode.id - management node that is to process this block allocation
+* **expireTime** - last date and time of block allocation time slots
+* **processing** - flag used by vcld to determine if a vcld process is processing this block allocation
+* **status** - enum field - requested, accepted, completed, reject - current status of the block allocation
+* **comments** - any comments entered by the person that requested the block allocation
 
 
-<a name="DatabaseSchema-blockTimestable"></a>
 ### blockTimes table
-This table contains all of the time slots associated with a block
-allocation that are active or have not yet been reached. Time slots are
-deleted after they are completed.
+This table contains all of the time slots associated with a block allocation that are active or have not yet been reached. Time slots are deleted after they are completed.
 
-id - id of entry
-blockRequestid - reference to blockRequest.id
-start - start of block time
-end - end of block time
-processed - flag for vcld - 1 if block time has been processed by vcld, 0
-if not
-skip - flag for users to skip individual instances of repeating block
-allocations - 1 to skip, 0 to use
+* **id** - id of entry
+* **blockRequestid** - reference to blockRequest.id
+* **start** - start of block time
+* **end** - end of block time
+* **processed** - flag for vcld - 1 if block time has been processed by vcld, 0 if not
+* **skip** - flag for users to skip individual instances of repeating block allocations - 1 to skip, 0 to use
 
 
-<a name="DatabaseSchema-blockWebDatetable"></a>
 ### blockWebDate table
-This table contains date related items associated with a block allocation
-so that they can more easily be retrieved when editing a block allocation.
 
-blockRequestid - reference to blockRequest.id
-start - start date of block allocation
-end - end date of block allocation
-days - for weekly repeating blocks, this is a bitmask of the selected days;
-for monthly repeating blocks, this is the day of the week; for lists, this
-is the order the item is in the set of dates
-weeknum - only used for monthly repeating blocks - the selected week of the
-month
+This table contains date related items associated with a block allocation so that they can more easily be retrieved when editing a block allocation.
+
+* **blockRequestid** - reference to blockRequest.id
+* **start** - start date of block allocation
+* **end** - end date of block allocation
+* **days** - for weekly repeating blocks, this is a bitmask of the selected days; for monthly repeating blocks, this is the day of the week; for lists, this is the order the item is in the set of dates
+* **weeknum** - only used for monthly repeating blocks - the selected week of the month
 
 
-<a name="DatabaseSchema-blockWebTimetable"></a>
 ### blockWebTime table
-This table contains time related items associated with a block allocation
-so that they can more easily be retrieved when editing a block allocation.
 
-blockRequestid - reference to blockRequest.id
-starthour - start hour of block allocation
-startminute - start minute of block allocation
-startmeridian - start meridian of block allocation
-endhour - end hour of block allocation
-endminute - end minute of block allocation
-endmeridian - end meridian of block allocation
-order - for weekly and monthly repeating blocks, this is the sequential
-order of the time slot; for lists, it is the sequential order of the
-date/time
+This table contains time related items associated with a block allocation so that they can more easily be retrieved when editing a block allocation.
+
+* **blockRequestid** - reference to blockRequest.id
+* **starthour** - start hour of block allocation
+* **startminute** - start minute of block allocation
+* **startmeridian** - start meridian of block allocation
+* **endhour** - end hour of block allocation
+* **endminute** - end minute of block allocation
+* **endmeridian** - end meridian of block allocation
+* **order** - for weekly and monthly repeating blocks, this is the sequential order of the time slot; for lists, it is the sequential order of the date/time
 
 
-<a name="DatabaseSchema-changelogtable"></a>
 ### changelog table
 This table logs changes made to reservations.
 
-id - id of entry
-logid - reference to log.id
-start - change to start time of reservation
-end - change to end time of reservation
-computerid - reference to computer.id - change to computer assigned to
-reservation
-remoteIP - change to remote IP of reservation user
-wasavailable - mostly deprecated - if submitted change to start/end time of
-reservation was available for use or not
-timestamp - datetime entry was added
+* **id** - id of entry
+* **logid** - reference to log.id
+* **start** - change to start time of reservation
+* **end** - change to end time of reservation
+* **computerid** - reference to computer.id - change to computer assigned to reservation
+* **remoteIP** - change to remote IP of reservation user
+* **wasavailable** - mostly deprecated - if submitted change to start/end time of reservation was available for use or not
+* **timestamp** - datetime entry was added
 
 
-<a name="DatabaseSchema-clickThroughstable"></a>
 ### clickThroughs table
-This table logs click through agreements users must agree to when they
-create images.
+This table logs click through agreements users must agree to when they create images.
 
-userid - reference to user.id - user that clicked agreement
-imageid - reference to image.id - image for which agreement was clicked
-imagerevisionid - reference to imagerevision.id - image revision for which
-agreement was clicked
-accepted - datetime agreement clicked
-agreement - text of agreement at time it was clicked
+* **userid** - reference to user.id - user that clicked agreement
+* **imageid** - reference to image.id - image for which agreement was clicked
+* **imagerevisionid** - reference to imagerevision.id - image revision for which agreement was clicked
+* **accepted** - datetime agreement clicked
+* **agreement** - text of agreement at time it was clicked
 
 
-<a name="DatabaseSchema-computertable"></a>
 ### computer table
-This table contains all information about compute nodes and VMs that VCL
-controls. All bare metal computers, virtual hosts, and virtual machines
-must have an entry in this table.
+This table contains all information about compute nodes and VMs that VCL controls. All bare metal computers, virtual hosts, and virtual machines must have an entry in this table.
 
-id - id of entry
-stateid - reference to state.id - current state of computer
-ownerid - reference to owner.id - owner of computer
-platformid - reference to platform.id - platform of computer
-scheduleid - reference to schedule.id - schedule of computer
-currentimageid - reference to image.id - image currently loaded on computer
-nextimageid - reference to image.id - image to be loaded next on computer,
-only used under certain circumstances
-imagerevisionid - reference to imagerevision.id - image revision currently
-loaded on computer (somewhat redundant with currentimageid)
-RAM - amount of RAM physical computer has, or maximum amount of RAM that
-can be allocated to virtual computer
-procnumber - number of processor cores physical computer has, or maximum
-number of processor cores that can be allocated to virtual computer
-procspeed - speed of processor cores in MHz
-network - speed of (public?) NIC(s) in Mbps
-hostname - private hostname of computer
-IPaddress - public IP address
-privateIPaddress - private IP address
+* **id** - id of entry
+* **stateid** - reference to state.id - current state of computer
+* **ownerid** - reference to owner.id - owner of computer
+* **platformid** - reference to platform.id - platform of computer
+* **scheduleid** - reference to schedule.id - schedule of computer
+* **currentimageid** - reference to image.id - image currently loaded on computer
+* **nextimageid** - reference to image.id - image to be loaded next on computer, only used under certain circumstances
+* **imagerevisionid** - reference to imagerevision.id - image revision currently loaded on computer (somewhat redundant with currentimageid)
+* **RAM** - amount of RAM physical computer has, or maximum amount of RAM that can be allocated to virtual computer
+* **procnumber** - number of processor cores physical computer has, or maximum number of processor cores that can be allocated to virtual computer
+* **procspeed** - speed of processor cores in MHz
+* **network** - speed of (public?) NIC(s) in Mbps
+* **hostname** - private hostname of computer
+* **IPaddress** - public IP address
+* **privateIPaddress** - private IP address
 eth0macaddress - MAC address of private NIC
 eth1macaddress - MAC address of public NIC
-type - blade, lab, or virtualmachine - type of the computer
-provisioningid - reference to provisioning.id - provisioning module/method
-to be used for computer
-drivetype - hda or sda - type of drive in the computer (is this still
-used?)
-deleted - flag to show if computer has been deleted - 1 if deleted, 0 if
-not
-notes - any notes entered when computer placed into maintenance state
-lastcheck - date stamp of last time the computer was checked through
-healthcheck.pl
-location - physical location of node (Data Center 1, rack 1, etc)
-dsa - Not being used. Was planned for storing host keys for ssh
-dsapub - Not being used. Was planned for storing host keys for ssh
-rsa - Not being used. Was planned for storing host keys for ssh
-rsapub - Not being used. Was planned for storing host keys for ssh 
-host - Not being used. Was planned for storing host keys for ssh
-hostpub - Not being used. Was planned for storing host keys for ssh
-vmhostid - reference to vmhost.id - only used for virtual machines, this is
-the host computer of the VM
-vmtypeid - reference to vmtype.id - only used for virtual machines, this is
-the type of the VM (vmware, xen, kvm, etc)
+* **type** - blade, lab, or virtualmachine - type of the computer
+* **provisioningid** - reference to provisioning.id - provisioning module/method to be used for computer
+* **drivetype** - hda or sda - type of drive in the computer (is this still used?)
+* **deleted** - flag to show if computer has been deleted - 1 if deleted, 0 if not
+* **notes** - any notes entered when computer placed into maintenance state
+* **lastcheck** - date stamp of last time the computer was checked through healthcheck.pl
+* **location** - physical location of node (Data Center 1, rack 1, etc)
+* **dsa** - Not being used. Was planned for storing host keys for ssh
+* **dsapub** - Not being used. Was planned for storing host keys for ssh
+* **rsa** - Not being used. Was planned for storing host keys for ssh
+* **rsapub** - Not being used. Was planned for storing host keys for ssh 
+* **host** - Not being used. Was planned for storing host keys for ssh
+* **hostpub** - Not being used. Was planned for storing host keys for ssh
+* **vmhostid** - reference to vmhost.id - only used for virtual machines, this is the host computer of the VM
+* **vmtypeid** - reference to vmtype.id - only used for virtual machines, this is the type of the VM (vmware, xen, kvm, etc)
 
 
-<a name="DatabaseSchema-computerloadflowtable"></a>
 ### computerloadflow table
-This table contains entries that establish a flow of states that are
-followed when a reservation is being deployed so that users can have
-feedback on the current reservations page about their reservations.
+This table contains entries that establish a flow of states that are followed when a reservation is being deployed so that users can have feedback on the current reservations page about their reservations.
 
-computerloadstateid - reference to computerloadstate.id
-nextstateid - reference to computerloadstate.id - the computer load state
-that follows this one
-type - type of load this sequence is for
+* **computerloadstateid** - reference to computerloadstate.id
+* **nextstateid** - reference to computerloadstate.id - the computer load state that follows this one
+* **type** - type of load this sequence is for
 
 
-<a name="DatabaseSchema-computerloadlogtable"></a>
 ### computerloadlog table
-This table contains actual log entries for each state processed when a
-reservation is being deployed so that users can have feedback on the
-current reservations page about their reservations.
+This table contains actual log entries for each state processed when a reservation is being deployed so that users can have feedback on the current reservations page about their reservations.
 
-id - id of entry
-reservationid - reference to reservation.id - reservation this entry is for
-computerid - reference to computer.id
-loadstateid - reference to computerloadstate.id - state this entry is for
-timestamp - date/time entry entered into log
-additionalinfo - details about this entry
+* **id** - id of entry
+* **reservationid** - reference to reservation.id - reservation this entry is for
+* **computerid** - reference to computer.id
+* **loadstateid** - reference to computerloadstate.id - state this entry is for
+* **timestamp** - date/time entry entered into log
+* **additionalinfo** - details about this entry
 
 
-<a name="DatabaseSchema-computerloadstatetable"></a>
 ### computerloadstate table
-This table contains the load states that a reservation goes through when
-being deployed and their estimated time so that an estimate of how much
-longer the deploy will take can be generated.
+This table contains the load states that a reservation goes through when being deployed and their estimated time so that an estimate of how much longer the deploy will take can be generated.
 
-id - id of entry
-loadstatename - short name of state
-prettyname - more descriptive name of state
-est - estimated time for state in minutes
+* **id** - id of entry
+* **loadstatename** - short name of state
+* **prettyname** - more descriptive name of state
+* **est** - estimated time for state in minutes
 
 
-<a name="DatabaseSchema-connectmethodtable"></a>
 ### connectmethod table
-This table contains all of the connect methods available to be assigned to
-an image.  Connect methods are things like RDP, ssh, VNC, etc.
+This table contains all of the connect methods available to be assigned to an image.  Connect methods are things like RDP, ssh, VNC, etc.
 
-id - id of entry
-name - name of entry
-description - description of connect method
-protocol - TCP or UDP
-port - tcp or udp port number
-connecttext - this text will be displayed on the Connect page, there are a
-few variable substitutions available to be used: #userid#, #password#,
-#connectIP#, and #connectport#
-servicename - name of service to be started to enable connect method on
-provisioned node
-startupscript - name of script to be run to enable connect method on
-provisioned node
+* **id** - id of entry
+* **name** - name of entry
+* **description** - description of connect method
+* **protocol** - TCP or UDP
+* **port** - tcp or udp port number
+* **connecttext** - this text will be displayed on the Connect page, there are a few variable substitutions available to be used: #userid#, #password#, #connectIP#, and #connectport#
+* **servicename** - name of service to be started to enable connect method on provisioned node
+* **startupscript** - name of script to be run to enable connect method on provisioned node
 
 
-<a name="DatabaseSchema-connectmethodmaptable"></a>
 ### connectmethodmap table
-This table contains two types of information and can be somewhat confusing.
- It tracks which connect methods are mapped to which OS types, OSes, and
-image revisions.  It also contains which methods can be assigned to which
-OS types and OSes.  Entries that have autoprovisioned set to 0 or 1 are
-entries that tell whether or not the image can be assigned to that OS type
-or OS.	Entries that have autoprovisioned set to NULL tell whether that
-method is enabled in addition to default methods for the image, or whether
-that method is a default one but disable for the image.
+This table contains two types of information and can be somewhat confusing.  It tracks which connect methods are mapped to which OS types, OSes, and image revisions.  It also contains which methods can be assigned to which OS types and OSes.  Entries that have autoprovisioned set to 0 or 1 are entries that tell whether or not the image can be assigned to that OS type or OS.  Entries that have autoprovisioned set to NULL tell whether that method is enabled in addition to default methods for the image, or whether that method is a default one but disable for the image.
 
-connectmethodid - reference to connectmethod.id
-OStypeid - reference to OStype.id - OS type this entry applies to (can be
-NULL)
-OSid - reference to OS.id - OS this entry applies to (can be NULL)
-imagerevisionid - reference to imagerevision.id - image revision this entry
-applies to (can be NULL)
-disabled - flag telling if method is enabled/disabled for combination of
-OStypeid, OSid, and imagerevisionid
-autoprovisioned - NULL, 0, or 1 - flag to tell if this connect method can
-be autoprovisioned by vcld or if the image owner must install the software
-to enable it
+* **connectmethodid** - reference to connectmethod.id
+* **OStypeid** - reference to OStype.id - OS type this entry applies to (can be NULL)
+* **OSid** - reference to OS.id - OS this entry applies to (can be NULL)
+* **imagerevisionid** - reference to imagerevision.id - image revision this entry applies to (can be NULL)
+* **disabled** - flag telling if method is enabled/disabled for combination of OStypeid, OSid, and imagerevisionid
+* **autoprovisioned** - NULL, 0, or 1 - flag to tell if this connect method can be autoprovisioned by vcld or if the image owner must install the software to enable it
 
 
-<a name="DatabaseSchema-continuationstable"></a>
 ### continuations table
-This table contains "continuations" which are basically saved states that
-can then be submitted by the frontend to perform an action.
+This table contains "continuations" which are basically saved states that can then be submitted by the frontend to perform an action.
 
-id - id of entry
-userid - reference to user.id - who this entry belongs to
-expiretime - date/time entry expires
-frommode - mode transitioning from
-tomode - mode transitioning to
-data - serialized data saved with this continuation
-multicall - flag to tell if this continuation can be called more than one
-time
-parentid - reference to continuations.id - parent of this continuation for
-continuation chains (can be NULL)
-deletefromid - reference to continuations.id - id in a continuation chain
-from which to start deleting the chain
+* **id** - id of entry
+* **userid** - reference to user.id - who this entry belongs to
+* **expiretime** - date/time entry expires
+* **frommode** - mode transitioning from
+* **tomode** - mode transitioning to
+* **data** - serialized data saved with this continuation
+* **multicall** - flag to tell if this continuation can be called more than one time
+* **parentid** - reference to continuations.id - parent of this continuation for continuation chains (can be NULL)
+* **deletefromid** - reference to continuations.id - id in a continuation chain from which to start deleting the chain
 
 
 
-<a name="DatabaseSchema-documentationtable"></a>
 ### documentation table
-This table is deprecated.  At one time, there was a built in documentation
-wiki like part of the site.
+This table is deprecated.  At one time, there was a built in documentation wiki like part of the site.
 
-name - name of entry
-title - title of documentation item
-data - text of documentation item
+* **name** - name of entry
+* **title** - title of documentation item
+* **data** - text of documentation item
 
-
-<a name="DatabaseSchema-imagetable"></a>
 ### image table
-This table contains all information about the images available through VCL.
- It comes with a single required special image - "No image" that is used to
-signify when a computer is not loaded with anything.
+This table contains all information about the images available through VCL.  It comes with a single required special image - "No image" that is used to signify when a computer is not loaded with anything.
 
-id - id of entry
-name - system name of image
-prettyname - name of image that is displayed to users
-ownerid - reference to user.id - owner of image
-platformid - reference to platform.id - platform of image
-OSid - reference to OS.id - OS of image
-imagemetaid - reference to imagemeta.id - NULL or id from imagemeta table
-where additional image information is stored
-minram - minimum RAM required for this image in MB; for VM images, this is
-how much RAM to allocate to the VM - however, vcld controls the minimum
-that will be allocated to a VM
-minprocnumber - minimum number of cores required by image
-minprocspeed - minimum processor speed required by image in MHz
-minnetwork - minimum (public?) network speed required by image in Mbps
-maxconcurrent - maximum concurrent reservations that can be made for image
-reloadtime - reload time for image - used by backend for knowing how long
-to wait during certain parts of deploying the image; only used by the
-frontend the first time the image is loaded, after which historical data is
-used to estimate loading time
-deleted - flag to show if image has been deleted - 1 if deleted, 0 if not
-test - flag to show if there is a test version of this image available
-(depricated?)
-lastupdate - date/time image was last updated
-forcheckout - flag to tell if the image should show up in the list of
-images on the new reservations page - this is designed to be used for
-subimages in clusters where the subimages should not be directly reserved
-maxinitialtime - maximum initial time the image can be reserved
-project - vcl, hpc, or vclhpc - string used to control some network
-configuration?
-size - size of the image in MB?
-architecture - x86 or x86_64 - architecture of image
-description - description of image displayed on new reservations page
-usage - notes on how to use image displayed on Connect page
-basedoffrevisionid - reference to imagerevision.id - image revision this
-image was based off of
+* **id** - id of entry
+* **name** - system name of image
+* **prettyname** - name of image that is displayed to users
+* **ownerid** - reference to user.id - owner of image
+* **platformid** - reference to platform.id - platform of image
+* **OSid** - reference to OS.id - OS of image
+* **imagemetaid** - reference to imagemeta.id - NULL or id from imagemeta table where additional image information is stored
+* **minram** - minimum RAM required for this image in MB; for VM images, this is how much RAM to allocate to the VM - however, vcld controls the minimum that will be allocated to a VM
+* **minprocnumber** - minimum number of cores required by image
+* **minprocspeed** - minimum processor speed required by image in MHz
+* **minnetwork** - minimum (public?) network speed required by image in Mbps
+* **maxconcurrent** - maximum concurrent reservations that can be made for image
+* **reloadtime** - reload time for image - used by backend for knowing how long to wait during certain parts of deploying the image; only used by the frontend the first time the image is loaded, after which historical data is used to estimate loading time
+* **deleted** - flag to show if image has been deleted - 1 if deleted, 0 if not
+* **test** - flag to show if there is a test version of this image available (depricated?)
+* **lastupdate** - date/time image was last updated
+* **forcheckout** - flag to tell if the image should show up in the list of images on the new reservations page - this is designed to be used for subimages in clusters where the subimages should not be directly reserved
+* **maxinitialtime** - maximum initial time the image can be reserved
+* **project** - vcl, hpc, or vclhpc - string used to control some network configuration?
+* **size** - size of the image in MB?
+* **architecture** - x86 or x86_64 - architecture of image
+* **description** - description of image displayed on new reservations page
+* **usage** - notes on how to use image displayed on Connect page
+* **basedoffrevisionid** - reference to imagerevision.id - image revision this image was based off of
 
 
-<a name="DatabaseSchema-imagemetatable"></a>
 ### imagemeta table
-This table contains additional information about some images.  It was added
-so that the extra information would not needed to be recorded for every
-image when most of them would not need it.
+This table contains additional information about some images.  It was added so that the extra information would not needed to be recorded for every image when most of them would not need it.
 
-id - id of entry
-checkuser - flag to tell if reservations for image should be timed out if
-user is disconnect for > 15 minutes - 0 not to do timeout, 1 to do timeout
-subimages - flag to tell if subimages are associated with image
-usergroupid - reference to usergroup.id - user group allowed to log in to
-reservations for image (deprecated?)
-sysprep - flat to tell if sysprep should be used on this image (bare metal
-images only, sysprep is always disabled for VMs)
-postoption - ??
-architecture - ??
-rootaccess - flag to tell if users should have root access on reservations
-for image - 1 to have it, 0 not to
+* **id** - id of entry
+* **checkuser** - flag to tell if reservations for image should be timed out if user is disconnect for &gt; 15 minutes - 0 not to do timeout, 1 to do timeout
+* **subimages** - flag to tell if subimages are associated with image
+* **usergroupid** - reference to usergroup.id - user group allowed to log in to reservations for image (deprecated?)
+* **sysprep** - flat to tell if sysprep should be used on this image (bare metal images only, sysprep is always disabled for VMs)
+* **postoption** - ??
+* **architecture** - ??
+* **rootaccess** - flag to tell if users should have root access on reservations for image - 1 to have it, 0 not to
 
 
-<a name="DatabaseSchema-imagerevisiontable"></a>
 ### imagerevision table
-This table contains an entry for every revision (including the initial one)
-of each image.
+This table contains an entry for every revision (including the initial one) of each image.
 
-id - id of entry
-imageid - reference to image.id
-revision - number of this revision
-userid - reference to user.id - user that created the revision
-datecreated - date/time revision was created
-deleted - flag to tell if revision has been deleted - 1 for deleted, 0
-otherwise
-datedeleted - date/time revision was set to deleted
-production - flag to tell if this revision is the production one - 1 for
-production, 0 otherwise
-comments - comments entered when revision was created for keeping track of
-what was done to the image
-imagename - system name of revision
-autocaptured - flag to tell if this was an auto-captured revision - 1 if it
-was, 0 otherwise
+* **id** - id of entry
+* **imageid** - reference to image.id
+* **revision** - number of this revision
+* **userid** - reference to user.id - user that created the revision
+* **datecreated** - date/time revision was created
+* **deleted** - flag to tell if revision has been deleted - 1 for deleted, 0 otherwise
+* **datedeleted** - date/time revision was set to deleted
+* **production** - flag to tell if this revision is the production one - 1 for production, 0 otherwise
+* **comments** - comments entered when revision was created for keeping track of what was done to the image
+* **imagename** - system name of revision
+* **autocaptured** - flag to tell if this was an auto-captured revision - 1 if it was, 0 otherwise
 
 
-<a name="DatabaseSchema-IMtypetable"></a>
 ### IMtype table
-This table never really got used.  The idea was the people could be
-notified via IM in addition to or instead of via email.
+This table never really got used.  The idea was the people could be notified via IM in addition to or instead of via email.
 
-id - id of entry
-name - name of entry
+* **id** - id of entry
+* **name** - name of entry
 
 
-<a name="DatabaseSchema-localauthtable"></a>
 ### localauth table
+
 This table contains password hashes for local accounts.
 
-userid - reference to user.id
-passhash - sha1 hash of password and salt
-salt - 8 character salt to be hashed with the password
-lastupdated - date/time entry was last updated
-lockedout - (unused) flag to tell if this account is locked out - 1 if
-locked out, 0 otherwise
+* **userid** - reference to user.id
+* **passhash** - sha1 hash of password and salt
+* **salt** - 8 character salt to be hashed with the password
+* **lastupdated** - date/time entry was last updated
+* **lockedout** - (unused) flag to tell if this account is locked out - 1 if locked out, 0 otherwise
 
 
-<a name="DatabaseSchema-logtable"></a>
 ### log table
-This table contains an entry for every reservation made in VCL except for
-those made by the special account 'vclreload'.
 
-id - id of entry
-userid - reference to user.id
-nowfuture - now or future - whether the reservation was for 'now' or a
-future date/time
-start - start time of the reservation
-loaded - date/time the image was ready for user connection
-initialend - scheduled end time of reservation
-finalend - date/time reservation actually ended
-wasavailable - flag to tell if requested reservation was actually available
-- somewhat deprecated because users get feedback that a selection is not
-available without actually submitting it
-ending - deleted, released, failed, failedtest, noack, nologin, timeout,
-EOR, or none - how the reservation ended
-requestid - reference to request.id - useful for looking through vcld logs
-computerid - reference to computer.id
-remoteIP - IP address of user's machine
-imageid - reference to image.id
-size - ??
+This table contains an entry for every reservation made in VCL except for those made by the special account 'vclreload'.
+
+* **id** - id of entry
+* **userid** - reference to user.id
+* **nowfuture** - now or future - whether the reservation was for 'now' or a future date/time
+* **start** - start time of the reservation
+* **loaded** - date/time the image was ready for user connection
+* **initialend** - scheduled end time of reservation
+* **finalend** - date/time reservation actually ended
+* **wasavailable** - flag to tell if requested reservation was actually available - somewhat deprecated because users get feedback that a selection is not available without actually submitting it
+* **ending** - deleted, released, failed, failedtest, noack, nologin, timeout, EOR, or none - how the reservation ended
+* **requestid** - reference to request.id - useful for looking through vcld logs
+* **computerid** - reference to computer.id
+* **remoteIP** - IP address of user's machine
+* **imageid** - reference to image.id
+* **size** - ??
 
 
-<a name="DatabaseSchema-loginlogtable"></a>
 ### loginlog table
+
 This table contains a log of every authentication attempt.
 
-user - user id entered on login page
-authmech - authentication method selected
-affiliationid - affiliation used to authenticate user
-timestamp - date/time authentication attempt occurred
-passfail - 0 for fail, 1 for pass
-remoteIP - IP address of user's machine
+* **user** - user id entered on login page
+* **authmech** - authentication method selected
+* **affiliationid** - affiliation used to authenticate user
+* **timestamp** - date/time authentication attempt occurred
+* **passfail** - 0 for fail, 1 for pass
+* **remoteIP** - IP address of user's machine
 
 
-<a name="DatabaseSchema-managementnodetable"></a>
 ### managementnode table
 This table contains information about each management node.
 
-id - id of entry
-IPaddress - IP of management node
-hostname - hostname of management node
-ownerid - reference to user.id - owner of management node
-stateid - reference to state.id - current state of management node
-lastcheckin - date/time of last check in by management node
-checkininterval - how often in seconds the management node should be
-checking in
-installpath - path to root of image library
-imagelibenable - 1 to enable sharing images among management nodes, 0
-otherwise
-imagelibgroupid - reference to resourcegroup.id - resource group that
-contains other management nodes from which this one can get images
-imagelibuser - user to use when fetching images from other management nodes
-imagelibkey - ssh identity key to use when fetching images from other
-management nodes
-keys - comman delimited list of ssh identity keys to use when sshing to
-compute nodes
-predictivemoduleid - id of module for predicting which image to load when a
-reservation completes
-sshport - ssh port to listen on
-publicIPconfiguration - how compute nodes managed by this node obtain their
-public IP
-publicSubnetMask - if publicIPconfiguration is 'static', enter the subnet
-mask to be used when configuring the compute nodes addresses
-publicDefaultGateway - if publicIPconfiguration is 'static', enter the
-gateway to be used when configuring the compute nodes addresses
-publicDNSserver - if publicIPconfiguration is 'static', enter the DNS
-server to be used when configuring the compute nodes addresses
-sysadminEmailAddress - email address to use when sending problem reports
-sharedMailBox - email address to use for sending shadow emails of user
-emails
+* **id** - id of entry
+* **IPaddress** - IP of management node
+* **hostname** - hostname of management node
+* **ownerid** - reference to user.id - owner of management node
+* **stateid** - reference to state.id - current state of management node
+* **lastcheckin** - date/time of last check in by management node
+* **checkininterval** - how often in seconds the management node should be checking in
+* **installpath** - path to root of image library
+* **imagelibenable** - 1 to enable sharing images among management nodes, 0 otherwise
+* **imagelibgroupid** - reference to resourcegroup.id - resource group that contains other management nodes from which this one can get images
+* **imagelibuser** - user to use when fetching images from other management nodes
+* **imagelibkey** - ssh identity key to use when fetching images from other management nodes
+* **keys** - comman delimited list of ssh identity keys to use when sshing to compute nodes
+* **predictivemoduleid** - id of module for predicting which image to load when a reservation completes
+* **sshport** - ssh port to listen on
+* **publicIPconfiguration** - how compute nodes managed by this node obtain their public IP
+* **publicSubnetMask** - if publicIPconfiguration is 'static', enter the subnet mask to be used when configuring the compute nodes addresses
+* **publicDefaultGateway** - if publicIPconfiguration is 'static', enter the gateway to be used when configuring the compute nodes addresses
+* **publicDNSserver** - if publicIPconfiguration is 'static', enter the DNS server to be used when configuring the compute nodes addresses
+* **sysadminEmailAddress** - email address to use when sending problem reports
+* **sharedMailBox** - email address to use for sending shadow emails of user emails
 NOT_STANDALONE - ??
 
 
-<a name="DatabaseSchema-moduletable"></a>
 ### module table
-This table contains information about the various perl modules that are
-part of vcld.
 
-id - id of module
-name - name of module
-prettyname - more descriptive name of module
-description - description of module
-perlpackage - string to use when including this module in perl scripts
+This table contains information about the various perl modules that are part of vcld.
+
+* **id** - id of module
+* **name** - name of module
+* **prettyname** - more descriptive name of module
+* **description** - description of module
+* **perlpackage** - string to use when including this module in perl scripts
 
 
-<a name="DatabaseSchema-OStable"></a>
 ### OS table
+
 This table contains information about OSes VCL knows about.
 
-id - id of entry
-name - name of entry
-prettyname - more descriptive name of OS
-type - reference to OStype.name - windows, linux, unix, etc
-installtype - reference to OSinstalltype.name - none, partimage, kickstart,
-etc
-sourcepath - ??
-moduleid - reference to module.id - module that handles this OS
+* **id** - id of entry
+* **name** - name of entry
+* **prettyname** - more descriptive name of OS
+* **type** - reference to OStype.name - windows, linux, unix, etc
+* **installtype** - reference to OSinstalltype.name - none, partimage, kickstart, etc
+* **sourcepath** - ??
+* **moduleid** - reference to module.id - module that handles this OS
 
 
-<a name="DatabaseSchema-OSinstalltypetable"></a>
 ### OSinstalltype table
 This table is a list of the ways an image can be installed.
 
-id - id of entry
-name - name of entry
+* **id** - id of entry
+* **name** - name of entry
 
 
-<a name="DatabaseSchema-OStypetable"></a>
 ### OStype table
-This table contains a list of OS types VCL knows about - linux, unix,
-windows, etc.
+This table contains a list of OS types VCL knows about - linux, unix, windows, etc.
 
-id - id of entry
-name - name of entry
+* **id** - id of entry
+* **name** - name of entry
 
 
-<a name="DatabaseSchema-platformtable"></a>
 ### platform table
-This table contains a list of platforms VCL knows about - i386, i386_lab
-(special case for lab machines), and ultrasparc.
+This table contains a list of platforms VCL knows about - i386, i386_lab (special case for lab machines), and ultrasparc.
 
-id - id of entry
-name - name of entry
+* **id** - id of entry
+* **name** - name of entry
 
-
-<a name="DatabaseSchema-privnodetable"></a>
 ### privnode table
-This table contains all of the nodes that make up the Privilege Tree on the
-Privileges page.
+This table contains all of the nodes that make up the Privilege Tree on the Privileges page.
 
-id - id of entry
-parent - reference to privnode.id - parent of this node
-name - name of entry
+* **id** - id of entry
+* **parent** - reference to privnode.id - parent of this node
+* **name** - name of entry
 
 
-<a name="DatabaseSchema-provisioningtable"></a>
 ### provisioning table
 This table contains all of the provisioning modules that are part of vcld.
 
-id - id of entry
-name - name of entry
-prettyname - more descriptive name of provisioning method
-moduleid - reference to module.id - id of module that handles this
-provisioning method
+* **id** - id of entry
+* **name** - name of entry
+* **prettyname** - more descriptive name of provisioning method
+* **moduleid** - reference to module.id - id of module that handles this provisioning method
 
 
-<a name="DatabaseSchema-provisioningOSinstalltypetable"></a>
 ### provisioningOSinstalltype table
-This table is a mapping of which provisioning methods can handle which OS
-install types.
+This table is a mapping of which provisioning methods can handle which OS install types.
 
-provisioningid - reference to provisioning.id
-OSinstalltypeid - reference to OSinstalltype.id
+* **provisioningid** - reference to provisioning.id
+* **OSinstalltypeid** - reference to OSinstalltype.id
 
 
-<a name="DatabaseSchema-querylogtable"></a>
 ### querylog table
-This table contains an entry for every query performed by the frontend that
-modifies the database (i.e. everything but SELECT statements).
+This table contains an entry for every query performed by the frontend that modifies the database (i.e. everything but SELECT statements).
 
-userid - reference to user.id
-timestamp - date/time of query
-mode - mode of site when query performed
-query - string of query
+* **userid** - reference to user.id
+* **timestamp** - date/time of query
+* **mode** - mode of site when query performed
+* **query** - string of query
 
 
-<a name="DatabaseSchema-requesttable"></a>
 ### request table
-This table contains information about every current or future reservation. 
-Only a single entry exists in this table for cluster reservations.
+This table contains information about every current or future reservation.  Only a single entry exists in this table for cluster reservations.
 
-id - id of entry
-stateid - reference to state.id - current state of reservation
-userid - reference to user.id
-laststateid - reference to state.id - last state of reservation
-logid - reference to log.id - log entry for reservation
-forimaging - 0 for normal reservation, 1 for imaging
-test - ??
-preload - ??
-start - date/time for start of reservation
-end - date/time for end of reservation
-daterequested - date/time reservation submitted
-datemodified - date/time reservation modified
-checkuser - flag to tell if reservation should be timed out if user is
-disconnect for > 15 minutes - 0 not to do timeout, 1 to do timeout
+* **id** - id of entry
+* **stateid** - reference to state.id - current state of reservation
+* **userid** - reference to user.id
+* **laststateid** - reference to state.id - last state of reservation
+* **logid** - reference to log.id - log entry for reservation
+* **forimaging** - 0 for normal reservation, 1 for imaging
+* **test** - ??
+* **preload** - ??
+* **start** - date/time for start of reservation
+* **end** - date/time for end of reservation
+* **daterequested** - date/time reservation submitted
+* **datemodified** - date/time reservation modified
+* **checkuser** - flag to tell if reservation should be timed out if user is disconnect for &gt; 15 minutes - 0 not to do timeout, 1 to do timeout
 
 
-<a name="DatabaseSchema-reservationtable"></a>
 ### reservation table
-This table contains information about every current or future reservation. 
-There will be one entry in this table corresponding to each entry in the
-request table for normal reservations, and multiple entries (one for each
-node) in this one for each entry in the request table for cluster
-reservations.
+This table contains information about every current or future reservation.  There will be one entry in this table corresponding to each entry in the request table for normal reservations, and multiple entries (one for each node) in this one for each entry in the request table for cluster reservations.
 
-id - id of entry
-requestid - reference to request.id - corresponding entry in request table
-computerid - reference to computer.id - computer assigned to this
-reservation
-imageid - reference to image.id - image deployed on computer
-imagerevisionid - reference to imagerevision.id - image revision to be
-deployed on computer
-managementnodeid - reference to managementnode.id - management node
-handling this reservation
-remoteIP - IP address of user's machine
-lastcheck - date/time reservation last checked by vcld
-pw - user's password for reservation - leave empty to signify user should
-use enterprise authentication password
-connectIP - (unused)
-connectport - (unused)
+* **id** - id of entry
+* **requestid** - reference to request.id - corresponding entry in request table
+* **computerid** - reference to computer.id - computer assigned to this reservation
+* **imageid** - reference to image.id - image deployed on computer
+* **imagerevisionid** - reference to imagerevision.id - image revision to be deployed on computer
+* **managementnodeid** - reference to managementnode.id - management node handling this reservation
+* **remoteIP** - IP address of user's machine
+* **lastcheck** - date/time reservation last checked by vcld
+* **pw** - user's password for reservation - leave empty to signify user should use enterprise authentication password
+* **connectIP** - (unused)
+* **connectport** - (unused)
 
 
-<a name="DatabaseSchema-reservationaccountstable"></a>
 ### reservationaccounts table
-This table contains userids and passwords for additional accounts for
-server reservations.  There is not an entry for the owner of the
-reservation.  These correspond to the admin and login user groups.
+This table contains userids and passwords for additional accounts for server reservations.  There is not an entry for the owner of the reservation.  These correspond to the admin and login user groups.
 
-reservationid - reference to reservation.id
-userid - reference to user.id
-password - user's password for this reservation
+* **reservationid** - reference to reservation.id
+* **userid** - reference to user.id
+* **password** - user's password for this reservation
 
 
-<a name="DatabaseSchema-resourcetable"></a>
 ### resource table
-This table contains an entry for every resource VCL knows about.  Every
-resource has a unique id from this table, and a sub id from a resource
-specific table (computer, image, management node, etc).
+This table contains an entry for every resource VCL knows about.  Every resource has a unique id from this table, and a sub id from a resource specific table (computer, image, management node, etc).
 
-id - id of entry
-resourcetypeid - reference to resourcetype.id - type of this resource
-subid - reference to id from specific resource table (computer.id,
-image.id, managementnode.id, etc)
+* **id** - id of entry
+* **resourcetypeid** - reference to resourcetype.id - type of this resource
+* **subid** - reference to id from specific resource table (computer.id, image.id, managementnode.id, etc)
 
 
-<a name="DatabaseSchema-resourcegrouptable"></a>
 ### resourcegroup table
 This table contains all of the resource groups.
 
-id - id of entry
-name - name of entry
-ownerusergroupid - reference to usergroup.id - user group that owns this
-resource group
-resourcetypeid - reference to resourcetype.id - type of this resource group
+* **id** - id of entry
+* **name** - name of entry
+* **ownerusergroupid** - reference to usergroup.id - user group that owns this resource group
+* **resourcetypeid** - reference to resourcetype.id - type of this resource group
 
 
-<a name="DatabaseSchema-resourcegroupmemberstable"></a>
 ### resourcegroupmembers table
 This table contains a list of which resources are in which resource groups.
 
-resourceid - reference to resource.id
-resourcegroupid - reference to resourcegroup.id
+* **resourceid** - reference to resource.id
+* **resourcegroupid** - reference to resourcegroup.id
 
 
-<a name="DatabaseSchema-resourcemaptable"></a>
 ### resourcemap table
 This table contains which resource groups map to other resource groups.
 
@@ -669,356 +498,273 @@ resourcegroupid2 - reference to resourcegroup.id
 resourcetypeid2 - reference to resourcetype.id
 
 
-<a name="DatabaseSchema-resourceprivtable"></a>
 ### resourcepriv table
 This table contains the attributes that can be granted to resource groups.
 
-id - id of entry
-resourcegroupid - reference to resourcegroup.id - resource group being
-assigned attribute
-privnodeid - reference to privnode.id - node where attribute being assigned
-type - block, cascade, available, administer, manageGroup, or manageMapping
-- attribute being assigned at node
+* **id** - id of entry
+* **resourcegroupid** - reference to resourcegroup.id - resource group being assigned attribute
+* **privnodeid** - reference to privnode.id - node where attribute being assigned
+* **type** - block, cascade, available, administer, manageGroup, or manageMapping - attribute being assigned at node
 
 
-<a name="DatabaseSchema-resourcetypetable"></a>
 ### resourcetype table
 This table contains a list of all the resource types.
 
-id - id of entry
-name - name of entry
+* **id** - id of entry
+* **name** - name of entry
 
 
-<a name="DatabaseSchema-scheduletable"></a>
 ### schedule table
 This table contains all of the schedules available.
 
-id - id of entry
-name - name of entry
-ownerid - reference to user.id - owner of schedule
+* **id** - id of entry
+* **name** - name of entry
+* **ownerid** - reference to user.id - owner of schedule
 
 
-<a name="DatabaseSchema-scheduletimestable"></a>
 ### scheduletimes table
-This table contains all of the starts/ends of the time slots for each
-schedule.  Schedules are what times during a week that computers are
-available.  They run from midnight Sunday morning (0) to midnight Sunday
-morning one week later (10080).
 
-scheduleid - reference to schedule.id
-start - start of time slot in minutes since midnight Sunday morning
-end - end of time slot in minutes since midnight Sunday morning
+This table contains all of the starts/ends of the time slots for each schedule.  Schedules are what times during a week that computers are available.  They run from midnight Sunday morning (0) to midnight Sunday morning one week later (10080).
+
+* **scheduleid** - reference to schedule.id
+* **start** - start of time slot in minutes since midnight Sunday morning
+* **end** - end of time slot in minutes since midnight Sunday morning
 
 
-<a name="DatabaseSchema-serverprofiletable"></a>
 ### serverprofile table
 This table contains all of the server profiles.
 
-id - id of entry
-name - name of entry
-description - info about profile
-imageid - reference to image.id
-ownerid - reference to user.id - owner of this profile
-ending - specified or indefinite - how reservations for this profile will
-typically end
-fixedIP - IP address reservations for this profile will typically use
-fixedMAC - MAC address reservations for this profile will typically use
-admingroupid - reference to usergroup.id
-logingroupid - reference to usergroup.id
-monitored - 
+* **id** - id of entry
+* **name** - name of entry
+* **description** - info about profile
+* **imageid** - reference to image.id
+* **ownerid** - reference to user.id - owner of this profile
+* **ending** - specified or indefinite - how reservations for this profile will typically end
+* **fixedIP** - IP address reservations for this profile will typically use
+* **fixedMAC** - MAC address reservations for this profile will typically use
+* **admingroupid** - reference to usergroup.id
+* **logingroupid** - reference to usergroup.id
+* **monitored** - 
 
 
-<a name="DatabaseSchema-serverrequesttable"></a>
 ### serverrequest table
 This table contains an entry for each server reservation.
 
-id - id of entry
-serverprofileid - reference to serverprofile.id - 0 if no profile used or
-too many items changed from profile
-requestid - reference to request.id - main request entry associated with
-this server reservation
-fixedIP - IP address to use on deployed machine
-fixedMAC - MAC address to use on deployed machine
-admingroupid - reference to usergroup.id - user group containing users that
-should be able to control this reservation and have admin access to the
-machine
-logingroupid - reference to usergroup.id - user group containing users that
-should be only be able to log in to this machine (will see reservation, but
-only the Connect button)
-monitored - 1 to have this reservation monitored, 0 otherwise
+* **id** - id of entry
+* **serverprofileid** - reference to serverprofile.id - 0 if no profile used or too many items changed from profile
+* **requestid** - reference to request.id - main request entry associated with this server reservation
+* **fixedIP** - IP address to use on deployed machine
+* **fixedMAC** - MAC address to use on deployed machine
+* **admingroupid** - reference to usergroup.id - user group containing users that should be able to control this reservation and have admin access to the machine
+* **logingroupid** - reference to usergroup.id - user group containing users that should be only be able to log in to this machine (will see reservation, but only the Connect button)
+* **monitored** - 1 to have this reservation monitored, 0 otherwise
 
 
-<a name="DatabaseSchema-shibauthtable"></a>
 ### shibauth table
-This table contains authentication information related to shibboleth
-logins.
+This table contains authentication information related to shibboleth logins.
 
-id - id of entry
-userid - reference to user.id - user entry associated with
-ts - date/time entry was inserted
-sessid - shib session id
-data - various shibboleth related data passed in from httpd
+* **id** - id of entry
+* **userid** - reference to user.id - user entry associated with
+* **ts** - date/time entry was inserted
+* **sessid** - shib session id
+* **data** - various shibboleth related data passed in from httpd
 
 
-<a name="DatabaseSchema-sitemaintenancetable"></a>
 ### sitemaintenance table
-This table contains an entry for any active or upcoming scheduled site
-maintenance windows.
+This table contains an entry for any active or upcoming scheduled site maintenance windows.
 
-id - id of entry
-start - date/time for start of maintenance window
-end - date/time for end of maintenance window
-ownerid - reference to user.id - owner of this entry
-created - date/time entry created
-reason - info about why maintenance is scheduled
-usermessage - message that will be displayed to users about the maintenance
-informhoursahead - hours before the start time that a warning should be
-displayed on the VCL site about upcoming maintenance
-allowreservations - 1 to allow reservations to be scheduled ahead of time
-that overlap with the window, 0 to keep overlapping future reservations
-from being scheduled
+* **id** - id of entry
+* **start** - date/time for start of maintenance window
+* **end** - date/time for end of maintenance window
+* **ownerid** - reference to user.id - owner of this entry
+* **created** - date/time entry created
+* **reason** - info about why maintenance is scheduled
+* **usermessage** - message that will be displayed to users about the maintenance
+* **informhoursahead** - hours before the start time that a warning should be displayed on the VCL site about upcoming maintenance
+* **allowreservations** - 1 to allow reservations to be scheduled ahead of time that overlap with the window, 0 to keep overlapping future reservations from being scheduled
 
-
-<a name="DatabaseSchema-statetable"></a>
 ### state table
-This table contains all of the states used in VCL.  Not all states are used
-any place where states are used.  For example, there are states used in the
-request table that are not used in the computer table.
+This table contains all of the states used in VCL.  Not all states are used any place where states are used.  For example, there are states used in the request table that are not used in the computer table.
 
-id - id of entry
-name - name of entry
+* **id** - id of entry
+* **name** - name of entry
 
 
-<a name="DatabaseSchema-statgraphcachetable"></a>
 ### statgraphcache table
-This table contains cached values for the stat graphs.	Some of the data
-points take enough computation time that it is prohibitive to calculate
-them for really long periods of time.  This table allows historical points
-to computed once and then saved forever.
+This table contains cached values for the stat graphs.  Some of the data points take enough computation time that it is prohibitive to calculate them for really long periods of time.  This table allows historical points to computed once and then saved forever.
 
-graphtype - totalres, concurres, concurblade, or concurvm - type of graph
-for this entry
-statdate - date for this entry
-affiliationid - affiliation for this entry
-value - data point value for this entry
+* **graphtype** - totalres, concurres, concurblade, or concurvm - type of graph for this entry
+* **statdate** - date for this entry
+* **affiliationid** - affiliation for this entry
+* **value** - data point value for this entry
 
 
-<a name="DatabaseSchema-subimagestable"></a>
 ### subimages table
 This table contains a list of sub images associated with any clusters.
 
-imagemetaid - reference to imagemeta.id
-imageid - reference to image.id - subimage associated with imagemetaid
+* **imagemetaid** - reference to imagemeta.id
+* **imageid** - reference to image.id - subimage associated with imagemetaid
 
 
-<a name="DatabaseSchema-sublogtable"></a>
 ### sublog table
-This table contains an entry for each computer that was part of a log table
-entry.	For normal reservations, this is a single entry; for cluster
-reservations, it is one entry for each subimage.
+This table contains an entry for each computer that was part of a log table entry.  For normal reservations, this is a single entry; for cluster reservations, it is one entry for each subimage.
 
-logid - reference to log.id - corresponding entry in log table
-imageid - reference to image.id - image deployed for this reservation
-imagerevisionid - reference to imagerevision.id - image revision deployed
-for this reservation
-computerid - reference to computer.id - computer deployed for this
-reservation
-IPaddress - IP address of computer during this deploy
-managementnodeid - reference to managementnode.id - management node that
-handled this deploy
-predictivemoduleid - reference to module.id - prediction module used to
-load image when this reservation finished ??
-hostcomputerid - reference to computer.id - for VMs, this was the host the
-VM was deployed to
+* **logid** - reference to log.id - corresponding entry in log table
+* **imageid** - reference to image.id - image deployed for this reservation
+* **imagerevisionid** - reference to imagerevision.id - image revision deployed for this reservation
+* **computerid** - reference to computer.id - computer deployed for this reservation
+* **IPaddress** - IP address of computer during this deploy
+* **managementnodeid** - reference to managementnode.id - management node that handled this deploy
+* **predictivemoduleid** - reference to module.id - prediction module used to load image when this reservation finished ??
+* **hostcomputerid** - reference to computer.id - for VMs, this was the host the VM was deployed to
 
 
-<a name="DatabaseSchema-usertable"></a>
 ### user table
-This table contains an entry for every user that has every logged in to
-VCL.
+This table contains an entry for every user that has every logged in to VCL.
 
-id - id of entry
-uid - numeric id of user for accounts on deployed reservations
-unityid - normal user id for user
-affiliationid - reference to affiliation.id - affiliation of user
-firstname - first name of user
-lastname - last name of user
-preferredname - preferred name of user
-email - email address of user
-emailnotices - 1 to get email notices, 0 otherwise
-IMtypeid - reference to IMtype.id - type of IM address in IMid
-IMid - IM account for user
-adminlevelid - reference to adminlevel.id - deprecated
-width - screen width for RDP files
-height - screen height for RDP files
-bpp - color depth for RDP files
-audiomode - audio mode for RDP files
-mapdrives - drive mapping status for RDP files
-mapprinters - printer mapping status for RDP files
-mapserial - serial mapping status for RDP files
-showallgroups - 1 to show user groups from all affiliations where user
-groups can be selected, 0 to only show user groups matching user's
-affiliation
-lastupdated - date/time user's info was last updated
+* **id** - id of entry
+* **uid** - numeric id of user for accounts on deployed reservations
+* **unityid** - normal user id for user
+* **affiliationid** - reference to affiliation.id - affiliation of user
+* **firstname** - first name of user
+* **lastname** - last name of user
+* **preferredname** - preferred name of user
+* **email** - email address of user
+* **emailnotices** - 1 to get email notices, 0 otherwise
+* **IMtypeid** - reference to IMtype.id - type of IM address in IMid
+* **IMid** - IM account for user
+* **adminlevelid** - reference to adminlevel.id - deprecated
+* **width** - screen width for RDP files
+* **height** - screen height for RDP files
+* **bpp** - color depth for RDP files
+* **audiomode** - audio mode for RDP files
+* **mapdrives** - drive mapping status for RDP files
+* **mapprinters** - printer mapping status for RDP files
+* **mapserial** - serial mapping status for RDP files
+* **showallgroups** - 1 to show user groups from all affiliations where user groups can be selected, 0 to only show user groups matching user's affiliation
+* **lastupdated** - date/time user's info was last updated
 
 
-<a name="DatabaseSchema-usergrouptable"></a>
 ### usergroup table
 This table contains all of the user groups.
 
-id - id of entry
-name - name of entry
-affiliationid - reference to affiliation.id - affiliation of user group
-ownerid - reference to user.id - owner of user group
-editusergroupid - reference to usergroup.id - user group that can edit
-membership of this one
-custom - 1 for groups created on user groups page, 0 otherwise
-courseroll - 1 for user group created by courseroll scripts, 0 otherwise
-initialmaxtime - max time allowed for initial reservation creation for user
-group
-totalmaxtime - total time allowed for reservations created by users in this
-group
-maxextendtime - max time allowed per extension for users in this group
-overlapResCount - number of allowed overlapping reservations for users in
-this group (note that 1 is invalid as it doesn't make sense)
+* **id** - id of entry
+* **name** - name of entry
+* **affiliationid** - reference to affiliation.id - affiliation of user group
+* **ownerid** - reference to user.id - owner of user group
+* **editusergroupid** - reference to usergroup.id - user group that can edit membership of this one
+* **custom** - 1 for groups created on user groups page, 0 otherwise
+* **courseroll** - 1 for user group created by courseroll scripts, 0 otherwise
+* **initialmaxtime** - max time allowed for initial reservation creation for user group
+* **totalmaxtime** - total time allowed for reservations created by users in this group
+* **maxextendtime** - max time allowed per extension for users in this group
+* **overlapResCount** - number of allowed overlapping reservations for users in this group (note that 1 is invalid as it doesn't make sense)
 
-
-<a name="DatabaseSchema-usergroupmemberstable"></a>
 ### usergroupmembers table
 This table tracks which users are members of which user groups.
 
-userid - reference to user.id
-usergroupid - reference to usergroup.id
+* **userid** - reference to user.id
+* **usergroupid** - reference to usergroup.id
 
 
-<a name="DatabaseSchema-usergroupprivtable"></a>
 ### usergrouppriv table
-This table is a list of which additional user group privileges have been
-assigned to which user groups.
+This table is a list of which additional user group privileges have been assigned to which user groups.
 
-usergroupid - reference to usergroup.id
-userprivtypeid - reference to usergroupprivtype.id - it probably should
-have been named usergroupprivtypeid
+* **usergroupid** - reference to usergroup.id
+* **userprivtypeid** - reference to usergroupprivtype.id - it probably should have been named usergroupprivtypeid
 
 
-<a name="DatabaseSchema-usergroupprivtypetable"></a>
 ### usergroupprivtype table
-This table contains additional privileges that can be associated with user
-groups that don't make sense to have at any particular privilege node.
+This table contains additional privileges that can be associated with user groups that don't make sense to have at any particular privilege node.
 
-id - id of entry
-name - name of entry
-help - explaination of privilege type
+* **id** - id of entry
+* **name** - name of entry
+* **help** - explaination of privilege type
 
 
-<a name="DatabaseSchema-userprivtable"></a>
 ### userpriv table
-This table contains the user and user group privileges assigned in the
-privilege tree.
+This table contains the user and user group privileges assigned in the privilege tree.
 
-id - id of entry
-userid - reference to user.id
-usergroupid - reference to usergroup.id
-privnodeid - reference to privnode.id - node where user privilege being
-granted
-userprivtypeid - reference to userprivtype.id - user privilege being
-granted
+* **id** - id of entry
+* **userid** - reference to user.id
+* **usergroupid** - reference to usergroup.id
+* **privnodeid** - reference to privnode.id - node where user privilege being granted
+* **userprivtypeid** - reference to userprivtype.id - user privilege being granted
 
 
-<a name="DatabaseSchema-userprivtypetable"></a>
 ### userprivtype table
 This table contains all of the available user privileges.
 
-id - id of entry
-name - name of entry
+* **id** - id of entry
+* **name** - name of entry
 
 
-<a name="DatabaseSchema-variabletable"></a>
 ### variable table
-This table is a place to store any generic data.  It can be settings that
-stay around forever, or things that only need to be temporarily stored.  It
-also provides for a place for the frontend and backend to share less
-structured information that what is in other tables.
+This table is a place to store any generic data.  It can be settings that stay around forever, or things that only need to be temporarily stored.  It also provides for a place for the frontend and backend to share less structured information that what is in other tables.
 
-id - id of entry
-name - name of entry
-serialization - serialization method used for storing data
-value - data stored
-setby - what set the entry - perl module, web code, etc
-timestamp - date/time entry set
+* **id** - id of entry
+* **name** - name of entry
+* **serialization** - serialization method used for storing data
+* **value** - data stored
+* **setby** - what set the entry - perl module, web code, etc
+* **timestamp** - date/time entry set
 
 
-<a name="DatabaseSchema-vmhosttable"></a>
 ### vmhost table
+
 This table contains an entry for each virtual host.
 
-id - id of entry
-computerid - reference to computer.id - physical machine entry refers to
-vmlimit - max number of VMs that can be on this host
-vmprofileid - reference to vmprofile.id - profile being used on this host
-vmkernalnic - ??
-vmwaredisk - localdisk or networkdisk - ??
+* **id** - id of entry
+* **computerid** - reference to computer.id - physical machine entry refers to
+* **vmlimit** - max number of VMs that can be on this host
+* **vmprofileid** - reference to vmprofile.id - profile being used on this host
+* **vmkernalnic** - ??
+* **vmwaredisk** - localdisk or networkdisk - ??
 
 
-<a name="DatabaseSchema-vmprofiletable"></a>
 ### vmprofile table
 This table contains an entry for each virtual host profile.
 
-id - id of entry
-profilename - name of the profile
-vmtypeid - reference to vmtype.id - hypervisor type of this profile
-imageid - reference to image.id - image deployed on host
-repositorypath - ??
-datastorepath - ??
-virtualdiskpath - ??
-vmpath - ??
+* **id** - id of entry
+* **profilename** - name of the profile
+* **vmtypeid** - reference to vmtype.id - hypervisor type of this profile
+* **imageid** - reference to image.id - image deployed on host
+* **repositorypath** - ??
+* **datastorepath** - ??
+* **virtualdiskpath** - ??
+* **vmpath** - ??
 virtualswitch0 - name of virtual switch0
 virtualswitch1 - name of virtual switch1
 virtualswitch2 - name of virtual switch2
-virtualswitch3 - name of virtual switch3
-vmdisk - localdist or networkdisk - ??
-username - username to use when accessing hosts with this profile
-password - password to use when accessing hosts with this profile
-vmware_mac_eth0_generated - 1 to generate eth0 MAC for VMs on hosts with
-this profile, 0 to use MAC from computer table
-vmware_mac_eth1_generated - 1 to generate eth1 MAC for VMs on hosts with
-this profile, 0 to use MAC from computer table
-
-
-<a name="DatabaseSchema-vmtypetable"></a>
 ### vmtype table
 This table contains all of the virtual machine types.
 
-id - id of entry
-name - name of entry
+* **id** - id of entry
+* **name** - name of entry
 
 
-<a name="DatabaseSchema-winKMStable"></a>
 ### winKMS table
 This table contains Windows KMS licensing information.
 
-affiliationid - reference to affiliation.id
-address - IP address of KMS server
-port - port KMS server is listening on
+* **affiliationid** - reference to affiliation.id
+* **address** - IP address of KMS server
+* **port** - port KMS server is listening on
 
 
-<a name="DatabaseSchema-winProductKeytable"></a>
 ### winProductKey table
 This table contains Windows product key information.
 
-affiliationid - reference to affiliation.id
-productname - ??
-productkey - ??
+* **affiliationid** - reference to affiliation.id
+* **productname** - ??
+* **productkey** - ??
 
 
-<a name="DatabaseSchema-xmlrpcLogtable"></a>
 ### xmlrpcLog table
 This table logs each XML RPC API call.
 
-xmlrpcKeyid - reference to user.id - user that made API call (originally,
-every user got their own key, and this was a reference to another table)
-timestamp - date/time API call was made
-IPaddress - IP address from which API call was made
-method - function called through API
-apiversion - API version used
-comments - serialization of arguments passed to API method
+* **xmlrpcKeyid** - reference to user.id - user that made API call (originally, every user got their own key, and this was a reference to another table)
+* **timestamp** - date/time API call was made
+* **IPaddress** - IP address from which API call was made
+* **method** - function called through API
+* **apiversion** - API version used
+* **comments** - serialization of arguments passed to API method
