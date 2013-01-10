@@ -50,9 +50,9 @@ here. This only refers to the speed at which the VCL computer is connected
 to the network. It is not related to the end user's network connection.</td>
 </tr>
 </table>
-
-These advanced options are only related to the image itself.
-
+<br/>
+These advanced options are only related to the image itself.<br/>
+<br/>
 <table>
 <tr>
 <th>Maximum Concurrent Usage</th>
@@ -77,7 +77,7 @@ still need to be set for it to show up). The intended use of this field is
 for cluster environments where an image will have several sub images. In
 some of those cases, it doesn't make sense for end users to be able to make
 a reservation for the sub  images directly. In those cases, set this field
-to **No**. Otherwise, you should leave it as *Yes*.</td>
+to **No**. Otherwise, you should leave it as **Yes**.</td>
 </tr>
 <tr>
 <th>Check for logged in user</th>
