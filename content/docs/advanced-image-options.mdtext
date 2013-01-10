@@ -96,7 +96,7 @@ left as **Any**.</td>
 </tr>
 <tr>
 <th>Subimages</th>
-<td>This is used to create [Cluster Environments](cluster-environments.html)
+<td>This is used to create [Cluster Environments](creating-a-cluster-enviroment.html)
 . Any subimages listed here will be checked out in addition to this image
 when a reservation is made for this image.</td>
 </tr>
