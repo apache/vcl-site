@@ -16,15 +16,16 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-Once VCL is installed, you will need to create base images that are ready to deploy. Below are guides to assist in getting started:
+After VCL is installed, you need to create images for users. As part of the installation,
+you should have [created some base images](baseimagecreation.html) from which to start 
+building other images. The guides on this page explain how to create new images 
+through the VCL, starting from already created base images.
 
-####VMware or KVM based images
+## Creating Images
 
- - Creating a Windows image
- - Creating a Linux image
+* [Creating a New Image From a Base Image](creating-a-new-image-from-a-base-image.html)
+    * [Additional Steps for Windows Images](additional-steps-for-windows-images.html)
+    * [Additional Steps for Linux Images](additional-steps-for-linux-images.html)
+* [Configuring the Default User Profile](configure-the-default-profile.html)
 
 
-####xCAT based images
-
- - kickstart based images
- - partimag-ng based images
