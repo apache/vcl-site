@@ -49,23 +49,11 @@ changes as needed such as ownerid, in this example it is set to 1 or the
 admin user id.
 
     :::MySqlLexer
-    INSERT INTO `image` (id, `name`, `prettyname`, `ownerid`, `platformid`, `OSid`, 
-    `minram`, `minprocnumber`, `minprocspeed`, `minnetwork`,`reloadtime`, `deleted`, 
-    `lastupdate`, `forcheckout`, `maxinitialtime`,`project`, `size`) 
-    VALUES (25, 'rhel5-base25-v0', 'RHEL 5 base', 1, 1, 19, 1024, 1, 0, 10, 14, 
-    0, NOW(), 1, 0, 'vcl', 1045);
+    INSERT INTO `image` (id, `name`, `prettyname`, `ownerid`, `platformid`, `OSid`, `minram`, `minprocnumber`, `minprocspeed`, `minnetwork`,`reloadtime`, `deleted`, `lastupdate`, `forcheckout`, `maxinitialtime`,`project`, `size`) VALUES (25, 'rhel5-base25-v0', 'RHEL 5 base', 1, 1, 19, 1024, 1, 0, 10, 14, 0, NOW(), 1, 0, 'vcl', 1045);
 
+    INSERT INTO `imagerevision` (`imageid`, `revision`, `userid`, `datecreated`, `deleted`, `production`, `comments`, `imagename`) VALUES (25, 0, 1, NOW(), 0, 1, NULL, 'rhel5-base25-v0');
 
-    :::MySqlLexer
-    INSERT INTO `imagerevision` (`imageid`, `revision`, `userid`, `datecreated`, 
-    `deleted`, `production`, `comments`, `imagename`) 
-    VALUES (25, 0, 1, NOW(), 0, 1, NULL, 'rhel5-base25-v0');
-
-
-    :::MySqlLexer
     INSERT INTO `resource` (`resourcetypeid`, `subid`) VALUES (13, 25);
-
-
 
 Again, the xCAT template .tmpl file must match the the
 entry VCL database entry of image.name.
@@ -97,6 +85,4 @@ If VCL supports the OS, extending the OS table for a new OS is fairly
 straight forward. In this example we will use Red Hat 6.
 
     :::MySqlLexer
-    INSERT INTO `OS` (`name`, `prettyname`, `type`, `installtype`, `sourcepath`, 
-    `moduleid`) VALUES('rhel6','RedHat Enterprise 6','linux','kickstart','rhel6',
-    (SELECT `id` FROM `module` WHERE `name` LIKE 'os_linux'));
+    INSERT INTO `OS` (`name`, `prettyname`, `type`, `installtype`, `sourcepath`, `moduleid`) VALUES ('rhel6','RedHat Enterprise 6','linux','kickstart','rhel6', (SELECT `id` FROM `module` WHERE `name` LIKE 'os_linux'));
