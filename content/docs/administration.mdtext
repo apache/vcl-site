@@ -16,7 +16,6 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-
 ####General
 
 [Administration Concepts](authorization/administrationconcepts.html)
@@ -37,3 +36,4 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 
 [How to Increase the Size of a Virtual Machine Hard Drive under VMware ESXi](/docs/increasevmhdd.html)
 
+[Adding xCAT Kickstart Based Images](/docs/adding-xcat-kickstart-based-image.html)
