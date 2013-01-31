@@ -39,8 +39,8 @@ you want.
 1. Download [vcl.sql](https://svn.apache.org/repos/asf/vcl/trunk/mysql/vcl.sql)
 and the
 [derby-parser.pl](/comm/commprojects/derby-parser.pl).
- Edit the file *'derby-parser.pl'*. The variables corresponding to the
-*'user'* and *'password'* should match your database.
+ Edit the file *'derby-parser.pl'*. The variables 
+*'$user'* and *'$pw'* should match your database.
 
         :::BashLexer
         svn export https://svn.apache.org/repos/asf/vcl/trunk/mysql/vcl.sql
