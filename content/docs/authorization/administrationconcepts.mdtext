@@ -81,6 +81,9 @@ resources and also to allow VCL to know which resources can be used in relation 
 resources. One example of this is to configure which images can be deployed to which 
 computers. Another example is which management nodes can manage which computers.
 
+Resource Groups also have an *Owning User Group* associated with them. The owning 
+user group has administrative access to the group to manage the group within VCL. 
+
 ##Resource Management
 
 VCL needs to know how resources related to one another. This is done by adding the 
