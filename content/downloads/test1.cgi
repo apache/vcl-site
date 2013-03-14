@@ -6,7 +6,9 @@
 echo Content-type: text/plain
 echo ""
 
-if [[ "$HTTP_HOST" = "vcl.staging.apache.org" ]]; then
+echo "|${HTTP_HOST}|"
+
+if [[ "${HTTP_HOST}" = "vcl.staging.apache.org" ]]; then
 	echo staging
 else
 	echo "not staging"
