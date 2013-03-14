@@ -6,8 +6,11 @@
 echo Content-type: text/plain
 echo ""
 
-echo "testing"
-env
+if [[ "$HTTP_HOST" = "vcl.staging.apache.org" ]]; then
+	echo staging
+elif
+	echo "not staging"
+fi
 
 #cd /www/vcl.apache.org/content/downloads
 #/www/vcl.apache.org/content/downloads/test2.cgi $*
