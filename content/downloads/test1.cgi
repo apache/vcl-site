@@ -8,7 +8,7 @@ echo ""
 
 if [[ "$HTTP_HOST" = "vcl.staging.apache.org" ]]; then
 	echo staging
-elif
+else
 	echo "not staging"
 fi
 
