@@ -7,6 +7,7 @@ echo Content-type: text/plain
 echo ""
 
 echo "testing"
+env
 
 #cd /www/vcl.apache.org/content/downloads
 #/www/vcl.apache.org/content/downloads/test2.cgi $*
