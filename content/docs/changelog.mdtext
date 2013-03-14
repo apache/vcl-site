@@ -16,8 +16,18 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-<a name="2.3.1"></a>
-## 2.3.1 Changes
+## 2.3.2 Changes {#2.3.2}
+
+###        Bug
+
+
+* [<a href='https://issues.apache.org/jira/browse/VCL-666'>VCL-666</a>] -         Administrator is always passed as the userid in RDP files for imaging reservations, even if it is for xRDP
+* [<a href='https://issues.apache.org/jira/browse/VCL-671'>VCL-671</a>] -         VMware may delete VM assigned to another reservation when reclaiming disk space on the host
+* [<a href='https://issues.apache.org/jira/browse/VCL-674'>VCL-674</a>] -         problem adding a user group to the privilege with cascade checked
+* [<a href='https://issues.apache.org/jira/browse/VCL-675'>VCL-675</a>] -         deleting a hierarchy of 3 or more privilege nodes throws an error
+
+
+## 2.3.1 Changes {#2.3.1}
 
 ###        Bug
 
@@ -72,3 +82,37 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 
 
 * [<a href='https://issues.apache.org/jira/browse/VCL-617'>VCL-617</a>] -         new XML-RPC methods
+
+
+# 2.2.2 Changes {#2.2.2}
+
+###        Bug
+
+
+* [<a href='https://issues.apache.org/jira/browse/VCL-328'>VCL-328</a>] -         shibboleth sp logout URL not using SSL
+* [<a href='https://issues.apache.org/jira/browse/VCL-342'>VCL-342</a>] -         problem selecting image revision id when making a cluster reservation with identical subimages
+* [<a href='https://issues.apache.org/jira/browse/VCL-348'>VCL-348</a>] -         Setting privileges in web gui -- Slightly broken
+* [<a href='https://issues.apache.org/jira/browse/VCL-400'>VCL-400</a>] -         virtual hosts page shows all unassigned vms instead of checking which ones the user can access
+* [<a href='https://issues.apache.org/jira/browse/VCL-433'>VCL-433</a>] -         new revisions can be captured of kickstart images
+* [<a href='https://issues.apache.org/jira/browse/VCL-447'>VCL-447</a>] -         Notice: Uninitialized string offset: 0 in .../vcl/.ht-inc/utils.php on line 3206
+* [<a href='https://issues.apache.org/jira/browse/VCL-456'>VCL-456</a>] -         groupwasnone variable is not properly initialized
+* [<a href='https://issues.apache.org/jira/browse/VCL-458'>VCL-458</a>] -         $virtual undefined in utils.php line 3678
+* [<a href='https://issues.apache.org/jira/browse/VCL-467'>VCL-467</a>] -         Members of a group from one affiliation have access to groups with the same name from other affiliations
+* [<a href='https://issues.apache.org/jira/browse/VCL-473'>VCL-473</a>] -         query in findManagementNode in utils.php doesn&#39;t have conditional to join tables
+* [<a href='https://issues.apache.org/jira/browse/VCL-475'>VCL-475</a>] -         addShibUser in shibauth.php returns an array when it should be returning a user id
+* [<a href='https://issues.apache.org/jira/browse/VCL-476'>VCL-476</a>] -         manage block allocation page may show incorrect next start time
+* [<a href='https://issues.apache.org/jira/browse/VCL-480'>VCL-480</a>] -         XMLRPCproccessBlockTime can throw an error about VMhostCheck table already existing
+* [<a href='https://issues.apache.org/jira/browse/VCL-482'>VCL-482</a>] -         scheduler does not order VMs properly when no VMs are preloaded with the selected image
+* [<a href='https://issues.apache.org/jira/browse/VCL-486'>VCL-486</a>] -         Measures against cross site scripting on the Login form
+* [<a href='https://issues.apache.org/jira/browse/VCL-487'>VCL-487</a>] -         Problem in screen transition after successful login authentication
+* [<a href='https://issues.apache.org/jira/browse/VCL-492'>VCL-492</a>] -         edit computer info for VM in maintenance state
+* [<a href='https://issues.apache.org/jira/browse/VCL-494'>VCL-494</a>] -         Typo in testsetup.php
+* [<a href='https://issues.apache.org/jira/browse/VCL-507'>VCL-507</a>] -         Deleted VMs appear in the list of unassigned VMs
+* [<a href='https://issues.apache.org/jira/browse/VCL-509'>VCL-509</a>] -         error when adding computer with no groups selected
+* [<a href='https://issues.apache.org/jira/browse/VCL-510'>VCL-510</a>] -         insert correct architecture in image table when adding new entry
+* [<a href='https://issues.apache.org/jira/browse/VCL-533'>VCL-533</a>] -         error when trying to download dhcp data when private IP address was not entered
+* [<a href='https://issues.apache.org/jira/browse/VCL-547'>VCL-547</a>] -         removing site maintenance entry from .ht-inc/maintenance directory doesn&#39;t fully remove site from maintenance
+* [<a href='https://issues.apache.org/jira/browse/VCL-549'>VCL-549</a>] -         AJAX error when creating a new schedule
+* [<a href='https://issues.apache.org/jira/browse/VCL-556'>VCL-556</a>] -         edit schedule groups code not doing permissions correctly
+* [<a href='https://issues.apache.org/jira/browse/VCL-674'>VCL-674</a>] -         problem adding a user group to the privilege with cascade checked
+* [<a href='https://issues.apache.org/jira/browse/VCL-675'>VCL-675</a>] -         deleting a hierarchy of 3 or more privilege nodes throws an error
