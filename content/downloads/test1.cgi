@@ -8,7 +8,7 @@ echo ""
 
 echo "|${HTTP_HOST}|"
 
-if [[ "${HTTP_HOST}" = "vcl.staging.apache.org" ]]; then
+if [ "${HTTP_HOST}" = "vcl.staging.apache.org" ]; then
 	echo staging
 else
 	echo "not staging"
