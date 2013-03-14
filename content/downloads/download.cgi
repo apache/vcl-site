@@ -3,9 +3,9 @@
 # (we must change to that directory in order for python to pick up the
 #  python includes correctly)
 
-echo Content-type: text/plain
+echo "Content-type: text/plain"
 
-env
+echo "test"
 
 #cd /www/vcl.apache.org/content/downloads
 #/www/vcl.apache.org/content/downloads/mirrors.cgi $*
