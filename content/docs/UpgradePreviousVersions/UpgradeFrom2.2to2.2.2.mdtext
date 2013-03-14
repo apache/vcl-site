@@ -77,8 +77,7 @@ $vclusername. The secrets.php file might have something like:
         :::PhpLexer
         $vclhost = 'localhost';
         $vcluser = 'vcluser';
-
- Then, you need to issue the grant command to mysql. Using the values from above 
+Then, you need to issue the grant command to mysql. Using the values from above 
 as examples, connect to mysql and then issue the grant command:
 
         :::MysqlLexer
@@ -122,8 +121,8 @@ user group under Privileges->Additional User Permissions->Manage Block Allocatio
 Users with this permission are notified of new block allocation requests. 
 <b>Remove the following from conf.php</b>.
 	
-            :::BashLexer
-            $blockNotifyUsers
+        :::BashLexer
+        $blockNotifyUsers
     </li>
     <li> A new user group permission that controls who can look up users globally 
 or for a specific affiliation has been added. It can be granted to any user group 
@@ -131,43 +130,43 @@ under Privileges->Additional User Permissions->User Lookup. Users with this
 permission can look up information about other users. 
 <b>Remove the following from conf.php</b>.
 	
-            :::BashLexer
-            $userlookupUsers
+        :::BashLexer
+        $userlookupUsers
     </li>
     </ol>
 
 1. **Restart httpd service**
 
-            :::BashLexer
-            service httpd start or /etc/init.d/httpd start
+        :::BashLexer
+        service httpd start or /etc/init.d/httpd start
 
 1. **Update management node code** This step will make a backup copy of the 2.2 vcl code 
 base and then copy the new code over the existing code to preserve any drivers or other 
 files you've added.
 	
-            :::BashLexer
-            cd <your vcl MN code root path>
-            ie. cd /usr/local/
-            cp -r vcl ~/vcl_2.2_managementnode
+        :::BashLexer
+        cd <your vcl MN code root path>
+        ie. cd /usr/local/
+        cp -r vcl ~/vcl_2.2_managementnode
 
 1. **Copy in the 2.2.2 code base to /usr/local**, copying in should preserve any drivers 
 or other files you've added.
 	
-            :::BashLexer
-            /bin/cp -r /root/apache-VCL-2.2.2/managementnode/* /usr/local/vcl
+        :::BashLexer
+        /bin/cp -r /root/apache-VCL-2.2.2/managementnode/* /usr/local/vcl
 
 1. **Run install_perl_libs.pl** to add any new perl library requirements:
 	
-            :::BashLexer
-            /usr/local/vcl/bin/install_perl_libs.pl
+        :::BashLexer
+        /usr/local/vcl/bin/install_perl_libs.pl
 
 1. **Restart vcld service**
 	
-            :::BashLexer
-            service vcld start or /etc/init.d/vcld start
+        :::BashLexer
+        service vcld start or /etc/init.d/vcld start
 
 1. Make some test reservations and watch the vcld.log to verify everything is working 
 correctly.
 
-            :::BashLexer
-            tail -f /var/log/vcld.log
+        :::BashLexer
+        tail -f /var/log/vcld.log
