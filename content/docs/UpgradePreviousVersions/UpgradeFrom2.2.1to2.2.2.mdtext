@@ -51,8 +51,8 @@ good idea to have a backup.
         :::BashLexer
         mysqldump vcl > ~/vcl-pre2.2.2-upgrade.sql
 
-1. **Backup the web code**. This step we will move the 2.2.1 web directory out of the 
-way, so we can copy in the new web code base. These instructions assume that you installed the 
+1. **Backup the web code**. This step will move the 2.2.1 web directory out of the 
+way so we can copy in the new web code base. These instructions assume that you installed the 
 vcl web code at /var/www/html/vcl. If you installed it elsewhere, replace 
 /var/www/html/vcl with your vcl web root.
 
