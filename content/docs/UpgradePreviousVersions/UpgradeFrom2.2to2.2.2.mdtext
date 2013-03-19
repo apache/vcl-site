@@ -85,7 +85,7 @@ as examples, connect to mysql and then issue the grant command:
         GRANT CREATE TEMPORARY TABLES ON `vcl`.* TO 'vcluser'@'localhost';
         exit
 
-1. **Update the web code**. This step we will move the 2.2 web directory out 
+1. **Update the web code**. This step will move the 2.2 web directory out 
 of the way, so we can copy in the new web code base. After copying in the new 
 code, we will migrate your configuration changes. These instructions assume that 
 you installed the vcl web code at /var/www/html/vcl. If you installed it 
