@@ -1,10 +1,12 @@
-Title: Lab.pm provisioning module
+Title: Using VCL to Broker Access to Pre-installed Machines
+
 The Lab.pm provisioning module is used to broker access to standalone
 pre-installed Linux or Solaris machines. These machines could be in an
 existing walk-in computer lab or racked in a server room.
 
 There are four main parts needed to setup a standalone machine to use with
 the Lab.pm module.
+
 1. a non-root account called vclstaff on the target machines
 1. ssh idenitity key for vclstaff account, this key is used by the vcld
 process on the management node
@@ -15,8 +17,7 @@ directory of the vcld release
 For distribution to a large set of machines, an rpm or package could be
 created to distribute vclclientd and related files.
 
-<a name="Lab.pmprovisioningmodule-Howitworks."></a>
-# How it works.
+# How it works {#howitworks}
 The Lab.pm module confirms an assigned node or lab machine is accessible
 using the ssh identity key on port 24. If this succeeds, then a small
 configuration file with the state, user's id and the users' remote IP
@@ -24,172 +25,166 @@ address is sent to the node along with a flag to trigger the vclclientd
 process to either open or close the remote access port. Currently this
 module only supports Linux and Solaris lab machines. 
 
-
-<a name="Lab.pmprovisioningmodule-"></a>
-# 
-
-
-<a name="Lab.pmprovisioningmodule-Howtosetup:"></a>
-# How to setup:
+# How to setup: {#howtosetup}
 
 All commands are run as root.
 
 
-*1.* Create the non-root vclstaff account on target machine
+1. Create the non-root vclstaff account on target machine
 
-     on linux: useradd -d /home/vclstaff -m vclstaff
+        :::BashLexer
+        on linux: useradd -d /home/vclstaff -m vclstaff
 
-*2.* Generate ssh identity keys for vclstaff account. Do not enter a
-passphrase for the key, just hit enter when prompted.
+2. Generate ssh identity keys for vclstaff account. Do not enter a passphrase for 
+the key, just hit enter when prompted.
 
-    su - vclstaff
-    ssh-keygen -t rsa
-    Generating public/private rsa key pair.
-    Enter file in which to save the key (/home/vclstaff/.ssh/id_rsa):
-    Created directory '/home/vclstaff/.ssh'.
-    Enter passphrase (empty for no passphrase):
-    Enter same passphrase again:
-    Your identification has been saved in /home/vclstaff/.ssh/id_rsa.
-    Your public key has been saved in /home/vclstaff/.ssh/id_rsa.pub.
-    The key fingerprint is:
-
-
+        :::BashLexer
+        su - vclstaff
+        ssh-keygen -t rsa
+        Generating public/private rsa key pair.
+        Enter file in which to save the key (/home/vclstaff/.ssh/id_rsa):
+        Created directory '/home/vclstaff/.ssh'.
+        Enter passphrase (empty for no passphrase):
+        Enter same passphrase again:
+        Your identification has been saved in /home/vclstaff/.ssh/id_rsa.
+        Your public key has been saved in /home/vclstaff/.ssh/id_rsa.pub.
+        The key fingerprint is:
 At this point we have created a private key /home/vclstaff/.ssh/id_rsa and
 the public key /home/vclstaff/.ssh/id_rsa.pub.
 
-Copy the public key to /home/vclstaff/.ssh/authorized_keys file
+1. Copy the public key to /home/vclstaff/.ssh/authorized_keys file
 
-    cat /home/vclstaff/.ssh/id_rsa.pub > /home/vclstaff/.ssh/authorized_keys
+        :::BashLexer
+        cat /home/vclstaff/.ssh/id_rsa.pub > /home/vclstaff/.ssh/authorized_keys
 
-
-Copy the private key to the management node. This can be stored in
+1. Copy the private key to the management node. This can be stored in
 /etc/vcl/lab.key. This private key is used by vcld to remotely log into the
 the lab machine.
 
+1. Edit /etc/vcld.conf
+Set the variables IDENTITY_linux_lab and IDENTITY_solaris_lab to use this new key.
+It should look like:
 
-    Edit /etc/vcld.conf
-    Set the variables IDENTITY_linux_lab and IDENTITY_solaris_lab to use this
-new key.
-    It should look like:
-    IDENTITY_solaris_lab=/etc/vcl/lab.key
-    IDENTITY_linux_lab=/etc/vcl/lab.key
+        :::BashLexer
+        IDENTITY_solaris_lab=/etc/vcl/lab.key
+        IDENTITY_linux_lab=/etc/vcl/lab.key
 
+1. Test out the newly created key from the vcl management node:
 
-Test out the newly created key from the vcl management node:
-ssh \-i /etc/vcl/lab.key vclstaff@target_lab_machine
+        :::BashLexer
+        ssh -i /etc/vcl/lab.key vclstaff@target_lab_machine
 
-*3.* Set ssh server on target machine to listen on port 24. Edit
+1. Set ssh server on target machine to listen on port 24. Edit
 /etc/ssh/sshd_config on target lab machine(s).
 
-    echo "Port 24" >> /etc/ssh/sshd_config
-
+        :::BashLexer
+        echo "Port 24" >> /etc/ssh/sshd_config
 For advanced ssh configurations one may need to also add vclstaff to the
 AllowUsers directive or some other group which would work with ones
 existing campus ssh login restrictions, if any.
 
-    Restart sshd: /etc/init.d/sshd restart
+1. restart sshd
 
-retest to make sure sshd is accessible on port 24
+        :::BashLexer
+        /etc/init.d/sshd restart
 
-    ssh -p24 -i /etc/vcl/lab.key vclstaff@target_lab_machine
+1. retest to make sure sshd is accessible on port 24
 
-*4.* Copy vclclientd and vclclientd init script to target_lab_machine, from
+        :::BashLexer
+        ssh -p24 -i /etc/vcl/lab.key vclstaff@target_lab_machine
+
+1. Copy vclclientd and vclclientd init script to target_lab_machine, from
 managenment node:
 
-    scp -P24 /usr/local/vcl/bin/vclclientd
-vclstaff@target_lab_machine:/home/vclstaff
-
-
-    scp -P24 /usr/local/vcl/bin/S99vclclient.linux
-target_lab_machine:/etc/init.d/S99vclclient.linux
+        :::BashLexer
+        scp -P24 /usr/local/vcl/bin/vclclientd vclstaff@target_lab_machine:/home/vclstaff
+        scp -P24 /usr/local/vcl/bin/S99vclclient.linux target_lab_machine:/etc/init.d/S99vclclient.linux
     
     add this start up script to the appropriate run time levels
 
-Start vclclientd :
-/etc/init.d/S99vclclient.linux start{*}5.* Add computers to the VCL
-database as one normally would.
+1. Start vclclientd:
 
-Make sure to select the Lab provisioning module it is labeled as "Computing
-Lab"
+        :::BashLexer
+        /etc/init.d/S99vclclient.linux start
 
-*6.* Insert an image into the image table for this lab machine:
+1. Add computers to the VCL database as one normally would. Make sure to set the 
+type of the computer to <b>lab</b> and the Provisioning Engine to <b>Computing Lab
+</b>
 
-    INSERT INTO `vcl`.`image`
-    (`id` ,
-    `name` ,
-    `prettyname` ,
-    `ownerid` ,
-    `platformid` ,
-    `OSid` ,
-    `imagemetaid` ,
-    `minram` ,
-    `minprocnumber` ,
-    `minprocspeed` ,
-    `minnetwork` ,
-    `maxconcurrent` ,
-    `reloadtime` ,
-    `deleted` ,
-    `test` ,
-    `lastupdate` ,
-    `forcheckout` ,
-    `maxinitialtime` ,
-    `project` ,
-    `size` ,
-    `architecture` ,
-    `description` ,
-    `usage` ,
-    `basedoffrevisionid`)
-    VALUES
-    ('8' , 'lab-machine-image1', 'Lab Machine image', '1', '1', '15', NULL,
-    '512', '1', '1024', '100', NULL , '5', '0', '0', NOW(), '1', '0', 'vcl',
-'1500',
-    'x86', NULL , NULL , '0'
-    );
+1. Insert an image into the image table for this lab machine. You can set name and
+prettyname to whatever you want. We'll use "lab-machine-image1" and "Lab Machine image"
+in the example SQL:
 
-Insert information into the imagerevision table. Note 'Lab Machine image'
+        :::MysqlLexer
+        INSERT INTO `vcl`.`image`
+        (`name`,
+        `prettyname`,
+        `ownerid`,
+        `imagetypeid`,
+        `platformid`,
+        `OSid`,
+        `lastupdate`,
+        `forcheckout`)
+        VALUES
+        ('lab-machine-image1',
+        'Lab Machine image',
+        '1',
+        (SELECT id FROM imagetype WHERE name = 'lab'),
+        '1',
+        (SELECT id FROM OS WHERE name = 'centos5'),
+        NOW(),
+        '1');
+
+1. Insert a record into the imagerevision table. Note 'Lab Machine image'
 can be what ever you want.
 
+        :::MysqlLexer
+        INSERT INTO `vcl`.`imagerevision` (
+        `imageid` ,
+        `revision` ,
+        `userid` ,
+        `datecreated` ,
+        `deleted` ,
+        `production` ,
+        `imagename`)
+        VALUES (
+        (SELECT id FROM image WHERE name = 'lab-machine-image1'),
+        0,
+        1,
+        NOW(),
+        0,
+        1,
+        'lab-machine-image1')
 
-    INSERT INTO `vcl`.`imagerevision` (
-    `id` ,
-    `imageid` ,
-    `revision` ,
-    `userid` ,
-    `datecreated` ,
-    `deleted` ,
-    `datedeleted` ,
-    `production` ,
-    `comments` ,
-    `imagename`
-    )
-    VALUES (
-    NULL , '8', '1', '1', NOW(), '0', NULL , '1', NULL , 'lab-machine-image1'
-    )
+1. Insert a record into the resource table.
 
-Insert information into the resource table.
+        :::MysqlLexer
+        INSERT INTO `vcl`.`resource` (
+        `resourcetypeid` ,
+        `subid`
+        )
+        VALUES (
+        13,
+        (SELECT id FROM image WHERE name = "lab-machine-image1")
+        )
 
+1. Set up the image to computer group mappings and grant access.
 
-    INSERT INTO `vcl`.`resource` (
-    `id` ,
-    `resourcetypeid` ,
-    `subid`
-    )
-    VALUES (
-    NULL , '13', '8'
-    )
+    These next steps will be done using the VCL web interface
 
+    1. Create a new Image group
 
-*7.* Set up the image to computer group mappings and grant access.
+        Manage Groups->Add New Resource Group
+    1. Create a new Computer group
 
-These next steps will be done using the VCL web interface
+        Manage Groups->Add New Resource Group
+    1. Add new image (inserted above) to the image group just created in step 1.
 
-1. Create a new Image group. Manage groups, add a new image resrouce group.
-1. Create a new Computer group.&nbsp; Manage groups, add a new computer
-resrouce group.
-1. Add new image (inserted above) to the image group just created in step 1.
-1. Add machines that have vclclientd to the computer group created in step
-2.
-1. Assign new computer group to be controlled by management node. Select
-Management Nodes, Edit Management Node Mapping
-1. Grant access to the new lab image and computer group in the privilege
-tree.
+        Manage Images->Edit Image Grouping
+    1. Add machines that have vclclientd to the computer group created in step 2
+
+        Manage Computers->Edit Computer Grouping
+    1. Assign new computer group to be controlled by management node
+
+        Management Nodes->Edit Management Node Mapping
+    1. Grant access to the new lab image and computer group in the privilege tree.
