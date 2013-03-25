@@ -125,7 +125,7 @@ the subject
 tag to new release tag)
 * create a copy of the approved RC artifact and name it 
 apache-VCL-X.Y.Z-incubating.tar.bz2 (the .Z should only be included if Z > 0) - 
-untar old one, rename director to not have RC part, create new tarball
+untar old one, rename directory to not have RC part, create new tarball
 * sign the file with GPG
 * create md5 and sha1 sum files
 
