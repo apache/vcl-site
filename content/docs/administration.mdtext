@@ -37,3 +37,5 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 [How to Increase the Size of a Virtual Machine Hard Drive under VMware ESXi](/docs/increasevmhdd.html)
 
 [Adding xCAT Kickstart Based Images](/docs/adding-xcat-kickstart-based-image.html)
+
+[Using VCL post load and reserve scripts](/doc/vclPostScripts.html)
