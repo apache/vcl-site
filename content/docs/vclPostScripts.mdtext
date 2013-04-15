@@ -1,0 +1,34 @@
+Title: VCL Post Load & Reserve scripts
+Notice:    Licensed to the Apache Software Foundation (ASF) under one
+           or more contributor license agreements.  See the NOTICE file
+           distributed with this work for additional information
+           regarding copyright ownership.  The ASF licenses this file
+           to you under the Apache License, Version 2.0 (the
+           "License"); you may not use this file except in compliance
+           with the License.  You may obtain a copy of the License at
+           .
+             http://www.apache.org/licenses/LICENSE-2.0
+           .
+           Unless required by applicable law or agreed to in writing,
+           software distributed under the License is distributed on an
+           "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+           KIND, either express or implied.  See the License for the
+           specific language governing permissions and limitations
+           under the License.
+
+VCL post scripts allow for customization after a node is loaded or reserved. If these scripts exists in the default location they will be excuted at their designated times. These scripts are often used for Cluster on demand or for handling custom tasks that are local to the node.
+
+The scripts are:
+
+ 1. vcl_post_load
+     - File location in /etc/init.d/vcl_post_load
+     - Executed after a node is loaded during the post_load process during a new reservation or reload
+     - Created by the image owner
+     - Ideal for editing configuration files and starting services
+
+ 2. vcl_post_reserve
+     - File location in /etc/init.d/vcl_post_load
+     - Executed during an active reservation, when user hits "Connect" button
+     - Created by the image owner
+     - Ideal for making custom changes to configuration files, such as Cluster on Demand   
+     
