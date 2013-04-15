@@ -27,5 +27,5 @@ through the VCL, starting from already created base images.
     * [Additional Steps for Windows Images](additional-steps-for-windows-images.html)
     * [Additional Steps for Linux Images](additional-steps-for-linux-images.html)
 * [Configuring the Default User Profile](configure-the-default-profile.html)
-
+* [Using VCL post load and reserve scripts](vclPostScripts.html)
 
