@@ -16,14 +16,11 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-The VCL Architecture consists of 4 main components:
+The VCL architecture consists of 4 main components:
 
-* Web
+* Web Portal
 * Database
-* Management node
-* Compute nodes (physical or virtual)
-
-2 or 3 <a href="networklayout.html">networks</a> are needed to connected these items 
-together.
+* Management Node
+* Compute Nodes (physical servers, virtual machines, traditional computing lab machines, cloud compute resources)
 
 <img src="vclarchitecture.png">
