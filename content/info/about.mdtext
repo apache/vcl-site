@@ -16,7 +16,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-VCL stands for *V*irtual *C*omputing *L*ab.  It is a free & open-source cloud computing platform with the primary goal of delivering dedicated, custom compute environments to users.
+VCL stands for Virtual Computing Lab.  It is a free & open-source cloud computing platform with the primary goal of delivering dedicated, custom compute environments to users.
 
 This compute environments can range from something as simple as a virtual machine running productivity software to a cluster of physical servers running HPC simulations. 
 
