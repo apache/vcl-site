@@ -2,7 +2,7 @@ Title: Apache VCL
 
 VCL stands for Virtual Computing Lab.  It is a free & open-source cloud computing platform with the primary goal of delivering dedicated, custom compute environments to users.
 
-This compute environments can range from something as simple as a virtual machine running productivity software to a cluster of powerful physical servers running complex HPC simulations.
+The compute environments can range from something as simple as a virtual machine running productivity software to a cluster of powerful physical servers running complex HPC simulations.
 
 <img src="img/remote-access.png" width="600" border="0">
 
