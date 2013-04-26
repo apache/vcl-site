@@ -14,4 +14,6 @@ The user interface consists of a self-service web portal.  Using the portal, use
 
 Behind the scenes, the scheduling components built into the web portal determine which compute resources to assign to the reservations.  The requested environment is then dynamically provisioned, secured, and configured to allow remote access by the user.  The user then remotely connects to the remote compute environment using remote desktop, SSH, or any of the other supported protocols.
 
+<img src="/img/remote-connection.png" width="600" border="0">
+
 VCL became an Apache Software Foundation top level project on June 20, 2012.
