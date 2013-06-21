@@ -159,7 +159,7 @@ SSH identity key authentication must be configured if SSH is used to manage the 
 
         :::BashLexer
         Optionally you can run the following two commands:
-        tar -C / -czf vcl.tgz .ssh
+        tar -C / -czf bootbank/vcl.tgz .ssh
         BootModuleConfig.sh --add=vcl.tgz --verbose
 
 ##VM Host Profile Parameters
