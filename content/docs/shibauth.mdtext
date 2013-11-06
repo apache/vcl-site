@@ -16,8 +16,6 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-Shibboleth Authentication
-================
 
 The VCL is designed to support Shibboleth authentication for one or more affiliations. Using Shibboleth
 does not preclude the use of LDAP for other affiliations in the same VCL infrastructure. The principal
