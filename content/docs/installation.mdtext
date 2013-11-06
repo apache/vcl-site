@@ -29,6 +29,8 @@ Supplemental configuration guides
 
  - [Configuring LDAP Authentication](/docs/ldapauth.html)
 
+ - [Configuring Shibboleth Authentication](/docs/shibauth.html)
+
  - [Creating Custom Themes](/docs/themes.html)
 
  - [phpMyAdmin Installation and Configuration](/docs/installphpmyadmin)
