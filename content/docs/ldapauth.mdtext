@@ -248,13 +248,10 @@ force a lookup on the **User Lookup** page.
 
 ### Debugging LDAP Configuration
 If you run in to problems getting an LDAP configuration to work,
-you can download a [link text][1] and save it as generic.php (remove .txt
+you can download a [LDAP Debug Script](/docs/generic.php.txt) and save it as generic.php (remove .txt
 from the name) somewhere you can access it on you web server. There
 are 5 variables at the top of the script that need to be set
 according to your site's configuration. There is a comment in the
 file explaining what each variable needs to be set to. Once you get
 the script to show you search results, you should have a good idea
 what you need to set the variables to in conf.php.
-
-
-  [1]: /docs/generic.php.txt "LDAP Debug Script"
