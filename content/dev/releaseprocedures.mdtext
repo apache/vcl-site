@@ -155,6 +155,12 @@ will be able to see it as released when reporting bugs
 modified**. This can signal that an attack is being performed. If an error is 
 found, a new .Z release should be made.
 
+# Remove old releases
+
+A few days after the release has been published, any older versions
+need to be removed from the distribution area.  (They will remain available
+from the [archive site][8].)
+
 
   [1]: https://issues.apache.org/jira/secure/ConfigureReleaseNote.jspa?projectId=12310840&version=12322740
   [2]: http://www.apache.org/dev/release-signing.html#sign-release
@@ -163,3 +169,4 @@ found, a new .Z release should be made.
   [5]: http://markmail.org/message/kanwckkfrnbcs2s7
   [6]: http://vcl.apache.org/downloads/download.cgi
   [7]: https://issues.apache.org/jira/browse/VCL#selectedTab=com.atlassian.jira.plugin.system.project%3Aversions-panel
+  [8]: https://archive.apache.org/dist/vcl/
