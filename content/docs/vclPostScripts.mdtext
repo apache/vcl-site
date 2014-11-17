@@ -22,15 +22,15 @@ The scripts are:
 
  1. vcl_post_load
      - File location in Linux /etc/init.d/vcl_post_load
-     - File location in Windows is SYSTEMROOT, usually C:\Windows\vcl_post_reserve.cmd
+     - File location in Windows is SYSTEMROOT, usually C:\Windows\vcl_post_load.cmd
      - Executed after a node is loaded during the post_load process during a new reservation or reload
      - Created by the image owner
-     - Ideal for editing configuration files and starting services
+     - Ideal for editing configuration files or registering OS
 
  2. vcl_post_reserve
-     - Linux File location /etc/init.d/vcl_post_load
-     - Windows File location is SYSTEMROOT, usually C:\Windows\vcl_post_load.cmd
+     - Linux File location /etc/init.d/vcl_post_reserve
+     - Windows File location is SYSTEMROOT, usually C:\Windows\vcl_post_reserve.cmd
      - Executed during an active reservation, when user hits "Connect" button
      - Created by the image owner
-     - Ideal for making custom changes to configuration files, such as Cluster on Demand   
+     - Ideal for making custom changes to configuration files, such as Cluster on Demand or starting services  
      
