@@ -54,23 +54,16 @@ vcl-install.sh [-h|--help] [-d|--database] [-w|--web] [-m|--managementnode]
         --adminpass <password> - password for VCL admin user
 </code></pre>
 
+# Manual Installation 
 
-
-
-
-
-
-
-
-
-This guide will provide the necessary steps to install and configure VCL software. 
-It covers the set up of the database, web portal, and management node.
-
-[TOC]
-
-# Manual Installation {#database}
-This section provides a list of commands for installing VCL if you prefer manually 
+This section provides a list of commands for installing VCL if you prefer to manually 
 install it.
+
+[Database Installation](#database)<br>
+[Web Portal Installation](#web)<br>
+[Management Node Installation](#managementnode)
+
+## Install and Configure Database {#database}
 
 VCL currently supports the use of MySQL or MariaDB as the database.
 
@@ -133,7 +126,23 @@ Add the following to your iptables config and restart iptables service.<br>
         * Restart iptables:
 
                 :::BashLexer
-                service iptables restart   
+                service iptables restart
+
+    *  If the firewalld firewall is being used and the web server and management nodes 
+will be on different machines, port 3306 should be opened up to each of those nodes. 
+Add the following rules and reload the rule set.<br>
+**Note:** Insert your web server and management node IP address in the right locations.
+
+        * Add these rules:
+
+                :::BashLexer
+                firewall-cmd --zone=public --permanent --add-rich-rule="rule family="ipv4" source address="<web server IP>" service name="mysql" accept"
+                firewall-cmd --zone=public --permanent --add-rich-rule="rule family="ipv4" source address="<management node IP>" service name="mysql" accept"
+
+        * Restart iptables:
+
+                :::BashLexer
+                firewall-cmd --reload
 
 3. Create the VCL Database
    
@@ -167,7 +176,7 @@ privileges on the database you just created:
    
 ----------
 
-# Install and Configure the Web Components {#web}
+## Install and Configure the Web Components {#web}
 
 **Prerequisites**
 
@@ -250,6 +259,20 @@ config file:
                 :::BashLexer
                 service iptables restart
 
+    * If the firewalld firewall is being used, port 80 and 443 should be opened up:
+
+        * Add these rules:
+
+                :::BashLexer
+                firewall-cmd --zone=public --add-service=http --permanent
+                firewall-cmd --zone=public --add-service=https --permanent
+
+        * Reload firewalld rules
+
+                :::BashLexer
+                firewall-cmd --reload
+
+
 2. **Install the VCL Frontend Web Code**
     * If you have not already done so, follow the instructions on the [download](/downloads/download.cgi)
 page to download and verify apache-VCL-2.4.tar.bz2, and put it in /root
@@ -257,7 +280,7 @@ page to download and verify apache-VCL-2.4.tar.bz2, and put it in /root
     * Extract the files:
 
             :::BashLexer
-            tar -jxvf apache-VCL-2.3.2.tar.bz2
+            tar -jxvf apache-VCL-2.4.tar.bz2
 
     * Copy the **web** directory to a location under the web root of your web server and 
 navigate to the destination **.ht-inc** subdirectory:
@@ -366,7 +389,7 @@ Configuration][3]
 ---------
 
 
-# Install & Configure the Management Node Components {#managementnode}
+## Install & Configure the Management Node Components {#managementnode}
 
 **Prerequisites**
 The following management node installation instructions assume the instructions in these
