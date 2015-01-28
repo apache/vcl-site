@@ -29,29 +29,29 @@ three parts of VCL.  Alternatively, the following explains optional arguments.  
 installing the management node part of VCL, it will also prompt you to agree to the 
 installation of various system level requirements needed for the code to run.
 <pre><code>
-vcl-install.sh [-h|--help] [-d|--database] [-w|--web] [-m|--managementnode]
-                [--dbhost <hostname> --dbpass <password>] 
-                [--mnhost <hostname>] [--webhost <hostname>]
+    vcl-install.sh [-h|--help] [-d|--database] [-w|--web] [-m|--managementnode]
+            [--dbhost <hostname> --dbpass <password>] 
+            [--mnhost <hostname>] [--webhost <hostname>]
 
-        -d|--database - install database server components
-                --dbpass, --mnhost, --mnip, --webhost, and --adminpass must also be specified
+    -d|--database - install database server components
+            --dbpass, --mnhost, --mnip, --webhost, and --adminpass must also be specified
 
-        -w|--web - install web server components
-                --dbhost and --dbpass must also be specified
+    -w|--web - install web server components
+            --dbhost and --dbpass must also be specified
 
-        -m|--managementnode - install management node (vcld) components
-                --dbhost, --dbpass, and --adminpass must also be specified
+    -m|--managementnode - install management node (vcld) components
+            --dbhost, --dbpass, and --adminpass must also be specified
 
-        --dbhost <hostname> - hostname of database server (default=localhost)
+    --dbhost <hostname> - hostname of database server (default=localhost)
 
-        --dbpass <password> - password VCL will use for accessing
-                database (default=random)
+    --dbpass <password> - password VCL will use for accessing
+            database (default=random)
 
-        --mnhost <hostname> - hostname of management node (default=localhost)
+    --mnhost <hostname> - hostname of management node (default=localhost)
 
-        --webhost <hostname> - hostname of web server (default=localhost)
+    --webhost <hostname> - hostname of web server (default=localhost)
 
-        --adminpass <password> - password for VCL admin user
+    --adminpass <password> - password for VCL admin user
 </code></pre>
 
 # Manual Installation 
@@ -82,8 +82,7 @@ page to download and verify apache-VCL-2.4.tar.bz2, and put it in /root
         
             :::BashLexer
             yum install mysql-server -y
-
-       or install MariaDB Server
+    or install MariaDB Server
         
             :::BashLexer
             yum install mariadb-server -y
@@ -93,7 +92,7 @@ page to download and verify apache-VCL-2.4.tar.bz2, and put it in /root
             :::BashLexer
             /sbin/chkconfig --level 345 mysqld on
 
-            or
+        or
 
             :::BashLexer
             /sbin/chkconfig --level 345 mariadb on
@@ -104,7 +103,7 @@ page to download and verify apache-VCL-2.4.tar.bz2, and put it in /root
             :::BashLexer
             /sbin/service mysqld start
 
-            or
+        or
 
             :::BashLexer
             /sbin/service mariadb start
