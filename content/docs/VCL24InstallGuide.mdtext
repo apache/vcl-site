@@ -158,7 +158,7 @@ Add the following rules and reload the rule set.<br>
             CREATE DATABASE vcl;
 
     * Create a user with SELECT, INSERT, UPDATE, DELETE, and CREATE TEMPORARY TABLES 
-privileges on the database you just created:
+privileges on the database you just created (**NOTE** Use your own password**):
         
             :::MySqlLexer
             GRANT SELECT,INSERT,UPDATE,DELETE,CREATE TEMPORARY TABLES ON vcl.* TO 'vcluser'@'localhost' IDENTIFIED BY 'vcluserpassword';
