@@ -29,6 +29,7 @@ three parts of VCL.  Alternatively, the following explains optional arguments.  
 installing the management node part of VCL, it will also prompt you to agree to the 
 installation of various system level requirements needed for the code to run.
 <pre><code>
+
     vcl-install.sh [-h|--help] [-d|--database] [-w|--web] [-m|--managementnode]
             [--dbhost <hostname> --dbpass <password>] 
             [--mnhost <hostname>] [--webhost <hostname>]
@@ -78,12 +79,13 @@ page to download and verify apache-VCL-2.4.tar.bz2, and put it in /root
 
 2. Install MySQL Server or MariaDB Server
 
-    * Install MySQL Server
+    * Install MySQL or MariaDB Server
         
             :::BashLexer
             yum install mysql-server -y
-    or install MariaDB Server
-        
+
+        or
+
             :::BashLexer
             yum install mariadb-server -y
 
