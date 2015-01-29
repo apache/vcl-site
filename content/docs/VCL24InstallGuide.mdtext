@@ -594,8 +594,7 @@ hosts or only for the root user. Consult the SSH documentation for more informat
 management node is checking in with the database:
 
         :::BashLexer
-        2015-01-28 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management 
-node 1: 2015-01-28 13:23:45
+        2015-01-28 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2015-01-28 13:23:45
 
 
 6. **Set the vclsystem account password for xmlrpc api**
@@ -604,7 +603,7 @@ node 1: 2015-01-28 13:23:45
 use the block allocation features.
 	
         :::BashLexer
-        /usr/local/vcl/bin/vcld -setup
+        /usr/local/vcl/bin/vcld --setup
 
     Select the options listed below to set the password. When prompted paste or type the 
 password from xmlrpc_pass variable in the vcld.conf file and hit enter. 
