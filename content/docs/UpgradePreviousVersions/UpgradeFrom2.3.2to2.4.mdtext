@@ -127,7 +127,7 @@ management code over top of it.
         :::BashLexer
         mv /usr/local/vcl /usr/local/vcl-2.4
         ln -s /usr/local/vcl-2.4 /usr/local/vcl
-        cp -r /root/apache-VCL-2.4/managementnode/* /usr/local/vcl
+        /bin/cp -r /root/apache-VCL-2.4/managementnode/* /usr/local/vcl
 
 14. **Run install_perl_libs.pl** to add any new perl library requirements:
 	
