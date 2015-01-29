@@ -352,7 +352,9 @@ navigate to the destination **.ht-inc** subdirectory:
 
 4. **Add a Management Node to the Database**
     * Click the Management Nodes link
-        * Click Add
+        * Select Edit Management Node Profiles
+        * Click Submit
+        * Click Add New Management Node
         * Fill in these required fields:
             * Hostname - The name of the management node server. This value doesn't 
 necessarily need to be a name registered in DNS nor does it need to be the value 
