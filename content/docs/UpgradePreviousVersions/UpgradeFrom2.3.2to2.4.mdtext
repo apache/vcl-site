@@ -1,0 +1,146 @@
+Title: Upgrad From 2.3.2 to 2.4
+Notice:    Licensed to the Apache Software Foundation (ASF) under one
+           or more contributor license agreements.  See the NOTICE file
+           distributed with this work for additional information
+           regarding copyright ownership.  The ASF licenses this file
+           to you under the Apache License, Version 2.0 (the
+           "License"); you may not use this file except in compliance
+           with the License.  You may obtain a copy of the License at
+           .
+             http://www.apache.org/licenses/LICENSE-2.0
+           .
+           Unless required by applicable law or agreed to in writing,
+           software distributed under the License is distributed on an
+           "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+           KIND, either express or implied.  See the License for the
+           specific language governing permissions and limitations
+           under the License.
+
+# Scripted Upgrade
+
+VCL 2.4 is the first release to include an upgrade script. All you need to
+upgrade VCL is the script. It will download and validate the VCL software and
+then upgrade your system. The script can be used to upgrade all three parts of
+VCL (database, web portal, and management node) or to upgrade each part
+individually.
+
+[Download Upgrade Script (vcl-upgrade.sh)](http://www.apache.org/dist/vcl/vcl-upgrade.sh)
+
+Running the upgrade script with no arguments will step you through upgrading
+all three parts of VCL.
+
+---
+
+# Manual Upgrade Instructions
+
+These instructions explain how to upgrade from VCL 2.3.2 to VCL 2.4. Please note 
+it only applies for the upgrade from 2.3.2 to 2.4, this may or may not work for other 
+versions.
+
+**The basic steps that will be performed**
+
+  - Download and Extract 2.4 code 
+  - Shutdown httpd and vcld services
+  - Create backup of vcl database 
+  - Update mysql schema
+  - Update web code, create a backup, copy in new, make changes 
+  - Restart httpd service
+  - Update management node vcl code, create a backup, copy in new, make changes 
+  - Restart vcld service
+
+### Upgrade steps
+
+1. follow instructions on the [VCL download](http://vcl.apache.org/downloads/download.cgi) 
+page to download and verify apache-VCL-2.4.tar.bz2 and put in in /root
+2. **extract VCL 2.4 code**
+    
+        :::BashLexer
+        tar xf apache-VCL-2.4.tar.bz2
+
+3. **Shutdown** the httpd and vcld services
+           
+        :::BashLexer
+        service httpd stop
+        service vcld stop
+
+4. create a **backup** of the VCL database. This will provide a restore point if 
+necessary.
+
+        :::BashLexer
+        mysqldump vcl > ~/vcl-pre2.4-upgrade.sql
+
+5. This step **updates the database** schema.
+
+        :::BashLexer
+        mysql vcl < /root/apache-VCL-2.4/mysql/update-vcl.sql
+
+6. **Update the web code**. This step we will move the 2.3.2 web directory out of the 
+way, so we can copy in the new web code base. After copying in the new code, we will 
+migrate your configuration changes. These instructions assume that you installed the 
+VCL web code at /var/www/html/vcl. If you installed it elsewhere, replace 
+/var/www/html/vcl with your vcl web root.
+
+        :::BashLexer
+        mv /var/www/html/vcl /var/www/html/vcl-2.3.2
+
+7. **Disable access** to the old web code
+
+        :::BashLexer
+        echo "Deny from all" > /var/www/html/vcl-2.3.2/.htaccess
+
+7. **Copy the new code** in place
+	
+        :::BashLexer
+        cp -r /root/apache-VCL-2.4/web /var/www/html/vcl-2.4
+        ln -s /var/www/html/vcl-2.4 /var/www/html/vcl
+
+8. **Copy your 2.3.2 config files**
+	
+        :::BashLexer
+        cd /var/www/html/vcl-2.3.2/.ht-inc
+        cp conf.php secrets.php pubkey.pem keys.pem /var/www/html/vcl/.ht-inc
+
+9. **Make the maintenance directory writable** by the web server user. Normally this is
+the apache user, if using a different user change below cmd accordingly.
+	
+        :::BashLexer
+        chown apache /var/www/html/vcl/.ht-inc/maintenance
+
+11. **Start httpd service**
+
+        :::BashLexer
+        service httpd start
+
+12. **Backup management node code**. This step will make a backup copy of the 2.3.2  
+management node code. These instructions assume that you installed the 
+VCL management node code at /usr/local/vcl. If you installed it elsewhere, replace 
+/usr/local with your management node path.
+	
+        :::BashLexer
+        cp -r /usr/local/vcl /usr/local/vcl-2.3.2
+
+13. **Copy in the 2.4 management node code** to /usr/local. First, rename the existing
+management node code directory to vcl-2.4 so that any drivers or other files you've 
+added are preserved. Then, create a symlink for /usr/local/vcl and copy the new 
+management code over top of it.
+	
+        :::BashLexer
+        mv /usr/local/vcl /usr/local/vcl-2.4
+        ln -s /usr/local/vcl-2.4 /usr/local/vcl
+        cp -r /root/apache-VCL-2.4/managementnode/* /usr/local/vcl
+
+14. **Run install_perl_libs.pl** to add any new perl library requirements:
+	
+        :::BashLexer
+        /usr/local/vcl/bin/install_perl_libs.pl
+
+15. **Start vcld service**
+	
+        :::BashLexer
+        service vcld start
+
+16. Make some **test reservations** and watch the vcld.log to verify everything is working 
+correctly.
+
+        :::BashLexer
+        tail -f /var/log/vcld.log
