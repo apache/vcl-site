@@ -61,6 +61,19 @@ the VCL web server.
     $cfg['Servers'][$i]['password']      = '';  //Use wrtPass from /etc/vcl/vcld.conf
     </pre>
 
+* Allow access to phpMyAdmin from other machines. The default server configuration limits 
+access only the localhost (127.0.0.1). If desired to access from other machines, edit the 
+server config file to allow other machines. In your editor, open /etc/httpd/conf.d/phpMyAdmin.conf
+    
+    Edit the first section <Directory /usr/share/phpMyAdmin/> There are two locations that need to change
+
+    <pre class="docnote">
+    . . .
+    Require ip your_workstation_IP_address
+    . . .
+    Allow from your_workstation_IP_address
+    </pre>
+
 * Restart httpd service and test
 
         :::BashLexer
@@ -68,10 +81,10 @@ the VCL web server.
 
     If you receive 403-Forbidden errors after installing phpMyAdmin, the problem is likely caused by SELinux. Run the following command to correct the problem:
     <pre class="docnote">
-    chcon -R -t httpd_sys_content_t /var/www/html/phpmyadmin
+    chcon -R -t httpd_sys_content_t /var/www/html/phpMyAdmin
     </pre>
 
-* Configure the phpMyAdmin-VCL Table relationships:
+* Optional, Configure the phpMyAdmin-VCL Table relationships:
 
     After following the documentation on creating the phpMyAdmin Linked-tables 
 infrastructure, you can set up the VCL table relationships. The phpmyadmin.sql file is 
