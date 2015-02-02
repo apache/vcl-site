@@ -58,7 +58,7 @@ the VCL web server.
     the LockerWrtUser(typically vcluser) and wrtPass from /etc/vcl/vcld.conf
 
     $cfg['Servers'][$i]['user']          = 'vcluser';  
-    $cfg['Servers'][$i]['password']      = ''; 
+    $cfg['Servers'][$i]['password']      = '';  //Use wrtPass from /etc/vcl/vcld.conf
     </pre>
 
 * Restart httpd service and test
