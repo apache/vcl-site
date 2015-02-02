@@ -54,7 +54,7 @@ the VCL web server.
     The "Securing your phpMyAdmin installation" instructions can be followed 
     to secure phpMyAdmin. At a minimum set the MySQL user and password 
     in the config.inc.php file
-    Edit the /etc/phpMyAdmin/config.inc.php and set the user and password variables to match 
+    Edit /etc/phpMyAdmin/config.inc.php and set the user and password variables to match 
     the LockerWrtUser(typically vcluser) and wrtPass from /etc/vcl/vcld.conf
 
     $cfg['Servers'][$i]['user']          = 'vcluser';  
@@ -62,7 +62,7 @@ the VCL web server.
     </pre>
 
 * How to allow access to phpMyAdmin from other machines. The default server configuration limits 
-access only the localhost (127.0.0.1). If desired to access from other machines, edit the 
+access only to localhost (127.0.0.1). If desired to access from other machines, edit the 
 server config file to allow other machines, change any lines with 127.0.0.1 to your workstation IP or 
 a set of known IP addresses. 
 
