@@ -61,13 +61,15 @@ the VCL web server.
     $cfg['Servers'][$i]['password']      = '';  //Use wrtPass from /etc/vcl/vcld.conf
     </pre>
 
-* Allow access to phpMyAdmin from other machines. The default server configuration limits 
+* How to allow access to phpMyAdmin from other machines. The default server configuration limits 
 access only the localhost (127.0.0.1). If desired to access from other machines, edit the 
-server config file to allow other machines. In your editor, open /etc/httpd/conf.d/phpMyAdmin.conf
-    
-    Edit the first section <Directory /usr/share/phpMyAdmin/> There are two locations that need to change
+server config file to allow other machines. 
+
+In your editor, open /etc/httpd/conf.d/phpMyAdmin.conf 
+Edit the first section, there are two locations that need to change
 
     <pre class="docnote">
+    Under <Directory /var/www/html/phpMyAdmin/>
     . . .
     Require ip your_workstation_IP_address
     . . .
