@@ -69,7 +69,8 @@ In your editor, open /etc/httpd/conf.d/phpMyAdmin.conf
 Edit the first section, there are two locations that need to change
 
     <pre class="docnote">
-    Under <Directory /var/www/html/phpMyAdmin/>
+    Under Directory /var/www/html/phpMyAdmin/
+
     . . .
     Require ip your_workstation_IP_address
     . . .
