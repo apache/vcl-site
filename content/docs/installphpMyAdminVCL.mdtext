@@ -65,8 +65,8 @@ the VCL web server.
 access only the localhost (127.0.0.1). If desired to access from other machines, edit the 
 server config file to allow other machines. 
 
-In your editor, open /etc/httpd/conf.d/phpMyAdmin.conf 
-Edit the first section, there are two locations that need to change
+    In your editor, open /etc/httpd/conf.d/phpMyAdmin.conf 
+    Edit the first section, there are two locations that need to change
 
     <pre class="docnote">
     Under Directory /var/www/html/phpMyAdmin/
