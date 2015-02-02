@@ -27,14 +27,19 @@ the VCL web server.
     a. phpMyAdmin is located in the extras repository use, can use epel-release package to add this repo
 
         :::BashLexer
-        yum -y install epel-release; yum -y install phpMyAdmin
+        yum -y install epel-release; 
 
-    b. Move the phpMyAdmin directory to the web server directory:
+    b. Install phpMyAdmin
+
+        :::BashLexer
+        yum -y install phpMyAdmin
+
+    c. Move the phpMyAdmin directory to the web server directory:
 
         :::BashLexer
     	mv /usr/share/phpMyAdmin /var/www/html/phpMyAdmin
 
-    c. Edit /etc/httpd/conf.d/phpMyAdmin.conf with your favorite editor.
+    d. Edit /etc/httpd/conf.d/phpMyAdmin.conf with your favorite editor.
         Replace the paths created by the yum install, change each 
         "**/usr/share/phpMyAdmin**" with **/var/www/html/phpMyAdmin** 
         or use this sed command
@@ -44,7 +49,6 @@ the VCL web server.
 
 
 * Follow the installation instructions in: /var/www/html/phpmyadmin/Documentation.txt
-
     <pre class="docnote">
     The instructions must be followed in order to secure phpMyAdmin
 
