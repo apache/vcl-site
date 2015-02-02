@@ -24,7 +24,7 @@ the VCL web server.
 
 1. Install via yum package manager ( CentOS and RedHat based distributions ). Tested on clean installs of OS versions 6 and 7
 
-    a. phpMyAdmin is located in the extras repository use, can use epel-release package to add this repo
+    a. phpMyAdmin is in the extras repository, use epel-release package to add this repo
 
         :::BashLexer
         yum -y install epel-release 
@@ -51,10 +51,10 @@ the VCL web server.
 * Follow the latest setup instructions at [http://docs.phpmyadmin.net][1]
     <pre class="docnote">
 
-    The "Securing your phpMyAdmin installation" instructions must be followed 
-    in order to secure phpMyAdmin. At a minimum set the MySQL user and password 
+    The "Securing your phpMyAdmin installation" instructions can be followed 
+    to secure phpMyAdmin. At a minimum set the MySQL user and password 
     in the config.inc.php file
-    Edit the /etc/phpMyAdmin/config.inc.php and set the follow variables to match 
+    Edit the /etc/phpMyAdmin/config.inc.php and set the user and password variables to match 
     the LockerWrtUser(typically vcluser) and wrtPass from /etc/vcl/vcld.conf
 
     $cfg['Servers'][$i]['user']          = 'vcluser';  
