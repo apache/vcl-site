@@ -27,7 +27,7 @@ the VCL web server.
     a. phpMyAdmin is located in the extras repository use, can use epel-release package to add this repo
 
         :::BashLexer
-        yum -y install epel-release; 
+        yum -y install epel-release 
 
     b. Install phpMyAdmin
 
@@ -48,15 +48,15 @@ the VCL web server.
         sed -i "s|/usr/share/|/var/www/html/|g" /etc/httpd/conf.d/phpMyAdmin.conf
 
 
-* Follow the installation instructions in: /var/www/html/phpmyadmin/Documentation.txt
+* Follow the latest setup instructions at [http://docs.phpmyadmin.net][1]
     <pre class="docnote">
-    The instructions must be followed in order to secure phpMyAdmin
-
+    The "Securing your phpMyAdmin installation" instructions must be followed 
+    in order to secure phpMyAdmin.
     At a minimum set the MySQL user and password in the config.inc.php file
     Edit the /etc/phpMyAdmin/config.inc.php
+    
     Set the follow variables to match the LockerWrtUser(typically vcluser) 
     and wrtPass from /etc/vcl/vcld.conf
-
     $cfg['Servers'][$i]['user']          = 'vcluser';  
     $cfg['Servers'][$i]['password']      = ''; 
     </pre>
@@ -85,6 +85,4 @@ information to be displayed when you hover over a value in the VCL database.
     	mysql phpmyadmin < apache-VCL-2.4/mysql/phpmyadmin.sql
 
 
-  [1]: VCL232InstallGuide.html
-  [2]: http://www.phpmyadmin.net/home_page/downloads.php
-  [3]: http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/
+  [1]: http://docs.phpmyadmin.net
