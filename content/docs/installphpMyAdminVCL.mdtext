@@ -50,6 +50,7 @@ the VCL web server.
 
 * Follow the latest setup instructions at [http://docs.phpmyadmin.net][1]
     <pre class="docnote">
+
     The "Securing your phpMyAdmin installation" instructions must be followed 
     in order to secure phpMyAdmin. At a minimum set the MySQL user and password 
     in the config.inc.php file
