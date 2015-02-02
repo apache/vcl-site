@@ -22,43 +22,39 @@ browser. It makes administering the VCL database easier. This tool can be instal
 the VCL web server.
 </div>
 
-1. Download phpMyAdmin
+1. Install via yum package manager ( CentOS and RedHat based distributions ). Tested on clean installs of OS versions 6 and 7
 
-    a. Check the version of PHP installed on the web server (you may need to perform step 
-1a of [VCL 2.3.2 Web Code Installation][1] to install httpd and php first):
+    a. yum -y install epel-release phpMyAdmin
 
-            :::BashLexer
-            php -v
-    * Use phpMyAdmin 2.x if the version of PHP is < 5.2:
-    <pre class="docnote">
-    PHP 4.3.2 (cgi), Copyright (c) 1997-2003 The PHP Group
-    </pre>
-    * Use phpMyAdmin 3.x if the version of PHP is 5.x:  
-    <div><pre class="docnote">
-    PHP 5.3.11 (cli) (built: May  8 2012 15:53:27)
-    </pre></div>
-
-    b. Download the appropriate version of phpMyAdmin from:
-        <pre>
-        [http://www.phpmyadmin.net/home_page/downloads.php][2] for 3.x series
-        [http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/][3] for 2.x series
-        </pre>
-
-* Extract the phpMyAdmin package:
+    b. Move the phpMyAdmin directory to the web server directory:
 
         :::BashLexer
-    	tar xf phpMyAdmin-2.11.11.3-english.tar.bz2
+    	mv /usr/share/phpMyAdmin /var/www/html/phpMyAdmin
 
-* Move the phpMyAdmin directory to the web server directory:
+    c. Edit /etc/httpd/conf.d/phpMyAdmin.conf with your favorite editor.
+        Replace the paths created by the yum install, change each 
+        "**/usr/share/phpMyAdmin**" with **/var/www/html/phpMyAdmin** 
+        or use this sed command
 
         :::BashLexer
-    	mv phpMyAdmin-2.11.11.3-english /var/www/html/phpmyadmin
+        sed -i "s|/usr/share/|/var/www/html/|g" /etc/httpd/conf.d/phpMyAdmin.conf
+
+
 
 * Follow the installation instructions in: /var/www/html/phpmyadmin/Documentation.txt
 
     <pre class="docnote">
     The instructions must be followed in order to secure phpMyAdmin
+
+    At a minimum set the MySQL user and password in the config.inc.php file
+    Edit the /etc/phpMyAdmin/config.inc.php
+    Set the follow variables to match the LockerWrtUser(typically vcluser) and wrtPass from /etc/vcl/vcld.conf
+
+    $cfg['Servers'][$i]['user']          = 'vcluser';  
+    $cfg['Servers'][$i]['password']      = ''; 
     </pre>
+
+* Restart httpd service and test
 
     If you receive 403-Forbidden errors after installing phpMyAdmin, the problem is likely caused by SELinux. Run the following command to correct the problem:
     <pre class="docnote">
@@ -76,7 +72,7 @@ information to be displayed when you hover over a value in the VCL database.
     Import the SQL file into the phpmyadmin database:
 
         :::BashLexer
-    	mysql phpmyadmin < apache-VCL-2.3.2/mysql/phpmyadmin.sql
+    	mysql phpmyadmin < apache-VCL-2.4/mysql/phpmyadmin.sql
 
 
   [1]: VCL232InstallGuide.html
