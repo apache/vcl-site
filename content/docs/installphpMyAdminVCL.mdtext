@@ -24,7 +24,10 @@ the VCL web server.
 
 1. Install via yum package manager ( CentOS and RedHat based distributions ). Tested on clean installs of OS versions 6 and 7
 
-    a. yum -y install epel-release phpMyAdmin
+    a. phpMyAdmin is located in the extras repository use, can use epel-release package to add this repo
+
+        :::BashLexer
+        yum -y install epel-release; yum -y install phpMyAdmin
 
     b. Move the phpMyAdmin directory to the web server directory:
 
@@ -40,7 +43,6 @@ the VCL web server.
         sed -i "s|/usr/share/|/var/www/html/|g" /etc/httpd/conf.d/phpMyAdmin.conf
 
 
-
 * Follow the installation instructions in: /var/www/html/phpmyadmin/Documentation.txt
 
     <pre class="docnote">
@@ -48,13 +50,17 @@ the VCL web server.
 
     At a minimum set the MySQL user and password in the config.inc.php file
     Edit the /etc/phpMyAdmin/config.inc.php
-    Set the follow variables to match the LockerWrtUser(typically vcluser) and wrtPass from /etc/vcl/vcld.conf
+    Set the follow variables to match the LockerWrtUser(typically vcluser) 
+    and wrtPass from /etc/vcl/vcld.conf
 
     $cfg['Servers'][$i]['user']          = 'vcluser';  
     $cfg['Servers'][$i]['password']      = ''; 
     </pre>
 
 * Restart httpd service and test
+
+        :::BashLexer
+        service httpd restart
 
     If you receive 403-Forbidden errors after installing phpMyAdmin, the problem is likely caused by SELinux. Run the following command to correct the problem:
     <pre class="docnote">
