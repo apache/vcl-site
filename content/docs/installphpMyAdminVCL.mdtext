@@ -63,18 +63,21 @@ the VCL web server.
 
 * How to allow access to phpMyAdmin from other machines. The default server configuration limits 
 access only the localhost (127.0.0.1). If desired to access from other machines, edit the 
-server config file to allow other machines. 
+server config file to allow other machines, change any lines with 127.0.01 to your workstation IP or 
+a set of known IP addresses. 
 
     In your editor, open /etc/httpd/conf.d/phpMyAdmin.conf 
     Edit the first section, there are two locations that need to change
 
     <pre class="docnote">
-    Under Directory /var/www/html/phpMyAdmin/
+    Under the section labeled:
+    Directory /var/www/html/phpMyAdmin/
 
     . . .
     Require ip your_workstation_IP_address
     . . .
     Allow from your_workstation_IP_address
+    . . .
     </pre>
 
 * Restart httpd service and test
