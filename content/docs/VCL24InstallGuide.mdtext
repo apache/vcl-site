@@ -453,6 +453,7 @@ below for installation instructions):
 * DBI - Generic Database Interface
 * Digest::SHA1 - NIST SHA message digest algorithm
 * LWP::Protocol::https - support for using https schemed URLs with LWP
+* JSON - JavaScript Object Notation
 * Mail::Mailer - Simple mail agent interface
 * Mo:builder - Adds the builder feature to Mo's has
 * Net::SSH::Expect - a wrapper to the ssh executable that is available in system's PATH
