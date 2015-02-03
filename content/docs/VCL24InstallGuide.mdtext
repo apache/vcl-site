@@ -452,6 +452,7 @@ below for installation instructions):
 * CPAN - provides a command interface (not a shell) to CPAN
 * DBI - Generic Database Interface
 * Digest::SHA1 - NIST SHA message digest algorithm
+* Frontier::Client - issue Frontier XML RPC requests to a server
 * LWP::Protocol::https - support for using https schemed URLs with LWP
 * JSON - JavaScript Object Notation
 * Mail::Mailer - Simple mail agent interface
