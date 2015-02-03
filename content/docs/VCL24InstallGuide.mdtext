@@ -24,6 +24,16 @@ management node) or to install each part individually.
 
 [Download Install Script (vcl-install.sh)][4]
 
+Validate script:
+
+        :::BashLexer
+        wget https://www.apache.org/dist/vcl/vcl-install.sh.sha1
+        sha1sum -c vcl-install.sh.sha1
+        wget https://www.apache.org/dist/vcl/KEYS
+        gpg --import KEYS
+        wget https://www.apache.org/dist/vcl/vcl-install.sh.asc
+        gpg --verify vcl-install.sh.asc
+
 Running the installation script with no arguments will step you through installing all
 three parts of VCL.  Alternatively, the following explains optional arguments.  If
 installing the management node part of VCL, it will also prompt you to agree to the 
@@ -685,4 +695,4 @@ of your new VCL install.
   [1]: http://www.phpmyadmin.net/
   [2]: http://www.mysql.com/
   [3]: installphpmyadmin
-  [4]: http://www.apache.org/dist/vcl/vcl-install.sh
+  [4]: https://www.apache.org/dist/vcl/vcl-install.sh
