@@ -607,8 +607,7 @@ use the block allocation features.
 password from xmlrpc_pass variable in the vcld.conf file and hit enter. 
 
         :::BashLexer
-        Select 1. VCL Base Module
-        Select 2. Set Local VCL User Account Password
+        Select 6. Set Local VCL User Account Password
         Select 2. vclsystem
              
 
