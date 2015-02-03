@@ -104,6 +104,10 @@ VCL web code at /var/www/html/vcl. If you installed it elsewhere, replace
 file (they can be added anywhere as long as it is not inside an 
 array() definition):
 
+        :::BashLexer
+        (don't forget to edit conf.php in the **new** location)
+        vim /var/www/html/vcl/.ht-inc/conf.php
+
         :::PhpLexer
         define("SEMTIMEOUT", "45");
 
