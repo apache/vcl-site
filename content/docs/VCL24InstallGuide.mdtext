@@ -416,7 +416,8 @@ based on Red Hat Enterprise Linux (RHEL). It has been tested on the following:
 **Required Linux Packages:**
 
 The VCL management node daemon (vcld) requires the following Linux packages and Perl 
-modules in order to run (see step 2 below for installation instructions):
+modules in order to run (see step 2 below for installation instructions). Note, there is 
+overlap as some of the perl modules are available through the yum packager manager.
 
 * expat-devel - Libraries and include files to develop XML applications with expat
 * gcc - Various compilers (C, C++, Objective-C, Java, ...)
