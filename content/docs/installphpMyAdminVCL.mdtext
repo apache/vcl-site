@@ -17,12 +17,12 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            under the License.
 
 <div class="docnote">
-phpMyAdmin is a free and optional tool which allows MySQL to be administered using a web 
+phpMyAdmin is a free and optional tool which allows MySQL or MariaDB to be administered using a web 
 browser. It makes administering the VCL database easier. This tool can be installed on 
 the VCL web server.
 </div>
 
-1. Install via yum package manager ( CentOS and RedHat based distributions ). Tested on clean installs of OS versions 6 and 7
+1. Install phpMyAdmin via the yum package manager. Tested on clean installs of CentOS, Red Hat versions 6 and 7
 
     a. phpMyAdmin is in the extras repository, use epel-release package to add this repo
 
