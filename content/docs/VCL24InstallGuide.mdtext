@@ -205,10 +205,6 @@ privileges on the database you just created (**NOTE Use your own password**):
   * php-xml
   * php-xmlrpc
   * php-ldap (if you will be using LDAP authentication)
-  * php-process (for RHEL/CentOS 6 and 7), 
-      * Note: You may need the optional server rpm repository for the
-         php-process package; to add this run the following command:
-         rhn-channel --add --channel=rhel-x86_64-server-optional-6
 
 
  - - -
@@ -220,7 +216,7 @@ privileges on the database you just created (**NOTE Use your own password**):
         For RHEL / CentOS 6 and 7
 
             :::BashLexer
-            yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap php-process -y
+            yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap -y
 
         For RHEL / CentOS 5
        
