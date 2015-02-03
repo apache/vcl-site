@@ -26,13 +26,13 @@ management node) or to install each part individually.
 
 Validate script:
 
-        :::BashLexer
-        wget https://www.apache.org/dist/vcl/vcl-install.sh.sha1
-        sha1sum -c vcl-install.sh.sha1
-        wget https://www.apache.org/dist/vcl/KEYS
-        gpg --import KEYS
-        wget https://www.apache.org/dist/vcl/vcl-install.sh.asc
-        gpg --verify vcl-install.sh.asc
+    :::BashLexer
+    wget https://www.apache.org/dist/vcl/vcl-install.sh.sha1
+    sha1sum -c vcl-install.sh.sha1
+    wget https://www.apache.org/dist/vcl/KEYS
+    gpg --import KEYS
+    wget https://www.apache.org/dist/vcl/vcl-install.sh.asc
+    gpg --verify vcl-install.sh.asc
 
 Running the installation script with no arguments will step you through installing all
 three parts of VCL.  Alternatively, the following explains optional arguments.  If
