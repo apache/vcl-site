@@ -423,7 +423,7 @@ modules in order to run (see step 2 below for installation instructions):
 * krb5-devel - Development files needed to compile Kerberos 5 programs
 * krb5-libs - The shared libraries used by Kerberos 5
 * libxml2-devel - Libraries, includes, etc. to develop XML and HTML applications
-* make - 
+* make - GNU make utility to maintain groups of programs
 * nmap - Network exploration tool and security scanner
 * openssh - The OpenSSH implementation of SSH protocol versions 1 and 2
 * openssl-devel - Files for development of applications which will use OpenSSL
