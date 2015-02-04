@@ -182,15 +182,15 @@ modified. Change:
 
     * OLD
 	
-        :::PhpLexer
-        $addUserFunc[$item['affiliationid']] = create_function('', 'return 0;');
-        $updateUserFunc[$item['affiliationid']] = create_function('', 'return 0;');
+            :::PhpLexer
+            $addUserFunc[$item['affiliationid']] = create_function('', 'return 0;');
+            $updateUserFunc[$item['affiliationid']] = create_function('', 'return 0;');
  
     * NEW
 
-        :::PhpLexer
-        $addUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
-        $updateUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
+            :::PhpLexer
+            $addUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
+            $updateUserFunc[$item['affiliationid']] = create_function('', 'return NULL;');
 
 9. **Make the maintenance directory writable** by the web server user. Normally this is
 the apache user, if using a different user change below cmd accordingly.
