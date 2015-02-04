@@ -22,7 +22,7 @@ VCL 2.4 is the first release to include an upgrade script. All you need to
 upgrade VCL is the script. It will download and validate the VCL software and
 then upgrade your system. The script can be used to upgrade all three parts of
 VCL (database, web portal, and management node) or to upgrade each part
-individually.
+individually. It works to upgrade from any previous version of Apache VCL.
 
 [Download Upgrade Script (vcl-upgrade.sh)](https://www.apache.org/dist/vcl/vcl-upgrade.sh)
 
@@ -35,7 +35,31 @@ individually.
     gpg --verify vcl-upgrade.sh.asc
 
 Running the upgrade script with no arguments will step you through upgrading
-all three parts of VCL.
+all three parts of VCL. Alternatively, the following explains optional 
+arguments. If upgrading the management node part of VCL, it will also prompt 
+you to agree to the installation of various system level requirements needed 
+for the code to run.
+
+    :::BashLexer
+    vcl-upgrade.sh [-h|--help] [-d|--database] [-w|--web] [-m|--managementnode]
+            [--dbhost <hostname>] [--dbadminuser <username>]
+            [--dbadminpass <password>]
+
+    -d|--database - upgrade database components
+            --dbhost may optionally be specified if not localhost
+
+    -w|--web - upgrade web server components
+
+    -m|--managementnode - upgrade management node (vcld) components
+
+    --dbhost <hostname> - hostname of database server (default=localhost)
+
+    --dbname <name> - name of VCL database on database server (default=vcl)
+
+    --dbadminuser <username> - admin username for database; must have access
+            to modify database schema and dump data for backup (default=root)
+
+    --dbadminpass <password> - password for dbadminuser (default=[no password])
 
 ---
 
