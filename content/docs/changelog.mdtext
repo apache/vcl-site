@@ -16,6 +16,216 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
+## 2.4 Changes {#2.4}
+
+    
+###        New Feature
+
+
+* [<a href='https://issues.apache.org/jira/browse/VCL-5'>VCL-5</a>] -         multiple web servers
+* [<a href='https://issues.apache.org/jira/browse/VCL-170'>VCL-170</a>] -         option to power off blades after reservation - new reload module
+* [<a href='https://issues.apache.org/jira/browse/VCL-174'>VCL-174</a>] -         NAT Support
+* [<a href='https://issues.apache.org/jira/browse/VCL-178'>VCL-178</a>] -         enable checkuser flag for per reservation instead of image only
+* [<a href='https://issues.apache.org/jira/browse/VCL-562'>VCL-562</a>] -         Automatically disable user accounts known to be insecure stored in Windows images
+* [<a href='https://issues.apache.org/jira/browse/VCL-564'>VCL-564</a>] -         Run custom scripts during various reservation stages
+* [<a href='https://issues.apache.org/jira/browse/VCL-580'>VCL-580</a>] -         Add support for Fedora 16
+* [<a href='https://issues.apache.org/jira/browse/VCL-590'>VCL-590</a>] -         Openstack Module
+* [<a href='https://issues.apache.org/jira/browse/VCL-593'>VCL-593</a>] -         Documentation Links on VCL Home Page
+* [<a href='https://issues.apache.org/jira/browse/VCL-617'>VCL-617</a>] -         new XML-RPC methods
+* [<a href='https://issues.apache.org/jira/browse/VCL-722'>VCL-722</a>] -         OpenNebula module
+* [<a href='https://issues.apache.org/jira/browse/VCL-770'>VCL-770</a>] -         Windows 8.x and Server 2012 Support
+* [<a href='https://issues.apache.org/jira/browse/VCL-771'>VCL-771</a>] -         VMware ESXi 5.5 support
+* [<a href='https://issues.apache.org/jira/browse/VCL-783'>VCL-783</a>] -         Add support for 64-bit cygwin
+* [<a href='https://issues.apache.org/jira/browse/VCL-810'>VCL-810</a>] -         2.4 install script
+
+                
+###        Improvement
+
+
+* [<a href='https://issues.apache.org/jira/browse/VCL-16'>VCL-16</a>] -         Enhance cluster reservation process
+* [<a href='https://issues.apache.org/jira/browse/VCL-50'>VCL-50</a>] -         Moving machines from  Maintenance to VMhost INuse
+* [<a href='https://issues.apache.org/jira/browse/VCL-133'>VCL-133</a>] -         poor flow of pages for new reservation that&#39;s not currently available for image owner with multiple revisions
+* [<a href='https://issues.apache.org/jira/browse/VCL-179'>VCL-179</a>] -         image creation - confirm node is on
+* [<a href='https://issues.apache.org/jira/browse/VCL-229'>VCL-229</a>] -         add something browser specific to continuations data
+* [<a href='https://issues.apache.org/jira/browse/VCL-237'>VCL-237</a>] -         improve wording in error message about extending a reservation to overlap with a concurrently limited image
+* [<a href='https://issues.apache.org/jira/browse/VCL-280'>VCL-280</a>] -         only fail computers for computer related failures
+* [<a href='https://issues.apache.org/jira/browse/VCL-289'>VCL-289</a>] -         Consolodate image retrieval subroutines for provisioning modules
+* [<a href='https://issues.apache.org/jira/browse/VCL-291'>VCL-291</a>] -         Move OS response checking from provisioning to OS modules
+* [<a href='https://issues.apache.org/jira/browse/VCL-322'>VCL-322</a>] -         Add code to check that the static public address is set for all new/reload reservations, even if computer is not reloaded
+* [<a href='https://issues.apache.org/jira/browse/VCL-366'>VCL-366</a>] -         as needed add throttling to new vmware modules
+* [<a href='https://issues.apache.org/jira/browse/VCL-374'>VCL-374</a>] -         Set password requirements before attempting to set passwords during image capture
+* [<a href='https://issues.apache.org/jira/browse/VCL-392'>VCL-392</a>] -         Add option to rename computer separate from Sysprep
+* [<a href='https://issues.apache.org/jira/browse/VCL-409'>VCL-409</a>] -         Improvements to vcld -setup
+* [<a href='https://issues.apache.org/jira/browse/VCL-428'>VCL-428</a>] -         Make get_*_info() subroutines consistent and improve queries
+* [<a href='https://issues.apache.org/jira/browse/VCL-430'>VCL-430</a>] -         reservation extension can allow an invalid time to be submited
+* [<a href='https://issues.apache.org/jira/browse/VCL-442'>VCL-442</a>] -         Reduce time between user clicking Connect and RDP being opened
+* [<a href='https://issues.apache.org/jira/browse/VCL-503'>VCL-503</a>] -         Add timeout to hung SSH processes
+* [<a href='https://issues.apache.org/jira/browse/VCL-531'>VCL-531</a>] -         additions to dashboard
+* [<a href='https://issues.apache.org/jira/browse/VCL-538'>VCL-538</a>] -         time server option per management node
+* [<a href='https://issues.apache.org/jira/browse/VCL-552'>VCL-552</a>] -         create an easy way to view deleted computers
+* [<a href='https://issues.apache.org/jira/browse/VCL-555'>VCL-555</a>] -         need a way to give users access to add management nodes
+* [<a href='https://issues.apache.org/jira/browse/VCL-559'>VCL-559</a>] -         convert pages with large tables to use dojo datagrids
+* [<a href='https://issues.apache.org/jira/browse/VCL-568'>VCL-568</a>] -         refresh current reservations page 15 minutes after a reservation becomes available
+* [<a href='https://issues.apache.org/jira/browse/VCL-570'>VCL-570</a>] -         Ubuntu support
+* [<a href='https://issues.apache.org/jira/browse/VCL-581'>VCL-581</a>] -         check for whitespace in image name during image creation
+* [<a href='https://issues.apache.org/jira/browse/VCL-582'>VCL-582</a>] -         Linux.pm remove rc.local dependence  
+* [<a href='https://issues.apache.org/jira/browse/VCL-584'>VCL-584</a>] -         Extend features of Server loads
+* [<a href='https://issues.apache.org/jira/browse/VCL-585'>VCL-585</a>] -         Migrate time source variable to variable table
+* [<a href='https://issues.apache.org/jira/browse/VCL-586'>VCL-586</a>] -         Remove code using imagemeta.usergroupid
+* [<a href='https://issues.apache.org/jira/browse/VCL-592'>VCL-592</a>] -         honor user preference to only show user groups matching user&#39;s affiliation on server profile pages
+* [<a href='https://issues.apache.org/jira/browse/VCL-596'>VCL-596</a>] -         privilege tree - image list bubble/pop-up shows deleted images
+* [<a href='https://issues.apache.org/jira/browse/VCL-604'>VCL-604</a>] -         get_currentimage info - start using imageid and imagerevisionid instead of imagename
+* [<a href='https://issues.apache.org/jira/browse/VCL-605'>VCL-605</a>] -         change labels for advanced options for VM images
+* [<a href='https://issues.apache.org/jira/browse/VCL-608'>VCL-608</a>] -         XMLRPC interface inaccessible to Shibboleth-authenticated users
+* [<a href='https://issues.apache.org/jira/browse/VCL-636'>VCL-636</a>] -         Allow vCenter folder to be specified in VM profile
+* [<a href='https://issues.apache.org/jira/browse/VCL-637'>VCL-637</a>] -         linux updating hostname
+* [<a href='https://issues.apache.org/jira/browse/VCL-638'>VCL-638</a>] -         Add support for vSphere distributed switch
+* [<a href='https://issues.apache.org/jira/browse/VCL-640'>VCL-640</a>] -         block allocation fixes
+* [<a href='https://issues.apache.org/jira/browse/VCL-655'>VCL-655</a>] -         Manage groups - create a default or none user group
+* [<a href='https://issues.apache.org/jira/browse/VCL-669'>VCL-669</a>] -         ssh identity keys for end-users
+* [<a href='https://issues.apache.org/jira/browse/VCL-678'>VCL-678</a>] -         Reduce unnecessary output written to vcld.log
+* [<a href='https://issues.apache.org/jira/browse/VCL-682'>VCL-682</a>] -         Consolidate xCAT provisioning modules, retire xCAT 1.x support
+* [<a href='https://issues.apache.org/jira/browse/VCL-683'>VCL-683</a>] -         Retire utils.pm::_sshd_status
+* [<a href='https://issues.apache.org/jira/browse/VCL-684'>VCL-684</a>] -         Remove retrieve_user_data from DataStructure.pm
+* [<a href='https://issues.apache.org/jira/browse/VCL-685'>VCL-685</a>] -         VMware improvements for VCL 2.4
+* [<a href='https://issues.apache.org/jira/browse/VCL-687'>VCL-687</a>] -         Problems occur if /etc/issue.net is configured in Linux images
+* [<a href='https://issues.apache.org/jira/browse/VCL-690'>VCL-690</a>] -         There is no default selection on Manage computer 
+* [<a href='https://issues.apache.org/jira/browse/VCL-695'>VCL-695</a>] -         Change newimages membership if image owner is changed via website
+* [<a href='https://issues.apache.org/jira/browse/VCL-696'>VCL-696</a>] -         Improve resource group deletion options and information
+* [<a href='https://issues.apache.org/jira/browse/VCL-698'>VCL-698</a>] -         Linux.pm delete_user may fail to detect network mounted home directory and to clean sudoers
+* [<a href='https://issues.apache.org/jira/browse/VCL-702'>VCL-702</a>] -         Rework code to use new subroutines and objects &amp; general code cleanup for VCL 2.4
+* [<a href='https://issues.apache.org/jira/browse/VCL-703'>VCL-703</a>] -         Delete home directory when Linux user is deleted
+* [<a href='https://issues.apache.org/jira/browse/VCL-711'>VCL-711</a>] -         Move check_image_os from State.pm to xCAT.pm
+* [<a href='https://issues.apache.org/jira/browse/VCL-713'>VCL-713</a>] -         Add ability to turn off certain types of logging in the database
+* [<a href='https://issues.apache.org/jira/browse/VCL-714'>VCL-714</a>] -         HTML cleanup
+* [<a href='https://issues.apache.org/jira/browse/VCL-717'>VCL-717</a>] -         Prevent multiple failed image creation messages being sent to user
+* [<a href='https://issues.apache.org/jira/browse/VCL-726'>VCL-726</a>] -         Child processes are not killed when a vcld state process is killed
+* [<a href='https://issues.apache.org/jira/browse/VCL-727'>VCL-727</a>] -         xCAT commands may timeout - make multiple attempts
+* [<a href='https://issues.apache.org/jira/browse/VCL-732'>VCL-732</a>] -         disable user_connected checks for request &gt;= 24 hr
+* [<a href='https://issues.apache.org/jira/browse/VCL-734'>VCL-734</a>] -         set requests to pending state earlier when processing
+* [<a href='https://issues.apache.org/jira/browse/VCL-744'>VCL-744</a>] -         image retrieval can fail in some cases to find image across different management node
+* [<a href='https://issues.apache.org/jira/browse/VCL-748'>VCL-748</a>] -         Linux.pm get_firewall_configuration  /etc/services
+* [<a href='https://issues.apache.org/jira/browse/VCL-751'>VCL-751</a>] -         Linux.pm reserve create_user
+* [<a href='https://issues.apache.org/jira/browse/VCL-757'>VCL-757</a>] -         partimageng script fails if computer has additional USB drive
+* [<a href='https://issues.apache.org/jira/browse/VCL-758'>VCL-758</a>] -         VCL timings - make various timings to be variables and edited by admin 
+* [<a href='https://issues.apache.org/jira/browse/VCL-759'>VCL-759</a>] -         check user group access to image when creating block allocations
+* [<a href='https://issues.apache.org/jira/browse/VCL-760'>VCL-760</a>] -         user based post reservation script
+* [<a href='https://issues.apache.org/jira/browse/VCL-763'>VCL-763</a>] -         Add missing constraints to database tables
+* [<a href='https://issues.apache.org/jira/browse/VCL-764'>VCL-764</a>] -         Database changes for VCL 2.4
+* [<a href='https://issues.apache.org/jira/browse/VCL-766'>VCL-766</a>] -         Add message argument to image.pm&#39;s reservation_failed subroutine
+* [<a href='https://issues.apache.org/jira/browse/VCL-767'>VCL-767</a>] -         Allow dynamic private IP addresses, remove /etc/hosts requirement
+* [<a href='https://issues.apache.org/jira/browse/VCL-769'>VCL-769</a>] -         VMware vim-cmd fails if services fail
+* [<a href='https://issues.apache.org/jira/browse/VCL-772'>VCL-772</a>] -         remove node_status from provisioning sub-modules
+* [<a href='https://issues.apache.org/jira/browse/VCL-773'>VCL-773</a>] -         Dashboard View Update
+* [<a href='https://issues.apache.org/jira/browse/VCL-774'>VCL-774</a>] -         _get_file_info is unnecessarily slow for vSphere provisioning
+* [<a href='https://issues.apache.org/jira/browse/VCL-776'>VCL-776</a>] -         rework resource code to have a base class for all resources and inheriting classes for each resource type
+* [<a href='https://issues.apache.org/jira/browse/VCL-778'>VCL-778</a>] -         add graph for seeing historical usage of block allocations
+* [<a href='https://issues.apache.org/jira/browse/VCL-779'>VCL-779</a>] -         add method to dashboard for restarting failed imaging reservations
+* [<a href='https://issues.apache.org/jira/browse/VCL-780'>VCL-780</a>] -         combine new reservation and current reservations pages
+* [<a href='https://issues.apache.org/jira/browse/VCL-781'>VCL-781</a>] -         Add ability for provisioning modules to retrieve minimum hardware requirements for a particular OS
+* [<a href='https://issues.apache.org/jira/browse/VCL-782'>VCL-782</a>] -         utils.pm update_request_state generated unnecessary critical messages
+* [<a href='https://issues.apache.org/jira/browse/VCL-797'>VCL-797</a>] -         system admin setting for randomly generated passwords
+* [<a href='https://issues.apache.org/jira/browse/VCL-799'>VCL-799</a>] -         cluster reservations - update OS firewall to allow nodes of cluster to communicate 
+* [<a href='https://issues.apache.org/jira/browse/VCL-813'>VCL-813</a>] -         Disable Windows &quot;Select a location for the network&quot; prompt
+* [<a href='https://issues.apache.org/jira/browse/VCL-814'>VCL-814</a>] -         Reservation ready email should be sent as close as possible to when the Connect button appears
+* [<a href='https://issues.apache.org/jira/browse/VCL-816'>VCL-816</a>] -         Nmap is very slow due to DNS
+* [<a href='https://issues.apache.org/jira/browse/VCL-817'>VCL-817</a>] -         pgrep command arguments have changed with RHEL/CentOS 7.x
+
+                                
+###        Task
+
+
+* [<a href='https://issues.apache.org/jira/browse/VCL-457'>VCL-457</a>] -         VCL new provisioning module: CCMP module (Provisioning virtual machines inside IBM Cloud)
+* [<a href='https://issues.apache.org/jira/browse/VCL-606'>VCL-606</a>] -         viewdocs interface removal
+
+
+###        Sub-task
+
+
+* [<a href='https://issues.apache.org/jira/browse/VCL-122'>VCL-122</a>] -         Reload reservations setting ending state for user request when it shouldn&#39;t
+* [<a href='https://issues.apache.org/jira/browse/VCL-647'>VCL-647</a>] -         Warning generated if vmprofile.rsakey is not defined
+* [<a href='https://issues.apache.org/jira/browse/VCL-677'>VCL-677</a>] -         xCAT2.pm displays &quot;Use of uninitialized value in concatenation&quot; warnings
+* [<a href='https://issues.apache.org/jira/browse/VCL-686'>VCL-686</a>] -         vSphere_SDK.pm::_get_file_info slow
+* [<a href='https://issues.apache.org/jira/browse/VCL-798'>VCL-798</a>] -         Password complexity
+
+            
+###        Bug
+
+
+* [<a href='https://issues.apache.org/jira/browse/VCL-22'>VCL-22</a>] -         run_ssh_command may produce unexpected results if invalid identity key path is specified
+* [<a href='https://issues.apache.org/jira/browse/VCL-27'>VCL-27</a>] -         SQL statement error Level_1.pm
+* [<a href='https://issues.apache.org/jira/browse/VCL-60'>VCL-60</a>] -         image copy lock file for shared image library 
+* [<a href='https://issues.apache.org/jira/browse/VCL-86'>VCL-86</a>] -         reserved.pm does not correctly check for user connection for Linux imaging standalone reservations
+* [<a href='https://issues.apache.org/jira/browse/VCL-144'>VCL-144</a>] -         Imaging reservations may fail and not be put into maintenance if initialize() sub in State.pm fails
+* [<a href='https://issues.apache.org/jira/browse/VCL-308'>VCL-308</a>] -         Computer load log does not account for images that have to be transferred to another management node
+* [<a href='https://issues.apache.org/jira/browse/VCL-560'>VCL-560</a>] -         cleartext password stored in VMProfile table
+* [<a href='https://issues.apache.org/jira/browse/VCL-594'>VCL-594</a>] -         xCAT changes
+* [<a href='https://issues.apache.org/jira/browse/VCL-607'>VCL-607</a>] -         &#39;default&#39; skin hard-coded in initialization function when it should use the global DEFAULTTHEME
+* [<a href='https://issues.apache.org/jira/browse/VCL-610'>VCL-610</a>] -         minor HTML errors 
+* [<a href='https://issues.apache.org/jira/browse/VCL-613'>VCL-613</a>] -         output from init.d startup scripts are slightly amiss
+* [<a href='https://issues.apache.org/jira/browse/VCL-619'>VCL-619</a>] -         usenls may be undefined in _() function in requests.js
+* [<a href='https://issues.apache.org/jira/browse/VCL-623'>VCL-623</a>] -         Invalid public IP address may be presented on Connect page
+* [<a href='https://issues.apache.org/jira/browse/VCL-624'>VCL-624</a>] -         getUserlistID should be passed a user&#39;s full login string, not just a unityid
+* [<a href='https://issues.apache.org/jira/browse/VCL-627'>VCL-627</a>] -         image type fields on VM Host Profile page do not get updated
+* [<a href='https://issues.apache.org/jira/browse/VCL-628'>VCL-628</a>] -         check for duplicate image name not correctly performed when specified name is the same as the base image
+* [<a href='https://issues.apache.org/jira/browse/VCL-630'>VCL-630</a>] -         currentimage.txt name may conflict with imagerevision name, causing unnecessary reloads
+* [<a href='https://issues.apache.org/jira/browse/VCL-646'>VCL-646</a>] -         Ubuntu.pm doesn&#39;t set userid when creating a user account
+* [<a href='https://issues.apache.org/jira/browse/VCL-664'>VCL-664</a>] -         hard coded references to &quot;Local Account&quot;
+* [<a href='https://issues.apache.org/jira/browse/VCL-665'>VCL-665</a>] -         nmap routine output missing variable
+* [<a href='https://issues.apache.org/jira/browse/VCL-667'>VCL-667</a>] -         Administrator is always passed as the userid in RDP files for imaging reservations, even if it is for xRDP
+* [<a href='https://issues.apache.org/jira/browse/VCL-668'>VCL-668</a>] -         VMware fails to copy image under ESXi 5.1
+* [<a href='https://issues.apache.org/jira/browse/VCL-672'>VCL-672</a>] -         privilege page does not handle user groups with the same name but different affiliations correctly
+* [<a href='https://issues.apache.org/jira/browse/VCL-673'>VCL-673</a>] -         imaging reservation for an image with subimages prompts for revisions for each subimage
+* [<a href='https://issues.apache.org/jira/browse/VCL-676'>VCL-676</a>] -         OS.pm::remove_lines_from_file not escaping characters correctly
+* [<a href='https://issues.apache.org/jira/browse/VCL-679'>VCL-679</a>] -         utils.pm:get_computer_info using image.name to retrieve imagerevision info
+* [<a href='https://issues.apache.org/jira/browse/VCL-681'>VCL-681</a>] -         Failure to detect if SSH is available on VMware - timed out during banner exchange
+* [<a href='https://issues.apache.org/jira/browse/VCL-688'>VCL-688</a>] -         Image retrieval may fail to detect image residing on another management node
+* [<a href='https://issues.apache.org/jira/browse/VCL-691'>VCL-691</a>] -         utils.pm::get_production_imagerevision_info fails if image name argument is not the production revision
+* [<a href='https://issues.apache.org/jira/browse/VCL-692'>VCL-692</a>] -         server request and vcl_post_reserve
+* [<a href='https://issues.apache.org/jira/browse/VCL-693'>VCL-693</a>] -         VCL Cluster Reinstall Fails
+* [<a href='https://issues.apache.org/jira/browse/VCL-694'>VCL-694</a>] -         problem with conditional in editOrAddComputer - $data[&#39;compid&#39;] can be used when adding a computer
+* [<a href='https://issues.apache.org/jira/browse/VCL-697'>VCL-697</a>] -         image capture state overwritten
+* [<a href='https://issues.apache.org/jira/browse/VCL-699'>VCL-699</a>] -         Process may die if $self-&gt;mn_os isn&#39;t defined and get_computer_private_ip_address is called
+* [<a href='https://issues.apache.org/jira/browse/VCL-700'>VCL-700</a>] -         tovmhostinuse requests may fail if automatic VM host provisioning isn&#39;t configured
+* [<a href='https://issues.apache.org/jira/browse/VCL-701'>VCL-701</a>] -         Fedora 18 support
+* [<a href='https://issues.apache.org/jira/browse/VCL-704'>VCL-704</a>] -         Changes in user preferences not applied until vcld is restarted
+* [<a href='https://issues.apache.org/jira/browse/VCL-707'>VCL-707</a>] -         Improve ability to parse vcld.log
+* [<a href='https://issues.apache.org/jira/browse/VCL-712'>VCL-712</a>] -         Ubuntu module checks for iptables service when it should be checking for ufw
+* [<a href='https://issues.apache.org/jira/browse/VCL-719'>VCL-719</a>] -         add/edit resource group when no user groups to be listed
+* [<a href='https://issues.apache.org/jira/browse/VCL-723'>VCL-723</a>] -         Chrome has problems with the Virtual Hosts-&gt;VM Host Profiles page
+* [<a href='https://issues.apache.org/jira/browse/VCL-725'>VCL-725</a>] -         utils.pm run_command does not consistently return exit status
+* [<a href='https://issues.apache.org/jira/browse/VCL-729'>VCL-729</a>] -         utils.pm::mail will display errors if $RETURNPATH is not defined
+* [<a href='https://issues.apache.org/jira/browse/VCL-730'>VCL-730</a>] -         cannot update image revision comments under Edit Image
+* [<a href='https://issues.apache.org/jira/browse/VCL-731'>VCL-731</a>] -         printSelectInput should match the image name instead of the id for the $skip argument
+* [<a href='https://issues.apache.org/jira/browse/VCL-733'>VCL-733</a>] -         editing a block allocation recreates past block time entries
+* [<a href='https://issues.apache.org/jira/browse/VCL-735'>VCL-735</a>] -         UnixLab.pm updates
+* [<a href='https://issues.apache.org/jira/browse/VCL-736'>VCL-736</a>] -         notify user on console 
+* [<a href='https://issues.apache.org/jira/browse/VCL-737'>VCL-737</a>] -         reboot option can set reservation to failed
+* [<a href='https://issues.apache.org/jira/browse/VCL-739'>VCL-739</a>] -         predictive module Level 1 not using computer.nextimageid
+* [<a href='https://issues.apache.org/jira/browse/VCL-740'>VCL-740</a>] -         Deletion of Block allocations not removing reload reservations
+* [<a href='https://issues.apache.org/jira/browse/VCL-741'>VCL-741</a>] -         a tomaintenance reservation can be created right after another tomaintenance reservation
+* [<a href='https://issues.apache.org/jira/browse/VCL-742'>VCL-742</a>] -         server reservations cannot be modified if they cannot be extended
+* [<a href='https://issues.apache.org/jira/browse/VCL-743'>VCL-743</a>] -         run_ssh_command fails if SSH key permissions are incorrect
+* [<a href='https://issues.apache.org/jira/browse/VCL-745'>VCL-745</a>] -         Windows.pm user_logged_in does not check for imaging requests
+* [<a href='https://issues.apache.org/jira/browse/VCL-746'>VCL-746</a>] -         Windows.pm get_service_configuration may hang
+* [<a href='https://issues.apache.org/jira/browse/VCL-747'>VCL-747</a>] -         editOrAddGroup can have $ownerid undefined for add mode
+* [<a href='https://issues.apache.org/jira/browse/VCL-752'>VCL-752</a>] -         block allocated nodes count toward max concurrent usage of image even for users in that block allocation
+* [<a href='https://issues.apache.org/jira/browse/VCL-754'>VCL-754</a>] -         server reservation Admin access and User access user groups
+* [<a href='https://issues.apache.org/jira/browse/VCL-755'>VCL-755</a>] -         Add &#39;if defined&#39; checks for all get_management_node_info calls
+* [<a href='https://issues.apache.org/jira/browse/VCL-756'>VCL-756</a>] -         Run custom vcl_post_load scripts last
+* [<a href='https://issues.apache.org/jira/browse/VCL-761'>VCL-761</a>] -         Incorrect repository path used for images retrieved from another management node for a KVM hypervisor
+* [<a href='https://issues.apache.org/jira/browse/VCL-765'>VCL-765</a>] -         get_computer_ids may return deleted computers
+* [<a href='https://issues.apache.org/jira/browse/VCL-768'>VCL-768</a>] -         Linux.pm&#39;s logoff_user displays a warning if the user is not logged in
+* [<a href='https://issues.apache.org/jira/browse/VCL-775'>VCL-775</a>] -         Request may fail due to timing issue in computer_not_being_used and get_request_by_computerid
+* [<a href='https://issues.apache.org/jira/browse/VCL-793'>VCL-793</a>] -         Repeated vcld processes are forked for &#39;deleted&#39; processes which fail to initialize
+* [<a href='https://issues.apache.org/jira/browse/VCL-794'>VCL-794</a>] -         Make sure computer_not_being_used in new.pm always returns an explicit value
+* [<a href='https://issues.apache.org/jira/browse/VCL-795'>VCL-795</a>] -         Request processes are continuously created after end time is reached if request state is &#39;inuse&#39; and process initialization fails
+* [<a href='https://issues.apache.org/jira/browse/VCL-800'>VCL-800</a>] -         Reservations insert log.ending = failed when they shouldn&#39;t
+* [<a href='https://issues.apache.org/jira/browse/VCL-811'>VCL-811</a>] -         server requests for owned user groups show up in reservation list
+* [<a href='https://issues.apache.org/jira/browse/VCL-812'>VCL-812</a>] -         Windows is not always activated on load
+* [<a href='https://issues.apache.org/jira/browse/VCL-815'>VCL-815</a>] -         Problems with update_cluster in OS.pm
+
+
 ## 2.3.2 Changes {#2.3.2}
 
 ###        Bug
