@@ -19,7 +19,12 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 Adding computers is done by going to Manage Computers->Edit Computer 
 Profiles and clicking Add New Computer
 
-####Adding Individual Bare Metal Computers
+[Adding Individual Bare Metal Computers](#individualbare)<br>
+[Adding Individual Virtual Computers](#individualvirtual)<br>
+[Adding Multiple Bare Metal Computers](#multiplebare)<br>
+[Adding Multiple Virtual Computers](#multiplevirtual)
+
+####Adding Individual Bare Metal Computers {#individualbare}
 
  1. Click Manage Computers
  2. Select the Edit Computer Profiles radio button
@@ -56,7 +61,7 @@ Profiles and clicking Add New Computer
  5. Click <-Add
  6. Click Close
 
-####Adding Individual Virtual Computers
+####Adding Individual Virtual Computers {#individualvirtual}
 
  1. Click Manage Computers
  2. Select the Edit Computer Profiles radio button
@@ -89,7 +94,7 @@ Profiles and clicking Add New Computer
  5. Click <-Add
  6. Click Close
 
-####Adding Multiple Bare Metal Computers
+####Adding Multiple Bare Metal Computers {#multiplebare}
 
  1. Click Manage Computers
  2. Select the Edit Computer Profiles radio button
@@ -141,7 +146,7 @@ Profiles and clicking Add New Computer
  6. Click Close
 
 
-####Adding Multiple Virtual Computers
+####Adding Multiple Virtual Computers {#multiplevirtual}
 
  1. Click Manage Computers
  2. Select the Edit Computer Profiles radio button
