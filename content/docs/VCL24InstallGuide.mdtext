@@ -675,12 +675,17 @@ of your new VCL install.
 
 1. Add Computers
 
-    * If using **bare-metal** provisioning:
-        * [Adding bare-metal computers](addcomputers)
+    * If using **bare-metal** provisioning, follow the instruction
+on the [Adding Computers](addcomputers) page, selecting **Bare Metal** 
+as the computer Type
     * If using **VM** provisioning:
-        * [Adding VM hosts](addhypvisorservers)
-        * [Adding VMs](addingvmcomputers)
-        * [Assigning VMs to VM hosts](assignvmtohost)
+        * Follow the instruction on the [Adding Computers](addcomputers) 
+page, selecting **Bare Metal** as the computer Type to add at least one
+VM Host
+        * Follow the instruction on the [Adding Computers](addcomputers) 
+page, selecting **Virtual Machine** as the computer Type to add some
+virtual computers
+        * Finally, [Assign the VMs to VM hosts](assignvmtohost)
 
 2. [Create Base Images](image-creation)
 
