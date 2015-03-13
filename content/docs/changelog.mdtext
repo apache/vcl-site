@@ -224,6 +224,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-811'>VCL-811</a>] -         server requests for owned user groups show up in reservation list
 * [<a href='https://issues.apache.org/jira/browse/VCL-812'>VCL-812</a>] -         Windows is not always activated on load
 * [<a href='https://issues.apache.org/jira/browse/VCL-815'>VCL-815</a>] -         Problems with update_cluster in OS.pm
+* [<a href='https://issues.apache.org/jira/browse/VCL-834'>VCL-834</a>] -         Disable timeout for disconnected users is meaningless for imaging reservations
 
 
 ## 2.3.2 Changes {#2.3.2}
