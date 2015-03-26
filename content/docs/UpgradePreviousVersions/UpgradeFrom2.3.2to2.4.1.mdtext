@@ -24,14 +24,14 @@ then upgrade your system. The script can be used to upgrade all three parts of
 VCL (database, web portal, and management node) or to upgrade each part
 individually. It works for upgrading from any previous version of Apache VCL.
 
-[Download Upgrade Script (vcl-upgrade.sh)](https://www.apache.org/dist/vcl/vcl-upgrade.sh)
+[Download Upgrade Script (vcl-upgrade.sh)](https://www.apache.org/dist/vcl/2.4.1/vcl-upgrade.sh)
 
     :::BashLexer
-    wget https://www.apache.org/dist/vcl/vcl-upgrade.sh.sha1
+    wget https://www.apache.org/dist/vcl/2.4.1/vcl-upgrade.sh.sha1
     sha1sum -c vcl-upgrade.sh.sha1
     wget https://www.apache.org/dist/vcl/KEYS
     gpg --import KEYS
-    wget https://www.apache.org/dist/vcl/vcl-upgrade.sh.asc
+    wget https://www.apache.org/dist/vcl/2.4.1/vcl-upgrade.sh.asc
     gpg --verify vcl-upgrade.sh.asc
 
 Running the upgrade script with no arguments will step you through upgrading
