@@ -27,11 +27,11 @@ management node) or to install each part individually.
 Validate script:
 
     :::BashLexer
-    wget https://www.apache.org/dist/vcl/vcl-install.sh.sha1
+    wget https://www.apache.org/dist/vcl/2.4.1/vcl-install.sh.sha1
     sha1sum -c vcl-install.sh.sha1
     wget https://www.apache.org/dist/vcl/KEYS
     gpg --import KEYS
-    wget https://www.apache.org/dist/vcl/vcl-install.sh.asc
+    wget https://www.apache.org/dist/vcl/2.4.1/vcl-install.sh.asc
     gpg --verify vcl-install.sh.asc
 
 Running the installation script with no arguments will step you through installing all
@@ -700,4 +700,4 @@ virtual computers
   [1]: http://www.phpmyadmin.net/
   [2]: http://www.mysql.com/
   [3]: installphpmyadmin
-  [4]: https://www.apache.org/dist/vcl/vcl-install.sh
+  [4]: https://www.apache.org/dist/vcl/2.4.1/vcl-install.sh
