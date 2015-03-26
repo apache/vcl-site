@@ -26,10 +26,10 @@ its mirrors. Older releases are available from the archive download site.
 
 Stable Release - Latest Version:
 
-* <a href="[location]?Preferred=[preferred]&action=download&filename=%2Fvcl%2Fapache-VCL-2.4.1.tar.bz2">apache-VCL-2.4.1.tar.bz2</a>
-[ [GPG](http://www.apache.org/dist/vcl/apache-VCL-2.4.1.tar.bz2.asc) ]
-[ [SHA1](http://www.apache.org/dist/vcl/apache-VCL-2.4.1.tar.bz2.sha1) ]
-[ [MD5](http://www.apache.org/dist/vcl/apache-VCL-2.4.1.tar.bz2.md5) ]
+* <a href="[location]?Preferred=[preferred]&action=download&filename=%2Fvcl%2F2.4.1%2Fapache-VCL-2.4.1.tar.bz2">apache-VCL-2.4.1.tar.bz2</a>
+[ [GPG](http://www.apache.org/dist/vcl/2.4.1/apache-VCL-2.4.1.tar.bz2.asc) ]
+[ [SHA1](http://www.apache.org/dist/vcl/2.4.1/apache-VCL-2.4.1.tar.bz2.sha1) ]
+[ [MD5](http://www.apache.org/dist/vcl/2.4.1/apache-VCL-2.4.1.tar.bz2.md5) ]
 (released 2015-03-17)
 
 Previous Releases:
