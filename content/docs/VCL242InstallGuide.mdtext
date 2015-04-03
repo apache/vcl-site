@@ -1,4 +1,4 @@
-Title: VCL 2.4.1 Installation Guide
+Title: VCL 2.4.2 Installation Guide
 Notice:    Licensed to the Apache Software Foundation (ASF) under one
            or more contributor license agreements.  See the NOTICE file
            distributed with this work for additional information
@@ -17,7 +17,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            under the License.
 
 # Scripted Installation
-VCL 2.4.1 is the first release to include an installation script.  All you need to install
+VCL 2.4.2 is the first release to include an installation script.  All you need to install
 VCL is the script. It will download and validate the VCL software and then install it.
 The script can be used to install all three parts of VCL (database, web portal, and 
 management node) or to install each part individually.
@@ -27,11 +27,11 @@ management node) or to install each part individually.
 Validate script:
 
     :::BashLexer
-    wget https://www.apache.org/dist/vcl/2.4.1/vcl-install.sh.sha1
+    wget https://www.apache.org/dist/vcl/2.4.2/vcl-install.sh.sha1
     sha1sum -c vcl-install.sh.sha1
     wget https://www.apache.org/dist/vcl/KEYS
     gpg --import KEYS
-    wget https://www.apache.org/dist/vcl/2.4.1/vcl-install.sh.asc
+    wget https://www.apache.org/dist/vcl/2.4.2/vcl-install.sh.asc
     gpg --verify vcl-install.sh.asc
 
 Running the installation script with no arguments will step you through installing all
@@ -80,12 +80,12 @@ VCL currently supports the use of MySQL or MariaDB as the database.
 
 1. Download and Extract the Apache VCL Source
     * If you have not already done so, follow the instructions on the [download](/downloads/download.cgi)
-page to download and verify apache-VCL-2.4.1.tar.bz2, and put it in /root
+page to download and verify apache-VCL-2.4.2.tar.bz2, and put it in /root
 
     * Extract the files:
 
             :::BashLexer
-            tar -jxvf apache-VCL-2.4.1.tar.bz2
+            tar -jxvf apache-VCL-2.4.2.tar.bz2
 
 2. Install MySQL Server or MariaDB Server
 
@@ -182,7 +182,7 @@ privileges on the database you just created (**NOTE Use your own password**):
 **mysql** directory within the Apache VCL source code
 
             :::BashLexer
-            mysql vcl < apache-VCL-2.4.1/mysql/vcl.sql
+            mysql vcl < apache-VCL-2.4.2/mysql/vcl.sql
 
    
 ----------
@@ -191,7 +191,7 @@ privileges on the database you just created (**NOTE Use your own password**):
 
 **Prerequisites**
 
-  - Apache VCL 2.4.1 had been downloaded
+  - Apache VCL 2.4.2 had been downloaded
   - VCL database has been installed and configured
 
 **Web Server:**
@@ -282,19 +282,19 @@ config file:
 
 2. **Install the VCL Frontend Web Code**
     * If you have not already done so, follow the instructions on the [download](/downloads/download.cgi)
-page to download and verify apache-VCL-2.4.1.tar.bz2, and put it in /root
+page to download and verify apache-VCL-2.4.2.tar.bz2, and put it in /root
 
     * Extract the files:
 
             :::BashLexer
-            tar -jxvf apache-VCL-2.4.1.tar.bz2
+            tar -jxvf apache-VCL-2.4.2.tar.bz2
 
     * Copy the **web** directory to a location under the web root of your web server and 
 navigate to the destination **.ht-inc** subdirectory:
 
             :::BashLexer
-            cp -r apache-VCL-2.4.1/web/ /var/www/html/vcl-2.4.1
-            ln -s /var/www/html/vcl-2.4.1 /var/www/html/vcl
+            cp -r apache-VCL-2.4.2/web/ /var/www/html/vcl-2.4.2
+            ln -s /var/www/html/vcl-2.4.2 /var/www/html/vcl
             cd /var/www/html/vcl/.ht-inc
 
     * Copy secrets-default.php to secrets.php:
@@ -404,8 +404,8 @@ Configuration][3]
 The following management node installation instructions assume the instructions in these
 previous sections have been completed:
 
-* VCL 2.4.1 Database Installation
-* VCL 2.4.1 Web Code Installation
+* VCL 2.4.2 Database Installation
+* VCL 2.4.2 Web Code Installation
 
 **Supported Operating Systems:**
 
@@ -480,19 +480,19 @@ below for installation instructions):
 1. **Install the VCL Management Node Code - Perl Daemon**
     * If you have not already done so, follow the instructions on the 
 [download](/downloads/download.cgi) page to download and verify 
-apache-VCL-2.4.1.tar.bz2, and put it in /root
+apache-VCL-2.4.2.tar.bz2, and put it in /root
 
     * Extract the files:
 
             :::BashLexer
-            tar -jxvf apache-VCL-2.4.1.tar.bz2
+            tar -jxvf apache-VCL-2.4.2.tar.bz2
 
     * Copy the managementnode directory to the location where you want it to reside 
 (typically /usr/local):
 
             :::BashLexer
-            cp -r apache-VCL-2.4.1/managementnode /usr/local/vcl-2.4.1
-            ln -s /usr/local/vcl-2.4.1 /usr/local/vcl
+            cp -r apache-VCL-2.4.2/managementnode /usr/local/vcl-2.4.2
+            ln -s /usr/local/vcl-2.4.2 /usr/local/vcl
 
 2. **Install the Required Linux Packages & Perl Modules**
 
@@ -700,4 +700,4 @@ virtual computers
   [1]: http://www.phpmyadmin.net/
   [2]: http://www.mysql.com/
   [3]: installphpmyadmin
-  [4]: https://www.apache.org/dist/vcl/2.4.1/vcl-install.sh
+  [4]: https://www.apache.org/dist/vcl/2.4.2/vcl-install.sh
