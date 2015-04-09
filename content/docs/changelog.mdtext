@@ -21,6 +21,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 ###        Improvement
 
 * [<a href='https://issues.apache.org/jira/browse/VCL-850'>VCL-850</a>] -         Prevent 3D video from being enabled by default in VMware .vmx files
+* [<a href='https://issues.apache.org/jira/browse/VCL-859'>VCL-859</a>] -         disable image creation for images with root access disabled
 
 ###        Bug
 
@@ -28,11 +29,13 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-849'>VCL-849</a>] -         makeproduction state not processed correctly for cluster requests
 * [<a href='https://issues.apache.org/jira/browse/VCL-855'>VCL-855</a>] -         JSON Perl module missing from install_perl_libs.pl
 * [<a href='https://issues.apache.org/jira/browse/VCL-856'>VCL-856</a>] -         iptables.pm generates an error under old versions of Perl
+* [<a href='https://issues.apache.org/jira/browse/VCL-857'>VCL-857</a>] -         admin access not granted if owner of server reservation in access user group
+* [<a href='https://issues.apache.org/jira/browse/VCL-858'>VCL-858</a>] -         Image owner should have root access for imaging reservations
 
 ###        Task
 
 * [<a href='https://issues.apache.org/jira/browse/VCL-845'>VCL-845</a>] -         Remove blockRequest.admingroupid column
-
+* [<a href='https://issues.apache.org/jira/browse/VCL-848'>VCL-848</a>] -         Prepare VCL 2.4.2 release
 
 ## 2.4.1 Changes {#2.4.1}
 
