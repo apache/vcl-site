@@ -18,35 +18,47 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 
 This page describes how to create a base image from an install media. 
 
-These instructions are broken up into parts to assist in providing detailed instructions based on the supported provisioning modules and Operating Systems. The supported provisioning methods for VCL are (xCAT, VMware, and KVM).
+These instructions are broken up into parts to assist in providing 
+detailed instructions based on the supported provisioning modules and 
+Operating Systems. The supported provisioning methods for VCL are (xCAT, 
+VMware, and KVM).
 
 [TOC]
 
 ###Requirements
 
-Before getting started make sure you have the following requirements completed or on hand:
+Before getting started make sure you have the following requirements 
+completed or on hand:
  
  - A working VCL web,database, and management node
  - A Hypervisor either VMWare or KVM(if using hypervisor based images)
  - A working xCAT system(if using bare-metal images)
- - Install media
+ - Install media ISO file
  - Appropriate licensing for Windows or RedHat
  
 The following must be done before an image can be captured:
 
- - A computer for the machine being captured has already been added to the VCL database
+ - A computer for the machine being captured has already been added to 
+the VCL database
  - VMware or KVM:
-    - A VM host computer on which the guest is running as been added to the VCL database
-    - The guest VM has been assigned to the VM host via the Virtual Hosts link on the VCL website
+    - A VM host computer on which the guest is running has been added 
+to the VCL database
+    - The guest VM has been assigned to the VM host via the Virtual 
+Hosts link on the VCL website
+    - Obtain the **private** IP address of the VM from the 
+**Manage Computers > Edit Computer Information** part of the site 
+for use later in the process
 
 
-These instructions assume you have root access and are using a bash shell.
+These instructions assume you have root access on your management 
+node and are using a bash shell.
 
 ###Preparing node under a supported provisioning system
 
-####VMware ESXi 4.x
+####VMware ESX/ESXi 4.x, 5.x, vCenter
 
-The instructions assume that VMware has been configured with the following bridged networks:
+The instructions assume that VMware has been configured with the 
+following bridged networks:
 
  - **Private**: bridged to private interface: eth0
  - **Public**: bridged to public interface: eth1
@@ -58,62 +70,33 @@ The instructions assume that VMware has been configured with the following bridg
  - Select a datastore where the VM will reside
  - Virtual Machine Version: **7**
  - Select the appropriate guest OS
- - Number of virtual processors: 1
- - Memory: 1GB
- - How many NICs: 2
-     - NIC 1: **Private**, E1000
-     - NIC 2: **Public**, E1000
- - SCSI controller: LSI Logic Parallel
+ - Number of virtual processors: **1**
+ - Memory: **4GB**
+ - How many NICs: **2**
+     - NIC 1: **Private**, E1000, Connect at Power On: **Yes**
+     - NIC 2: **Public**, E1000, Connect at Power On: **Yes**
+ - SCSI controller: **LSI Logic Parallel**
  - Create a new virtual disk
-    - Disk Size: at least 30 GB
-    - Allocate and commit space on demand (Thin Provisioning): Yes
+    - Disk Size: **at least 30 GB**
+    - Allocate and commit space on demand (Thin Provisioning): **Yes**
     - Location: Store with the virtual machine
-    - Virtual Device Node: SCSI (0:0)
-    - Mode: Independent, Persistent
- - Edit the virtual machine settings before completion: Yes
- - Select the CD/DVD device
-    - Device Type: Datastore ISO File
-    - Click Browse and browse to an ISO file that has previously been copied to the datastore
-    - Connect at power on: Yes
- - Click Finish
-
-####VMware Server 2.x
-
- - Open the VMware Infrastructure Web Access page:
-         https://<IP address or hostname>:8333
- - Click the **Virtual Machine** menu
- - Select Create **Virtual Machine**
- - Name and Location
-    - Name: **Windows XP Base**
-    - Datastore: **standard** (This causes the VM to be created under /var/lib/vmware/Virtual Machines)
- - Guest Operating System
-    - Operating System: **Windows operating system**
-    - Version: **Microsoft Windows XP Professional (32-bit)**
-    - Product Compatibility: **4** (Optional - the hardware version can be set to the default value of 7 if you do not have any older VMware Server 1.x hosts in your environment)
- - Memory and Processors
-    - Memory Size: **1024 MB**
-    - Processor Count: **1**
- - Hard Disk
-    - Click **Create a New Virtual**
-          - Capacity: at least **20 GB** (This value can be adjusted to suit the size of the VMware host's disk. It is best to create the base image with a large enough hard drive to accomodate your largest image. The hard drive of a VM can be expanded but it is a manual, time-consuming process.)
-          - File Options
-                 - Allocate all disk space now: no
-                 - Split disk into 2 GB files: yes
-          - Disk Mode: **Independent/Persistent**
- - Network Adapter
-    - Click **Add a Network Adapter**
-            - Network Connection: select the name of your **private** network
- - CD/DVD Drive
-     - Click **Use an ISO**
-           - Select the Windows ISO image you copied to the host. The ISO file must reside in **/var/lib/vmware/Virtual Machines** in order to be able to select it from this interface.
- - Don't Add a Floppy Drive
- - Don't Add a USB
+    - Virtual Device Node: **SCSI (0:0)**
+    - Mode: **Not Independent (unchecked)**
+ - Edit the virtual machine settings before completion: **Yes**
+ - In the Hardware pane, select **Add...**
+    - Device Type: CD/DVD Drive
+    - Select CD/DVD Media: **Use ISO image**
+    - Select ISO Image:
+        - Click **Browse**
+        - Select the datastore where the ISO is located
+        - Click **Open**
+        - Select the ISO file
+        - Click **Open**
+    - Connect at power on: **Yes**
+ -Select the New NIC (adding) entry with **Private** listed next to it
+ - Under MAC Address, select **Manual**
+ - Enter the private MAC address you retrieved earlier
  - Click **Finish**
- - Select the VM from the Inventory pane
- - Click **Add Hardware** on the right side of the page
- - Select **Network Adapter**
-     - Network Connection: select the name of your **public** network
- - Click Next > **Finish**
 
 
 ####KVM
@@ -124,9 +107,117 @@ The instructions assume that VMware has been configured with the following bridg
 
 The requirement in this section is to have a working xCAT system.
 
-
 ###Next Steps - Installing OS
 
 ####Install Windows OS for a Base Image
 
+
+
 ####Install Linux OS for a Base Image
+
+- Power on the VM and follow the installation instructions for the
+Linux distribution and version you are installing.
+- On the Linux computer being captured, create a /root/.ssh directory:
+
+        :::BashLexer
+        mkdir /root/.ssh
+
+- On the management node, copy the public SSH identity key to the 
+authorized_keys file on the Linux computer being captured: 
+
+        :::BashLexer
+        scp /etc/vcl/vcl.key.pub <hostname or IP address>:/root/.ssh/authorized_keys
+
+- Or replace the above two steps with the following on the management 
+node:
+
+        :::BashLexer
+        ssh-copy-id -i /etc/vcl/vcl.key <hostname or IP address>
+
+- Make sure you can login from the management node to the Linux 
+computer being captured using the identity key:
+
+        :::BashLexer
+        ssh -i /etc/vcl/vcl.key <hostname or IP address>
+
+Configure the ifcfg-* Files
+
+- Navigate to the network-scripts directory:
+
+        :::BashLexer
+        cd /etc/sysconfig/network-scripts
+
+- Delete any ifcfg-*.bak files:
+
+        :::BashLexer
+        rm -f /etc/sysconfig/network-scripts/ifcfg-*.bak
+
+- Edit every ifcfg-eth* file in the network-scripts directory. Remove 
+the HWADDRESS= line if it exists:
+
+        :::BashLexer
+        vi ifcfg-eth0
+        vi ifcfg-eth1
+
+- The ifcfg-eth0 file should contain the following:
+
+        :::BashLexer
+        DEVICE=eth0
+        BOOTPROTO=dhcp
+        ONBOOT=yes
+
+- The ifcfg-eth1 file should contain the following:
+
+        :::BashLexer
+        DEVICE=eth1
+        BOOTPROTO=dhcp
+        ONBOOT=yes
+
+- Reboot the computer:
+
+        :::BashLexer
+        shutdown -r now
+
+- Check the ifcfg-eth* files to make sure there are no new ifcfg-eth* 
+files and that the HWADDRESS= lines have not been automatically added 
+back:
+
+        :::BashLexer
+        ls /etc/sysconfig/network-scripts
+        cat /etc/sysconfig/network-scripts/ifcfg-eth0
+        cat /etc/sysconfig/network-scripts/ifcfg-eth1
+
+
+###Capture the Image
+
+- Run the following command on the management node:
+
+        :::BashLexer
+        /usr/local/vcl/bin/vcld --setup
+
+- Navigate through the menu options to capture the image
+
+The following happens once you enter an image name and press enter:
+
+   - A new image is added to the VCL database
+   - An imaging request is added to the VCL database
+   - The vcld -setup automatically initiates 'tail -f /var/log/vcld.log' 
+to monitor the vcld log file.  The output should be displayed on the 
+screen.
+
+Watch the vcld logfile output to determine if the image capture process 
+is successful or terminated because a problem occurred.  When the 
+capture process terminates, there will either be a message near the end 
+of the output saying "image capture successful" or there will be several 
+WARNING messages, the last of which says something to the effect "image 
+failed to be captured".  Further troubleshooting is required if the 
+image fails to be captured.
+
+###Add the Base Image to an Image Group
+
+The vcld --setup utility does not add the new base image to any image 
+groups.  You must add the image to an image group using the VCL website 
+after the image capture process is complete.  Reservations for the 
+image cannot be made until this is done.  To add the image to an image 
+group, browse to the VCL website and select 
+**Manage Images > Edit Grouping & Mapping.**
