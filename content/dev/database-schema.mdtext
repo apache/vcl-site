@@ -12,6 +12,7 @@ This table contains a list of affiliations that can access this VCL site.
 * **sitewwwaddress** - URL for login page for this affiliation; typically it is just the URL encoded parameters to index.php to have the authentication method already selected (i.e. <a href="https://vcl.example.org/vcl/index.php?mode=selectauth&amp;authtype=EXAMPLE%20LDAP" class="external-link" rel="nofollow">https://vcl.example.org/vcl/index.php?mode=selectauth&amp;authtype=EXAMPLE%20LDAP</a>)
 * **helpaddress** - support email address for this affiliation
 * **shibonly** - 1 if this affiliation can only be authenticated via shibboleth, 0 if LDAP is also set up
+* **theme** - theme to be used for the web UI for users with this affiliation; must match something under the themes directory of the web code
 
 ### blockComputers table
 This table tracks which computers have been allocated to individual block allocation time slots.
@@ -82,12 +83,15 @@ This table logs changes made to reservations.
 
 * **id** - id of entry
 * **logid** - reference to log.id
+* **userid** - user.id for the user that made the change (in case of server reservations, may not match owner of reservation)
+* **reservationid** - reservation.id of the reservation affected by the change
 * **start** - change to start time of reservation
 * **end** - change to end time of reservation
 * **computerid** - reference to computer.id - change to computer assigned to reservation
 * **remoteIP** - change to remote IP of reservation user
 * **wasavailable** - mostly deprecated - if submitted change to start/end time of reservation was available for use or not
 * **timestamp** - datetime entry was added
+* **other** - for recording events users cause to happen to reservations such as reinstalling, rebooting, or changing admin/login user groups (recorded by calling addChangeLogEntryOther in the web code)
 
 
 ### clickThroughs table
@@ -108,6 +112,7 @@ This table contains all information about compute nodes and VMs that VCL control
 * **ownerid** - reference to owner.id - owner of computer
 * **platformid** - reference to platform.id - platform of computer
 * **scheduleid** - reference to schedule.id - schedule of computer
+* **vmhostid** - reference to vmhost.id - only used for virtual machines, this is the host computer of the VM
 * **currentimageid** - reference to image.id - image currently loaded on computer
 * **nextimageid** - reference to image.id - image to be loaded next on computer, only used under certain circumstances
 * **imagerevisionid** - reference to imagerevision.id - image revision currently loaded on computer (somewhat redundant with currentimageid)
@@ -118,12 +123,13 @@ This table contains all information about compute nodes and VMs that VCL control
 * **hostname** - private hostname of computer
 * **IPaddress** - public IP address
 * **privateIPaddress** - private IP address
-eth0macaddress - MAC address of private NIC
-eth1macaddress - MAC address of public NIC
+* **eth0macaddress** - MAC address of private NIC
+* **eth1macaddress** - MAC address of public NIC
 * **type** - blade, lab, or virtualmachine - type of the computer
 * **provisioningid** - reference to provisioning.id - provisioning module/method to be used for computer
 * **drivetype** - hda or sda - type of drive in the computer (is this still used?)
 * **deleted** - flag to show if computer has been deleted - 1 if deleted, 0 if not
+* **datedeleted** - datetime field for when computer was flagged as deleted
 * **notes** - any notes entered when computer placed into maintenance state
 * **lastcheck** - date stamp of last time the computer was checked through healthcheck.pl
 * **location** - physical location of node (Data Center 1, rack 1, etc)
@@ -133,8 +139,8 @@ eth1macaddress - MAC address of public NIC
 * **rsapub** - Not being used. Was planned for storing host keys for ssh 
 * **host** - Not being used. Was planned for storing host keys for ssh
 * **hostpub** - Not being used. Was planned for storing host keys for ssh
-* **vmhostid** - reference to vmhost.id - only used for virtual machines, this is the host computer of the VM
 * **vmtypeid** - reference to vmtype.id - only used for virtual machines, this is the type of the VM (vmware, xen, kvm, etc)
+* **predictivemoduleid** - module.id for the perl module that handles what to do with the node after a reservation
 
 
 ### computerloadflow table
@@ -165,14 +171,24 @@ This table contains the load states that a reservation goes through when being d
 * **est** - estimated time for state in minutes
 
 
+### connectlog table
+This table contains information about users connecting to reservations.
+
+* **id** - id of entry
+* **logid** - log.id for reservation
+* **reservationid** - reservation.id for reservation
+* **userid** - user.id for user connecting to reservation
+* **remoteIP** - remote IP of user
+* **varified** - 
+* **timestamp** - time stamp when event occurred
+
+
 ### connectmethod table
 This table contains all of the connect methods available to be assigned to an image.  Connect methods are things like RDP, ssh, VNC, etc.
 
 * **id** - id of entry
 * **name** - name of entry
 * **description** - description of connect method
-* **protocol** - TCP or UDP
-* **port** - tcp or udp port number
 * **connecttext** - this text will be displayed on the Connect page, there are a few variable substitutions available to be used: #userid#, #password#, #connectIP#, and #connectport#
 * **servicename** - name of service to be started to enable connect method on provisioned node
 * **startupscript** - name of script to be run to enable connect method on provisioned node
@@ -187,6 +203,15 @@ This table contains two types of information and can be somewhat confusing.  It 
 * **imagerevisionid** - reference to imagerevision.id - image revision this entry applies to (can be NULL)
 * **disabled** - flag telling if method is enabled/disabled for combination of OStypeid, OSid, and imagerevisionid
 * **autoprovisioned** - NULL, 0, or 1 - flag to tell if this connect method can be autoprovisioned by vcld or if the image owner must install the software to enable it
+
+
+### connectmethodport
+This table contains the ports associated with a connectmethod. The ports were initially part of the connectmethod table, but separating them out allowed for multiple ports per connect method.
+
+* **id** - id of entry
+* **connectmethodid** - connectmethod.id of which these ports are part
+* **protocol** - TCP or UDP
+* **port** - tcp or udp port number
 
 
 ### continuations table
@@ -218,6 +243,7 @@ This table contains all information about the images available through VCL.  It 
 * **name** - system name of image
 * **prettyname** - name of image that is displayed to users
 * **ownerid** - reference to user.id - owner of image
+* **imagetypeid** - reference to imagetype.id - type of the image
 * **platformid** - reference to platform.id - platform of image
 * **OSid** - reference to OS.id - OS of image
 * **imagemetaid** - reference to imagemeta.id - NULL or id from imagemeta table where additional image information is stored
@@ -246,11 +272,11 @@ This table contains additional information about some images.  It was added so t
 * **id** - id of entry
 * **checkuser** - flag to tell if reservations for image should be timed out if user is disconnect for &gt; 15 minutes - 0 not to do timeout, 1 to do timeout
 * **subimages** - flag to tell if subimages are associated with image
-* **usergroupid** - reference to usergroup.id - user group allowed to log in to reservations for image (deprecated?)
 * **sysprep** - flat to tell if sysprep should be used on this image (bare metal images only, sysprep is always disabled for VMs)
 * **postoption** - ??
 * **architecture** - ??
 * **rootaccess** - flag to tell if users should have root access on reservations for image - 1 to have it, 0 not to
+* **sethostname** - flag to determine if vcld should set the hostname of the computer after an image is deployed to the computer.hostname entry for the computer; default value is NULL; default behaviour for windows is not to set it; default behaviour for linux is to set it
 
 
 ### imagerevision table
@@ -267,6 +293,20 @@ This table contains an entry for every revision (including the initial one) of e
 * **comments** - comments entered when revision was created for keeping track of what was done to the image
 * **imagename** - system name of revision
 * **autocaptured** - flag to tell if this was an auto-captured revision - 1 if it was, 0 otherwise
+
+
+### imagerevisioninfo
+* **imagerevisionid** - reference to imagerevision.id
+* **usernames** - 
+* **firewallenabled** - 
+* **timestamp** - 
+
+
+### imagetype
+This table is a list of all of the types of images VCL can handle.  As of 2.4.2, these values are kickstart, lab, none, partimage, partimage-ng, qcow2, vdi, and vmdk.
+
+* **id** - id of entry
+* **name** - name of entry
 
 
 ### IMtype table
@@ -317,6 +357,7 @@ This table contains a log of every authentication attempt.
 * **timestamp** - date/time authentication attempt occurred
 * **passfail** - 0 for fail, 1 for pass
 * **remoteIP** - IP address of user's machine
+* **code** - either "none" or "invalid credentials" - used for recording when an LDAP server responds with "invalid credentials" when attempting to validate a username/password combination
 
 
 ### managementnode table
@@ -335,7 +376,6 @@ This table contains information about each management node.
 * **imagelibuser** - user to use when fetching images from other management nodes
 * **imagelibkey** - ssh identity key to use when fetching images from other management nodes
 * **keys** - comman delimited list of ssh identity keys to use when sshing to compute nodes
-* **predictivemoduleid** - id of module for predicting which image to load when a reservation completes
 * **sshport** - ssh port to listen on
 * **publicIPconfiguration** - how compute nodes managed by this node obtain their public IP
 * **publicSubnetMask** - if publicIPconfiguration is 'static', enter the subnet mask to be used when configuring the compute nodes addresses
@@ -343,7 +383,8 @@ This table contains information about each management node.
 * **publicDNSserver** - if publicIPconfiguration is 'static', enter the DNS server to be used when configuring the compute nodes addresses
 * **sysadminEmailAddress** - email address to use when sending problem reports
 * **sharedMailBox** - email address to use for sending shadow emails of user emails
-NOT_STANDALONE - ??
+NOT_STANDALONE - list of affiliations for which federated authentication is used for Linux images, meaning vcld does not need to set a password for users when creating their reservations because the image will handle it via federated authentication
+* **availablenetworks** - list of networks for which the management node is capable of configuring fixed (static) addresses for server reservations
 
 
 ### module table
@@ -357,6 +398,55 @@ This table contains information about the various perl modules that are part of 
 * **perlpackage** - string to use when including this module in perl scripts
 
 
+### nathost
+This table tracks which nodes are configured to be used as NAT hosts.
+
+* **id** - id of entry
+* **resourceid** - reference to resource.id - which resource is being used as a NAT host (can be either a computer or management node)
+* **publicIPaddress** - IP address on node that faces the public Internet
+* **internalIPaddress** - IP address on node that faces the internal network
+
+
+### nathostcomputermap
+This table maps compute nodes to nodes being used as a NAT host for them.
+
+* **nathostid** - reference to nathost.id
+* **computerid** - reference to computer.id
+
+
+### natlog
+This table records relevant information about how NAT was configured for a reservation.
+
+* **sublogid** - reference to sublog.id - sublog entry for reservation
+* **nathostresourceid** - reference to resource.id - resource id of host doing NAT at time of reservation
+* **publicIPaddress** - public facing IP address on NAT host at time of reservation
+* **publicport** - public port forwarded to internal node on NAT host at time of reservation
+* **internalIPaddress** - internal facing IP address on NAT host at time of reservation
+* **internalport** - internal port on reserved node to which forwarding was done on NAT host at time of reservation
+* **protocol** - protocol (TCP or UDP) of port that was forwarded at time of reservation
+* **timestamp** - timestamp at which the port forward was set up
+
+
+### natport
+This table tracks which ports are actively being forwarded on NAT hosts for which reservations.
+
+* **reservationid** - reference to reservation.id - reservation for which port is forwarded
+* **nathostid** - reference to nathost.id - node on which port is forwarded
+* **publicport** - public port being forwarded on NAT host
+* **connectmethodportid** - reference to connectmethodport.id
+
+
+### openstackcomputermap
+* **instanceid** - 
+* **computerid** - 
+
+
+### openstackimagerevision
+* **imagerevisionid** - 
+* **imagedetails** - 
+* **flavordetails** - 
+
+
 ### OS table
 
 This table contains information about OSes VCL knows about.
@@ -366,6 +456,7 @@ This table contains information about OSes VCL knows about.
 * **prettyname** - more descriptive name of OS
 * **type** - reference to OStype.name - windows, linux, unix, etc
 * **installtype** - reference to OSinstalltype.name - none, partimage, kickstart, etc
+* **minram** - minimum RAM required by this OS
 * **sourcepath** - ??
 * **moduleid** - reference to module.id - module that handles this OS
 
@@ -531,6 +622,17 @@ This table contains all of the starts/ends of the time slots for each schedule. 
 * **end** - end of time slot in minutes since midnight Sunday morning
 
 
+### semaphone table
+This table is used by the frontend to manage semaphores for computers being considered for reservations. During normal network and CPU loads, entries in this table should only exist for fractions of a second.
+
+* **computerid** - reference to computer.id - computer being locked
+* **imageid** - reference to image.id - image to be deployed on computer
+* **imagerevisionid** - reference to imagerevision.id - revision of image to be deployed on computer
+* **managementnodeid** - reference to managementnode.id - management node to handle reservation
+* **expires** - timestamp after which the semaphore is considered to be expired; can be configured by setting SEMTIMEOUT in conf.php, defaults to 45 seconds after insertion
+* **procid** - unique id for process that obtained the lock (combination of hostname and process id)
+
+
 ### serverprofile table
 This table contains all of the server profiles.
 
@@ -544,20 +646,21 @@ This table contains all of the server profiles.
 * **fixedMAC** - MAC address reservations for this profile will typically use
 * **admingroupid** - reference to usergroup.id
 * **logingroupid** - reference to usergroup.id
-* **monitored** - 
+* **monitored** - (unused)
 
 
 ### serverrequest table
 This table contains an entry for each server reservation.
 
 * **id** - id of entry
+* **name** - name of server reservation
 * **serverprofileid** - reference to serverprofile.id - 0 if no profile used or too many items changed from profile
 * **requestid** - reference to request.id - main request entry associated with this server reservation
 * **fixedIP** - IP address to use on deployed machine
 * **fixedMAC** - MAC address to use on deployed machine
 * **admingroupid** - reference to usergroup.id - user group containing users that should be able to control this reservation and have admin access to the machine
 * **logingroupid** - reference to usergroup.id - user group containing users that should be only be able to log in to this machine (will see reservation, but only the Connect button)
-* **monitored** - 1 to have this reservation monitored, 0 otherwise
+* **monitored** - 1 to have this reservation monitored, 0 otherwise (unused)
 
 
 ### shibauth table
@@ -595,8 +698,9 @@ This table contains cached values for the stat graphs.  Some of the data points 
 
 * **graphtype** - totalres, concurres, concurblade, or concurvm - type of graph for this entry
 * **statdate** - date for this entry
-* **affiliationid** - affiliation for this entry
+* **affiliationid** - reference to affiliation.id; affiliation for this entry or NULL
 * **value** - data point value for this entry
+* **provisioningid** - reference to provisioning.id; provisioning id for this entry or NULL
 
 
 ### subimages table
@@ -609,6 +713,7 @@ This table contains a list of sub images associated with any clusters.
 ### sublog table
 This table contains an entry for each computer that was part of a log table entry.  For normal reservations, this is a single entry; for cluster reservations, it is one entry for each subimage.
 
+* **id** - id of entry
 * **logid** - reference to log.id - corresponding entry in log table
 * **imageid** - reference to image.id - image deployed for this reservation
 * **imagerevisionid** - reference to imagerevision.id - image revision deployed for this reservation
@@ -617,6 +722,9 @@ This table contains an entry for each computer that was part of a log table entr
 * **managementnodeid** - reference to managementnode.id - management node that handled this deploy
 * **predictivemoduleid** - reference to module.id - prediction module used to load image when this reservation finished ??
 * **hostcomputerid** - reference to computer.id - for VMs, this was the host the VM was deployed to
+* **blockRequestid** - reference to blockRequest.id (if reservation was part of a block allocation)
+* **blockStart** - start time of blockTime (if reservation was part of a block allocation)
+* **blockEnd** - end time of blockTime (if reservation was part of a block allocation)
 
 
 ### user table
@@ -643,6 +751,9 @@ This table contains an entry for every user that has every logged in to VCL.
 * **mapserial** - serial mapping status for RDP files
 * **showallgroups** - 1 to show user groups from all affiliations where user groups can be selected, 0 to only show user groups matching user's affiliation
 * **lastupdated** - date/time user's info was last updated
+* **validated** - 0 or 1; if shibboleth authentication is configured and ALLOWADDSHIBUSERS is set to 1 in conf.php, users can be added to the site (i.e. adding to a user group) without validating that the entered user name is valid, in which case this would be set to 0 until the user actually logs in, at which point it is updated to 1; always 1 for other types of authentication
+* **usepublickeys** - 0 or 1; whether or not user wants to use public key authentication for linux reservations
+* **sshpublickeys** - data to be put in ~/.ssh/authorized_keys within linux reservations if usepublickeys is set to 1
 
 
 ### usergroup table
@@ -718,8 +829,6 @@ This table contains an entry for each virtual host.
 * **computerid** - reference to computer.id - physical machine entry refers to
 * **vmlimit** - max number of VMs that can be on this host
 * **vmprofileid** - reference to vmprofile.id - profile being used on this host
-* **vmkernalnic** - ??
-* **vmwaredisk** - localdisk or networkdisk - ??
 
 
 ### vmprofile table
@@ -727,15 +836,27 @@ This table contains an entry for each virtual host profile.
 
 * **id** - id of entry
 * **profilename** - name of the profile
-* **vmtypeid** - reference to vmtype.id - hypervisor type of this profile
 * **imageid** - reference to image.id - image deployed on host
-* **repositorypath** - ??
-* **datastorepath** - ??
-* **virtualdiskpath** - ??
-* **vmpath** - ??
-virtualswitch0 - name of virtual switch0
-virtualswitch1 - name of virtual switch1
-virtualswitch2 - name of virtual switch2
+* **resourcepath** - only used with vCenter, location where VMs will be created in the vCenter inventory tree
+* **folderpath** - only used with vCenter, location where VMs will reside according to the vSphere Client's 'VMs and Templates' inventory view
+* **repositorypath** - path where master copies of images are stored which are used to transfer images to VM host datastores or to other repositories
+* **repositoryimagetypeid** - virtual disk type of the images stored in the repository
+* **datastorepath** - location where master copies of images are stored which are used by running VMs
+* **datastoreimagetypeid** - virtual disk type of the images stored in the datastore
+* **vmpath** - path on VM host where VM working directories will reside
+* **virtualswitch0** - name of virtual switch0
+* **virtualswitch1** - name of virtual switch1
+* **virtualswitch2** - name of virtual switch2
+* **virtualswitch3** - name of virtual switch3
+* **vmdisk** - whether the Virtual Disk Path storage is dedicated to a single host or shared among multiple hosts
+* **username** - name of the administrative or root user residing on the VM host
+* **password** - password of the administrative or root user residing on the VM host
+* **eth0generated** - 0 or 1, whether the mac address for eth0 should be generated by the hypervisor or not
+* **eth1generated** - 0 or 1, whether the mac address for eth1 should be generated by the hypervisor or not
+* **rsapub** - public key used to encrypt password for VM host and store it in encryptedpasswd
+* **rsakey** - path to private key on management nodes that is used to decrypt password for VM host
+* **encryptedpasswd** - encrypted password of the administrative or root user residing on the VM host, if encrypted, the "password" field will be NULL
+
 ### vmtype table
 This table contains all of the virtual machine types.
 
