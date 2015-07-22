@@ -1,4 +1,4 @@
-Title: VCL Post Load & Reserve scripts
+Title: VCL Image Scripts: Post-Load, Post-Reserve, & Post-Reservation
 Notice:    Licensed to the Apache Software Foundation (ASF) under one
            or more contributor license agreements.  See the NOTICE file
            distributed with this work for additional information
@@ -16,12 +16,16 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-Scripts may be saved within Linux VCL images which are automatically executed at specific stages of the VCL 
+Scripts may be saved within VCL images which are automatically executed at specific stages of the VCL 
 reservation process.  The scripts are added by the image creator prior to saving the image.  They must be 
 located and named exactly as specified below.
 
 ## Post-Load
-####Script: /usr/local/vcl/vcl_post_load
+
+#### Location
+
+* Linux: /usr/local/vcl/vcl_post_load
+* Windows: C:\Windows\vcl_post_load.cmd
 
 The post-load script will be executed every time a compute node is loaded, meaning:
 
@@ -48,7 +52,11 @@ The post-load script is useful for:
 * Mounting external storage intended for system files or logs
 
 ## Post-Reserve
-#### Script: /usr/local/vcl/vcl_post_reserve
+
+#### Location
+
+* Linux: /usr/local/vcl/vcl_post_reserve
+* Windows: C:\Windows\vcl_post_reserve.cmd
 
 The post-reserve script is only executed when a user makes a reservation for an image and acknowledges the 
 reservation by clicking the Connect button.  It is executed after the standard *reserve* steps are performed 
@@ -68,7 +76,11 @@ modifying configuration files with information about the other cluster nodes
 * Mounting external storage intended for user files
 
 ## Post-Reservation
-####Script: /usr/local/vcl/vcl_post_reservation
+
+#### Location
+
+* Linux: /usr/local/vcl/vcl_post_reservation
+* Windows: C:\Windows\vcl_post_reservation.cmd
 
 The post-reservation script is executed prior to a compute node being reloaded.  It does not matter if the 
 compute node is reloaded with the same or a different image, nor does it matter if the compute node was 
