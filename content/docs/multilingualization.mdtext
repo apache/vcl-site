@@ -71,7 +71,7 @@ After you have translated everything, you need to compile the .po file into a .m
 file using msgfmt, also from the gettext suite, placing the .mo file under the 
 vcl/locale/es_PR/LC_MESSAGES/ path:
 
-    msgfmt --output=vcl/locale/es_PR/LC_MESSAGES/vcl.mo vcl/locale/po/es_PR/vcl.po
+    msgfmt --output=vcl/locale/es_PR/LC_MESSAGES/vcl.mo vcl/locale/po_files/es_PR/vcl.po
 
 ## Creating a javascript translation file
 
