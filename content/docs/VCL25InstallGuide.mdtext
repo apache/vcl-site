@@ -1,4 +1,4 @@
-Title: VCL 2.4.2 Installation Guide
+Title: VCL 2.5 Installation Guide
 Notice:    Licensed to the Apache Software Foundation (ASF) under one
            or more contributor license agreements.  See the NOTICE file
            distributed with this work for additional information
@@ -17,7 +17,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            under the License.
 
 # Scripted Installation
-VCL 2.4.2 is the first release to include an installation script.  All you need to install
+VCL 2.5 is the first release to include an installation script.  All you need to install
 VCL is the script. It will download and validate the VCL software and then install it.
 The script can be used to install all three parts of VCL (database, web portal, and 
 management node) or to install each part individually.
@@ -27,11 +27,11 @@ management node) or to install each part individually.
 Validate script:
 
     :::BashLexer
-    wget https://www.apache.org/dist/vcl/2.4.2/vcl-install.sh.sha1
+    wget https://www.apache.org/dist/vcl/2.5/vcl-install.sh.sha1
     sha1sum -c vcl-install.sh.sha1
     wget https://www.apache.org/dist/vcl/KEYS
     gpg --import KEYS
-    wget https://www.apache.org/dist/vcl/2.4.2/vcl-install.sh.asc
+    wget https://www.apache.org/dist/vcl/2.5/vcl-install.sh.asc
     gpg --verify vcl-install.sh.asc
 
 Running the installation script with no arguments will step you through installing all
@@ -80,12 +80,12 @@ VCL currently supports the use of MySQL or MariaDB as the database.
 
 1. Download and Extract the Apache VCL Source
     * If you have not already done so, follow the instructions on the [download](/downloads/download.cgi)
-page to download and verify apache-VCL-2.4.2.tar.bz2, and put it in /root
+page to download and verify apache-VCL-2.5.tar.bz2, and put it in /root
 
     * Extract the files:
 
             :::BashLexer
-            tar -jxvf apache-VCL-2.4.2.tar.bz2
+            tar -jxvf apache-VCL-2.5.tar.bz2
 
 2. Install MySQL Server or MariaDB Server
 
@@ -182,7 +182,7 @@ privileges on the database you just created (**NOTE Use your own password**):
 **mysql** directory within the Apache VCL source code
 
             :::BashLexer
-            mysql vcl < apache-VCL-2.4.2/mysql/vcl.sql
+            mysql vcl < apache-VCL-2.5/mysql/vcl.sql
 
    
 ----------
@@ -191,7 +191,7 @@ privileges on the database you just created (**NOTE Use your own password**):
 
 **Prerequisites**
 
-  - Apache VCL 2.4.2 had been downloaded
+  - Apache VCL 2.5 has been downloaded
   - VCL database has been installed and configured
 
 **Web Server:**
@@ -208,7 +208,6 @@ privileges on the database you just created (**NOTE Use your own password**):
 **Required PHP Modules:**
 
   * php
-  * php-gd
   * php-json (required if your PHP version is 5.2 or later)
   * php-mysql
   * php-openssl
@@ -226,13 +225,7 @@ privileges on the database you just created (**NOTE Use your own password**):
         For RHEL / CentOS 6 and 7
 
             :::BashLexer
-            yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap -y
-
-        For RHEL / CentOS 5
-       
-            :::BashLexer
-            yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap -y
-
+            yum install httpd mod_ssl php php-mysql php-xml php-xmlrpc php-ldap -y
 
     * Configure the web server daemon (httpd) to start automatically:
 
@@ -282,19 +275,19 @@ config file:
 
 2. **Install the VCL Frontend Web Code**
     * If you have not already done so, follow the instructions on the [download](/downloads/download.cgi)
-page to download and verify apache-VCL-2.4.2.tar.bz2, and put it in /root
+page to download and verify apache-VCL-2.5.tar.bz2, and put it in /root
 
     * Extract the files:
 
             :::BashLexer
-            tar -jxvf apache-VCL-2.4.2.tar.bz2
+            tar -jxvf apache-VCL-2.5.tar.bz2
 
     * Copy the **web** directory to a location under the web root of your web server and 
 navigate to the destination **.ht-inc** subdirectory:
 
             :::BashLexer
-            cp -r apache-VCL-2.4.2/web/ /var/www/html/vcl-2.4.2
-            ln -s /var/www/html/vcl-2.4.2 /var/www/html/vcl
+            cp -r apache-VCL-2.5/web/ /var/www/html/vcl-2.5
+            ln -s /var/www/html/vcl-2.5 /var/www/html/vcl
             cd /var/www/html/vcl/.ht-inc
 
     * Copy secrets-default.php to secrets.php:
@@ -335,10 +328,17 @@ navigate to the destination **.ht-inc** subdirectory:
         * Review every entry under "Things in this section must be modified/reviewed". 
         Descriptions and pointers for each value are included within conf.php.
         
-    * Set the owner of the .ht-inc/maintenance directory to the web server user (normally 'apache'):
+    * Set the owner of the .ht-inc/maintenance and .ht-inc/cryptkey directories to the web server user (normally 'apache'):
 	
             :::BashLexer
             chown apache maintenance
+            chown apache cryptkey
+
+    * If SELinux is enabled, run the following command to allow the web server to write to maintenance and cryptkey
+	
+            :::BashLexer
+            chcon -t httpd_sys_rw_content_t maintenance
+            chcon -t httpd_sys_rw_content_t cryptkey
 
     * Open the testsetup.php page in a web browser:
         * If you set up your site to be https://my.server.org/vcl/ open https://my.server.org/vcl/testsetup.php
@@ -404,18 +404,16 @@ Configuration][3]
 The following management node installation instructions assume the instructions in these
 previous sections have been completed:
 
-* VCL 2.4.2 Database Installation
-* VCL 2.4.2 Web Code Installation
+* VCL 2.5 Database Installation
+* VCL 2.5 Web Code Installation
 
 **Supported Operating Systems:**
 
 The VCL management node daemon (vcld) has been developed to run on an operating system 
 based on Red Hat Enterprise Linux (RHEL). It has been tested on the following:
 
-* Red Hat Enterprise Linux 5.x
 * Red Hat Enterprise Linux 6.x
 * Red Hat Enterprise Linux 7.x
-* CentOS 5.x
 * CentOS 6.x
 * CentOS 7.x
 
@@ -424,6 +422,8 @@ based on Red Hat Enterprise Linux (RHEL). It has been tested on the following:
 The VCL management node daemon (vcld) requires the following Linux packages and Perl 
 modules in order to run (see step 2 below for installation instructions). Note, there is 
 overlap as some of the perl modules are available through the yum packager manager.
+
+============================= NEEDS UPDATING ============================
 
 * expat-devel - Libraries and include files to develop XML applications with expat
 * gcc - Various compilers (C, C++, Objective-C, Java, ...)
@@ -459,6 +459,8 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 5.8.x. The following Perl modules available from CPAN are also required (see step 2 
 below for installation instructions):
 
+============================= NEEDS UPDATING ============================
+
 * CPAN - provides a command interface (not a shell) to CPAN
 * DBI - Generic Database Interface
 * Digest::SHA1 - NIST SHA message digest algorithm
@@ -480,19 +482,19 @@ below for installation instructions):
 1. **Install the VCL Management Node Code - Perl Daemon**
     * If you have not already done so, follow the instructions on the 
 [download](/downloads/download.cgi) page to download and verify 
-apache-VCL-2.4.2.tar.bz2, and put it in /root
+apache-VCL-2.5.tar.bz2, and put it in /root
 
     * Extract the files:
 
             :::BashLexer
-            tar -jxvf apache-VCL-2.4.2.tar.bz2
+            tar -jxvf apache-VCL-2.5.tar.bz2
 
     * Copy the managementnode directory to the location where you want it to reside 
 (typically /usr/local):
 
             :::BashLexer
-            cp -r apache-VCL-2.4.2/managementnode /usr/local/vcl-2.4.2
-            ln -s /usr/local/vcl-2.4.2 /usr/local/vcl
+            cp -r apache-VCL-2.5/managementnode /usr/local/vcl-2.5
+            ln -s /usr/local/vcl-2.5 /usr/local/vcl
 
 2. **Install the Required Linux Packages & Perl Modules**
 
@@ -574,6 +576,8 @@ hosts or only for the root user. Consult the SSH documentation for more informat
 
 5. **Install and Start the VCL Daemon (vcld) Service**
 
+=========================== ADD INFO ON systemd =========================
+
     * Copy the vcld service script to /etc/init.d and name it vcld:
 	
             :::BashLexer
@@ -620,7 +624,8 @@ password from xmlrpc_pass variable in the vcld.conf file and hit enter.
         :::BashLexer
         Select 6. Set Local VCL User Account Password
         Select 2. vclsystem
-             
+
+========================== ADD INFO ON TESTING XMLRPC ==========================
 
 7. **Install & Configure the DHCP Service**
    
@@ -700,4 +705,4 @@ virtual computers
   [1]: http://www.phpmyadmin.net/
   [2]: http://www.mysql.com/
   [3]: installphpmyadmin
-  [4]: https://www.apache.org/dist/vcl/2.4.2/vcl-install.sh
+  [4]: https://www.apache.org/dist/vcl/2.5/vcl-install.sh
