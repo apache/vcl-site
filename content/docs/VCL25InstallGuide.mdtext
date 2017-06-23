@@ -420,10 +420,7 @@ based on Red Hat Enterprise Linux (RHEL). It has been tested on the following:
 **Required Linux Packages:**
 
 The VCL management node daemon (vcld) requires the following Linux packages and Perl 
-modules in order to run (see step 2 below for installation instructions). Note, there is 
-overlap as some of the perl modules are available through the yum packager manager.
-
-============================= NEEDS UPDATING ============================
+modules in order to run (see step 2 below for installation instructions).
 
 * expat-devel - Libraries and include files to develop XML applications with expat
 * gcc - Various compilers (C, C++, Objective-C, Java, ...)
@@ -435,46 +432,33 @@ overlap as some of the perl modules are available through the yum packager manag
 * openssh - The OpenSSH implementation of SSH protocol versions 1 and 2
 * openssl-devel - Files for development of applications which will use OpenSSL
 * perl - The Perl programming language
-* perl-Archive-Tar - provides an object oriented mechanism for handling tar files
-* perl-CPAN - provides a command interface (not a shell) to CPAN
-* perl-Crypt-OpenSSL-RSA - provides the ability to RSA encrypt,decrypt strings
-* perl-DBD-MySQL - A MySQL interface for perl
-* perl-DBI - The DBI is the standard database interface module for Perl
-* perl-Digest-SHA1 - allows use of NIST SHA-1 message digest algorithm within Perl programs
-* perl-IO-String - provides the IO::File interface for in-core strings
-* perl-MailTools - a subclass of MIME::Lite, used for sending mail from within perl
-* perl-Net-Jabber - a tool to utilize the Jabber Instant Messaging protocol from within perl
-* perl-Net-Netmask - parses and understands IPv4 CIDR blocks
-* perl-Net-SSH-Expect - a wrapper to the ssh executable that is available in system's PATH
-* perl-RPC-XML - provides classes for data, for clients, for servers and for parsers XML-RPC
-* perl-Text-CSV_XS - provides the composition and decomposition of comma-separated values
-* perl-Time-HiRes - provides high resolution time and timers
-* perl-XML-Simple - provides a simple API layer on top of an underlying XML parsing module
-* perl-YAML - implements a YAML Loader and Dumper 
 * xmlsec1-openssl - OpenSSL crypto plugin for XML Security Library
 
 **Required Perl Modules:**
 
 The VCL management node daemon (vcld) is written in Perl and has been tested on Perl 
-5.8.x. The following Perl modules available from CPAN are also required (see step 2 
+5.10 and 5.16. The following Perl modules available from CPAN are also required (see step 2 
 below for installation instructions):
 
-============================= NEEDS UPDATING ============================
-
-* CPAN - provides a command interface (not a shell) to CPAN
+* Crypt::CBC - implementation of the cryptographic cipher block chaining mode
+* Crypt::OpenSSL::RSA - RSA encoding and decoding, using the openSSL libraries
+* Crypt::Rijndael - Crypt::CBC compliant Rijndael encryption module
 * DBI - Generic Database Interface
 * Digest::SHA1 - NIST SHA message digest algorithm
+* Exception::Class::Base - base class for exception objects
 * Frontier::Client - issue Frontier XML RPC requests to a server
-* LWP::Protocol::https - support for using https schemed URLs with LWP
+* HTTP::Headers - class encapsulating HTTP Message headers
+* IO::String - emulate file interface for in-core strings
 * JSON - JavaScript Object Notation
+* LWP::UserAgent - class implementing a web user agent
 * Mail::Mailer - Simple mail agent interface
-* Mo:builder - Adds the builder feature to Mo's has
+* Net::Jabber - Jabber perl library
+* Net::Netmask - parse, manipulate and lookup IP network blocks
 * Net::SSH::Expect - a wrapper to the ssh executable that is available in system's PATH
 * Object::InsideOut - Comprehensive inside-out object support
-* RPC::XML - Set of classes for core data, message, XML handling
-* Scalar::Util - A selection of general-utility scalar subroutines
-* Time::HiRes - provides high resolution time and timers
-* URI - Uniform Resource Identifiers (absolute and relative)
+* RPC::XML::Client - XML-RPC client class
+* Text::CSV_XS - comma-separated values manipulation routines
+* XML::Simple - API for simple XML files
 * YAML - YAML Ain't Markup Language
 <BR>
 ---
