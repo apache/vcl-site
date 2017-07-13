@@ -16,12 +16,11 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-        
-   1. Click Virtual Hosts
-   2. On the VM Hosts tab, select the virtual host server added
-        previously
-   3. Click Configure Host, You should see VM limit set to a number
-       along with the vm profile, two columns of VMs assigned to host
-       and Unassigned VMs
-   4. Select the virtual machine nodes from the Unassigned VMs: column
-   5. Click Add
+1. Click Virtual Hosts
+2. On the VM Hosts tab, select the virtual host server added
+   previously
+3. Click Configure Host, You should see VM limit set to a number
+   along with the vm profile, two columns of VMs assigned to host
+   and Unassigned VMs
+4. Select the virtual machine nodes from the Unassigned VMs: column
+5. Click Add
