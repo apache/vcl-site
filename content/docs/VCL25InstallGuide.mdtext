@@ -131,8 +131,8 @@ Add the following to your iptables config and restart iptables service.<br>
         * Add these rules:
 
                 :::BashLexer
-                -A RH-Firewall-1-INPUT -m state --state NEW -s <web server IP> -p tcp --dport 3306 -j ACCEPT
-                -A RH-Firewall-1-INPUT -m state --state NEW -s <management node IP> -p tcp --dport 3306 -j ACCEPT
+                -A INPUT -m state --state NEW -s <web server IP> -p tcp --dport 3306 -j ACCEPT
+                -A INPUT -m state --state NEW -s <management node IP> -p tcp --dport 3306 -j ACCEPT
 
         * Restart iptables:
 
@@ -251,8 +251,8 @@ config file:
         * Add these rules:
 
                 :::BashLexer
-                -A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT
-                -A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT
+                -A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT
+                -A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT
 
         * Restart iptables
 
@@ -286,9 +286,14 @@ page to download and verify apache-VCL-2.5.tar.bz2, and put it in /root
 navigate to the destination **.ht-inc** subdirectory:
 
             :::BashLexer
-            cp -r apache-VCL-2.5/web/ /var/www/html/vcl-2.5
+            cp -ar apache-VCL-2.5/web/ /var/www/html/vcl-2.5
             ln -s /var/www/html/vcl-2.5 /var/www/html/vcl
             cd /var/www/html/vcl/.ht-inc
+
+    * If SELinux is enabled, run the following command to set the context of the web code to httpd_sys_content_t
+	
+            :::BashLexer
+            chcon -R -t httpd_sys_content_t /var/www/html/vcl-2.5
 
     * Copy secrets-default.php to secrets.php:
 
@@ -428,6 +433,7 @@ modules in order to run (see step 2 below for installation instructions).
 * krb5-libs - The shared libraries used by Kerberos 5
 * libxml2-devel - Libraries, includes, etc. to develop XML and HTML applications
 * make - GNU make utility to maintain groups of programs
+* mysql/mariadb - Includes libraries for connecting to mysql/mariadb
 * nmap - Network exploration tool and security scanner
 * openssh - The OpenSSH implementation of SSH protocol versions 1 and 2
 * openssl-devel - Files for development of applications which will use OpenSSL
@@ -477,7 +483,7 @@ apache-VCL-2.5.tar.bz2, and put it in /root
 (typically /usr/local):
 
             :::BashLexer
-            cp -r apache-VCL-2.5/managementnode /usr/local/vcl-2.5
+            cp -ar apache-VCL-2.5/managementnode /usr/local/vcl-2.5
             ln -s /usr/local/vcl-2.5 /usr/local/vcl
 
 2. **Install the Required Linux Packages & Perl Modules**
@@ -606,10 +612,18 @@ use the block allocation features.
 password from xmlrpc_pass variable in the vcld.conf file and hit enter. 
 
         :::BashLexer
-        Select 6. Set Local VCL User Account Password
+        Select 5. Set Local VCL User Account Password
         Select 2. vclsystem
+        Enter the password you set for xmlrpc_pass in /etc/vcl/vcld.conf
 
-========================== ADD INFO ON TESTING XMLRPC ==========================
+    After setting the password for the vclsystem user, test that RPC-XML Access works correctly
+by selecting
+
+        :::BashLexer
+        2: Test RPC-XML Access
+
+    *SUCCESS: RPC-XML access is configured correctly* should be displayed followed by a long list of
+available XMLRPC functions
 
 7. **Install & Configure the DHCP Service**
    
