@@ -23,11 +23,5 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
    3. Click Configure Host, You should see VM limit set to a number
        along with the vm profile, two columns of VMs assigned to host
        and Unassigned VMs
-   4. Adjust the VM limit to the desired number of vms you would like
-        to run on this host
-
-           Please consult your hypervisor documentation for the recommended
-           number of virtual machines to run concurrently for your virtual
-           server configuration.
-   5. Select the virtual machine nodes from the Unassigned VMs: column
-   6. Click Add
+   4. Select the virtual machine nodes from the Unassigned VMs: column
+   5. Click Add
