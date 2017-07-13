@@ -596,8 +596,8 @@ hosts or only for the root user. Consult the SSH documentation for more informat
     You should see the following being added to the log file every few seconds if the 
 management node is checking in with the database:
 
-            :::BashLexer
-            2017-07-13 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2017-07-13 13:23:45
+        :::BashLexer
+        2017-07-13 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2017-07-13 13:23:45
 
 
 6. **Set the vclsystem account password for xmlrpc api**
@@ -622,7 +622,7 @@ by selecting
         :::BashLexer
         2: Test RPC-XML Access
 
-    *SUCCESS: RPC-XML access is configured correctly* should be displayed followed by a long list of
+    **SUCCESS: RPC-XML access is configured correctly** should be displayed followed by a long list of
 available XMLRPC functions
 
 7. **Install & Configure the DHCP Service**
