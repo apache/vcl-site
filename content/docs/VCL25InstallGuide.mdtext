@@ -566,38 +566,65 @@ hosts or only for the root user. Consult the SSH documentation for more informat
 
 5. **Install and Start the VCL Daemon (vcld) Service**
 
-    * =========================== ADD INFO ON systemd =========================
+    * **Steps for systemd**
 
-    * Copy the vcld service script to /etc/init.d and name it vcld:
+        * Copy the vcld service script to /usr/lib/systemd/system
+
+                :::BashLexer
+                cp /usr/local/vcl/etc/systemd/system/vcld.service /usr/lib/systemd/system
+
+        * If using SELinux, set the correct user and context:
+
+                :::BashLexer
+                chcon -u system_u -t systemd_unit_file_t /usr/lib/systemd/system/vcld.service
+
+        * Enable vcld.service
+
+                :::BashLexer
+                systemctl enable vcld.service
+
+        * Start the vcld service:
 	
-            :::BashLexer
-            cp /usr/local/vcl/bin/S99vcld.linux /etc/init.d/vcld
+                :::BashLexer
+                systemctl start vcld.service
 
-    * Add the vcld service using chkconfig:
+        * Check the vcld service by monitoring the vcld.log file:
+
+                :::BashLexer
+                tail -f /var/log/vcld.log
+
+    * **Steps for SystemV**
+
+        * Copy the vcld service script to /etc/init.d and name it vcld:
 	
-            :::BashLexer
-            /sbin/chkconfig --add vcld
+                :::BashLexer
+                cp /usr/local/vcl/bin/S99vcld.linux /etc/init.d/vcld
 
-    * Configure the vcld service to automatically run at runtime levels 3-5:
+        * Add the vcld service using chkconfig:
 	
-            :::BashLexer
-            /sbin/chkconfig --level 345 vcld on
+                :::BashLexer
+                /sbin/chkconfig --add vcld
 
-    * Start the vcld service:
+        * Configure the vcld service to automatically run at runtime levels 3-5:
 	
-            :::BashLexer
-            /sbin/service vcld start
+                :::BashLexer
+                /sbin/chkconfig --level 345 vcld on
 
-    * Check the vcld service by monitoring the vcld.log file:
+        * Start the vcld service:
+	
+                :::BashLexer
+                /sbin/service vcld start
 
-            :::BashLexer
-            tail -f /var/log/vcld.log
+        * Check the vcld service by monitoring the vcld.log file:
 
-    You should see the following being added to the log file every few seconds if the 
+                :::BashLexer
+                tail -f /var/log/vcld.log
+
+        You should see the following being added to the log file every few seconds if the 
 management node is checking in with the database:
 
-        :::BashLexer
-        2017-07-13 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2017-07-13 13:23:45
+            :::BashLexer
+            2017-07-13 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2017-07-13 13:23:45
 
 
 6. **Set the vclsystem account password for xmlrpc api**
