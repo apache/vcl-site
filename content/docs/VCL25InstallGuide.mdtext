@@ -566,7 +566,7 @@ hosts or only for the root user. Consult the SSH documentation for more informat
 
 5. **Install and Start the VCL Daemon (vcld) Service**
 
-    * **Steps for systemd**
+    * **Steps for systemd** - use these steps if your system is using systemd
 
         * Copy the vcld service script to /usr/lib/systemd/system
 
@@ -593,7 +593,8 @@ hosts or only for the root user. Consult the SSH documentation for more informat
                 :::BashLexer
                 tail -f /var/log/vcld.log
 
-    * **Steps for SystemV**
+    * **Steps for SystemV** - use these steps if your system is using SystemV (scripts located in
+/etc/init.d)
 
         * Copy the vcld service script to /etc/init.d and name it vcld:
 	
