@@ -576,7 +576,7 @@ hosts or only for the root user. Consult the SSH documentation for more informat
         * Create a vcld config file in /etc/sysconfig
 
                 :::BashLexer
-                echo "OPTIONS='-v -conf=/etc/vcl/vcld.conf -exn'" > /etc/sysconfig/vcld
+                echo "OPTIONS='-v -conf=/etc/vcl/vcld.conf'" > /etc/sysconfig/vcld
 
         * If using SELinux, set the correct user and context:
 
