@@ -573,6 +573,11 @@ hosts or only for the root user. Consult the SSH documentation for more informat
                 :::BashLexer
                 cp /usr/local/vcl/etc/systemd/system/vcld.service /usr/lib/systemd/system
 
+        * Create a vcld config file in /etc/sysconfig
+
+                :::BashLexer
+                echo "OPTIONS='-v -conf=/etc/vcl/vcld.conf -exn'" > /etc/sysconfig/vcld
+
         * If using SELinux, set the correct user and context:
 
                 :::BashLexer
