@@ -106,7 +106,7 @@ necessary.
         :::BashLexer
         mysql vcl < /root/apache-VCL-2.5/mysql/update-vcl.sql
 
-6. **Move old web code**. If /var/www/html/vcl is a directory, rename it to 
+6. **Possibly move old web code**. If /var/www/html/vcl **is a directory**, rename it to 
 /var/www/html/vcl-2.4.2. These instructions assume that you installed the 
 VCL web code at /var/www/html/vcl. If you installed it elsewhere, replace 
 /var/www/html/vcl with your vcl web root.
@@ -138,7 +138,7 @@ VCL web code at /var/www/html/vcl. If you installed it elsewhere, replace
         chcon -t httpd_sys_rw_content_t /var/www/html/vcl-2.5/.ht-inc/maintenance
         chcon -t httpd_sys_rw_content_t /var/www/html/vcl-2.5/.ht-inc/cryptkey
 
-9. **Add new items to conf.php**. The following item needs to be removed from the conf.php
+9. **Update conf.php**. The following item needs to be removed from the conf.php
 file:
 
         :::BashLexer
@@ -149,7 +149,7 @@ file:
         :::PhpLexer
         define("MAXVMLIMIT", "100");
 
-9. **Set new value for $cryptkey in secrets.php**  $cryptkey in secrets.php needs to be generated
+9. **Update secrets.php**  $cryptkey in secrets.php needs to be generated
 using openssl. Generate the value and set it in secrets.php:
 
         :::BashLexer
@@ -158,7 +158,7 @@ using openssl. Generate the value and set it in secrets.php:
 <br>
 
         :::PhpLexer
-        $cryptkey = 'xxxxxxxxxxxxxxxxxxxxxxxxx';
+        $cryptkey = 'xxxxxxxxxxxxxxxxxxxxxxxxx'; # set this to output of "openssl rand 32 | base64"
 
 9. **Make the maintenance and cryptkey directories writable** by the web server user. Normally this is
 the apache user, if using a different user change below command accordingly.
@@ -179,7 +179,7 @@ I.e.
         :::BashLexer
         https://your.site.url/vcl/testsetup.php
 
-12. **Backup management node code**. This step will make a backup copy of the 2.4.2  
+12. **Backup management node code**. This step will make a backup copy of the 2.4.2
 management node code. These instructions assume that you installed the 
 VCL management node code at /usr/local/vcl. If you installed it elsewhere, replace 
 /usr/local with your management node path.
