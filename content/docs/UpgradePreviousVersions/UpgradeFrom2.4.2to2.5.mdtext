@@ -179,14 +179,6 @@ I.e.
         :::BashLexer
         https://your.site.url/vcl/testsetup.php
 
-12. **Backup management node code**. This step will make a backup copy of the 2.4.2
-management node code. These instructions assume that you installed the 
-VCL management node code at /usr/local/vcl. If you installed it elsewhere, replace 
-/usr/local with your management node path.
-	
-        :::BashLexer
-        cp -r /usr/local/vcl /usr/local/vcl-2.4.2
-
 13. **Copy old management node code** If /usr/local/vcl is a directory, copy it to
 /usr/local/vcl-2.4.2, rename /usr/local/vcl to /usr/local/vcl-2.5, and create a symlink.
 If /usr/local/vcl is a symlink to vcl-2.4.2, copy /usr/local/vcl-2.4.2 to /usr/local/vcl-2.5
@@ -206,7 +198,7 @@ and update the symlink.
 
 13. **Copy new code in place** Copy the new management node code over the old code:
 
-        /bin/cp -r /root/apache-VCL-2.5/managementnode/* /usr/local/vcl-2.5
+        /bin/cp -ar /root/apache-VCL-2.5/managementnode/* /usr/local/vcl-2.5
 
 14. **Run install_perl_libs.pl** to add any new perl library requirements:
 	
