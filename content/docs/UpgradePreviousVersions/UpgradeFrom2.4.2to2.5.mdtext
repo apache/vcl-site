@@ -145,7 +145,6 @@ file:
         (don't forget to edit conf.php in the **new** location)
         vim /var/www/html/vcl/.ht-inc/conf.php
 <br>
-
         :::PhpLexer
         define("MAXVMLIMIT", "100");
 
@@ -154,8 +153,9 @@ using openssl. Generate the value and set it in secrets.php:
 
         :::BashLexer
         openssl rand 32 | base64
-        <br>
         vim /var/www/html/vcl/.ht-inc/secrets.php
+<br>
+        :::PhpLexer
         $cryptkey = 'xxxxxxxxxxxxxxxxxxxxxxxxx';
 
 9. **Make the maintenance and cryptkey directories writable** by the web server user. Normally this is
@@ -195,7 +195,8 @@ and update the symlink.
         cp -ar /usr/local/vcl /usr/local/vcl-2.4.2
         mv /usr/local/vcl /usr/local/vcl-2.5
         ln -s /usr/local/vcl-2.5 /usr/local/vcl
-        <br>
+<br>
+        :::BashLexer
         (for symlink)
         cp -ar /usr/local/vcl-2.4.2 /usr/local/vcl-2.5
         ln -sfn /usr/local/vcl-2.5 /usr/local/vcl
