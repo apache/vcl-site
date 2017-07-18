@@ -311,7 +311,7 @@ navigate to the destination **.ht-inc** subdirectory:
             * $vclusername
             * $vclpassword
         * Create random passwords for the following variables:
-            * $cryptkey
+            * $cryptkey (generate with "openssl rand 32 | base64")
             * $pemkey
         * Save the secrets.php file
 
