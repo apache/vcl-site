@@ -373,7 +373,7 @@ displayed by the Linux hostname command. For example, if you are installing all 
 VCL components on the same machine you can set this value to localhost.
             * IP address - the public IP address of the management node
             * SysAdmin Email Address - error emails will be sent to this address
-            * Install Path - this is parent directory under which image files will be 
+            * Install Path - this is the parent directory under which image files will be 
 stored - only required if doing bare metal installs or using VMWare with local disks
             * End Node SSH Identity Key Files - enter /etc/vcl/vcl.key unless you know 
 you are using a different SSH identity key file
