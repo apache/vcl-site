@@ -16,6 +16,29 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
+## 2.5 Release Notes {#2.5}
+
+2.5 is a major release. Many changes and bugs fixes were done. Below
+is a list containing some of the more notable items. See the 
+[Change Log](changelog.html#2.5) for a full list of changes completed 
+in this release.
+
+Added:
+
+* Windows 10 and Server 2016 images
+* Responsive theme (dropdownmenus) to web site
+* Support for joining Windows image to an Active Directory domain
+* Basic automatic mounting of NFS shares for all users
+* Customization of email messages
+* Support for ufw and firewalld firewalls
+* Hook script support for various stages of deploy on management nodes
+* Display reservation times in user's own timezone
+
+Removed:
+
+* Server Profiles
+* Use of Administrator account for imaging reservations
+
 ## 2.4.2 Release Notes {#2.4.2}
 
 2.4.2 is a major release. Many changes and bugs fixes were done. Below
