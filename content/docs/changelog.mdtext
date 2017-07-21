@@ -191,7 +191,6 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-1048'>VCL-1048</a>] -         NAT rules not always deleted when a reservation ends
 * [<a href='https://issues.apache.org/jira/browse/VCL-1050'>VCL-1050</a>] -         Adding a new user group doesn&#39;t include the affiliation of the default owner
 * [<a href='https://issues.apache.org/jira/browse/VCL-1051'>VCL-1051</a>] -         Backend is not checking for &#39;checkpoint&#39; state everywhere it checks for &#39;image state
-* [<a href='https://issues.apache.org/jira/browse/VCL-1053'>VCL-1053</a>] -         Prepare VCL 2.5 release
 * [<a href='https://issues.apache.org/jira/browse/VCL-1054'>VCL-1054</a>] -         Windows.pm user_exists may return true when user doesn&#39;t exist
 * [<a href='https://issues.apache.org/jira/browse/VCL-1055'>VCL-1055</a>] -         &#39;Use of uninitialized value in lc&#39; warning may be generated from a few subroutines
 * [<a href='https://issues.apache.org/jira/browse/VCL-1057'>VCL-1057</a>] -         allManagementNodes is assigned available at the initial admin node
