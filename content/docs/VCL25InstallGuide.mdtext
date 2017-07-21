@@ -208,12 +208,13 @@ privileges on the database you just created (**NOTE Use your own password**):
 **Required PHP Modules:**
 
   * php
+  * php-gettext
   * php-json (required if your PHP version is 5.2 or later)
+  * php-ldap (if you will be using LDAP authentication)
   * php-mysql
   * php-openssl
   * php-xml
   * php-xmlrpc
-  * php-ldap (if you will be using LDAP authentication)
 
 
  - - -
