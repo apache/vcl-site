@@ -196,6 +196,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-1057'>VCL-1057</a>] -         allManagementNodes is assigned available at the initial admin node
 * [<a href='https://issues.apache.org/jira/browse/VCL-1058'>VCL-1058</a>] -         User accounts not deleted on computer when removed from a server request admin or access group
 * [<a href='https://issues.apache.org/jira/browse/VCL-1059'>VCL-1059</a>] -         AllowUsers lines getting removed due to sequencing issue
+* [<a href='https://issues.apache.org/jira/browse/VCL-1063'>VCL-1063</a>] -         editing a future reservation to have a start time that is in the past should not be allowed
 
 ## 2.4.2 Changes {#2.4.2}
 
