@@ -109,6 +109,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-1060'>VCL-1060</a>] -         VMware.pm generates warnings and critical message when checking for multiextent support under ESXi 6.5
 * [<a href='https://issues.apache.org/jira/browse/VCL-1061'>VCL-1061</a>] -         Unnecessary warnings in vcld.log for Ubuntu 16 images when checking services
 * [<a href='https://issues.apache.org/jira/browse/VCL-1062'>VCL-1062</a>] -         stop using Administrator account for Windows imaging reservations
+* [<a href='https://issues.apache.org/jira/browse/VCL-1064'>VCL-1064</a>] -         Show reservations being captured or in maintenance on Reservations page
 
 ###        Task
 
