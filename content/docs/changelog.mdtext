@@ -85,6 +85,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-979'>VCL-979</a>] -         install script - prompt for timezine during installation
 * [<a href='https://issues.apache.org/jira/browse/VCL-980'>VCL-980</a>] -         add KMS server configuration to Site Configuration page
 * [<a href='https://issues.apache.org/jira/browse/VCL-981'>VCL-981</a>] -         Create a New Theme That Is More Responsive for Mobile Devices
+* [<a href='https://issues.apache.org/jira/browse/VCL-984'>VCL-984</a>] -         Add support for vcld daemon controlled by systemd
 * [<a href='https://issues.apache.org/jira/browse/VCL-987'>VCL-987</a>] -         Extend xCAT.pm to attempt to locate a suitable alternate Kickstart image repository directory
 * [<a href='https://issues.apache.org/jira/browse/VCL-999'>VCL-999</a>] -         Rework UnixLab.pm
 * [<a href='https://issues.apache.org/jira/browse/VCL-1005'>VCL-1005</a>] -         allow dashes in image names
@@ -119,6 +120,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 ###        Sub-task
 
 * [<a href='https://issues.apache.org/jira/browse/VCL-898'>VCL-898</a>] -         Update schema to allow NULL request.logid
+* [<a href='https://issues.apache.org/jira/browse/VCL-1065'>VCL-1065</a>] -         update_cygwin.cmd script does not work correctly if computer is joined to Active Directory
 
 ###        Bug
 
@@ -198,6 +200,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-1058'>VCL-1058</a>] -         User accounts not deleted on computer when removed from a server request admin or access group
 * [<a href='https://issues.apache.org/jira/browse/VCL-1059'>VCL-1059</a>] -         AllowUsers lines getting removed due to sequencing issue
 * [<a href='https://issues.apache.org/jira/browse/VCL-1063'>VCL-1063</a>] -         editing a future reservation to have a start time that is in the past should not be allowed
+* [<a href='https://issues.apache.org/jira/browse/VCL-1066'>VCL-1066</a>] -         Checkpoint image capture fails to set request state back to reserved
 
 ## 2.4.2 Changes {#2.4.2}
 
