@@ -111,6 +111,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-1061'>VCL-1061</a>] -         Unnecessary warnings in vcld.log for Ubuntu 16 images when checking services
 * [<a href='https://issues.apache.org/jira/browse/VCL-1062'>VCL-1062</a>] -         stop using Administrator account for Windows imaging reservations
 * [<a href='https://issues.apache.org/jira/browse/VCL-1064'>VCL-1064</a>] -         Show reservations being captured or in maintenance on Reservations page
+* [<a href='https://issues.apache.org/jira/browse/VCL-1069'>VCL-1069</a>] -         Allow Windows to update time regardless of skew
 
 ###        Task
 
@@ -201,6 +202,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 * [<a href='https://issues.apache.org/jira/browse/VCL-1059'>VCL-1059</a>] -         AllowUsers lines getting removed due to sequencing issue
 * [<a href='https://issues.apache.org/jira/browse/VCL-1063'>VCL-1063</a>] -         editing a future reservation to have a start time that is in the past should not be allowed
 * [<a href='https://issues.apache.org/jira/browse/VCL-1066'>VCL-1066</a>] -         Checkpoint image capture fails to set request state back to reserved
+* [<a href='https://issues.apache.org/jira/browse/VCL-1068'>VCL-1068</a>] -         Windows fails to update scheduled task password if password contains some special characters
 
 ## 2.4.2 Changes {#2.4.2}
 
