@@ -60,9 +60,12 @@ h3,h4,h5,h6 {
     border-style: none;
 }
 
-#navigation {
+#left-column {
 	float:left;
 	width: 200px;
+}
+
+#navigation {
 	background-color: #F4F5FB;
 	font-size: 11pt;
 	margin-top: -1px;
@@ -125,11 +128,16 @@ h3,h4,h5,h6 {
 
 #current-event {
 	float:left;
+    clear: left;
+    display: block;
 	width: 200px;
 	margin-top: 10px;
-	margin-right: 0px;
-	margin-left: 0px;
 	margin-bottom: 10px;
+}
+
+#current-event img {
+    display: block;
+    margin: auto;
 }
 
 #footer {
