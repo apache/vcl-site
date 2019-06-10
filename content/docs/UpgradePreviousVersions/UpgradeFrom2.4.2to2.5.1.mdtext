@@ -148,8 +148,8 @@ file. (It is located above the define line for BASEURL in the conf-default.php f
 
         :::PhpLexer
         define("SSLOFFLOAD", 0);
-
-<br>The following item needs to be removed from the conf.php file:
+<br>
+The following item needs to be removed from the conf.php file:
 
         :::PhpLexer
         define("MAXVMLIMIT", "100");
