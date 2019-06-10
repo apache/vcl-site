@@ -27,7 +27,7 @@ management node) or to install each part individually.
 Validate script:
 
     :::BashLexer
-    wget https://www.apache.org/dist/vcl/2.5.1/vcl-install.sh.sha1
+    wget https://www.apache.org/dist/vcl/2.5.1/vcl-install.sh.sha512
     sha512sum -c vcl-install.sh.sha512
     wget https://www.apache.org/dist/vcl/KEYS
     gpg --import KEYS
