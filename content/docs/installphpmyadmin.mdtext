@@ -22,16 +22,18 @@ browser. It makes administering the VCL database easier. This tool can be instal
 the VCL web server.
 </div>
 
-1. phpmyadmin recommends performing installation using packages available from you Linux distribution
+1. phpmyadmin recommends performing installation using packages available from you Linux 
+distribution
 
     For CentOS, the EPEL yum repository needs to have been added (which is done for installing
-the VCL management node code). Use the following to install phpMyAdmin from EPEL:
+the VCL management node code; use **yum install -y epel-release** in not already installed). Use the 
+following to install phpMyAdmin from EPEL:
 
         :::BashLexer
         yum install -y phpMyAdmin
 
 1. By default phpMyAdmin on Red Hat based distros restrict access to localhost only. Modify
-/etc/httpd/conf.d/phpMyAdmin.conf to change that.  It is advisable to only allow access from some
+**/etc/httpd/conf.d/phpMyAdmin.conf** to change that.  It is advisable to only allow access from some
 specific IP addresses or IP ranges so that phpMyAdmin is not open to everyone to try to access.
     * In the &lt;Directory /usr/share/phpMyAdmin/&gt; section, add
       <div><pre>Require ip x.x.x.x/y</pre></div>
