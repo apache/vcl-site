@@ -22,63 +22,75 @@ browser. It makes administering the VCL database easier. This tool can be instal
 the VCL web server.
 </div>
 
-1. Download phpMyAdmin
+1. phpmyadmin recommends performing installation using packages available from you Linux distribution
 
-    a. Check the version of PHP installed on the web server (you may need to perform step 
-1a of [VCL 2.3.2 Web Code Installation][1] to install httpd and php first):
+    For CentOS, the EPEL yum repository needs to have been added (which is done for installing
+the VCL management node code). Use the following to install phpMyAdmin from EPEL:
+
+        :::BashLexer
+        yum install -y phpMyAdmin
+
+1. By default phpMyAdmin on Red Hat based distros restrict access to localhost only. Modify
+/etc/httpd/conf.d/phpMyAdmin.conf to change that.  It is advisable to only allow access from some
+specific IP addresses or IP ranges so that phpMyAdmin is not open to everyone to try to access.
+    * In the &lt;Directory /usr/share/phpMyAdmin/&gt; section, add
+      <div><pre>Require ip x.x.x.x/y</pre></div>
+    Where x.x.x.x/y represents an IP range such as 192.168.100.1/24. Multiple lines can be added
+to match multiple ranges.
+    * restart httpd to active the changes
 
             :::BashLexer
-            php -v
-    * Use phpMyAdmin 2.x if the version of PHP is < 5.2:
-    <pre class="docnote">
-    PHP 4.3.2 (cgi), Copyright (c) 1997-2003 The PHP Group
-    </pre>
-    * Use phpMyAdmin 3.x if the version of PHP is 5.x:  
-    <div><pre class="docnote">
-    PHP 5.3.11 (cli) (built: May  8 2012 15:53:27)
-    </pre></div>
+            systemctl restart httpd
 
-    b. Download the appropriate version of phpMyAdmin from:
-        <pre>
-        [http://www.phpmyadmin.net/home_page/downloads.php][2] for 3.x series
-        [http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/][3] for 2.x series
-        </pre>
-
-* Extract the phpMyAdmin package:
+1. A special database needs to be created to enable some of the more helpful phpMyAdmin functionality.
+phpMyAdmin provides a script for creating the database. Look for create_tables.sql (for v4.4.15.10,
+it was at /usr/share/phpMyAdmin/sql/create_tables.sql). Create the database using
 
         :::BashLexer
-    	tar xf phpMyAdmin-2.11.11.3-english.tar.bz2
+        mysql < /usr/share/phpMyAdmin/sql/create_tables.sql
 
-* Move the phpMyAdmin directory to the web server directory:
+1. A control user must be created in mysql/mariadb for phpMyAdmin to use (we'll use pmacontrol, 
+**replace mypassword with your own password!**):
 
         :::BashLexer
-    	mv phpMyAdmin-2.11.11.3-english /var/www/html/phpmyadmin
+        mysql -e "CREATE USER 'pmacontrol'@'localhost' IDENTIFIED BY 'mypassword';"
 
-* Follow the installation instructions in: /var/www/html/phpmyadmin/Documentation.txt
+    Save the following in a file named pmaprivs.sql to grant the pmacontrol user access to various parts tables:
 
-    <pre class="docnote">
-    The instructions must be followed in order to secure phpMyAdmin
-    </pre>
+        <div><pre>
+        GRANT USAGE ON mysql.* TO 'pmacontrol'@'localhost';
+        GRANT SELECT (
+        Host, User, Select_priv, Insert_priv, Update_priv, Delete_priv,
+        Create_priv, Drop_priv, Reload_priv, Shutdown_priv, Process_priv,
+        File_priv, Grant_priv, References_priv, Index_priv, Alter_priv,
+        Show_db_priv, Super_priv, Create_tmp_table_priv, Lock_tables_priv,
+        Execute_priv, Repl_slave_priv, Repl_client_priv
+        ) ON mysql.user TO 'pmacontrol'@'localhost';
+        GRANT SELECT ON mysql.db TO 'pmacontrol'@'localhost';
+        GRANT SELECT ON mysql.host TO 'pmacontrol'@'localhost';
+        GRANT SELECT (Host, Db, User, Table_name, Table_priv, Column_priv)
+        ON mysql.tables_priv TO 'pmacontrol'@'localhost';
+        GRANT SELECT, INSERT, UPDATE, DELETE ON phpmyadmin.* TO 'pmacontrol'@'localhost';
+        </pre></div>
 
-    If you receive 403-Forbidden errors after installing phpMyAdmin, the problem is likely caused by SELinux. Run the following command to correct the problem:
-    <pre class="docnote">
-    chcon -R -t httpd_sys_content_t /var/www/html/phpmyadmin
-    </pre>
+        :::BashLexer
+        mysql < pmaprivs.sql
 
-* Configure the phpMyAdmin-VCL Table relationships:
+1. Configure the phpMyAdmin-VCL Table relationships:
 
-    After following the documentation on creating the phpMyAdmin Linked-tables 
-infrastructure, you can set up the VCL table relationships. The phpmyadmin.sql file is 
-provided in the mysql directory in the Apache VCL source code. It will add entries to the 
-pma_table_info table in the phpmyadmin database. These entries cause corresponding 
-information to be displayed when you hover over a value in the VCL database.
+    A file named phpmyadmin.sql file is provided in the mysql directory in the Apache VCL source 
+code. It will add entries to the pma_table_info table in the phpmyadmin database. These entries 
+cause useful information to be displayed when you hover over values in the VCL database.
 
     Import the SQL file into the phpmyadmin database:
 
         :::BashLexer
-    	mysql phpmyadmin < apache-VCL-2.3.2/mysql/phpmyadmin.sql
+    	mysql phpmyadmin < apache-VCL-2.5.1/mysql/phpmyadmin.sql
+
+1. You should now be able to log in to phpMyAdmin using the account set up for VCL to access the
+database (can be referenced in /etc/vcl/vcld.conf or /var/www/html/vcl/.ht-inc/secrets.php).
 
 
-  [1]: VCL232InstallGuide.html
+  [1]: VCL251InstallGuide.html
   [2]: http://www.phpmyadmin.net/home_page/downloads.php
   [3]: http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/
