@@ -129,14 +129,15 @@ VCL web code at /var/www/html/vcl. If you installed it elsewhere, replace
 	
         :::BashLexer
         cd /var/www/html/vcl-2.5/.ht-inc
-        cp conf.php secrets.php pubkey.pem keys.pem /var/www/html/vcl/.ht-inc
+        cp conf.php secrets.php pubkey.pem keys.pem /var/www/html/vcl/.ht-inc/
+        cp cryptkey/cryptkeyid cryptkey/private.pem /var/www/html/vcl/.ht-inc/cryptkey/
 
 8. **Set SELinux context** If you are using SELinux, set the correct context:
 
         :::BashLexer
         chcon -R -t httpd_sys_content_t /var/www/html/vcl-2.5.1
         chcon -t httpd_sys_rw_content_t /var/www/html/vcl-2.5.1/.ht-inc/maintenance
-        chcon -t httpd_sys_rw_content_t /var/www/html/vcl-2.5.1/.ht-inc/cryptkey
+        chcon -R -t httpd_sys_rw_content_t /var/www/html/vcl-2.5.1/.ht-inc/cryptkey
 
 9. **Update conf.php**. The following item needs to be added to the conf.php
 file. (It is located above the define line for BASEURL in the conf-default.php file):
