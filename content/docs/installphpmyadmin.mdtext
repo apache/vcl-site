@@ -61,7 +61,7 @@ it was at /usr/share/phpMyAdmin/sql/create_tables.sql). Create the database usin
     Save the following in a file named **pmaprivs.sql** to grant the pmacontrol user access to various parts tables:
 
     <div><pre>
-    GRANT USAGE ON mysql.* TO 'pmacontrol'@'localhost';
+    GRANT USAGE ON mysql.&ast; TO 'pmacontrol'@'localhost';
     GRANT SELECT (
     Host, User, Select_priv, Insert_priv, Update_priv, Delete_priv,
     Create_priv, Drop_priv, Reload_priv, Shutdown_priv, Process_priv,
@@ -73,7 +73,7 @@ it was at /usr/share/phpMyAdmin/sql/create_tables.sql). Create the database usin
     GRANT SELECT ON mysql.host TO 'pmacontrol'@'localhost';
     GRANT SELECT (Host, Db, User, Table_name, Table_priv, Column_priv)
     ON mysql.tables_priv TO 'pmacontrol'@'localhost';
-    GRANT SELECT, INSERT, UPDATE, DELETE ON phpmyadmin.* TO 'pmacontrol'@'localhost';
+    GRANT SELECT, INSERT, UPDATE, DELETE ON phpmyadmin.&ast; TO 'pmacontrol'@'localhost';
     </pre></div>
 
         :::BashLexer
