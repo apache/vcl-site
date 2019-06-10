@@ -37,6 +37,7 @@ specific IP addresses or IP ranges so that phpMyAdmin is not open to everyone to
       <div><pre>Require ip x.x.x.x/y</pre></div>
     Where x.x.x.x/y represents an IP range such as 192.168.100.1/24. Multiple lines can be added
 to match multiple ranges.
+
     * restart httpd to active the changes
 
             :::BashLexer
@@ -55,7 +56,7 @@ it was at /usr/share/phpMyAdmin/sql/create_tables.sql). Create the database usin
         :::BashLexer
         mysql -e "CREATE USER 'pmacontrol'@'localhost' IDENTIFIED BY 'mypassword';"
 
-    Save the following in a file named pmaprivs.sql to grant the pmacontrol user access to various parts tables:
+    Save the following in a file named **pmaprivs.sql** to grant the pmacontrol user access to various parts tables:
 
     <div><pre>
     GRANT USAGE ON mysql.* TO 'pmacontrol'@'localhost';
