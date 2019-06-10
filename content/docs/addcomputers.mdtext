@@ -39,9 +39,9 @@ Profiles and clicking Add New Computer
        - Private IP Address (optional)
        - Public MAC Address (optional)
        - Private MAC Address (optional)
-       - Provisioning Engine - None or xCAT 2.x
+       - Provisioning Engine - None or xCAT
        - State - one of
-           - available (only if xCAT 2.x is selected for Provisioning Engine)
+           - available (only if xCAT is selected for Provisioning Engine)
            - vmhostinuse (only if None is selected for Provisioning Engine)
            - maintenance - if you do not want it to be immediately available
        - VM Host Profile - (only if vmhostinuse is selected for State) profile for this VM Host
@@ -126,9 +126,9 @@ Profiles and clicking Add New Computer
         the second computer, etc, you can enter the first one here and
         then have the option of downloading data to add to your
         dhcpd.conf file from the Computer Utilities page
-    * Provisioning Engine - None or xCAT 2.x
+    * Provisioning Engine - None or xCAT
     * State - one of
-       * available (only if xCAT 2.x is selected for Provisioning Engine)
+       * available (only if xCAT is selected for Provisioning Engine)
        * vmhostinuse (only if None is selected for Provisioning Engine)
        * maintenance - if you do not want it to be immediately available
     * VM Host Profile - (only if vmhostinuse is selected for State) profile for these VM Hosts
