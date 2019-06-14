@@ -20,7 +20,7 @@ This portion of the site is for documentation on installing VCL and for document
 explaining configuration items that an installer would typically do.
 
 
-[VCL 2.5 Installation Guide - Current Release](/docs/VCL25InstallGuide.html)
+[VCL 2.5.1 Installation Guide - Current Release](/docs/VCL251InstallGuide.html)
 
 
 Supplemental configuration guides
@@ -45,6 +45,7 @@ Supplemental configuration guides
 <BR>
 Archived Install guides:
 
+[VCL 2.5 Installation Guide](/docs/VCL25InstallGuide.html)<br>
 [VCL 2.4.2 Installation Guide](/docs/VCL242InstallGuide.html)<br>
 [VCL 2.3.2 Installation Guide](/docs/VCL232InstallGuide.html)<br>
 [VCL 2.3.1 Installation Guide](/docs/VCL231InstallGuide.html)<br>
