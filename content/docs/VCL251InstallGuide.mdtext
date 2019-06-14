@@ -448,6 +448,7 @@ below for installation instructions):
 * Crypt::CBC - implementation of the cryptographic cipher block chaining mode
 * Crypt::OpenSSL::RSA - RSA encoding and decoding, using the openSSL libraries
 * Crypt::Rijndael - Crypt::CBC compliant Rijndael encryption module
+* DBD::MySQL - MySQL driver for the Perl5 Database Interface (DBI)
 * DBI - Generic Database Interface
 * Digest::SHA1 - NIST SHA message digest algorithm
 * Exception::Class::Base - base class for exception objects
@@ -459,6 +460,7 @@ below for installation instructions):
 * Mail::Mailer - Simple mail agent interface
 * Net::Jabber - Jabber perl library
 * Net::Netmask - parse, manipulate and lookup IP network blocks
+* Net::Ping::External - Cross-platform Perl interface to "ping" utilities
 * Net::SSH::Expect - a wrapper to the ssh executable that is available in system's PATH
 * Object::InsideOut - Comprehensive inside-out object support
 * RPC::XML::Client - XML-RPC client class
