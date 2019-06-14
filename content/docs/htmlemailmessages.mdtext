@@ -46,13 +46,13 @@ Where
 
 &lt;**message subject**&gt; = subject for email message (enclose in single quotes)
 
-So, use "--**getmessagenames**" to get a list of all of the messages that can be set.  Use 
-"--**dumpmessage**" to see the current contents of a message.
+So, use --**getmessagenames** to get a list of all of the messages that can be set.  Use 
+--**dumpmessage** to see the current contents of a message.
 
 To set a new message, create a file containing the HTML that you would like used as the message. 
-Then, use "--**setmessage**" to set the contents of the message, specifying both a message subject and 
+Then, use --**setmessage** to set the contents of the message, specifying both a message subject and 
 the file containing the contents of the HTML message.  To reset a message back to the stock message 
-supplied at VCL installation, use "--**resetmessage**".  Only the "Global" messages can be reset.
+supplied at VCL installation, use --**resetmessage**.  Only the "Global" messages can be reset.
 
 To set a new message for a specific affiliation, an affiliation specific message, plain text 
 message needs to be created through the web UI first. Then, that message can be converted to HTML 
