@@ -26,9 +26,9 @@ Usage:
 
     :::BashLexer
     vclmessages.pl --getmessagenames
-    vclmessages.pl --dumpmessage '&lt;name of message&gt;'
-    vclmessages.pl --setmessage '&lt;name of message&gt;' --htmlfile &lt;filename&gt; --subject &lt;message subject&gt;
-    vclmessages.pl --resetmessage '&lt;name of message&gt;'
+    vclmessages.pl --dumpmessage '<name of message>'
+    vclmessages.pl --setmessage '<name of message>' --htmlfile <filename> --subject <message subject>
+    vclmessages.pl --resetmessage '<name of message>'
 
     vclmessages.pl --help|-?
 
