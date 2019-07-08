@@ -16,9 +16,13 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
+## 2.5.1 Release Notes {#2.5.1}
+2.5.1 is a bugfix release. See the [Change Log](changelog.html#2.5.1) for a list of 
+issues resolved in this release.
+
 ## 2.5 Release Notes {#2.5}
 
-2.5 is a major release. Many changes and bugs fixes were done. Below
+2.5 is a major release. Many changes and bug fixes were done. Below
 is a list containing some of the more notable items. See the 
 [Change Log](changelog.html#2.5) for a full list of changes completed 
 in this release.
