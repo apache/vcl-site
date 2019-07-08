@@ -87,7 +87,7 @@ Run the following command to verify the SHA256 sum. You should get output
 similar to "apache-VCL-2.5.1.tar.bz2: OK":</p>
 
     :::Text
-    sha1sum -c apache-VCL-2.5.1.tar.bz2.sha256
+    sha256sum -c apache-VCL-2.5.1.tar.bz2.sha256
 
 Similarly, run the following command to verify the MD5 sum. It should give output similar to 
 "apache-VCL-2.5.1.tar.bz2: OK":
