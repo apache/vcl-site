@@ -98,7 +98,7 @@ Similarly, run the following command to verify the MD5 sum. It should give outpu
 To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/) installed):
 
 
-1. download and import the VCL KEYS file (if you've imported the KEYS file for previously 
+1. download and import the [VCL KEYS file](http://www.apache.org/dist/vcl/KEYS) (if you've imported the KEYS file for previously 
 releases, you do not need to import it again):
 
         :::Text
