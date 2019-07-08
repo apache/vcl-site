@@ -26,14 +26,15 @@ its mirrors. Older releases are available from the archive download site.
 
 Stable Release - Latest Version:
 
-* <a href="[location]?Preferred=[preferred]&action=download&filename=%2Fvcl%2F2.5%2Fapache-VCL-2.5.tar.bz2">apache-VCL-2.5.tar.bz2</a>
-[ [GPG](http://www.apache.org/dist/vcl/2.5/apache-VCL-2.5.tar.bz2.asc) ]
-[ [SHA1](http://www.apache.org/dist/vcl/2.5/apache-VCL-2.5.tar.bz2.sha1) ]
-[ [MD5](http://www.apache.org/dist/vcl/2.5/apache-VCL-2.5.tar.bz2.md5) ]
-(released 2017-08-18)
+* <a href="[location]?Preferred=[preferred]&action=download&filename=%2Fvcl%2F2.5%2Fapache-VCL-2.5.1.tar.bz2">apache-VCL-2.5.1.tar.bz2</a>
+[ [GPG](http://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.asc) ]
+[ [SHA256](http://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.sha256) ]
+[ [MD5](http://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.md5) ]
+(released 2019-07-xx)
 
 Previous Releases:
 
+* apache-VCL-2.5.tar.bz2 (released 2017-08-18)
 * apache-VCL-2.4.2.tar.bz2 (released 2015-04-16)
 * (Apache VCL 2.4.1 was never officially released)
 * (Apache VCL 2.4 was never officially released)
@@ -82,17 +83,17 @@ MD5 signatures. Security of the mirrors cannot be guaranteed, which means malici
 could be added to the downloads from the mirrors. By verifying the integrity of 
 downloaded release files, you ensure they have not been tainted.
 
-Run the following command to verify the MD5 sum. It should give output similar to 
-"apache-VCL-2.5.tar.bz2: OK":
+Run the following command to verify the SHA256 sum. You should get output 
+similar to "apache-VCL-2.5.1.tar.bz2: OK":</p>
 
     :::Text
-    md5sum -c apache-VCL-2.5.tar.bz2.md5
+    sha1sum -c apache-VCL-2.5.1.tar.bz2.sha256
 
-Similarly, run the following command to verify the SHA1 sum. You should get output 
-similar to "apache-VCL-2.5.tar.bz2: OK":</p>
+Similarly, run the following command to verify the MD5 sum. It should give output similar to 
+"apache-VCL-2.5.1.tar.bz2: OK":
 
     :::Text
-    sha1sum -c apache-VCL-2.5.tar.bz2.sha1
+    md5sum -c apache-VCL-2.5.1.tar.bz2.md5
 
 To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/) installed):
 
@@ -107,7 +108,7 @@ releases, you do not need to import it again):
 1. from the directory containing both the release file and the GPG signature, run
 
         :::Text
-        gpg --verify apache-VCL-2.5.tar.bz2.asc
+        gpg --verify apache-VCL-2.5.1.tar.bz2.asc
 
 ## TSU Notification - Encryption
 This distribution includes cryptographic software. The country in which you
@@ -144,10 +145,11 @@ For new installs, visit the on-line installation guide:
 
 Latest Version:
 
-* [Apache VCL 2.5 Installation Guide](/docs/VCL25InstallGuide.html)
+* [Apache VCL 2.5.1 Installation Guide](/docs/VCL251InstallGuide.html)
 
 Previous Versions:
 
+* [Apache VCL 2.5 Installation Guide](/docs/VCL25InstallGuide.html)
 * [Apache VCL 2.4.2 Installation Guide](/docs/VCL242InstallGuide.html)
 * [Apache VCL 2.3.2 Installation Guide](/docs/VCL232InstallGuide.html)
 * [Apache VCL 2.3.1 Installation Guide](/docs/VCL231InstallGuide.html)
@@ -161,6 +163,11 @@ Previous Versions:
 For upgrades, visit the on-line upgrade guide:
 
 Upgrade to latest version:
+
+* [upgrade 2.5 to 2.5.1](/docs/UpgradePreviousVersions/UpgradeFrom2.5to2.5.1.html)
+* [upgrade 2.4.2 to 2.5.1](/docs/UpgradePreviousVersions/UpgradeFrom2.4.2to2.5.1.html)
+
+Upgrade to 2.5
 
 * [upgrade 2.4.2 to 2.5](/docs/UpgradePreviousVersions/UpgradeFrom2.4.2to2.5.html)
 
