@@ -16,6 +16,51 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
+## 2.5.1 Changes {#2.5.1}
+
+###        Bug
+
+* [<a href='https://issues.apache.org/jira/browse/VCL-1079'>VCL-1079</a>] -         Virtual Hosts page references Computer Utilities
+* [<a href='https://issues.apache.org/jira/browse/VCL-1080'>VCL-1080</a>] -         Wrong port can be delivered in RDP file
+* [<a href='https://issues.apache.org/jira/browse/VCL-1081'>VCL-1081</a>] -         UID conflict for admin user
+* [<a href='https://issues.apache.org/jira/browse/VCL-1082'>VCL-1082</a>] -         monitor_vcld.pl throws incorrect lastcheckin time exception after Daylight Savings Time Roles Back
+* [<a href='https://issues.apache.org/jira/browse/VCL-1083'>VCL-1083</a>] -         Data in shares mounted under Linux home directories may be deleted
+* [<a href='https://issues.apache.org/jira/browse/VCL-1093'>VCL-1093</a>] -         vSphere_SDK.pm:vm_unregister - failed to unregister VM:
+* [<a href='https://issues.apache.org/jira/browse/VCL-1100'>VCL-1100</a>] -         block allocation usage graph does not work correctly for allocations with a single time slot
+* [<a href='https://issues.apache.org/jira/browse/VCL-1103'>VCL-1103</a>] -         change vcldsemaphore.pid from smallint to mediumint
+* [<a href='https://issues.apache.org/jira/browse/VCL-1105'>VCL-1105</a>] -         Shibboleth authentication broken due to bug in getCryptKeyID
+* [<a href='https://issues.apache.org/jira/browse/VCL-1111'>VCL-1111</a>] -         statgraphcache table not correctly being used
+* [<a href='https://issues.apache.org/jira/browse/VCL-1113'>VCL-1113</a>] -         image capture for Windows system configured as domain controller fails
+* [<a href='https://issues.apache.org/jira/browse/VCL-1116'>VCL-1116</a>] -         use database hostnames for ad joined computers
+* [<a href='https://issues.apache.org/jira/browse/VCL-1117'>VCL-1117</a>] -         vcld fails to set fixed IP address for Linux server reservations if management node not set to static
+* [<a href='https://issues.apache.org/jira/browse/VCL-1119'>VCL-1119</a>] -         wrong day submitted for future reservations made in the evening
+* [<a href='https://issues.apache.org/jira/browse/VCL-1120'>VCL-1120</a>] -         image conversion from vmdk to qcow2 always done twice
+
+###        New Feature
+
+* [<a href='https://issues.apache.org/jira/browse/VCL-1112'>VCL-1112</a>] -         SSL Offload
+
+###        Improvement
+
+* [<a href='https://issues.apache.org/jira/browse/VCL-1041'>VCL-1041</a>] -         Customer facing email notifications are ugly
+* [<a href='https://issues.apache.org/jira/browse/VCL-1084'>VCL-1084</a>] -         set cache mode for libvirt VMs
+* [<a href='https://issues.apache.org/jira/browse/VCL-1085'>VCL-1085</a>] -         Configuring VCL Website to use custom port
+* [<a href='https://issues.apache.org/jira/browse/VCL-1089'>VCL-1089</a>] -         Change ping module to use Net::Ping::External
+* [<a href='https://issues.apache.org/jira/browse/VCL-1092'>VCL-1092</a>] -         Change installation script to install these RPM Perl Modules
+* [<a href='https://issues.apache.org/jira/browse/VCL-1094'>VCL-1094</a>] -         add .\ to windows user login to prevent automatic use of Microsoft accounts
+* [<a href='https://issues.apache.org/jira/browse/VCL-1095'>VCL-1095</a>] -         Move unjoining of Windows VMs from Active Directory to earlier in the deprovision process
+* [<a href='https://issues.apache.org/jira/browse/VCL-1096'>VCL-1096</a>] -         Add ability to automatically mount NFS shares under Windows
+* [<a href='https://issues.apache.org/jira/browse/VCL-1101'>VCL-1101</a>] -         Change chmod mode from string to octal number value
+* [<a href='https://issues.apache.org/jira/browse/VCL-1104'>VCL-1104</a>] -         set cpu topology for libvirt VMs
+* [<a href='https://issues.apache.org/jira/browse/VCL-1106'>VCL-1106</a>] -         make PHP code compatible with PHP 7
+* [<a href='https://issues.apache.org/jira/browse/VCL-1109'>VCL-1109</a>] -         date duplicated on statistic graph labels for day after daylight saving time rolls back
+* [<a href='https://issues.apache.org/jira/browse/VCL-1110'>VCL-1110</a>] -         expose maxinitial time for images in web UI
+* [<a href='https://issues.apache.org/jira/browse/VCL-1114'>VCL-1114</a>] -         miscellaneous small web updates
+
+###        Task
+
+* [<a href='https://issues.apache.org/jira/browse/VCL-1097'>VCL-1097</a>] -         add hidden files to empty directories to force them to be included in Git repo
+
 ## 2.5 Changes {#2.5}
 
 ###        New Feature
