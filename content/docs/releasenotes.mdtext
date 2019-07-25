@@ -18,7 +18,11 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 
 ## 2.5.1 Release Notes {#2.5.1}
 2.5.1 is a bugfix release. See the [Change Log](changelog.html#2.5.1) for a list of 
-issues resolved in this release.
+issues resolved in this release. Below is a list of a few notable changes.
+
+* PHP code updated to work with PHP 7.x.
+* Rudimentary NFS file share mounting extended to work with Windows
+* Added method for using HTML in user emails through external script
 
 ## 2.5 Release Notes {#2.5}
 
