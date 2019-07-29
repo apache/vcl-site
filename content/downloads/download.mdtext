@@ -27,9 +27,8 @@ its mirrors. Older releases are available from the [archive download site](http:
 Stable Release - Latest Version:
 
 * <a href="[location]?Preferred=[preferred]&action=download&filename=%2Fvcl%2F2.5.1%2Fapache-VCL-2.5.1.tar.bz2">apache-VCL-2.5.1.tar.bz2</a>
-[ [GPG](http://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.asc) ]
-[ [SHA512](http://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.sha512) ]
-[ [MD5](http://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.md5) ]
+[ [GPG](https://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.asc) ]
+[ [SHA512](https://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.sha512) ]
 (released 2019-07-25)
 
 Previous Releases:
@@ -98,7 +97,7 @@ Similarly, run the following command to verify the MD5 sum. It should give outpu
 To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/) installed):
 
 
-1. download and import the [VCL KEYS file](http://www.apache.org/dist/vcl/KEYS) (if you've imported the KEYS file for previously 
+1. download and import the [VCL KEYS file](https://www.apache.org/dist/vcl/KEYS) (if you've imported the KEYS file for previously 
 releases, you do not need to import it again):
 
         :::Text
