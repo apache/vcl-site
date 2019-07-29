@@ -16,17 +16,17 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-#h1 Security Issues
+# Security Issues
 The Apache Software Foundation takes security issues seriously and has a 
 [security team](https://www.apache.org/security/) that helps Apache projects work through security 
 issues. If you discover any potential vulnerabilities in Apache VCL, please report them to
 [security@apache.org](mailto:security@apache.org).
 
-#h2 Known Security Issues
+## Known Security Issues
 Here is a list of known security issues with Apache VCL along with the versions affected, versions
 in which they were fixed, and information on patching vulnerable versions.
 
-#h3 CVE-2018-11772
+### CVE-2018-11772
 * Announced: July 29th, 2019
 * Affected versions: versions 2.1 through 2.5
 * Fixed in version: 2.5.1
@@ -41,7 +41,7 @@ in which they were fixed, and information on patching vulnerable versions.
     However, all VCL systems running versions earlier than 2.5.1 should be upgraded or patched. 
     This vulnerability was found and reported to the Apache VCL project by ADLab of Venustech.
 
-#h3 CVE-2018-11773
+### CVE-2018-11773
 * Announced: July 29th, 2019
 * Affected versions: versions 2.1 through 2.5
 * Fixed in version: 2.5.1
@@ -57,7 +57,7 @@ in which they were fixed, and information on patching vulnerable versions.
     should be upgraded or patched. This vulnerability was found and reported to the Apache VCL 
     project by ADLab of Venustech.
 
-#h3 CVE-2018-11774
+### CVE-2018-11774
 * Announced: July 29th, 2019
 * Affected versions: versions 2.1 through 2.5
 * Fixed in version: 2.5.1
@@ -72,7 +72,7 @@ in which they were fixed, and information on patching vulnerable versions.
     running versions earlier than 2.5.1 should be upgraded or patched. This vulnerability was 
     found and reported to the Apache VCL project by ADLab of Venustech.
 
-#h3 CVE-2013-0267
+### CVE-2013-0267
 * Announced: May 6th, 2013
 * Affected versions: versions 2.1, 2.2, 2.2.1, 2.3, 2.3.1
 * Fixed in version: 2.2.2, 2.3.2
