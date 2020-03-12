@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<!--
+
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE- 2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - {{ .Title }}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      {{ partialCached "sidenav.md" . | markdownify }}
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">{{ .Title }}</h1>
+    {{ block "main" . }}{{ end }}
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; {{ now.Year }} The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>
