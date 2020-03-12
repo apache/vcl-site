@@ -1,0 +1,344 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VCL 2.2.1</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VCL 2.2.1</h1>
+    
+	<p><a name="VCL2.2.1-TableofContents"></a></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#VCL2.2.1-Downloadlinks">Download links</a></li>
+<li><a href="#VCL2.2.1-ReleaseNotes">Release Notes</a>
+* <a href="#VCL2.2.1-I.IntroandDescription">I. Intro and Description</a>
+* <a href="#VCL2.2.1-II.VCLRoadmap">II. VCL Roadmap</a>
+* <a href="#VCL2.2.1-III.GettingInvolvedintheASFVCLCommunity">III. Getting Involved in the ASF VCL Community</a>
+* <a href="#VCL2.2.1-IV.HowtoSubmitBugsandFeatureRequests">IV. How to Submit Bugs and Feature Requests</a></li>
+<li><a href="#VCL2.2.1-ChangeLog">Change Log</a>
+* <a href="#VCL2.2.1-Bug">Bug</a>
+* <a href="#VCL2.2.1-Improvement">Improvement</a>
+* <a href="#VCL2.2.1-NewFeature">New Feature</a></li>
+</ul>
+<p><a name="VCL2.2.1-Downloadlinks"></a></p>
+<h2 id="download-links">Download links</h2>
+<p>Please make sure to download VCL from an mirror server. The following link
+will automatically select one for you that should be close to you. After
+downloading it <em>make sure</em> you verify it with MD5 or SHA1 sums <em>AND</em> the
+GPG signature (sums and signature files should be downloaded directly from
+Apache, not from mirrors).</p>
+<p><a href="http://www.apache.org/dyn/closer.cgi/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2">Download ASF VCL 2.2.1</a>
+<a href="http://www.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2.asc">GPG Signature</a>
+<a href="http://www.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2.md5">MD5 Sum</a>
+<a href="http://www.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2.sha1">SHA1 Sum</a>
+<a href="http://www.apache.org/dist/incubator/vcl/KEYS">VCL KEYS file</a></p>
+<p>Run the following command to verify the MD5 sum. It should give output
+similar to &ldquo;apache-VCL-2.2.1-incubating.tar.bz2: OK&rdquo;:
+md5sum -c apache-VCL-2.2.1-incubating.tar.bz2.md5</p>
+<p>Similarly, Run the following command to verify the SHA1 sum. You should get
+output similar to &ldquo;apache-VCL-2.2.1-incubating.tar.bz2: OK&rdquo;:
+sha1sum -c apache-VCL-2.2.1-incubating.tar.bz2.sha1</p>
+<p>To verify the GPG signature (you&rsquo;ll need to have <a href="http://www.gnupg.org/">GnuPG</a>
+installed):</p>
+<ol>
+<li>download and import the VCL KEYS file (if you&rsquo;ve imported the KEYS file
+for previously releases, you do not need to import it again):
+gpg --import KEYS</li>
+<li>download the GPG Signature to the same location as the release file</li>
+<li>from the directory containing both the release file and the GPG
+signature, run
+gpg --verify apache-VCL-2.2.1-incubating.tar.bz2.asc</li>
+</ol>
+<p>For new installs, visit the on-line <a href="vcl-2.2.1-installation.html">installation guide</a>
+.</p>
+<p>For upgrades from version 2.2, visit the on-line <a href="vcl:upgrade-from-previous-version-(2.2-to-2.2.1).html">upgrade guide</a>
+.
+For upgrades from version 2.1, visit the on-line <a href="vcl:upgrade-from-previous-version-(2.1-to-2.2.1).html">upgrade guide for upgrading from 2.1</a>
+.</p>
+<p><a name="VCL2.2.1-ReleaseNotes"></a></p>
+<h2 id="release-notes">Release Notes</h2>
+<p><a name="VCL2.2.1-I.IntroandDescription"></a></p>
+<h4 id="i-intro-and-description">I. Intro and Description</h4>
+<p>VCL, Virtual Computing Lab. The VCL can be many things, first and foremost
+it is an open-source system used to dynamically provision and broker remote
+access to a dedicated compute environment for an end-user. The provisioned
+computers are typically housed in a data center and may be physical blade
+servers, traditional rack mounted servers, or virtual machines. VCL can
+also broker access to standalone machines such as a lab computers on a
+university campus.</p>
+<p>One of the primary goals of VCL is to deliver a dedicated compute
+environment to a user for a limited time through a web interface. This
+compute environment can range from something as simple as a virtual machine
+running productivity software to a machine room blade running high end
+software (i.e. a CAD, GIS, statistical package or an Enterprise level
+application) to a cluster of interconnected physical (bare metal) compute
+nodes.</p>
+<p>Also using the scheduling API it can be used to automate the provisioning
+of servers in a server farm or HPC cluster.</p>
+<p>The release supports provisioning nodes using xCAT 1.3, xCAT 2.x, VMWare
+Server 1.x, VMWare Server 2.x, VMWare ESX 3.5, and VMWare ESXi with both
+purchased licenses and free licenses.</p>
+<p><a name="VCL2.2.1-II.VCLRoadmap"></a></p>
+<h4 id="ii-vcl-roadmap">II. VCL Roadmap</h4>
+<p>VCL 2.2.1 (this release)</p>
+<ul>
+<li>removed frontend dependency on jpgraph</li>
+<li>remove any access control that is hard coded in frontend</li>
+<li>added support for VirtualBox hypervisor</li>
+<li>many bug fixes and improvements to VMWare support</li>
+</ul>
+<p>VCL 2.3</p>
+<ul>
+<li>Service deployments</li>
+<li>power management</li>
+<li>improve cluster reservations</li>
+</ul>
+<p>VCL 2.4</p>
+<ul>
+<li>additional and improved hypervisor support</li>
+<li>KVM and possibly others (virtual box and XEN)</li>
+<li>Allow for additional access methods for environments (port, other
+protocols, etc)</li>
+</ul>
+<p>VCL 2.5</p>
+<ul>
+<li>develop tools for managing both system and user storage</li>
+</ul>
+<p>With each release, we&rsquo;ll be working toward making VCL easier to install. As
+part of our move to development at the Apache Software Foundation, it is an
+obvious goal to create a community of users and more developers around VCL.
+Bringing in more developers should become easier as VCL becomes easier to
+install.</p>
+<p><a name="VCL2.2.1-III.GettingInvolvedintheASFVCLCommunity"></a></p>
+<h4 id="iii-getting-involved-in-the-asf-vcl-community">III. Getting Involved in the ASF VCL Community</h4>
+<p>There are five ways to become involved in the ASF VCL community.</p>
+<ul>
+<li>
+<p>Join the mailing lists and participate in discussion. There are two
+mailing lists: <a href="mailto:vcl-user@incubator.apache.org">vcl-user@incubator.apache.org</a>
+<a href="mailto:vcl-dev@incubator.apache.org">vcl-dev@incubator.apache.org</a>
+To join vcl-user, send an empty message to
+<a href="mailto:vcl-user-subscribe@incubator.apache.org%7Cclick-to-subscribe.html">vcl-user-subscribe@incubator.apache.org</a>
+. To join vcl-dev, send an empty
+message to <a href="mailto:vcl-dev-subscribe@incubator.apache.org%7Cclick-to-subscribe.html">vcl-dev-subscribe@incubator.apache.org</a>
+.</p>
+</li>
+<li>
+<p>Submit bug reports and feature requests to our JIRA bug tracking system.
+See section IV below for more information on doing this.</p>
+</li>
+<li>
+<p>Create documentation on our Confluence site. Create an account at <a href="http://cwiki.apache.org/confluence/display/VCL/Index">http://cwiki.apache.org/confluence/display/VCL/Index</a>
+and just start adding content. (Note to current community: We should
+create a page explaining the layout so new people will know where to add
+content better.)</p>
+</li>
+<li>
+<p>Submit patches through the vcl-dev mailing list and via the JIRA bug
+tracking system. Once you have become familiar with VCL, you can begin
+assisting with the development of it by picking a JIRA issue to fix or by
+adding a feature needed at your site. Then, contribute a patch of your
+changes through the JIRA tracking system and send a message to the vcl-dev
+list explaining what you have done.</p>
+</li>
+<li>
+<p>Become an official committer to the project. Once you have shown that you
+have a good grasp of the project by submitting patches, you can further
+join the development work by submitting a contributor license agreement
+(CLA) to ASF and having a committer account created to directly contribute
+code to the project.</p>
+</li>
+<li>
+<p>If you are interested in contributing something to the project, please
+discuss it on the vcl-dev list BEFORE starting work on it. This allows the
+community to be involved in decisions and allows current developers to
+provide some guidance.</p>
+</li>
+</ul>
+<p><a name="VCL2.2.1-IV.HowtoSubmitBugsandFeatureRequests"></a></p>
+<h4 id="iv-how-to-submit-bugs-and-feature-requests">IV. How to Submit Bugs and Feature Requests</h4>
+<p>If you find a bug, please submit a bug report to our JIRA bug tracking
+system at <a href="http://issues.apache.org/jira/browse/VCL">http://issues.apache.org/jira/browse/VCL</a>
+(you will need to set up an account there if you haven&rsquo;t already done so -
+it&rsquo;s free to anyone). Also, we would appreciate it if you mentioned that
+you filed a bug on the vcl-dev list to make sure we don&rsquo;t miss it.</p>
+<p>If you would like to requrest a new feature, you can also submit that in
+the same way through JIRA (just select &ldquo;New Feature&rdquo; or &ldquo;Improvement&rdquo; as
+the Issue Type). Again, it would be helpful if you mentioned that you filed
+a feature request on the vcl-dev list.</p>
+<p>After you have created a JIRA issue, you have the option to vote on it to
+help us know how to prioritize issues. You can also &ldquo;watch&rdquo; the issue to
+see when activity related to it is submitted.</p>
+<p><a name="VCL2.2.1-ChangeLog"></a></p>
+<h2 id="change-log">Change Log</h2>
+<p>Release Notes - VCL - Version 2.2.1</p>
+<p><a name="VCL2.2.1-Bug"></a></p>
+<h4 id="bug">Bug</h4>
+<ul>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-113">VCL-113</a>
+] -	     inconsistances with &ldquo;None&rdquo; user group</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-116">VCL-116</a>
+] -	     manage groups interface doesn&rsquo;t correctly handle user groups
+with editusergroupid set to NULL</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-152">VCL-152</a>
+] -	     problem removing vm from vmhost when vm in reloading state
+without a reservation</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-361">VCL-361</a>
+] -	     Error is displayed on pages showing image list if last used
+image is deleted</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-395">VCL-395</a>
+] -	     cannot add new vmprofiles</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-397">VCL-397</a>
+] -	     Hostname not set on Linux computers if DNS is not configured
+remotely</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-411">VCL-411</a>
+] -	     Legacy VCL logon and logoff scripts may not be deleted during
+capture causing immediate user logoff</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-412">VCL-412</a>
+] -	     clicking on tomaintenance reload reservation in timetable
+gives an error</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-436">VCL-436</a>
+] -	     Predictive Level_1 reload module - can select wrong image for
+computer</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-437">VCL-437</a>
+] -	     delete image/reservation bug</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-439">VCL-439</a>
+] -	     trailing commas in statistics.js keeps graphs from showing in
+IE on stats page</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-440">VCL-440</a>
+] -	     dashboard last 12 hours of reservations graph not positioned
+correctly in IE in compatibility mode</li>
+</ul>
+<p><a name="VCL2.2.1-Improvement"></a></p>
+<h4 id="improvement">Improvement</h4>
+<ul>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-140">VCL-140</a>
+] -	     General variable table</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-310">VCL-310</a>
+] -	     remove jpgraph dependency</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-312">VCL-312</a>
+] -	     remove View Mode and any uses of user.adminlevelid</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-373">VCL-373</a>
+] -	     Enable Windows Server 2008 RDP audio - it&rsquo;s disabled by
+default</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-394">VCL-394</a>
+] -	     Backend VMware improvements for 2.2.1 release</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-414">VCL-414</a>
+] -	     modify XMLRPCaddUserGroup to accept a paramter specifying
+value for custom field</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-424">VCL-424</a>
+] -	     Remove unused variables from subroutines in backend modules</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-425">VCL-425</a>
+] -	     modify scheduler to be aware of RAM allocated to VMs on each
+VM host</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-426">VCL-426</a>
+] -	     modify scheduler to not give user same computer if user had
+very recent, short reservation and other computers are available</li>
+</ul>
+<p><a name="VCL2.2.1-NewFeature"></a></p>
+<h4 id="new-feature">New Feature</h4>
+<ul>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-232">VCL-232</a>
+] -	     add way to delete multiple computers</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-401">VCL-401</a>
+] -	     add manageMapping resource attribute to control resource
+mapping</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-403">VCL-403</a>
+] -	     make the scheduler aware of image and machine types so that
+virtual and bare images and computers can be mixed</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-405">VCL-405</a>
+] -	     create provisioningOSinstalltype table to map provisioning
+methods to OSinstalltypes</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-406">VCL-406</a>
+] -	     add some charts to see how machines are allocated to block
+allocations</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

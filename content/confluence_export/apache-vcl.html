@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Apache VCL</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Apache VCL</h1>
+    
+	<p><a name="ApacheVCL-ApacheVCL"></a></p>
+<h1 id="apache-vcl">Apache VCL</h1>
+<p>The Apache VCL project.</p>
+<p>VCL, Virtual Computing Lab. The VCL can be many things, first and foremost
+it is a open-source system used to dynamically provision and broker remote
+access to a dedicated compute environment for an end-user. The provisioned
+computers are typically housed in a data center and may be physical blade
+servers, traditional rack mounted servers, or virtual machines. VCL can
+also broker access to standalone machines such as a lab computers on a
+university campus.</p>
+<p>One of the primary goals of VCL is to deliver a dedicated compute
+environment to a user for a limited time through a web interface. This
+compute environment can range from something as simple as a virtual machine
+running productivity software to a machine room blade running high end
+software (i.e. a CAD, GIS,statistical package or an Enterprise level
+application) to a cluster of interconnected physical (bare metal) compute
+nodes.</p>
+<p>Also using the scheduling API it can be used to automate the provisioning
+of servers in a server farm or HPC cluster.</p>
+<p><a name="ApacheVCL-UserDocumentation"></a></p>
+<h1 id="user-documentation">User Documentation</h1>
+<ul>
+<li><a href="for-vcl-users.html">Overview for VCL Users</a>
+(those doing daily management of a VCL installation)
+** <a href="making-a-reservation.html">Making a Reservation</a>
+** <a href="creating-a-new-image-from-a-base-image.html">Creating a New Image from a Base Image</a>
+** <a href="granting-access-to-a-new-image.html">Granting Access to a New Image</a>
+** <a href="example---granting-two-sets-of-users-access-to-two-different-sets-of-images.html">Example - Granting Two Sets of Users Access to Two Different Sets of Images</a>
+** <a href="managegroups.py---remotely-managing-user-groups.html">managegroups.py - Remotely managing user groups</a>
+** The VCL <a href="http://people.apache.org/~jfthomps/vcl_xmlrpc_api.html">XMLRPC API</a></li>
+<li>Documentation for VCL Administrators (those doing a VCL installation)
+** <a href="https://cwiki.apache.org/confluence/display/VCL/VCL+Architecture">VCL Architecture</a>
+** <a href="administrator's-faq.html">Administrator&rsquo;s FAQ</a>
+** <a href="vcl-2.3-installation.html">VCL Installation (Current Release)</a>
+*** <a href="vcl-2.3-database-installation.html">VCL 2.3 Database Installation</a>
+*** <a href="vcl-2.3-web-code-installation.html">VCL 2.3 Web Code Installation</a>
+*** <a href="vcl-2.3-management-node-installation.html">VCL 2.3 Management Node Installation</a>
+*** <a href="adding-support-for-partimage-and-partimage-ng-to-xcat-2.x-(unofficial).html">Adding support for partimage and partimage-ng to xCAT 2.x (unofficial)</a>
+*** <a href="base-image-creation.html">Creating a Base Image</a>
+*** <a href="troubleshooting.html">Troubleshooting</a>
+*** <a href="terms.html">Terms</a></li>
+</ul>
+<p><a name="ApacheVCL-Community"></a></p>
+<h1 id="community">Community</h1>
+<p>Interested in joining the community or giving back to open source? There
+are several ways to assist:</p>
+<ul>
+<li>Join the mailing lists below and discuss ideas.</li>
+<li>Contribute bug-fixes or get involved in development.
+** <a href="vcl:becoming-a-committer.html">How to Become a committer</a></li>
+<li>Help with the documentation, both end-user and installation.</li>
+<li>Help improve the website.</li>
+</ul>
+<p>Mailing lists</p>
+<ul>
+<li>User mailing list  <a href="mailto:user-subscribe@vcl.apache.org.html">mailto:user-subscribe@vcl.apache.org</a></li>
+<li>Development List <a href="mailto:dev-subscribe@vcl.apache.org.html">dev-subscribe@vcl.apache.org</a></li>
+</ul>
+<p>Archives</p>
+<ul>
+<li>Search: <a href="http://markmail.org/set/jlmr2rdvup4w2">http://markmail.org/set/jlmr2rdvup4w2</a></li>
+<li>User (old): <a href="http://mail-archives.apache.org/mod_mbox/incubator-vcl-user">http://mail-archives.apache.org/mod_mbox/incubator-vcl-user</a></li>
+<li>User (current): <a href="http://mail-archives.apache.org/mod_mbox/vcl-user">http://mail-archives.apache.org/mod_mbox/vcl-user</a></li>
+<li>Development (old): <a href="http://mail-archives.apache.org/mod_mbox/incubator-vcl-dev">http://mail-archives.apache.org/mod_mbox/incubator-vcl-dev</a></li>
+<li>Development (current): <a href="http://mail-archives.apache.org/mod_mbox/vcl-dev">http://mail-archives.apache.org/mod_mbox/vcl-dev</a></li>
+</ul>
+<p><a name="ApacheVCL-ProjectResources"></a></p>
+<h1 id="project-resources">Project Resources</h1>
+<table>
+<tr><td> Confluence </td><td> [http://cwiki.apache.org/confluence/display/VCL](http://cwiki.apache.org/confluence/display/VCL)
+ </td></tr>
+<tr><td> Subversion Repository </td><td> [https://svn.apache.org/repos/asf/vcl](https://svn.apache.org/repos/asf/vcl)
+ </td></tr>
+<tr><td> JIRA </td><td> [http://issues.apache.org/jira/browse/VCL](http://issues.apache.org/jira/browse/VCL)
+ </td></tr>
+<tr><td> Current version </td><td> [VCL 2.2.1](vcl-2.2.1.html)
+ </td></tr>
+<tr><td> Release Roadmap </td><td> [ASF VCL JIRA Roadmap](https://issues.apache.org/jira/browse/VCL?report=com.atlassian.jira.plugin.system.project:roadmap-panel)
+ </td></tr>
+<tr><td> IRC </td><td> [\#asfvcl on Freenode](irc://irc.freenode.net/asfvcl.html)
+ </td></tr>
+</table>
+<p><a name="ApacheVCL-ConceptualOverview"></a></p>
+<h1 id="conceptual-overview">Conceptual Overview</h1>
+<p>The conceptual overview below shows that remote users connect to the VCL
+Scheduling Application (the web VCL portal) and request access to a desired
+application environment. The application environment consists of an
+operating system and a suite of applications. The computer types are
+machine room blade servers, vmware virtual machines, and standalone
+machines.</p>
+<table>
+<tr><td> !VCLconceptoverview.gif</td><td>align=left! </td></tr>
+</table>
+<p><a name="ApacheVCL-VCLFeatureList"></a></p>
+<h1 id="vcl-feature-list">VCL Feature List</h1>
+<ul>
+<li>Automated provisioning, on-demand or future based</li>
+<li>Brokers user sessions</li>
+<li>Block allocations - provisioning larger number of compute environments
+for a specific event
+** For the class room
+** For a conference workshop</li>
+<li>Physical (<a href="#baremetal.html">bare-metal</a>
+) provisioning using xCAT</li>
+<li>Virtual machine provisioning on VMware ESXi, VMware ESX Standard server,
+VMware Free Server</li>
+<li>Image creation - allow end-users to create custom environments</li>
+<li>Image revision control - create multiple revisions of an image</li>
+<li>Statistics of environment usage</li>
+<li>Privilege control - grant varying levels of control to end-users through
+web interface
+** Image checkout, image creation, manage users, manage <a href="#resource.html">resources</a>
+, manage resource schedules</li>
+<li>Set available/unavailable schedules for <a href="#node.html">nodes</a></li>
+<li>Multiple <a href="#managementnode.html">Management Nodes</a>
+for scalability</li>
+<li>API support for making requests and provisioning resources</li>
+</ul>
+<p>{panel}
+<em>Terminology</em>:{anchor:baremetal}Bare-metal = a physical server (such as a
+blade server) as opposed to a virtual machine{anchor:node}Node = a
+computer{anchor:resource}Resource = a compute node, an image, a management
+node, or a schedule{anchor:managementnode}Management Node = a process
+server or the machine where vcld is running; processes user requests
+assigned by the scheduler; does the provisioning
+{panel}</p>
+<p><a name="ApacheVCL-SystemRequirements"></a></p>
+<h1 id="system-requirements">System Requirements</h1>
+<p>See the <a href="http://cwiki.apache.org/confluence/display/VCL/VCL+Installation">VCL Installation</a>
+documentation for more information</p>
+<p><a name="ApacheVCL-WebFrontend"></a></p>
+<h4 id="web-frontend">Web Frontend</h4>
+<ul>
+<li><a href="http://httpd.apache.org/">Apache HTTP Server</a>
+1.3 or 2.x with SSL enabled ([Apache
+License|http://www.apache.org/licenses/LICENSE-2.0])</li>
+<li><a href="http://www.php.net/">PHP</a>
+ 5.0 or later ([PHP License|http://www.php.net/license/3_01.txt])</li>
+<li>PHP modules (<a href="http://www.php.net/license/3_01.txt">PHP License</a>
+):
+** php-gd
+** php-json
+** php-mcrypt
+** php-mysql
+** php-openssl
+** php-sysvsem
+** php-xml
+** php-xmlrpc</li>
+<li><a href="http://sourceforge.net/projects/mcrypt/">libmcrypt and mcrypt</a>
+libraries installed for php-mcrypt
+([GPL|http://www.opensource.org/licenses/gpl-license.php])</li>
+<li><a href="http://dojotoolkit.org/">Dojo Toolkit</a>
+0.4.0 and 1.1.0 ([modified BSD license or the Academic Free License
+version 2.1|http://dojotoolkit.org/license])</li>
+</ul>
+<p><a name="ApacheVCL-Database"></a></p>
+<h4 id="database">Database</h4>
+<ul>
+<li><a href="http://dev.mysql.com">MySQL</a>
+5.0 or later ([GPL|http://www.opensource.org/licenses/gpl-license.php])</li>
+</ul>
+<p><a name="ApacheVCL-ManagementNodeBackend"></a></p>
+<h4 id="management-node-backend">Management Node Backend</h4>
+<ul>
+<li>Operating system - tested on CentOS 5 (<a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a>
+), RedHat Advanced Server 4 and 5 ([Red
+Hat|http://www.redhat.com/licenses/advancedservereula.html]), and RedHat
+Fedora Core 7 and 9
+([GPL|http://www.opensource.org/licenses/gpl-license.php])</li>
+<li>perl-DBD-MySQL (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)</li>
+<li>MySQL 5 client (<a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a>
+)</li>
+<li><a href="http://nmap.org/">Nmap</a>
+security scanner ([Nmap|http://nmap.org/svn/COPYING] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)</li>
+<li><a href="http://www.openssh.org/index.html">OpenSSH</a>
+client (BSD)</li>
+<li>Perl 5.8.x (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)</li>
+<li>Perl modules available from CPAN
+** <a href="http://search.cpan.org/dist/Class-Data-Inheritable/">Class-Data-Inheritable</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/Compress-Raw-Zlib/">Compress-Raw-Zlib</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/Crypt-SSLeay/">Crypt-SSLeay</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/DBI/">DBI</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/Devel-StackTrace/">Devel-StackTrace</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/Exception-Class/">Exception-Class</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/HTML-Parser/">HTML-Parser</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/IO-Compress/">IO-Compress</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/libwww-perl/">libwww-perl</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/MailTools/">MailTools</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/Object-InsideOut/">Object-InsideOut</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/RPC-XML/">RPC-XML</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [LGPL|http://www.opensource.org/licenses/lgpl-2.1.php]
+)
+** <a href="http://search.cpan.org/dist/XML-Parser/">XML-Parser</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** <a href="http://search.cpan.org/dist/YAML/">YAML</a>
+([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

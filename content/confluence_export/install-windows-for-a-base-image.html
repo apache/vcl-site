@@ -1,0 +1,600 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Install Windows for a Base Image</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Install Windows for a Base Image</h1>
+    
+	<p>{excerpt}This page describes how to mount the Windows installation media
+and install Windows for a base image.{excerpt}</p>
+<p><a name="InstallWindowsforaBaseImage-MounttheInstallationMedia"></a></p>
+<h2 id="mount-the-installation-media">Mount the Installation Media</h2>
+<p>The Windows installation media needs to be mounted as a drive on the
+computer. The method to do this varies widely based on the provisioning
+engine being used and resources available. The following lists some ways to
+mount the installation media:</p>
+<p>h4. VMware - Configure the VM to mount the ISO image as a CD-ROM
+drive</p>
+<p><em>Note: these instructions assume a VM has already been created</em></p>
+<ol>
+<li>Copy the Windows installation ISO file to the VMware host server</li>
+<li>Add a CD-ROM drive which mounts the Windows installation ISO image by
+editing the virtual machine settings:</li>
+<li>
+<h1 id="connection-use-iso-image">Connection: <em>Use ISO image</em>:</h1>
+</li>
+<li>
+<h1 id="browse-to-path-of-windows-installation-iso-image">Browse to path of Windows installation ISO image</h1>
+</li>
+<li>
+<h1 id="save-the-vm-configuration">Save the VM configuration</h1>
+</li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-xCATusingIBMAdvancedManagementModule"></a></p>
+<h4 id="xcat-using-ibm-advanced-management-module">xCAT using IBM Advanced Management Module</h4>
+<ol>
+<li>Copy the Windows installation ISO file to the management node</li>
+<li>Determine the IP address or hostname of the IBM Advanced Management
+Module (AMM) for the BladeCenter chassis which contains the blade you are
+installing</li>
+<li>Open a web browser and enter the AMM&rsquo;s address</li>
+<li>Log in to the AMM</li>
+<li>Select Inactive session timeout value: <em>no timeout</em></li>
+<li>Click <em>Start New Session</em></li>
+<li>Click <em>Remote Control</em></li>
+<li>Click <em>Start Remote Control</em></li>
+<li>Set the <em>Media Tray</em> and <em>KVM</em> dropdown menus to the blade you are
+installing</li>
+<li>Click <em>Select Image</em> and click the arrow button to the right of it</li>
+<li>Navigate to the Windows installation ISO file which was saved to the
+management node and click <em>Open</em></li>
+<li>Click <em>Mount All</em></li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-BoottotheWindowsInstallationCDorDVD"></a></p>
+<h2 id="boot-to-the-windows-installation-cd-or-dvd">Boot to the Windows Installation CD or DVD</h2>
+<ol>
+<li>Power on the computer</li>
+<li>Press the key to display the boot menu as soon as the computer&rsquo;s POST
+screen is displayed (usually <em>F12</em> for bare metal blades or <em>ESC</em> for
+VMware)</li>
+<li>Boot from the CD-ROM drive</li>
+<li>Press a key to boot from the CD (this may be displayed at bottom of
+screen as soon as the computer begins to boot)</li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-InstallWindows"></a></p>
+<h2 id="install-windows">Install Windows</h2>
+<p>The Windows installation sequence varies by version. The next 2
+sections describe the recommended answers for Windows XP and Windows
+7.</p>
+<p><a name="InstallWindowsforaBaseImage-WindowsXPInstallation"></a></p>
+<h3 id="windows-xp-installation">Windows XP Installation</h3>
+<ol>
+<li>Press <em>Enter</em> to setup up Windows XP now</li>
+<li>Press <em>F8</em> to agree to the license agreement</li>
+<li>Configure the Windows partition</li>
+<li>
+<h1 id="press-enter-to-set-up-windows-xp-on-the-selected-item-should-be">Press <em>Enter</em> to set up Windows XP on the selected item (should be</h1>
+</li>
+</ol>
+<p>called &ldquo;Unpartitioned space&rdquo;)</p>
+<ol>
+<li>
+<h1 id="format-the-partition-using-the-ntfs-file-system-quick">Format the partition using the <em>NTFS file system (Quick)</em></h1>
+</li>
+<li>Region and Language Options - click <em>Next</em></li>
+<li>Name: <em>VCL</em></li>
+<li>Organization: <em>Apache.org</em></li>
+<li>Enter your <em>Windows XP product key</em></li>
+<li>Computer name: <em>(doesn&rsquo;t matter)</em></li>
+<li>Administrator password: <em>(doesn&rsquo;t matter, but it&rsquo;s recommended that
+password should match the</em> <em>{<em>}WINDOWS_ROOT_PASSWORD{</em>}</em> <em>setting in</em>
+<em><em>/etc/vcl/vcld.conf{</em>}{</em>}<em>)</em></li>
+<li>Select the timezone</li>
+<li>Networking settings: <em>Typical</em></li>
+<li>Member of a domain: <em>No, leave default workgroup settings</em></li>
+<li>Automatic updates: <em>Not right now</em></li>
+<li>Connect to Internet: <em>Skip</em></li>
+<li>Register: <em>no</em></li>
+<li>User name: <em>root</em>
+{color:#888888}{<em>}Windows XP setup should finish and the root account
+created during installation should automatically log on{</em>}{color}</li>
+<li>Once the desktop appears, set root&rsquo;s password via the Windows GUI or
+by executing the following command from a command prompt:
+<em>net user root</em> <em><em><password></em></em></li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-Windows7Installation"></a></p>
+<h3 id="windows-7-installation">Windows 7 Installation</h3>
+<ol>
+<li>Enter the regional information:</li>
+<li>
+<ul>
+<li>Language to install: <em>English</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Time and currency format: <em>English (United States)</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Keyboard or input method: <em>US</em></li>
+</ul>
+</li>
+<li>Click <em>Next</em></li>
+<li>Click <em>Install now</em>
+{color:#888888}{<em>}Setup is starting&hellip;</em>{color}</li>
+<li>Click the checkbox next to &ldquo;I accept the license terms&rdquo;</li>
+<li>Click <em>Next</em></li>
+<li>Click <em>Custom (advanced)</em></li>
+<li>On the &ldquo;Where do you want to install Windows?&rdquo; page, delete all existing
+partitions and create a new partition using all of the available space:</li>
+<li>
+<h1 id="click-drive-options-advanced">Click <em>Drive options (advanced)</em></h1>
+</li>
+<li>
+<h1 id="click-delete-then-click-ok-to-confirm">Click <em>Delete</em>, then click <em>OK</em> to confirm</h1>
+</li>
+<li>
+<h1 id="click-new">Click <em>New</em></h1>
+</li>
+<li>
+<h1 id="click-apply-the-size-should-be-set-to-the-maximum-amount-available">Click Apply (the size should be set to the maximum amount available</h1>
+</li>
+</ol>
+<p>{color:#888888}{<em>}To ensure that all Windows features work correctly,
+Windows might create additional partitions for system files.</em>{color}</p>
+<ol>
+<li>
+<h1 id="click-ok">Click <em>OK</em></h1>
+</li>
+<li>Click <em>Next</em>
+{color:#888888}{<em>}Installing Windows&hellip;</em>{color}
+{color:#888888}{<em>}Windows restarts{</em>}{color}
+{color:#888888}{<em>}Starting Windows{</em>}{color}
+{color:#888888}{<em>}Setup is updating registry settings{</em>}{color}</li>
+<li>A screen titled &ldquo;Set Up Windows&rdquo; appears:</li>
+<li>
+<ul>
+<li>Type a user name: <em>root</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Type a computer name: it&rsquo;s best to name the computer after the OS
+(<em>Example: win7sp1-ent)</em></li>
+</ul>
+</li>
+<li>Enter a password, password hint, and click <em>Next</em></li>
+<li>Help protect your computer and improve Windows automatically: <em>Ask me
+later</em></li>
+<li>Select a time zone, set the correct time, and click <em>Next</em>
+{color:#888888}{<em>}Windows is finalizing your settings{</em>}{color}
+{color:#888888}{<em>}Preparing your desktop{</em>}{color}
+{color:#888888}{<em>}Desktop appears{</em>}{color}</li>
+<li>If asked to set a network location, choose <em>Work network</em>
+<em>The root account logs in&hellip;</em></li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-WindowsServer2008"></a></p>
+<h3 id="windows-server-2008">Windows Server 2008</h3>
+<ol>
+<li>Select the language and click <em>Next</em></li>
+<li>Click <em>Install Now</em></li>
+<li>Select the version of Windows you want to install from the list and click
+<em>Next.</em> (<em>Windows Server 2008 R2 Datacenter (Full Installation)</em> was
+selected when creating these instructions.)</li>
+<li>Click the checkbox next to <em>I accept the license terms</em> and click <em>Next</em></li>
+<li>Click <em>Custom (advanced)</em></li>
+<li>Configure the disk partitions and click <em>Next. </em> Unless you have
+reason not to, it&rsquo;s best to delete all existing partitions and then select
+Unallocated Space. This causes the disk to be repartitioned using all of
+the available space.
+<em>Windows is installed&hellip;</em></li>
+<li>Click <em>OK</em> and set a password for the Administrator account, click
+<em>OK</em>
+<em>The Administrator account logs in&hellip;</em></li>
+</ol>
+<p>The root user account is not created during the installation of Windows
+Server 2008. It must be created after Windows is installed. Do this using
+the GUI or run the following commands in a command window:</p>
+<ol>
+<li>Click <em>Start</em> &gt; <em>Administrative Tools</em> &gt; <em>Server Manager</em></li>
+<li>Open <em>Configuration</em> &gt; <em>Local Users and Groups</em> &gt; <em>Users</em></li>
+<li>Open the <em>Action</em> menu &gt; <em>New User</em></li>
+<li>
+<h1 id="user-name-root">User name: <em>root</em></h1>
+</li>
+<li>
+<h1 id="enter-a-password-twice">Enter a password twice</h1>
+</li>
+<li>
+<h1 id="user-must-change-password-at-next-logon-no">User must change password at next logon: <em>no</em></h1>
+</li>
+<li>
+<h1 id="password-never-expires-yes">Password never expires: <em>yes</em></h1>
+</li>
+<li>
+<h1 id="click-create">Click <em>Create</em></h1>
+</li>
+<li>
+<h1 id="click-close">Click <em>Close</em></h1>
+</li>
+<li>Double-click the <em>root</em> user</li>
+<li>Select the <em>Member Of</em> tab</li>
+<li>Click <em>Add</em></li>
+<li>
+<h1 id="enter-the-object-names-to-select-administrators">Enter the object names to select: <em>Administrators</em></h1>
+</li>
+<li>Click <em>OK</em> twice</li>
+</ol>
+<p>The <em>Disk Cleanup</em> utility (cleanmgr.exe) is not available on Windows
+Server 2008 unless the the <em>Desktop Experience</em> feature is installed. VCL
+runs cleanmgr.exe before an image is captured to reduce the amount of space
+the image consumes. Image captures will not fail if cleanmgr.exe is not
+installed but it is recommended to install the <em>Desktop Experience</em> feature
+so that it is available:</p>
+<ol>
+<li>Open the <em>Control Panel</em></li>
+<li>Click <em>Turn Windows features on or off</em></li>
+<li>Click <em>Features</em></li>
+<li>Click <em>Add Features</em></li>
+<li>Click the checkbox next to <em>Desktop Experience</em></li>
+<li>Click <em>Add Required Features</em></li>
+<li>Click <em>Next</em></li>
+<li>Click <em>Install</em>
+<em>The features are installed&hellip;</em></li>
+<li>Click <em>Close</em></li>
+<li>Click <em>No</em> to not reboot the computer</li>
+<li>Restart the computer after the installation is complete</li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-OptionalWindowsConfigurationTasks"></a></p>
+<h2 id="optional-windows-configuration-tasks">Optional Windows Configuration Tasks</h2>
+<p><a name="InstallWindowsforaBaseImage-EnableRemoteDesktop"></a></p>
+<h4 id="enable-remote-desktop">Enable Remote Desktop</h4>
+<p>The remaining configuration tasks will be easier if you are able to connect
+to the Windows computer via RDP rather than using the VMware or BladeCenter
+Management Module console. This step is optional. The VCL image capture
+process will configure RDP on the Windows computer during image capture and
+load processes.</p>
+<p><a name="InstallWindowsforaBaseImage-WindowsXP&&nbsp;WindowsServer2003:"></a></p>
+<h6 id="windows-xp-nbspwindows-server-2003">Windows XP &amp; Windows Server 2003:</h6>
+<ol>
+<li>Open <em>Control Panel</em> &gt; <em>System</em> &gt; <em>Remote</em> tab</li>
+<li>Click the checkbox next to <em>Allow users to connect remotely to this
+computer</em></li>
+<li>Click <em>OK</em></li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-WindowsVista,Windows7,&WindowsServer2008:"></a></p>
+<h6 id="windows-vista-windows-7--windows-server-2008">Windows Vista, Windows 7, &amp; Windows Server 2008:</h6>
+<ol>
+<li>Open <em>Control Panel</em> &gt; <em>System and Security</em> &gt; System</li>
+<li>Click <em>Remote settings</em></li>
+<li>Select <em>Allow connections from computers running any version of Remote
+Desktop (less secure)</em></li>
+<li>Click <em>OK</em></li>
+</ol>
+<p>Use an RDP client to connect to the Windows computer using either its
+public or private IP address as appropriate. If the public address is not
+available for some reason, you can attempt to connect to the private IP
+address by installing rdesktop on the management node:</p>
+<p>{tip}yum install rdesktop -y{tip}</p>
+<p>{tip}rdesktop -g 1024x768 <em><IP address></em> &amp;{tip}</p>
+<p><a name="InstallWindowsforaBaseImage-DisableInternetExplorerEnhancedSecurityConfiguration"></a></p>
+<h4 id="disable-internet-explorer-enhanced-security-configuration">Disable Internet Explorer Enhanced Security Configuration</h4>
+<p><a name="InstallWindowsforaBaseImage-_(WindowsServer2003andWindowsServer2008&nbsp;only)_"></a></p>
+<h6 id="_windows-server-2003-and-windows-server-2008nbsponly_"><em>(Windows Server 2003 and Windows Server 2008 only)</em></h6>
+<p>Internet Explorer Enhanced Security Configuration (IE ESC) prevents you
+from being able to access websites unless you add them to the Trusted sites
+zone.</p>
+<ol>
+<li>Open <em>Administrative Tools</em> &gt; <em>Server Manager</em></li>
+<li>Click <em>Configure IE ESC</em> (on the right side under Security
+Information)</li>
+<li>Select <em>Off</em> for Administrators and Users</li>
+<li>Click <em>OK</em></li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-SettheComputerName&nbsp;"></a></p>
+<h4 id="set-the-computer-namenbsp">Set the Computer Name </h4>
+<p>The computer may have been assigned a random computer name. This name will
+be saved in the captured image. If Sysprep is disabled, this computer name
+will also be assigned to other computers loaded with the image. It&rsquo;s
+helpful to name the computer something descriptive of the image so that you
+can tell what the image is when you connect to it via SSH.</p>
+<ol>
+<li>Open the <em>Control Panel</em></li>
+<li>Click <em>System and Security</em> &gt; <em>Set the name of this computer</em></li>
+<li>Click <em>Change settings</em></li>
+<li>Click <em>Change</em></li>
+<li>
+<h1 id="enter-a-computer-name-and-workgroup">Enter a Computer name and Workgroup</h1>
+</li>
+<li>
+<h1 id="click-ok-3-times">Click <em>OK</em> 3 times</h1>
+</li>
+<li>Click Close</li>
+<li>Click Restart Later</li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-DisableUserAccountControl"></a></p>
+<h4 id="disable-user-account-control">Disable User Account Control</h4>
+<p><a name="InstallWindowsforaBaseImage-(WindowsVista,Windows7,&WindowsServer2008only)"></a></p>
+<h6 id="windows-vista-windows-7--windows-server-2008-only">(Windows Vista, Windows 7, &amp; Windows Server 2008 only)</h6>
+<p>User Account Control (UAC) is the mechanism that causes may of the pop-up
+windows to appear when you attempt to run programs on Windows 7 and Windows
+Server 2008. VCL will disable it when the image is captured but you can
+disable it while configuring the base image to make things a little easier.</p>
+<ol>
+<li>Open the <em>Control Panel</em></li>
+<li>Click <em>System and Security</em> &gt; <em>Change User Account Control settings</em>
+<em>(Under Action Center)</em></li>
+<li>Move the slider to the bottom: <em>Never notify</em></li>
+<li>Click <em>OK</em></li>
+<li>Reboot the computer</li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-ConfigureWindowsBootOptions"></a></p>
+<h4 id="configure-windows-boot-options">Configure Windows Boot Options</h4>
+<p>It can be helpful to configure the Windows boot options as follows in order
+to be able to troubleshoot boot problems.</p>
+<ol>
+<li>Run <em>msconfig.exe</em></li>
+<li>Select the <em>Boot</em> tab</li>
+<li>Click the checkboxes next to:</li>
+<li>
+<h1 id="no-gui-boot---does-not-display-the-windows-welcome-screen-when"><em>No GUI boot</em> - Does not display the Windows Welcome screen when</h1>
+</li>
+</ol>
+<p>starting</p>
+<ol>
+<li>
+<h1 id="boot-log---stores-all-information-from-the-startup-process-in-the"><em>Boot log</em> - Stores all information from the startup process in the</h1>
+</li>
+</ol>
+<p>file %SystemRoot%Ntbtlog.txt</p>
+<ol>
+<li>
+<h1 id="os-boot-information---shows-driver-names-as-drivers-are-being-loaded"><em>OS boot information</em> - Shows driver names as drivers are being loaded</h1>
+</li>
+</ol>
+<p>during the startup process</p>
+<ol>
+<li>
+<h1 id="make-all-boot-settings-permanent"><em>Make all boot settings permanent</em></h1>
+</li>
+<li>Click <em>OK</em></li>
+<li>Click <em>Yes</em></li>
+<li>Restart the computer</li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-VerifyNetworkConnectivity"></a></p>
+<h2 id="verify-network-connectivity">Verify Network Connectivity</h2>
+<p>The computer must be able to connect to the public and private networks.</p>
+<ol>
+<li>If DHCP is not being used, configure the IP addresses manually</li>
+<li>Verify that the computer has IP addresses for both the public and private
+network adapters:</li>
+<li>
+<h1 id="open-a-command-prompt">Open a command prompt:</h1>
+</li>
+</ol>
+<p>{tip}cmd.exe{tip}</p>
+<ol>
+<li>
+<h1 id="check-the-network-configuration">Check the network configuration:</h1>
+</li>
+</ol>
+<p>{tip}ipconfig /all{tip}</p>
+<ol>
+<li>Verify Internet access by opening Internet Explorer and browsing to a
+public website</li>
+</ol>
+<p>Some Windows versions (especially Windows Vista) have trouble properly
+routing outward network traffic if there are multiple network interfaces.
+If you can not get to the Internet, set the <em>private</em> network interface to
+<em>ignore default routes</em> which causes all outward traffic not destined for
+the private network to be sent through the public interface:</p>
+<ol>
+<li>Open a command prompt (this must be done as Administrator under Windows
+6.x):
+<em>Start</em> &gt; <em>All Programs</em> &gt; <em>Accessories</em> &gt; right-click <em>Command prompt</em> &gt;
+<em>Run as Administrator</em></li>
+<li>Determine the name of the private interface from the <em>ipconfig</em> output
+<em>(should be either &ldquo;Local Area Connection&rdquo; or &ldquo;Local Area Connection 2&rdquo;)</em></li>
+<li>Execute the command using the private interface name from step 2:
+{tip}netsh.exe interface ip set interface &ldquo;<em>Local Area Connection</em>&rdquo;
+ignoredefaultroutes=enabled{tip}</li>
+<li>
+<ul>
+<li>The command should display <em>Ok.</em></li>
+</ul>
+</li>
+<li>Attempt to access the Internet again</li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-InstallWindowsUpdates"></a></p>
+<h2 id="install-windows-updates">Install Windows Updates</h2>
+<ol>
+<li>Open <em>Internet Explorer</em></li>
+<li>Run <em>Windows Update</em></li>
+<li>
+<ul>
+<li>Install all recommended updates, reboot if necessary</li>
+</ul>
+</li>
+<li>Run <em>Windows Update</em> again to check for additional updates</li>
+</ol>
+<p><a name="InstallWindowsforaBaseImage-InstallDrivers"></a></p>
+<h2 id="install-drivers">Install Drivers</h2>
+<p>Open up the Device Manager: <em>Control Panel</em> &gt; <em>System</em> &gt; <em>Hardware</em> tab &gt;
+<em>Device Manager</em></p>
+<p>If any devices are unknown or missing drivers, you will need to locate and
+download the appropriate driver and install it.</p>
+<p>Save a copy of the drivers you had to install in the appropriate <em>Drivers</em>
+directory on the management node:
+{panel}/usr/local/vcl/tools/Windows&hellip;/Drivers{panel}
+There are multiple <em>Windows&hellip;</em> directories under /usr/local/vcl/tools. The
+names create a hierarchy so that files which can be used by multiple
+versions of Windows only need to be stored in a single location on the
+management node.  There are 3 levels that make up the hierarchy:</p>
+<ol>
+<li>The directory named <em>Windows</em> should contain files that work on all
+versions of Windows:
+{panel}/usr/local/vcl/tools/Windows/Drivers{panel}</li>
+<li>The directories named <em>Windows_Version_x</em> should contain files that only
+work on a particular major version of Windows.
+{info}The Windows version number can be obtained by executing ver from a
+command prompt{info}</li>
+<li>
+<ul>
+<li><em>Windows_Version_5</em> should contain files that work on versions of
+Windows numbered 5.x (Windows XP and Windows Server 2003).
+{panel}/usr/local/vcl/tools/Windows_Version_5/Drivers{panel}</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Windows_Version_6</em> should contain files that work on versions of
+Windows numbered 6.x (Windows Vista, Windows Server 2008, and Windows 7).
+{panel}/usr/local/vcl/tools/Windows_Version_5/Drivers{panel}</li>
+</ul>
+</li>
+<li>The directories named after a specific version (Windows_XP,
+Windows_Server_2008, etc.) should contain files that only work on that
+version.  For example, if a driver only works under XP save it under:
+{panel}/usr/local/vcl/tools/Windows_XP/Drivers{panel}</li>
+</ol>
+<p>During the image capture process, the Windows* directories that pertain to
+the OS being captured are copied to <em>C:\cygwin\home\root\VCL</em> on the
+Windows computer.  Each Windows* directory is overlayed into the
+same <em>VCL</em> directory.  They are copied in the order listed above,
+from most general to most specific. For example, if a Windows Server 2008
+image is being captured the directories copied are:</p>
+<ol>
+<li>{panel}/usr/local/vcl/tools/Windows{panel}</li>
+<li>{panel}/usr/local/vcl/tools/Windows_Version_6{panel}</li>
+<li>{panel}/usr/local/vcl/tools/Windows_Server_2008{panel}</li>
+</ol>
+<p>The directory organization under each Drivers directory does not
+matter.  However, it&rsquo;s recommended that they be
+organized by device type:</p>
+<ul>
+<li>{panel}/usr/local/vcl/tools/Windows&hellip;/Drivers/Chipset{panel}</li>
+<li>{panel}/usr/local/vcl/tools/Windows&hellip;/Drivers/Network{panel}</li>
+<li>{panel}/usr/local/vcl/tools/Windows&hellip;/Drivers/Storage{panel}</li>
+<li>{panel}/usr/local/vcl/tools/Windows&hellip;/Drivers/Video{panel}</li>
+</ul>
+<p>For example, after testing several drivers you determine the following:</p>
+<ul>
+<li>An Intel chipset driver works for all versions of Windows. Save it in:
+{panel}/usr/local/vcl/tools/Windows/Drivers/Chipset/Intel-5000{panel}</li>
+<li>A Broadcom NetXtreme network driver only works for Windows XP and Windows
+Server 2003. Save it in:
+{panel}/usr/local/vcl/tools/Windows_Version_5/Drivers/Network/Broadcom-NetXtreme{panel}</li>
+<li>An ATI video driver only works for Windows. Save it in:
+{panel}/usr/local/vcl/tools/Windows_XP/Drivers/Video/ATI-ES1000{panel}</li>
+</ul>
+<p>When a Windows XP image is captured, the drivers will be copied to:</p>
+<ul>
+<li>{panel}C:\cygwin\home\root\VCL\Drivers\Chipset\Intel-5000{panel}</li>
+<li>{panel}C:\cygwin\home\root\VCL\Drivers\Network\Broadcom-NetXtreme{panel}</li>
+<li>{panel}C:\cygwin\home\root\VCL\Drivers\Video\ATI-ES1000{panel}</li>
+</ul>
+<p>The VCL image capture process then configures the Windows computer to
+locate and install the drivers copied to the computer when the image is
+loaded.</p>
+<p><a name="InstallWindowsforaBaseImage-InstallHotfixKB942589"></a></p>
+<h2 id="install-hotfix-kb942589">Install Hotfix KB942589</h2>
+<p>{color:#000000}The hotfix available from the
+following page must be installed i{color}f you are
+installing the 64-bit version of Windows XP or Windows Server
+2003:
+<a href="http://support.microsoft.com/kb/942589">http://support.microsoft.com/kb/942589</a></p>
+<h2 id="enter-your-email-address-and-a-download-link-will-be-sent-to-you">You will need to click on the <em>View and request hotfix downloads</em> link,
+enter your email address, and a download link will be sent to you.</h2>
+<p>Next Step: <a href="vcl:install-&amp;-configure-cygwin-sshd.html">VCL:Install &amp; Configure Cygwin SSHD</a></p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

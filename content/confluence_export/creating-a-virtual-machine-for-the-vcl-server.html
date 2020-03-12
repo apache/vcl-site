@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Creating a Virtual Machine for the VCL Server</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Creating a Virtual Machine for the VCL Server</h1>
+    
+	<ol>
+<li>{color:#000000}Create a reservation for the vSphere client image{color}##
+{color:#000000}Log into{color} <a href="https://vcl.ncsu.edu/">https://vcl.ncsu.edu</a></li>
+<li>
+<h1 id="color000000clickcolor-color000000new-reservationcolor">{color:#000000}Click{color} {color:#000000}New Reservation{color}</h1>
+</li>
+<li>
+<h1 id="color000000selectcolor-color000000vmware-vsphere-client">{color:#000000}Select{color} {color:#000000}VMware vSphere Client</h1>
+</li>
+</ol>
+<p>Bootcamp 2011{color}</p>
+<ol>
+<li>
+<h1 id="color000000click-create-reservationcolorcolor000000wait-for">{color:#000000}Click Create Reservation{color}{color:#000000}Wait for</h1>
+</li>
+</ol>
+<p>the reservation to be ready, Connect button appears{color}</p>
+<ol>
+<li>
+<h1 id="color000000clickcolor-color000000connectcolor">{color:#000000}Click{color} {color:#000000}Connect{color}</h1>
+</li>
+<li>
+<h1 id="color000000connect-to-the-reservation-via-rdp-and-logincolor">{color:#000000}Connect to the reservation via RDP and login{color}</h1>
+</li>
+<li>{color:#000000}Log into the ESXi host{color}## {color:#000000}Launch
+the{color} {color:#000000}VMware vSphere Client{color}
+{color:#000000}application{color}### {color:#000000}IP Address:{color}
+{color:#000000}enter the IP address you were given{color}</li>
+<li>
+<h2 id="color000000usernamecolor-color000000rootcolor">{color:#000000}Username:{color} {color:#000000}root{color}</h2>
+</li>
+<li>
+<h2 id="color000000passwordcolor">{color:#000000}Password:{color}</h2>
+</li>
+</ol>
+<p>{color:#000000}{<em>}<em><password></em>{</em>}{color}</p>
+<ol>
+<li>
+<h1 id="color000000click-logincolor">{color:#000000}Click Login{color}</h1>
+</li>
+<li>
+<h1 id="color000000if-presented-with-a-security-warning-box-click-the">{color:#000000}If presented with a Security Warning box, click the</h1>
+</li>
+</ol>
+<p>“Install this certificate&hellip;” checkbox and then click Ignore{color}</p>
+<ol>
+<li>{color:#000000}Create a virtual machine for your VCL server{color}##
+{color:#000000}Click File &gt; New &gt; Virtual Machine{color}</li>
+<li>
+<h1 id="color000000configurationcolor-color000000customcolor">{color:#000000}Configuration:{color} {color:#000000}Custom{color}</h1>
+</li>
+<li>
+<h1 id="color000000namecolor-color000000vcl-servercolor">{color:#000000}Name:{color} {color:#000000}vcl-server{color}</h1>
+</li>
+<li>
+<h1 id="color000000datastorecolor-color000000localcolor">{color:#000000}Datastore:{color} {color:#000000}local{color}</h1>
+</li>
+<li>
+<h1 id="color000000virtual-machine-versioncolor-color0000007color">{color:#000000}Virtual Machine Version:{color} {color:#000000}7{color}</h1>
+</li>
+<li>
+<h1 id="color000000guest-operating-systemcolor">{color:#000000}Guest Operating System:{color}</h1>
+</li>
+</ol>
+<p>{color:#000000}Linux{color}### {color:#000000}Version:{color}
+{color:#000000}CentOS 4/5 (32-bit){color}</p>
+<ol>
+<li>
+<h1 id="color000000number-of-virutal-processors-1color">{color:#000000}Number of virutal processors: 1{color}</h1>
+</li>
+<li>
+<h1 id="color000000memory-size-1-gbcolor">{color:#000000}Memory Size: 1 GB{color}</h1>
+</li>
+<li>
+<h1 id="color000000how-many-nics-2color-color000000nic-1color">{color:#000000}How many Nics: 2{color}### {color:#000000}NIC 1:{color}</h1>
+</li>
+</ol>
+<p>{color:#000000}Private{color}{color:#000000}, Adapter: E1000, Connect at
+Power On: Yes{color}</p>
+<ol>
+<li>
+<h2 id="color000000nic-2color">{color:#000000}NIC 2:{color}</h2>
+</li>
+</ol>
+<p>{color:#000000}Public{color}{color:#000000}, Adapter: E1000, Connect at
+Power On: Yes{color}</p>
+<ol>
+<li>
+<h1 id="color000000scsi-controller-lsi-logic-parallelcolor">{color:#000000}SCSI controller: LSI Logic Parallel{color}</h1>
+</li>
+<li>
+<h1 id="color000000disk-create-a-new-virtual-diskcolor">{color:#000000}Disk: Create a new virtual disk{color}###</h1>
+</li>
+</ol>
+<p>{color:#000000}Disk Size: 8 GB{color}</p>
+<ol>
+<li>
+<h2 id="color000000allocate-and-commit-space-on-demand-thin">{color:#000000}Allocate and commit space on demand (Thin</h2>
+</li>
+</ol>
+<p>Provisioning):{color} {color:#000000}Yes{color}</p>
+<ol>
+<li>
+<h2 id="color000000support-clustering-nocolor">{color:#000000}Support clustering: No{color}</h2>
+</li>
+<li>
+<h2 id="color000000location-store-with-the-virtual-machinecolor">{color:#000000}Location: Store with the virtual machine{color}</h2>
+</li>
+<li>
+<h1 id="color000000virtual-device-node-scsi-00color">{color:#000000}Virtual Device Node: SCSI (0:0){color}###</h1>
+</li>
+</ol>
+<p>{color:#000000}Mode:{color}
+{color:#000000}Independent{color}{color:#000000},{color}
+{color:#000000}Persistent{color}</p>
+<ol>
+<li>
+<h1 id="color000000edit-the-virtual-machine-settings-before">{color:#000000}Edit the virtual machine settings before</h1>
+</li>
+</ol>
+<p>completion:{color} {color:#000000}Yes{color}</p>
+<ol>
+<li>
+<h1 id="color000000select-the-cddvd-devicecolor-color000000change">{color:#000000}Select the CD/DVD device{color}### {color:#000000}Change</h1>
+</li>
+</ol>
+<p>Device Type to:{color} {color:#000000}Datastore ISO File{color}</p>
+<ol>
+<li>
+<h2 id="color000000click-browsecolor-color000000navigate">{color:#000000}Click Browse{color}#### {color:#000000}Navigate</h2>
+</li>
+</ol>
+<p>to{color} {color:#000000}local/iso{color}</p>
+<ol>
+<li>
+<h3 id="color000000selectcolor">{color:#000000}Select:{color}</h3>
+</li>
+</ol>
+<p>{color:#000000}CentOS-5.6-i386-bin-DVD.iso{color}</p>
+<ol>
+<li>
+<h2 id="color000000connect-at-power-oncolor-color000000yescolor">{color:#000000}Connect at power on:{color} {color:#000000}Yes{color}</h2>
+</li>
+<li>
+<h1 id="color000000clickcolor-color000000finishcolor">{color:#000000}Click{color} {color:#000000}Finish{color}</h1>
+</li>
+<li>{color:#000000}Install the VCL Server OS{color}## {color:#000000}Click
+the plus sign in the left pane to display the VM{color}</li>
+<li>
+<h1 id="color000000select-thecolor-color000000vcl-servercolor">{color:#000000}Select the{color} {color:#000000}VCL Server{color}</h1>
+</li>
+</ol>
+<p>{color:#000000}VM{color}</p>
+<ol>
+<li>
+<h1 id="color000000click-thecolor-color000000consolecolor">{color:#000000}Click the{color} {color:#000000}Console{color}</h1>
+</li>
+</ol>
+<p>{color:#000000}tab{color}</p>
+<ol>
+<li>
+<h1 id="color000000click-the-play-button-to-start-the-vmcolor">{color:#000000}Click the play button to start the VM{color}</h1>
+</li>
+<li>
+<h1 id="color000000to-install-in-or-upgrade-in-graphical-mode-press">{color:#000000}To install in or upgrade in graphical mode: press</h1>
+</li>
+</ol>
+<p>Enter{color}</p>
+<ol>
+<li>
+<h1 id="color000000choosecolor-color000000skipcolor">{color:#000000}Choose{color} {color:#000000}Skip{color}</h1>
+</li>
+</ol>
+<p>{color:#000000}to skip the media testthe GUI installation begins&hellip;{color}</p>
+<ol>
+<li>
+<h1 id="color000000click-nextcolor">{color:#000000}Click Next{color}</h1>
+</li>
+<li>
+<h1 id="color000000select-englishcolor">{color:#000000}Select English{color}</h1>
+</li>
+<li>
+<h1 id="color000000would-you-like-to-initialize-this-drivecolor">{color:#000000}Would you like to initialize this drive:{color}</h1>
+</li>
+</ol>
+<p>{color:#000000}Yes{color}</p>
+<ol>
+<li>
+<h1 id="color000000click-next-to-use-the-default-partitioning-schemecolor">{color:#000000}Click Next to use the default partitioning scheme{color}</h1>
+</li>
+<li>
+<h1 id="color000000network-devicescolor-color000000selectcolor">{color:#000000}Network Devices:{color}### {color:#000000}Select{color}</h1>
+</li>
+</ol>
+<p>{color:#000000}eth0{color} {color:#000000}and click Edit{color}####
+{color:#000000}Enable IPv4 support: Yes{color}##### {color:#000000}Manual
+configuration{color}###### {color:#000000}IP Address:{color}
+{color:#000000}10.100.0.1{color}</p>
+<ol>
+<li>
+<h5 id="color000000prefix-netmaskcolor">{color:#000000}Prefix (Netmask):{color}</h5>
+</li>
+</ol>
+<p>{color:#000000}255.255.255.0{color}</p>
+<ol>
+<li>
+<h3 id="color000000enable-ipv6-supportcolor-color000000nocolor">{color:#000000}Enable IPv6 support:{color} {color:#000000}No{color}</h3>
+</li>
+<li>
+<h2 id="color000000selectcolor-color000000eth1color">{color:#000000}Select{color} {color:#000000}eth1{color}</h2>
+</li>
+</ol>
+<p>{color:#000000}and click Edit{color}#### {color:#000000}Enable IPv4
+support: Yes{color}##### {color:#000000}Dynamic IP configuration
+(DHCP){color}</p>
+<ol>
+<li>
+<h3 id="color000000enable-ipv6-supportcolor-color000000nocolor-1">{color:#000000}Enable IPv6 support:{color} {color:#000000}No{color}</h3>
+</li>
+<li>
+<h2 id="color000000eth1---activate-on-bootcolor">{color:#000000}eth1 - Activate on Boot:{color}</h2>
+</li>
+</ol>
+<p>{color:#000000}Yes{color}</p>
+<ol>
+<li>
+<h1 id="color000000select-a-timezonecolor">{color:#000000}Select a timezone{color}</h1>
+</li>
+<li>
+<h1 id="color000000root-passwordcolor-color000000_password_color">{color:#000000}Root Password:{color} {color:#000000}<em><password></em>{color}</h1>
+</li>
+<li>
+<h1 id="color000000software-packages---uncheckcolor-color000000desktop">{color:#000000}Software packages - uncheck{color} {color:#000000}Desktop</h1>
+</li>
+</ol>
+<ul>
+<li>Gnome{color}</li>
+</ul>
+<ol>
+<li>
+<h1 id="color000000reboot-the-vm-when-the-installation-is-completecolor">{color:#000000}Reboot the VM when the installation is complete{color}</h1>
+</li>
+<li>
+<h1 id="color000000select-the-item-that-you-wish-to-modify-click">{color:#000000}Select the item that you wish to modify: click</h1>
+</li>
+</ol>
+<p>Exit{color}</p>
+<ol>
+<li>
+<h1 id="color000000login-as-rootcolor">{color:#000000}Login as root{color}</h1>
+</li>
+<li>
+<h1 id="color000000verify-the-networking-ifconfigcolor">{color:#000000}Verify the networking: ifconfig{color}###</h1>
+</li>
+</ol>
+<p>{color:#000000}eth0 should be assigned 10.100.0.1{color}</p>
+<ol>
+<li>
+<h2 id="color000000eth1-should-be-assigned-a-public-ip-address">{color:#000000}eth1 should be assigned a public IP address:</h2>
+</li>
+</ol>
+<p>152.46.x.x{color}</p>
+<ol>
+<li>{color:#000000}Log in via SSH{color}## {color:#000000}Launch PuTTY from
+the computer you connected to via RDP{color}### {color:#000000}Host Name:
+Enter the public IP address of the VCL server which is displayed in the
+ifconfig output{color}</li>
+<li>
+<h2 id="color000000saved-sessions-enter-vcl-servercolor">{color:#000000}Saved Sessions: enter ‘vcl-server’{color}</h2>
+</li>
+<li>
+<h2 id="color000000click-savecolor">{color:#000000}Click Save{color}</h2>
+</li>
+<li>
+<h1 id="color000000connect-to-vcl-servercolor">{color:#000000}Connect to vcl-server{color}</h1>
+</li>
+<li>
+<h1 id="color000000login-as-rootcolor-1">{color:#000000}Login as root{color}</h1>
+</li>
+<li>{color:#000000}Install the VCL components:{color}<a href="https://cwiki.apache.org/display/VCL/VCL+2.2.1+Installation">https://cwiki.apache.org/confluence/display/VCL/VCL+2.2.1+Installation</a></li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

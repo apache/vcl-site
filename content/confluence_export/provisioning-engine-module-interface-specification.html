@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Provisioning Engine Module Interface Specification</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Provisioning Engine Module Interface Specification</h1>
+    
+	<p><a name="ProvisioningEngineModuleInterfaceSpecification-Background"></a></p>
+<h1 id="background">Background</h1>
+<ul>
+<li>Provisioning module objects are created by State.pm::initialize() when a
+new state object is created.</li>
+<li>Provisioning module objects are available within state modules and
+OS modules</li>
+<li>Provisioning module objects are not available within other types of
+modules for safety.</li>
+</ul>
+<p>{color:#6600ff}{<em>}Explain:</em>{color}</p>
+<ul>
+<li>{color:#6600ff}{<em>}define what we mean by &ldquo;provisioning system&rdquo;</em>{color}</li>
+<li>{color:#6600ff}{<em>}give examples of provisioning systems{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}could be bare metal, virtual, differentiated,
+undifferentiated, a service, a special piece of hardware, eventually VCL
+could provision various types of resources{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}relationships among mgt nodes, computers, provisioning
+systems (such as computer is assigned 1 prov system at a time)</em>{color}</li>
+<li>{color:#6600ff}{<em>}computer.provisioningid{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}provisioning table{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}future: management node to provisioning
+mapping{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}provisioning module implementation is responsible for
+knowing which OS interactions are necessary{</em>}{color}
+** {color:#6600ff}{<em>}image.pm calls provisioner-&gt;capture, new.pm calls
+provisioner-&gt;load, it calls OS subs as necessary{</em>}{color}</li>
+</ul>
+<p><a name="ProvisioningEngineModuleInterfaceSpecification-ProvisioningModuleSubroutines"></a></p>
+<h1 id="provisioning-module-subroutines">Provisioning Module Subroutines</h1>
+<p>It is highly recommended that all provisioning modules implement the
+following subroutines.  There may be many additional subroutines
+implemented within a provisioning module.  These will not be called by
+any of the core VCL modules.</p>
+<ul>
+<li><a href="#node_status.html">#node_status</a></li>
+<li><a href="#capture.html">#capture</a></li>
+<li><a href="#load.html">#load</a></li>
+<li><a href="#power_off.html">#power_off</a></li>
+<li><a href="#power_on.html">#power_on</a></li>
+<li><a href="#power_reset.html">#power_reset</a></li>
+<li><a href="#get_current_image.html">#get_current_image</a></li>
+<li><a href="#get_image_size.html">#get_image_size</a></li>
+</ul>
+<hr>
+<p><a name="ProvisioningEngineModuleInterfaceSpecification-node_status{anchor:node_status}"></a></p>
+<h2 id="node_status-anchornode_status">node_status {anchor:node_status}</h2>
+<ul>
+<li>
+<p>Description
+** A provisioning module&rsquo;s node_status routine checks the current status of
+the node. Through the module this routine is aware of how to figure out if
+a node is available and loaded with the correct image or needs to be
+reloaded.
+** It returns a hash reference with various information, the most important
+being the &ldquo;status&rdquo;</p>
+<p>ie for the xcat module:
+hashref: reference to hash with keys/values
+{status} =&gt; &lt;&quot;READY&rdquo;,&ldquo;RELOAD&quot;&gt;
+{ping} =&gt; &lt;0,1&gt;
+{ssh} =&gt; &lt;0,1&gt;
+{rpower} =&gt; &lt;0,1&gt;
+{nodeset} =&gt; &lt;&quot;boot&rdquo;, &ldquo;install&rdquo;, &ldquo;image&rdquo;, &hellip;&gt;
+{nodetype} =&gt; <image name>
+{currentimage} =&gt; <image name></p>
+</li>
+</ul>
+<p>** The status key/value tells the vcl system the node is ready or needs to
+be reloaded.</p>
+<p><a name="ProvisioningEngineModuleInterfaceSpecification-capture{anchor:capture}"></a></p>
+<h2 id="capture-anchorcapture">capture {anchor:capture}</h2>
+<ul>
+<li>Description
+** A provisioning module&rsquo;s capture() subroutine saves the current state of
+the resource.  
+** For the provisioning of computers, this means saving an image of the
+contents of the hard drive.  Although current VCL implementations
+focus on provisioning computers, the capture() subroutine does not
+necessarily need to save an image of a hard drive.  A provisioning
+module may be developed to save the configuration of a network service or
+some other type of resource.
+** The capture() subroutine is responsible for calling the OS module&rsquo;s
+pre_capture subroutine.  This is not called by the image.pm state
+module because there may be cases where an OS isn&rsquo;t applicable.
+** The capture() subroutine is responsible for waiting for the entire
+capture process to complete.</li>
+<li>Expected Beginning State
+** An administrator has configured the resource and initiated the capture
+using the VCL website.
+** The resource is on and accessible.
+** The information contained in the data object describes the image which
+does not yet exist and will be captured.</li>
+<li>Expected Ending State
+** The entire capture process is complete or else an error occurred.
+** The capture() subroutine has waited for an image to be captured.</li>
+<li>Called By
+** image.pm::process()</li>
+<li>Arguments &amp; Calling Environment
+** Should only be called as an object method of a image.pm state
+object ($self-&gt;capture()) 
+** No Arguments</li>
+<li>Return Values
+** 1
+*** Resource was successfully captured.
+*** image.pm may proceed to update the database tables making the image
+available to be provisioned.
+** 0
+*** Resource was not successfully captured.
+*** An administrator needs to investigate the problem.</li>
+</ul>
+<p><a name="ProvisioningEngineModuleInterfaceSpecification-load{anchor:load}"></a></p>
+<h2 id="load-anchorload">load {anchor:load}</h2>
+<ul>
+<li>Description
+** A provisioning module&rsquo;s load() subroutine is responsible for
+provisioning the node.
+** This means starting a virtual machine, loading a image to disk, or
+nothing in the case of the standalone lab machine.</li>
+<li>Expected Beginning State
+** &hellip;</li>
+<li>Expected Ending State
+** &hellip;</li>
+<li>Called By
+** &hellip;</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of a
+provisioning object ($provisioner-&gt;pre_capture()) 
+** No Arguments</li>
+<li>Return Values
+** 1
+*** &hellip;
+** 0
+*** &hellip;
+** Undefined
+*** &hellip;</li>
+</ul>
+<p><a name="ProvisioningEngineModuleInterfaceSpecification-power_off{anchor:power_off}"></a></p>
+<h2 id="power_off-anchorpower_off">power_off {anchor:power_off}</h2>
+<ul>
+<li>Description
+** A provisioning module&rsquo;s power_off() subroutine is responsible for
+powering off or down a node.</li>
+<li>Expected Beginning State
+** &hellip;</li>
+<li>Expected Ending State
+** &hellip;</li>
+<li>Called By
+** &hellip;</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of a
+provisioning object ($provisioner-&gt;pre_capture()) 
+** No Arguments</li>
+<li>Return Values
+** 1
+*** &hellip;
+** 0
+*** &hellip;
+** Undefined
+*** &hellip;</li>
+</ul>
+<p><a name="ProvisioningEngineModuleInterfaceSpecification-power_on{anchor:power_on}"></a></p>
+<h2 id="power_on-anchorpower_on">power_on {anchor:power_on}</h2>
+<ul>
+<li>Description
+** A provisioning module&rsquo;s power_on() subroutine is responsible for
+powering on a node.</li>
+<li>Expected Beginning State
+** &hellip;</li>
+<li>Expected Ending State
+** &hellip;</li>
+<li>Called By
+** &hellip;</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of a
+provisioning object ($provisioner-&gt;pre_capture()) 
+** No Arguments</li>
+<li>Return Values
+** 1
+*** &hellip;
+** 0
+*** &hellip;
+** Undefined
+*** &hellip;</li>
+</ul>
+<p><a name="ProvisioningEngineModuleInterfaceSpecification-get_current_image{anchor:get_current_image}"></a></p>
+<h2 id="get_current_image-anchorget_current_image">get_current_image {anchor:get_current_image}</h2>
+<ul>
+<li>Description
+** A provisioning module&rsquo;s get_current_image() subroutine is responsible
+for trying to figure out what image is loaded on the node. By reading
+currentimage.txt located on the node&rsquo;s in root&rsquo;s user directory. This
+routine can be copied from another module.</li>
+<li>Expected Beginning State
+** The node is expected to be online and accessible.</li>
+<li>Called By
+** node_status()</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of a
+provisioning object ($provisioner-&gt;pre_capture()) 
+** No Arguments</li>
+<li>Return Values
+** 1
+*** &hellip;
+** 0
+*** &hellip;
+** Undefined
+*** &hellip;</li>
+</ul>
+<p><a name="ProvisioningEngineModuleInterfaceSpecification-get_image_size&nbsp;{anchor:get_image_size}"></a></p>
+<h2 id="get_image_sizenbspanchorget_image_size">get_image_size {anchor:get_image_size}</h2>
+<ul>
+<li>Description
+** A provisioning module&rsquo;s get_image_size() subroutine is responsible for
+collected the disk usage of the image within the image library.</li>
+<li>Expected Beginning State
+** N/A</li>
+<li>Expected Ending State
+** &hellip;</li>
+<li>Called By
+** &hellip;</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of a
+provisioning object ($provisioner-&gt;pre_capture()) 
+** No Arguments</li>
+<li>Return Values
+** 1
+*** &hellip;
+** 0
+*** &hellip;
+** Undefined
+*** &hellip;</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

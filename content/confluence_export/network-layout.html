@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Network Layout</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Network Layout</h1>
+    
+	<p>{excerpt}This page describes the basic network layout required in order for
+VCL to function. It also describes the recommended network layout if a
+blade chassis management module is used.{excerpt}</p>
+<p><a name="NetworkLayout-AtthesimplestformVCLusestwonetworks"></a></p>
+<h1 id="at-the-simplest-form-vcl-uses-two-networks">At the simplest form VCL uses two networks</h1>
+<ol>
+<li>Private - applies to provisioning modules where node is reloaded, esx,
+vmware, etc.</li>
+<li>
+<ul>
+<li>loading and boot strapping images</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>managing reservations, adding/deleting accounts, controlling the OS on
+the node</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>opens access ports on node for user requests on public network interface</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>image creation</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>DHCP serves fixed-addresses over this network to the eth0 adapter of the
+node</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>DHCP is run on the management node - prerequisite</li>
+</ul>
+</li>
+<li>Public</li>
+<li>
+<ul>
+<li>user accessible</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>VCL can either use dhcp(preferred) or statically assign addresses to the
+node on the public network</li>
+</ul>
+</li>
+</ol>
+<p>The diagram below shows the simple layout:
+{gliffy:name=Simple network layout|space=VCL|page=Network
+Layout|align=left|size=M}</p>
+<p><a name="NetworkLayout-BladeCenternetworklayout"></a></p>
+<h1 id="blade-center-network-layout">Blade Center network layout</h1>
+<p>The network using blade center is more involved by adding a 2nd private
+network.</p>
+<ol>
+<li>Private 1 - applies to provisioning modules, xCAT, vmware, etc.</li>
+<li>Private 2</li>
+<li>
+<ul>
+<li>allows management node to interact with blade center management module</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>provides scaling method for adding multiple blade center&rsquo;s</li>
+</ul>
+</li>
+<li>Public - user access</li>
+</ol>
+<p>The diagram below shows the suggested network layout when using blade
+center.</p>
+<p>{gliffy:name=Blade Center network layout|space=VCL|page=Network
+Layout|align=left|size=M}</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

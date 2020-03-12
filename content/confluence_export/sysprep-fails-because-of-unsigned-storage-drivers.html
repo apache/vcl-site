@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Sysprep Fails Because of Unsigned Storage Drivers</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Sysprep Fails Because of Unsigned Storage Drivers</h1>
+    
+	<p>Sysprep may fail if mass storage drivers are not signed.  This problem
+occurs even if the sysprep.inf file is configured with
+DriverSigningPolicy=Ignore.  This is a known problem with some
+versions of LSI SAS drivers (1.30.02.00) used on IBM blades.  The
+driver available from LSI&rsquo;s website is not correctly signed.
+ The same version is available from IBM&rsquo;s website and is
+correctly signed.  It can be downloaded from:
+<a href="http://www-947.ibm.com/systems/support/supportsite.wss/docdisplay?lndocid=MIGR-5073138&amp;brandind=5000020">(Critical update) IBM and LSI Basic or Integrated RAID SAS driver v1.30.02.00 for Microsoft Windows Server 2008 and Windows Server 2003 - IBM BladeCenter and System x</a></p>
+<p><a name="SysprepFailsBecauseofUnsignedStorageDrivers-HowtoTellifthisProblemOccurred&nbsp;"></a></p>
+<h4 id="how-to-tell-if-this-problem-occurrednbsp">How to Tell if this Problem Occurred </h4>
+<p>Open C:\Windows\setupapi.log.  Look for lines containing
+&ldquo;{color:#ff0000}{<em>}An unsigned or incorrectly signed file{</em>}{color}&quot;: 
+{panel}
+[2009/10/21 10:52:43 1912.7 Driver Install](2009/10/21-10:52:43-1912.7-driver-install.html)
+#-019 Searching for hardware ID(s): pci\ven_1000&amp;dev_0622
+#-199 Executing &ldquo;C:\Sysprep\sysprep.exe&rdquo; with command line:
+C:/Sysprep/sysprep.exe /quiet /reseal /mini
+#I022 Found &ldquo;PCI\VEN_1000&amp;DEV_0622&rdquo; in
+c:\cygwin\home\root\vcl\drivers\storage\lsi-sas\symmpi.inf; Device: &ldquo;LSI
+Adapter, 2Gb FC, models 44929, G2 with 929&rdquo;; Driver: &ldquo;LSI Adapter, 2Gb FC,
+models 44929, G2 with 929&rdquo;; Provider: &ldquo;LSI Corporation&rdquo;; Mfg: &ldquo;LSI
+Corporation&rdquo;; Section name: &ldquo;SYMMPI_Inst&rdquo;.
+#I087 Driver node not trusted, rank changed from 0x00000000 to 0x0000c000.
+#I023 Actual install section: [SYMMPI_Inst](symmpi_inst.html)
+. Rank: 0x0000c000. Effective driver date: 01/30/2009.
+#-166 Device install function: DIF_SELECTBESTCOMPATDRV.
+#I063 Selected driver installs from section [SYMMPI_Inst](symmpi_inst.html)
+in &ldquo;c:\cygwin\home\root\vcl\drivers\storage\lsi-sas\symmpi.inf&rdquo;.
+#I320 Class GUID of device remains:
+{4D36E97B-E325-11CE-BFC1-08002BE10318}
+#I060 Set selected driver.
+#I058 Selected best compatible driver.
+#-124 Doing copy-only install of &ldquo;ROOT\SYSPREP_TEMPORARY\0000&rdquo;.
+{color:#ff0000}<em>#E358 An unsigned or incorrectly signed file
+&ldquo;c:\cygwin\home\root\vcl\drivers\storage\lsi-sas\mpixp32.cat&rdquo; for driver
+&ldquo;LSI Adapter, 2Gb FC, models 44929, G2 with 929&rdquo; blocked (server install).
+Error 0x800b0003: The form specified for the subject is not one supported
+or known by the specified trust provider.</em>{color}
+#W187 Install failed, attempting to restore original files.</p>
+<p><a name="SysprepFailsBecauseofUnsignedStorageDrivers-HowtoResolvethisProblem"></a></p>
+<h4 id="how-to-resolve-this-problem">How to Resolve this Problem</h4>
+<p>The preferred method is to obtain a signed driver.  If a signed driver
+cannot be located, try configuring the local computer policy to allow
+unsigned drivers:</p>
+<ul>
+<li>Run: <em>gpedit.msc</em></li>
+<li>Navigate to: Computer Configuration &gt; Windows Settings &gt; Security Options</li>
+<li>Edit: Devices: Unsigned driver installation behavior = <em>Silently succeed</em></li>
+<li>Run: <em>gpupdate /force</em></li>
+</ul>
+<p>Restart the image capture.</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

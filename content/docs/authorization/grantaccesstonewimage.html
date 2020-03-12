@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Granting Access to a New Image</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Granting Access to a New Image</h1>
+    
+	<h2 id="overview">Overview</h2>
+<p>Once you have created a new image, there are a few things you have to do to allow
+other people to use it.  If you don&rsquo;t have access to do any of the following steps,
+you will need to get a VCL administrator to do them for you.</p>
+<p>When you create a new image, it is only available to you, and it is only allowed
+to be run on a few computers that have been set aside for the testing of new images.</p>
+<p><strong>NOTE</strong>: After you have been through these steps one time, if you are granting the same
+set of users access to a new image, you may only have to perform step 1.1 for subsequent
+images.</p>
+<h2 id="step-1-image-mapping">Step 1: Image Mapping</h2>
+<p>Images are mapped to be run on a set of computers. See the documentation on
+<a href="administrationconcepts.html#resource-mapping">Resource Mapping</a> to learn
+more about why this is done. For your new image to be able to run
+on more computers than just those designated for testing, you need to map it to a
+set of computers. There are a few steps to this process:</p>
+<ol>
+<li>You need to make your image a member of an image group
+<ul>
+<li>Select <strong>Manage Images-&gt;Edit Image Grouping</strong></li>
+<li>Select your image from the drop down box and click <strong>Get Groups</strong></li>
+<li>Choose one or more image groups to which you would like to add the image from the box on the right</li>
+<li>Click <strong>&lt;-Add</strong> to make the image a member of the group(s)</li>
+</ul>
+</li>
+<li>You need to map the image group(s) you selected in #1 to one or more computer groups (if they are not already mapped)
+<ul>
+<li>Select <strong>Manage Images-&gt;Edit Image Mapping</strong></li>
+<li>Do the following for each group from #1:
+<ul>
+<li>Select the image group from the drop down box and click <strong>Get Computer Groups</strong></li>
+<li>Choose one or more computer groups to which you would like to map the image group from the box on the right</li>
+<li>click <strong>&lt;-Add</strong> to map the image group to the computer group(s)</li>
+</ul>
+</li>
+<li><strong>Note</strong>: there is an assumption here that the computer groups you selected
+already have computers that are in those groups</li>
+</ul>
+</li>
+</ol>
+<h2 id="step-2-privileges">Step 2: Privileges</h2>
+<p>Now, you need to grant access to use the image to a user or group of users under the Privileges section of the site.  Here are the steps involved:</p>
+<ol>
+<li>Select <strong>Privileges</strong></li>
+<li>Choose an existing node or create a new node in the tree structure in the upper portion of the page where you would like to assign the user(s) access</li>
+<li>Now, you need to grant the user <strong>imageCheckOut</strong> at the node.  You can do this for an individual user or a group of users.
+<ul>
+<li>Individual User:
+<ul>
+<li>Click <strong>Add User</strong></li>
+<li>Enter the user&rsquo;s id (you may need to include the user&rsquo;s affiliation) in the text box and select the <strong>imageCheckOut</strong> checkbox</li>
+<li>Click <strong>Submit New User</strong></li>
+</ul>
+</li>
+<li>User Group:
+<ul>
+<li>Click <strong>Add Group</strong></li>
+<li>Select the user group from the drop-down box and select the <strong>imageCheckOut</strong> checkbox</li>
+<li>Click <strong>Submit New User Group</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Next, you need to make sure the image group in which you placed the image in #1 of <strong>Image Mapping</strong> is available at this node. If it is, go on to the next step, if not:
+<ul>
+<li>Click <strong>Add Resource Group</strong></li>
+<li>Select the image group from the drop-down box and select the <strong>available</strong> checkbox</li>
+<li>Click <strong>Submit New Resource Group</strong></li>
+</ul>
+</li>
+<li>Finally, you need to make sure the computer group(s) selected in #2 of <strong>Image Mapping</strong> are also available here. If so, you are finished.  If not:
+<ul>
+<li>Click <strong>Add Resource Group</strong></li>
+<li>Select the computer group from the drop-down box and select the <strong>available</strong> checkbox</li>
+<li>Click <strong>Submit New Resource Group</strong></li>
+</ul>
+</li>
+</ol>
+<p>Now, the user or user groups you have added to this node will be able to make reservations for the new image.</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

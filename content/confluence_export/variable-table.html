@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Variable Table</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Variable Table</h1>
+    
+	<p><a name="VariableTable-Overview"></a></p>
+<h2 id="overview">Overview</h2>
+<p>This page describes the <em>variable</em> table in the database.  The purpose
+of this table is to allow pieces of data to be easily stored in the
+database without having to manipulate the schema.  The need
+for such a table has grown over time as more and more features are added to
+VCL.  This table will become very useful as VCL becomes increasingly
+modularized.  This table will allow any VCL component to access the
+variable data without having to interact directly with the database.</p>
+<p><a name="VariableTable-VariableNames"></a></p>
+<h3 id="variable-names">Variable Names</h3>
+<p>A variable stored in this table can be thought just like any other
+programatic variable -- it has a unique name and value.  The name
+can be any string and is chosen by the developer utilizing the table. 
+Since the name must be unique and the variable table is shared by all
+facets of VCL (frontend, backend, modules), the developer should choose a
+name that isn&rsquo;t too general.  It is advisable to include something
+like the module name in the variable name in order to prevent other
+components from overwriting the variable.</p>
+<p><a name="VariableTable-VariableValues&Serialization"></a></p>
+<h3 id="variable-values--serialization">Variable Values &amp; Serialization</h3>
+<p>The variable value is completely flexible.  It can be a
+simple integer or a complex data structure.  This is accomplished
+by <a href="http://en.wikipedia.org/wiki/Serialization">serializing</a>
+the value before saving it to the database.  [YAML|http://en.wikipedia.org/wiki/Yaml]
+is used to serialize the data.  YAML is a human friendly data
+serialization standard for all programming languages
+([http://yaml.org/]).  YAML modules are available for Perl, PHP, and
+many other languages:</p>
+<ul>
+<li>Perl: <a href="http://search.cpan.org/~ingy/YAML-0.68/lib/YAML.pm">http://search.cpan.org/~ingy/YAML-0.68/lib/YAML.pm</a></li>
+<li>PHP: <a href="http://code.google.com/p/spyc">http://code.google.com/p/spyc</a></li>
+</ul>
+<p>Because the data is serialized into a highly compatible format, the backend
+and frontend can utilize common variables.  It will be easy for the
+frontend to provide a means to configure variables by capturing the data
+entered into a web page, constructing a data structure, serializing it via
+a PHP YAML module, and then saving the data structure in the
+variable table.  The backend can then access the identical data
+structure using a Perl YAML module to deserialize the data.</p>
+<p><a name="VariableTable-BackendInterface"></a></p>
+<h3 id="backend-interface">Backend Interface</h3>
+<p>The variable table is utilized by backend code via functions provided
+by the DataStructure.pm module:</p>
+<ul>
+<li>get_variable($name)</li>
+<li>set_variable($name, $value)</li>
+</ul>
+<p><a name="VariableTable-DatabaseTableStructure"></a></p>
+<h2 id="database-table-structure">Database Table Structure</h2>
+<p>The variable has the following columns:</p>
+<table>
+<tr><th> id </th><th> name </th><th> value </th><th> setby </th><th> timestamp </th></tr>
+<p>unique | longtext | varchar(40) | timestamp |</p>
+<ul>
+<li>id
+** variable.id contains a unique auto-incremented unsigned integer
+value
+** The id column is consistent with most other columns in the VCL database</li>
+<li>name
+** variable.name contains a string
+** variable.name values must be unique
+** variable.name provides a human-friendly means of identifying a variable</li>
+<li>value
+** variable.value contains an encoded string which is a YAML
+serialized representation of the data
+** The string stored in variable.value is programatically serialized before
+it is stored and programatically deserialized when it is retrieved</li>
+<li>setby
+** variable.setby contains a string which indicates who/where last set the
+data
+** variable.setby is mainly used for debugging purposes
+** variable.setby can be NULL but should be set whenever a row is altered</li>
+<li>timestamp
+** variable.timestamp contains the date and time when the variable was last
+set
+** variable.timestamp is automatically updated whenever a row is
+inserted or altered because the &ldquo;ON UPDATE CURRENT_TIMESTAMP&rdquo; column
+attribute is set</li>
+</ul>
+</table>
+<p><a name="VariableTable-SQLtabledefinition"></a></p>
+<h3 id="sql-table-definition">SQL table definition</h3>
+<pre><code>CREATE TABLE `variable` (
+� `id` smallint(5) unsigned NOT NULL auto_increment,
+� `name` varchar(128) NOT NULL,
+� `value` longtext NOT NULL,
+� `setby` varchar(128) default NULL,
+� `timestamp` datetime NOT NULL,
+� PRIMARY KEY� (`id`),
+� UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+</code></pre>
+<p><a name="VariableTable-Examples"></a></p>
+<h2 id="examples">Examples</h2>
+<p><a name="VariableTable-Example1:"></a></p>
+<h3 id="example-1">Example 1:</h3>
+<p>The following hash is created in Perl:</p>
+<pre><code>my %kms_configuration = (
+�&quot;ECU&quot; =&gt; &quot;192.168.22.33:1688&quot;,
+�&quot;NCSU&quot; =&gt; &quot;kms-server.ncsu.edu&quot;,
+);
+$self-&gt;data-&gt;set_variable(&quot;kms-configuration&quot;, \%kms_configuration);
+</code></pre>
+<p>The keys correspond to the affiliation.name column in the database. 
+The values represent the addresses (phony) of Windows Vista/2008 KMS
+activation servers.</p>
+<p>This hash is serialized by DataStructure.pm::set_variable() using the YAML
+module&rsquo;s Dump function which transforms the hash into:</p>
+<pre><code>---
+ECU: 192.168.22.33:1688
+NCSU: kms-server.ncsu.edu
+</code></pre>
+<p>The following row is saved in the variable table by the
+DataStructure.pm::set_variable() subroutine:</p>
+<table>
+<tr><th> id </th><th> name </th><th> value </th><th> setby </th><th> timestamp </th></tr>
+<p>NCSU: kms-server.ncsu.edu | new.pm:139 | 2009-05-26 11:35:36 |
+To retrieve the data:</p>
+<pre><code>my $kms_configuration = $self-&gt;data-&gt;get_variable(&quot;kms-configuration&quot;);
+my $kms_address = $kms_configuration-&gt;{$affiliation_id};
+</code></pre>
+<p><a name="VariableTable-Example2:"></a></p>
+<h3 id="example-2">Example 2:</h3>
+<p>A more elaborate data structure is created in Perl containing an array of
+hashes. One of the hash values (email) can be multivalued because the value
+is an anonymous array:</p>
+<pre><code>my @contacts = (
+ {
+  &quot;firstname&quot; =&gt; &quot;Joe&quot;,
+  &quot;lastname&quot; =&gt; &quot;Doe&quot;,
+  &quot;email&quot; =&gt; [&quot;joe@somewhere.org&quot;, &quot;jdoe22@unity.ncsu.edu&quot;]
+</code></pre>
+<p>,
+&ldquo;employee_id&rdquo; =&gt; 3342
+},
+{
+&ldquo;firstname&rdquo; =&gt; &ldquo;Jane&rdquo;,
+&ldquo;lastname&rdquo; =&gt; &ldquo;Doe&rdquo;,
+&ldquo;email&rdquo; =&gt; [&ldquo;jane@somewhere.org&rdquo;]
+,
+&ldquo;employee_id&rdquo; =&gt; 7865
+}
+);��
+$self-&gt;data-&gt;set_variable(&ldquo;contacts&rdquo;, @contacts);</p>
+<p>DataStructure.pm::set_variable() uses YAML::Dump to transform this data
+structure into:</p>
+<pre><code>---
+- email:
+��� - joe@somewhere.org
+��� - jdoe22@unity.ncsu.edu
+� employee_id: 3342
+� firstname: Joe
+� lastname: Doe
+- email:
+��� - jane@somewhere.org
+� employee_id: 7865
+� firstname: Jane
+� lastname: Doe
+</code></pre>
+<p>The following row is then added to the variable table:</p>
+<table>
+<tr><th> id </th><th> name </th><th> value </th><th> setby </th><th> timestamp </th></tr>
+<p>  lastname: Doe | DataStructure.pm:554 | 2009-05-26 12:35:36 |
+To retrieve the data:</p>
+<pre><code>my @returned_contacts = @{$self-&gt;data-&gt;get_variable('contacts')};
+for my $contact (@returned_contacts) {
+   print &quot;Name: $contact-&gt;{firstname} $contact-&gt;{lastname}\n&quot;;
+   for my $email_address (@{$contact-&gt;{email}}) {
+      print &quot;Email: $email_address\n&quot;;
+   }
+   print &quot;---\n&quot;;
+}
+</code></pre>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

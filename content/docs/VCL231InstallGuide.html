@@ -1,0 +1,624 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VCL 2.3.1 Installation Guide</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VCL 2.3.1 Installation Guide</h1>
+    
+	<p><strong>VCL 2.3.1 Installation Guide</strong></p>
+<p>This guide will provide the necessary steps to install and configure VCL software. It covers the set up of the database , web portal, and management node.</p>
+<nav id="TableOfContents"></nav>
+<h1 id="database">Install &amp; Configure the Database</h1>
+<p>VCL currently supports the use of mysql database.</p>
+<ol>
+<li>
+<p>Download and Extract the Apache VCL Source</p>
+<ul>
+<li>
+<p>If you have not already done so, follow the instructions on the <a href="/downloads/download.cgi">download</a>
+page to download and verify apache-VCL-2.3.1.tar.bz2, and put it in /root</p>
+</li>
+<li>
+<p>Extract the files:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar -jxvf apache-VCL-2.3.1.tar.bz2
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Install MySQL Server</p>
+<ul>
+<li>
+<p>Install MySQL Server 5.x</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install mysql-server -y
+</code></pre></div></li>
+<li>
+<p>Configure the MySQL daemon (mysqld) to start automatically:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/chkconfig --level <span style="color:#666">345</span> mysqld on
+</code></pre></div></li>
+<li>
+<p>Start the MySQL daemon:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/service mysqld start
+</code></pre></div></li>
+<li>
+<p>If the iptables firewall is being used and the web server and management nodes
+will be on different machines, port 3306 should be opened up. Add the following to
+your iptables config and restart iptables service.<br>
+<strong>Note:</strong> Insert your web server and management node IP address in the right locations.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi /etc/sysconfig/iptables
+</code></pre></div><ul>
+<li>
+<p>Add these rules:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-A RH-Firewall-1-INPUT -m state --state NEW -s &lt;web server IP&gt; -p tcp --dport 3306 -j ACCEPT
+-A RH-Firewall-1-INPUT -m state --state NEW -s &lt;management node IP&gt; -p tcp --dport 3306 -j ACCEPT
+</code></pre></div></li>
+<li>
+<p>Restart iptables:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service iptables restart   
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Create the VCL Database</p>
+<ul>
+<li>
+<p>Run the MySQL command-line client:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql
+</code></pre></div></li>
+<li>
+<p>Create a database:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#a2f;font-weight:bold">CREATE</span> <span style="color:#a2f;font-weight:bold">DATABASE</span> vcl;
+</code></pre></div></li>
+<li>
+<p>Create a user with SELECT, INSERT, UPDATE, DELETE, and CREATE TEMPORARY TABLES privileges on the database you just created:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#a2f;font-weight:bold">GRANT</span> <span style="color:#a2f;font-weight:bold">SELECT</span>,<span style="color:#a2f;font-weight:bold">INSERT</span>,<span style="color:#a2f;font-weight:bold">UPDATE</span>,<span style="color:#a2f;font-weight:bold">DELETE</span>,<span style="color:#a2f;font-weight:bold">CREATE</span> <span style="color:#a2f;font-weight:bold">TEMPORARY</span> TABLES <span style="color:#a2f;font-weight:bold">ON</span> vcl.<span style="color:#666">*</span> <span style="color:#a2f;font-weight:bold">TO</span> <span style="color:#b44">&#39;</span><span style="color:#b44">vcluser</span><span style="color:#b44">&#39;</span><span style="color:#666">@</span><span style="color:#b44">&#39;</span><span style="color:#b44">localhost</span><span style="color:#b44">&#39;</span> IDENTIFIED <span style="color:#a2f;font-weight:bold">BY</span> <span style="color:#b44">&#39;</span><span style="color:#b44">vcluserpassword</span><span style="color:#b44">&#39;</span>;
+</code></pre></div></li>
+<li>
+<p>Exit the MySQL command-line client</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">exit</span>
+</code></pre></div></li>
+<li>
+<p>Import the vcl.sql file into the database. The <strong>vcl.sql</strong> file is included in the <strong>mysql</strong> directory within the Apache VCL source code</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql vcl &lt; apache-VCL-2.3.1/mysql/vcl.sql
+</code></pre></div></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="web">Install and Configure the Web Components</h1>
+<p><strong>Prerequisites</strong></p>
+<ul>
+<li>Apache VCL 2.3.1 had been downloaded</li>
+<li>VCL database has been installed and configured</li>
+</ul>
+<p><strong>Web Server:</strong></p>
+<ul>
+<li>Apache HTTP Server v1.3 or v2.x with SSL enabled</li>
+<li>PHP 5.0 or later</li>
+</ul>
+<p><strong>Required Linux Packages:</strong></p>
+<ul>
+<li>httpd - Apache HTTP Server</li>
+<li>mod_ssl - SSL/TLS module for the Apache HTTP server</li>
+<li>php - The PHP HTML-embedded scripting language</li>
+<li>libmcrypt - Encryption algorithms library (this requirement can be removed with a patch)</li>
+</ul>
+<p><strong>Required PHP Modules:</strong></p>
+<ul>
+<li>php</li>
+<li>php-gd</li>
+<li>php-json (required if your PHP version is 5.2 or later)</li>
+<li>php-mysql</li>
+<li>php-openssl</li>
+<li>php-sysvsem</li>
+<li>php-xml</li>
+<li>php-xmlrpc</li>
+<li>php-ldap (if you will be using LDAP authentication)</li>
+<li>php-process (for RHEL/CentOS 6),
+<ul>
+<li>Note: You may need the optional server rpm repository for the
+php-process package; to add this run the following command:
+rhn-channel &ndash;add &ndash;channel=rhel-x86_64-server-optional-6</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ol>
+<li>
+<p><strong>Install the Required Linux Packages &amp; PHP Modules</strong></p>
+<ul>
+<li>
+<p>If your web server is running a Red Hat-based OS, the required components can be installed with:</p>
+<p>For RHEL / CentOS 6</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap php-process -y
+</code></pre></div><p>For RHEL / CentOS 5</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install httpd mod_ssl php php-gd php-mysql php-xml php-xmlrpc php-ldap -y
+</code></pre></div></li>
+<li>
+<p>Configure the web server daemon (httpd) to start automatically:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/chkconfig --level <span style="color:#666">345</span> httpd on
+</code></pre></div></li>
+<li>
+<p>Start the web server daemon</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/service httpd start 
+</code></pre></div></li>
+<li>
+<p>If SELinux is enabled, run the following command to allow the web server to connect to the database:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/usr/sbin/setsebool -P <span style="color:#b8860b">httpd_can_network_connect</span><span style="color:#666">=</span><span style="color:#666">1</span>
+</code></pre></div></li>
+<li>
+<p>If the iptables firewall is being used, port 80 and 443 should be opened up in the iptables
+config file:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi /etc/sysconfig/iptables
+</code></pre></div><ul>
+<li>
+<p>Add these rules:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT
+-A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT
+</code></pre></div></li>
+<li>
+<p>Restart iptables</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service iptables restart
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Install the VCL Frontend Web Code</strong></p>
+<ul>
+<li>
+<p>If you have not already done so, follow the instructions on the <a href="/downloads/download.cgi">download</a>
+page to download and verify apache-VCL-2.3.1.tar.bz2, and put it in /root</p>
+</li>
+<li>
+<p>Extract the files:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar -jxvf apache-VCL-2.3.1.tar.bz2
+</code></pre></div></li>
+<li>
+<p>Copy the <strong>web</strong> directory to a location under the web root of your web server and navigate to the destination <strong>.ht-inc</strong> subdirectory:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp -r apache-VCL-2.3.1/web/ /var/www/html/vcl
+<span style="color:#a2f">cd</span> /var/www/html/vcl/.ht-inc
+</code></pre></div></li>
+<li>
+<p>Copy secrets-default.php to secrets.php:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp secrets-default.php secrets.php
+</code></pre></div></li>
+<li>
+<p>Edit the secrets.php file:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi secrets.php
+</code></pre></div><ul>
+<li>Set the following variables to match your database configuration:
+<ul>
+<li>$vclhost</li>
+<li>$vcldb</li>
+<li>$vclusername</li>
+<li>$vclpassword</li>
+</ul>
+</li>
+<li>Create random passwords for the following variables:
+<ul>
+<li>$cryptkey</li>
+<li>$pemkey</li>
+</ul>
+</li>
+<li>Save the secrets.php file</li>
+</ul>
+</li>
+<li>
+<p>Run the genkeys.sh</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./genkeys.sh
+</code></pre></div></li>
+<li>
+<p>Copy conf-default.php to conf.php:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp conf-default.php conf.php
+</code></pre></div></li>
+<li>
+<p>Modify conf.php to match your site</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi conf.php
+</code></pre></div><ul>
+<li>Modify every entry under &ldquo;Things in this section must be modified&rdquo;.
+Descriptions and pointers for each value are included within conf.php.</li>
+<li>COOKIEDOMAIN - set this to the domain name your web server is using
+or leave it blank if you are only accessing the web server by its IP address</li>
+</ul>
+</li>
+<li>
+<p>Set the owner of the .ht-inc/maintenance directory to the web server user (normally &lsquo;apache&rsquo;):</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chown apache maintenance
+</code></pre></div></li>
+<li>
+<p>Open the testsetup.php page in a web browser:</p>
+<ul>
+<li>If you set up your site to be <a href="https://my.server.org/vcl/">https://my.server.org/vcl/</a> open <a href="https://my.server.org/vcl/testsetup.php">https://my.server.org/vcl/testsetup.php</a></li>
+<li>Debug any issues reported by testsetup.php</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Log In to the VCL Website</strong></p>
+<ul>
+<li>
+<p>Open the index.php page in your browser (<a href="https://my.server.org/vcl/index.php">https://my.server.org/vcl/index.php</a>)</p>
+<ul>
+<li>Select Local Account</li>
+<li>Username: admin</li>
+<li>Password: adminVc1passw0rd</li>
+</ul>
+</li>
+<li>
+<p>Set the admin user password (optional):</p>
+<ul>
+<li>Click User Preferences</li>
+<li>Enter the current password: adminVc1passw0rd</li>
+<li>Enter a new password</li>
+<li>Click Submit Changes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Add a Management Node to the Database</strong></p>
+<ul>
+<li>Click the Management Nodes link
+<ul>
+<li>Click Add</li>
+<li>Fill in these required fields:
+<ul>
+<li>Hostname - The name of the management node server. This value doesn&rsquo;t necessarily need to be a name registered in DNS nor does it need to be the value displayed by the Linux hostname command. For example, if you are installing all of the VCL components on the same machine you can set this value to localhost.</li>
+<li>IP address - the public IP address of the management node</li>
+<li>SysAdmin Email Address - error emails will be sent to this address</li>
+<li>Install Path - this is parent directory under which image files will be stored - only required if doing bare metal installs or using VMWare with local disks</li>
+<li>End Node SSH Identity Key Files - enter /etc/vcl/vcl.key unless you know you are using a different SSH identity key file</li>
+</ul>
+</li>
+<li>Optionally, fill in these fields:
+<ul>
+<li>Address for Shadow Emails - End users are sent various emails about the status of their reservations. If this field is configured, copies of all of those emails will be sent to this address.</li>
+<li>Public NIC configuration method - this defaults to Dynamic DHCP - if DHCP is not available for the public interface of your nodes, you can set this to Static. Then, the IP configuration on the nodes will be manually set using Public Netmask, Public Gateway, Public DNS Server, and the IP address set for the computer under Manage Computers</li>
+</ul>
+</li>
+<li>Click Confirm Management Node</li>
+<li>Click Submit</li>
+<li>Click the Management Nodes link
+<ul>
+<li>Select Edit Management Node Grouping</li>
+<li>Click Submit</li>
+<li>Select the checkbox for your management node</li>
+<li>Click Submit Changes</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Install &amp; Configure phpMyAdmin (Optional):</strong>
+<a href="http://www.phpmyadmin.net/">phpMyAdmin</a> is a free and optional tool which allows <a href="http://www.mysql.com/">MySQL</a> to be administered using a web browser. It makes administering the VCL database easier. This tool can be installed on the VCL web server.
+To install phpMyAdmin, follow the instructions on: <a href="installphpmyadmin">phpMyAdmin Installation &amp; Configuration</a></p>
+</li>
+</ol>
+<hr>
+<h1 id="managementnode">Install &amp; Configure the Management Node Components</h1>
+<p><strong>Prerequisites</strong>
+The following management node installation instructions assume the instructions in these previous sections have been completed:</p>
+<ul>
+<li>VCL 2.3.1 Database Installation</li>
+<li>VCL 2.3.1 Web Code Installation</li>
+</ul>
+<p><strong>Supported Operating Systems:</strong></p>
+<p>The VCL management node daemon (vcld) has been developed to run on an operating system based on Red Hat Enterprise Linux (RHEL). It has been tested on the following:</p>
+<ul>
+<li>Red Hat Enterprise Linux 4.x</li>
+<li>Red Hat Enterprise Linux 5.x</li>
+<li>Red Hat Enterprise Linux 6.x</li>
+<li>CentOS 5.x</li>
+<li>CentOS 6.x</li>
+</ul>
+<p><strong>Required Linux Packages:</strong></p>
+<p>The VCL management node daemon (vcld) requires the following Linux packages and Perl modules in order to run (see step 2 below for installation instructions):</p>
+<ul>
+<li>expat - A library for parsing XML</li>
+<li>expat-devel - Libraries and include files to develop XML applications with expat</li>
+<li>gcc - Various compilers (C, C++, Objective-C, Java, &hellip;)</li>
+<li>krb5-libs - The shared libraries used by Kerberos 5</li>
+<li>krb5-devel - Development files needed to compile Kerberos 5 programs</li>
+<li>libxml2 - Library providing XML and HTML support</li>
+<li>libxml2-devel - Libraries, includes, etc. to develop XML and HTML applications</li>
+<li>mysql - MySQL client programs and shared libraries</li>
+<li>nmap - Network exploration tool and security scanner</li>
+<li>openssh - The OpenSSH implementation of SSH protocol versions 1 and 2</li>
+<li>openssl - The OpenSSL toolkit</li>
+<li>openssl-devel - Files for development of applications which will use OpenSSL</li>
+<li>perl - The Perl programming language</li>
+<li>perl-DBD-MySQL - A MySQL interface for perl</li>
+<li>xmlsec1-openssl - OpenSSL crypto plugin for XML Security Library</li>
+</ul>
+<p><strong>Required Perl Modules:</strong></p>
+<p>The VCL management node daemon (vcld) is written in Perl and has been tested on Perl 5.8.x. The following Perl modules available from CPAN are also required (see step 2 below for installation instructions):</p>
+<ul>
+<li>DBI - Generic Database Interface</li>
+<li>Digest::SHA1 - NIST SHA message digest algorithm</li>
+<li>Mail::Mailer - Simple mail agent interface</li>
+<li>Object::InsideOut - Comprehensive inside-out object support</li>
+<li>RPC::XML - Set of classes for core data, message, XML handling</li>
+<li>YAML - YAML Ain&rsquo;t Markup Language</li>
+</ul>
+<hr>
+<ol>
+<li>
+<p><strong>Install the VCL Management Node Code - Perl Daemon</strong></p>
+<ul>
+<li>
+<p>If you have not already done so, follow the instructions on the <a href="/downloads/download.cgi">download</a>
+page to download and verify apache-VCL-2.3.1.tar.bz2, and put it in /root</p>
+</li>
+<li>
+<p>Extract the files:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar -jxvf apache-VCL-2.3.1.tar.bz2
+</code></pre></div></li>
+<li>
+<p>Copy the managementnode directory to the location where you want it to reside (typically /usr/local):</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp -r apache-VCL-2.3.1/managementnode /usr/local/vcl
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>Install the Required Linux Packages &amp; Perl Modules</strong></p>
+<ul>
+<li>
+<p>Run the install_perl_libs.pl script located in the bin directory:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl /usr/local/vcl/bin/install_perl_libs.pl
+</code></pre></div></li>
+</ul>
+<p>The last line of the install_perl_libs.pl script output should be:</p>
+<p><em>COMPLETE: installed all components</em></p>
+<p>Note: The script will hang or terminate if it encounters a problem. If this occurs, you will need to troubleshoot the problem by looking at the output.</p>
+<p>The install_perl_libs.pl script included in the VCL distribution will attempt to download and install the required Linux packages and Perl modules. It uses the yum utility to install the required Linux packages. The required Perl modules are available from CPAN - The Comprehensive Perl Archive Network. The install_perl_libs.pl script attempts to download and install the required Perl modules by using the CPAN.pm module which is included with most Perl distributions.</p>
+<p>The yum utility should exist on any modern Red Hat-based Linux distribution (Red Hat, CentOS, Fedora, etc). If yum isn&rsquo;t available on your management node OS, you will need to download and install the required Linux packages manually or by using another package management utility. After installing the required Linux packages, attempt to run the install_perl_libs.pl script again.</p>
+</li>
+<li>
+<p><strong>Configure vcld.conf</strong></p>
+<ul>
+<li>
+<p>Create the /etc/vcl directory:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir /etc/vcl
+</code></pre></div></li>
+<li>
+<p>Copy the stock vcld.conf file to /etc/vcl:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp /usr/local/vcl/etc/vcl/vcld.conf /etc/vcl
+</code></pre></div></li>
+<li>
+<p>Edit /etc/vcl/vcld.conf:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi /etc/vcl/vcld.conf
+</code></pre></div><p>The following lines must be configured in order to start the VCL daemon (vcld) and allow it to check in to the database:</p>
+<ul>
+<li>FQDN - the fully qualified name of the management node, this should match the name that was configured for the management node in the database</li>
+<li>server - the IP address or FQDN of the database server</li>
+<li>LockerWrtUser - database user account with write privileges</li>
+<li>wrtPass - database user password</li>
+<li>xmlrpc_pass - password for xmlrpc api from vcld to the web interface(can be long). This will be used later to sync the database vclsystem user account</li>
+<li>xmlrpc_url - URL for xmlrpc api <a href="https://my.server.org/vcl/index.php?mode=xmlrpccall">https://my.server.org/vcl/index.php?mode=xmlrpccall</a></li>
+</ul>
+</li>
+<li>
+<p>Save the vcld.conf file</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Configure the SSH Client</strong></p>
+<p>The SSH client on the management node should be configured to prevent SSH processes spawned by the root user to the computers it controls from hanging because of missing or different entries in the known_hosts file.</p>
+<ul>
+<li>
+<p>Edit the ssh_config file:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi /etc/ssh/ssh_config
+</code></pre></div></li>
+<li>
+<p>Set the following parameters:</p>
+<ul>
+<li>UserKnownHostsFile /dev/null</li>
+<li>StrictHostKeyChecking no</li>
+</ul>
+</li>
+</ul>
+<p>Note: If you do not want these settings applied universally on the management node the SSH configuration can also be configured to only apply these settings to certain hosts or only for the root user. Consult the SSH documentation for more information.</p>
+</li>
+<li>
+<p><strong>Install and Start the VCL Daemon (vcld) Service</strong></p>
+<ul>
+<li>
+<p>Copy the vcld service script to /etc/init.d and name it vcld:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp /usr/local/vcl/bin/S99vcld.linux /etc/init.d/vcld
+</code></pre></div></li>
+<li>
+<p>Add the vcld service using chkconfig:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/chkconfig --add vcld
+</code></pre></div></li>
+<li>
+<p>Configure the vcld service to automatically run at runtime levels 3-5:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/chkconfig --level <span style="color:#666">345</span> vcld on
+</code></pre></div></li>
+<li>
+<p>Start the vcld service:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/service vcld start
+</code></pre></div></li>
+<li>
+<p>Check the vcld service by monitoring the vcld.log file:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f /var/log/vcld.log
+</code></pre></div><p>You should see the following being added to the log file every few seconds if the management node is checking in with the database:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">2012-05-15 13:23:45|25494|vcld:main(167)|lastcheckin time updated for management node 1: 2012-05-15 13:23:45
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>Set the vclsystem account password for xmlrpc api</strong></p>
+<p>Using the vcld -setup tool, set the vclsystem account. This is needed to properly use the block allocation features.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/usr/local/vcl/bin/vcld -setup
+</code></pre></div><p>Select the options listed below to set the password. When prompted paste or type the password from xmlrpc_pass variable in the vcld.conf file and hit enter.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Select 1. VCL Base Module
+Select 2. Set Local VCL User Account Password
+Select 2. vclsystem
+</code></pre></div></li>
+<li>
+<p><strong>Install &amp; Configure the DHCP Service</strong></p>
+<p>DHCP service is needed for the private network to provide address to provisioned machines.</p>
+<ul>
+<li>
+<p>Install dhcp if it is not already installed:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install dhcp -y
+</code></pre></div></li>
+<li>
+<p>Configure the dhcpd service to automatically start at runlevels 3-5:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/chkconfig dhcpd on
+</code></pre></div></li>
+<li>
+<p>Configure the dhcpd.conf file.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi /etc/dhcpd.conf
+<span style="color:#080;font-style:italic"># -or-</span>
+vi /etc/dhcp/dhcpd.conf
+</code></pre></div><p>Configure your dhcpd.conf file according to your network configuration.
+The contents of the dhcpd.conf file will vary based on how your network is configured. Below is an example of a basic dhcpd.conf file:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">ddns-update-style none;
+shared-network eth0 {
+    subnet 10.100.0.0 netmask 255.255.255.0 {
+             ignore unknown-clients;
+    }
+}
+</code></pre></div><p>You will add host definitions to the dhcpd.conf file after you add computers to VCL using the website.
+The website will display the dhcpd.conf host definitions after the computers have been added to VCL,
+which can be copied and pasted into the dhcpd.conf file.</p>
+</li>
+<li>
+<p>Start the dhcpd service:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/service dhcpd start
+</code></pre></div></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="initial-administration-steps-after-installing-vcl">Initial Administration Steps After Installing VCL</h1>
+<p>After you have installed the VCL components, you need to do some initial administration of your new VCL install.</p>
+<ol>
+<li>
+<p>Add Computers</p>
+<ul>
+<li>If using <strong>bare-metal</strong> provisioning:
+<ul>
+<li><a href="addcomputers">Adding bare-metal computers</a></li>
+</ul>
+</li>
+<li>If using <strong>VM</strong> provisioning:
+<ul>
+<li><a href="addhypvisorservers">Adding VM hosts</a></li>
+<li><a href="addingvmcomputers">Adding VMs</a></li>
+<li><a href="assignvmtohost">Assigning VMs to VM hosts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="image-creation">Create Base Images</a></p>
+</li>
+<li>
+<p>Configure Authorization (follow links appropriate to your site)</p>
+<ul>
+<li><a href="localaccounts">Adding Local Accounts</a></li>
+<li><a href="ldapauth">Configuring LDAP Authentication</a></li>
+<li><a href="shibauth">Configuring Shibboleth Authentication</a></li>
+</ul>
+</li>
+</ol>
+<hr>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

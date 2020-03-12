@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Operating System Module Inheritance</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Operating System Module Inheritance</h1>
+    
+	<p>{gliffy:name=OS Modularization Transition|space=VCL|page=Operating System
+Module Inheritance|align=center|size=L}
+{gliffy:name=OS Module Inheritance|space=VCL|page=Operating System Module
+Inheritance|align=center|size=L}</p>
+<ul>
+<li>
+<p>Each row in the image table is configured with an OSid
+(image.OSid), this points to the id column in the OS table (OS.id)</p>
+</li>
+<li>
+<p>Each row in the OS table is configured with a moduleid
+(OS.moduleid), this points to the id column in the module table (module.id)</p>
+</li>
+<li>
+<p>The module table contains a column named perlpackage
+(module.perlpackage), this tells the backend VCL code which Perl module to
+load and use</p>
+</li>
+<li>
+<p>The module.perlpackage value, the package statement in the Perl module
+file, and the directory structure of the Perl modules must all align
+** module.perlpackage = VCL::Module::OS::Windows_mod::Version_5::XP_mod
+** lib/VCL/Module/OS/Windows_mod/Version_5/XP_mod.pm:</p>
+<p>package VCL::Module::OS::Windows_mod::Version_5::XP_mod;</p>
+</li>
+<li>
+<p>Inheritance reduces redundant code</p>
+</li>
+<li>
+<p>Subroutines should reside as high up in the hierarchy as possible
+** This allows all objects which are instantiated as a child
+class to use the subroutine</p>
+</li>
+<li>
+<p>Child classes can implement subroutines with the same name as one
+implemented by a parent class
+** The child subroutine in the child class overrides the subroutine in the
+parent class
+{gliffy:name=Inheritance Example|space=VCL|page=Operating System Module
+Inheritance|align=center|size=L}</p>
+</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VCL 2.3 - Further Steps if Using VMware</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VCL 2.3 - Further Steps if Using VMware</h1>
+    
+	<p>If you are using standalone VMware servers (i.e. ones that VCL did not
+deploy using xCAT), you first need to configure a VM Profile to match your
+setup. Next, add the VMWare servers. Then, you need to add the virtual
+machines. You can either add them individually (Adding Individual VMWare
+Servers/Virtual Machines), or if they have sequential hostnames and IP
+addresses, you can add them all at once (Adding Multiple VMWare
+Servers/Virtual Machines).</p>
+<p>Once you have added at least one computer, you can add more computers by
+going to Manage Computers-&gt;Edit Computer Information and clicking <em>Add
+Single Computer</em> or <em>Add Multiple Computers</em>.</p>
+<ol>
+<li><a href="vcl-2.3---further-steps-if-using-vmware#vmprofile.html">Configure VM Profile(s)</a></li>
+<li><a href="vcl-2.3---further-steps-if-using-vmware#addhosts.html">Add VMware Host Servers</a></li>
+<li><a href="vcl-2.3---further-steps-if-using-vmware#addvms.html">Add Virtual Machines</a></li>
+<li><a href="vcl-2.3---further-steps-if-using-vmware#assignvms.html">Assign Virtual Machine(s) to a Virtual Host</a></li>
+<li><a href="vcl-2.3---further-steps-if-using-vmware#adddhcp.html">Add entries to dhcpd.conf</a></li>
+<li><a href="vcl-2.3---further-steps-if-using-vmware#addetchosts.html">Add entries to /etc/hosts</a></li>
+</ol>
+<p>{anchor:vmprofile}</p>
+<p><a name="VCL2.3-FurtherStepsifUsingVMware-ConfigureVMProfile(s)"></a></p>
+<h2 id="configure-vm-profiles">Configure VM Profile(s)</h2>
+<ol>
+<li>Click <em>Virtual Hosts</em></li>
+<li>Select the <em>VM Host Profiles</em> tab</li>
+<li>Select a profile whose name matches your setup or click <em>New Profile&hellip;</em></li>
+<li>
+<h1 id="if-using-an-existing-profile-click-configure-profile">If using an existing profile, click <em>Configure Profile</em></h1>
+</li>
+<li>
+<h1 id="if-creating-a-new-profile">If creating a new profile:</h1>
+</li>
+<li>
+<h2 id="enter-the-name-of-the-profile">Enter the name of the profile</h2>
+</li>
+<li>
+<h2 id="click-create-profile">Click <em>Create Profile</em></h2>
+</li>
+<li>Configure the profile to match your setup. Hover over any ? icons to get
+further information about that field. More information is available on the <a href="vmware-configuration.html">VMware Configuration</a>
+page
+{tip}
+Just click on the text of any field you want to edit to change it. After
+changing it, click somewhere else to save the changed value for that field.
+Changes are immediate; there is no &ldquo;save&rdquo; button for this tab.
+{tip}</li>
+</ol>
+<p>{anchor:addhosts}</p>
+<p><a name="VCL2.3-FurtherStepsifUsingVMware-AddVMwareHostServers"></a></p>
+<h2 id="add-vmware-host-servers">Add VMware Host Servers</h2>
+<p><a name="VCL2.3-FurtherStepsifUsingVMware-AddingIndividualVMwareServers"></a></p>
+<h3 id="adding-individual-vmware-servers">Adding Individual VMware Servers</h3>
+<ol>
+<li>Click <em>Manage Computers</em></li>
+<li>Select the <em>Add Single Computer</em> radio button</li>
+<li>Click <em>Submit</em></li>
+<li>Fill in the following:</li>
+<li>
+<ul>
+<li><em>Hostname</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Type</em> - blade</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Public IP Address</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Private IP Address</em> (optional)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Public MAC Address</em> (optional)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Private MAC Address</em> (optional)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Provisioning Engine</em> - &ldquo;None&rdquo;</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>State</em> - vmhostinuse</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>VM Host Profile</em> - use a default profile or one configured in the
+previous step</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Owner</em> - admin@Local</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>RAM</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>No. Cores</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Processor Speed</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Network Speed</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Physical Location</em> (optional)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Click the checkbox under <em>allComputers</em></li>
+</ul>
+</li>
+<li>Click <em>Confirm Computer</em></li>
+<li>Click <em>Submit</em>
+{info}The computer you just added isn&rsquo;t listed after clicking Submit. This
+is not a problem.{info}</li>
+</ol>
+<p><a name="VCL2.3-FurtherStepsifUsingVMware-AddingMultipleVMWareServers"></a></p>
+<h3 id="adding-multiple-vmware-servers">Adding Multiple VMWare Servers</h3>
+<ol>
+<li>Click <em>Manage Computers</em></li>
+<li>Select the <em>Add Multiple Computers</em> radio button</li>
+<li>Click <em>Submit</em></li>
+<li>Fill in the following:</li>
+<li>
+<ul>
+<li><em>Hostname</em> - the hostnames of all the computers must have a numerical
+part that is sequential, use a % as a placeholder where that part would be</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Start value</em> - the first number of the numerical part of the hostname</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>End value</em> - the last number of the numerical part of the hostname</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Type</em> - blade</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Start Public IP Address</em> - if using static public addresses, the IP
+addresses must be sequential; enter the first address here; if using DHCP,
+just enter something like 1.1.1.1</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>End Public IP address</em> - the last IP address of the sequence; if using
+DHCP, you&rsquo;ll need to enter something that would work out to the last
+address relative to <em>Start Public IP Address</em> (i.e. if adding 3 computers,
+use 1.1.1.1 for start and 1.1.1.3 for end)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Start Private IP Address</em> (optional) - the IP addresses must be
+sequential; enter the first private address here</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>End Private IP Address</em> (optional) - the last IP address of the
+sequence</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Start MAC Address</em> (optional) - if MAC addresses are sequential, with
+the first one being the private MAC address for the first computer, the
+second one being the public MAC address for the first computer, the third
+one being the private MAC address of the second computer, etc, you can
+enter the first one here and then have the option of downloading data to
+add to your dhcpd.conf file from the Computer Utilities page</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Provisioning Engine</em> - &ldquo;None&rdquo;</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>State</em> - vmhostinuse</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>VM Host Profile</em> - use a default profile or one configured in the
+previous step</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Owner</em> - admin@Local</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>RAM</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>No. Cores</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Processor Speed</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Network Speed</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Physical Location</em> (optional)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Click the checkbox under <em>allComputers</em></li>
+</ul>
+</li>
+<li>Click <em>Confirm Computers</em></li>
+<li>Click <em>Submit</em></li>
+</ol>
+<p>{anchor:addvms}</p>
+<p><a name="VCL2.3-FurtherStepsifUsingVMware-AddVirtualMachines"></a></p>
+<h2 id="add-virtual-machines">Add Virtual Machines</h2>
+<p><a name="VCL2.3-FurtherStepsifUsingVMware-AddingIndividualVirtualMachines"></a></p>
+<h3 id="adding-individual-virtual-machines">Adding Individual Virtual Machines</h3>
+<ol>
+<li>Click <em>Manage Computers</em></li>
+<li>Select <em>Edit Computer Information</em></li>
+<li>Click <em>Submit</em></li>
+<li>Click <em>Add Single Computer</em></li>
+<li>Fill in the following:</li>
+<li>
+<ul>
+<li><em>Hostname</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Type</em> - virtualmachine</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Public IP Address</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Private IP Address</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Public MAC Address</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Private MAC Address</em>
+{note}For VMware virtual machines, the MAC addresses you choose must be in
+the range {color:#008000}{<em>}00:50:56:00:00:00{</em>}{color}
+{color:#008000}-{color}{color:#008000}{<em>}00:50:56:3F:FF:FF{</em>}{color}.
+Pay special attention to the upper bound of this range.
+{color:#ff0000}{<em>}00:50:56:40:00:00{</em>}{color} {color:#ff0000}-{color}
+{color:#ff0000}{<em>}00:50:56:FF:FF:FF{</em>}{color} are <em>NOT</em> valid VMware
+virtual machines.{note}</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Provisioning Engine</em> - VMware</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>State</em> - maintenance</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Owner</em> - admin@Local</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>RAM</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>No. Cores</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Processor Speed</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Network Speed</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Check <em>All VM Computers</em> and <em>newvmimages</em></li>
+</ul>
+</li>
+<li>Click <em>Confirm Computer</em></li>
+<li>Click <em>Submit</em></li>
+</ol>
+<p><a name="VCL2.3-FurtherStepsifUsingVMware-AddingMultipleVirtualMachines"></a></p>
+<h3 id="adding-multiple-virtual-machines">Adding Multiple Virtual Machines</h3>
+<ol>
+<li>Click <em>Manage Computers</em></li>
+<li>Select <em>Edit Computer Information</em></li>
+<li>Click <em>Submit</em></li>
+<li>Click <em>Add Multiple Computers</em></li>
+<li>Fill in the following:</li>
+<li>
+<ul>
+<li><em>Hostname</em> - the hostnames of all the computers must have a numerical
+part that is sequential, use a % as a placeholder where that part would be</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Start value</em> - the first number of the numerical part of the hostname</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>End value</em> - the last number of the numerical part of the hostname</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Type</em> - virtualmachine</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Start Public IP Address</em> - if using static public addresses, the
+Public IP addresses must be sequential; enter the first address here; if
+using DHCP, just enter something like 1.1.1.1</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>End Public IP address</em> - the last Public IP address of the sequence;
+if using DHCP, you&rsquo;ll need to enter something that would work out to the
+last address relative to Start IP Address (i.e. if adding 3 computers, use
+1.1.1.1 for start and 1.1.1.3 for end)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Start Private IP Address</em> - similar to Start Public IP Address, but
+for the private side</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>End Private IP Address</em> - similar to the End Public IP Address but for
+the private side</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Start MAC Address</em> - if mac addresses are sequential, with the first
+one being the private MAC address for the first computer, the second one
+being the public MAC address for the first computer, the third one being
+the private MAC address of the second computer, etc, you can enter the
+first one here and then have the option of generating data to add to your
+dhcpd.conf file from the <em>Computer Utilities</em> page.
+{note}For VMware virtual machines, the MAC addresses you choose must be in
+the range {color:#008000}{<em>}00:50:56:00:00:00{</em>}{color}
+{color:#008000}-{color}{color:#008000}{<em>}00:50:56:3F:FF:FF{</em>}{color}.
+Pay special attention to the upper bound of this range.
+{color:#ff0000}{<em>}00:50:56:40:00:00{</em>}{color} {color:#ff0000}-{color}
+{color:#ff0000}{<em>}00:50:56:FF:FF:FF{</em>}{color} are <em>NOT</em> valid VMware
+virtual machines.{note}</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Provisioning Engine</em> - VMware</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>State</em> - maintenance</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Owner</em> - admin@Local</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>RAM</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>No. Cores</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Processor Speed</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Network Speed</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Check <em>All VM Computers</em> and <em>newvmimages</em></li>
+</ul>
+</li>
+<li>Click <em>Confirm Computers</em></li>
+<li>Click <em>Submit</em></li>
+</ol>
+<p>{anchor:assignvms}</p>
+<p><a name="VCL2.3-FurtherStepsifUsingVMware-AssignVirtualMachine(s)toaVirtualHost"></a></p>
+<h2 id="assign-virtual-machines-to-a-virtual-host">Assign Virtual Machine(s) to a Virtual Host</h2>
+<ol>
+<li>Click <em>Virtual Hosts</em></li>
+<li>On the <em>VM Hosts</em> tab, select the virtual host server added previously</li>
+<li>Click <em>Configure Host</em>, You should see VM limit set to a number along
+with the vm profile, two columns of VM&rsquo;s assigned to host and Unassigned
+VMs</li>
+<li>Adjust the VM limit to the desired number of vms you would like to run on
+this host.
+{note}
+Please consult your hypervisor documentation for the recommended
+number of virtual machines to run concurrently for your virtual server
+configuration
+{note}</li>
+<li>Select the virtual machine nodes from the Unassigned VMs: column</li>
+<li>Click Add</li>
+</ol>
+<p>{anchor:adddhcp}</p>
+<p><a name="VCL2.3-FurtherStepsifUsingVMware-Addentriestodhcpd.conf"></a></p>
+<h2 id="add-entries-to-dhcpdconf">Add entries to dhcpd.conf</h2>
+<p>You need to add entries for your VMs to your dhcpd.conf file so that they
+will correctly be assigned their private addresses at boot.</p>
+<ol>
+<li>Click <em>Manage Computers</em></li>
+<li>Select the <em>All VM Computers</em> group in the list at the top</li>
+<li>Select the <em>Computer Utilities</em> radio button</li>
+<li>Click <em>Submit</em></li>
+<li>Click the <em>Check All</em> link at the bottom of the table</li>
+<li>Next to <em>For selected computers, generate computer data for</em>, select
+<em>dhcpd</em></li>
+<li>Click <em>Generate Data</em></li>
+<li>Enter the private IP address for your management node</li>
+<li>Click <em>Generate Data</em></li>
+<li>Copy/Paste the data for dhcpd.conf to the dhcpd.conf file on your
+management node (ignore the part for dhcpd.leases)</li>
+<li>Restart dhcpd
+{tip}service dhcpd restart{tip}</li>
+<li>Scroll to the bottom and click <em>Close</em></li>
+</ol>
+<p>{anchor:addetchosts}</p>
+<p><a name="VCL2.3-FurtherStepsifUsingVMware-Addentriesto/etc/hosts"></a></p>
+<h2 id="add-entries-to-etchosts">Add entries to /etc/hosts</h2>
+<p>You need to add entries for your VM hosts and VMs to /etc/hosts</p>
+<ol>
+<li>Click <em>Manage Computers</em></li>
+<li>Select the <em>All VM Computers</em> and the <em>allComputers</em> groups in the list
+at the top</li>
+<li>Select the <em>Computer Utilities</em> radio button</li>
+<li>Click <em>Submit</em></li>
+<li>Click the <em>Check All</em> link at the bottom of the table</li>
+<li>Next to <em>For selected computers, generate computer data for</em>, select
+<em>/etc/hosts</em></li>
+<li>Click <em>Generate Data</em></li>
+<li>Copy/Paste the data to your /etc/hosts file</li>
+<li>Click <em>Close</em></li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

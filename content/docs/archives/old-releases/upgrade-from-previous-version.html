@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Upgrade From Previous Version</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Upgrade From Previous Version</h1>
+    
+	<p>This file provides information on how to upgrade from VCL 2.1 to VCL 2.2.
+Please note it only applies for the upgrade from 2.1 to 2.2, this may or
+may not work for other versions.</p>
+<p><a name="UpgradeFromPreviousVersion-*Thebasicstepsthatwillbeperformed*"></a></p>
+<h2 id="the-basic-steps-that-will-be-performed">The basic steps that will be performed</h2>
+<ul>
+<li>Download and Extract 2.2 code</li>
+<li>Shutdown httpd and vcld services</li>
+<li>Create backup of vcl database</li>
+<li>Update mysql schema</li>
+<li>Update Web code, create a backup, copy in new, make changes</li>
+<li>Restart httpd service</li>
+<li>Update Management node vcl code, create a backup, copy in new, make
+changes</li>
+<li>Restart vcld service</li>
+</ul>
+<p><a name="UpgradeFromPreviousVersion-*DownloadandExtract2.2code*"></a></p>
+<h2 id="download-and-extract-22-code">Download and Extract 2.2 code</h2>
+<ol>
+<li>
+<p>follow instructions on <a href="vcl-2.2.html">VCL 2.2</a>
+Release page to download and verify apache-VCL-2.2-incubating.tar.bz2 and
+put in in /root</p>
+</li>
+<li>
+<p>extract VCL 2.2 code</p>
+<pre><code> tar xjf apache-VCL-2.2-incubating.tar.bz2
+</code></pre>
+</li>
+</ol>
+<p><a name="UpgradeFromPreviousVersion-*Shutdownservices*"></a></p>
+<h2 id="shutdown-services">Shutdown services</h2>
+<p>Shutdown the httpd and vcld services</p>
+<pre><code>    service httpd stop or /etc/init.d/httpd stop
+    service vcld stop or /etc/init.d/vcld stop
+</code></pre>
+<p><a name="UpgradeFromPreviousVersion-*Createabackupofvcldatabase*"></a></p>
+<h2 id="create-a-backup-of-vcl-database">Create a backup of vcl database</h2>
+<p>We will create a backup of the vcl database. This will provide a restore
+point if necessary.</p>
+<pre><code>    mysqldump vcl &gt; ~/vcl-pre2.2-upgrade.sql
+</code></pre>
+<p><a name="UpgradeFromPreviousVersion-*Updatemysqlschema*"></a></p>
+<h2 id="update-mysql-schema">Update mysql schema</h2>
+<p>This step updates the mysql schema.</p>
+<pre><code>    cd /root/apache-VCL-2.2-incubating
+    mysql vcl &lt; mysql/update-2.2.sql
+</code></pre>
+<p><a name="UpgradeFromPreviousVersion-*Updatewebcode*"></a></p>
+<h2 id="update-web-code">Update web code</h2>
+<p>This step we will move the 2.1 web directory out of the way, so we can copy
+in the new web code base. After copying in the new code, we will migrate
+your configuration changes. These instructions assume that you installed
+the vcl web code at /var/www/html/vcl. If you installed it elsewhere,
+replace /var/www/html/vcl with your vcl web root.</p>
+<ol>
+<li>
+<p>copy your old code out of the way</p>
+<pre><code> cd /var/www/html
+ mv vcl ~/vcl_2.1_web
+</code></pre>
+</li>
+<li>
+<p>copy the new code in place</p>
+<pre><code> cd /root/apache-VCL-2.2-incubating
+ cp -r web /var/www/html/vcl
+</code></pre>
+</li>
+<li>
+<p>copy your 2.1 config files</p>
+<pre><code> cd ~/vcl_2.1_web/.ht-inc
+ cp conf.php secrets.php pubkey.pem keys.pem /var/www/html/vcl/.ht-inc
+</code></pre>
+</li>
+<li>
+<p>make /var/www/html/vcl/.ht-inc/maintenance writable by the web server -
+if httpd on your server is running as the user apache:</p>
+<pre><code> chown apache /var/www/html/vcl/.ht-inc/maintenance
+</code></pre>
+</li>
+<li>
+<p>add the following new entries to conf.php - You can copy them in from
+.ht-inc/conf-default.php. Descriptions of each item can also be found in
+conf-default.php</p>
+</li>
+</ol>
+<ul>
+<li>date_default_timezone_set(&lsquo;America/New_York&rsquo;);</li>
+<li>$blockNotifyUsers = &ldquo;<a href="mailto:adminuser@example.org">adminuser@example.org</a>&rdquo;;</li>
+<li>define(&ldquo;SCHEDULER_ALLOCATE_RANDOM_COMPUTER&rdquo;, 0);</li>
+<li>define(&ldquo;DOCUMENTATIONURL&rdquo;, &ldquo;<a href="https://cwiki.apache.org/VCLDOCS/%22);">https://cwiki.apache.org/VCLDOCS/&quot;);</a></li>
+<li>define(&ldquo;USEFILTERINGSELECT&rdquo;, 1);</li>
+<li>define(&ldquo;FILTERINGSELECTTHRESHOLD&rdquo;, 1000);</li>
+<li>define(&ldquo;DEFAULTTHEME&rdquo;, &lsquo;default&rsquo;);</li>
+</ul>
+<p><a name="UpgradeFromPreviousVersion-Restarthttpdservice"></a></p>
+<h2 id="restart-httpd-service">Restart httpd service</h2>
+<pre><code>service httpd start or /etc/init.d/httpd start
+</code></pre>
+<p><a name="UpgradeFromPreviousVersion-*Updatemanagementnodecode*"></a></p>
+<h2 id="update-management-node-code">Update management node code</h2>
+<p>This step will move the 2.1 vcl code base out of the way, so we can cleanly
+copy in the new management node(MN) code.</p>
+<ol>
+<li>
+<p>Copy 2.1 code base to a backup location</p>
+<pre><code> cd &lt;your vcl MN code root path&gt;
+ ie. cd /usr/local/
+ cp -r vcl ~/vcl_2.1_managementnode
+</code></pre>
+</li>
+<li>
+<p>Copy in the 2.2 code base to /usr/local, copying in should preserve any
+drivers or other files you&rsquo;ve added.</p>
+<pre><code> /bin/cp -r /root/apache-VCL-2.2-incubating/managementnode/* /usr/local/vcl
+</code></pre>
+</li>
+<li>
+<p>Make changes related to vcld.conf settings</p>
+</li>
+</ol>
+<ul>
+<li>Open VCL web interface</li>
+<li>Go to Management Nodes</li>
+<li>Select Edit Management Node Information</li>
+<li>Select Edit.</li>
+<li>Set any relevant fields:</li>
+<li>SysAdmin Email Address(es) - comma delimited list of vcl admin email
+addresses</li>
+<li>Address for Shadow Emails - a shared mail box, optional it receives
+email of all notifications</li>
+<li>Public NIC configuration method - Defines what type of NIC configuration
+is used, options are dynamic DHCP, Manual DHCP, or static</li>
+<li>End Node SSH Identity Key Files</li>
+</ul>
+<p><a name="UpgradeFromPreviousVersion-Restartvcldservice"></a></p>
+<h2 id="restart-vcld-service">Restart vcld service</h2>
+<pre><code>    service vcld start or /etc/init.d/vcld start
+</code></pre>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

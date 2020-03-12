@@ -1,0 +1,442 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Operating System Module Interface Specification</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Operating System Module Interface Specification</h1>
+    
+	<p><a name="OperatingSystemModuleInterfaceSpecification-Background"></a></p>
+<h1 id="background">Background</h1>
+<ul>
+<li>OS module objects are created by State.pm::initialize() when a new state
+object is created.</li>
+<li>OS module objects are available within state and
+provisioning modules</li>
+<li>OS module objects are not available within other types of modules for
+safety.   For example, a monitoring or other utility module
+should not be able to call the OS module&rsquo;s shutdown subroutine.</li>
+</ul>
+<p><a name="OperatingSystemModuleInterfaceSpecification-OSModuleSubroutines"></a></p>
+<h1 id="os-module-subroutines">OS Module Subroutines</h1>
+<p>It is highly recommended that all OS modules implement the following
+subroutines.  There may be many additional subroutines implemented
+within an OS module.  These will not be called by any of the core VCL
+modules nor any of the provisioning engine modules.</p>
+<ul>
+<li><a href="#pre_capture.html">#pre_capture</a></li>
+<li><a href="#post_load.html">#post_load</a></li>
+<li><a href="#sanitize.html">#sanitize</a></li>
+<li><a href="#reboot.html">#reboot</a></li>
+<li><a href="#shutdown.html">#shutdown</a></li>
+<li><a href="#get_current_image_name.html">#get_current_image_name</a></li>
+<li><a href="#reserve.html">#reserve</a></li>
+<li><a href="#grant_access.html">#grant_access</a></li>
+</ul>
+<p>  </p>
+<hr>
+<p><a name="OperatingSystemModuleInterfaceSpecification-pre_capture{anchor:pre_capture}"></a></p>
+<h2 id="pre_capture-anchorpre_capture">pre_capture {anchor:pre_capture}</h2>
+<ul>
+<li>Description
+** Configures the OS so that it can be captured by a provisioning
+module.
+** Configures the OS so that it will successfully boot after the captured
+image is reloaded on another resource.
+** Adds and configures drivers so that the image will load on other
+resources.
+** Removes files which should not be saved in the image.
+** Examples of tasks performed by the pre_capture subroutine:
+*** Log off users which were created for the imaging reservation and delete
+the accounts
+*** Set root and administrator passwords to standard, known values 
+*** Disable and delete page or swap files
+*** Delete temp files
+*** Copy scripts and utilities to the computer which are required after the
+computer boots up but before it has network connectivity
+*** Copy drivers to the computer
+*** Run a generalization or sealing utility such as Sysprep.exe</li>
+<li>Expected Beginning State
+** Resource is up and accessible
+** Administrator has configured the resource
+** Administrator may or may not have logged out</li>
+<li>Expected Ending State
+** (Default) Resource is shut down and turned off
+** Image captured of resource can be loaded and booted on other hardware
+** Loaded image will successfully boot up, establish network connectivity,
+and be accessible by the OS module&rsquo;s post_load() subroutine</li>
+<li>Called By
+** Provisioning module&rsquo;s capture() subroutine</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of an OS object
+($os-&gt;pre_capture()) 
+** Optional Argument:
+*** Name: end_state
+*** Type: hash reference
+*** Description:
+**** Instructs pre_capture() to leave the resource in a particular state
+after the subroutine&rsquo;s tasks are complet instead of shutting down the
+resource.
+*** Possible Values:
+**** on - Leave the resource on.  Do not shut it down or reboot it.
+**** off (Default) - Shut the resource down.
+**** reboot - Initiate a reboot and return.</li>
+<li>Return Values
+** 1
+*** All pre_capture tasks completed successfully.
+*** Resource was either shut down or left in the state specified by the
+end_state argument.
+*** Provisioning module can proceed to capture the image.
+** 0
+*** Resource OS could not be completely prepared to be captured.
+*** Provisioning module should not proceed to capture the image.</li>
+</ul>
+<p><a name="OperatingSystemModuleInterfaceSpecification-post_load{anchor:post_load}"></a></p>
+<h2 id="post_load-anchorpost_load">post_load {anchor:post_load}</h2>
+<ul>
+<li>Description
+** Performs tasks to configure the OS after an image was loaded.
+** Does not configure the resource for a particular reservation.
+** Examples of tasks performed by the post_load subroutine:
+*** Make sure OS licensing has been activated
+*** Configure services
+*** Rename the computer or resource
+*** Randomize passwords
+*** Configure the firewall</li>
+<li>Expected Beginning State
+** Resource has been powered on 
+** Resource may or may not be accessible
+** It&rsquo;s expected that the resource will become accessible automatically
+after it boots and performs any initialization tasks which were
+preconfigured by the pre_capture subroutine.</li>
+<li>Expected Ending State
+** Resource has been loaded with an image and the OS was configured so that
+it is ready to be reserved.</li>
+<li>Called By
+** Provisioning module&rsquo;s load() subroutine</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of an OS object
+($os-&gt;post_load()) 
+** No arguments</li>
+<li>Return Values
+** 1
+*** All OS post-load tasks were completed successfully
+** 0
+*** All OS post-load tasks could not be completed but the resource became
+accessible
+** Undefined
+*** Resource never became accessible</li>
+</ul>
+<p><a name="OperatingSystemModuleInterfaceSpecification-sanitize{anchor:sanitize}"></a></p>
+<h2 id="sanitize-anchorsanitize">sanitize {anchor:sanitize}</h2>
+<ul>
+<li>Description
+** Reverts the changes made when preparing a resource for a particular
+reservation.
+** A resource needs to be sanitized if it was successfully reserved for a
+reservation but not used.
+** The goal of the sanitize subroutine should be to clean up and
+reconfigure a resource so that it can be provisioned for another
+reservation without having to be reloaded.
+** An attempt is made to sanitize the resource by reclaim.pm if it
+determines that the resource was never used for a reservation.  This
+will occur if a reservation is made, enters the reserved state, but never
+enters the inuse state.
+** Examples of tasks performed by the sanitize subroutine:
+*** Delete user accounts which were created for a reservation
+*** Revoke access to the resource which was granted for a reservation</li>
+<li>Expected Beginning State</li>
+<li>Expected Ending State </li>
+<li>Called By
+** reclaim.pm::process()
+** May be called by the same OS module&rsquo;s pre_capture() subroutine to
+sanitize the resource after it was reserved and used by the image creator.</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of an OS object
+($os-&gt;sanitize())
+** No arguments will be passed to sanitize()</li>
+<li>Return Values
+** 1
+*** Sanitization was completely successful
+*** Resource is ready to be provisioned and reserved for another
+reservation
+*** Resource does not need to be reloaded
+** 0
+*** Sanitization could not be completed
+*** Resource needs to be reloaded</li>
+</ul>
+<p><a name="OperatingSystemModuleInterfaceSpecification-reboot{anchor:reboot}"></a></p>
+<h2 id="reboot-anchorreboot">reboot {anchor:reboot}</h2>
+<ul>
+<li>Description
+** Performs a complete graceful reboot of the OS.
+** May forcibly log off users if necessary.
+** Waits for the reboot to complete.
+** Returns after the reboot is complete.</li>
+<li>Expected Beginning State
+** Computer is up and accessible.
+** Users may be logged on to the computer.</li>
+<li>Expected Ending State
+** Computer has been rebooted.
+** Computer is accessible.</li>
+<li>Called By
+** May be called by any module which has access to the OS object</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of an OS object
+($os-&gt;reboot())
+** Argument:
+*** Name: timeout
+*** Description:
+**** Instructs reboot() to wait a maximum number of minutes for the reboot
+to complete
+**** If timeout has been reached and computer has not finished rebooting, 0
+should be returned
+*** Required: No
+*** Default Value: 5 minutes
+*** Data Type: integer
+*** Possible Values:
+**** Any positive integer</li>
+<li>Return Values
+** 1
+*** Reboot completed successfully
+*** Computer is accessible
+** 0
+*** Reboot was initiated but computer never came back online
+*** Timeout was reached
+** Undefined
+*** Reboot could not be initiated</li>
+</ul>
+<p><a name="OperatingSystemModuleInterfaceSpecification-shutdown{anchor:shutdown}"></a></p>
+<h2 id="shutdown-anchorshutdown">shutdown {anchor:shutdown}</h2>
+<ul>
+<li>Description
+** Performs a graceful shutdown of the OS.
+** May forcibly log off users if necessary.
+** Waits for the shutdown to complete.
+** Returns after the shutdown is complete and the computer is off.</li>
+<li>Expected Beginning State
+** Computer is up and accessible.
+** Users may be logged on to the computer.</li>
+<li>Expected Ending State
+** Computer is off.</li>
+<li>Called By
+** May be called by any module which has access to the OS object</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of an OS object
+($os-&gt;reboot())
+** Argument:
+*** Name: timeout
+*** Description:
+**** Instructs shutdown() to wait a maximum number of minutes for the
+shutdown to complete
+**** If timeout has been reached and computer has not finished shutting
+down, 0 should be returned
+*** Required: No
+*** Default Value: 5 minutes
+*** Data Type: integer
+*** Possible Values:
+**** Any positive integer</li>
+<li>Return Values
+** 1
+*** Shudown completed successfully
+** 0
+*** Shutdown was initiated but computer never shut down
+*** Timeout was reached
+** Undefined
+*** Shutdown could not be initiated</li>
+</ul>
+<p><a name="OperatingSystemModuleInterfaceSpecification-get_current_image_name{anchor:get_current_image_name}"></a></p>
+<h2 id="get_current_image_name-anchorget_current_image_name">get_current_image_name {anchor:get_current_image_name}</h2>
+<ul>
+<li>Description
+** Returns the name of the current image that is loaded on the
+resource(currentimage.txt file).
+** The name corresponds to the image.name column in the database.
+** Returning a name implies that the resource is accessible.
+** The OS.pm will probably handle this subroutine.</li>
+<li>Expected Beginning State
+** Resource is accessible.</li>
+<li>Expected Ending State
+** The resource state should be identical to before get_current_image_name
+was called.</li>
+<li>Called By
+** Provisioning module&rsquo;s node_status() subroutine.
+** Used to determine if the OS and provisioning engine agree on the current
+image loaded on a resource.
+** Can be used to determine if a resource is accessible.  A valid
+string will be returned if the resource is accessible.</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of an OS object
+($os-&gt;get_current_image_name())
+** No arguments</li>
+<li>Return Values
+** String
+*** String contains a VCL image name
+** 0
+*** Computer is accessible but failed to determine the current loaded
+image
+** Undefined
+*** Computer is not accessible</li>
+</ul>
+<p><a name="OperatingSystemModuleInterfaceSpecification-reserve&nbsp;{anchor:reserve}"></a></p>
+<h2 id="reservenbspanchorreserve">reserve {anchor:reserve}</h2>
+<ul>
+<li>Description
+** reserve() gets called by new.pm after a machine has been reloaded if the
+state is &ldquo;new&rdquo; (new.pm also handles the &ldquo;reload&rdquo; state and others)
+** It should perform the steps necessary to take a reloaded machine and
+prepare it for a particular reservation
+** Anything reservation-specific that doesn&rsquo;t require knowing the user&rsquo;s IP
+should be done in reserve()
+** After reserve() has run, the state can be changed to reserved and the
+&ldquo;Connect&rdquo; button can be presented to the user
+** reserve() would normally add the reservation user and any users set
+in imagemeta usergroup to the computer, set their passwords, and add them
+to the appropriate groups
+** reserve() does not configure the firewall or do anything networking
+related because at the time it&rsquo;s called, the state has not been changed to
+reserved and the user has not been shown the &ldquo;Connect&rdquo; button. 
+Hence, the user&rsquo;s IP is not known.
+** reserve() is called by new.pm before the &ldquo;Connect&rdquo; button is shown to
+the user because adding several user accounts may take a long time. 
+If adding users was done after the state was changed to reserved, a user
+could attempt to connect before all of the users accounts were added.</li>
+<li>Expected Beginning State
+** Request state is pending/new 
+** Computer has been reloaded</li>
+<li>Expected Ending State
+** Computer has been configured for a particular reservation
+** User accounts have been added and configured
+** Request state can be changed to reserved and the &ldquo;Connect&rdquo; button can be
+presented to the user</li>
+<li>Called By
+** new.pm</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of an OS object
+($os-&gt;reserve())
+** No arguments</li>
+<li>Return Values
+** True (1) 
+*** Computer has successfully been configured for a particular reservation
+** False (0 or undefined) 
+*** Computer could not be configured for a particular reservation</li>
+</ul>
+<p><a name="OperatingSystemModuleInterfaceSpecification-grant_access&nbsp;{anchor:grant_access}"></a></p>
+<h2 id="grant_accessnbspanchorgrant_access">grant_access {anchor:grant_access}</h2>
+<ul>
+<li>Description
+** grant_access() gets called by reserved.pm after the user has
+clicked the &ldquo;Connect&rdquo; button
+** The user&rsquo;s IP address is known when grant_access() is called
+** grant_access() should perform all the steps necessary to open up the
+machine so the user(s) added by reserve() can connect
+** grant_access() may enables RDP or public SSH traffic depending on
+the OS</li>
+<li>Expected Beginning State
+** User has just clicked the &ldquo;Connect&rdquo; button 
+** Request state is pending/reserved</li>
+<li>Expected Ending State
+** Computer has been configured to allow the user to connect</li>
+<li>Called By
+** reserved.pm</li>
+<li>Arguments &amp; Calling Environment
+** Must only be called as an object method of an OS object
+($os-&gt;get_current_image_name())
+** No arguments</li>
+<li>Return Values
+** True (1) 
+*** Computer was successfully configured to allow access for the
+reservation users
+** False (0 or undefined)
+*** Computer could not be configured to allow access for the reservation
+users</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

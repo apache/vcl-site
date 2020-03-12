@@ -1,0 +1,417 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VCL 2.2.1 Web Code Installation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VCL 2.2.1 Web Code Installation</h1>
+    
+	<p>{excerpt:hidden=true}
+How to install and configure the frontend VCL web code. It also describes
+how to add local accounts to the VCL database, configure LDAP
+authentication, and set the timezone correctly.{excerpt}</p>
+<p><a name="VCL2.2.1WebCodeInstallation-Install&ConfiguretheWebComponents"></a></p>
+<h1 id="install--configure-the-web-components">Install &amp; Configure the Web Components</h1>
+<p><a name="VCL2.2.1WebCodeInstallation-*Prerequisites*"></a></p>
+<h2 id="prerequisites"><em>Prerequisites</em></h2>
+<p>The following instructions assume these tasks have previously been
+completed:</p>
+<ul>
+<li><a href="download.html">Apache VCL 2.2.1 has been downloaded</a></li>
+<li><a href="vcl:vcl-2.2.1-database-installation.html">VCL database has been installed and configured</a></li>
+</ul>
+<p><a name="VCL2.2.1WebCodeInstallation-WebServer:"></a></p>
+<h4 id="web-server">Web Server:</h4>
+<ul>
+<li>Apache HTTP Server v1.3 or v2.x with SSL enabled</li>
+<li>PHP 5.0 or later</li>
+</ul>
+<p>{info}The VCL web frontend may run under other web server platforms capable
+of running PHP code, but has only been tested to work with Apache HTTP
+Server.{info}</p>
+<p><a name="VCL2.2.1WebCodeInstallation-RequiredLinuxPackages:"></a></p>
+<h4 id="required-linux-packages">Required Linux Packages:</h4>
+<ul>
+<li><em>httpd</em> - Apache HTTP Server</li>
+<li><em>mod_ssl</em> - SSL/TLS module for the Apache HTTP server</li>
+<li><em>php</em> - The PHP HTML-embedded scripting language</li>
+<li><em>libmcrypt</em> - Encryption algorithms library (this requirement can be
+removed with a <a href="vcl:patch-to-remove-mcrypt-dependency.html">patch</a>
+)</li>
+</ul>
+<p><a name="VCL2.2.1WebCodeInstallation-RequiredPHPModules:"></a></p>
+<h4 id="required-php-modules">Required PHP Modules:</h4>
+<p>(Some of these may already be included with your PHP distribution)</p>
+<ul>
+<li><em>php-gd</em></li>
+<li><em>php-json</em> (required if your PHP version is 5.2 or later)</li>
+<li><em>php-mcrypt</em> (this requirement can be removed with a <a href="vcl:patch-to-remove-mcrypt-dependency.html">patch</a>
+)</li>
+<li><em>php-mysql</em></li>
+<li><em>php-openssl</em></li>
+<li><em>php-sysvsem</em></li>
+<li><em>php-xml</em></li>
+<li><em>php-xmlrpc</em></li>
+<li><em>php-ldap</em> (if you will be using LDAP authentication)</li>
+</ul>
+<ol>
+<li>
+<h1 id="if-your-web-server-is-running-a-red-hat-based-os-the-required">If your web server is running a Red Hat-based OS, the required</h1>
+</li>
+</ol>
+<p>components can be installed with:
+{tip}
+yum install httpd mod_ssl php php-gd php-mcrypt php-mysql php-xml
+php-xmlrpc php-ldap -y
+{tip}</p>
+<ol>
+<li>#* If you will be using a self-signed certificate for SSL, <a href="http://wiki.centos.org/HowTos/Https">this is a great HOWTO </a>
+explaining how to set it up on CentOS</li>
+<li>#* It is useful to configure the server to be able to send debugging
+emails</li>
+<li>
+<h1 id="configure-the-web-server-daemon-httpd-to-start-automatically">Configure the web server daemon (httpd) to start automatically:</h1>
+</li>
+</ol>
+<p>{tip}
+/sbin/chkconfig --level 345 httpd on
+{tip}</p>
+<ol>
+<li>
+<h1 id="start-the-web-server-daemon">Start the web server daemon:</h1>
+</li>
+</ol>
+<p>{tip}
+/sbin/service httpd start
+{tip}</p>
+<ol>
+<li>
+<h1 id="if-selinux-is-enabled-run-the-following-command-to-allow-the-web-server">If SELinux is enabled, run the following command to allow the web server</h1>
+</li>
+</ol>
+<p>to connect to the database:
+{tip}
+/usr/sbin/setsebool -P httpd_can_network_connect=1
+{tip}</p>
+<ol>
+<li>
+<h1 id="if-the-iptables-firewall-is-being-used-port-80-and-443-should-be-opened">If the iptables firewall is being used, port 80 and 443 should be opened</h1>
+</li>
+</ol>
+<p>up:
+{tip}vi /etc/sysconfig/iptables{tip}</p>
+<pre><code>-A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT
+-A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT
+service iptables restart
+</code></pre>
+<ol>
+<li>h2. Install the VCL Frontend Web Code</li>
+<li>
+<h1 id="if-you-have-not-already-done-so-download-and-extract-the-source-files">If you have not already done so, download and extract the source files</h1>
+</li>
+</ol>
+<p>on the web server:
+{tip}
+wget
+{nolink:http://www.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2}
+tar -jxvf apache-VCL-2.2.1-incubating.tar.bz2
+{tip}</p>
+<ol>
+<li>
+<h1 id="copy-the-web-directory-to-a-location-under-the-web-root-of-your-web">Copy the <em>web</em> directory to a location under the web root of your web</h1>
+</li>
+</ol>
+<p>server and navigate to the destination <em>.ht-inc</em> subdirectory:
+{tip}
+cp -r apache-VCL-2.2.1-incubating/web/ /var/www/html/vcl
+cd /var/www/html/vcl/.ht-inc
+{tip}</p>
+<ol>
+<li>
+<h1 id="apply-patch-to-fix-editing-reservations">apply patch to fix editing reservations</h1>
+</li>
+</ol>
+<p>{tip}
+wget <a href="https://issues.apache.org/jira/secure/attachment/12477101/utils_virtual_undefined.patch">https://issues.apache.org/jira/secure/attachment/12477101/utils_virtual_undefined.patch</a>
+patch &lt; utils_virtual_undefined.patch
+{tip}</p>
+<ol>
+<li>
+<h1 id="apply-patch-to-fix-processing-of-block-allocations">apply patch to fix processing of block allocations</h1>
+</li>
+</ol>
+<p>{tip}
+wget <a href="https://issues.apache.org/jira/secure/attachment/12485328/vmhostcheck_fix.patch">https://issues.apache.org/jira/secure/attachment/12485328/vmhostcheck_fix.patch</a>
+patch &lt; vmhostcheck_fix.patch
+{tip}</p>
+<ol>
+<li>
+<h1 id="copy-secrets-defaultphp-to-secretsphp">Copy <em>secrets-default.php</em> to <em>secrets.php</em>:</h1>
+</li>
+</ol>
+<p>{tip}
+cp secrets-default.php secrets.php
+{tip}</p>
+<ol>
+<li>
+<h1 id="edit-the-secretsphp-file">Edit the <em>secrets.php</em> file:</h1>
+</li>
+</ol>
+<p>{tip}
+vi secrets.php
+{tip}</p>
+<ol>
+<li>#* Set the following variables to match your database configuration:</li>
+<li>#** *$vclhost*</li>
+<li>#** *$vcldb*</li>
+<li>#** *$vclusername*</li>
+<li>#** *$vclpassword*</li>
+<li>#* Create random passwords for the following variables:</li>
+<li>#** *$mcryptkey*</li>
+<li>#** *$mcryptiv* (must be 8 hex characters)</li>
+<li>#** *$pemkey*</li>
+<li>#* Save the secrets.php file</li>
+<li>
+<h1 id="run-the-genkeysshnbspscriptnbsp-enter-the-value-you-set-for">Run the <em>genkeys.sh</em> script.  Enter the value you set for</h1>
+</li>
+</ol>
+<p><em>$pemkey</em> in secrets.php as the passphrase (3 times, copy/paste is a good
+idea)
+{tip}
+./genkeys.sh
+{tip}</p>
+<ol>
+<li>
+<h1 id="copy-conf-defaultphp-to-confphp">Copy <em>conf-default.php</em> to <em>conf.php</em>:</h1>
+</li>
+</ol>
+<p>{tip}
+cp conf-default.php conf.php
+{tip}</p>
+<ol>
+<li>
+<h1 id="modify-confphp-to-match-your-site">Modify <em>conf.php</em> to match your site</h1>
+</li>
+</ol>
+<p>{tip}vi conf.php{tip}
+{info}Modify every entry under <em>&ldquo;Things in this section must be modified&rdquo;</em>.
+Descriptions and pointers for each value are included within
+conf.php.{info}</p>
+<ol>
+<li>#* *COOKIEDOMAIN* - set this to the domain name your web server is using
+or leave it blank if you are only accessing the web server by its IP
+address</li>
+<li>
+<h1 id="set-the-owner-of-the-ht-incmaintenance-directory-to-the-web-server">Set the owner of the <em>.ht-inc/maintenance</em> directory to the web server</h1>
+</li>
+</ol>
+<p>user (normally &lsquo;apache&rsquo;):
+{tip}chown apache maintenance{tip}</p>
+<ol>
+<li>
+<h1 id="optionally-you-can-install-phpseclib-and-apply-a-patchvclpatch-to-remove-mcrypt-dependencyhtml">Optionally, you can <a href="vcl:patch-to-remove-mcrypt-dependency.html">install phpseclib and apply a patch</a></h1>
+</li>
+</ol>
+<p>to remove the requirement of having mcrypt installed</p>
+<ol>
+<li>
+<h1 id="open-the-testsetupphp-page-in-a-web-browser">Open the <em>testsetup.php</em> page in a web browser:</h1>
+</li>
+<li>#* If you set up your site to be <a href="https://my.server.org/vcl/">https://my.server.org/vcl/</a>
+open [https://my.server.org/vcl/testsetup.php]</li>
+<li>#* Debug any issues reported by testsetup.php</li>
+<li>h2. Log In to the VCL Website</li>
+<li>
+<h1 id="open-the-indexphp-page-in-your-browser-httpsmyserverorgvclindexphphttpsmyserverorgvclindexphp">Open the index.php page in your browser (<a href="https://my.server.org/vcl/index.php">https://my.server.org/vcl/index.php</a></h1>
+</li>
+</ol>
+<p>)</p>
+<ol>
+<li>#* Select *Local Account*</li>
+<li>#* Username: *admin*</li>
+<li>#* Password: *adminVc1passw0rd*</li>
+<li>
+<h1 id="set-the-admin-user-password-optional">Set the admin user password (optional):</h1>
+</li>
+<li>
+<h2 id="click-user-preferences">Click <em>User Preferences</em></h2>
+</li>
+<li>
+<h2 id="enter-the-current-password-adminvc1passw0rd">Enter the current password: <em>adminVc1passw0rd</em></h2>
+</li>
+<li>
+<h2 id="enter-a-new-password">Enter a new password</h2>
+</li>
+<li>
+<h2 id="click-submit-changes">Click <em>Submit Changes</em></h2>
+</li>
+<li>h2. Add a Management Node to the Database</li>
+<li>
+<h1 id="click-the-management-nodes-link">Click the <em>Management Nodes</em> link</h1>
+</li>
+<li>
+<h2 id="click-add">Click <em>Add</em></h2>
+</li>
+<li>
+<h2 id="fill-in-thesenbsprequired-fields">Fill in these required fields:</h2>
+</li>
+<li>##* *Hostname -* The name of the management node server. This value
+doesn&rsquo;t necessarily need to be a name registered in DNS nor does it
+need to be the value displayed by the Linux _hostname_ command. For
+example, if you are installing all of the VCL components on the same
+machine you can set this value to _localhost_.
+{info}Take note of the value you enter for Hostname. In a later step performed during the <a href="vcl:vcl-2.2.1-management-node-installation.html">management node installation</a>
+, the value enter for Hostname must match the value you enter for FQDN
+in the /etc/vcl/vcld.conf file on the management node.{info}</li>
+<li>##* *IP address* - the public IP address of the management node</li>
+<li>##* *SysAdmin Email Address* - error emails will be sent to this address</li>
+<li>##* *Install Path* - this is parent directory under which image files
+will be stored - only required if doing bare metal installs or using VMWare
+with local disks</li>
+<li>##* *End Node SSH Identity Key Files* - enter /etc/vcl/vcl.key unless you
+know you are using a different SSH identity key file</li>
+<li>
+<h2 id="optionally-fill-in-these-fields">Optionally, fill in these fields:</h2>
+</li>
+<li>##* *Address for Shadow Emails* - End users are sent various emails about
+the status of their reservations. If this field is configured, copies of
+all of those emails will be sent to this address.</li>
+<li>##* *Public NIC configuration method* - this defaults to Dynamic DHCP -
+if DHCP is not available for the public interface of your nodes, you can
+set this to Static. Then, the IP configuration on the nodes will be
+manually set using Public Netmask, Public Gateway, Public DNS Server, and
+the IP address set for the computer under Manage Computers</li>
+<li>
+<h1 id="click-confirm-management-node">Click <em>Confirm Management Node</em></h1>
+</li>
+<li>
+<h1 id="click-submit">Click <em>Submit</em></h1>
+</li>
+<li>
+<h1 id="click-the-management-nodes-link-1">Click the <em>Management Nodes</em> link</h1>
+</li>
+<li>
+<h2 id="select-edit-management-node-grouping">Select <em>Edit Management Node Grouping</em></h2>
+</li>
+<li>
+<h2 id="click-submit-1">Click <em>Submit</em></h2>
+</li>
+<li>
+<h2 id="select-the-checkbox-for-your-management-node">Select the checkbox for your management node</h2>
+</li>
+<li>
+<h2 id="click-submit-changes-1">Click <em>Submit Changes</em></h2>
+</li>
+</ol>
+<p><a href="vcl-2.2.1---further-steps-if-using-vmware.html">Further steps if using only VMWare</a></p>
+<p><a href="vcl-2.2.1---further-steps-if-using-xcat.html">Further steps if using xCAT</a></p>
+<p><a name="VCL2.2.1WebCodeInstallation-*Adding&nbsp;LocalVCLAccounts*"></a></p>
+<h2 id="addingnbsplocal-vcl-accounts"><em>Adding Local VCL Accounts</em></h2>
+<p>Local VCL accounts are contained within the VCL database.  The
+<em>admin</em> account is a local VCL account.  Additional local
+accounts can be added via the backend management node code. After you have
+finished the backend management node installation, run:
+{tip}
+vcld -setup
+{tip}</p>
+<ol>
+<li>Select <em>VCL Base Module</em></li>
+<li>Select <em>Add Local VCL User Account</em></li>
+<li>Enter the requested information</li>
+</ol>
+<p><a name="VCL2.2.1WebCodeInstallation-AddingLDAPAuthentication"></a></p>
+<h2 id="adding-ldap-authentication">Adding LDAP Authentication</h2>
+<p>Follow the instruction on the <a href="vcl-2.2.1---adding-ldap-authentication.html">Adding LDAP Authentication</a>
+page.</p>
+<hr>
+<p>Previous Step: <a href="vcl:vcl-2.2.1-database-installation.html">VCL:VCL 2.2.1 Database Installation</a>
+Next Step: <a href="vcl:vcl-2.2.1-management-node-installation.html">VCL:VCL 2.2.1 Management Node Installation</a></p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

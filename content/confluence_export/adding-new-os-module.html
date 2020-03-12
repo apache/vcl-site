@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Adding New OS Module</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Adding New OS Module</h1>
+    
+	<p>This is a short guide on how to set up development environment for a OS
+Module.</p>
+<h1 id="installvcl">Install VCL</h1>
+<ul>
+<li>Follow the install guide linked to from the <a href="/downloads/download.cgi">download</a>
+page.</li>
+</ul>
+<h1 id="settingupanewosmodule">Setting up a new OS Module</h1>
+<ul>
+<li>
+<p>Start by creating a Module/OS/&hellip;pm file.</p>
+<ul>
+<li>See the other OS Module for examples.</li>
+<li>Set the package path in the file<br>
+package VCL::Module::OS::&hellip;;</li>
+</ul>
+</li>
+<li>
+<p>Add an entry to the module table pointing to your new module with the
+package path mentioned above.</p>
+</li>
+<li>
+<p>Add an entry to the OS table pointing to the entry you add to the module
+table.</p>
+</li>
+<li>
+<p>Add entries to the image and imagerevision table for a base new image,
+with image.OSid pointing to the entry you add to the OS table.</p>
+</li>
+<li>
+<p>Enter the computer information for a loaded new machine into VCL and make
+sure that the management node can access this machine via SSH.</p>
+</li>
+<li>
+<p>Insert the code you want to test at the
+beginning of the process() subroutine in new.pm, followed by a call to
+exit:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#a2f;font-weight:bold">sub</span> <span style="color:#00a000">process</span> {
+<span style="color:#a2f;font-weight:bold">my</span> <span style="color:#b8860b">$</span><span style="color:#b8860b">self</span> <span style="color:#666">=</span> <span style="color:#a2f">shift</span>;
+
+<span style="color:#a2f;font-weight:bold">my</span> <span style="color:#b8860b">$</span><span style="color:#b8860b">request_data</span> <span style="color:#666">=</span> <span style="color:#b8860b">$</span><span style="color:#b8860b">self</span><span style="color:#666">-</span><span style="color:#666">&gt;</span><span style="color:#00f;font-weight:bold">data</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>get_request_data();
+<span style="color:#666">...</span>
+<span style="color:#a2f;font-weight:bold">my</span> <span style="color:#b8860b">$</span><span style="color:#b8860b">imagerevision_id</span> <span style="color:#666">=</span> <span style="color:#b8860b">$</span><span style="color:#b8860b">self</span><span style="color:#666">-</span><span style="color:#666">&gt;</span><span style="color:#00f;font-weight:bold">data</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>get_imagerevision_id();
+
+<span style="color:#a2f;font-weight:bold">print</span> <span style="color:#b44">&#34;\n\n---\n\n&#34;</span>;
+
+<span style="color:#a2f;font-weight:bold">my</span> <span style="color:#b8860b">$</span><span style="color:#b8860b">ip</span> <span style="color:#666">=</span> <span style="color:#b8860b">$</span><span style="color:#b8860b">self</span><span style="color:#666">-</span><span style="color:#666">&gt;</span><span style="color:#00f;font-weight:bold">os</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>get_public_ip_address();
+<span style="color:#a2f;font-weight:bold">print</span> <span style="color:#b44">&#34;IP: $ip\n&#34;</span>;
+
+<span style="color:#a2f;font-weight:bold">print</span> <span style="color:#b44">&#34;\n\n---\n\n&#34;</span>;
+<span style="color:#a2f">exit</span>;
+<span style="color:#666">...</span>
+</code></pre></div></li>
+<li>
+<p>To test things over and over again, run a script which inserts entries
+into the request and reservation tables with the request state and
+laststate set to &lsquo;new&rsquo;.  vcld picks up the reservation, configures
+everything as it would for a normal reservation, calls new.pm::process(),
+test code is executed, then the process exits.</p>
+</li>
+<li>
+<p>Once this is set up, it should be pretty efficient to test all of the
+subroutines in OS module.</p>
+</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

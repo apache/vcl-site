@@ -1,0 +1,779 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Management Node Installation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Management Node Installation</h1>
+    
+	<p>{excerpt}This page describes how to install and configure the backend VCL
+management node components including the required Perl modules, VCL daemon
+(vcld), and Windows utility dependencies.{excerpt}</p>
+<p><a name="ManagementNodeInstallation-Assumptions"></a></p>
+<h2 id="assumptions">Assumptions</h2>
+<p>The following instructions assume the VCL <a href="database-configuration.html">database has been installed and configured</a>
+and that the managment node information has been added to the database as
+described on the [web code installation page|Web Code Installation]
+.  This also assumes that the perl-DBD-MySQL-3.x and the mysql client
+(mysql-5.x) packages are installed, for database communications.</p>
+<p><a name="ManagementNodeInstallation-DownloadtheBackendManagementNodeVCLCode"></a></p>
+<h2 id="download-the-backend-management-node-vcl-code">Download the Backend Management Node VCL Code</h2>
+<p>Install the Subversion client if it is not already installed:</p>
+<p><a name="ManagementNodeInstallation-InstallRequiredPackages"></a></p>
+<h2 id="install-required-packages">Install Required Packages</h2>
+<p>The following packages to be installed on the OS before installing the
+required Perl modules.   These packages must be installed if they were
+not installed as part of your base Linux install.   It is easiest to
+use the package management utility for your OS --- yum, rpm, or other.</p>
+<ul>
+<li>expat</li>
+<li>expat-devel</li>
+<li>gcc</li>
+<li>krb5-libs</li>
+<li>krb5-devel</li>
+<li>libxml2</li>
+<li>libxml2-devel</li>
+<li>nmap</li>
+<li>openssl</li>
+<li>openssl-devel</li>
+<li>perl-DBD-MySQL</li>
+<li>xmlsec1-openssl</li>
+</ul>
+<p>To install these packages using yum:</p>
+<p><a name="ManagementNodeInstallation-InstallRequiredPerlModules"></a></p>
+<h2 id="install-required-perl-modules">Install Required Perl Modules</h2>
+<p>The VCL Perl code running on the management node requires additional Perl
+modules in order to run.  These Perl modules are available from <a href="http://cpan.org/">CPAN - The Comprehensive Perl Archive Network</a>
+.  A search engine for CPAN modules is available at [search.cpan.org|http://search.cpan.org/]
+.</p>
+<p><em>{<em>}Note:</em></em> <em>Licensing information for each required Perl module is
+included below.  The content of the &ldquo;License:&rdquo; lines was copied from
+the CPAN page for each module.  The content of the other line was
+copied from the copyright section in the module&rsquo;s source code or from the
+module&rsquo;s readme file.</em></p>
+<ul>
+<li><a href="http://search.cpan.org/dist/Class-Data-Inheritable/">Class-Data-Inheritable</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** Copyright (c) 2000-2005, Damian Conway and Michael G Schwern. All Rights
+Reserved.</li>
+</ul>
+<p>This module is free software. It may be used, redistributed and/or modified
+under the same terms as Perl itself.</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/Compress-Raw-Zlib/">Compress-Raw-Zlib</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)</li>
+</ul>
+<p>This program is free software; you can redistribute it and/or modify it
+under  the same terms as Perl itself.</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/Crypt-SSLeay/">Crypt-SSLeay</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** Copyright (c) 2006-2007 David Landgren.
+Copyright (c) 1999-2003 Joshua Chamas.
+Copyright (c) 1998 Gisle Aas.
+This program is free software; you can redistribute it and/or modify it
+under
+the same terms as Perl itself.</li>
+<li><a href="http://search.cpan.org/dist/DBI/">DBI</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** The DBI module is Copyright (c) 1994-2009 Tim Bunce. Ireland. All rights
+reserved.</li>
+</ul>
+<p>You may distribute under the terms of either the GNU General Public License
+or the Artistic License, as specified in the Perl 5.10.0 README file.</p>
+<ul>
+<li>
+<p><a href="http://search.cpan.org/dist/Devel-StackTrace/">Devel-StackTrace</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** Copyright (c) 2000-2006 David Rolsky. All rights reserved. This program
+is free software; you can redistribute it and/or modify it under the same
+terms as Perl itself.</p>
+</li>
+<li>
+<p><a href="http://search.cpan.org/dist/Exception-Class/">Exception-Class</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** Copyright (c) 2000-2009 David Rolsky. All rights reserved. This program
+is  free software; you can redistribute it and/or modify it under the same
+terms as  Perl itself.</p>
+</li>
+<li>
+<p><a href="http://search.cpan.org/dist/HTML-Parser/">HTML-Parser</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** Copyright 1996-2008 Gisle Aas. All rights reserved.
+Copyright 1999-2000 Michael A. Chase.  All rights reserved.
+This library is free software; you can redistribute it and/or modify it
+under  the same terms as Perl itself.</p>
+</li>
+<li>
+<p><a href="http://search.cpan.org/dist/IO-Compress/">IO-Compress</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)</p>
+</li>
+</ul>
+<p>This program is free software; you can redistribute it and/or modify it
+under  the same terms as Perl itself.</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/libwww-perl/">libwww-perl</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** Copyright 1995-2004 Gisle Aas.</li>
+</ul>
+<p>This library is free software; you can redistribute it and/or modify it
+under  the same terms as Perl itself.</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/MailTools/">MailTools</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** Copyrights 1995-2000 Graham Barr <a href="mailto:gbarr@pobox.com">gbarr@pobox.com</a> and 2001-2007 Mark
+Overmeer <a href="mailto:perl@overmeer.net">perl@overmeer.net</a>.</li>
+</ul>
+<p>This program is free software; you can redistribute it and/or modify it
+under  the same terms as Perl itself.</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/Object-InsideOut/">Object-InsideOut</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** Copyright 2005 - 2009 Jerry D. Hedden. All rights reserved.</li>
+</ul>
+<p>This program is free software; you can redistribute it and/or modify it
+under  the same terms as Perl itself.</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/RPC-XML/">RPC-XML</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** This file and the code within are copyright (c) 2009 by Randy J. Ray.</li>
+</ul>
+<p>Copying and distribution are permitted under the terms of the Artistic  License 2.0 (<a href="http://www.opensource.org/licenses/artistic-license-2.0.php">http://www.opensource.org/licenses/artistic-license-2.0.php</a>
+)  or the GNU LGPL 2.1
+([http://www.opensource.org/licenses/lgpl-2.1.php|http://www.opensource.org/licenses/lgpl-2.1.php]).</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/XML-Parser/">XML-Parser</a>
+** License: Unknown
+** <em>Note: The license type is shown as &ldquo;Unknown&rdquo; on the</em> _<a href="http://search.cpan.org/dist/XML-Parser/">CPAN page</a>
+_ <em>for this module and the</em> <em>[POD
+documentation|http://search.cpan.org/dist/XML-Parser/Parser.pm]</em> <em>conained
+within the source code does not contain a copyright section.  The</em>
+<em>[README|http://cpansearch.perl.org/src/MSERGEANT/XML-Parser-2.36/README]</em>
+_file for this module does, however, contain a heading with the following
+information:_Copyright (c) 1998-2000 Larry Wall and Clark Cooper. All
+rights reserved.
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.</li>
+<li><a href="http://search.cpan.org/dist/YAML/">YAML</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** Copyright (c) 2005, 2006, 2008. Ingy d�t Net.</li>
+</ul>
+<p>Copyright (c) 2001, 2002, 2005. Brian Ingerson.</p>
+<p>Some parts copyright (c) 2009 Adam Kennedy</p>
+<p>This program is free software; you can redistribute it and/or modify it
+under  the same terms as Perl itself.</p>
+<p>The following Perl modules are only required if VCL is configured to send
+instant messages via Jabber.  Jabber support can be enabled or
+disabled by configuring the &ldquo;jabber=&rdquo; line in the vcld.conf file.  The
+following modules do not need to be installed if Jabber support is
+disabled.</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/Net-Jabber/">Net-Jabber</a>
+** License: Unknown
+** <em>Note: The license type is shown as &ldquo;Unknown&rdquo; on the</em> _<a href="http://search.cpan.org/dist/Net-Jabber/">CPAN page</a>
+_ <em>for this module.  However, the</em>
+<em>[http://search.cpan.org/dist/XML-Parser/Parser.pm]__[POD
+documentation|http://search.cpan.org/~reatmon/Net-Jabber-2.0/lib/Net/Jabber.pm]</em>
+_conained within the source code contains a copyright section with the
+following text:_This module is free software, you can redistribute it
+and/or modify it under	the same terms as Perl itself.</li>
+<li><a href="http://search.cpan.org/dist/Net-XMPP/">Net-XMPP</a>
+** License: <a href="http://www.opensource.org/licenses/lgpl-license.php">LGPL</a>
+** This module is free software, you can redistribute it and/or modify it
+under  the LGPL.</li>
+<li><a href="http://search.cpan.org/dist/Module-Build/">Module-Build</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** Copyright (c) 2001-2006 Ken Williams. All rights reserved.</li>
+</ul>
+<p>This library is free software; you can redistribute it and/or modify it
+under  the same terms as Perl itself.</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/XML-Stream/">XML-Stream</a>
+** License: Unknown
+** <em>Note: The license type is shown as &ldquo;Unknown&rdquo; on the</em> _<a href="http://search.cpan.org/dist/XML-Stream/">CPAN page</a>
+_ <em>for this module.  However, the</em> <em>[POD
+documentation|http://search.cpan.org/dist/XML-Stream/lib/XML/Stream.pm#COPYRIGHT]</em>
+_conained within the source code contains a copyright section with the
+following text:_This module is free software; you can redistribute it
+and/or modify it under	the same terms as Perl itself.</li>
+<li><a href="http://search.cpan.org/dist/Authen-SASL/">Authen-SASL</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** Copyright (c) 1998-2005 Graham Barr. All rights reserved. This program
+is  free software; you can redistribute it and/or modify it under the same
+terms as  Perl itself.</li>
+<li><a href="http://search.cpan.org/dist/Digest-SHA1/">Digest::SHA1</a>
+** License: Perl (<a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+)
+** This library is free software; you can redistribute it and/or modify it
+under  the same terms as Perl itself.
+Copyright 1999-2004 Gisle Aas.
+Copyright 1997 Uwe Hollerbach.</li>
+</ul>
+<p><a name="ManagementNodeInstallation-Runinstall_perl_libs.plScript"></a></p>
+<h4 id="run-install_perl_libspl-script">Run install_perl_libs.pl Script</h4>
+<p>A script is provided in the managementnode/bin directory called
+<em>install_perl_libs.pl</em> which will attempt to download and install the
+required perl libraries.  Run the script:</p>
+<p>Run the script a 2nd time to check if all of the modules the script is
+configured to install were successfully installed. Output similar to the
+following should be displayed for each module:</p>
+<pre><code>URL: http://search.cpan.org/CPAN/authors/id/T/TI/TIMB/DBI-1.609.tar.gz
+Module filename: DBI-1.609.tar.gz
+Module name: DBI-1.609
+Module package: DBI
+Checking if DBI is installed
+Module is already installed: DBI
+==============================================================================
+</code></pre>
+<p><a name="ManagementNodeInstallation-HowtoTestifRequiredPerlModulesareInstalled"></a></p>
+<h4 id="how-to-test-if-required-perl-modules-are-installed">How to Test if Required Perl Modules are Installed</h4>
+<p>Run the following command to execute the utils.pm file:</p>
+<pre><code>perl /usr/local/vcl/lib/VCL/utils.pm
+</code></pre>
+<p>Executing utils.pm does not actually do anything but this will tell you if
+VCL will be able to run.  If any Perl modules are missing you will see
+&ldquo;Can&rsquo;t locate&rdquo; lines:</p>
+<pre><code>pre-execution: config file being used: /etc/vcl/vcld.conf
+Uncaught exception from user code:
+������� VCLD : /etc/vcl/vcld.conf does not exist, exiting --� No such file
+</code></pre>
+<p>or directory
+BEGIN failed&ndash;compilation aborted at /usr/local/vcl/lib/VCL/utils.pm line
+616.
+�at /usr/local/vcl/lib/VCL/utils.pm line 616</p>
+<p><a name="ManagementNodeInstallation-WhattodoifaModuleisMissing"></a></p>
+<h4 id="what-to-do-if-a-module-is-missing">What to do if a Module is Missing</h4>
+<ol>
+<li>Determine the name of the missing module by looking at the &ldquo;Can&rsquo;t locate&rdquo;
+line</li>
+<li>Search for the missing module on search.cpan.org and install it manually</li>
+</ol>
+<p><a name="ManagementNodeInstallation-HowtoInstallaPerl&nbsp;ModuleManually"></a></p>
+<h4 id="how-to-install-a-perlnbspmodule-manually">How to Install a Perl Module Manually</h4>
+<ol>
+<li>Change directories to /tmp:
+<em>cd /tmp</em> </li>
+<li>Download the module&rsquo;s source package using wget:
+<em>wget</em> *<a href="http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz">http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz</a></li>
+</ol>
+<ul>
+<li></li>
+</ul>
+<ol>
+<li>Unpack the source package using tar:
+<em>tar xzf libwww-perl-5.827.tar.gz</em></li>
+<li>The previous command should have created a libwww-perl-5.827 directory,
+change to this directory:
+<em>cd libwww-perl-5.827</em></li>
+<li>Create a makefile with the following command:
+<em>perl Makefile.PL</em></li>
+<li>Compile the module:
+<em>make</em></li>
+<li>Test the module:
+<em>make test</em></li>
+<li>Install the module:
+<em>make install</em>
+The last line you should see should be:</li>
+</ol>
+<p><a name="ManagementNodeInstallation-HowtoInstallaPerlModuleUsingCPAN"></a></p>
+<h4 id="how-to-install-a-perl-module-using-cpan">How to Install a Perl Module Using CPAN</h4>
+<ol>
+<li>
+<p>Enter the CPAN shell:
+<em>perl -MCPAN -e shell</em></p>
+</li>
+<li>
+<p>You will need to configure CPAN if it&rsquo;s the first time it is being run.
+Enter <em>No</em> at the first prompt to auto-configure the CPAN module.</p>
+</li>
+<li>
+<p>Search for a module using the &ldquo;m&rdquo; command:
+<em>m /Zlib/</em>
+You should find the module you were looking for on a line like this:</p>
+</li>
+<li>
+<p>Install the module:
+<em>install Compress::Zlib</em></p>
+</li>
+<li>
+<p>Answer <em>yes</em> if asked to install any prerequisite modules
+The last line you should see should be:</p>
+</li>
+</ol>
+<p><a name="ManagementNodeInstallation-DownloadRequiredUtilities&Drivers"></a></p>
+<h2 id="download-required-utilities--drivers">Download Required Utilities &amp; Drivers</h2>
+<p><a name="ManagementNodeInstallation-WindowsXPandServer2003DeploymentTools(Sysprep)"></a></p>
+<h4 id="windows-xp-and-server-2003-deployment-tools-sysprep">Windows XP and Server 2003 Deployment Tools (Sysprep)</h4>
+<p>The Windows XP and Server 2003 Deployment Tools are available for free from
+Microsoft and are required in order for the capture of Windows XP and
+Server 2003 VCL images to work.  The Sysprep utility is included in
+the Deployment Tools.  You do not need to download Sysprep for Windows
+Vista or Server 2008 because it is included in the operating system.</p>
+<p>Links to the downloads are below.  You should be able to use the XP
+SP2 or SP3 version assuming the image you are capturing contains Windows XP
+Service Pack 3.  We have seen problems with drivers not being
+installed correctly using the SP3 version of the deployment tools so the
+SP2 version is recommended.</p>
+<p>Download: <a href="http://www.microsoft.com/downloads/details.aspx?familyid=3E90DC91-AC56-4665-949B-BEDA3080E0F6&amp;displaylang=en">Windows XP Service Pack 2 Deployment Tools</a>
+Download: <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=673a1019-8e3e-4be0-ac31-70dd21b5afa7&amp;displaylang=en">Windows XP Service Pack 3 Deployment Tools</a>
+Download: <a href="http://www.microsoft.com/downloads/details.aspx?familyid=93F20BB1-97AA-4356-8B43-9584B7E72556&amp;displaylang=en">System Preparation tool for Windows Server 2003 Service Pack 2 Deployment</a></p>
+<p>The Sysprep files need to be extracted from the file you download which is
+in Microsoft&rsquo;s .cab format.  It is easiest to extract the files on a
+Windows computer.  Windows Explorer is able to open the .cab file and
+then the files contained within can be copied elsewhere.  There are
+also some Linux utilities which claim to be able to extract .cab files.</p>
+<p>Copy the extracted Windows XP Sysprep files to the following directory on
+the management node after they have been extracted:
+{panel}
+/usr/local/vcl/tools/Windows_XP/Utilities/Sysprep
+{panel}Copy the extracted Windows Server 2003 Sysprep files to the
+following directory on the management node after they have been extracted:
+{panel}
+/usr/local/vcl/tools/Windows_Server_2003/Utilities/Sysprep
+{panel}The Sysprep directories should already exist on the management node
+because they exist the Subversion repository.  There should already be
+a sysprep.inf file in each Sysprep directory.  This is the base
+Sysprep template file for VCL included in the Subversion repository.</p>
+<p>The Sysprep directories should contain the following files at a minimum:
+{panel}
+-rw-rw-r-- 1 root root 25600 Aug 18 17:32 setupcl.exe
+-rw-rw-r-- 1 root root 88576 Aug 18 17:32 sysprep.exe
+-rw-rw-r-- 1 root root  2574 Aug 18 17:32 sysprep.inf
+{panel}</p>
+<p><a name="ManagementNodeInstallation-Configuresysprep.inf"></a></p>
+<h4 id="configure-sysprepinf">Configure sysprep.inf</h4>
+<p>Your organizations&rsquo;s Windows XP product key needs to be entered into the
+Windows XP sysprep.inf file.  Find the <em>ProductKey</em> line and replace
+<em>WIN_XP_PRO_KEY</em> with <em>your organization&rsquo;s Windows XP product key</em> in  the
+following file:
+{panel}
+/usr/local/vcl/tools/Windows_XP/Utilities/Sysprep/sysprep.inf
+{panel}Your organizations&rsquo;s Windows Server 2003 product key needs to be
+entered into the Windows Server 2003 sysprep.inf file.  Find the
+<em>ProductKey</em> line and replace <em>WIN_2003_ENT_KEY</em> with <em>your organization&rsquo;s
+Windows Server 2003 product key</em> in  the following file:
+{panel}
+/usr/local/vcl/tools/Windows_Server_2003/Utilities/Sysprep/sysprep.inf
+{panel}</p>
+<p><a name="ManagementNodeInstallation-DownloadDrivers"></a></p>
+<h4 id="download-drivers">Download Drivers</h4>
+<p>Drivers which aren&rsquo;t included with Windows must be downloaded and saved to
+the management node. The drivers required will vary greatly depending on
+the hardware. The only way to know what additional drivers you need is to
+install Windows on a computer and check for missing drivers.</p>
+<p>The drivers must be copied to the appropriate directory on the management
+node. The VCL image capture process copies the driver directories to the
+computer before an image is captured. Drivers from multiple directories
+will be copied based on the version of Windows being captured. There are
+driver directories under <em>tools</em> for each version of Windows (Windows XP,
+Windows Vista) and for each version group of Windows (version 5, 6). This
+allows drivers which are common to multiple versions of Windows to be
+shared in the management node tools directory structure.</p>
+<p>For example, if a chipset driver works for all versions of Windows, it can
+be saved in:
+<em>tools/Windows/Drivers/Chipset</em></p>
+<p>If Windows XP and Windows Server 2003 both use the same network driver, it
+can be saved in:
+<em>tools/Windows_Version_5/Drivers/Network</em></p>
+<p>If a storage driver only works for Windows XP, it should be saved in:
+<em>tools/Windows_XP/Drivers/Storage</em></p>
+<p>During the image capture process, each Windows version directory is copied
+to the computer under C:\Cygwin\home\root\VCL. The order in which the
+Windows version directories are copied goes from most general to most
+specific.  In the example above, the order would be:</p>
+<ol>
+<li><em>tools/Windows/Drivers/Chipset</em></li>
+<li><em>tools/Windows_Version_5/Drivers/Network</em></li>
+<li><em>tools/Windows_XP/Drivers/Storage</em></li>
+</ol>
+<p>The resulting directory structure on the Windows computer will be:</p>
+<ul>
+<li><em>C:\Cygwin\home\root\VCL\Drivers</em>
+** <em>\Chipset</em> - driver works for all versions of windows
+** <em>\Network</em> - driver works for Windows XP and Server 2003
+** <em>\Storage</em> - driver only works for Windows XP</li>
+</ul>
+<p>The following list shows which driver files should be saved in the driver
+directories:</p>
+<ul>
+<li><em>tools/Windows/Drivers</em> - drivers common to all versions of Windows
+** <em>tools/Windows_Version_5/Drivers</em> - drivers used by Windows XP and
+Server 2003
+*** <em>tools/Windows_Version_XP/Drivers</em> - drivers only used by Windows XP
+*** <em>tools/Windows_Version_Server_2003/Drivers</em> - drivers only used by
+Windows Server 2003
+** <em>tools/Windows_Version_6/Drivers</em> - drivers used by Windows Vista and
+Server 2008
+*** <em>tools/Windows_Vista/Drivers</em> - drivers only used by Windows Vista
+*** <em>tools/Windows_Server_2008/Drivers</em> - drivers only used by Windows
+Server 2008</li>
+</ul>
+<p>The directory structure under each Drivers directory does not matter. It is
+helpful to organize each directory by driver class, and each directory
+should be organized using the same theme.  For example:</p>
+<ul>
+<li><em>tools/Windows_Version_XP/Drivers</em>
+** <em>Chipset</em>
+** <em>Network</em>
+** <em>Storage</em>
+** <em>Video</em></li>
+</ul>
+<p><a name="ManagementNodeInstallation-Add3rdPartyMassStorageDriverIDstosysprep.inf"></a></p>
+<h4 id="add-3rd-party-mass-storage-driver-ids-to-sysprepinf">Add 3rd Party Mass Storage Driver IDs to sysprep.inf</h4>
+<p>This step is complicated.  3rd party mass storage hardware IDs and
+driver .inf file paths must be added to the SysprepMassStorage section in
+sysprep.inf for Windows XP and Windows Server 2003 in order for the saved
+image to boot properly on different hardware.</p>
+<ol>
+<li>Identify the mass storage drivers required for your hardware which aren&rsquo;t
+native to Windows</li>
+<li>Download drivers for your hardware</li>
+<li>Each driver will have 1 or more .inf files. Examine the .inf files. Find
+all lines in this format containing a PnP device ID:
+<em>%DevDescD1% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F041028</em>
+The PnP device ID in the example above is:
+<em>PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F041028</em></li>
+<li>Each PnP device ID should be added to the sysprep.inf file under the [SysprepMassStorage](sysprepmassstorage.html)
+section using the following format:
+ID = &ldquo;C:\Sysprep\Drivers&lt;driver directory&gt;&lt;.inf file path&gt;&rdquo;</li>
+</ol>
+<p>Example: LSI SAS drivers commonly need to be downloaded and the hardware
+IDs need to be added to the sysprep.inf files in order for computers with
+LSI SAS controllers to boot.</p>
+<ol>
+<li>Download the LSI SAS driver from <a href="http://www-947.ibm.com/systems/support/supportsite.wss/docdisplay?lndocid=MIGR-5073138&amp;brandind=5000020">ibm.com</a>
+: ibm_dd_mptsas_1.30.02.00_windows_32-64.exe</li>
+<li>Extract the ZIP file (it&rsquo;s a self-extracting zip; you can unzip it with
+whatever unzip tool you prefer)</li>
+<li>Copy the files from the 32 bit XP directory (image/xp-32) to the
+appropriate directory on the management node:
+<em>tools/Windows/Drivers/Storage/LSI-SAS</em></li>
+<li>Locate the .inf file included with the driver is:
+<em>tools/Windows/Drivers/Storage/LSI-SAS/</em>{<em>}symmpi.inf</em></li>
+<li>Locate the PnP ID lines in the .inf file:
+{PANEL}
+[LSI](lsi.html)
+%DevDesc2% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0622
+%DevDesc3% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0624
+%DevDesc4% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0626
+%DevDesc5% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0628
+%DevDesc6% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0030
+%DevDesc7% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0032
+%DevDesc8% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0050
+%DevDesc9% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0054
+%DevDesc10% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0058
+%DevDesc11% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0056
+%DevDesc12% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0640
+%DevDesc13% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0646
+%DevDesc14% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0062
+[DELL](dell.html)
+%DevDescD1% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F041028
+%DevDescD2% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F051028
+%DevDescD3% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F061028
+%DevDescD4% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F071028
+%DevDescD5% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F081028
+%DevDescD6% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F091028
+%DevDescD7% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0058&amp;SUBSYS_1F0E1028
+%DevDescD8% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0058&amp;SUBSYS_1F0F1028
+%DevDescD9% = SYMMPI_Inst, PCI\VEN_1000&amp;DEV_0058&amp;SUBSYS_1F101028
+{PANEL}</li>
+<li>Based on the contents of the .inf file, the following is added to the Windows XP and Windows Server 2003 sysprep.inf files under [SysprepMassStorage](sysprepmassstorage.html)
+:
+{PANEL}
+PCI\VEN_1000&amp;DEV_0622 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0624 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0626 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0628 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0030 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0032 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0050 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0054 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0058 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0056 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0640 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0646 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0062 = &ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F041028 =
+&ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F051028 =
+&ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F061028 =
+&ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F071028 =
+&ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F081028 =
+&ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0054&amp;SUBSYS_1F091028 =
+&ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0058&amp;SUBSYS_1F0E1028 =
+&ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0058&amp;SUBSYS_1F0F1028 =
+&ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+PCI\VEN_1000&amp;DEV_0058&amp;SUBSYS_1F101028 =
+&ldquo;C:\Sysprep\Drivers\Storage\LSI-SAS\symmpi.inf&rdquo;
+{PANEL}If you have hardware using an LSI SAS controller (IBM HS21 blades),
+the section above can be copied and pasted into your sysprep.inf files:
+{panel}
+/usr/local/vcl/tools/Windows_XP/Utilities/Sysprep/sysprep.inf
+{panel}
+{panel}
+/usr/local/vcl/tools/Windows_Server_2003/Utilities/Sysprep/sysprep.inf
+{panel}</li>
+</ol>
+<p><a name="ManagementNodeInstallation-WSName-WorkstationNameChangingUtility"></a></p>
+<h4 id="wsname---workstation-name-changing-utility">WSName - Workstation Name Changing Utility</h4>
+<p>{color:#ff0000}{<em>}NOTICE:</em>{color} The WSName.exe utility is no
+longer	available.  The set_computer_name.vbs script which calls
+WSName.exe will be  rewritten for the 2.2 release of VCL. In the
+meantime, this script is being left  intact in case you have a previously
+released version of WSName.exe or are able  to obtain it from another
+source.</p>
+<p>The wsname.exe utility is used by VCL to name Windows computers.  It
+does a	reverse DNS lookup so that the computer name is set to the name
+registered for	its public IP address.  The utility is called by
+set_computer_name.vbs when a  Windows image is loaded.  The utility is
+not vital for the load process to work.   However, the computer will
+receive a random name if the script is missing or  fails to run.</p>
+<p>If you do have a previously released version of WSName.exe or are able to
+locate it from another souce, save WSName.exe in the following location on
+the  management node:
+{panel}
+/usr/local/vcl/tools/Windows/Utilities/WSName/wsname.exe
+{panel}</p>
+<p><a name="ManagementNodeInstallation-NewSID-WindowsSIDChangingUtility"></a></p>
+<h4 id="newsid---windows-sid-changing-utility">NewSID - Windows SID Changing Utility</h4>
+<p>NewSID.exe is used to change the SID of a Windows computer if Sysprep is
+not used.  Download the NewSID.exe utility:</p>
+<p>Download: <a href="http://technet.microsoft.com/en-us/sysinternals/bb897418.aspx">NewSID.exe</a></p>
+<p>Save the NewSID.exe utility in the following location on the management
+node:
+{panel}
+/usr/local/vcl/tools/Windows/Utilities/NewSID/newsid.exe
+{panel}</p>
+<p><a name="ManagementNodeInstallation-SPDrvScn-WindowsDriverScanningUtility"></a></p>
+<h4 id="spdrvscn---windows-driver-scanning-utility">SPDrvScn - Windows Driver Scanning Utility</h4>
+<p>SPDrvScn.exe is used before an image is captured to enter the paths of
+drivers to the Windows registry so that they are loaded when Sysprep
+attempts to install devices.  Download the SPDrvScn.exe utility:</p>
+<p>Download: <a href="http://vernalex.com/tools/spdrvscn/">SPDrvScn.exe</a></p>
+<p>Save the SPDrvScn.exe utility in the following location on the management
+node:
+{panel}
+/usr/local/vcl/tools/Windows/Utilities/SPDrvScn/spdrvscn.exe
+{panel}</p>
+<p><a name="ManagementNodeInstallation-ConfiguretheSSHClient"></a></p>
+<h2 id="configure-the-ssh-client">Configure the SSH Client</h2>
+<p>To insure that the management node can SSH into your virtual machines
+without problems, you will need to edit the SSH client config for the root
+user:</p>
+<p>Add the following lines to the top of the configuration file.</p>
+<pre><code>Host &lt;vmhost&gt; &lt;vmhost ip&gt;
+   UserKnownHostsFile /dev/null
+   StrictHostKeyChecking no
+</code></pre>
+<p>Where:</p>
+<ul>
+<li>
+<p><vmhost> - Is a wildcard reference to the hostnames for your virtual
+machines.
+** For example, if your VM hostnames look like: vmhost1, vmhost2,
+vmhost3&hellip;. then replace <vmhost> with &ldquo;vmhost*&rdquo;</p>
+</li>
+<li>
+<p><vmhost ip> - Is a wildcard IP reference to the IPs used by your virtual
+machines.
+** For example, if your VMs all have IP addresses starting with 10.0.0,
+then replace <vmhost ip> with &ldquo;10.0.0.*&rdquo;</p>
+</li>
+</ul>
+<p>This will insure that new VM hosts will not hang on the known hosts prompts
+when the management node attempts to connect to them for the first time.</p>
+<p><a name="ManagementNodeInstallation-Configurevcld.conf"></a></p>
+<h2 id="configure-vcldconf">Configure vcld.conf</h2>
+<ol>
+<li>Create the /etc/vcl directory:
+<em>mkdir /etc/vcl</em> </li>
+<li>Copy the generic vcld.conf file to /etc/vcl:
+<em>cp /usr/local/vcl/etc/vcl/vcld.conf /etc/vcl</em></li>
+<li>Edit the /etc/vcl/vcld.conf file:
+<em>vi /etc/vcl/vcld.conf</em>
+The following lines must be configured in order to start the VCL daemon
+(vcld) and allow it to check in to the database:</li>
+<li>
+<ul>
+<li>FQDN - the fully qualified name of the management node, this should
+match the name that was configured for the management node in the database</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>server - the IP address or FQDN of the database server</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>LockerWrtUser - database user account with write privileges</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>wrtPass - database user password</li>
+</ul>
+</li>
+<li>Save the vcld.conf file</li>
+</ol>
+<p><a name="ManagementNodeInstallation-InstalltheVCLDaemon(vcld)&nbsp;Service"></a></p>
+<h2 id="install-the-vcl-daemon-vcldnbspservice">Install the VCL Daemon (vcld) Service</h2>
+<ol>
+<li>Copy the vcld service script to /etc/init.d and name it vcld:
+<em>cp /usr/local/vcl/bin/S99vcld.linux /etc/init.d/vcld</em></li>
+<li>Add the vcld service using chkconfig:
+<em>/sbin/chkconfig --add vcld</em></li>
+<li>Configure the vcld service to automatically run at runtime levels 3-5:
+<em>/sbin/chkconfig --level 345 vcld on</em></li>
+</ol>
+<p><a name="ManagementNodeInstallation-StartandCheck&nbsp;thevcldService"></a></p>
+<h2 id="start-and-checknbspthe-vcld-service">Start and Check the vcld Service</h2>
+<ol>
+<li>
+<p>Start the vcld service:
+<em>/sbin/service vcld start</em>
+You should see output similar to the following:</p>
+<p>pre-execution: config file being used: /etc/vcl/vcld.conf
+FQDN is not listed
+pre-execution: process name is set to: vcld
+pre-execution: verbose mode is set to: 1
+pre-execution: testing mode is set to: 0
+pre-execution: log file being used: /var/log/vcld.log
+pre-execution: PID file being used: /var/run/vcld.pid
+Created process 23696 renamed to vcld &hellip;
+���������������������������������������������������������� [� OK� ]</p>
+</li>
+</ol>
+<p><em>/etc/init.d/vcld start</em></p>
+<ol>
+<li>Check the vcld service by monitoring the vcld.log file:
+<em>tail -f /var/log/vcld.log</em>
+You should see the following being added to the log file every few seconds
+if the management node is checking in with the database:</li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,692 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Configuring a Standalone VCL Environment using VMware Server 2.0</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Configuring a Standalone VCL Environment using VMware Server 2.0</h1>
+    
+	<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-{color:#ff0000}DISCLAIMER\!{color}"></a></p>
+<h2 id="colorff0000disclaimercolor">{color:#ff0000}DISCLAIMER!{color}</h2>
+<p>This document provides instuctions for configuring a standalone VCL
+environment running on a single computer which is able to provision VCL
+reservations using VMware. It is only provided to help you understand how
+the various components of VCL operate. This document <em>DOES NOT</em> describe
+how to configure a production VCL environment. The environment described in
+this document can however be used to learn, test, and help develop VCL.</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-GatherRequiredFiles&Information"></a></p>
+<h2 id="gather-required-files--information">Gather Required Files &amp; Information</h2>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-Requirements"></a></p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li><em>VMware Server 2.x RPM Installer</em> - These instructions assume the VMware
+Server RPM has been downloaded to the following location on the management
+node:
+/root/VMware-server-2.0.2-203138.x86_64.rpm</li>
+<li><em>VMware Server 2.x serial number</em> - A serial number can be obtained when
+you download VMware Server 2.0 from vmware.com. You will need to
+register.</li>
+</ul>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-Assumptions"></a></p>
+<h3 id="assumptions">Assumptions</h3>
+<ul>
+<li>These instructions assume you are logged in to the management node as
+<em>root</em></li>
+<li>These instructions assume you are using a <em>bash</em> shell.</li>
+</ul>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-Networking"></a></p>
+<h3 id="networking">Networking</h3>
+<p>The computer used to host the standalone VCL
+environment described in these instructions only needs a single
+network interface. These instructions will also work if it has
+multiple interfaces. The computer used to create these instructions
+had the following interfaces:</p>
+<ul>
+<li><em>eth0</em> - connected to the private VCL network (not used or referenced in
+these instructions)</li>
+<li><em>eth1</em> - connected to the public network</li>
+</ul>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-VMwareServer2.0Configuration"></a></p>
+<h2 id="vmware-server-20-configuration">VMware Server 2.0 Configuration</h2>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-RemoveExistingVirtualizationComponents"></a></p>
+<h4 id="remove-existing-virtualization-components">Remove Existing Virtualization Components</h4>
+<p>{tip}
+yum groupremove &ldquo;Virtualization&rdquo; -y
+{tip}</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-MakeSureTheHostComputerIsNotRunningAXenKernel"></a></p>
+<h4 id="make-sure-the-host-computer-is-not-running-a-xen-kernel">Make Sure The Host Computer Is Not Running A Xen Kernel</h4>
+<p>VMWare Server cannot be installed on a computer running a Xen kernel. To
+determine if a Xen kernel is being used:
+{tip}
+uname -a
+{tip}</p>
+<p>The following output indicates a Xen kernel is being used:
+{panel}
+Linux blade1g6-4 2.6.18-92.el5{color:#cc0000}{<em>}xen{</em>}{color} #1 SMP Tue
+Jun 10 19:20:18 EDT 2008 x86_64 x86_64 x86_64 GNU/Linux
+{panel}
+If &ldquo;xen&rdquo; appears in the output of the previous command, replace the Xen
+kernel:
+{tip}
+yum update ecryptfs-utils -y
+yum install kernel kernel-devel -y
+yum remove xen kernel-xen -y
+{tip}</p>
+<p>Check the grub.conf file to make sure it is not configured to boot using
+the Xen Kernel
+{tip}
+less /boot/grub/grub.conf
+{tip}</p>
+<p>The grub.conf file should {color:#cc0000}{<em>}NOT{</em>}{color} look like this:
+{panel}
+title CentOS (2.6.18-92.el5{color:#cc0000}{<em>}xen{</em>}{color})
+module /vmlinuz-2.6.18-92.el5{color:#cc0000}{<em>}xen{</em>}{color} ro
+root=LABEL=/ pci=nommconf
+{panel}</p>
+<p>After removing the Xen kernel, reboot the computer:
+{tip}
+reboot
+{tip}</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-DownloadVMwareServer2.0"></a></p>
+<h4 id="download-vmware-server-20">Download VMware Server 2.0</h4>
+<p>Download the latest VMware Server 2.0 RPM from <a href="http://www.vmware.com">http://www.vmware.com</a>
+{info}
+These instructions assume you saved the RPM into <em>/root</em>
+{info}</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-InstallVMwareServer2.0"></a></p>
+<h4 id="install-vmware-server-20">Install VMware Server 2.0</h4>
+<p>{tip}
+rpm -ivh /root/VMware-server-2.0.2-203138.x86_64.rpm
+{tip}Configure VMware Server:
+{tip}
+vmware-config.pl
+{tip}Answer the questions asked by <em>vmware-config.pl</em> as follows:</p>
+<ul>
+<li>Do you accept? (yes/no) <em>yes</em></li>
+<li>Do you want networking for your virtual machines? (yes/no/help) <em>yes</em>
+** Configuring a bridged network for vmnet0. Please specify a name for this
+network. <em>Bridged</em>
+** Your computer has multiple ethernet network interfaces available: eth0,
+eth1. Which one do you want to bridge to vmnet0?
+{color:#ff0000}{<em>}eth1{</em>}{color} {color:#000000}<em>(this should be set to the
+public interface)</em>{color}
+The following bridged networks have been defined:
+. vmnet0 is bridged to eth1
+** Do you wish to configure another bridged network? (yes/no) <em>no</em>
+** Do you want to be able to use NAT networking in your virtual machines?
+(yes/no) <em>no</em>
+** Do you want to be able to use host-only networking in your virtual
+machines? {color:#ff0000}{<em>}yes{</em>}{color}
+** Configuring a host-only network for vmnet1. Please specify a name for
+this network. {color:#ff0000}{<em>}HostOnly{</em>}{color}
+** Do you want this program to probe for an unused private subnet?
+(yes/no/help) {color:#ff0000}{<em>}no{</em>}{color}
+** What will be the IP address of your host on the private network?
+{color:#ff0000}{<em>}192.168.0.1{</em>}{color}
+** What will be the netmask of your private network?
+{color:#ff0000}{<em>}255.255.0.0{</em>}{color}
+The following host-only networks have been defined:
+. vmnet1 is a host-only network on private subnet 192.168.0.0.
+** Do you wish to configure another host-only network? (yes/no) <em>no</em></li>
+<li>Please specify a port for remote connections to use: <em>902</em></li>
+<li>Please specify a port for standard http connections to use: <em>8222</em></li>
+<li>Please specify a port for secure http (https) connections to use: <em>8333</em></li>
+<li>The current administrative user for VMware Server  is &lsquo;'. 
+Would you like to specify a different administrator? <em>no</em>
+Using root as the VMware Server administrator.</li>
+<li>In which directory do you want to keep your virtual machine files?
+<em>/var/lib/vmware/Virtual Machines</em></li>
+<li>The path &ldquo;/var/lib/vmware/Virtual Machines&rdquo; does not exist currently.
+This program is going to create it, including needed parent directories. Is
+this what you want? <em>yes</em></li>
+<li>Please enter your 20-character serial number. <em><Enter the serial number
+you received from VMware></em></li>
+<li>In which directory do you want to install the VMware VIX API binary
+files? <em>/usr/bin</em></li>
+<li>In which directory do you want to install the VMware VIX API library
+files? <em>/usr/lib/vmware-vix/lib</em></li>
+<li>The path &ldquo;/usr/lib/vmware-vix/lib&rdquo; does not exist currently. This program
+is going to create it, including needed parent directories. Is this what
+you want? <em>yes</em></li>
+<li>In which directory do you want to install the VMware VIX API document
+pages? <em>/usr/share/doc/vmware-vix</em></li>
+<li>The path &ldquo;/usr/share/doc/vmware-vix&rdquo; does not exist currently. This
+program is going to create it, including needed parent directories. Is this
+what you want? <em>yes</em></li>
+</ul>
+<p>{info}
+If you receive an error message when you execute
+<em>vmware-config.pl</em> you may need to install or update the following
+libraries and then run <em>vmware-config.pl</em> again:</p>
+<p>{tip}
+yum install glibc-devel -y
+yum install glibc -y
+yum install libXtst-devel -y
+{tip}
+{info}
+Verify the host-only network was configured correctly:
+{tip}
+/sbin/ifconfig
+{tip}You should see a <em>vmnet1</em> interface using IP address <em>192.168.0.1</em>:
+{panel}
+<em>vmnet1</em> Link encap:Ethernet HWaddr 00:50:56:C0:00:01
+inet addr:<em>192.168.0.1</em> Bcast:192.168.255.255 Mask:255.255.0.0
+inet6 addr: fe80::250:56ff:fec0:1/64 Scope:Link
+UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+TX packets:4 errors:0 dropped:0 overruns:0 carrier:0
+collisions:0 txqueuelen:1000
+RX bytes:0 (0.0 b) TX bytes:0 (0.0 b)
+{panel}Restart the vmware service:</p>
+<p>{tip}/sbin/service vmware restart
+{tip}</p>
+<p>You should see the following:
+{panel}
+Starting VMware services:
+Virtual machine monitor [{color:#339966}OK{color} ]({color:#339966}ok{color}-.html)
+Virtual ethernet [{color:#339966}OK{color} ]({color:#339966}ok{color}-.html)
+Bridged networking on /dev/vmnet0 [{color:#339966}OK{color} ]({color:#339966}ok{color}-.html)
+Host-only networking on /dev/vmnet1 (background) [{color:#339966}OK{color} ]({color:#339966}ok{color}-.html)
+Starting VMware virtual machines&hellip; [{color:#339966}OK{color} ]({color:#339966}ok{color}-.html)
+{panel}</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-FixVMwareServer2.0glibcProblem"></a></p>
+<h4 id="fix-vmware-server-20-glibc-problem">Fix VMware Server 2.0 glibc Problem</h4>
+<p>VMware Server 2.0 will not run reliably if the version of glibc installed
+on the host is newer than <em>2.5-34</em>. This problem is known to affect recent
+versions of Red Hat Enterprise Linux and CentOS. If not corrected, VMware
+Server will crash intermittently and the VMware administration web pages
+will lock up or fail to load.</p>
+<p>Check the version of <em>glib</em> installed on the VMware host:</p>
+<p>{tip}
+yum list installed glibc
+{tip}</p>
+<p>You will need to configure VMware to use <em>glibc 2.5-34</em> if the version
+installed on the host is newer than <em>2.5-34</em>:</p>
+<pre><code>Installed Packages
+glibc.i686	 2.5-42      installed
+glibc.x86_64	 2.5-42      installed
+</code></pre>
+<p>For CentOS, you will need to download the glibc RPM included with CentOS
+5.3. This is available from vault.centos.org:</p>
+<ul>
+<li>For 32-bit CentOS installations: <a href="http://vault.centos.org/5.3/updates/i386/RPMS/glibc-2.5-34.el5_3.1.i686.rpm">http://vault.centos.org/5.3/updates/i386/RPMS/glibc-2.5-34.el5_3.1.i686.rpm</a></li>
+<li>For 64-bit CentOS installations: <a href="http://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm">http://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm</a></li>
+</ul>
+<p>Create a temp directory and cd to it:
+{tip}
+mkdir /tmp/glibc ; cd /tmp/glibc
+{tip}</p>
+<p>Download the glibc RPM (change the URL accordingly):
+{tip}
+wget <a href="http://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm">http://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm</a>
+{tip}</p>
+<p>Extract the cpio archive from the glibc RPM:
+{tip}
+rpm2cpio glibc-2.5-34.el5_3.1.x86_64.rpm | cpio --extract
+--make-directories
+{tip}</p>
+<p>Create the following directory:
+{tip}
+mkdir /usr/lib/vmware/lib/libc.so.6
+{tip}</p>
+<p>Copy the following file to the new directory:
+{tip}
+cp /tmp/glibc/lib64/libc-2.5.so /usr/lib/vmware/lib/libc.so.6/libc.so.6
+{tip}</p>
+<p>Make a backup of the original vmware-hostd file:
+{tip}
+cp /usr/sbin/vmware-hostd /root/vmware-hostd.orig
+{tip}</p>
+<p>Edit vmware-hostd:
+{tip}
+vi /usr/sbin/vmware-hostd
+{tip}</p>
+<p>Navigate to the bottom of the file. You should see the following as the
+last line:</p>
+<pre><code>eval exec &quot;$DEBUG_CMD&quot; &quot;$binary&quot; &quot;$@&quot;
+</code></pre>
+<p>Add the following <em>export</em> line immediately before the last <em>eval</em> line in
+vmware-hostd:</p>
+<pre><code>export LD_LIBRARY_PATH=/usr/lib/vmware/lib/libc.so.6:$LD_LIBRARY_PATH
+eval exec &quot;$DEBUG_CMD&quot; &quot;$binary&quot; &quot;$@&quot;
+</code></pre>
+<p>The following sed command can also be used to add the line to vmware-hostd:
+{tip}
+{note}
+Do not both manually edit <em>vmware-hostd</em> and run the following <em>sed</em>
+command
+{note}
+sed -i -r -e &ldquo;s/(eval exec.*)/export
+LD_LIBRARY_PATH=/usr/lib/vmware/lib/libc.so.6:$LD_LIBRARY_PATH\n\1/&rdquo;
+/usr/sbin/vmware-hostd
+{tip}</p>
+<p>Restart the <em>vmware</em> service:
+{tip}
+/sbin/service vmware restart
+{tip}</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-LogintoVMware"></a></p>
+<h4 id="login-to-vmware">Login to VMware</h4>
+<p>At this point you should be able to log in as <em>root</em> to the VMware
+Infrastructure Web Access page:
+*{nolink:https://<IP address or hostname>:8333}*</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-InstallVCLComponents"></a></p>
+<h2 id="install-vcl-components">Install VCL Components</h2>
+<p>Begin by completing the VCL installation instructions. Install
+all of the components on the same computer:</p>
+<ol>
+<li><a href="vcl:vcl-2.2.1-database-installation.html">VCL:VCL 2.2.1 Database Installation</a></li>
+<li><a href="vcl:vcl-2.2.1-web-code-installation.html">VCL:VCL 2.2.1 Web Code Installation</a>
+{note}Complete the Web Code Installation steps up to the <em>Add a
+Management Node to the Database</em> section. Use the instructions below to add
+the management node, VM host computer, and VM computers to the VCL
+database.{note}</li>
+<li><a href="vcl:vcl-2.2.1-management-node-installation.html">VCL:VCL 2.2.1 Management Node Installation</a></li>
+</ol>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-Add&nbsp;theManagementNodetotheDatabase"></a></p>
+<h4 id="addnbspthe-management-node-to-the-database">Add the Management Node to the Database</h4>
+<ul>
+<li>Click <em>Management Nodes</em> &gt; <em>Edit Management Node Information</em></li>
+<li>Click <em>Add</em>
+** Hostname: <em>localhost</em>
+** IP Address: <em>127.0.0.1</em>
+** Owner: <em>admin@Local</em>
+** State: <em>available</em>
+** Predictive Loading Module: <em>Predictive Loading Level 0 Module</em>
+** Check-in Interval: <em>5</em>
+** Install Path: <em>/install</em>
+** End Node SSH Identitiy Key Files: <em>/etc/vcl/vcl.key</em>
+** SSH Port for this node: <em>22</em>
+** Enable Image Library: <em>no</em></li>
+<li>Click <em>Confirm Management Node</em></li>
+</ul>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-AddtheVMwareHostComputertotheVCLdatabase"></a></p>
+<h4 id="add-the-vmware-host-computer-to-the-vcl-database">Add the VMware Host Computer to the VCL database</h4>
+<ul>
+<li>Click <em>Manage Computers</em> &gt; <em>Add Single Computer</em> &gt; <em>Submit</em>
+** Hosthame: <em>localvmhost</em>
+** IP Address: <em>192.168.0.1</em>
+** State: <em>vmhostinuse</em>
+Owner: <em>admin</em>
+** Platform: <em>i386</em>
+** Schedule: <em>VCL 24x7</em>
+** RAM: <em>1024</em>
+** No Processors: <em>1</em>
+** Processor Speed: <em>2000</em>
+** Network Speed: <em>1000</em>
+** Type: <em>blade</em>
+** Provisioning engine: <em>xCAT 2.x</em>
+{info}The computer Type and Provisioning engine values don&rsquo;t matter for the
+localvmhost computer in this test environment because vcld isn&rsquo;t
+provisioning or reloading it{info}
+** Computer Groups: <em>allComputers</em></li>
+<li>Click <em>Confirm Computer</em></li>
+<li>Click <em>Submit</em></li>
+<li>Select a VM Host Profile to be used on this computer: *VMware Server 2.x</li>
+</ul>
+<ul>
+<li>local storage*</li>
+</ul>
+<ul>
+<li>Click <em>Add Computer</em></li>
+</ul>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-AddtheVirtualMachineComputerstotheVCLDatabase"></a></p>
+<h4 id="add-the-virtual-machine-computers-to-the-vcl-database">Add the Virtual Machine Computers to the VCL Database</h4>
+<ul>
+<li>Click <em>Manage Computers</em> &gt; <em>Edit Computer Information</em> &gt; <em>Submit</em></li>
+<li>Click the <em>Add Multiple</em> checkbox</li>
+<li>Click <em>Add</em>
+** Hosthame: <em>vmguest-%</em>
+** Start value: <em>1</em>
+** End value: <em>10</em>
+** Start IP Address: <em>192.168.1.1</em>
+** End IP Address: <em>192.168.1.10</em>
+** Start private IP Address: <em>192.168.1.1</em>
+** End private IP Address: <em>192.168.1.10</em>
+** Start MAC Address: <em>00:50:56:1a:01:01</em>
+** State: <em>maintenance</em>
+** Owner: <em>admin</em>
+** Platform: <em>i386</em>
+** Schedule: <em>VCL 24x7</em>
+** RAM: <em>4096</em>
+** No Processors: <em>1</em>
+** Processor Speed: <em>2000</em>
+** Network Speed: <em>1000</em>
+** Type: <em>virtualmachine</em>
+** Provisioning engine: <em>VMware</em>
+** Computer Groups:
+*** <em>All VM Computers</em>
+*** <em>allComputers</em>
+*** <em>newvmimages</em></li>
+<li>Click <em>Confirm Compute</em></li>
+<li>Click <em>Submit</em></li>
+<li>Enter the private address for the management node: <em>127.0.0.1</em></li>
+<li>Click: <em>Download Data</em>, you should automatically generated dhcpd.conf
+file entries. Keep this web page open and continue with the following
+instructions.</li>
+</ul>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-Install&ConfiguretheDHCPService"></a></p>
+<h2 id="install--configure-the-dhcp-service">Install &amp; Configure the DHCP Service</h2>
+<p>VMware Server installs its own DHCP service (<em>vmnet-dhcpd</em>). This service
+starts automatically when the vmware service is running. Either the VMware
+<em>vmnet-dhcpd</em> service or the normal <em>dhcpd</em> service installed on the Linux
+operating system can be used to assign IP addresses to the VMs&rsquo; private
+interfaces. The instructions below explain how to disable vmnet-dhcpd and
+configure dhcpd.</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-Disablevmnet-dhcpd"></a></p>
+<h4 id="disable-vmnet-dhcpd">Disable vmnet-dhcpd</h4>
+<p>Stop the <em>vmware</em> service:
+{tip}
+/sbin/service vmware stop
+{tip}</p>
+<p>Edit the following file:
+{tip}
+/etc/vmware/locations
+{tip}</p>
+<p>Find all lines beginning with <em>answer VNET_1_DHCP yes</em> and change <em>yes</em> to
+<em>no</em>:
+{panel}
+answer VNET_1_DHCP <em>no</em>
+{panel}</p>
+<p>Start the <em>vmware</em> service:
+{tip}
+/sbin/service vmware start
+{tip}</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-InstalltheDHCPService"></a></p>
+<h4 id="install-the-dhcp-service">Install the DHCP Service</h4>
+<p>Install <em>dhcp</em> if it is not already installed:
+{tip}
+yum install dhcp -y
+{tip}</p>
+<p>The DHCP daemon should only listen on the virtual private network (vmnet1)
+to avoid conflicts with other networks. Configure the dhcpd service startup
+script to only listen on the vmnet1 interface:
+{tip}
+vi /etc/sysconfig/dhcpd
+{tip}</p>
+<p>Add <em>vmnet1</em> the to the <em>DHCPDARGS</em> line:</p>
+<pre><code># Command line options here
+DHCPDARGS=vmnet1
+</code></pre>
+<p>Configure the dhcpd service to automatically start at runlevels 3-5:
+{tip}
+/sbin/chkconfig --level 345 dhcpd on
+{tip}Start the dhcpd service:
+{tip}
+/sbin/service dhcpd start
+{tip}</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-Configuredhcpd.conf"></a></p>
+<h4 id="configure-dhcpdconf">Configure dhcpd.conf</h4>
+<ul>
+<li>
+<p>Edit the <em>/etc/dhcpd.conf</em> file on the computer:
+{tip}
+vi /etc/dhcpd.conf
+{tip}</p>
+</li>
+<li>
+<p>Paste the following into the <em>dhcpd.conf</em> file and save the file:
+{info}The host sections below should be identical the the output displayed
+on the VCL website after you added the VM computers.{info}</p>
+<p>ddns-update-style none; shared-network vmnet1 {
+subnet 192.168.0.0 netmask 255.255.0.0 {
+ignore unknown-clients;
+option routers 192.168.0.1;
+host vmguest-1 {
+option host-name &ldquo;vmguest-1&rdquo;;
+hardware ethernet 00:50:56:1a:01:01;
+fixed-address 192.168.1.1;
+filename &ldquo;/tftpboot/pxelinux.0&rdquo;;
+option dhcp-server-identifier 127.0.0.1;
+next-server 127.0.0.1;
+}</p>
+<pre><code>      host vmguest-2 {
+          option host-name &quot;vmguest-2&quot;;
+          hardware ethernet 00:50:56:1a:01:03;
+          fixed-address 192.168.1.2;
+          filename &quot;/tftpboot/pxelinux.0&quot;;
+          option dhcp-server-identifier 127.0.0.1;
+          next-server 127.0.0.1;
+      }
+
+      host vmguest-3 {
+          option host-name &quot;vmguest-3&quot;;
+          hardware ethernet 00:50:56:1a:01:05;
+          fixed-address 192.168.1.3;
+          filename &quot;/tftpboot/pxelinux.0&quot;;
+          option dhcp-server-identifier 127.0.0.1;
+          next-server 127.0.0.1;
+      }
+
+      host vmguest-4 {
+          option host-name &quot;vmguest-4&quot;;
+          hardware ethernet 00:50:56:1a:01:07;
+          fixed-address 192.168.1.4;
+          filename &quot;/tftpboot/pxelinux.0&quot;;
+          option dhcp-server-identifier 127.0.0.1;
+          next-server 127.0.0.1;
+      }
+
+      host vmguest-5 {
+          option host-name &quot;vmguest-5&quot;;
+          hardware ethernet 00:50:56:1a:01:09;
+          fixed-address 192.168.1.5;
+          filename &quot;/tftpboot/pxelinux.0&quot;;
+          option dhcp-server-identifier 127.0.0.1;
+          next-server 127.0.0.1;
+      }
+
+      host vmguest-6 {
+          option host-name &quot;vmguest-6&quot;;
+          hardware ethernet 00:50:56:1a:01:0b;
+          fixed-address 192.168.1.6;
+          filename &quot;/tftpboot/pxelinux.0&quot;;
+          option dhcp-server-identifier 127.0.0.1;
+          next-server 127.0.0.1;
+      }
+
+      host vmguest-7 {
+          option host-name &quot;vmguest-7&quot;;
+          hardware ethernet 00:50:56:1a:01:0d;
+          fixed-address 192.168.1.7;
+          filename &quot;/tftpboot/pxelinux.0&quot;;
+          option dhcp-server-identifier 127.0.0.1;
+          next-server 127.0.0.1;
+      }
+
+      host vmguest-8 {
+          option host-name &quot;vmguest-8&quot;;
+          hardware ethernet 00:50:56:1a:01:0f;
+          fixed-address 192.168.1.8;
+          filename &quot;/tftpboot/pxelinux.0&quot;;
+          option dhcp-server-identifier 127.0.0.1;
+          next-server 127.0.0.1;
+      }
+
+      host vmguest-9 {
+          option host-name &quot;vmguest-9&quot;;
+          hardware ethernet 00:50:56:1a:01:11;
+          fixed-address 192.168.1.9;
+          filename &quot;/tftpboot/pxelinux.0&quot;;
+          option dhcp-server-identifier 127.0.0.1;
+          next-server 127.0.0.1;
+      }
+
+      host vmguest-10 {
+          option host-name &quot;vmguest-10&quot;;
+          hardware ethernet 00:50:56:1a:01:13;
+          fixed-address 192.168.1.10;
+          filename &quot;/tftpboot/pxelinux.0&quot;;
+          option dhcp-server-identifier 127.0.0.1;
+          next-server 127.0.0.1;
+      }
+</code></pre>
+</li>
+<li>
+<p>Restart the dhcpd service:
+{tip}/sbin/service dhcpd restart{tip}</p>
+</li>
+</ul>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-Configure/etc/hosts"></a></p>
+<h4 id="configure-etchosts">Configure /etc/hosts</h4>
+<ul>
+<li>Modify the /etc/hosts file to include entries for the VM host and VM
+computers:
+{tip}
+vi /etc/hosts
+{tip}</li>
+<li>Add the following entries:
+{panel}
+192.168.0.1 localvmhost
+192.168.1.1 vmguest-1
+192.168.1.2 vmguest-2
+192.168.1.3 vmguest-3
+192.168.1.4 vmguest-4
+192.168.1.5 vmguest-5
+192.168.1.6 vmguest-6
+192.168.1.7 vmguest-7
+192.168.1.8 vmguest-8
+192.168.1.9 vmguest-9
+192.168.1.10 vmguest-10
+{panel}</li>
+</ul>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-ConfigurethesshdServicetoListenontheVirtualPrivateNetwork"></a></p>
+<h2 id="configure-the-sshd-service-to-listen-on-the-virtual-private-network">Configure the sshd Service to Listen on the Virtual Private Network</h2>
+<p>{tip}
+vi /etc/ssh/sshd_config
+{tip}Add the following line to the end of the file:
+{tip}
+ListenAddress 192.168.0.1
+{tip}Restart the sshd service on the management node:
+{tip}
+/sbin/service sshd restart
+{tip}</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-ConfigureTheVMHostToBeAbleToSSHToItself"></a></p>
+<h2 id="configure-the-vm-host-to-be-able-to-ssh-to-itself">Configure The VM Host To Be Able To SSH To Itself</h2>
+<p>If you have not already generated an SSH identity key on the management
+node to be used to login to the computers the management node controls, run
+the following command to generate a new key:</p>
+<p>{tip}
+mkdir /etc/vcl ; ssh-keygen -t rsa -f &ldquo;/etc/vcl/vcl.key&rdquo; -N '&rsquo; -b 1024
+-C &ldquo;VCL root account on $HOSTNAME&rdquo; 
+{tip}</p>
+<p>Add the VM host&rsquo;s public key to its own authorized_keys file to allow it to
+SSH to itself without a password prompt:
+{tip}
+cat /etc/vcl/vcl.key.pub &raquo; /root/.ssh/authorized_keys
+{tip}The following command should execute without having to enter a
+password:
+{tip}
+ssh -i /etc/vcl/vcl.key localvmhost &lsquo;ls /&rsquo;
+{tip}</p>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-ConfiguretheVMHostProfile"></a></p>
+<h2 id="configure-the-vm-host-profile">Configure the VM Host Profile</h2>
+<ul>
+<li><em>Virtual Hosts</em> &gt; <em>VM Host Profiles</em> tab &gt; <em>VMware Server 2.x - local
+storage</em> &gt; <em>Configure Profile</em>
+** Virtual Switch 0: <em>HostOnly</em>
+** Virtual Switch 1: <em>Bridged</em></li>
+</ul>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-Assign&nbsp;theVM&nbsp;Computers&nbsp;totheVMHost"></a></p>
+<h2 id="assignnbspthe-vmnbspcomputersnbspto-the-vm-host">Assign the VM Computers to the VM Host</h2>
+<ul>
+<li><em>Virtual Hosts</em> &gt; <em>VM Hosts</em> tab</li>
+<li>Select <em>localvmhost</em></li>
+<li>Click <em>Configure Host</em></li>
+<li>Set <em>VM limit</em> to <em>10</em></li>
+<li>Select <em>vmguest-1&hellip;vmguest-10</em> under <em>Unassigned VMs</em></li>
+<li>Click <em>Add</em></li>
+</ul>
+<p><a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-CreateaBaseImage"></a></p>
+<h2 id="create-a-base-image">Create a Base Image</h2>
+<p>Proceed to follow the instructions to create a <a href="vcl:create-a-windows-base-image.html">Windows </a>
+or [Linux |VCL:Create a Linux Base Image]
+base image.</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

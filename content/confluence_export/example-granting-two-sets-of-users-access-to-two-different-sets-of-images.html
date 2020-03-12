@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Example - Granting Two Sets of Users Access to Two Different Sets of Images</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Example - Granting Two Sets of Users Access to Two Different Sets of Images</h1>
+    
+	<p>This page explains how to grant one groups of users access to one set of
+images, and another set of users access to a separate set of images.</p>
+<p>After looking over these steps, you can <a href="video---granting-two-sets-of-users-access-to-two-different-sets-of-images.html">watch a video</a>
+of the steps being performed.</p>
+<p><a name="Example-GrantingTwoSetsofUsersAccesstoTwoDifferentSetsofImages-1.CreateaUserGroupforEachSetofUsers"></a></p>
+<h2 id="1-create-a-user-group-for-each-set-of-users">1. Create a User Group for Each Set of Users</h2>
+<p>First, you need to create two user groups - one for each set of users.</p>
+<ol>
+<li>Click Manage Groups</li>
+<li>Under the User Groups section (at the top):</li>
+<li>
+<h1 id="enter-a-name-for-the-group-it-can-include-spaces">Enter a name for the group (it can include spaces)</h1>
+</li>
+<li>
+<h1 id="optionally-if-it-shows-up-select-an-affiliation-for-the-group">(Optionally, if it shows up) select an affiliation for the group</h1>
+</li>
+<li>
+<h1 id="enter-an-owner-of-the-group---probably-yourself">Enter an owner of the group - probably yourself</h1>
+</li>
+<li>
+<h1 id="select-a-group-allowed-to-edit-the-user-group">Select a group allowed to edit the user group</h1>
+</li>
+<li>
+<h1 id="the-rest-of-the-fields-can-be-left-as-defaults">The rest of the fields can be left as defaults</h1>
+</li>
+<li>Click Add</li>
+<li>Repeat the steps for the second group</li>
+</ol>
+<p>For the rest of the page, I&rsquo;ll call the groups <em>faculty</em> and <em>student</em></p>
+<p><a name="Example-GrantingTwoSetsofUsersAccesstoTwoDifferentSetsofImages-2.AddUserstoEachGroup"></a></p>
+<h2 id="2-add-users-to-each-group">2. Add Users to Each Group</h2>
+<p>You need to add users to each of the groups.</p>
+<ol>
+<li>Click Manage Groups if you&rsquo;re not still on that page</li>
+<li>Click Edit next to the <em>faculty</em> group</li>
+<li>Enter a userid in the box next to the Add button (NOTE: if you are not
+using LDAP authentication, the users&rsquo; accounts will already need to exist
+in VCL)</li>
+<li>Click Add</li>
+<li>Repeat for all users you wish to add to the <em>faculty</em> group</li>
+<li>Repeat these steps for the <em>student</em> group</li>
+</ol>
+<p><a name="Example-GrantingTwoSetsofUsersAccesstoTwoDifferentSetsofImages-3.CreateanImageGroupforEachSetofImages"></a></p>
+<h2 id="3-create-an-image-group-for-each-set-of-images">3. Create an Image Group for Each Set of Images</h2>
+<p>Next, you need to create an image group for each set of images.</p>
+<ol>
+<li>Click Manage Groups if you&rsquo;re not still on that page</li>
+<li>Under the Resource Groups section (further down the page):</li>
+<li>
+<h1 id="select-image-as-the-type">Select Image as the type</h1>
+</li>
+<li>
+<h1 id="enter-a-name-for-the-group-it-can-contain-spaces">Enter a name for the group (it can contain spaces)</h1>
+</li>
+<li>
+<h1 id="select-a-user-group-that-will-own-the-resource-group-this-user-group">Select a user group that will own the resource group (this user group</h1>
+</li>
+</ol>
+<p>will have access to manage some aspects of the resource group)</p>
+<ol>
+<li>Click Add</li>
+<li>Repeat the steps for the second group</li>
+</ol>
+<p>For the rest of the page, I&rsquo;ll call the groups <em>faculty images</em> and
+<em>student images</em></p>
+<p><a name="Example-GrantingTwoSetsofUsersAccesstoTwoDifferentSetsofImages-4.AddImagestoEachGroup"></a></p>
+<h2 id="4-add-images-to-each-group">4. Add Images to Each Group</h2>
+<p>Now, you need to add the desired images to each group.</p>
+<ol>
+<li>Click Manage Images</li>
+<li>Select the Edit Image Grouping radio button</li>
+<li>Click Submit</li>
+<li>Click the <em>By Group</em> tab</li>
+<li>Select <em>faculty images</em></li>
+<li>Click Get Images</li>
+<li>Select any images you want to be available to the <em>faculty</em> user group in
+the list on the right (Ctrl+click to select multiple images)</li>
+<li>Click the &lt;-Add button</li>
+<li>Repeat steps for the <em>student images</em> group</li>
+</ol>
+<p><a name="Example-GrantingTwoSetsofUsersAccesstoTwoDifferentSetsofImages-5.MaptheImageGroupstoComputerGroups"></a></p>
+<h2 id="5-map-the-image-groups-to-computer-groups">5. Map the Image Groups to Computer Groups</h2>
+<p>In order for VCL to know on which computers the images can run, you must
+map the image groups to computer groups. I&rsquo;ll assume you already have one
+or more computer groups that contain computers.</p>
+<ol>
+<li>Click Manage Images</li>
+<li>Select the Edit Image Mapping radio button</li>
+<li>Click Submit</li>
+<li>Select the <em>faculty images</em> group</li>
+<li>Click Get Computer Groups</li>
+<li>Select at least one computer group to map it to from the list on the
+right</li>
+<li>Click the &lt;-Add button</li>
+<li>Repeat for the <em>student images</em> group (NOTE: It is okay to map both image
+groups to the same computer group. That will not affect what images the
+users have access to.)</li>
+</ol>
+<p><a name="Example-GrantingTwoSetsofUsersAccesstoTwoDifferentSetsofImages-6.CreateaTwoPrivilegeNodes"></a></p>
+<h2 id="6-create-a-two-privilege-nodes">6. Create a Two Privilege Nodes</h2>
+<p>Now, you need to create one node for each user group to separate their
+access.</p>
+<ol>
+<li>Click Privileges</li>
+<li>In the tree at the top of the page, click a node under which you&rsquo;ll
+create the two new nodes</li>
+<li>Click the Add Child button</li>
+<li>Enter a name for the new node (spaces are allowed)</li>
+<li>Click Create Child</li>
+<li>Repeat for the second node for the other user group</li>
+</ol>
+<p>I&rsquo;ll refer to these nodes as <em>faculty access</em> and <em>student access</em></p>
+<p><a name="Example-GrantingTwoSetsofUsersAccesstoTwoDifferentSetsofImages-7.AssignRightsatEachNode"></a></p>
+<h2 id="7-assign-rights-at-each-node">7. Assign Rights at Each Node</h2>
+<p>Finally, you need to give each user group the <em>imageCheckOut</em> privilege at
+their respective nodes, and give each image group the <em>available</em> attribute
+at their respective nodes.</p>
+<ol>
+<li>Click on the <em>faculty access</em> node</li>
+<li>Under User Groups, click Add Group</li>
+<li>Select the <em>faculty</em> group</li>
+<li>Select the checkbox for the <em>imageCheckOut</em> privilege</li>
+<li>Click Submit New User Group</li>
+<li>Scroll down to the Resources section and click Add Resource Group</li>
+<li>Select the <em>image/faculty images</em> group</li>
+<li>Select the checkbox for the <em>available</em> attribute</li>
+<li>Click Submit New Resource Group</li>
+<li>Click on the <em>student access</em> node</li>
+<li>Under User Groups, click Add Group</li>
+<li>Select the <em>student</em> group</li>
+<li>Select the checkbox for the <em>imageCheckOut</em> privilege</li>
+<li>Click Submit New User Group</li>
+<li>Scroll down to the Resources section and click Add Resource Group</li>
+<li>Select the <em>image/student images</em> group</li>
+<li>Select the checkbox for the <em>available</em> attribute</li>
+<li>Click Submit New Resource Group</li>
+</ol>
+<p><a name="Example-GrantingTwoSetsofUsersAccesstoTwoDifferentSetsofImages-Summary"></a></p>
+<h2 id="summary">Summary</h2>
+<p>Now, users in the <em>faculty</em> user group will have access to check out images
+in the <em>faculty images</em> image group, and users in the <em>student</em> user group
+will have access to check out images in the <em>student images</em> image group.</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

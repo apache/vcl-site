@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Additional Steps for Windows Images</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Additional Steps for Windows Images</h1>
+    
+	<p>On the <strong>Connect!</strong> page, the following connection information will be
+displayed:</p>
+<ul>
+<li>The remote VCL computer&rsquo;s IP address</li>
+<li>The user ID you will use: Administrator<br/>
+<em>Note: the user ID is always Administrator for Windows imaging
+reservations</em></li>
+<li>A one-time password for the Administrator account</li>
+</ul>
+<p>Log in using Remote Desktop Connection. You can either enter the connection
+information manually after launching the Remote Desktop Connection program
+or you can use a pre-configured RDP file:</p>
+<ul>
+<li>Click the Get RDP File button</li>
+<li>Save the RDP file to your computer</li>
+<li>Double-click the RDP file to launch the Remote Desktop Connection program
+with the VCL connection information pre-configured</li>
+</ul>
+<p>If you have not selected to capture the image by the end of the reservation time, VCL
+will automatically capture the image so that you will not lose any work.</p>
+<p>The following steps form a good guideline of what to do while creating your
+image:</p>
+<ol>
+<li>Run Windows Update before saving an image.  It&rsquo;s OK if the computer
+needs to reboots.  It can take 4-6 minutes for the computer to reboot
+before you can connect via RDP again.</li>
+<li>Install your applications. Here are some suggestions/tips on loading
+software to the remote machine:</li>
+</ol>
+<ul>
+<li>Copy the software from your local computer to the remote computer
+by sharing your local drives through Remote Desktop Connection.  The
+shared drives show up in Windows Explorer on the remote machine. 
+Do not run the software&rsquo;s installation program directly from the shared
+drive.  Copy it to the remote computer first, run the setup program,
+then delete the installation files.</li>
+<li>If you have an ISO image of the software, copy the ISO file to the
+remote machine using a shared drive then mount the ISO image as a drive
+letter.  The freeware program MagicDisc does this very well:
+<a href="http://www.magiciso.com/tutorials/miso-magicdisc-overview.htm">http://www.magiciso.com/tutorials/miso-magicdisc-overview.htm</a>
+Install MagicDisc, mount the ISO file, and then run the application&rsquo;s
+installation program from the mounted drive.  When the installation is
+done, unmount the drive and delete the ISO file from the remote
+machine.  Uninstall MagicDisc before saving your image if you don&rsquo;t
+want it included.
+If you have a physical CD or DVD, you can create an ISO image using a
+program such as LC ISO Creator:
+<a href="http://www.lucersoft.com/freeware.php">http://www.lucersoft.com/freeware.php</a></li>
+<li>If you have access to enough network storage, you can copy the software
+installation files to the network filespace and access them from
+the remote machine.</li>
+<li>Copy the media contents using SCP from the remote computer.  If you
+have a personal machine running an SSH server you can use this
+method.  You could also do the same thing using FTP.</li>
+</ul>
+<ol>
+<li>Post install of software:</li>
+</ol>
+<ul>
+<li>Remove any copies of software media (needlessly takes up space in the
+image which increases the loading time for new reservations of the image)</li>
+<li>make sure all wanted desktop icons are in &ldquo;All users&rdquo; desktop.</li>
+<li>Configure any application customizations</li>
+<li><a href="configure-the-default-profile.html">perform customizations to the default user profile</a></li>
+</ul>
+<ol>
+<li><a href="save-the-image.html">Save the Image</a></li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Pre-release test procedures</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Pre-release test procedures</h1>
+    
+	<p>Recommended test cases for release candidates.</p>
+<p><a name="Pre-releasetestprocedures-Webfrontend"></a></p>
+<h3 id="web-frontend">Web frontend</h3>
+<ul>
+<li>Block Allocations
+** For each of these, test for weekly, monthly, and list
+** Create new block allocations; try adding multiple times per test
+** Edit block allocations
+** Delete block allocations
+** Request new block allocations; try both specifying a user group and
+selecting &ldquo;(group not listed)&quot;; try with and without comments; try with
+users with and without an email address in the user table
+** Accept requested block allocations; try accepting from users with and
+without an email address in the user table
+** Reject requested block allocations; try rejecting from users with and
+without an email address in the user table
+** Create an entry where you are in the user group that is active during
+the current time to check viewing the block status</li>
+</ul>
+<p><a name="Pre-releasetestprocedures-WebfrontendXMLRPCAPI"></a></p>
+<h3 id="web-frontend-xml-rpc-api">Web frontend XML RPC API</h3>
+<p>(placeholder)</p>
+<p><a name="Pre-releasetestprocedures-Backend-Managementnode"></a></p>
+<h3 id="backend---management-node">Backend - Management node</h3>
+<p>General range of tests for the back-end processing. The tests would more
+detailed depending on the provisioning module and OS module.</p>
+<ul>
+<li>Reservation flow:
+** start - proper loading through provisioning module
+** monitor - during inuse state, based on check user connection flag
+** end - warning of upcoming end time, reclaim / reload node if applicable</li>
+<li>End User Notifications: start, end time near, end. Image creation. (User
+pref dependent)</li>
+<li>Sysadmin Notifications: Warnings and Criticals</li>
+<li>Image Creation: pre-capture process(write currentimage.txt, setup OS with
+boot scripts), proper flow from start - complete. Dependent on provisioning
+and OS modules.</li>
+<li>Cluster reservations: Flow - parent /child dependency. Parent process
+waits on children node to load, etc Children load/processes depend on
+parent process to handle request state change and notify end-user</li>
+<li>Block allocations (previously called Block Reservations): Correct
+processing, notifications/warnings, etc</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Add entries to dhcpd.conf</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Add entries to dhcpd.conf</h1>
+    
+	<h4 id="generate-dhcpdconf-entries">Generate dhcpd.conf entries</h4>
+<p>You need to add entries for your VMs to your dhcpd.conf file so that
+they will correctly be assigned their private addresses at boot.</p>
+<ol>
+<li>
+<p>Click Manage Computers</p>
+</li>
+<li>
+<p>Select the All VM Computers group in the list at the top</p>
+</li>
+<li>
+<p>Select the Computer Utilities radio button</p>
+</li>
+<li>
+<p>Click Submit</p>
+</li>
+<li>
+<p>Click the Check All link at the bottom of the table</p>
+</li>
+<li>
+<p>Next to &ldquo;For selected computers, generate computer data for&rdquo;, select &ldquo;dhcpd&rdquo;</p>
+</li>
+<li>
+<p>Click Generate Data</p>
+</li>
+<li>
+<p>Enter the private IP address for your management node</p>
+</li>
+<li>
+<p>Click Generate Data</p>
+</li>
+<li>
+<p>Copy/Paste the data for dhcpd.conf to the dhcpd.conf file on
+your management node (ignore the part for dhcpd.leases)</p>
+</li>
+<li>
+<p>Restart dhcpd:</p>
+<p>service dhcpd restart</p>
+</li>
+<li>
+<p>Scroll to the bottom and click Close</p>
+</li>
+</ol>
+<h4 id="add-entries-to-etchosts">Add entries to /etc/hosts</h4>
+<p>You need to add entries for your VM hosts and VMs to /etc/hosts</p>
+<ol>
+<li>Click Manage Computers</li>
+<li>Select the All VM Computers and the allComputers groups in the
+list at the top</li>
+<li>Select the Computer Utilities radio button</li>
+<li>Click Submit</li>
+<li>Click the Check All link at the bottom of the table</li>
+<li>Next to &ldquo;For selected computers, generate computer data for&rdquo;,
+select /etc/hosts</li>
+<li>Click Generate Data</li>
+<li>Copy/Paste the data to your /etc/hosts file</li>
+<li>Click Close</li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

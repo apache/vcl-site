@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - States</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">States</h1>
+    
+	<p><a name="States-RequestStates"></a></p>
+<h2 id="request-states">Request States</h2>
+<table>
+<tr><th> Request State </th><th> Processed by Module </th><th> Description </th></tr>
+<tr><td> new </td><td> new.pm </td><td> * Normal reservation initiated by user
+</tr>
+* Computer is reloaded if image specified for reservation is not preloaded
+* User account is added to computer |
+<tr><td> reload </td><td> new.pm </td><td> * Reservation only reloads computer
+</tr>
+* Computer is reloaded if image specified for reservation is not preloaded
+|
+<tr><td> tomaintenance </td><td> new.pm </td><td> * Simply changes the computer state to
+maintenance
+</tr>
+* Initiated from Manage Computers page when computer state is changed to
+maintenance |
+<tr><td> tovmhostinuse </td><td> new.pm </td><td> * Computer is reloaded with image specified in
+the VM profile. If using xCAT or some other physical provisioning engine. 
+</tr>
+* Computer state is set to vmhostinuse after it has been reloaded |
+<tr><td> reserved </td><td> reserved.pm </td><td> * User account is added to computer
+</tr>
+* Computer state is set to reserved
+* Computer is polled for user connection for approximately 15 minutes |
+<tr><td> inuse </td><td> inuse.pm </td><td> * Request enters inuse state after&nbsp;user
+connection has been detected
+</tr>
+* Periodically polls computer for user connection
+* If user connection isn't detected for approximately 15 minutes, request
+state is changed to timeout
+* Notifies user when reservation end time is approaching |
+<tr><td> timeout </td><td> reclaim.pm </td><td> * Occurs if user never connects to computer or if
+inuse state detected that the user was disconnected for approximately 15
+minutes
+</tr>
+* Computer is reloaded if the user ever connected
+* Computer is sanitized if the user did not connect (user account removed
+from computer) |
+<tr><td> deleted </td><td> reclaim.pm </td><td> * Occurs when a user clicks the End button
+</tr>
+* Computer is reloaded if the user ever connected
+* Computer is sanitized if the user did not connect (user account removed
+from computer) |
+<tr><td> image </td><td> image.pm </td><td> * Occurs when a user makes an imaging reservation and
+clicks Create Image
+</tr>
+* Image is captured |
+<tr><td> makeproduction </td><td> makeproduction.pm </td><td> * Occurs when a user is the owner of
+an image and changes the production revision
+</tr>
+* At the current time, simply changes the production revision in the
+database (could potentially reload computers which have been loaded with
+the previous production revision in the future) |
+<tr><td> complete </td><td> vcld </td><td> * Occurs after another state is done but before a
+reservation is actually deleted from the database
+</tr>
+* Allows reservations to remain in the database until the end time is
+reached under certain conditions
+* If a reservation times out, it remains in the database until the end time
+is reached so that it is displayed on the user's Current Reservations page
+in order to notify that it timed out
+* Reservation is deleted from the database by vcld when its end time is
+reached |
+<tr><td> failed </td><td> None </td><td> * Occurs when a problem occurs with a reservation which
+wasn't in the image state </td></tr>
+<tr><td> maintenance </td><td> None </td><td> * Occurs when a problem occurs with a reservation
+which is in the image state capturing an image 
+</tr>
+* Used to place computers into a maintenance state, the system will not
+assign any resources in the maintenance state.
+* Also applies to management nodes. When a management node is in the
+maintenance state, the web schedule system will not assign any resources
+soley under that management node to end-user requests.|
+<tr><td>pending </td><td> none </td><td> * Used as a transition or processing state. Set when a
+management node starts working on the request.
+</tr>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

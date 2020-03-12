@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Apache Derby Database</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Apache Derby Database</h1>
+    
+	<h1 id="using-apache-derby-database">Using Apache Derby Database</h1>
+<p><big><font color="red">**NOTE: The current code in the trunk does not support Derby
+(21 Aug 2009)**</font></big></p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>You should have installed:</p>
+<ul>
+<li>JDK (it is maybe possible to work with jre only)</li>
+</ul>
+<h2 id="downloading-and-setting-up-the-database-for-vcl">Downloading and Setting Up the Database for VCL</h2>
+<ol>
+<li>
+<p>Download Apache Derby and install it.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> ~
+wget http://apache.g5searchmarketing.com/db/derby/db-derby-10.5.1.1/db-derby-10.5.1.1-bin.tar.gz
+tar -xzf db-derby-10.5.1.1-bin.tar.gz
+mkdir /opt/Apache
+mv db-derby-10.5.1.1-bin /opt/Apache/derby
+<span style="color:#a2f">export</span> <span style="color:#b8860b">DERBY_HOME</span><span style="color:#666">=</span><span style="color:#b44">&#34;/opt/Apache/derby&#34;</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">CLASSPATH</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">DERBY_HOME</span><span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">/lib/derby.jar:</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">DERBY_HOME</span><span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">/lib/derbytools.jar:</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">CLASSPATH</span><span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">&#34;</span>
+<span style="color:#b8860b">PATH</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$DERBY_HOME</span><span style="color:#b44">/bin:</span><span style="color:#b8860b">$PATH</span><span style="color:#b44">&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Create a database in Apache Derby. The database has to be placed in the
+path <em>/opt/</em>.
+Replace <em>&lsquo;vcluser&rsquo;</em> and <em>&lsquo;vcluserpassword&rsquo;</em> with the user and password
+you want.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> /opt/
+ij
+connect <span style="color:#b44">&#39;jdbc:derby:vcl1;create=true;user=&#39;</span>vcluser<span style="color:#b44">&#39;;password=&#39;</span>vcluserpassword<span style="color:#b44">&#39;;&#39;</span>;
+exit;
+</code></pre></div></li>
+<li>
+<p>Download <a href="https://svn.apache.org/repos/asf/vcl/trunk/mysql/vcl.sql">vcl.sql</a>
+and the
+<a href="/comm/commprojects/derby-parser.pl">derby-parser.pl</a>.
+Edit the file <em>&lsquo;derby-parser.pl&rsquo;</em>. The variables
+<em>&lsquo;$user&rsquo;</em> and <em>&lsquo;$pw&rsquo;</em> should match your database.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">svn <span style="color:#a2f">export</span> https://svn.apache.org/repos/asf/vcl/trunk/mysql/vcl.sql
+wget http://vcl.apache.org/comm/commprojects/derby-parser.pl
+chmod a+x derby-parser.pl
+./derby-parser.pl
+</code></pre></div></li>
+<li>
+<p>Import vcl-derby.sql file into database. It is a good idea to direct the
+output to file and check if there were any errors.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ij vcl-derby.sql &gt; import.log
+</code></pre></div></li>
+</ol>
+<h2 id="setting-up-the-dbd_jdbc-server">Setting up the dbd_jdbc Server</h2>
+<ol>
+<li>
+<p>Install log4j</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> ~
+wget http://www.apache.org/dyn/closer.cgi/logging/log4j/1.2.15/apache-log4j-1.2.15.tar.gz
+tar -zxf apache-log4j-1.2.15.tar.gz
+mv apache-log4j-1.2.15 /opt/Apache/derby/lib/
+</code></pre></div></li>
+<li>
+<p>When installing the perl modules using the <em>&lsquo;install_perl_libs.pl&rsquo;</em>
+(<em>/usr/local/vcl/bin/install_perl_libs.pl</em>) two extra modules need to the
+installed for Derby. Open the file <em>&lsquo;install_perl_libs.pl&rsquo;</em> and in the list
+of modules to download add the following two modules.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Convert-BER-1.3101.tar.gz
+http://search.cpan.org/CPAN/authors/id/V/VI/VIZDOM/DBD-JDBC-0.71.tar.gz
+</code></pre></div></li>
+<li>
+<p>Run the scrips as normal</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl /usr/local/vcl/bin/install_perl_libs.pl
+</code></pre></div></li>
+<li>
+<p>Copy some file from the modules to Derby directory</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp /tmp/perl-modules/DBD-JDBC-0.71/dbd_jdbc.jar /opt/Apache/derby/lib/
+cp /tmp/perl-modules/DBD-JDBC-0.71/log4j.properties /opt/Apache/derby/lib/apache-log4j-1.2.15
+</code></pre></div></li>
+<li>
+<p>Create a script file which will launch the dbd_jdbc Server. Save it under
+any name and directory (e.g. /opt/server.sh), only remember that this
+scrips needs to be executed every time you start up the server. The file
+should contain</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080">#!/bin/bash
+</span><span style="color:#080"></span>java -Djdbc.drivers<span style="color:#666">=</span>org.apache.derby.EmbeddedDriver -Ddbd.port<span style="color:#666">=</span><span style="color:#666">12345</span> -classpath /opt/Apache/derby/lib/derby.jar:/opt/Apache/derby/lib/dbd_jdbc.jar:/opt/Apache/derby/lib/apache-log4j-1.2.15/log4j-1.2.15.jar:/opt/Apache/derby/lib/apache-log4j-1.2.15/  com.vizdom.dbd.jdbc.Server &amp;
+</code></pre></div><p>Note1: if some of your paths are different you need make the changes in
+this scrips file as well</p>
+<p>Note2: currently port 12345 is used for connecting to Derby, this is hard
+coded. Can be changed on a later stage.</p>
+</li>
+<li>
+<p>Make the script executable</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chmod a+x /opt/server
+</code></pre></div></li>
+<li>
+<p>Start the Server</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/opt/server
+</code></pre></div></li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

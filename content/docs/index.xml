@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docs on Apache VCL</title>
+    <link>https://vcl.apache.org/docs.html</link>
+    <description>Recent content in Docs on Apache VCL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="https://vcl.apache.org/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://vcl.apache.org/docs/using-vcl.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/using-vcl.html</guid>
+      <description>Title: Using VCL Notice: Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the &amp;ldquo;License&amp;rdquo;); you may not use this file except in compliance with the License. You may obtain a copy of the License at . http://www.apache.org/licenses/LICENSE-2.0 .</description>
+    </item>
+    
+    <item>
+      <title>2.2 Database Configuration</title>
+      <link>https://vcl.apache.org/docs/archives/old-releases/2.2-database-configuration.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/archives/old-releases/2.2-database-configuration.html</guid>
+      <description>This page describes how to create the VCL MySQL database and import the VCL database schema.
+
+Prerequisites   You should have mysql server 5.x installed. If mysql server is not installed:
+ yum install mysql-server -y /sbin/chkconfig --level 345 mysqld on /sbin/service mysqld start    Your host based firewall (IPTables) should be configured to allow traffic from the web server and management server to connect to TCP port 3306 (mysqld).</description>
+    </item>
+    
+    <item>
+      <title>2.2 Management Node Installation</title>
+      <link>https://vcl.apache.org/docs/archives/old-releases/2.2-management-node-installation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/archives/old-releases/2.2-management-node-installation.html</guid>
+      <description>This page describes how to install and configure the backend VCL management node components including the required Perl modules, VCL daemon (vcld), and Windows utility dependencies.
+
+Assumptions The following instructions assume the VCL database has been installed and configured and that the management node information has been added to the database as described on the web code installation page . This also assumes that the perl-DBD-MySQL-3.x and the mysql client (mysql-5.</description>
+    </item>
+    
+    <item>
+      <title>2.2 phpMyAdmin Installation &amp; Configuration</title>
+      <link>https://vcl.apache.org/docs/archives/old-releases/2.2-phpmyadmin-installation-configuration.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/archives/old-releases/2.2-phpmyadmin-installation-configuration.html</guid>
+      <description>phpMyAdmin is a free and optional tool which allows MySQL to be administered using a web browser. It makes administering the VCL database easier. This tool can be installed on the VCL web server.
+Download phpMyAdmin  Check the version of PHP installed on the web server: php &amp;#45;v Use phpMyAdmin 2.x if the version of PHP is 3.x or 4.x: PHP 4.3.2 (cgi), Copyright (c) 1997-2003 The PHP Group</description>
+    </item>
+    
+    <item>
+      <title>2.2 Web Code Installation</title>
+      <link>https://vcl.apache.org/docs/archives/old-releases/2.2-web-code-installation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/archives/old-releases/2.2-web-code-installation.html</guid>
+      <description>This page describes how to install and configure the frontend VCL web code components including the web server prerequisites and frontend VCL web code. It also describes how to add local web accounts, configure LDAP authentication, and set the timezone correctly.
+
+Prerequisites Your web server should meet the following criteria before installing the frontend VCL code:
+  Apache HTTP Server v1.3 or v2.x with SSL enabled - while VCL may run under another webserver capable of running PHP code, it has only been tested to work with Apache HTTP Server</description>
+    </item>
+    
+    <item>
+      <title>Add computers</title>
+      <link>https://vcl.apache.org/docs/addcomputers.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/addcomputers.html</guid>
+      <description>Adding computers is done by going to Manage Computers-&amp;gt;Edit Computer Profiles and clicking Add New Computer
+Adding Individual Bare Metal Computers
+Adding Individual Virtual Computers
+Adding Multiple Bare Metal Computers
+Adding Multiple Virtual Computers
+Adding Individual Bare Metal Computers  Click Manage Computers Select the Edit Computer Profiles radio button Click Submit Click the Add New Computer button at the top of the page Ensure Single Computer is selected for Add at the top of the dialog Fill in the following:  Name - hostname of the computer Owner - admin@Local Type - Bare Metal Public IP Address Private IP Address (optional) Public MAC Address (optional) Private MAC Address (optional) Provisioning Engine - None or xCAT State - one of  available (only if xCAT is selected for Provisioning Engine) vmhostinuse (only if None is selected for Provisioning Engine) maintenance - if you do not want it to be immediately available   VM Host Profile - (only if vmhostinuse is selected for State) profile for this VM Host RAM No.</description>
+    </item>
+    
+    <item>
+      <title>Add entries to /etc/hosts</title>
+      <link>https://vcl.apache.org/docs/addtoetchosts.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/addtoetchosts.html</guid>
+      <description>For vcld to probably communicate with the nodes on the private network, you need to add entries for your nodes to /etc/hosts on the management node(s). To do go to your vcl portal and follow these steps.
+ Click Manage Computers Select the allComputers group in the list at the top Select the Computer Utilities radio button Click Submit Click the Check All link at the bottom of the table Next to &amp;ldquo;For selected computers, generate computer data for&amp;rdquo;, select /etc/hosts Click Generate Data Copy/Paste the data to your /etc/hosts file Click Close  The data generated will include a list of your short hostnames and the private IP addresses stored in the vcl database.</description>
+    </item>
+    
+    <item>
+      <title>Add entries to dhcpd.conf</title>
+      <link>https://vcl.apache.org/docs/Addhoststodhcp.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/Addhoststodhcp.html</guid>
+      <description>Generate dhcpd.conf entries You need to add entries for your VMs to your dhcpd.conf file so that they will correctly be assigned their private addresses at boot.
+  Click Manage Computers
+  Select the All VM Computers group in the list at the top
+  Select the Computer Utilities radio button
+  Click Submit
+  Click the Check All link at the bottom of the table</description>
+    </item>
+    
+    <item>
+      <title>Adding a New Locale to the VCL Web Frontend</title>
+      <link>https://vcl.apache.org/docs/multilingualization.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/multilingualization.html</guid>
+      <description>Introduction VCL 2.3 has the first step in multilingualization by allowing the parts of the site that the basic user sees to be presented in different languages. The initial work was done and contributed by Toru Yokoyama in JIRA-485.
+More work will be done in future releases to add multilingualization to all parts of the site. Also, there are currently several sections where a paragraph may be translated in portions instead of as a whole.</description>
+    </item>
+    
+    <item>
+      <title>Adding computers</title>
+      <link>https://vcl.apache.org/docs/addingvmcomputers.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/addingvmcomputers.html</guid>
+      <description>Adding Individual Virtual Machines  Click Manage Computers Select Edit Computer Information Click Submit Click Add Single Computer Fill in the following:   Hostname
+  Type - virtualmachine
+  Public IP Address
+  Private IP Address
+  Public MAC Address
+  Private MAC Address
+ NOTE: For VMware virtual machines, the MAC addresses you choose must be in the range 00:50:56:00:00:00 - 00:50:56:3F:FF:FF. Pay special attention to the upper bound of this range.</description>
+    </item>
+    
+    <item>
+      <title>Adding LDAP Authentication</title>
+      <link>https://vcl.apache.org/docs/archives/old-releases/adding-ldap-authentication.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/archives/old-releases/adding-ldap-authentication.html</guid>
+      <description>Prerequisites for your LDAP server:  enable SSL on your LDAP server Create an account that can look up a user&amp;rsquo;s first and last names, user id, and email address (email address is optional) - this will be referred to as &amp;lsquo;vcllookup&amp;rsquo; on this page. You can skip this step if anonymous binds are enabled on your LDAP server and an anonymous bind will be able to look up userids, names, and email addresses.</description>
+    </item>
+    
+    <item>
+      <title>Adding Local VCL Accounts</title>
+      <link>https://vcl.apache.org/docs/localaccounts.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/localaccounts.html</guid>
+      <description>Local VCL accounts are contained within the VCL database. The admin account is a local VCL account. Additional local accounts can be added after the backend management node component has been installed by executing the vcld file with the -setup argument:
+/usr/local/vcl/bin/vcld --setup It is safe to run vcld --setup while the normal vcld daemon process is running on a management node. Running vcld --setup will not affect it.  You will see a menu.</description>
+    </item>
+    
+    <item>
+      <title>Adding support for partimage and partimage-ng to xCAT 2.x (unofficial)</title>
+      <link>https://vcl.apache.org/docs/archives/old-releases/adding-support-for-partimage-and-partimage-ng-to-xcat-2.x-unofficial.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/archives/old-releases/adding-support-for-partimage-and-partimage-ng-to-xcat-2.x-unofficial.html</guid>
+      <description>This is how I added support for partimage/partimage-ng to xCAT 2.x
+Overview The method I used was based on a suggestion by Egan Ford. I created an xCAT plugin to handle the imaging commands. That plugin sets the node to boot a stateless image and configures a certain postscript to run that handles the image capture/restore.
+partimageng.pm xCAT plugin First, I created an xCAT plugin to handle 2 nodeset commands for os type image: install and image.</description>
+    </item>
+    
+    <item>
+      <title>Adding VM Host Servers</title>
+      <link>https://vcl.apache.org/docs/addhypvisorservers.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/addhypvisorservers.html</guid>
+      <description>Adding Individual VMware Servers  Click Manage Computers Select the Add Single Computer radio button Click Submit Fill in the following:  Hostname Type - blade Public IP Address Private IP Address Public MAC Address (optional) Private MAC Address (optional) Provisioning Engine - &amp;ldquo;None&amp;rdquo; State - vmhostinuse VM Host Profile - use a default profile or one configured in the previous step Owner - admin@Local RAM No. Cores Processor Speed Network Speed Physical Location (optional) Click the checkbox under allComputers   Click Confirm Computer Click Submit  The computer you just added isn&amp;rsquo;t listed after clicking Submit.</description>
+    </item>
+    
+    <item>
+      <title>Adding xCAT kickstart based image</title>
+      <link>https://vcl.apache.org/docs/adding-xcat-kickstart-based-image.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/adding-xcat-kickstart-based-image.html</guid>
+      <description>Guide for adding kickstart installs using xCAT to the VCL database. xCAT is the bare-metal provisioning tool primarily used within VCL. It has the ability to install physical nodes with an operating system such as; windows Red Hat, CentOS, ESX, SLES on x86 based hardware. This guide will discuss adding support to VCL for kickstart based or diskfull installs.
+Prerequisites are that you need to have a working xCAT install. Please see xCAT installation guide in order to install and configure xCAT.</description>
+    </item>
+    
+    <item>
+      <title>Additional Steps for Linux Images</title>
+      <link>https://vcl.apache.org/docs/additional-steps-for-linux-images.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/additional-steps-for-linux-images.html</guid>
+      <description>On the Connect! page, the following connection information will be displayed:
+ The remote VCL computer&amp;rsquo;s IP address The userid to use (it should be your own) The password to use when connecting  Log in using ssh. You can use X11 forwarding (and if not connecting from unix, an X11 server on your own machine) to run graphical applications.
+After you have logged in to the remote machine, you can gain root access by running the command sudo bash</description>
+    </item>
+    
+    <item>
+      <title>Additional Steps for Windows Images</title>
+      <link>https://vcl.apache.org/docs/additional-steps-for-windows-images.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/additional-steps-for-windows-images.html</guid>
+      <description>On the Connect! page, the following connection information will be displayed:
+ The remote VCL computer&amp;rsquo;s IP address The user ID you will use: Administrator Note: the user ID is always Administrator for Windows imaging reservations A one-time password for the Administrator account  Log in using Remote Desktop Connection. You can either enter the connection information manually after launching the Remote Desktop Connection program or you can use a pre-configured RDP file:</description>
+    </item>
+    
+    <item>
+      <title>Administration</title>
+      <link>https://vcl.apache.org/docs/administration.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/administration.html</guid>
+      <description>General Administration Concepts
+Adding a New Locale to the VCL Web Frontend
+Account and Access Management Adding Local VCL Accounts
+Granting Access to a New Image
+Example - Granting Two Sets of Users Access to Two Different Sets of Images
+Image Management Understanding Connect Methods introduced in Apache VCL 2.3
+How to Increase the Size of a Virtual Machine Hard Drive under VMware ESXi
+Adding xCAT Kickstart Based Images
+Using VCL post load and reserve scripts</description>
+    </item>
+    
+    <item>
+      <title>Administration Concepts</title>
+      <link>https://vcl.apache.org/docs/authorization/administrationconcepts.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/authorization/administrationconcepts.html</guid>
+      <description>There are several concepts you need to understand when administering VCL.
+ Resources  Images/Environments Computers Schedules   Groups  User Groups Resource Groups   Resource Management  Resource Grouping Resource Mapping   Privileges  User Permissions Resource Attributes     Resources VCL manages sets of resources. There are four types of resources: images, computers, management nodes, and schedules. Each of these resources types are described below.</description>
+    </item>
+    
+    <item>
+      <title>Advanced Image Options</title>
+      <link>https://vcl.apache.org/docs/advanced-image-options.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/advanced-image-options.html</guid>
+      <description>There are several advanced options for each image that can be modified. Normally, they can be left alone. However, there are times where it is useful to set them. These are the advanced options and their descriptions. They are listed in the same order they appear on the Edit Image page.
+The following advanced options are compared directly to corresponding computer attributes of the VCL computers. Configuring these fields restricts which computers can be assigned to run the image based on computer specs.</description>
+    </item>
+    
+    <item>
+      <title>Apache VCL Change Log</title>
+      <link>https://vcl.apache.org/docs/changelog.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/changelog.html</guid>
+      <description>2.5.1 Changes Bug  [VCL-1079] - Virtual Hosts page references Computer Utilities [VCL-1080] - Wrong port can be delivered in RDP file [VCL-1081] - UID conflict for admin user [VCL-1082] - monitor_vcld.pl throws incorrect lastcheckin time exception after Daylight Savings Time Roles Back [VCL-1083] - Data in shares mounted under Linux home directories may be deleted [VCL-1093] - vSphere_SDK.pm:vm_unregister - failed to unregister VM: [VCL-1100] - block allocation usage graph does not work correctly for allocations with a single time slot [VCL-1103] - change vcldsemaphore.</description>
+    </item>
+    
+    <item>
+      <title>Apache VCL Release Notes</title>
+      <link>https://vcl.apache.org/docs/releasenotes.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/releasenotes.html</guid>
+      <description>2.5.1 Release Notes 2.5.1 is a bugfix release. See the Change Log for a list of issues resolved in this release. Below is a list of a few notable changes.
+ PHP code updated to work with PHP 7.x. Rudimentary NFS file share mounting extended to work with Windows Added method for using HTML in user emails through external script  2.5 Release Notes 2.5 is a major release. Many changes and bug fixes were done.</description>
+    </item>
+    
+    <item>
+      <title>Assign Virtual Machine(s) to a Virtual Host</title>
+      <link>https://vcl.apache.org/docs/assignvmtohost.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/assignvmtohost.html</guid>
+      <description> Click Virtual Hosts On the VM Hosts tab, select the virtual host server added previously Click Configure Host, You should see the vm profile and two columns of VMs assigned to host and Unassigned VMs Select the virtual machine nodes from the Unassigned VMs column Click Add  </description>
+    </item>
+    
+    <item>
+      <title>Configure the Default Profile</title>
+      <link>https://vcl.apache.org/docs/configure-the-default-profile.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/configure-the-default-profile.html</guid>
+      <description>A Windows profile is the desktop environment configured for a particular user. It contains various settings such as desktop colors, backgrounds, icon placement, and Windows Explorer settings. The default profile is a template profile that is used when a user logs on to a Windows computer for the first time. The default profile can be customized by the image creator.
+Windows XP and Windows Server 2003 Create a profile configuration account:  While logged on as Administrator, create a local Windows user account named VCLProfile and add it to the Administrators group Configure the profile: Log on as **VCLProfile** Make desired profile, desktop, and application changes Log out **NOTE**: If you just disconnect but do not log out, you will not be able to complete step 7 below.</description>
+    </item>
+    
+    <item>
+      <title>Connect Methods</title>
+      <link>https://vcl.apache.org/docs/connectmethods.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/connectmethods.html</guid>
+      <description>Overview A connect method is the software used to connect to a reserved node.
+Before 2.3, there were only a few, fixed connect methods used - RDP for Windows and ssh for Linux. In 2.3, the first stage of configurable connect methods was introduced. Potentially any connect method can now be configured for an image. For stage one, VCL admins must manually add available connect methods to the VCL database. Stage two will provide a way for available connect methods to be managed through the VCL web site.</description>
+    </item>
+    
+    <item>
+      <title>Creating a Cluster environment</title>
+      <link>https://vcl.apache.org/docs/creating-a-cluster-enviroment.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/creating-a-cluster-enviroment.html</guid>
+      <description>Cluster environments are created from existing VCL images.
+The terms parent and child are used in this document and with the VCL provisioning:
+parent - the primary image or selectable image through the VCL New Reservation menu
+child - the second image or images that are also loaded and are the sub images associated with the parent image
+To Create a cluster image  Select Manage Images -&amp;gt; Edit Image Profiles Select Edit beside the parent image Click on Advanced Options to expand that section Select Manage Subimages In the window, select a child image  The child image can be the same as the parent image or another.</description>
+    </item>
+    
+    <item>
+      <title>Creating a New Image from a Base Image</title>
+      <link>https://vcl.apache.org/docs/creating-a-new-image-from-a-base-image.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/creating-a-new-image-from-a-base-image.html</guid>
+      <description>Select Manage Images from the left navigation menu Select the Create / Update an Image radio button and click Submit Select the base environment from which you would like to build your new image If you would like to start making the new image immediately, select Now. Otherwise, select Later and select a time in the future. Select a duration for your reservation. If you selected Now and the environment is available, the estimated wait time will be displayed.</description>
+    </item>
+    
+    <item>
+      <title>Creating Base Images from an ISO - Part 1</title>
+      <link>https://vcl.apache.org/docs/baseimagecreation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/baseimagecreation.html</guid>
+      <description>This page describes how to create a base image from an install media.
+These instructions are broken up into parts to assist in providing detailed instructions based on the supported provisioning modules and Operating Systems. The supported provisioning methods for VCL are (xCAT, VMware, and KVM).
+   Requirements Preparing node under a supported provisioning system  VMware ESX/ESXi 4.x, 5.x, vCenter KVM Bare Metal via xCAT   Next Steps - Installing OS  Install Windows OS for a Base Image Install Linux OS for a Base Image   Capture the Image Add the Base Image to an Image Group     Requirements Before getting started make sure you have the following requirements completed or on hand:</description>
+    </item>
+    
+    <item>
+      <title>Customization of Email messages with HTML content</title>
+      <link>https://vcl.apache.org/docs/htmlemailmessages.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/htmlemailmessages.html</guid>
+      <description>Email messages sent out to VCL users can be customized under the Site Configuration part of the site. However, HTML content is not allowed to be entered via the web form for security reasons. VCL 2.5.1 introduced a method of including HTML content in the email messages using a command line script run from a management node. The script is in the bin directory of the management node code. The same substitution available in plain text messages can be used in the HTML messages.</description>
+    </item>
+    
+    <item>
+      <title>Deployment Planning</title>
+      <link>https://vcl.apache.org/docs/deployment-planning.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/deployment-planning.html</guid>
+      <description>stub page</description>
+    </item>
+    
+    <item>
+      <title>Documentation</title>
+      <link>https://vcl.apache.org/docs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/</guid>
+      <description>stub documentation index page
+Archived Documentation VCL 2.2  Release Page
+ Installation Guide  </description>
+    </item>
+    
+    <item>
+      <title>Example - Granting Two Sets of Users Access to Two Different Sets of Images</title>
+      <link>https://vcl.apache.org/docs/authorization/example2users2images.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/authorization/example2users2images.html</guid>
+      <description>This page explains how to grant one groups of users access to one set of images, and another set of users access to a separate set of images.
+After looking over these steps, you can watch a video of the steps being performed.
+ Create a User Group for Each Set of Users Add Users to Each Group Create an Image Group for Each Set of Images Add Images to Each Group Map the Image Groups to Computer Groups Create a Two Privilege Nodes Assign Rights at Each Node Summary   Create a User Group for Each Set of Users First, you need to create two user groups - one for each set of users.</description>
+    </item>
+    
+    <item>
+      <title>Example ca-bundle.crt File</title>
+      <link>https://vcl.apache.org/docs/ldap-ca-bundle-ex.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/ldap-ca-bundle-ex.html</guid>
+      <description>This is an example of some entries you might see in a ca-bundle.crt file:
+  Certificate: Data: Version: 1 (0x0) Serial Number: 02:ad:66:7e:4e:45:fe:5e:57:6f:3c:98:19:5e:dd:c0 Signature Algorithm: md2WithRSAEncryption Issuer: C=US, O=RSA Data Security, Inc., OU=Secure Server Certification Authority Validity Not Before: Nov 9 00:00:00 1994 GMT Not After : Jan 7 23:59:59 2010 GMT Subject: C=US, O=RSA Data Security, Inc., OU=Secure Server Certification Authority Subject Public Key Info: Public Key Algorithm: rsaEncryption RSA Public Key: (1000 bit) Modulus (1000 bit): 00:92:ce:7a:c1:ae:83:3e:5a:aa:89:83:57:ac:25: 01:76:0c:ad:ae:8e:2c:37:ce:eb:35:78:64:54:03: e5:84:40:51:c9:bf:8f:08:e2:8a:82:08:d2:16:86: 37:55:e9:b1:21:02:ad:76:68:81:9a:05:a2:4b:c9: 4b:25:66:22:56:6c:88:07:8f:f7:81:59:6d:84:07: 65:70:13:71:76:3e:9b:77:4c:e3:50:89:56:98:48: b9:1d:a7:29:1a:13:2e:4a:11:59:9c:1e:15:d5:49: 54:2c:73:3a:69:82:b1:97:39:9c:6d:70:67:48:e5: dd:2d:d6:c8:1e:7b Exponent: 65537 (0x10001) Signature Algorithm: md2WithRSAEncryption 65:dd:7e:e1:b2:ec:b0:e2:3a:e0:ec:71:46:9a:19:11:b8:d3: c7:a0:b4:03:40:26:02:3e:09:9c:e1:12:b3:d1:5a:f6:37:a5: b7:61:03:b6:5b:16:69:3b:c6:44:08:0c:88:53:0c:6b:97:49: c7:3e:35:dc:6c:b9:bb:aa:df:5c:bb:3a:2f:93:60:b6:a9:4b: 4d:f2:20:f7:cd:5f:7f:64:7b:8e:dc:00:5c:d7:fa:77:ca:39: 16:59:6f:0e:ea:d3:b5:83:7f:4d:4d:42:56:76:b4:c9:5f:04: f8:38:f8:eb:d2:5f:75:5f:cd:7b:fc:e5:8e:80:7c:fc:50 MD5 Fingerprint=74:7B:82:03:43:F0:00:9E:6B:B3:EC:47:BF:85:A5:93 -----BEGIN CERTIFICATE----- MIICNDCCAaECEAKtZn5ORf5eV288mBle3cAwDQYJKoZIhvcNAQECBQAwXzELMAkG A1UEBhMCVVMxIDAeBgNVBAoTF1JTQSBEYXRhIFNlY3VyaXR5LCBJbmMuMS4wLAYD VQQLEyVTZWN1cmUgU2VydmVyIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTk0 MTEwOTAwMDAwMFoXDTEwMDEwNzIzNTk1OVowXzELMAkGA1UEBhMCVVMxIDAeBgNV BAoTF1JTQSBEYXRhIFNlY3VyaXR5LCBJbmMuMS4wLAYDVQQLEyVTZWN1cmUgU2Vy dmVyIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MIGbMA0GCSqGSIb3DQEBAQUAA4GJ ADCBhQJ+AJLOesGugz5aqomDV6wlAXYMra6OLDfO6zV4ZFQD5YRAUcm/jwjiioII 0haGN1XpsSECrXZogZoFokvJSyVmIlZsiAeP94FZbYQHZXATcXY+m3dM41CJVphI uR2nKRoTLkoRWZweFdVJVCxzOmmCsZc5nG1wZ0jl3S3WyB57AgMBAAEwDQYJKoZI hvcNAQECBQADfgBl3X7hsuyw4jrg7HFGmhkRuNPHoLQDQCYCPgmc4RKz0Vr2N6W3 YQO2WxZpO8ZECAyIUwxrl0nHPjXcbLm7qt9cuzovk2C2qUtN8iD3zV9/ZHuO3ABc 1/p3yjkWWW8O6tO1g39NTUJWdrTJXwT4OPjr0l91X817/OWOgHz8UA== -----END CERTIFICATE----- Certificate: Data: Version: 1 (0x0) Serial Number: 419 (0x1a3) Signature Algorithm: md5WithRSAEncryption Issuer: C=US, O=GTE Corporation, CN=GTE CyberTrust Root Validity Not Before: Feb 23 23:01:00 1996 GMT Not After : Feb 23 23:59:00 2006 GMT Subject: C=US, O=GTE Corporation, CN=GTE CyberTrust Root Subject Public Key Info: Public Key Algorithm: rsaEncryption RSA Public Key: (1024 bit) Modulus (1024 bit): 00:b8:e6:4f:ba:db:98:7c:71:7c:af:44:b7:d3:0f: 46:d9:64:e5:93:c1:42:8e:c7:ba:49:8d:35:2d:7a: e7:8b:bd:e5:05:31:59:c6:b1:2f:0a:0c:fb:9f:a7: 3f:a2:09:66:84:56:1e:37:29:1b:87:e9:7e:0c:ca: 9a:9f:a5:7f:f5:15:94:a3:d5:a2:46:82:d8:68:4c: d1:37:15:06:68:af:bd:f8:b0:b3:f0:29:f5:95:5a: 09:16:61:77:0a:22:25:d4:4f:45:aa:c7:bd:e5:96: df:f9:d4:a8:8e:42:cc:24:c0:1e:91:27:4a:b5:6d: 06:80:63:39:c4:a2:5e:38:03 Exponent: 65537 (0x10001) Signature Algorithm: md5WithRSAEncryption 12:b3:75:c6:5f:1d:e1:61:55:80:00:d4:81:4b:7b:31:0f:23: 63:e7:3d:f3:03:f9:f4:36:a8:bb:d9:e3:a5:97:4d:ea:2b:29: e0:d6:6a:73:81:e6:c0:89:a3:d3:f1:e0:a5:a5:22:37:9a:63: c2:48:20:b4:db:72:e3:c8:f6:d9:7c:be:b1:af:53:da:14:b4: 21:b8:d6:d5:96:e3:fe:4e:0c:59:62:b6:9a:4a:f9:42:dd:8c: 6f:81:a9:71:ff:f4:0a:72:6d:6d:44:0e:9d:f3:74:74:a8:d5: 34:49:e9:5e:9e:e9:b4:7a:e1:e5:5a:1f:84:30:9c:d3:9f:a5: 25:d8 MD5 Fingerprint=C4:D7:F0:B2:A3:C5:7D:61:67:F0:04:CD:43:D3:BA:58 -----BEGIN CERTIFICATE----- MIIB+jCCAWMCAgGjMA0GCSqGSIb3DQEBBAUAMEUxCzAJBgNVBAYTAlVTMRgwFgYD VQQKEw9HVEUgQ29ycG9yYXRpb24xHDAaBgNVBAMTE0dURSBDeWJlclRydXN0IFJv b3QwHhcNOTYwMjIzMjMwMTAwWhcNMDYwMjIzMjM1OTAwWjBFMQswCQYDVQQGEwJV UzEYMBYGA1UEChMPR1RFIENvcnBvcmF0aW9uMRwwGgYDVQQDExNHVEUgQ3liZXJU cnVzdCBSb290MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC45k+625h8cXyv RLfTD0bZZOWTwUKOx7pJjTUteueLveUFMVnGsS8KDPufpz+iCWaEVh43KRuH6X4M ypqfpX/1FZSj1aJGgthoTNE3FQZor734sLPwKfWVWgkWYXcKIiXUT0Wqx73llt/5 1KiOQswkwB6RJ0q1bQaAYznEol44AwIDAQABMA0GCSqGSIb3DQEBBAUAA4GBABKz dcZfHeFhVYAA1IFLezEPI2PnPfMD+fQ2qLvZ46WXTeorKeDWanOB5sCJo9Px4KWl IjeaY8JIILTbcuPI9tl8vrGvU9oUtCG41tWW4/5ODFlitppK+ULdjG+BqXH/9Apy bW1EDp3zdHSo1TRJ6V6e6bR64eVaH4QwnNOfpSXY -----END CERTIFICATE-----   The only parts that are really important are the actual certificates which are between the BEGIN CERTIFICATE and END CERTIFICATE lines.</description>
+    </item>
+    
+    <item>
+      <title>Further steps if using only VMWare</title>
+      <link>https://vcl.apache.org/docs/archives/old-releases/further-steps-if-using-only-vmware.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/archives/old-releases/further-steps-if-using-only-vmware.html</guid>
+      <description>If you are using standalone VMWare servers (i.e. ones that VCL did not deploy using xCAT), you first need to add the VMWare servers; then, you need to add the virtual machines. You can either add them individually (Adding Individual VMWare Servers/Virtual Machines), or if they have sequential hostnames and IP addresses, you can add them all at once (Adding Multiple VMWare Servers/Virtual Machines).
+Once you have added at least one computer, you can get to the &amp;ldquo;Add Single Computer&amp;rdquo; page by going to Manage Computers-&amp;gt;Edit Computer Information and clicking Add.</description>
+    </item>
+    
+    <item>
+      <title>Further steps if using xCAT</title>
+      <link>https://vcl.apache.org/docs/archives/old-releases/further-steps-if-using-xcat.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/archives/old-releases/further-steps-if-using-xcat.html</guid>
+      <description>You can initially add individual computers or multiple computers all together. After you have added at least one computer, you will need to go to Manage Computers -&amp;gt; Edit Computer Information to additional ones.
+
+Adding Individual Computers  click &amp;ldquo;Manage Computers&amp;rdquo; select the &amp;ldquo;Add Single Computer&amp;rdquo; radio button click Submit fill in Hostname, IP Address, owner (admin@Local), RAM, Proc Speed, Network Speed, select &amp;ldquo;blade&amp;rdquo; for Type, select &amp;ldquo;xCAT 2.x Provisioning&amp;rdquo;	for &amp;ldquo;Provisioning Engine&amp;rdquo;, and click the checkbox under &amp;ldquo;allcomputers&amp;rdquo;, and &amp;ldquo;newimages&amp;rdquo; click Confirm Computer click Submit (don&amp;rsquo;t worry about the fact that the computer you just added isn&amp;rsquo;t listed after clicking Submit) after you&amp;rsquo;ve configured your image library and your management node has started checking in, you should be able to make a reservation</description>
+    </item>
+    
+    <item>
+      <title>Granting Access to a New Image</title>
+      <link>https://vcl.apache.org/docs/authorization/grantaccesstonewimage.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/authorization/grantaccesstonewimage.html</guid>
+      <description>Overview Once you have created a new image, there are a few things you have to do to allow other people to use it. If you don&amp;rsquo;t have access to do any of the following steps, you will need to get a VCL administrator to do them for you.
+When you create a new image, it is only available to you, and it is only allowed to be run on a few computers that have been set aside for the testing of new images.</description>
+    </item>
+    
+    <item>
+      <title>How to Increase the Size of a Virtual Machine Hard Drive under VMware ESXi</title>
+      <link>https://vcl.apache.org/docs/increasevmhdd.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/increasevmhdd.html</guid>
+      <description>This page describes how to increase the size of a VM&amp;rsquo;s hard drive. This is useful if additional space is needed to install large applications.
+Create a Full Copy of the Virtual Disk
+ Determine the VMware host the VM is on Shutdown the VM Log in to the VM host via SSH  Navigate to the VM&amp;rsquo;s working directory (under the VM Working Directory Path configured in the VM profile)</description>
+    </item>
+    
+    <item>
+      <title>Image Creation</title>
+      <link>https://vcl.apache.org/docs/image-creation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/image-creation.html</guid>
+      <description>After VCL is installed, you need to create images for users. As part of the installation, you should have created some base images from which to start building other images. The guides on this page explain how to create new images through the VCL, starting from already created base images.
+Creating Images  Creating a New Image From a Base Image  Additional Steps for Windows Images Additional Steps for Linux Images   Configuring the Default User Profile Using VCL post load and reserve scripts  </description>
+    </item>
+    
+    <item>
+      <title>Install a Windows Base Image</title>
+      <link>https://vcl.apache.org/docs/windowsbaseimagecreation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/windowsbaseimagecreation.html</guid>
+      <description>This page describes how to mount the Windows installation media and install Windows for a base image.
+Mount the Installation Media
+The Windows installation media needs to be mounted as a drive on the computer. The method to do this varies widely based on the provisioning engine being used and resources available. The following lists some ways to mount the installation media:
+VMware - Configure the VM to mount the ISO image as a CD-ROM drive</description>
+    </item>
+    
+    <item>
+      <title>Installation</title>
+      <link>https://vcl.apache.org/docs/installation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/installation.html</guid>
+      <description>This portion of the site is for documentation on installing VCL and for documentation explaining configuration items that an installer would typically do.
+VCL 2.5.1 Installation Guide - Current Release
+Supplemental configuration guides
+  Upgrade from previous versions
+  Configuring LDAP Authentication
+  Configuring Shibboleth Authentication
+  Creating Custom Themes
+  phpMyAdmin Installation and Configuration
+  VMware Configuration
+  Creating Base images
+     Archived Install guides: VCL 2.</description>
+    </item>
+    
+    <item>
+      <title>LDAP Authentication</title>
+      <link>https://vcl.apache.org/docs/ldapauth.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/ldapauth.html</guid>
+      <description>Why LDAP Authentication? Overview Prerequisites for your LDAP server: Prerequisites for your VCL web server: Adding LDAP Authentication to the Web Code Mirroring LDAP User Groups  Some things to be aware of with mirrored groups Debugging LDAP Configuration     Why LDAP Authentication? Authenticating your users to VCL via LDAP allows you to use your enterprise managed accounts to log in to the VCL web site. Additionally, you can mirror certain user groups from your LDAP system into VCL so that you do not need to manage the user group memberships both in your enterprise system and in VCL.</description>
+    </item>
+    
+    <item>
+      <title>phpMyAdmin Installation &amp; Configuration</title>
+      <link>https://vcl.apache.org/docs/installphpmyadmin.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/installphpmyadmin.html</guid>
+      <description>phpMyAdmin is a free and optional tool which allows MySQL to be administered using a web browser. It makes administering the VCL database easier. This tool can be installed on the VCL web server.    phpmyadmin recommends performing installation using packages available from you Linux distribution
+For CentOS, the EPEL yum repository needs to have been added (which is done for installing the VCL management node code; use yum install -y epel-release in not already installed).</description>
+    </item>
+    
+    <item>
+      <title>phpMyAdmin Installation &amp; Configuration</title>
+      <link>https://vcl.apache.org/docs/installphpMyAdminVCL.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/installphpMyAdminVCL.html</guid>
+      <description>phpMyAdmin is a free and optional tool which allows MySQL or MariaDB to be administered using a web browser. It makes administering the VCL database easier. This tool can be installed on the VCL web server.    Install phpMyAdmin via the yum package manager. Tested on clean installs of CentOS, Red Hat versions 6 and 7
+  phpMyAdmin is in the extras repository, use epel-release package to add this repo</description>
+    </item>
+    
+    <item>
+      <title>Save the Image</title>
+      <link>https://vcl.apache.org/docs/save-the-image.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/save-the-image.html</guid>
+      <description>When you&amp;rsquo;re finished configuring the remote computer and are ready to save the image:
+ Log off of the remote VCL computer From your own machine, return to the Current Reservations page on the VCL website Select More Options&amp;hellip;-&amp;gt;End Reservation &amp;amp; Create Image Here you may have two options, select one of them and click Submit   Creating New Image - this creates a completely new image Update Existing Image - if you are the owner of the image, you can select this option to simply create a new revision of the image.</description>
+    </item>
+    
+    <item>
+      <title>Shibboleth Authentication</title>
+      <link>https://vcl.apache.org/docs/shibauth.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/shibauth.html</guid>
+      <description>The VCL is designed to support Shibboleth authentication for one or more affiliations. Using Shibboleth does not preclude the use of LDAP for other affiliations in the same VCL infrastructure. The principal advantage of using Shibboleth with the VCL is the ability to completely externalize authentication (and, to a certain degree, authorization) decisions. That is, by using Shibboleth authentication, a user&amp;rsquo;s password will never pass through the VCL system.
+Configure Apache The first step is to configure Apache by protecting the /shibauth directory on your webserver.</description>
+    </item>
+    
+    <item>
+      <title>Site Configuration Message Substitutions</title>
+      <link>https://vcl.apache.org/docs/message_substitutions.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/message_substitutions.html</guid>
+      <description>Message Substitutions Messages sent to users and admins can be configured via the VCL web site under Site Configuration as of version 2.5. There are many variables that can be substituted into the messages by the backend before a message is sent to a user. Variables are included in square brackets ( [ ] ). For example:
+Your reservation for [image_name] is now available.  The list of variables that can be substituted is quite large.</description>
+    </item>
+    
+    <item>
+      <title>Themes</title>
+      <link>https://vcl.apache.org/docs/themes.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/themes.html</guid>
+      <description>Overview File system structure VCL HTML generation Understanding page.php Path references Example: bare minimal theme Using a new theme Tips and Tricks   Overview Custom themes can be created in VCL for each affiliation. This allows a multi-site installation of VCL to have themes that match each affiliation&amp;rsquo;s primary web site theme. When a user logs in, the site will be displayed using the theme specified for that user&amp;rsquo;s affiliation.</description>
+    </item>
+    
+    <item>
+      <title>Updating an Existing Image</title>
+      <link>https://vcl.apache.org/docs/updating-an-existing-image.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/updating-an-existing-image.html</guid>
+      <description>This is a continuation of other pages, if you did not come from Save the Image , you should start at Creating a New Image from a Base Image .
+
+Understanding Image Revisions Each VCL image can have multiple revisions. When a VCL image is saved, all data from the image&amp;rsquo;s disk is saved in disk image files. A revision is still a full set of disk image files, but information about each revision allows them to be tracked as a series of updates to a VCL image.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.2 to 2.2.2</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.2.2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.2.2.html</guid>
+      <description>This page provides information on how to upgrade from VCL 2.2 to VCL 2.2.2. Please note it only applies for the upgrade from 2.2 to 2.2.2, this may or may not work for other versions. The basic steps that will be performed
+The basic steps that will be performed
+ Download and Extract 2.2.2 code Shutdown httpd and vcld services Create backup of vcl database Update mysql schema Grant CREATE TEMPORARY TABLES to mysql user Update Web code, create a backup, copy in new, make changes Restart httpd service Update Management node vcl code, create a backup, copy in new, make changes Restart vcld service  Detailed steps for upgrade from 2.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade from 2.2 to 2.3</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3.html</guid>
+      <description>This page provides information on how to upgrade from VCL 2.2 to VCL 2.3. Please note it only applies for the upgrade from 2.2 to 2.3, this may or may not work for other versions.
+The basic steps that will be performed
+ Download and Extract 2.3 code Shutdown httpd and vcld services Create backup of vcl database Update mysql schema Update Web code, create a backup, copy in new, make changes Restart httpd service Update Management node vcl code, create a backup, copy in new, make changes Restart vcld service  Detailed steps for upgrade from 2.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.2 to 2.3.1</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3.1.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3.1.html</guid>
+      <description>This page provides information on how to upgrade from VCL 2.2 to VCL 2.3.1. Please note it only applies for the upgrade from 2.2 to 2.3.1, this may or may not work for other versions.
+The basic steps that will be performed
+ Download and Extract 2.3.1 code Shutdown httpd and vcld services Create backup of vcl database Update mysql schema Update Web code, create a backup, copy in new, make changes Restart httpd service Update Management node vcl code, create a backup, copy in new, make changes Restart vcld service  Detailed steps for upgrade from 2.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.2 to 2.3.2</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3.2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3.2.html</guid>
+      <description>This page provides information on how to upgrade from VCL 2.2 to VCL 2.3.2. Please note it only applies for the upgrade from 2.2 to 2.3.2, this may or may not work for other versions.
+The basic steps that will be performed
+ Download and Extract 2.3.2 code Shutdown httpd and vcld services Create backup of vcl database Update mysql schema Update Web code, create a backup, copy in new, make changes Restart httpd service Update Management node vcl code, create a backup, copy in new, make changes Restart vcld service  Detailed steps for upgrade from 2.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.2.1 to 2.2.2</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.2.2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.2.2.html</guid>
+      <description>This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.2.2. Please note it only applies for the upgrade from 2.2.1 to 2.2.2, this may or may not work for other versions.
+The basic steps that will be performed
+ Download and Extract 2.2.2 code Shutdown httpd service Create backup of vcl database Create backup of web code Upgrade web code Restart httpd service  Detailed steps for upgrade from 2.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.2.1 to 2.3</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3.html</guid>
+      <description>This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3. Please note it only applies for the upgrade from 2.2.1 to 2.3, this may or may not work for other versions.
+The basic steps that will be performed
+ Download and Extract 2.3 code Shutdown httpd and vcld services Create backup of vcl database Update mysql schema Update Web code, create a backup, copy in new, make changes Restart httpd service Update Management node vcl code, create a backup, copy in new, make changes Restart vcld service  Detailed steps for upgrade from 2.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.2.1 to 2.3.1</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3.1.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3.1.html</guid>
+      <description>This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3.1. Please note it only applies for the upgrade from 2.2.1 to 2.3.1, this may or may not work for other versions.
+The basic steps that will be performed
+ Download and Extract 2.3.1 code Shutdown httpd and vcld services Create backup of vcl database Update mysql schema Update Web code, create a backup, copy in new, make changes Restart httpd service Update Management node vcl code, create a backup, copy in new, make changes Restart vcld service  Detailed steps for upgrade from 2.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.2.1 to 2.3.2</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3.2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3.2.html</guid>
+      <description>This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.3.2. Please note it only applies for the upgrade from 2.2.1 to 2.3.2, this may or may not work for other versions.
+The basic steps that will be performed
+ Download and Extract 2.3.2 code Shutdown httpd and vcld services Create backup of vcl database Update mysql schema Update Web code, create a backup, copy in new, make changes Restart httpd service Update Management node vcl code, create a backup, copy in new, make changes Restart vcld service  Detailed steps for upgrade from 2.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.2.2 to 2.4.2</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.2to2.4.2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.2.2to2.4.2.html</guid>
+      <description>Scripted Upgrade VCL 2.4.2 is the first release to include an upgrade script. All you need to upgrade VCL is the script. It will download and validate the VCL software and then upgrade your system. The script can be used to upgrade all three parts of VCL (database, web portal, and management node) or to upgrade each part individually. It works for upgrading from any previous version of Apache VCL.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.3 to 2.3.1</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.3to2.3.1.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.3to2.3.1.html</guid>
+      <description>This page provides information on how to upgrade from VCL 2.3 to VCL 2.3.1. Please note it only applies for the upgrade from 2.3 to 2.3.1, this may or may not work for other versions.
+The basic steps that will be performed
+ Download and Extract 2.3.1 code Shutdown httpd and vcld services Create backup of vcl database Update mysql schema Update Web code, create a backup, copy in new, make changes Restart httpd service Update Management node vcl code, create a backup, copy in new, make changes Restart vcld service  Detailed steps for upgrade from 2.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.3 to 2.3.2</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.3to2.3.2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.3to2.3.2.html</guid>
+      <description>This page provides information on how to upgrade from VCL 2.3 to VCL 2.3.2. Please note it only applies for the upgrade from 2.3 to 2.3.2, this may or may not work for other versions.
+The basic steps that will be performed
+ Download and Extract 2.3.2 code Shutdown httpd and vcld services Create backup of vcl database Update mysql schema Update Web code, create a backup, copy in new, make changes Restart httpd service Update Management node vcl code, create a backup, copy in new, make changes Restart vcld service  Detailed steps for upgrade from 2.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.3.1 to 2.3.2</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.3.1to2.3.2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.3.1to2.3.2.html</guid>
+      <description>This page provides information on how to upgrade from VCL 2.3.1 to VCL 2.3.2. Please note it only applies for the upgrade from 2.3.1 to 2.3.2, this may or may not work for other versions.
+The basic steps that will be performed
+ Download and Extract 2.3.2 code Shutdown httpd and vcld services Create backup of vcl database Update Web code, create a backup, copy in new, make changes Restart httpd service Update Management node vcl code, create a backup, copy in new, make changes Restart vcld service  There are no updates to the VCL database schema between 2.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.3.2 to 2.4.2</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.3.2to2.4.2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.3.2to2.4.2.html</guid>
+      <description>Scripted Upgrade VCL 2.4.2 is the first release to include an upgrade script. All you need to upgrade VCL is the script. It will download and validate the VCL software and then upgrade your system. The script can be used to upgrade all three parts of VCL (database, web portal, and management node) or to upgrade each part individually. It works for upgrading from any previous version of Apache VCL.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.4.2 to 2.5</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.4.2to2.5.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.4.2to2.5.html</guid>
+      <description>Scripted Upgrade VCL 2.5 is the second release to include an upgrade script. All you need to upgrade VCL is the script. It will download and validate the VCL software and then upgrade your system. The script can be used to upgrade all three parts of VCL (database, web portal, and management node) or to upgrade each part individually. It works for upgrading from any previous version of Apache VCL.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.4.2 to 2.5.1</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.4.2to2.5.1.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.4.2to2.5.1.html</guid>
+      <description>Scripted Upgrade VCL 2.5.1 includes an upgrade script. All you need to upgrade VCL is the script. It will download and validate the VCL software and then upgrade your system. The script can be used to upgrade all three parts of VCL (database, web portal, and management node) or to upgrade each part individually. It works for upgrading from any previous version of Apache VCL.
+Download Upgrade Script (vcl-upgrade.sh)
+wget https://www.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From 2.5 to 2.5.1</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.5to2.5.1.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/UpgradeFrom2.5to2.5.1.html</guid>
+      <description>Scripted Upgrade VCL 2.5.1 includes an upgrade script. All you need to upgrade VCL is the script. It will download and validate the VCL software and then upgrade your system. The script can be used to upgrade all three parts of VCL (database, web portal, and management node) or to upgrade each part individually. It works for upgrading from any previous version of Apache VCL.
+Download Upgrade Script (vcl-upgrade.sh)
+wget https://www.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade From Previous Version</title>
+      <link>https://vcl.apache.org/docs/archives/old-releases/upgrade-from-previous-version.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/archives/old-releases/upgrade-from-previous-version.html</guid>
+      <description>This file provides information on how to upgrade from VCL 2.1 to VCL 2.2. Please note it only applies for the upgrade from 2.1 to 2.2, this may or may not work for other versions.
+
+The basic steps that will be performed  Download and Extract 2.2 code Shutdown httpd and vcld services Create backup of vcl database Update mysql schema Update Web code, create a backup, copy in new, make changes Restart httpd service Update Management node vcl code, create a backup, copy in new, make changes Restart vcld service</description>
+    </item>
+    
+    <item>
+      <title>Upgrade Guides</title>
+      <link>https://vcl.apache.org/docs/UpgradePreviousVersions/upgrades.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/UpgradePreviousVersions/upgrades.html</guid>
+      <description>Upgrade from previous versions to the latest release (2.5.1) Upgrade from 2.5 to 2.5.1
+Upgrade from 2.4.2 to 2.5.1
+Upgrade from previous versions to 2.5 Upgrade from 2.4.2 to 2.5
+Upgrade from previous versions to 2.4.2 Upgrade from 2.3.2 to 2.4.2
+Upgrade from 2.2.2 to 2.4.2
+Upgrade from previous versions to 2.3.2 Upgrade from 2.3.1 to 2.3.2
+Upgrade from 2.3 to 2.3.2
+Upgrade from 2.2.1 to 2.3.2
+Upgrade from 2.2 to 2.</description>
+    </item>
+    
+    <item>
+      <title>VCL 2.2</title>
+      <link>https://vcl.apache.org/docs/archives/old-releases/vcl-2.2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/archives/old-releases/vcl-2.2.html</guid>
+      <description>Download links Release Notes    I. Intro and Description II. VCL Roadmap III. Getting Involved in the ASF VCL Community IV. How to Submit Bugs and Feature Requests     Change Log    Bug Improvement New Feature Task       
+Download links Please make sure to download VCL from an mirror server. The following link will automatically select one for you that should be close to you.</description>
+    </item>
+    
+    <item>
+      <title>VCL 2.2 Installation</title>
+      <link>https://vcl.apache.org/docs/archives/old-releases/vcl-2.2-installation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/archives/old-releases/vcl-2.2-installation.html</guid>
+      <description>Steps to install VCL:
+ Download and verify a release file. Follow instructions on the VCL 2.2 release page Install the database portion of VCL Install the web code Install the Management Node code  </description>
+    </item>
+    
+    <item>
+      <title>VCL 2.3 Installation Guide</title>
+      <link>https://vcl.apache.org/docs/VCL23Installation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/VCL23Installation.html</guid>
+      <description>VCL 2.3 Installation Guide
+This guide will provide the necessary steps to install and configure VCL software. It covers the set up of the database , web portal, and management node.
+ Install &amp;amp; Configure the Database VCL currently supports the use of mysql database.
+  Download and Extract the Apache VCL Source
+  If you have not already done so, download and the Apache VCL source to the database server:</description>
+    </item>
+    
+    <item>
+      <title>VCL 2.3.1 Installation Guide</title>
+      <link>https://vcl.apache.org/docs/VCL231InstallGuide.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/VCL231InstallGuide.html</guid>
+      <description>VCL 2.3.1 Installation Guide
+This guide will provide the necessary steps to install and configure VCL software. It covers the set up of the database , web portal, and management node.
+ Install &amp;amp; Configure the Database VCL currently supports the use of mysql database.
+  Download and Extract the Apache VCL Source
+  If you have not already done so, follow the instructions on the download page to download and verify apache-VCL-2.</description>
+    </item>
+    
+    <item>
+      <title>VCL 2.3.2 Installation Guide</title>
+      <link>https://vcl.apache.org/docs/VCL232InstallGuide.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/VCL232InstallGuide.html</guid>
+      <description>This guide will provide the necessary steps to install and configure VCL software. It covers the set up of the database, web portal, and management node.
+ Install &amp;amp; Configure the Database VCL currently supports the use of mysql database.
+  Download and Extract the Apache VCL Source
+  If you have not already done so, follow the instructions on the download page to download and verify apache-VCL-2.3.2.tar.bz2, and put it in /root</description>
+    </item>
+    
+    <item>
+      <title>VCL 2.4.2 Installation Guide</title>
+      <link>https://vcl.apache.org/docs/VCL242InstallGuide.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/VCL242InstallGuide.html</guid>
+      <description>Scripted Installation VCL 2.4.2 is the first release to include an installation script. All you need to install VCL is the script. It will download and validate the VCL software and then install it. The script can be used to install all three parts of VCL (database, web portal, and management node) or to install each part individually.
+Download Install Script (vcl-install.sh)
+Validate script:
+wget https://www.apache.org/dist/vcl/2.4.2/vcl-install.sh.sha1 sha1sum -c vcl-install.sh.sha1 wget https://www.</description>
+    </item>
+    
+    <item>
+      <title>VCL 2.5 Installation Guide</title>
+      <link>https://vcl.apache.org/docs/VCL25InstallGuide.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/VCL25InstallGuide.html</guid>
+      <description>Scripted Installation VCL 2.5 is the first release to include an installation script. All you need to install VCL is the script. It will download and validate the VCL software and then install it. The script can be used to install all three parts of VCL (database, web portal, and management node) or to install each part individually.
+Download Install Script (vcl-install.sh)
+Validate script:
+wget https://www.apache.org/dist/vcl/2.5/vcl-install.sh.sha1 sha1sum -c vcl-install.sh.sha1 wget https://www.</description>
+    </item>
+    
+    <item>
+      <title>VCL 2.5.1 Installation Guide</title>
+      <link>https://vcl.apache.org/docs/VCL251InstallGuide.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/VCL251InstallGuide.html</guid>
+      <description>Scripted Installation VCL 2.5.1 can be installed using an installation script. All you need to install VCL is the script. It will download and validate the VCL software and then install it. The script can be used to install all three parts of VCL (database, web portal, and management node) or to install each part individually.
+Download Install Script (vcl-install.sh)
+Validate script:
+wget https://www.apache.org/dist/vcl/2.5.1/vcl-install.sh.sha512 sha512sum -c vcl-install.sh.sha512 wget https://www.apache.org/dist/vcl/KEYS gpg --import KEYS wget https://www.</description>
+    </item>
+    
+    <item>
+      <title>VCL Image Scripts: Post-Load, Post-Reserve, &amp; Post-Reservation</title>
+      <link>https://vcl.apache.org/docs/vclPostScripts.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/vclPostScripts.html</guid>
+      <description>Scripts may be saved within VCL images which are automatically executed at specific stages of the VCL reservation process. The scripts are added by the image creator prior to saving the image. They must be located and named exactly as specified below.
+For Windows image scripts, the output is saved in C:\Cygwin\root\VCL\Scripts\Logs. The name of the log file name corresponds to the name of the script. Example: C:\Cygwin\root\VCL\Scripts\Logs\vcl_post_load.log
+Post-Load Location:</description>
+    </item>
+    
+    <item>
+      <title>Video - Granting Two Sets of Users Access to Two Different Sets of Images</title>
+      <link>https://vcl.apache.org/docs/authorization/example2users2images-video.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/authorization/example2users2images-video.html</guid>
+      <description>This video shows the steps outlined in Example - Granting Two Sets of Users Access to Two Different Sets of Images
+This video was created using Wink
+  </description>
+    </item>
+    
+    <item>
+      <title>Viewing the hostname in an SSL certificate</title>
+      <link>https://vcl.apache.org/docs/ldap-showhostname.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/ldap-showhostname.html</guid>
+      <description>The hostname in an SSL certificate used for LDAP must match the hostname entered in the conf.php file (this is the SSL certificate actually installed on the LDAP server, not the CA certificate). If you have no control over making it match, you can just put an entry in /etc/hosts with the IP of the LDAP server and the hostname that is in the certificate. To view the hostname in the certificate, you need a file containing the certificate (mycert.</description>
+    </item>
+    
+    <item>
+      <title>VMware Configuration</title>
+      <link>https://vcl.apache.org/docs/vmwareconfiguration.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/vmwareconfiguration.html</guid>
+      <description>Terminology VM Host
+ A VM host is a physical computer running a VMware hypervisor A VCL computer entry must be added for each VM host (Manage Computers &amp;gt; Edit Computer Information) After the computer has been added to VCL, it is designated as a VM host by changing the computer state to vmhostinuse (Manage Computers &amp;gt; Computer Utilities)  VM
+ A VM is a virtual machine managed by VCL A computer entry must be added to VCL for each VM (Manage Computers &amp;gt; Edit Computer Information) Each VM must be assigned to a VM host (Virtual Hosts &amp;gt; VM Hosts tab &amp;gt; Configure Host) VMs do not need to be created manually in VMware, VCL automatically creates and deletes VMs  VM Host Profile</description>
+    </item>
+    
+  </channel>
+</rss>

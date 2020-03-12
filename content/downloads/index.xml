@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Downloads on Apache VCL</title>
+    <link>https://vcl.apache.org/downloads.html</link>
+    <description>Recent content in Downloads on Apache VCL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="https://vcl.apache.org/downloads/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Downloads</title>
+      <link>https://vcl.apache.org/downloads/download.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/downloads/download.html</guid>
+      <description>Download Links Use the links below to download Apache VCL from one of our mirrors. You must verify the integrity of the downloaded files using signatures downloaded from our main distribution directory, not from a mirror.
+Only current recommended releases are available on the main distribution site and its mirrors. Older releases are available from the archive download site.
+Stable Release - Latest Version:
+ apache-VCL-2.5.1.tar.bz2 [ GPG ] [ SHA512 ] (released 2019-07-25)  Previous Releases:</description>
+    </item>
+    
+  </channel>
+</rss>

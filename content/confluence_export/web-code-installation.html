@@ -1,0 +1,346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Web Code Installation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Web Code Installation</h1>
+    
+	<p>{excerpt}This page describes how to install and configure the frontend VCL
+web code components including the web server prerequisites and frontend VCL
+web code. It also describes how to add local web accounts, configure LDAP
+authentication, and set the timezone correctly.{excerpt}</p>
+<p><a name="WebCodeInstallation-*Prerequisites*"></a></p>
+<h2 id="prerequisites"><em>Prerequisites</em></h2>
+<p>Your web server should meet the following criteria before installing the
+frontend VCL code:</p>
+<ul>
+<li>Apache HTTP Server v1.3 or v2.x with SSL enabled - while VCL may run
+under another webserver capable of running PHP code, it has only been
+tested to work with Apache HTTP Server</li>
+<li>PHP 5</li>
+<li>php modules that should be installed (depending on your Linux distro,
+some of these may be compiled in to php instead of being a separate
+module):
+** php-gd
+** php-json (if your PHP version is &lt; 5.2, this is not required)
+** php-mcrypt
+** php-mysql
+** php-openssl
+** php-sysvsem
+** php-xml
+** php-xmlrpc</li>
+<li>useful to have the server set up to be able to send debugging emails</li>
+<li>php-mcrypt requires libmcrypt and mcrypt libraries as dependencies.
+These may need to be installed first.</li>
+</ul>
+<p><a name="WebCodeInstallation-*InstallingVCLFrontendWebCode*"></a></p>
+<h2 id="installing-vcl-frontend-web-code"><em>Installing VCL Frontend Web Code</em></h2>
+<ol>
+<li>
+<p>If you haven&rsquo;t already done so, download and extract a copy of the latest
+release. There is a link to it under the Project Resources section on our
+wiki <a href="apache-vcl.html">home page</a>
+. Look for &ldquo;Current version&rdquo;.</p>
+</li>
+<li>
+<p>copy the &ldquo;web&rdquo; directory to a location somewhere under the web root of
+your web server:</p>
+<p>cp -r web/ /var/www/html/vcl</p>
+</li>
+<li>
+<p>modify vcl/.ht-inc/secrets.php</p>
+</li>
+<li>
+<ul>
+<li>set $vclhost, $vcldb, $vclusername, and $vclpassword to match your
+database setup</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>create random passwords for $mcryptkey, $mcryptiv, and $pemkey -
+$mcryptiv must be 8 hex characters</li>
+</ul>
+</li>
+<li>
+<p>run the genkeys.sh script from within vcl/.ht-inc and give it $pemkey
+from secrets.php as the passphrase (3 times, copy/paste is a good idea
+here)</p>
+</li>
+<li>
+<p>modify vcl/.ht-inc/conf.php to match your site - COOKIEDOMAIN needs to be
+the domain name your web server is using, or left blank if you are
+accessing it by IP only.
+<em>NOTE:</em> There is a misconfiguration in conf.php in VCL 2.1.  To correct it,
+change affiliationid for &ldquo;Local Account&rdquo; in the $authMechs array from 4 to</p>
+</li>
+<li></li>
+<li>
+<p>*<em>NOTICE</em>* JpGraph 2.x is no longer available.  JpGraph 3.x is released
+under a dual license. QPL 1.0 (Qt Free Licensee).  Free for non-commercial,
+open-source or educational use (JpGraph Professional License for commercial
+use).  If you are planning to use this for commercial use and don&rsquo;t want to
+pay for JpGraph, you can safely skip this step with the only side effect of
+not being able to display a few graphs on the statistics page.
+Download JpGraph from <a href="http://www.aditus.nu/jpgraph/jpdownload.php">http://www.aditus.nu/jpgraph/jpdownload.php</a></p>
+</li>
+<li>
+<ul>
+<li>For PHP5, download the 3.x series, extract it, and copy the src
+directory from it to vcl/.ht-inc/jpgraph</li>
+</ul>
+</li>
+<li>
+<p>download version 0.4.0 of Dojo Toolkit: <a href="http://download.dojotoolkit.org/release-0.4.0/dojo-0.4.0-ajax.tar.gz">http://download.dojotoolkit.org/release-0.4.0/dojo-0.4.0-ajax.tar.gz</a></p>
+</li>
+<li>
+<ul>
+<li>extract it under the vcl directory and rename &ldquo;dojo-0.4.0-ajax&rdquo; to
+&ldquo;dojoAjax&rdquo;</li>
+</ul>
+</li>
+<li>
+<p>download version 1.1.0 of Dojo Toolkit: <a href="http://download.dojotoolkit.org/release-1.1.0/dojo-release-1.1.0.tar.gz">http://download.dojotoolkit.org/release-1.1.0/dojo-release-1.1.0.tar.gz</a></p>
+</li>
+<li>
+<ul>
+<li>extract it under the vcl directory and rename &ldquo;dojo-release-1.1.0&rdquo; to
+&ldquo;dojo&rdquo;</li>
+</ul>
+</li>
+<li>
+<p>go into the themes directory (vcl/themes) and run &ldquo;./copydojocss.sh
+default&rdquo; to copy parts of dojo&rsquo;s css into the &ldquo;default&rdquo; theme</p>
+</li>
+<li>
+<p>if you want to be able to edit any of the documentation that comes
+bundled with the vcl web code, download fckeditor from <a href="http://www.fckeditor.net/download">http://www.fckeditor.net/download</a>
+(most people can skip this step)</p>
+</li>
+<li>
+<ul>
+<li>extract it under the vcl directory</li>
+</ul>
+</li>
+<li>
+<p>open a browser and open the testsetup.php page</p>
+</li>
+<li>
+<ul>
+<li>i.e. if you set up your site to be <a href="https://my.server.org/vcl/">https://my.server.org/vcl/</a>
+open [https://my.server.org/vcl/testsetup.php]</li>
+</ul>
+</li>
+<li>
+<p>debug any issues reported by testsetup.php</p>
+</li>
+<li>
+<p>now, open the index.php page in your browser</p>
+</li>
+<li>
+<p>select Local Account and use &lsquo;admin&rsquo; as the user and &lsquo;adminVc1passw0rd&rsquo;
+as the password</p>
+</li>
+<li>
+<p>click the &ldquo;Management Nodes&rdquo; link</p>
+</li>
+<li>
+<p>enter the hostname and IP of your management node</p>
+</li>
+<li>
+<p>click Add</p>
+</li>
+<li>
+<p>fill in &ldquo;Install Path&rdquo; - this is parent directory under which image files
+will be stored</p>
+</li>
+<li>
+<p>enter &ldquo;/etc/vcl/vcl.key&rdquo; for &ldquo;End Node SSH Identity Key Files&rdquo;</p>
+</li>
+<li>
+<p>click &ldquo;Confirm Management Node&rdquo;</p>
+</li>
+<li>
+<p>click Submit</p>
+</li>
+<li>
+<p>click the &ldquo;Management Nodes&rdquo; link</p>
+</li>
+<li>
+<p>select &ldquo;Edit Management Node Grouping&rdquo;</p>
+</li>
+<li>
+<p>click Submit</p>
+</li>
+<li>
+<p>select the checkbox for your management node</p>
+</li>
+<li>
+<p>click Submit</p>
+</li>
+<li>
+<p>click &ldquo;Manage Computers&rdquo;</p>
+</li>
+<li>
+<p>select the &ldquo;Add Single Computer&rdquo; radio button</p>
+</li>
+<li>
+<p>click the Submit</p>
+</li>
+<li>
+<p>fill in Hostname, IP Address, owner (admin@Local), RAM, Proc Speed,
+Network Speed, select &ldquo;blade&rdquo; for Type, select &ldquo;xCAT 1.x Provisioning&rdquo; for
+&ldquo;Provisioning Engine&rdquo;, and click the checkbox under &ldquo;allcomputers&rdquo;, and
+&ldquo;newimages&rdquo;
+    Note: if using using vmware, select &ldquo;virtualmachine&rdquo; for
+Type and &ldquo;VMWare Server Provisioning&rdquo; for &ldquo;Provisioning Engine&rdquo;</p>
+</li>
+<li>
+<p>click Confirm Computer</p>
+</li>
+<li>
+<p>click Submit (don&rsquo;t worry about the fact that the computer you just added
+isn&rsquo;t listed after clicking Submit)</p>
+</li>
+<li>
+<p>after you&rsquo;ve configured your image library and your management node has
+started checking in, you should be able to make a reservation</p>
+</li>
+</ol>
+<p><a name="WebCodeInstallation-*Addingextralocalaccounts*"></a></p>
+<h2 id="adding-extra-local-accounts"><em>Adding extra local accounts</em></h2>
+<p>There&rsquo;s not currently a tool for this.	You will need to add entries
+directly to the database.</p>
+<ol>
+<li>
+<p>add entry to user table</p>
+<p>INSERT INTO user (unityid, firstname, lastname, email, lastupdated) VALUES
+(&lsquo;myusername&rsquo;, &lsquo;myfirstname&rsquo;, &lsquo;mylastname&rsquo;, &lsquo;myemailaddr&rsquo;, NOW());</p>
+</li>
+<li>
+<p>find out the id generated for that user</p>
+<p>SELECT id, unityid FROM user WHERE unityid = &lsquo;myusername&rsquo;;</p>
+</li>
+<li>
+<p>add entry to the localauth table</p>
+<p>INSERT INTO localauth (userid, salt, passhash, lastupdated) VALUES
+(&lsquo;place1&rsquo;, &lsquo;place2&rsquo;, &lsquo;place3&rsquo;, NOW())</p>
+</li>
+</ol>
+<p>with place1 = id from step 2
+place2 = an 8 char random string
+place3 = sha1sum( desired password with place2 stuck on the end )
+this can be generated under linux like this (using &lsquo;thedog&rsquo; as the password
+and 11111111 as place2):
+echo -n &lsquo;thedog11111111&rsquo; | sha1sum
+Once a user has been added, the user can go to User Preferences to change
+his/her password</p>
+<p><a name="WebCodeInstallation-*AddingLDAPauthentication*"></a></p>
+<h2 id="adding-ldap-authentication"><em>Adding LDAP authentication</em></h2>
+<ol>
+<li>fill in the necessary information in vcl/.ht-inc/conf.php</li>
+<li>add an entry to the affiliation table and use the id for that entry as
+&lsquo;affiliationid&rsquo; for your new entry in vcl/.ht-inc/conf.php</li>
+<li>uncomment the &lsquo;require_once(&quot;.ht-inc/authmethods/ldapauth.php&rdquo;);&rsquo; line in
+in vcl/.ht-inc/conf.php</li>
+</ol>
+<p><a name="WebCodeInstallation-*SettingTimeZone*"></a></p>
+<h2 id="setting-time-zone"><em>Setting Time Zone</em></h2>
+<ol>
+<li>Edit /var/www/html/vcl/.ht-inc/php5extras.php to indicate the correct
+time zone:
+date_default_timezone_set(&lsquo;America/Los_Angeles&rsquo;);</li>
+<li>Edit /var/www/html/vcl/.ht-inc/requests.php (line 3301 currently) to
+indicate the correct time zone (purely cosmetic):
+print &ldquo;<small>(Pacific Time Zone)</small>&rdquo;;</li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

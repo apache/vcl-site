@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Adding xCAT kickstart based image</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Adding xCAT kickstart based image</h1>
+    
+	<h1 id="guide-for-adding-kickstart-installs-using-xcat-to-the-vcl-database">Guide for adding kickstart installs using xCAT to the VCL database.</h1>
+<p>xCAT is the bare-metal provisioning tool primarily used within VCL. It has
+the ability to install physical nodes with an operating system such
+as; windows Red Hat, CentOS, ESX, SLES on x86 based hardware. This
+guide will discuss adding support to VCL for kickstart based or diskfull
+installs.</p>
+<p>Prerequisites are that you need to have a working xCAT install. Please
+see xCAT installation guide in order to install and configure xCAT.</p>
+<ul>
+<li>xCAT main page: <a href="http://xcat.sourceforge.net/">http://xcat.sourceforge.net/</a></li>
+<li>xCAT Getting Started guide: <a href="http://sourceforge.net/apps/mediawiki/xcat/index.php?title=XCAT_Documentation">http://sourceforge.net/apps/mediawiki/xcat/index.php?title=XCAT_Documentation</a></li>
+</ul>
+<h2 id="kickstart-template-files">Kickstart Template files</h2>
+<p>The template files used by xCAT reside in
+/opt/xcat/share/xcat/install/&lt;distro&gt;. distro can be rh, centos, fedora,
+esx, etc. Make sure to have a working template file. There are several
+examples in either of the distro directories that can used as a starting
+point. Once you have a working template, proceed to adding to the VCL
+database.</p>
+<h2 id="adding-kickstart-based-install-to-the-vcl-database">Adding kickstart based install to the VCL database</h2>
+<p>The name of the template file and the image.name must match. VCL uses this
+name to check for and properly load using kickstart method. The xcat name
+will have the .tmpl, for example the vcl image.name entry of
+<strong>rhel5-base25-v0</strong> the template file for xcat will be
+<strong>rhel5-base25-v0.tmpl.</strong></p>
+<p>There are three tables that need to have entries before you can start using
+the image through the VCL web interface. The tables used are:</p>
+<ul>
+<li>image</li>
+<li>imagerevision</li>
+<li>resource</li>
+</ul>
+<p>Depending on your OS and the version of VCL, you might need to also create
+a new entry in the OS table. An example of adding a new OSid is discussed
+below.</p>
+<p>In our sql statement examples we will use RedHat 5 and the image id of 25
+as above <strong>rhel5-base25-v0.</strong> In the below sql statement make any
+changes as needed such as ownerid, in this example it is set to 1 or the
+admin user id.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#a2f;font-weight:bold">INSERT</span> <span style="color:#a2f;font-weight:bold">INTO</span> <span style="color:#666">`</span>image<span style="color:#666">`</span> (id, <span style="color:#666">`</span>name<span style="color:#666">`</span>, <span style="color:#666">`</span>prettyname<span style="color:#666">`</span>, <span style="color:#666">`</span>ownerid<span style="color:#666">`</span>, <span style="color:#666">`</span>platformid<span style="color:#666">`</span>, <span style="color:#666">`</span>OSid<span style="color:#666">`</span>, <span style="color:#666">`</span>minram<span style="color:#666">`</span>, <span style="color:#666">`</span>minprocnumber<span style="color:#666">`</span>, <span style="color:#666">`</span>minprocspeed<span style="color:#666">`</span>, <span style="color:#666">`</span>minnetwork<span style="color:#666">`</span>,<span style="color:#666">`</span>reloadtime<span style="color:#666">`</span>, <span style="color:#666">`</span>deleted<span style="color:#666">`</span>, <span style="color:#666">`</span>lastupdate<span style="color:#666">`</span>, <span style="color:#666">`</span>forcheckout<span style="color:#666">`</span>, <span style="color:#666">`</span>maxinitialtime<span style="color:#666">`</span>,<span style="color:#666">`</span>project<span style="color:#666">`</span>, <span style="color:#666">`</span><span style="color:#a2f;font-weight:bold">size</span><span style="color:#666">`</span>) <span style="color:#a2f;font-weight:bold">VALUES</span> (<span style="color:#666">25</span>, <span style="color:#b44">&#39;</span><span style="color:#b44">rhel5-base25-v0</span><span style="color:#b44">&#39;</span>, <span style="color:#b44">&#39;</span><span style="color:#b44">RHEL 5 base</span><span style="color:#b44">&#39;</span>, <span style="color:#666">1</span>, <span style="color:#666">1</span>, <span style="color:#666">19</span>, <span style="color:#666">1024</span>, <span style="color:#666">1</span>, <span style="color:#666">0</span>, <span style="color:#666">10</span>, <span style="color:#666">14</span>, <span style="color:#666">0</span>, NOW(), <span style="color:#666">1</span>, <span style="color:#666">0</span>, <span style="color:#b44">&#39;</span><span style="color:#b44">vcl</span><span style="color:#b44">&#39;</span>, <span style="color:#666">1045</span>);
+
+<span style="color:#a2f;font-weight:bold">INSERT</span> <span style="color:#a2f;font-weight:bold">INTO</span> <span style="color:#666">`</span>imagerevision<span style="color:#666">`</span> (<span style="color:#666">`</span>imageid<span style="color:#666">`</span>, <span style="color:#666">`</span>revision<span style="color:#666">`</span>, <span style="color:#666">`</span>userid<span style="color:#666">`</span>, <span style="color:#666">`</span>datecreated<span style="color:#666">`</span>, <span style="color:#666">`</span>deleted<span style="color:#666">`</span>, <span style="color:#666">`</span>production<span style="color:#666">`</span>, <span style="color:#666">`</span>comments<span style="color:#666">`</span>, <span style="color:#666">`</span>imagename<span style="color:#666">`</span>) <span style="color:#a2f;font-weight:bold">VALUES</span> (<span style="color:#666">25</span>, <span style="color:#666">0</span>, <span style="color:#666">1</span>, NOW(), <span style="color:#666">0</span>, <span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">NULL</span>, <span style="color:#b44">&#39;</span><span style="color:#b44">rhel5-base25-v0</span><span style="color:#b44">&#39;</span>);
+
+<span style="color:#a2f;font-weight:bold">INSERT</span> <span style="color:#a2f;font-weight:bold">INTO</span> <span style="color:#666">`</span>resource<span style="color:#666">`</span> (<span style="color:#666">`</span>resourcetypeid<span style="color:#666">`</span>, <span style="color:#666">`</span>subid<span style="color:#666">`</span>) <span style="color:#a2f;font-weight:bold">VALUES</span> (<span style="color:#666">13</span>, <span style="color:#666">25</span>);
+</code></pre></div><p>Again, the xCAT template .tmpl file must match the the
+entry VCL database entry of image.name.</p>
+<p>VCL image.name = <strong>rhel5-base25-v0</strong><br>
+xCAT template file name = <strong>rhel5-base25-v0.tmpl</strong></p>
+<p>At this point you will be able to manage this image through the VCL
+interface.</p>
+<ul>
+<li>Go to Manage images</li>
+<li>Edit image grouping</li>
+<li>Select image group mapped to load onto your bare-metal blades. See
+<a href="docs/addcomputers.html">Add computers</a> if you have not added any physical nodes
+yet.</li>
+<li>Add <strong>RHEL 5 base</strong> to the desired image group</li>
+</ul>
+<h2 id="testing-kickstart-file">Testing kickstart file</h2>
+<p>Test the load, by either making a reservation for the new
+environment or try to reload a physical node through manage computers
+computer utilities. Watch the vcld.log file to view the processing and to
+debug any issues that may occur.</p>
+<h2 id="extending-the-os-table">Extending the OS table</h2>
+<p>If VCL supports the OS, extending the OS table for a new OS is fairly
+straight forward. In this example we will use Red Hat 6.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#a2f;font-weight:bold">INSERT</span> <span style="color:#a2f;font-weight:bold">INTO</span> <span style="color:#666">`</span>OS<span style="color:#666">`</span> (<span style="color:#666">`</span>name<span style="color:#666">`</span>, <span style="color:#666">`</span>prettyname<span style="color:#666">`</span>, <span style="color:#666">`</span><span style="color:#a2f;font-weight:bold">type</span><span style="color:#666">`</span>, <span style="color:#666">`</span>installtype<span style="color:#666">`</span>, <span style="color:#666">`</span>sourcepath<span style="color:#666">`</span>, <span style="color:#666">`</span>moduleid<span style="color:#666">`</span>) <span style="color:#a2f;font-weight:bold">VALUES</span> (<span style="color:#b44">&#39;</span><span style="color:#b44">rhel6</span><span style="color:#b44">&#39;</span>,<span style="color:#b44">&#39;</span><span style="color:#b44">RedHat Enterprise 6</span><span style="color:#b44">&#39;</span>,<span style="color:#b44">&#39;</span><span style="color:#b44">linux</span><span style="color:#b44">&#39;</span>,<span style="color:#b44">&#39;</span><span style="color:#b44">kickstart</span><span style="color:#b44">&#39;</span>,<span style="color:#b44">&#39;</span><span style="color:#b44">rhel6</span><span style="color:#b44">&#39;</span>, (<span style="color:#a2f;font-weight:bold">SELECT</span> <span style="color:#666">`</span>id<span style="color:#666">`</span> <span style="color:#a2f;font-weight:bold">FROM</span> <span style="color:#666">`</span>module<span style="color:#666">`</span> <span style="color:#a2f;font-weight:bold">WHERE</span> <span style="color:#666">`</span>name<span style="color:#666">`</span> <span style="color:#a2f;font-weight:bold">LIKE</span> <span style="color:#b44">&#39;</span><span style="color:#b44">os_linux</span><span style="color:#b44">&#39;</span>));
+</code></pre></div>
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

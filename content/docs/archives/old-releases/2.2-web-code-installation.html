@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - 2.2 Web Code Installation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">2.2 Web Code Installation</h1>
+    
+	<p>This page describes how to install and configure the frontend VCL
+web code components including the web server prerequisites and frontend VCL
+web code. It also describes how to add local web accounts, configure LDAP
+authentication, and set the timezone correctly.</p>
+<p><a name="2.2WebCodeInstallation-*Prerequisites*"></a></p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Your web server should meet the following criteria before installing the
+frontend VCL code:</p>
+<ul>
+<li>
+<p>Apache HTTP Server v1.3 or v2.x with SSL enabled - while VCL may run
+under another webserver capable of running PHP code, it has only been
+tested to work with Apache HTTP Server</p>
+</li>
+<li>
+<p>PHP 5</p>
+</li>
+<li>
+<p>php modules that should be installed (depending on your Linux distro,
+some of these may be compiled in to php instead of being a separate
+module):</p>
+<ul>
+<li>php-gd</li>
+<li>php-json (if your PHP version is &lt; 5.2, this is not required)</li>
+<li>php-mcrypt</li>
+<li>php-mysql</li>
+<li>php-openssl</li>
+<li>php-sysvsem</li>
+<li>php-xml</li>
+<li>php-xmlrpc</li>
+<li>php-ldap (if you will be using ldap authentication)</li>
+</ul>
+</li>
+<li>
+<p>If you are running RedHat or CentOS, these can be installed with</p>
+<pre><code>  yum install httpd mod_ssl php-gd php-mcrypt php-mysql php-xml php-xmlrpc php-ldap
+</code></pre>
+</li>
+<li>
+<p>If you will be using a self-signed certificate for SSL, <a href="http://wiki.centos.org/HowTos/Https">this is a great HOWTO </a>
+explaining how to set that up on CentOS.</p>
+</li>
+<li>
+<p>useful to have the server set up to be able to send debugging emails</p>
+</li>
+<li>
+<p>php-mcrypt requires libmcrypt and mcrypt libraries as dependencies.
+These may need to be installed first.</p>
+</li>
+</ul>
+<p><a name="2.2WebCodeInstallation-*InstallingVCLFrontendWebCode*"></a></p>
+<h2 id="installing-vcl-frontend-web-code"><em>Installing VCL Frontend Web Code</em></h2>
+<ol>
+<li>
+<p>If you haven&rsquo;t already done so, download and extract a copy of the release.
+There is a link to it on our <a href="/downloads/download.cgi">download page</a>.</p>
+</li>
+<li>
+<p>copy the &ldquo;web&rdquo; directory to a location somewhere under the web root of
+your web server:</p>
+<p>cp -r web/ /var/www/html/vcl</p>
+</li>
+<li>
+<p>copy/rename secrets-default.php to secrets.php</p>
+</li>
+<li>
+<p>modify vcl/.ht-inc/secrets.php</p>
+<ul>
+<li>set $vclhost, $vcldb, $vclusername, and $vclpassword to match your
+database setup</li>
+<li>create random passwords for $mcryptkey, $mcryptiv, and $pemkey -
+$mcryptiv must be 8 hex characters</li>
+</ul>
+</li>
+<li>
+<p>run the genkeys.sh script from within vcl/.ht-inc and give it $pemkey
+from secrets.php as the passphrase (3 times, copy/paste is a good idea
+here)</p>
+</li>
+<li>
+<p>copy/rename conf-default.php to conf.php</p>
+</li>
+<li>
+<p>modify vcl/.ht-inc/conf.php to match your site - COOKIEDOMAIN needs to be
+the domain name your web server is using, or left blank if you are
+accessing it by IP only.
+<strong>You really need to modify every entry in the &ldquo;Things in this section
+must be modified&rdquo; part of the file.</strong></p>
+</li>
+<li>
+<p><strong>NOTICE</strong> JpGraph 2.x is no longer available.  JpGraph 3.x is released
+under a dual license. QPL 1.0 (Qt Free Licensee).  Free for non-commercial,
+open-source or educational use (JpGraph Professional License for commercial
+use).  If you are planning to use this for commercial use and don&rsquo;t want to
+pay for JpGraph, you can safely skip this step with the only side effect of
+not being able to display a few graphs on the statistics page.
+Download JpGraph from <a href="http://www.aditus.nu/jpgraph/jpdownload.php">http://www.aditus.nu/jpgraph/jpdownload.php</a></p>
+<ul>
+<li>download the 3.x series, extract it, and copy the src directory from it
+to vcl/.ht-inc/jpgraph</li>
+</ul>
+</li>
+<li>
+<p>make the .ht-inc/maintenance directory writable by the web server user -
+i.e. if the httpd process is running as user &lsquo;apache&rsquo; run &lsquo;chown apache
+.ht-inc/maintenance&rsquo;</p>
+</li>
+<li>
+<p>open the testsetup.php page in a web browser</p>
+<ul>
+<li>i.e. if you set up your site to be <strong><a href="https://my.server.org/vcl/">https://my.server.org/vcl/</a></strong> open
+<strong><a href="https://my.server.org/vcl/testsetup.php">https://my.server.org/vcl/testsetup.php</a></strong></li>
+</ul>
+</li>
+<li>
+<p>debug any issues reported by testsetup.php</p>
+</li>
+<li>
+<p>now, open the index.php page in your browser</p>
+</li>
+<li>
+<p>select Local Account and use &lsquo;admin&rsquo; as the user and &lsquo;adminVc1passw0rd&rsquo;
+as the password</p>
+<p>**Now would be a good time to change the password from the default by
+going to User Preferences</p>
+</li>
+<li>
+<p>click the &ldquo;Management Nodes&rdquo; link</p>
+</li>
+<li>
+<p>enter the hostname and IP of your management node</p>
+</li>
+<li>
+<p>click Add</p>
+</li>
+<li>
+<p>fill in these additional required fields:</p>
+<ul>
+<li>SysAdmin Email Address - error emails will be sent to this address</li>
+<li>Install Path - this is parent directory under which image files will be
+stored - only required if doing bare metal installs or using VMWare with
+local disks</li>
+<li>End Node SSH Identity Key Files - probably just enter &ldquo;/etc/vcl/vcl.key&rdquo;</li>
+</ul>
+</li>
+<li>
+<p>optionally, fill in these unrequired fields:</p>
+<ul>
+<li>Address for Shadow Emails - End users are sent various emails about the
+status of their reservations. If this field is configured, copies of all of
+those emails will be sent to this address.</li>
+<li>Public NIC configuration method - this defaults to Dynamic DHCP - if
+DHCP is not available for the public interface of your nodes, you can set
+this to Static. Then, the IP configuration on the nodes will be manually
+set using Public Netmask, Public Gateway, Public DNS Server, and the IP
+address set for the computer under Manage Computers</li>
+</ul>
+</li>
+<li>
+<p>click &ldquo;Confirm Management Node&rdquo;</p>
+</li>
+<li>
+<p>click Submit</p>
+</li>
+<li>
+<p>click the &ldquo;Management Nodes&rdquo; link</p>
+</li>
+<li>
+<p>select &ldquo;Edit Management Node Grouping&rdquo;</p>
+</li>
+<li>
+<p>click Submit</p>
+</li>
+<li>
+<p>select the checkbox for your management node</p>
+</li>
+<li>
+<p>click Submit</p>
+</li>
+</ol>
+<p><a href="further-steps-if-using-only-vmware.html">Further steps if using only VMWare</a></p>
+<p><a href="further-steps-if-using-xcat.html">Further steps if using xCAT</a></p>
+<p>Next Step: <a href="2.2-management-node-installation.html">Management Node Installation</a></p>
+<p><a name="2.2WebCodeInstallation-*Addingextralocalaccounts*"></a></p>
+<h2 id="adding-extra-local-accounts">Adding extra local accounts</h2>
+<p>Additional local accounts can now be added using the backend code. After
+you have finished the backend install, run</p>
+<pre><code>vcld -setup
+</code></pre>
+<p>select vcl base module option and follow the prompts.</p>
+<p><a name="2.2WebCodeInstallation-AddingLDAPAuthentication"></a></p>
+<h2 id="adding-ldap-authentication">Adding LDAP Authentication</h2>
+<p>instructions on <a href="adding-ldap-authentication.html">Adding LDAP Authentication</a>
+have been moved to a separate page</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VCL 2.2.1 - Further steps if using xCAT</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VCL 2.2.1 - Further steps if using xCAT</h1>
+    
+	<p>You can initially add individual computers or multiple computers all
+together. After you have added at least one computer, you will need to go
+to Manage Computers -&gt; Edit Computer Information to additional ones.</p>
+<p><a name="VCL2.2.1-FurtherstepsifusingxCAT-AddingIndividualComputers"></a></p>
+<h3 id="adding-individual-computers">Adding Individual Computers</h3>
+<ol>
+<li>click &ldquo;Manage Computers&rdquo;</li>
+<li>select the &ldquo;Add Single Computer&rdquo; radio button</li>
+<li>click Submit</li>
+<li>fill in Hostname, IP Address, owner (admin@Local), RAM, Proc Speed,
+Network Speed, select &ldquo;blade&rdquo; for Type, select &ldquo;xCAT 2.x Provisioning&rdquo; for
+&ldquo;Provisioning Engine&rdquo;, and click the checkbox under &ldquo;allcomputers&rdquo;, and
+&ldquo;newimages&rdquo;</li>
+<li>click Confirm Computer</li>
+<li>click Submit (don&rsquo;t worry about the fact that the computer you just added
+isn&rsquo;t listed after clicking Submit)</li>
+<li>after you&rsquo;ve configured your image library and your management node has
+started checking in, you should be able to make a reservation</li>
+</ol>
+<p><a name="VCL2.2.1-FurtherstepsifusingxCAT-AddingMultipleComputers"></a></p>
+<h3 id="adding-multiple-computers">Adding Multiple Computers</h3>
+<ol>
+<li>click &ldquo;Manage Computers&rdquo;</li>
+<li>select the &ldquo;Add Multiple Computers&rdquo; radio button</li>
+<li>click Submit</li>
+<li>fill in</li>
+<li>
+<ul>
+<li>Hostname - the hostnames of all the computers must have a numerical part
+that is sequential, use a % as a placeholder where that part would be</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Start value - the first number of the numerical part of the hostname</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>End value - the last number of the numerical part of the hostname</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Start IP Address - if using static public addresses, the IP addresses
+must be sequential; enter the first address here; if using DHCP, just enter
+something like 1.1.1.1</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>End IP address - the last IP address of the sequence; if using DHCP,
+you&rsquo;ll need to enter something that would work out to the last address
+relative to Start IP Address (i.e. if adding 3 computers, use 1.1.1.1 for
+start and 1.1.1.3 for end)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Owner - owner of the computer</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>RAM</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Processor Speed</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Network Speed</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Type - blade</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Provisioning Engine - xCAT 2.x</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>check allComputers and newimages</li>
+</ul>
+</li>
+<li>click Confirm Computer</li>
+<li>click Submit (don&rsquo;t worry about the fact that the computers you just
+added aren&rsquo;t listed after clicking Submit)</li>
+<li>after you&rsquo;ve configured your image library and your management node has
+started checking in, you should be able to make a reservation</li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

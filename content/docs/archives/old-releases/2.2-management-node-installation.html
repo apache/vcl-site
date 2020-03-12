@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - 2.2 Management Node Installation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">2.2 Management Node Installation</h1>
+    
+	<p>This page describes how to install and configure the backend VCL
+management node components including the required Perl modules, VCL daemon
+(vcld), and Windows utility dependencies.</p>
+<p><a name="2.2ManagementNodeInstallation-Assumptions"></a></p>
+<h2 id="assumptions">Assumptions</h2>
+<p>The following instructions assume the VCL <a href="2.2-database-configuration.html">database has been installed and configured</a>
+and that the management node information has been added to the database as
+described on the <a href="2.2-web-code-installation.html">web code installation page</a>
+. This also assumes that the perl-DBD-MySQL-3.x and the mysql client
+(mysql-5.x) packages are installed, for database communications.</p>
+<p><a name="2.2ManagementNodeInstallation-InstallingVCLManagementNodeCode-PerlDaemon"></a></p>
+<h2 id="installing-vcl-management-node-code---perl-daemon">Installing VCL Management Node Code - Perl Daemon</h2>
+<ol>
+<li>
+<p>If you haven&rsquo;t already done so, download and extract a copy of the latest
+release. There is a link to it on our <a href="/downloads/download.cgi">download page</a>
+.</p>
+</li>
+<li>
+<p>copy the &ldquo;managementnode&rdquo; directory to a location, typically /usr/local</p>
+<p>cp -r managementnode /usr/local/vcl</p>
+</li>
+</ol>
+<p><a name="2.2ManagementNodeInstallation-InstallRequiredPackages"></a></p>
+<h2 id="install-required-packages">Install Required Packages</h2>
+<p>The following packages to be installed on the OS before installing the
+required Perl modules.  These packages must be installed if they were
+not installed as part of your base Linux install.  It is easiest to
+use the package management utility for your OS --- yum, rpm, or other.</p>
+<ul>
+<li>expat</li>
+<li>expat-devel</li>
+<li>gcc</li>
+<li>krb5-libs</li>
+<li>krb5-devel</li>
+<li>libxml2</li>
+<li>libxml2-devel</li>
+<li>nmap</li>
+<li>openssl</li>
+<li>openssl-devel</li>
+<li>perl-DBD-MySQL</li>
+<li>xmlsec1-openssl</li>
+</ul>
+<p>To install these packages using yum:</p>
+<pre><code>yum install expat expat-devel gcc krb5-libs krb5-devel libxml2 libxml2-devel openssl openssl-devel perl-DBD-MySQL xmlsec1-openssl nmap -y
+</code></pre>
+<p><a name="2.2ManagementNodeInstallation-InstallRequiredPerlModules"></a></p>
+<h2 id="install-required-perl-modules">Install Required Perl Modules</h2>
+<p>The VCL Perl code running on the management node requires additional Perl
+modules in order to run. These Perl modules are available from <a href="http://cpan.org/">CPAN - The Comprehensive Perl Archive Network</a>
+. A search engine for CPAN modules is available at <a href="http://search.cpan.org/">search.cpan.org</a>
+.  The Perl modules are licensed under the <a href="http://dev.perl.org/licenses/artistic.html">Artistic</a>
+and <a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a>
+licenses.</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/Class-Data-Inheritable/">Class-Data-Inheritable</a></li>
+<li><a href="http://search.cpan.org/dist/Compress-Raw-Zlib/">Compress-Raw-Zlib</a></li>
+<li><a href="http://search.cpan.org/dist/Crypt-SSLeay/">Crypt-SSLeay</a></li>
+<li><a href="http://search.cpan.org/dist/DBI/">DBI</a></li>
+<li><a href="http://search.cpan.org/dist/Devel-StackTrace/">Devel-StackTrace</a></li>
+<li><a href="http://search.cpan.org/dist/Digest-SHA1/">Digest-SHA1</a></li>
+<li><a href="http://search.cpan.org/dist/Exception-Class/">Exception-Class</a></li>
+<li><a href="http://search.cpan.org/dist/HTML-Parser/">HTML-Parser</a></li>
+<li><a href="http://search.cpan.org/dist/IO-Compress/">IO-Compress</a></li>
+<li><a href="http://search.cpan.org/dist/libwww-perl/">libwww-perl</a></li>
+<li><a href="http://search.cpan.org/dist/MailTools/">MailTools</a></li>
+<li><a href="http://search.cpan.org/dist/Object-InsideOut/">Object-InsideOut</a></li>
+<li><a href="http://search.cpan.org/dist/RPC-XML/">RPC-XML</a></li>
+<li><a href="http://search.cpan.org/dist/XML-Parser/">XML-Parser</a></li>
+<li><a href="http://search.cpan.org/dist/YAML/">YAML</a></li>
+</ul>
+<p><a name="2.2ManagementNodeInstallation-Runinstall_perl_libs.plScript"></a></p>
+<h4 id="run-install_perl_libspl-script">Run install_perl_libs.pl Script</h4>
+<p>A script is provided in the managementnode/bin directory called
+<em>install_perl_libs.pl</em> which will attempt to download and install the
+required perl libraries.  Run the script:</p>
+<pre><code>perl /usr/local/vcl/bin/install_perl_libs.pl
+</code></pre>
+<p>The script will hang or terminate if it encounters a problem.  If this occurs, manually run the last command the script attempted.  The command should be listed in the output.  You will need to troubleshoot the problem.  The most likely cause of the problem is a missing Linux package.  Make sure the required packages are installed.</p>
+<p><a name="2.2ManagementNodeInstallation-HowtoTestifRequiredPerlModulesareInstalled"></a></p>
+<h4 id="how-to-test-if-required-perl-modules-are-installed">How to Test if Required Perl Modules are Installed</h4>
+<p>Run the following command to execute the utils.pm file:</p>
+<pre><code>perl /usr/local/vcl/lib/VCL/utils.pm
+</code></pre>
+<p>Executing utils.pm does not actually do anything but this will tell you if
+VCL will be able to run.  If any Perl modules are missing you will see
+&ldquo;Can&rsquo;t locate&rdquo; lines:</p>
+<pre><code>Can't locate HTTP/Headers.pm in @INC (@INC contains:...)
+</code></pre>
+<p>Once all of the required modules are installed, you should see output similar to the following:</p>
+<pre><code>BIN PATH: /usr/local/vcl/lib/VCL
+pre-execution: config file being used: /etc/vcl/vcld.conf
+Uncaught exception from user code:
+        VCLD : /etc/vcl/vcld.conf does not exist, exiting -- No such file or directory
+BEGIN failed--compilation aborted at /usr/local/vcl/lib/VCL/utils.pm line 616.
+at /usr/local/vcl/lib/VCL/utils.pm line 616
+</code></pre>
+<p><a name="2.2ManagementNodeInstallation-WhattodoifaModuleisMissing"></a></p>
+<h4 id="what-to-do-if-a-module-is-missing">What to do if a Module is Missing</h4>
+<ol>
+<li>Determine the name of the missing module by looking at the &ldquo;Can&rsquo;t locate&rdquo;
+line</li>
+<li>Search for the missing module on search.cpan.org and install it manually</li>
+</ol>
+<p><a name="2.2ManagementNodeInstallation-HowtoInstallaPerl&nbsp;ModuleManually"></a></p>
+<h4 id="how-to-install-a-perlnbspmodule-manually">How to Install a Perl Module Manually</h4>
+<ol>
+<li>
+<p>Change directories to /tmp:</p>
+<p><strong>cd /tmp</strong></p>
+</li>
+<li>
+<p>Download the module&rsquo;s source package using wget:</p>
+<p><strong>wget <a href="http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz">http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz</a></strong></p>
+</li>
+<li>
+<p>Unpack the source package using tar:</p>
+<p><strong>tar xzf libwww-perl-5.827.tar.gz</strong></p>
+</li>
+<li>
+<p>The previous command should have created a libwww-perl-5.827 directory,
+change to this directory:</p>
+<p><strong>cd libwww-perl-5.827</strong></p>
+</li>
+<li>
+<p>Create a makefile with the following command:</p>
+<p><strong>perl Makefile.PL</strong></p>
+</li>
+<li>
+<p>Compile the module:</p>
+<p><strong>make</strong></p>
+</li>
+<li>
+<p>Test the module:</p>
+<p><strong>make test</strong></p>
+</li>
+<li>
+<p>Install the module:</p>
+<p><strong>make install</strong></p>
+</li>
+</ol>
+<p>The last line you should see should be:</p>
+<pre><code>/usr/bin/make install  -- OK
+</code></pre>
+<p><a name="2.2ManagementNodeInstallation-HowtoInstallaPerlModuleUsingCPAN"></a></p>
+<h4 id="how-to-install-a-perl-module-using-cpan">How to Install a Perl Module Using CPAN</h4>
+<ol>
+<li>
+<p>Enter the CPAN shell:</p>
+<p><strong>perl -MCPAN -e shell</strong></p>
+</li>
+<li>
+<p>You will need to configure CPAN if it&rsquo;s the first time it is being run.
+Enter <strong>No</strong> at the first prompt to auto-configure the CPAN module.</p>
+</li>
+<li>
+<p>Search for a module using the &ldquo;m&rdquo; command:</p>
+<p><strong>m /Zlib/</strong></p>
+<p>You should find the module you were looking for on a line like this:</p>
+<p>Module          Compress::Zlib  (P/PM/PMQS/IO-Compress-2.020.tar.gz)</p>
+</li>
+<li>
+<p>Install the module:</p>
+<p><strong>install Compress::Zlib</strong></p>
+</li>
+<li>
+<p>Answer <strong>yes</strong> if asked to install any prerequisite modules
+The last line you should see should be:</p>
+<p>/usr/bin/make install  &ndash; OK</p>
+</li>
+</ol>
+<p><a name="2.2ManagementNodeInstallation-Configurevcld.conf"></a></p>
+<h2 id="configure-vcldconf">Configure vcld.conf</h2>
+<ol>
+<li>
+<p>Create the /etc/vcl directory:</p>
+<p><strong>mkdir /etc/vcl</strong></p>
+</li>
+<li>
+<p>Copy the generic vcld.conf file to /etc/vcl:</p>
+<p><strong>cp /usr/local/vcl/etc/vcl/vcld.conf /etc/vcl</strong></p>
+</li>
+<li>
+<p>Edit the /etc/vcl/vcld.conf file:</p>
+<p><strong>vi /etc/vcl/vcld.conf</strong></p>
+<p>The following lines must be configured in order to start the VCL daemon
+(vcld) and allow it to check in to the database:</p>
+<ul>
+<li>FQDN - the fully qualified name of the management node, this should
+match the name that was configured for the management node in the database</li>
+<li>server - the IP address or FQDN of the database server</li>
+<li>LockerWrtUser - database user account with write privileges</li>
+<li>wrtPass - database user password</li>
+</ul>
+</li>
+<li>
+<p>Save the vcld.conf file</p>
+</li>
+</ol>
+<p><a name="2.2ManagementNodeInstallation-InstalltheVCLDaemon(vcld)&nbsp;Service"></a></p>
+<h2 id="install-the-vcl-daemon-vcldnbspservice">Install the VCL Daemon (vcld) Service</h2>
+<ol>
+<li>
+<p>Copy the vcld service script to /etc/init.d and name it vcld:</p>
+<p><strong>cp /usr/local/vcl/bin/S99vcld.linux /etc/init.d/vcld</strong></p>
+</li>
+<li>
+<p>Add the vcld service using chkconfig:</p>
+<p><strong>/sbin/chkconfig --add vcld</strong></p>
+</li>
+<li>
+<p>Configure the vcld service to automatically run at runtime levels 3-5:</p>
+<p><strong>/sbin/chkconfig --level 345 vcld on</strong></p>
+</li>
+</ol>
+<p><a name="2.2ManagementNodeInstallation-StartandCheck&nbsp;thevcldService"></a></p>
+<h2 id="start-and-checknbspthe-vcld-service">Start and Check the vcld Service</h2>
+<ol>
+<li>
+<p>Start the vcld service:</p>
+<p><strong>/sbin/service vcld start</strong></p>
+<p>You should see output similar to the following:</p>
+<pre><code> Starting vcld daemon: BIN PATH: /usr/local/vcl/bin
+ pre-execution: config file being used: /etc/vcl/vcld.conf
+ FQDN is not listed
+ pre-execution: process name is set to: vcld
+ pre-execution: verbose mode is set to: 1
+ pre-execution: testing mode is set to: 0
+ pre-execution: log file being used: /var/log/vcld.log
+ pre-execution: PID file being used: /var/run/vcld.pid
+ Created process 23696 renamed to vcld ...
+                                                       [ OK ]
+</code></pre>
+<p>Note: the vcld service can also be started by running the service script directly:</p>
+<p><strong>/etc/init.d/vcld start</strong></p>
+</li>
+<li>
+<p>Check the vcld service by monitoring the vcld.log file:</p>
+<p><strong>tail -f /var/log/vcld.log</strong></p>
+<p>You should see the following being added to the log file every few seconds
+if the management node is checking in with the database:</p>
+<pre><code> 2009-06-16 16:57:15|15792|vcld:main(165)|lastcheckin time updated for management node 18: 2009-06-16 16:57:15
+</code></pre>
+</li>
+</ol>
+<p><a name="2.2ManagementNodeInstallation-ConfiguretheSSHClient"></a></p>
+<h3 id="configure-the-ssh-client">Configure the SSH Client</h3>
+<p>To insure that the management node can SSH into your virtual machines
+without problems, you will need to edit the SSH client config for the root
+user:</p>
+<pre><code>vi /root/.ssh/config
+</code></pre>
+<p>Add the following lines to the top of the configuration file.</p>
+<pre><code>Host &lt;vmhost&gt; &lt;vmhost ip&gt;
+   UserKnownHostsFile /dev/null
+   StrictHostKeyChecking no
+</code></pre>
+<p>Where:</p>
+<ul>
+<li>
+<p>&lt;vmhost&gt; - Is a wildcard reference to the hostnames for your virtual
+machines.</p>
+<ul>
+<li>For example, if your VM hostnames look like: vmhost1, vmhost2,
+vmhost3&hellip;. then replace <vmhost> with &ldquo;vmhost*&rdquo;</li>
+</ul>
+</li>
+<li>
+<p>&lt;vmhost ip&gt; - Is a wildcard IP reference to the IPs used by your virtual
+machines.</p>
+<ul>
+<li>For example, if your VMs all have IP addresses starting with 10.0.0,
+then replace <vmhost ip> with &ldquo;10.0.0.*&rdquo;</li>
+</ul>
+</li>
+</ul>
+<p>This will insure that new VM hosts will not hang on the known hosts prompts
+when the management node attempts to connect to them for the first time.</p>
+<p><a name="2.2ManagementNodeInstallation-DownloadRequiredUtilities&Drivers"></a></p>
+<h2 id="download-required-utilities--drivers">Download Required Utilities &amp; Drivers</h2>
+<p><a name="2.2ManagementNodeInstallation-WindowsXPandServer2003DeploymentTools(Sysprep)"></a></p>
+<h4 id="windows-xp-and-server-2003-deployment-tools-sysprep">Windows XP and Server 2003 Deployment Tools (Sysprep)</h4>
+<p>The Windows XP and Server 2003 Deployment Tools are available for free from
+Microsoft and are required in order for the capture of Windows XP and
+Server 2003 VCL images to work.  The Sysprep utility is included in
+the Deployment Tools.  You do not need to download Sysprep for Windows
+7 or Windows Server 2008 because it is included in the operating system.</p>
+<p>Download: <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=673a1019-8e3e-4be0-ac31-70dd21b5afa7&amp;displaylang=en">Windows XP Service Pack 3 Deployment Tools</a></p>
+<p>Download: <a href="http://www.microsoft.com/downloads/details.aspx?familyid=93F20BB1-97AA-4356-8B43-9584B7E72556&amp;displaylang=en">System Preparation tool for Windows Server 2003 Service Pack 2 Deployment</a></p>
+<p>The Sysprep files need to be extracted from the file you download which is
+in Microsoft&rsquo;s .cab format.  It is easiest to extract the files on a
+Windows computer.  Windows Explorer is able to open the .cab file and
+then the files contained within can be copied elsewhere.  There are
+also some Linux utilities which claim to be able to extract .cab files.</p>
+<p>Copy the extracted Windows XP Sysprep files to the following directory on
+the management node after they have been extracted:</p>
+<pre><code>/usr/local/vcl/tools/Windows_XP/Utilities/Sysprep
+</code></pre>
+<p>Copy the extracted Windows Server 2003 Sysprep files to the
+following directory on the management node after they have been extracted:</p>
+<pre><code>/usr/local/vcl/tools/Windows_Server_2003/Utilities/Sysprep
+</code></pre>
+<p>The Sysprep directories should already exist on the management node because
+they exist the Subversion repository.  The Sysprep directories should
+contain the following files at a minimum:</p>
+<pre><code>-rw-rw-r- 1 root root 25600 Aug 18 17:32 setupcl.exe
+-rw-rw-r- 1 root root 88576 Aug 18 17:32 sysprep.exe
+</code></pre>
+<p>Your Windows product keys and/or KMS server addresses need to be entered
+into the VCL database in order to capture a Windows image using
+Sysprep.  Enter the information into the database by running the the
+following command:</p>
+<pre><code>/usr/local/vcl/bin/vcld -setup
+</code></pre>
+<p>Select &ldquo;Windows OS Module&rdquo; and follow the prompts.</p>
+<p><a name="2.2ManagementNodeInstallation-DownloadDrivers"></a></p>
+<h4 id="download-drivers">Download Drivers</h4>
+<p>Drivers which aren&rsquo;t included with Windows must be downloaded and saved to
+the management node. The drivers required will vary greatly depending on
+the hardware. The only way to know what additional drivers you need is to
+install Windows on a computer and check for missing drivers.</p>
+<p>The drivers must be copied to the appropriate directory on the management
+node. The VCL image capture process copies the driver directories to the
+computer before an image is captured. Drivers from multiple directories
+will be copied based on the version of Windows being captured. There are
+driver directories under <strong>tools</strong> for each version of Windows (Windows XP,
+Windows Vista) and for each version group of Windows (version 5, 6). This
+allows drivers which are common to multiple versions of Windows to be
+shared in the management node tools directory structure.</p>
+<p>For example, if a chipset driver works for all versions of Windows, it can
+be saved in:
+<strong>tools/Windows/Drivers/Chipset</strong></p>
+<p>If Windows XP and Windows Server 2003 both use the same network driver, it
+can be saved in:
+<strong>tools/Windows_Version_5/Drivers/Network</strong></p>
+<p>If a storage driver only works for Windows XP, it should be saved in:
+<strong>tools/Windows_XP/Drivers/Storage</strong></p>
+<p>During the image capture process, each Windows version directory is copied
+to the computer under C:\Cygwin\home\root\VCL. The order in which the
+Windows version directories are copied goes from most general to most
+specific.  In the example above, the order would be:</p>
+<ol>
+<li><strong>tools/Windows/Drivers/Chipset</strong></li>
+<li><strong>tools/Windows_Version_5/Drivers/Network</strong></li>
+<li><strong>tools/Windows_XP/Drivers/Storage</strong></li>
+</ol>
+<p>The resulting directory structure on the Windows computer will be:</p>
+<ul>
+<li><strong>C:\Cygwin\home\root\VCL\Drivers</strong>
+<ul>
+<li><strong>\Chipset</strong> - driver works for all versions of windows</li>
+<li><strong>\Network</strong> - driver works for Windows XP and Server 2003</li>
+<li><strong>\Storage</strong> - driver only works for Windows XP</li>
+</ul>
+</li>
+</ul>
+<p>The following list shows which driver files should be saved in the driver
+directories:</p>
+<ul>
+<li><strong>tools/Windows/Drivers</strong> - drivers common to all versions of Windows
+<ul>
+<li><strong>tools/Windows_Version_5/Drivers</strong> - drivers used by Windows XP and Server 2003
+<ul>
+<li><strong>tools/Windows_Version_XP/Drivers</strong> - drivers only used by Windows XP</li>
+<li><strong>tools/Windows_Version_Server_2003/Drivers</strong> - drivers only used by Windows Server 2003</li>
+</ul>
+</li>
+<li><strong>tools/Windows_Version_6/Drivers</strong> - drivers used by Windows Vista and Server 2008
+<ul>
+<li><strong>tools/Windows_Vista/Drivers</strong> - drivers only used by Windows Vista</li>
+<li><strong>tools/Windows_Server_2008/Drivers</strong> - drivers only used by Windows Server 2008</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The directory structure under each Drivers directory does not matter. It is
+helpful to organize each directory by driver class, and each directory
+should be organized using the same theme.  For example:</p>
+<ul>
+<li><strong>tools/Windows_Version_XP/Drivers</strong>
+<ul>
+<li><strong>Chipset</strong></li>
+<li><strong>Network</strong></li>
+<li><strong>Storage</strong></li>
+<li><strong>Video</strong></li>
+</ul>
+</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Using VCL to Broker Access to Pre-installed Machines</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Using VCL to Broker Access to Pre-installed Machines</h1>
+    
+	<p>The Lab.pm provisioning module is used to broker access to standalone
+pre-installed Linux or Solaris machines. These machines could be in an
+existing walk-in computer lab or racked in a server room.</p>
+<p>There are four main parts needed to setup a standalone machine to use with
+the Lab.pm module.</p>
+<ol>
+<li>a non-root account called vclstaff on the target machines</li>
+<li>ssh idenitity key for vclstaff account, this key is used by the vcld
+process on the management node</li>
+<li>ssh service running on port 24 of the target machines</li>
+<li>vclclientd running on the target machines, vclclientd in the bin
+directory of the vcld release</li>
+</ol>
+<p>For distribution to a large set of machines, an rpm or package could be
+created to distribute vclclientd and related files.</p>
+<h1 id="howitworks">How it works</h1>
+<p>The Lab.pm module confirms an assigned node or lab machine is accessible
+using the ssh identity key on port 24. If this succeeds, then a small
+configuration file with the state, user&rsquo;s id and the users&rsquo; remote IP
+address is sent to the node along with a flag to trigger the vclclientd
+process to either open or close the remote access port. Currently this
+module only supports Linux and Solaris lab machines.</p>
+<h1 id="howtosetup">How to setup:</h1>
+<p>All commands are run as root.</p>
+<ol>
+<li>
+<p>Create the non-root vclstaff account on target machine</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">on linux: useradd -d /home/vclstaff -m vclstaff
+</code></pre></div></li>
+<li>
+<p>Generate ssh identity keys for vclstaff account. Do not enter a passphrase for
+the key, just hit enter when prompted.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">su - vclstaff
+ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key <span style="color:#666">(</span>/home/vclstaff/.ssh/id_rsa<span style="color:#666">)</span>:
+Created directory <span style="color:#b44">&#39;/home/vclstaff/.ssh&#39;</span>.
+Enter passphrase <span style="color:#666">(</span>empty <span style="color:#a2f;font-weight:bold">for</span> no passphrase<span style="color:#666">)</span>:
+Enter same passphrase again:
+Your identification has been saved in /home/vclstaff/.ssh/id_rsa.
+Your public key has been saved in /home/vclstaff/.ssh/id_rsa.pub.
+The key fingerprint is:
+</code></pre></div><p>At this point we have created a private key /home/vclstaff/.ssh/id_rsa and
+the public key /home/vclstaff/.ssh/id_rsa.pub.</p>
+</li>
+<li>
+<p>Copy the public key to /home/vclstaff/.ssh/authorized_keys file</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /home/vclstaff/.ssh/id_rsa.pub &gt; /home/vclstaff/.ssh/authorized_keys
+</code></pre></div></li>
+<li>
+<p>Copy the private key to the management node. This can be stored in
+/etc/vcl/lab.key. This private key is used by vcld to remotely log into the
+the lab machine.</p>
+</li>
+<li>
+<p>Edit /etc/vcld.conf
+Set the variables IDENTITY_linux_lab and IDENTITY_solaris_lab to use this new key.
+It should look like:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#b8860b">IDENTITY_solaris_lab</span><span style="color:#666">=</span>/etc/vcl/lab.key
+<span style="color:#b8860b">IDENTITY_linux_lab</span><span style="color:#666">=</span>/etc/vcl/lab.key
+</code></pre></div></li>
+<li>
+<p>Test out the newly created key from the vcl management node:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -i /etc/vcl/lab.key vclstaff@target_lab_machine
+</code></pre></div></li>
+<li>
+<p>Set ssh server on target machine to listen on port 24. Edit
+/etc/ssh/sshd_config on target lab machine(s).</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">echo</span> <span style="color:#b44">&#34;Port 24&#34;</span> &gt;&gt; /etc/ssh/sshd_config
+</code></pre></div><p>For advanced ssh configurations one may need to also add vclstaff to the
+AllowUsers directive or some other group which would work with ones
+existing campus ssh login restrictions, if any.</p>
+</li>
+<li>
+<p>restart sshd</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/etc/init.d/sshd restart
+</code></pre></div></li>
+<li>
+<p>retest to make sure sshd is accessible on port 24</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -p24 -i /etc/vcl/lab.key vclstaff@target_lab_machine
+</code></pre></div></li>
+<li>
+<p>Copy vclclientd and vclclientd init script to target_lab_machine, from
+managenment node:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scp -P24 /usr/local/vcl/bin/vclclientd vclstaff@target_lab_machine:/home/vclstaff
+scp -P24 /usr/local/vcl/bin/S99vclclient.linux target_lab_machine:/etc/init.d/S99vclclient.linux
+</code></pre></div><p>add this start up script to the appropriate run time levels</p>
+</li>
+<li>
+<p>Start vclclientd:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/etc/init.d/S99vclclient.linux start
+</code></pre></div></li>
+<li>
+<p>Add computers to the VCL database as one normally would. Make sure to set the
+type of the computer to <strong>lab</strong> and the Provisioning Engine to <strong>Computing Lab</strong></p>
+</li>
+<li>
+<p>Insert an image into the image table for this lab machine. You can set name and
+prettyname to whatever you want. We&rsquo;ll use &ldquo;lab-machine-image1&rdquo; and &ldquo;Lab Machine image&rdquo;
+in the example SQL:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#a2f;font-weight:bold">INSERT</span> <span style="color:#a2f;font-weight:bold">INTO</span> <span style="color:#666">`</span>vcl<span style="color:#666">`</span>.<span style="color:#666">`</span>image<span style="color:#666">`</span>
+(<span style="color:#666">`</span>name<span style="color:#666">`</span>,
+<span style="color:#666">`</span>prettyname<span style="color:#666">`</span>,
+<span style="color:#666">`</span>ownerid<span style="color:#666">`</span>,
+<span style="color:#666">`</span>imagetypeid<span style="color:#666">`</span>,
+<span style="color:#666">`</span>platformid<span style="color:#666">`</span>,
+<span style="color:#666">`</span>OSid<span style="color:#666">`</span>,
+<span style="color:#666">`</span>lastupdate<span style="color:#666">`</span>,
+<span style="color:#666">`</span>forcheckout<span style="color:#666">`</span>)
+<span style="color:#a2f;font-weight:bold">VALUES</span>
+(<span style="color:#b44">&#39;</span><span style="color:#b44">lab-machine-image1</span><span style="color:#b44">&#39;</span>,
+<span style="color:#b44">&#39;</span><span style="color:#b44">Lab Machine image</span><span style="color:#b44">&#39;</span>,
+<span style="color:#b44">&#39;</span><span style="color:#b44">1</span><span style="color:#b44">&#39;</span>,
+(<span style="color:#a2f;font-weight:bold">SELECT</span> id <span style="color:#a2f;font-weight:bold">FROM</span> imagetype <span style="color:#a2f;font-weight:bold">WHERE</span> name <span style="color:#666">=</span> <span style="color:#b44">&#39;</span><span style="color:#b44">lab</span><span style="color:#b44">&#39;</span>),
+<span style="color:#b44">&#39;</span><span style="color:#b44">1</span><span style="color:#b44">&#39;</span>,
+(<span style="color:#a2f;font-weight:bold">SELECT</span> id <span style="color:#a2f;font-weight:bold">FROM</span> OS <span style="color:#a2f;font-weight:bold">WHERE</span> name <span style="color:#666">=</span> <span style="color:#b44">&#39;</span><span style="color:#b44">centos5</span><span style="color:#b44">&#39;</span>),
+NOW(),
+<span style="color:#b44">&#39;</span><span style="color:#b44">1</span><span style="color:#b44">&#39;</span>);
+</code></pre></div></li>
+<li>
+<p>Insert a record into the imagerevision table. Note &lsquo;Lab Machine image&rsquo;
+can be what ever you want.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#a2f;font-weight:bold">INSERT</span> <span style="color:#a2f;font-weight:bold">INTO</span> <span style="color:#666">`</span>vcl<span style="color:#666">`</span>.<span style="color:#666">`</span>imagerevision<span style="color:#666">`</span> (
+<span style="color:#666">`</span>imageid<span style="color:#666">`</span> ,
+<span style="color:#666">`</span>revision<span style="color:#666">`</span> ,
+<span style="color:#666">`</span>userid<span style="color:#666">`</span> ,
+<span style="color:#666">`</span>datecreated<span style="color:#666">`</span> ,
+<span style="color:#666">`</span>deleted<span style="color:#666">`</span> ,
+<span style="color:#666">`</span>production<span style="color:#666">`</span> ,
+<span style="color:#666">`</span>imagename<span style="color:#666">`</span>)
+<span style="color:#a2f;font-weight:bold">VALUES</span> (
+(<span style="color:#a2f;font-weight:bold">SELECT</span> id <span style="color:#a2f;font-weight:bold">FROM</span> image <span style="color:#a2f;font-weight:bold">WHERE</span> name <span style="color:#666">=</span> <span style="color:#b44">&#39;</span><span style="color:#b44">lab-machine-image1</span><span style="color:#b44">&#39;</span>),
+<span style="color:#666">0</span>,
+<span style="color:#666">1</span>,
+NOW(),
+<span style="color:#666">0</span>,
+<span style="color:#666">1</span>,
+<span style="color:#b44">&#39;</span><span style="color:#b44">lab-machine-image1</span><span style="color:#b44">&#39;</span>)
+</code></pre></div></li>
+<li>
+<p>Insert a record into the resource table.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#a2f;font-weight:bold">INSERT</span> <span style="color:#a2f;font-weight:bold">INTO</span> <span style="color:#666">`</span>vcl<span style="color:#666">`</span>.<span style="color:#666">`</span>resource<span style="color:#666">`</span> (
+<span style="color:#666">`</span>resourcetypeid<span style="color:#666">`</span> ,
+<span style="color:#666">`</span>subid<span style="color:#666">`</span>
+)
+<span style="color:#a2f;font-weight:bold">VALUES</span> (
+<span style="color:#666">13</span>,
+(<span style="color:#a2f;font-weight:bold">SELECT</span> id <span style="color:#a2f;font-weight:bold">FROM</span> image <span style="color:#a2f;font-weight:bold">WHERE</span> name <span style="color:#666">=</span> <span style="color:#b44">&#34;</span><span style="color:#b44">lab-machine-image1</span><span style="color:#b44">&#34;</span>)
+)
+</code></pre></div></li>
+<li>
+<p>Set up the image to computer group mappings and grant access.</p>
+<p>These next steps will be done using the VCL web interface</p>
+<ol>
+<li>
+<p>Create a new Image group</p>
+<p>Manage Groups-&gt;Add New Resource Group</p>
+</li>
+<li>
+<p>Create a new Computer group</p>
+<p>Manage Groups-&gt;Add New Resource Group</p>
+</li>
+<li>
+<p>Add new image (inserted above) to the image group just created in step 1.</p>
+<p>Manage Images-&gt;Edit Image Grouping</p>
+</li>
+<li>
+<p>Add machines that have vclclientd to the computer group created in step 2</p>
+<p>Manage Computers-&gt;Edit Computer Grouping</p>
+</li>
+<li>
+<p>Assign new computer group to be controlled by management node</p>
+<p>Management Nodes-&gt;Edit Management Node Mapping</p>
+</li>
+<li>
+<p>Grant access to the new lab image and computer group in the privilege tree.</p>
+</li>
+</ol>
+</li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

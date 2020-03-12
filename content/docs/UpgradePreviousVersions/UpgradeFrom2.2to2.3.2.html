@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Upgrade From 2.2 to 2.3.2</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Upgrade From 2.2 to 2.3.2</h1>
+    
+	<p>This page provides information on how to upgrade from VCL 2.2 to VCL 2.3.2. Please note it only applies for the upgrade from 2.2 to 2.3.2,
+this may or may not work for other versions.</p>
+<p><strong>The basic steps that will be performed</strong></p>
+<ul>
+<li>Download and Extract 2.3.2 code</li>
+<li>Shutdown httpd and vcld services</li>
+<li>Create backup of vcl database</li>
+<li>Update mysql schema</li>
+<li>Update Web code, create a backup, copy in new, make changes</li>
+<li>Restart httpd service</li>
+<li>Update Management node vcl code, create a backup, copy in new, make changes</li>
+<li>Restart vcld service</li>
+</ul>
+<h1 id="detailed-steps-for-upgrade-from-22-to-232-">Detailed steps for upgrade from 2.2 to 2.3.2</h1>
+<ol>
+<li>
+<p>follow instructions on the <a href="http://vcl.apache.org/downloads/download.cgi">VCL download</a>
+page to download and verify apache-VCL-2.3.2.tar.bz2 and put in in /root</p>
+</li>
+<li>
+<p><strong>extract VCL 2.3.2 code</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar xjf apache-VCL-2.3.2.tar.bz2
+</code></pre></div></li>
+<li>
+<p><strong>Shutdown</strong> the httpd and vcld services</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service httpd stop or /etc/init.d/httpd stop
+service vcld stop or /etc/init.d/vcld stop
+</code></pre></div></li>
+<li>
+<p>We will <strong>create a backup of the vcl database</strong>. This will provide a restore point if necessary.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysqldump vcl &gt; ~/vcl-pre2.3.2-upgrade.sql
+</code></pre></div></li>
+<li>
+<p>This step <strong>updates the mysql schema</strong>. <em>Note</em>: A new resource group is added in update-vcl.sql - <strong>all profiles</strong>.
+Access to manage the group is added to the VCL-&gt;admin node in the privilege tree if that node exists. If not, you will
+need to add it manually after starting httpd again. To add it manually, pick a node in the privilege tree, scroll to
+Resources, click Add Resource Group, select serverprofile/all profiles from the drop-down box, check available,
+administer, manageGroup, and manageMapping, and click Submit New Resource Group.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> /root/apache-VCL-2.3.2
+mysql vcl &lt; mysql/update-vcl.sql
+</code></pre></div></li>
+<li>
+<p>Grant CREATE TEMPORARY TABLES to mysql user
+The web code now requires access to create temporary tables in mysql. You need to grant the user your web code uses
+to access mysql the &ldquo;CREATE TEMPORARY TABLES&rdquo; permission. Look at the secrets.php file in your web code for the user
+and hostname. For example, if your web code is installed at /var/www/html/vcl, your secrets.php file would be
+/var/www/html/vcl/.ht-inc/secrets.php. Look for $vclhost and $vclusername. The secrets.php file might have something like:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$vclhost = &#39;localhost&#39;;
+$vcluser = &#39;vcluser&#39;;
+</code></pre></div></li>
+<li>
+<p>Then, you need to issue the grant command to mysql. Using the values from above as examples, connect to mysql and then issue the grant command:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql
+GRANT CREATE TEMPORARY TABLES ON <span style="color:#b44">`</span>vcl<span style="color:#b44">`</span>.* TO <span style="color:#b44">&#39;vcluser&#39;</span>@<span style="color:#b44">&#39;localhost&#39;</span>;
+<span style="color:#a2f">exit</span>
+</code></pre></div></li>
+<li>
+<p><strong>Update the web code</strong>. This step we will move the 2.2 web directory out of the way, so we can copy in the new
+web code base. After copying in the new code, we will migrate your configuration changes. These instructions assume
+that you installed the vcl web code at /var/www/html/vcl. If you installed it elsewhere, replace /var/www/html/vcl
+with your vcl web root.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> /var/www/html
+mv vcl ~/vcl_2.2_web
+</code></pre></div></li>
+<li>
+<p><strong>Copy the new code</strong> in place</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> /root/apache-VCL-2.3.2
+cp -r web /var/www/html/vcl
+</code></pre></div></li>
+<li>
+<p><strong>Copy your 2.2 config files</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> ~/vcl_2.2_web/.ht-inc
+cp conf.php secrets.php pubkey.pem keys.pem /var/www/html/vcl/.ht-inc
+</code></pre></div></li>
+<li>
+<p><strong>Make the maintenance directory writable by the web server user</strong>. Normally this is the apache user,  if using a
+different user change below cmd accordingly.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chown apache /var/www/html/vcl/.ht-inc/maintenance
+</code></pre></div></li>
+<li>
+<p><strong>Make changes to conf.php</strong>:</p>
+<ol>
+<li>
+<p>A new user group permission that controls who can manage block allocations globally or for a specific affiliation
+has been added. It can be granted to any user group under Privileges-&gt;Additional User Permissions-&gt;Manage Block Allocations.
+Users with this permission are notified of new block allocation requests. <strong>Remove the following from conf.php</strong>.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$blockNotifyUsers
+</code></pre></div></li>
+<li>
+<p>A new user group permission that controls who can look up users globally or for a specific affiliation has been
+added. It can be granted to any user group under Privileges-&gt;Additional User Permissions-&gt;User Lookup. Users with this
+permission can look up information about other users. <strong>Remove the following from conf.php</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$userlookupUsers
+</code></pre></div></li>
+<li>
+<p><strong>Multilingualization</strong> has been added VCL. So, <strong>DEFAULTLOCALE</strong> has been added to conf.php to set the default
+locale. <strong>Add the following to conf.php</strong>, changing en_US if needed to match your locale. You can look in
+/var/www/html/vcl/locale to see which ones are available.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">define(&#34;DEFAULTLOCALE&#34;, &#34;en_US&#34;);
+</code></pre></div></li>
+<li>
+<p>Users authenticated using Shibboleth without also having an LDAP server can now be added before they log in. <strong>Add
+the following to conf.php</strong>  If you are using Shibboleth and would like to be able to add users to groups before the user
+has ever logged in to VCL, you can set this to 1. However, please note that if you typo the userid, there is no way to
+verify it, and the user will be added with the typoed userid.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">define(&#34;ALLOWADDSHIBUSERS&#34;, 0);
+</code></pre></div></li>
+<li>
+<p>LDAP related items have been simplified in the code using additional options in $authMechs. For any LDAP entries,
+add two options. &ldquo;lookupuserbeforeauth&rdquo; is used if you need VCL to look up the full DN of a user and use that when doing
+the bind that authenticates the user (if you don&rsquo;t know what this means, leave it set to 0). If you need to set it to 1,
+then you will need to set &ldquo;lookupuserfield&rdquo; to what LDAP attribute to use when looking up the user&rsquo;s DN
+(typically either &lsquo;cn&rsquo;, &lsquo;uid&rsquo;, or &lsquo;samaccountname&rsquo;). In conf.php, <strong>Add the following to each LDAP</strong> array you have in the $authMech array.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#34;lookupuserbeforeauth&#34; =&gt; 0,
+&#34;lookupuserfield&#34; =&gt; &#39;&#39;,
+</code></pre></div></li>
+<li>
+<p>The way the authentication functions toward the bottom of conf.php are initialized has been simplified. Make the following changes:</p>
+<ul>
+<li>
+<p>REMOVE</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$affilValFunc
+$affilValFuncArgs 
+$addUserFunc
+$addUserFuncArgs
+$updateUserFunc
+$updateUserFuncArgs
+</code></pre></div></li>
+<li>
+<p>ADD</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$affilValFunc = array();
+$affilValFuncArgs = array();
+$addUserFunc = array();
+$addUserFuncArgs = array();
+$updateUserFunc = array();
+$updateUserFuncArgs = array();
+foreach($authMechs as $key =&gt; $item) {
+     if($item[&#39;type&#39;] == &#39;ldap&#39;) {
+        $affilValFunc[$item[&#39;affiliationid&#39;]] = &#39;validateLDAPUser&#39;;
+        $affilValFuncArgs[$item[&#39;affiliationid&#39;]] = $key;
+        $addUserFunc[$item[&#39;affiliationid&#39;]] = &#39;addLDAPUser&#39;;
+        $addUserFuncArgs[$item[&#39;affiliationid&#39;]] = $key;
+        $updateUserFunc[$item[&#39;affiliationid&#39;]] = &#39;updateLDAPUser&#39;;
+        $updateUserFuncArgs[$item[&#39;affiliationid&#39;]] = $key;
+    }
+    elseif($item[&#39;type&#39;] == &#39;local&#39;) {
+        $affilValFunc[$item[&#39;affiliationid&#39;]] = create_function(&#39;&#39;, &#39;return 0;&#39;);
+        $addUserFunc[$item[&#39;affiliationid&#39;]] = create_function(&#39;&#39;, &#39;return NULL;&#39;);
+        $updateUserFunc[$item[&#39;affiliationid&#39;]] = create_function(&#39;&#39;, &#39;return NULL;&#39;);
+    }
+}
+</code></pre></div></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Restart httpd service</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service httpd start or /etc/init.d/httpd start
+</code></pre></div></li>
+<li>
+<p><strong>Update management node code</strong> This step will make a backup copy of the 2.2 vcl code base and then copy the new code
+over the existing code to preserve any drivers or other files you&rsquo;ve added.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> &lt;your vcl MN code root path&gt;
+ie. <span style="color:#a2f">cd</span> /usr/local/
+cp -r vcl ~/vcl_2.2_managementnode
+</code></pre></div></li>
+<li>
+<p><strong>Copy in the 2.3.2 code base to /usr/local</strong>, copying in should preserve any drivers or other files you&rsquo;ve added.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/bin/cp -r /root/apache-VCL-2.3.2/managementnode/* /usr/local/vcl
+</code></pre></div></li>
+<li>
+<p><strong>Run install_perl_libs.pl</strong> to add any new perl library requirements:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/usr/local/vcl/bin/install_perl_libs.pl
+</code></pre></div></li>
+<li>
+<p><strong>Restart vcld service</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service vcld start or /etc/init.d/vcld start
+</code></pre></div></li>
+<li>
+<p>Make some test reservations and watch the vcld.log to verify everything is working correctly.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f /var/log/vcld.log
+</code></pre></div></li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

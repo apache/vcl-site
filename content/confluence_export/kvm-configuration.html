@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - KVM Configuration</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">KVM Configuration</h1>
+    
+	<p><a name="KVMConfiguration-InstallPackages"></a></p>
+<h4 id="install-packages">Install Packages</h4>
+<p>The following commands will install the Linux packages required for VCL to
+manage a KVM host:</p>
+<p>{panel}yum install libvirt virt-manager dejavu-lgc-sans-fonts bridge-utils
+libguestfs-tools -y
+/sbin/chkconfig libvirtd on</p>
+<p>echo &ldquo;Starting the libvirtd service&hellip;&rdquo;
+/sbin/chkconfig libvirtd on
+/sbin/service libvirtd start{panel}
+The virt-manager package is optional.  It is a graphical utility which
+is used to manage KVM and other hypervisors controlled via libvirt. 
+The dejavu-lgc-sans-fonts package is usually necessary in order for
+virt-manager to render fonts correctly.</p>
+<p><a name="KVMConfiguration-ConfigureNetworking"></a></p>
+<h4 id="configure-networking">Configure Networking</h4>
+<p>The following commands will configure networking to allow KVM guests to
+communicate.  It configures a bridge named br0 on eth0, and br1 on
+eth1.  When configured this way, the network names in the VM host
+profile should be set to br0 and br1.
+{panel}echo &ldquo;Stopping the NetworkManager service&hellip;&rdquo;
+chkconfig NetworkManager off 2&gt;/dev/null
+service NetworkManager stop 2&gt;/dev/null
+yum erase NetworkManager -y</p>
+<p>cat &gt; /etc/sysconfig/network-scripts/ifcfg-eth0 &laquo;EOF
+DEVICE=eth0
+ONBOOT=yes
+BRIDGE=br0
+NM_CONTROLLED=no
+EOF
+echo &ldquo;Configured ifcfg-eth0:&rdquo;
+cat /etc/sysconfig/network-scripts/ifcfg-eth0</p>
+<p>cat &gt; /etc/sysconfig/network-scripts/ifcfg-br0 &laquo;EOF
+DEVICE=br0
+TYPE=Bridge
+BOOTPROTO=dhcp
+ONBOOT=yes
+DELAY=0
+NM_CONTROLLED=no
+EOF
+echo &ldquo;Configured ifcfg-br0:&rdquo;
+cat /etc/sysconfig/network-scripts/ifcfg-br0</p>
+<p>cat &gt; /etc/sysconfig/network-scripts/ifcfg-eth1 &laquo;EOF
+DEVICE=eth1
+ONBOOT=yes
+BRIDGE=br1
+NM_CONTROLLED=no
+EOF
+echo &ldquo;Configured ifcfg-eth1:&rdquo;
+cat /etc/sysconfig/network-scripts/ifcfg-eth1</p>
+<p>cat &gt; /etc/sysconfig/network-scripts/ifcfg-br1 &laquo;EOF
+DEVICE=br1
+TYPE=Bridge
+BOOTPROTO=dhcp
+ONBOOT=yes
+DELAY=0
+NM_CONTROLLED=no
+EOF
+echo &ldquo;Configured ifcfg-br1:&rdquo;
+cat /etc/sysconfig/network-scripts/ifcfg-br1</p>
+<p>echo &ldquo;Configuring eth0 bridge&hellip;&rdquo;
+ifdown br0 2&gt;/dev/null
+brctl delbr br0 2&gt;/dev/null
+brctl addbr br0
+brctl addif br0 eth0</p>
+<p>echo &ldquo;Configuring eth1 bridge&hellip;&rdquo;
+ifdown br1 2&gt;/dev/null
+brctl delbr br1 2&gt;/dev/null
+brctl addbr br1
+brctl addif br1 eth1</p>
+<p>/sbin/chkconfig network on
+/sbin/service network restart{panel}</p>
+<p><a name="KVMConfiguration-AddaNetworkStoragePool"></a></p>
+<h4 id="add-a-network-storage-pool">Add a Network Storage Pool</h4>
+<p>The following commands will add an NFS storage pool named images to the KVM
+host.  The <em>/images</em> directory is exported via NFS from host
+<em>10.10.10.1</em>.  This directory is mounted as <em>/mnt/kvm1</em> on the KVM
+host.  An entry is added to /etc/fstab to ensure the directory is
+mounted if the KVM host is rebooted.</p>
+<p>{panel}echo &ldquo;Adding the images pool&hellip;&rdquo;
+virsh pool-destroy images 2&gt;/dev/null
+virsh pool-undefine images 2&gt;/dev/null
+umount /images 2&gt;/dev/null
+mkdir /images  2&gt;/dev/null
+chmod -R 0755 /images
+echo &lsquo;10.10.10.1:/mnt/kvm1 /images nfs
+vers=3,rsize=32768,wsize=32768,intr,rw,soft,bg 0 0&rsquo; &raquo; /etc/fstab
+mount -a</p>
+<p>virsh pool-define-as --name images --type dir --target /images
+virsh pool-autostart --pool images
+virsh pool-start images{panel}</p>
+<p><a name="KVMConfiguration-AddaLocalStoragePool"></a></p>
+<h4 id="add-a-local-storage-pool">Add a Local Storage Pool</h4>
+<p>The following commands will define a storage pool named <em>local-vms</em>
+pointing to the <em>/vms</em> directory on the local disk:</p>
+<p>{panel}echo &ldquo;Adding the local-vms pool&hellip;&rdquo;
+virsh pool-destroy local-vms 2&gt;/dev/null
+virsh pool-undefine local-vms 2&gt;/dev/null
+mkdir /vms 2&gt;/dev/null
+chmod -R 755 /vms
+virsh pool-define-as --name local-vms --type dir --target /vms
+virsh pool-autostart --pool local-vms
+virsh pool-start local-vms{panel}</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

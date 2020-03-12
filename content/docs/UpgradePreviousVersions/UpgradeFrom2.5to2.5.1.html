@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Upgrade From 2.5 to 2.5.1</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Upgrade From 2.5 to 2.5.1</h1>
+    
+	<h1 id="scripted-upgrade">Scripted Upgrade</h1>
+<p>VCL 2.5.1 includes an upgrade script. All you need to
+upgrade VCL is the script. It will download and validate the VCL software and
+then upgrade your system. The script can be used to upgrade all three parts of
+VCL (database, web portal, and management node) or to upgrade each part
+individually. It works for upgrading from any previous version of Apache VCL.</p>
+<p><a href="https://www.apache.org/dist/vcl/2.5.1/vcl-upgrade.sh">Download Upgrade Script (vcl-upgrade.sh)</a></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://www.apache.org/dist/vcl/2.5.1/vcl-upgrade.sh.sha512
+sha512sum -c vcl-upgrade.sh.sha512
+wget https://www.apache.org/dist/vcl/KEYS
+gpg --import KEYS
+wget https://www.apache.org/dist/vcl/2.5.1/vcl-upgrade.sh.asc
+gpg --verify vcl-upgrade.sh.asc
+</code></pre></div><p>Running the upgrade script with no arguments will step you through upgrading
+all three parts of VCL. Alternatively, the following explains optional
+arguments. If upgrading the management node part of VCL, it will also prompt
+you to agree to the installation of various system level requirements needed
+for the code to run.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vcl-upgrade.sh <span style="color:#666">[</span>-h|--help<span style="color:#666">]</span> <span style="color:#666">[</span>-d|--database<span style="color:#666">]</span> <span style="color:#666">[</span>-w|--web<span style="color:#666">]</span> <span style="color:#666">[</span>-m|--managementnode<span style="color:#666">]</span>
+        <span style="color:#666">[</span>--dbhost &lt;hostname&gt;<span style="color:#666">]</span> <span style="color:#666">[</span>--dbadminuser &lt;username&gt;<span style="color:#666">]</span>
+        <span style="color:#666">[</span>--dbadminpass &lt;password&gt;<span style="color:#666">]</span>
+
+-d|--database - upgrade database components
+        --dbhost may optionally be specified <span style="color:#a2f;font-weight:bold">if</span> not localhost
+
+-w|--web - upgrade web server components
+
+-m|--managementnode - upgrade management node <span style="color:#666">(</span>vcld<span style="color:#666">)</span> components
+
+--dbhost &lt;hostname&gt; - hostname of database server <span style="color:#666">(</span><span style="color:#b8860b">default</span><span style="color:#666">=</span>localhost<span style="color:#666">)</span>
+
+--dbname &lt;name&gt; - name of VCL database on database server <span style="color:#666">(</span><span style="color:#b8860b">default</span><span style="color:#666">=</span>vcl<span style="color:#666">)</span>
+
+--dbadminuser &lt;username&gt; - admin username <span style="color:#a2f;font-weight:bold">for</span> database; must have access
+        to modify database schema and dump data <span style="color:#a2f;font-weight:bold">for</span> backup <span style="color:#666">(</span><span style="color:#b8860b">default</span><span style="color:#666">=</span>root<span style="color:#666">)</span>
+
+--dbadminpass &lt;password&gt; - password <span style="color:#a2f;font-weight:bold">for</span> dbadminuser <span style="color:#666">(</span><span style="color:#b8860b">default</span><span style="color:#666">=</span><span style="color:#666">[</span>no password<span style="color:#666">]</span><span style="color:#666">)</span>
+</code></pre></div><hr>
+<h1 id="manual-upgrade-instructions">Manual Upgrade Instructions</h1>
+<p>These instructions explain how to upgrade from VCL 2.5 to VCL 2.5.1. Please note
+it only applies for the upgrade from 2.5 to 2.5.1, this may or may not work for other
+versions.</p>
+<p><strong>The basic steps that will be performed</strong></p>
+<ul>
+<li>Download and Extract 2.5.1 code</li>
+<li>Shutdown httpd and vcld services</li>
+<li>Create backup of vcl database</li>
+<li>Update mysql schema</li>
+<li>Update web code, create a backup, copy in new, make changes</li>
+<li>Restart httpd service</li>
+<li>Update management node VCL code, create a backup, copy in new, make changes</li>
+<li>Restart vcld service</li>
+</ul>
+<h3 id="upgrade-steps">Upgrade steps</h3>
+<ol>
+<li>
+<p>follow instructions on the <a href="http://vcl.apache.org/downloads/download.cgi">VCL download</a>
+page to download and verify apache-VCL-2.5.1.tar.bz2 and put in in /root</p>
+</li>
+<li>
+<p><strong>extract VCL 2.5.1 code</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar xf apache-VCL-2.5.1.tar.bz2
+</code></pre></div></li>
+<li>
+<p><strong>Shutdown</strong> the httpd and vcld services</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service httpd stop
+service vcld stop
+</code></pre></div></li>
+<li>
+<p>create a <strong>backup</strong> of the VCL database. This will provide a restore point if
+necessary.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysqldump vcl &gt; ~/vcl-pre2.5.1-upgrade.sql
+</code></pre></div></li>
+<li>
+<p>This step <strong>updates the database</strong> schema.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql vcl &lt; /root/apache-VCL-2.5.1/mysql/update-vcl.sql
+</code></pre></div></li>
+<li>
+<p><strong>Possibly move old web code</strong>. If /var/www/html/vcl <strong>is a directory</strong>, rename it to
+/var/www/html/vcl-2.5. These instructions assume that you installed the
+VCL web code at /var/www/html/vcl. If you installed it elsewhere, replace
+/var/www/html/vcl with your vcl web root.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mv /var/www/html/vcl /var/www/html/vcl-2.5
+</code></pre></div></li>
+<li>
+<p><strong>Disable access</strong> to the old web code</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">echo</span> <span style="color:#b44">&#34;Require all denied&#34;</span> &gt; /var/www/html/vcl-2.5/.htaccess
+</code></pre></div></li>
+<li>
+<p><strong>Copy the new code</strong> in place</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp -ar /root/apache-VCL-2.5.1/web /var/www/html/vcl-2.5.1
+ln -sfn /var/www/html/vcl-2.5.1 /var/www/html/vcl
+</code></pre></div></li>
+<li>
+<p><strong>Copy your 2.5 config files</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> /var/www/html/vcl-2.5/.ht-inc
+cp conf.php secrets.php pubkey.pem keys.pem /var/www/html/vcl/.ht-inc/
+cp cryptkey/cryptkeyid cryptkey/private.pem /var/www/html/vcl/.ht-inc/cryptkey/
+</code></pre></div></li>
+<li>
+<p><strong>Set SELinux context</strong> If you are using SELinux, set the correct context:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chcon -R -t httpd_sys_content_t /var/www/html/vcl-2.5.1
+chcon -t httpd_sys_rw_content_t /var/www/html/vcl-2.5.1/.ht-inc/maintenance
+chcon -R -t httpd_sys_rw_content_t /var/www/html/vcl-2.5.1/.ht-inc/cryptkey
+</code></pre></div></li>
+<li>
+<p><strong>Update conf.php</strong>. The following item needs to be added to the conf.php
+file. (It is located above the define line for BASEURL in the conf-default.php file):</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># (don&#39;t forget to edit conf.php in the **new** location)</span>
+vim /var/www/html/vcl/.ht-inc/conf.php
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">define(&#34;SSLOFFLOAD&#34;, 0);
+</code></pre></div></li>
+<li>
+<p><strong>Make the maintenance and cryptkey directories writable</strong> by the web server user. Normally this is
+the apache user, if using a different user change below command accordingly.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chown apache /var/www/html/vcl/.ht-inc/maintenance
+chown apache /var/www/html/vcl/.ht-inc/cryptkey
+</code></pre></div></li>
+<li>
+<p><strong>Start httpd service</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service httpd start
+</code></pre></div></li>
+<li>
+<p><strong>Check testsetup.php</strong> Check that everything is correct by viewing the testsetup.php
+script in your browser. This script is located in the same directory as the index.php script.
+I.e.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">https://your.site.url/vcl/testsetup.php
+</code></pre></div></li>
+<li>
+<p><strong>Copy old management node code</strong> If /usr/local/vcl is a directory, copy it to
+/usr/local/vcl-2.5, rename /usr/local/vcl to /usr/local/vcl-2.5.1, and create a symlink.
+If /usr/local/vcl is a symlink to vcl-2.5, copy /usr/local/vcl-2.5 to /usr/local/vcl-2.5.1
+and update the symlink.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># (for directory)</span>
+cp -ar /usr/local/vcl /usr/local/vcl-2.5
+mv /usr/local/vcl /usr/local/vcl-2.5.1
+ln -s /usr/local/vcl-2.5.1 /usr/local/vcl
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># (for symlink)</span>
+cp -ar /usr/local/vcl-2.5 /usr/local/vcl-2.5.1
+ln -sfn /usr/local/vcl-2.5.1 /usr/local/vcl
+</code></pre></div></li>
+<li>
+<p><strong>Copy new code in place</strong> Copy the new management node code over the old code:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/bin/cp -ar /root/apache-VCL-2.5.1/managementnode/* /usr/local/vcl-2.5.1
+</code></pre></div></li>
+<li>
+<p><strong>Run install_perl_libs.pl</strong> to add any new perl library requirements:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/usr/local/vcl/bin/install_perl_libs.pl
+</code></pre></div></li>
+<li>
+<p><strong>Start vcld service</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service vcld start
+</code></pre></div></li>
+<li>
+<p>Make some <strong>test reservations</strong> and watch the vcld.log to verify everything is working
+correctly.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f /var/log/vcld.log
+</code></pre></div></li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

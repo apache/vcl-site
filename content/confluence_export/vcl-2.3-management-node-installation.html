@@ -1,0 +1,451 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VCL 2.3 Management Node Installation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VCL 2.3 Management Node Installation</h1>
+    
+	<p>{excerpt:hidden=true}
+How to install and configure the VCL management node components including
+the required Linux packages, Perl modules, VCL daemon (vcld), and Windows
+utility dependencies{excerpt}</p>
+<p><a name="VCL2.3ManagementNodeInstallation-Install&ConfiguretheManagementNodeComponents"></a></p>
+<h1 id="install--configure-the-management-node-components">Install &amp; Configure the Management Node Components</h1>
+<p><a name="VCL2.3ManagementNodeInstallation-Prerequisites"></a></p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>The following management node installation instructions assume the
+instructions on the following pages have previously been completed:</p>
+<ul>
+<li><a href="vcl:vcl-2.3-database-installation.html">VCL:VCL 2.3 Database Installation</a></li>
+<li><a href="vcl:vcl-2.3-web-code-installation.html">VCL:VCL 2.3 Web Code Installation</a></li>
+</ul>
+<p><a name="VCL2.3ManagementNodeInstallation-SupportedOperatingSystems:"></a></p>
+<h5 id="supported-operating-systems">Supported Operating Systems:</h5>
+<p>The VCL management node daemon (vcld) has been developed to run on an
+operating system based on Red Hat Enterprise Linux (RHEL). It has been
+tested on the following:</p>
+<ul>
+<li>Red Hat Enterprise Linux 4.x</li>
+<li>Red Hat Enterprise Linux 5.x</li>
+<li>Red Hat Enterprise Linux 6.x</li>
+<li>CentOS 5.x</li>
+<li>CentOS 6.x</li>
+</ul>
+<p><a name="VCL2.3ManagementNodeInstallation-RequiredLinuxPackages:"></a></p>
+<h5 id="required-linux-packages">Required Linux Packages:</h5>
+<p>The VCL management node daemon (vcld) requires the following Linux packages
+and Perl modules in order to run (see step 2 below for installation
+instructions):</p>
+<ul>
+<li><em>expat</em> - A library for parsing XML</li>
+<li><em>expat-devel</em> - Libraries and include files to develop XML applications
+with expat</li>
+<li><em>gcc</em> - Various compilers (C, C++, Objective-C, Java, &hellip;)</li>
+<li><em>krb5-libs</em> - The shared libraries used by Kerberos 5</li>
+<li><em>krb5-devel</em> - Development files needed to compile Kerberos 5 programs</li>
+<li><em>libxml2</em> - Library providing XML and HTML support</li>
+<li><em>libxml2-devel</em> - Libraries, includes, etc. to develop XML and HTML
+applications</li>
+<li><em>mysql</em> - MySQL client programs and shared libraries</li>
+<li><em>nmap</em> - Network exploration tool and security scanner</li>
+<li><em>openssh</em> - The OpenSSH implementation of SSH protocol versions 1 and 2</li>
+<li><em>openssl</em> - The OpenSSL toolkit</li>
+<li><em>openssl-devel</em> - Files for development of applications which will use
+OpenSSL</li>
+<li><em>perl</em> - The Perl programming language</li>
+<li><em>perl-DBD-MySQL</em> - A MySQL interface for perl</li>
+<li><em>xmlsec1-openssl</em> - OpenSSL crypto plugin for XML Security Library</li>
+</ul>
+<p><a name="VCL2.3ManagementNodeInstallation-RequiredPerlModules:"></a></p>
+<h5 id="required-perl-modules">Required Perl Modules:</h5>
+<p>The VCL management node daemon (vcld) is written in Perl and has been
+tested on Perl 5.8.x. The following Perl modules available from <a href="http://www.cpan.org">CPAN </a>
+are also required (see step 2 below for installation instructions):</p>
+<ul>
+<li><em>DBI</em> - Generic Database Interface</li>
+<li><em>Digest::SHA1</em> - NIST SHA message digest algorithm</li>
+<li><em>Mail::Mailer</em> - Simple mail agent interface</li>
+<li><em>Object::InsideOut</em> - Comprehensive inside-out object support</li>
+<li><em>RPC::XML</em> - A set of classes for core data, message and XML handling</li>
+<li><em>YAML</em> - YAML Ain&rsquo;t Markup Language</li>
+</ul>
+<ol>
+<li>h2. Install the VCL Management Node Code - Perl Daemon</li>
+<li>
+<h1 id="if-you-have-not-already-done-so-download-and-extract-the-vcl-source">If you have not already done so, download and extract the VCL source</h1>
+</li>
+</ol>
+<p>files to the management node:</p>
+<p>tar -jxvf apache-VCL-2.3.tar.bz2{tip}</p>
+<ol>
+<li>
+<h1 id="copy-the-managementnode-directory-to-the-location-where-you-want-it-to">Copy the <em>managementnode</em> directory to the location where you want it to</h1>
+</li>
+</ol>
+<p>reside (typically <em>/usr/local</em>):
+{tip}cp -r apache-VCL-2.3/managementnode /usr/local/vcl{tip}</p>
+<ol>
+<li>
+<p>h2. Install the Required Linux Packages &amp; Perl Modules
+<em>Run the install_perl_libs.pl script:</em>
+{tip}perl /usr/local/vcl/bin/install_perl_libs.pl{tip}
+The last line of the install_perl_libs.pl script output should be:</p>
+<p><em>Note: The script will hang or terminate if it encounters a problem. If
+this occurs, you will need to troubleshoot the problem by looking at the
+output.</em>
+\<br>
+\<br>
+The install_perl_libs.pl script included in the VCL distribution will
+attempt to download and install the required Linux packages and Perl
+modules. It uses the yum utility to install the required Linux packages.
+The required Perl modules are available from [CPAN - The Comprehensive Perl Archive Network|http://www.cpan.org]
+. The install_perl_libs.pl script attempts to download and install the
+required Perl modules by using the CPAN.pm module which is included with
+most Perl distributions.
+\<br>
+\<br>
+The yum utility should exist on any modern Red Hat-based Linux distribution
+(Red Hat, CentOS, Fedora, etc). If yum isn&rsquo;t available on your management
+node OS, you will need to download and install the required Linux packages
+manually or by using another package management utility. After installing
+the required Linux packages, attempt to run the install_perl_libs.pl script
+again.</p>
+<h1 id="h2-configure-vcldconf">h2. Configure vcld.conf</h1>
+<h2 id="create-the-etcvcl-directory">Create the <em>/etc/vcl</em> directory:</h2>
+<p>{tip}mkdir /etc/vcl{tip}</p>
+<h2 id="copy-the-stock-vcldconf-file-to-etcvcl">Copy the stock <em>vcld.conf</em> file to <em>/etc/vcl</em>:</h2>
+<p>{tip}cp /usr/local/vcl/etc/vcl/vcld.conf /etc/vcl{tip}</p>
+<h2 id="edit-etcvclvcldconf">Edit <em>/etc/vcl/vcld.conf</em>:</h2>
+<p>{tip}vi /etc/vcl/vcld.conf{tip}
+The following lines must be configured in order to start the VCL daemon
+(vcld) and allow it to check in to the database:
+##* *FQDN* - the fully qualified name of the management node, this should
+match the name that was configured for the management node in the database
+##* *server* - the IP address or FQDN of the database server
+##* *LockerWrtUser* - database user account with write privileges
+##* *wrtPass* - database user password
+##* *xmlrpc_pass* - password for xmlrpc api from vcld to the web
+interface(can be long). This will be used later to sync the database
+vclsystem user account
+##* *xmlrpc_url* - URL for xmlrpc api
+<a href="https://my.server.org/vcl/index.php?mode=xmlrpccall">https://my.server.org/vcl/index.php?mode=xmlrpccall</a></p>
+<h2 id="save-the-vcldconf-file">Save the vcld.conf file</h2>
+<h1 id="h2-configure-the-ssh-client">h2. Configure the SSH Client</h1>
+<p>The SSH client on the management node should be configured to prevent SSH
+processes spawned by the root user to the computers it controls from
+hanging because of missing or different entries in the known_hosts file.
+\<br>
+\<br>
+Edit the ssh_config file:
+{tip}vi /etc/ssh/ssh_config{tip}
+Set the following parameters:</p>
+</li>
+</ol>
+<p>StrictHostKeyChecking no{noformat}
+<em>Note: If you do not want these settings applied universally on the
+management node the SSH configuration can also be configured to only apply
+these settings to certain hosts or only for the root user. Consult the SSH
+documentation for more information.</em></p>
+<ol>
+<li>h2. Install and Start the VCL Daemon (vcld) Service</li>
+<li>
+<h1 id="copy-the-vcld-service-script-to-etcinitd-and-name-it-vcld">Copy the vcld service script to /etc/init.d and name it vcld:</h1>
+</li>
+</ol>
+<p>{tip}
+cp /usr/local/vcl/bin/S99vcld.linux /etc/init.d/vcld
+{tip}</p>
+<ol>
+<li>
+<h1 id="add-the-vcld-service-using-chkconfig">Add the vcld service using chkconfig:</h1>
+</li>
+</ol>
+<p>{tip}
+/sbin/chkconfig --add vcld
+{tip}</p>
+<ol>
+<li>
+<h1 id="configure-the-vcld-service-to-automatically-run-at-runtime-levels-3-5">Configure the vcld service to automatically run at runtime levels 3-5:</h1>
+</li>
+</ol>
+<p>{tip}
+/sbin/chkconfig --level 345 vcld on
+{tip}</p>
+<ol>
+<li>
+<h1 id="start-the-vcld-service">Start the vcld service:</h1>
+</li>
+</ol>
+<p>{tip}
+/sbin/service vcld start
+{tip}
+You should see output similar to the following:</p>
+<pre><code>���������������������������������������������������������� [� OK� ]
+</code></pre>
+<p>{noformat}
+{info}
+The vcld service can also be started by running the service script
+directly: <em>/etc/init.d/vcld start{</em>}{info}
+## Check the vcld service by monitoring the vcld.log file: {tip}tail -f
+/var/log/vcld.log{tip}
+You should see the following being added to the log file every few seconds
+if the management node is checking in with the database:
+2012-05-15 13:23:45|25494|vcld:main(167)|lastcheckin time updated for
+management node 1: 2012-05-15 13:23:45
+{info}The vcld -v (verbose) flag is needed in order to see the check-in
+message.{info}
+# h2. Set the vclsystem account password for xmlrpc api
+Using the vcld -setup tool, set the vclsystem account. This is needed to
+properly use the block allocation features.
+{tip}
+/usr/local/vcl/bin/vcld -setup
+{tip}
+Select 1. VCL Base Module
+Select 2. Set Local VCL User Account Password
+Select 2. vclsystem
+From the vcld.conf file, paste or type the password from xmlrpc_pass
+variable and hit enter.
+\<br>
+# h2. Install &amp; Configure the DHCP Service
+## Install <em>dhcp</em> if it is not already installed:
+{tip}
+yum install dhcp -y
+{tip}
+## Configure the dhcpd service to automatically start at runlevels 3-5:
+{tip}
+/sbin/chkconfig --level 345 dhcpd on
+{tip}
+## Configure the dhcpd.conf file.
+{tip}
+vi /etc/dhcpd.conf
+{tip}
+{info}Configure your dhcpd.conf file according to your network
+configuration. The contents of the dhcpd.conf file will vary based on how
+your network is configured. Below is an example of a basic dhcpd.conf
+file:{info}</p>
+<p>ddns-update-style none;
+shared-network eth0 {
+subnet 10.100.0.0 netmask 255.255.255.0 {
+ignore unknown-clients;
+}
+}</p>
+<pre><code>You will add host definitions to the dhcpd.conf file after you add
+</code></pre>
+<p>computers to VCL using the website. The website will display the dhcpd.conf
+host definitions after the computers have been added to VCL, which can be
+copied and pasted into the dhcpd.conf file.
+## Start the dhcpd service:
+{tip}/sbin/service dhcpd start{tip}
+# h2. Configure Windows Product Keys and/or KMS Server Addresses (Optional)
+If you will be deploying Windows environments your institution&rsquo;s Windows
+product key and/or KMS server addresses must be entered into the VCL
+database. This can be done by running the following command:
+{tip}/usr/local/vcl/bin/vcld -setup{tip}
+Select &ldquo;<em>Windows OS Module</em>&rdquo; and follow the prompts.
+# h2. Download Windows Sysprep Utility (Optional)
+If you will be using VCL to deploy bare-metal Windows XP or Windows Server
+2003 environments via xCAT, the appropriate versions of the Microsoft
+Sysprep utility must be downloaded to the management node. The following
+steps do not need to be completed if you only intend to deploy VMware
+virtual machines.
+\<br>
+\<br>
+The Sysprep utility is included in the Deployment Tools available for free
+from Microsoft. You do not need to download Sysprep for Windows 7 or
+Windows Server 2008 because it is included in the operating system.
+\<br>
+\<br>
+The Sysprep files need to be downloaded, extracted, and then copied to the
+management node. The format of the file available for download is
+Microsoft&rsquo;s .cab format. It is easiest to extract the files on a Windows
+computer. Windows Explorer is able to open the .cab file and then the files
+contained within can be copied elsewhere.
+\<br>
+\<br>
+## Windows XP
+### Download Sysprep for Windows XP: [Windows XP Service Pack 3 Deployment Tools|http://www.microsoft.com/downloads/details.aspx?FamilyID=673a1019-8e3e-4be0-ac31-70dd21b5afa7&amp;displaylang=en]
+### Extract the Windows XP Sysprep Files
+### Copy the extracted Windows XP Sysprep files to the following directory
+the management node:
+{noformat}/usr/local/vcl/tools/Windows_XP/Utilities/Sysprep{noformat}
+## Windows Server 2003
+### Download Sysprep for Windows Server 2003: [System Preparation tool for Windows Server 2003 Service Pack 2 Deployment|http://www.microsoft.com/downloads/details.aspx?familyid=93F20BB1-97AA-4356-8B43-9584B7E72556&amp;displaylang=en]
+### Extract the Windows Server 2003 Sysprep Files
+### Copy the extracted Windows Server 2003 Sysprep files to the following
+directory the management node:
+{noformat}/usr/local/vcl/tools/Windows_Server_2003/Utilities/Sysprep{noformat}
+# h2. Download Windows Drivers (Optional)
+Drivers which aren&rsquo;t included with Windows must be downloaded and saved to
+the management node. The drivers required will vary greatly depending on
+the hardware. The only way to know what additional drivers you need is to
+install Windows on a computer and check for missing drivers.
+\<br>
+\<br>
+The drivers must be copied to the appropriate directory on the management
+node. The VCL image capture process copies the driver directories to the
+computer before an image is captured. Drivers from multiple directories
+will be copied based on the version of Windows being captured. There are
+driver directories under <em>tools</em> for each version of Windows (Windows XP,
+Windows 7) and for each version group of Windows (version 5, 6). This
+allows drivers which are common to multiple versions of Windows to be
+shared in the management node tools directory structure.
+\<br>
+Examples:
+\<br>
+\<br>
+If a chipset driver works for all versions of Windows it should be saved
+in:
+<em>/var/lib/vcl/tools/Windows/Drivers/Chipset</em>
+\<br>
+\<br>
+If Windows XP and Windows Server 2003 both use the same network driver it
+can be saved in:
+<em>/var/lib/vcl/tools/Windows_Version_5/Drivers/Network</em>
+\<br>
+\<br>
+If a storage driver only works for Windows XP it should be saved in:
+<em>/var/lib/vcl/tools/Windows_XP/Drivers/Storage</em>
+\<br>
+\<br>
+During the image capture process, each Windows version directory is copied
+to the computer under C:\Cygwin\home\root\VCL. The order in which the
+Windows version directories are copied goes from most general to most
+specific. In the example above, the order would be:
+<em>/var/lib/vcl/tools/Windows/*</em>
+<em>/var/lib/vcl/tools/Windows_Version_5/*</em>
+<em>/var/lib/vcl/tools/Windows_XP/*</em>
+\<br>
+\<br>
+The following list shows which driver files should be saved in the driver
+directories:
+<em>/var/lib/vcl/tools/Windows/Drivers</em> - drivers common to all versions of
+Windows
+<em>/var/lib/vcl/tools/Windows_Version_5/Drivers</em> - drivers used by Windows
+XP and Server 2003
+<em>/var/lib/vcl/tools/Windows_XP/Drivers</em> - drivers only used by Windows XP
+<em>/var/lib/vcl/tools/Windows_Server_2003/Drivers</em> - drivers only used by
+Windows Server 2003
+\<br>
+<em>/var/lib/vcl/tools/Windows_Version_6/Drivers</em> - drivers used by Windows
+Vista and Server 2008
+<em>/var/lib/vcl/tools/Windows_7/Drivers</em> - drivers only used by Windows 7
+<em>/var/lib/vcl/tools/Windows_Server_2008/Drivers</em> - drivers only used by
+Windows Server 2008
+\<br>
+The directory structure under each Drivers directory does not matter. It is
+helpful to organize each directory by driver class, and each directory
+should be organized using the same theme. For example:
+<em>/var/lib/vcl/tools/Windows_Version_XP/Drivers{</em>}<em>/Chipset</em>
+<em>/var/lib/vcl/tools/Windows_Version_XP/Drivers{</em>}<em>/Network</em>
+<em>/var/lib/vcl/tools/Windows_Version_XP/Drivers{</em>}<em>/Storage</em>
+<em>/var/lib/vcl/tools/Windows_Version_XP/Drivers{</em>}<em>/Video</em>
+# h2. Install &amp; Configure Provisioning Engines and Hypervisors
+VCL supports the following, please see the related websites for
+installation and configuration instructions:
+## xCAT - Extreme Cluster Administration Toolkit
+##* Versions Supported:
+##** 1.3
+##** 2.x
+##* See the xCAT website for installation &amp; configuration information: [http://xcat.sourceforge.net|http://xcat.sourceforge.net]
+## VMware
+### See the VMware website for installation &amp; configuration information: [http://www.vmware.com|http://www.vmware.com]
+### See the following pages for additional VCL VMware configuration
+information:
+#### [VCL:VMware Configuration]
+#### [VCL 2.3 - Further steps if using only VMware|VCL 2.3 - Further Steps if Using VMware]
+(you probably already did things from this page when installing the web
+code)</p>
+<pre><code>----
+Previous Step: [VCL:VCL 2.3 Web Code Installation]
+Next Step: [VCL:VCL 2.3 Configure Frontend Authentication]
+</code></pre>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

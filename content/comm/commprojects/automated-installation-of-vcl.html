@@ -1,0 +1,1167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Automated Installation of VCL</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Automated Installation of VCL</h1>
+    
+	<p>I developed a set of scripts to automate the installation of VCL for my own
+purposes. I used the scripts in an advanced Linux class I taught at NCA&amp;T
+as an example of scripting. Several student teams installed VCL on their
+individual servers, and the installation had to be repeated after the
+students experimented with the setup. The script made installation
+relatively quick and always consistent. The installation is basically one
+click.</p>
+<p>The starting point of the installation is a configured Scientific Linux 6.2
+operating system. This installation also uses scripting and a custom local
+repository I developed. The installation is either PXE or iPXE based. The
+student&rsquo;s starting point is an <em>ether-wake</em> command to the target server,
+and installation is automatic from that point on. My home repository
+contains a database of configuration data for various computers of friends
+at several different geographical locations who use my repository to
+perform automated installation and configuration of LAMP servers, directory
+servers, repository servers, Plandora, Moodle, and so forth. I mirrored my
+home site at NC A&amp;T, and added customization for some NC A&amp;T hosts.</p>
+<p>Each student team adds their customization data, for example, host name,
+partitioning information, and application customization data. Each team
+also makes an entry in the local dnsmasq TFTP/DNS/DHCP configuration.
+These one-time tasks are completed early in the semester during the study
+of enterprise configuration. This background is of interest only because my
+VCL scripts assume certain things, such as, the web directory roots for all
+named virtual hosts are in <strong>/var/www/web_servers/</strong> and configuration
+snippets are in <strong>/etc/httpd/virtual_hosts/</strong>.</p>
+<p>Once the LAMP server is loaded, a team member opens Firefox and downloads
+<strong>vcl_pre_commands_nn.sh</strong> from the repo web server. The “nn” is
+anything, but usually a “1”, or a “2”, and forth, to access a
+unique parameters file for each unique VCL installation. If you look in the
+pre_commands script, you will notice the number is just used to append to
+the filename <strong>vcl_parameters_nn.sh</strong>. In the scripts below, I used &ldquo;13&rdquo;,
+since the particular target host name was &ldquo;burton-research-13&rdquo;. Before
+starting installation, the students make a one-time instance of both the
+vcl_pre_commands file and the vcl_parameters file customized for their
+team. That is, each team could represent a different institution seeking to
+create a VCL cloud. If you look in these files, you will see the only real
+task is to set the host name of the target server to agree with the DHCP
+hostname assignment. Of course, you can vary every parameter, but since
+this is a student lab, all teams used my default settings for digital
+certificates and so forth. If you use the scripts for your own institution,
+you will wish to change additional settings to reflect your institution&rsquo;s
+name and login credentials. The parameters.sh file is &ndash; at least to me
+&ndash; documented and straightforward. I kept the students confined to a
+private LAN without outside access, so <strong>we used weak
+passwords</strong>. Please, use a strong password for any system with access
+from the Internet. Once the pre-commands file is downloaded, the students
+make the file executable, the run the script. About 30 minutes later, VCL
+installation is complete. Packages are installed using <em>yum</em> (see
+<strong>vcl_packages.sh</strong>), and all source tarballs are downloaded directly from
+the VCL site. The main script, <strong>install_vcl.sh</strong>, incorporates several
+modifications to the current VCL installation instructions. Notable areas
+are sourcing the MySQL database structure, dynamically modifying the VCL
+perl script to remove Linux package installation and perl interaction, use
+of SL 6.2, and rearranging the order of installation to complete all
+package installation in one place. The use of explicit yum package
+installation will allow me to copy <strong>vcl_packages.sh</strong> almost directly into
+RPM requires statements. I did not use an RPM for my students because I
+wanted the students to explore and experiment with the scripts.</p>
+<h2 id="so-what-is-a-complete-vcl-installation">So what is a “complete” VCL installation?</h2>
+<p>In this case, it means everything required to install and configure the VCL
+web front end and the VCL management node is completed automatically. The
+script automatically launches Firefox to the VCL web interface and lists
+the few steps that must be completed through the web interface (admin
+password, initial specification of management node).</p>
+<p>What is not done (at this time) is the automated installation of VMware
+ESXi on the service nodes, nor the installation and configuration of XCAT.
+I expect I will just automate the XCAT installation and configuration, and
+let XCAT take care of the service node installation and management, since
+this will provide an arbitrarily large cloud. For my class, we just
+installed VMware ESXi manually on a service node.</p>
+<p>Images can be  copied manually, of course, but in my scheme of
+infrastructure, booting a bare metal image with a PXE boot to my repository
+automatically builds Linux images. I expect XCAT can be persuaded to do the
+same.</p>
+<h2 id="how-could-these-scripts-help-the-vcl-project">How could these scripts help the VCL project?</h2>
+<p>I mentioned the automated installation in a poster session at the first ICA-CON
+conference hosted by IBM in April, 2012 (<a href="http://www.ibm.com/solutions/education/cloudacademy/us/en/cloud_academy_conference.html">ICA-CON</a>). Several people expressed an interest in access to the scripts, and I
+agreed to post the scripts in support of the Apache VCL project. I suppose
+with a few tweaks the script could be embedded in a no-arch RPM (or at
+least a self-determining arch) so that those who are interested in using
+VCL, but might not have the skills or patience to wade through the
+installation, could go immediately to their own VCL cloud with a click or
+two. This could lower the barrier to entry of cloud computing, and let more
+folks get on with exploring new ways to actually <strong>use</strong> a vcl cloud.</p>
+<h2 id="the-scripts-follow">The scripts follow:</h2>
+<h3 id="vcl_pre_commands_13sh">vcl_pre_commands_13.sh</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> <span style="color:#080;font-style:italic"># Make sure time is correct, otherwise certificates will fail</span>
+ntpd -gq
+service ntpd start
+<span style="color:#a2f">cd</span> /root
+wget http://linuxlab.ncat.edu/inet_boot/install_vcl.sh
+chmod +x install_vcl.sh
+./install_vcl.sh <span style="color:#b44">&#34;http://linuxlab.ncat.edu/inet_boot&#34;</span> <span style="color:#b44">&#34;13&#34;</span>
+</code></pre></div><h3 id="vcl_parameters_13sh">vcl_parameters_13.sh</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + +</span>                                                                      
+<span style="color:#080;font-style:italic"># + +</span>                                                                      
+<span style="color:#080;font-style:italic"># + + Filename:     vcl_parameters.sh</span>
+<span style="color:#080;font-style:italic"># + + Author:       Larry Burton</span>
+<span style="color:#080;font-style:italic"># + + Copyright:    Copyright 2012 Larry Burton All rights reserved.</span>
+<span style="color:#080;font-style:italic"># + + Revision:     20120324</span>
+<span style="color:#080;font-style:italic"># + + Description:</span>                                                        
+<span style="color:#080;font-style:italic"># + + A script to define paramters used to install Apache VCL</span>
+<span style="color:#080;font-style:italic"># + + Usage:        sourced in other files</span>
+<span style="color:#080;font-style:italic"># + +</span>                                                  
+<span style="color:#080;font-style:italic"># + +</span>                                                                     
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+#
+<span style="color:#b8860b">this_host</span><span style="color:#666">=</span><span style="color:#b44">&#34;burton-research-13&#34;</span>
+<span style="color:#b8860b">this_domain</span><span style="color:#666">=</span><span style="color:#b44">&#34;ncat.edu&#34;</span>
+<span style="color:#080;font-style:italic">#  + + + + + + + + VCL Installation paramters + + + + + + + + + + + +</span>
+#
+<span style="color:#080;font-style:italic"># Logging file</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">log_file</span><span style="color:#666">=</span><span style="color:#b44">&#34;/tmp/vcllog.log&#34;</span>
+<span style="color:#080;font-style:italic"># Logging device</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">logging</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b44">| tee </span><span style="color:#b8860b">$log_file</span><span style="color:#b44">&#34;</span>
+<span style="color:#080;font-style:italic"># Location of the VCL source tarball</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">source_url</span><span style="color:#666">=</span><span style="color:#b44">&#34;http://www.apache.org/dist/incubator/vcl&#34;</span>
+<span style="color:#080;font-style:italic"># VCL version</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_version</span><span style="color:#666">=</span><span style="color:#b44">&#34;2.2.1-incubating&#34;</span>
+<span style="color:#080;font-style:italic"># tarball directory</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_source_directory</span><span style="color:#666">=</span><span style="color:#b44">&#34;/opt/vcl&#34;</span>
+<span style="color:#080;font-style:italic"># The FQDN of the VCL Management Node (Must have valid DNS entry)</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_management_node_name</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$this_host</span><span style="color:#b44">.</span><span style="color:#b8860b">$this_domain</span><span style="color:#b44">&#34;</span>
+<span style="color:#080;font-style:italic"># The FQDN of the VCL Management Node (Must have valid DNS entry)</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_FQDN</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$this_host</span><span style="color:#b44">.</span><span style="color:#b8860b">$this_domain</span><span style="color:#b44">&#34;</span>
+#
+<span style="color:#080;font-style:italic"># The architecture of this machine (for Perl download)</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">arch</span><span style="color:#666">=</span><span style="color:#b44">&#39;i386&#39;</span>
+#
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + MySQL parameters + + + + + + + + + + + +</span>
+#
+<span style="color:#080;font-style:italic"># The MySQL root password</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">mysql_password</span><span style="color:#666">=</span><span style="color:#b44">&#39;useyourownpassword&#39;</span>
+<span style="color:#080;font-style:italic"># VCL database user name</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_mysql_user_name</span><span style="color:#666">=</span><span style="color:#b44">&#34;vcluser&#34;</span>
+<span style="color:#080;font-style:italic"># VCL database user password</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_mysql_user_password</span><span style="color:#666">=</span><span style="color:#b44">&#34;vcluserpassword&#34;</span>
+<span style="color:#080;font-style:italic"># VCL database name</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_database_name</span><span style="color:#666">=</span><span style="color:#b44">&#34;vcl&#34;</span>
+<span style="color:#080;font-style:italic"># $mcryptkey</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_mcryptkey</span><span style="color:#666">=</span><span style="color:#b44">&#34;alongpassword&#34;</span>
+<span style="color:#080;font-style:italic">#vcl_pemkey</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_pemkey</span><span style="color:#666">=</span><span style="color:#b44">&#34;alongkey&#34;</span>
+<span style="color:#080;font-style:italic"># FQDN of database server (Must have valid DNS entry)</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_database_server_name</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$this_host</span><span style="color:#b44">.</span><span style="color:#b8860b">$this_domain</span><span style="color:#b44">&#34;</span>
+<span style="color:#080;font-style:italic">#LockerWrtUser</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_lockerwrite_user</span><span style="color:#666">=</span><span style="color:#b44">&#34;vcluser&#34;</span>
+<span style="color:#080;font-style:italic"># LockerWrtUser password</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_lockerwrite_user_password</span><span style="color:#666">=</span><span style="color:#b44">&#34;vcluserpassword&#34;</span>
+<span style="color:#080;font-style:italic"># MySQL server name (The name used to connect, which must match the</span>
+<span style="color:#080;font-style:italic"># MySQL database username. Typically, localhost unless you explicitly</span>
+<span style="color:#080;font-style:italic"># allow external connections to the database.</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_mysql_server_name</span><span style="color:#666">=</span><span style="color:#b44">&#34;localhost&#34;</span>
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + HTTP parameters + + + + + + + + + + + +</span>
+#
+<span style="color:#a2f">export</span> <span style="color:#b8860b">host_name</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$this_host</span><span style="color:#b44">.</span><span style="color:#b8860b">$this_domain</span><span style="color:#b44">&#34;</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">search_path</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$this_domain</span><span style="color:#b44">&#34;</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">web_virtual_hosts_directory</span><span style="color:#666">=</span><span style="color:#b44">&#39;/etc/httpd/virtual_hosts&#39;</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">web_content_base</span><span style="color:#666">=</span><span style="color:#b44">&#39;/var/www/web_servers&#39;</span>
+<span style="color:#080;font-style:italic"># The VCL document root for the web server</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_web_document_root</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$web_content_base</span><span style="color:#b44">/</span><span style="color:#b8860b">$host_name</span><span style="color:#b44">&#34;</span>
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + CA Certificate Parameters + + + + + + + + + + + +</span>
+#
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_passphrase</span><span style="color:#666">=</span><span style="color:#b44">&#34;password&#34;</span>
+#
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_starting_serial_number</span><span style="color:#666">=</span><span style="color:#b44">&#34;100&#34;</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_country</span><span style="color:#666">=</span><span style="color:#b44">&#34;US&#34;</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_state</span><span style="color:#666">=</span><span style="color:#b44">&#39;NorthCarolina&#39;</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_city</span><span style="color:#666">=</span><span style="color:#b44">&#34;Greensboro&#34;</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_org</span><span style="color:#666">=</span><span style="color:#b44">&#34;LinuxLab&#34;</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_ou</span><span style="color:#666">=</span><span style="color:#b44">&#34;VirtualComputingLab&#34;</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_common_name</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$this_host</span><span style="color:#b44">.</span><span style="color:#b8860b">$this_domain</span><span style="color:#b44">&#34;</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_email</span><span style="color:#666">=</span><span style="color:#b44">&#34;super@ncat.edu&#34;</span>
+<span style="color:#080;font-style:italic"># File to contain the self-signed CA certificate (which contains the public key)</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_certificate_file_name</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$ca_common_name</span><span style="color:#b44">.cer</span><span style="color:#b44">&#34;</span>
+<span style="color:#080;font-style:italic"># File to contain the unencrypted, base-64 encoded, private key</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_certificate_private_unencrypted_key_file_name</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$ca_common_name</span><span style="color:#b44">.key</span><span style="color:#b44">&#34;</span>
+<span style="color:#080;font-style:italic"># The directory in which to copy the digital certificates</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_path_to_local_certs_files</span><span style="color:#666">=</span><span style="color:#b44">&#34;/etc/pki/tls/certs&#34;</span>
+<span style="color:#080;font-style:italic"># The directory in which to copy the unencrypted private certificate key</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">ca_path_to_local_key_files</span><span style="color:#666">=</span><span style="color:#b44">&#34;/etc/pki/tls/private&#34;</span>
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + xmlrpc Parameters + + + + + + + + + + + +</span>
+#
+<span style="color:#080;font-style:italic"># The VCL daemon uses xmlrpc (remote procedure call) to connect to the</span>
+<span style="color:#080;font-style:italic"># MySQL database for doing things such as creating block reservations.</span>
+<span style="color:#080;font-style:italic"># A user must exist in the vcl MySQL database with privileges suitable for</span>
+<span style="color:#080;font-style:italic"># acccomplishing the database queries. You may use the MySQL GRANT command</span>
+<span style="color:#080;font-style:italic"># to create a distinct user, or you may use the default vcl user.</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_xmlrpc_username</span><span style="color:#666">=</span><span style="color:#b8860b">$vcl_mysql_user_name</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">vcl_xmlrpc_pass</span><span style="color:#666">=</span><span style="color:#b8860b">$vcl_mysql_user_password</span>
+</code></pre></div><h2 id="https_setupsh">https_setup.sh</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080">#!/bin/bash
+</span><span style="color:#080"></span>#
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + +</span>                                                                      
+<span style="color:#080;font-style:italic"># + +</span>                                                                      
+<span style="color:#080;font-style:italic"># + + Filename:     https_setup.sh</span>
+<span style="color:#080;font-style:italic"># + + Author:       Larry Burton</span>
+<span style="color:#080;font-style:italic"># + + Copyright:    Copyright 2012 Larry Burton All rights reserved.</span>
+<span style="color:#080;font-style:italic"># + + Revision:     20120324</span>
+<span style="color:#080;font-style:italic"># + + Description:</span>                                                        
+<span style="color:#080;font-style:italic"># + + A script to configure httpd for https</span>
+<span style="color:#080;font-style:italic"># + + Usage:        https_setup.sh</span>
+<span style="color:#080;font-style:italic"># + +               Must be run as root</span>                                    
+<span style="color:#080;font-style:italic"># + +</span>                                                                     
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + HTTP parameters + + + + + + + + + + + +</span>
+#
+
+<span style="color:#080;font-style:italic"># Note: This script assumes httpd is already setup with Larry Burton&#39;s LAMP</span>
+<span style="color:#080;font-style:italic">#       RPMs. This means the virtual_hosts directory and the web_servers</span>
+<span style="color:#080;font-style:italic">#       directories are in place and the http access on port 80 is already</span>
+<span style="color:#080;font-style:italic">#       in place.</span>
+#
+<span style="color:#080;font-style:italic">#       This script forces ALL HTTP access to rewrite to HTTPS. If you wish to</span>
+<span style="color:#080;font-style:italic">#       keep some HTTP access, you will have to edit the reqrite section to</span>
+<span style="color:#080;font-style:italic">#       only rewrite selected locations, eg /location, rather than /.</span>
+#
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + Add the https rewrite directives + + + + + + + + + + + +</span>
+#
+<span style="color:#080;font-style:italic"># ************ check for existence of cert files ***********************</span>
+<span style="color:#080;font-style:italic"># The line with CustomLog appears in Larry Burton&#39;s default HTTP access.</span>
+<span style="color:#080;font-style:italic"># Add the new location to httpd virtual host</span>
+#
+sed -i -e <span style="color:#b44">&#39;/CustomLog/a\ \n\
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"># \ 
+</span><span style="color:#b44">&lt;Location &#34;/&#34;&gt; \
+</span><span style="color:#b44"># Set the content to ALLOW Indexex to be displayed and to FOLLOW \
+</span><span style="color:#b44"># symbolic links \
+</span><span style="color:#b44">Options FollowSymLinks Indexes \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44">RewriteEngine On \
+</span><span style="color:#b44"># This will enable the Rewrite capabilities \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44">RewriteCond %{HTTPS} !=on \
+</span><span style="color:#b44"># This checks to make sure the connection is not already HTTPS \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44">RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44"># This takes http request and changes hhtp to https \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44">&lt;/Location&gt; \
+</span><span style="color:#b44"> \
+</span><span style="color:#b44">&#39;</span> <span style="color:#b8860b">$web_virtual_hosts_directory</span>/<span style="color:#b8860b">$host_name</span>.conf
+#
+#
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + Add the https access directives + + + + + + + + + + + +</span>
+#
+<span style="color:#080;font-style:italic"># The &lt;/VirtualHost&gt; tag will be the last line of some HTTP virtual host,</span>
+<span style="color:#080;font-style:italic"># so we may insert the https virtual host immediately afterwards.</span>
+<span style="color:#080;font-style:italic"># Note the escaping of the forward slash.</span>
+#
+sed -i -e <span style="color:#b44">&#39;/&lt;\/VirtualHost&gt;/a\ \n\
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44"># Make sure httpd listens to port 443 \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44">NameVirtualHost *:443 \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44"># Add an HTTPS virtual host \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44">&lt;VirtualHost *:443&gt; \
+</span><span style="color:#b44"> \
+</span><span style="color:#b44">DirectoryIndex home.php \
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"> \
+</span><span style="color:#b44">     ServerAdmin webmaster@&#39;</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$host_name</span><span style="color:#b44">&#34;</span><span style="color:#b44">&#39; \
+</span><span style="color:#b44">     DocumentRoot &#39;</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$web_content_base</span><span style="color:#b44">/</span><span style="color:#b8860b">$host_name</span><span style="color:#b44">&#34;</span><span style="color:#b44">&#39; \
+</span><span style="color:#b44"> \
+</span><span style="color:#b44">     ServerName &#39;</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$host_name</span><span style="color:#b44">&#34;</span><span style="color:#b44">&#39; \
+</span><span style="color:#b44">     ErrorLog logs/&#39;</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$host_name</span><span style="color:#b44">&#34;</span><span style="color:#b44">&#39;-error_log \
+</span><span style="color:#b44">     CustomLog logs/&#39;</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$host_name</span><span style="color:#b44">&#34;</span><span style="color:#b44">&#39;-access_log common \
+</span><span style="color:#b44"> \
+</span><span style="color:#b44">        SSLEngine on \
+</span><span style="color:#b44">        SSLCertificateFile &#39;</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$ca_path_to_local_certs_files</span><span style="color:#b44">/</span><span style="color:#b8860b">$ca_certificate_file_name</span><span style="color:#b44">&#34;</span><span style="color:#b44">&#39; \
+</span><span style="color:#b44">        SSLCertificateKeyFile &#39;</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$ca_path_to_local_key_files</span><span style="color:#b44">/</span><span style="color:#b8860b">$ca_certificate_private_unencrypted_key_file_name</span><span style="color:#b44">&#34;</span><span style="color:#b44">&#39; \
+</span><span style="color:#b44"> \
+</span><span style="color:#b44">        &lt;Directory /&#39;</span><span style="color:#b44">&#34;</span><span style="color:#b8860b">$web_content_base</span><span style="color:#b44">/</span><span style="color:#b8860b">$host_name</span><span style="color:#b44">&#34;</span><span style="color:#b44">&#39;&gt; \
+</span><span style="color:#b44">        AllowOverride All \
+</span><span style="color:#b44">        &lt;/Directory&gt; \
+</span><span style="color:#b44">  \
+</span><span style="color:#b44"> \
+</span><span style="color:#b44">&lt;Location \/&gt; \
+</span><span style="color:#b44">Options FollowSymLinks Indexes \
+</span><span style="color:#b44">&lt;/Location&gt; \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44">&lt;/VirtualHost&gt; \
+</span><span style="color:#b44"># This ends an HTTPS virtual host definition. \
+</span><span style="color:#b44"># \
+</span><span style="color:#b44"> \
+</span><span style="color:#b44">&#39;</span> <span style="color:#b8860b">$web_virtual_hosts_directory</span>/<span style="color:#b8860b">$host_name</span>.conf
+#
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + Restart -- not reload -- the httpd server + + + + + + + + +</span>
+#
+<span style="color:#080;font-style:italic"># Retart the web server daemon:</span>
+/etc/init.d/httpd restart
+#
+<span style="color:#080;font-style:italic"># End of script</span>
+</code></pre></div><h2 id="vcl_packagessh">vcl_packages.sh</h2>
+<p>I placed the installation of required packages in a separate file to ease
+the transition of the script into an RPM.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">#
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + +</span>                                                                      
+<span style="color:#080;font-style:italic"># + +</span>                                                                      
+<span style="color:#080;font-style:italic"># + + Filename:     vcl_packages.sh</span>
+<span style="color:#080;font-style:italic"># + + Author:       Larry Burton</span>
+<span style="color:#080;font-style:italic"># + + Copyright:    Copyright 2012 Larry Burton All rights reserved.</span>
+<span style="color:#080;font-style:italic"># + + Revision:     20120324</span>
+<span style="color:#080;font-style:italic"># + + Description:</span>                                                        
+<span style="color:#080;font-style:italic"># + + A script to define paramters used to install packages used by Apache VCL</span>
+<span style="color:#080;font-style:italic"># + + Usage:        sourced in other files</span>
+<span style="color:#080;font-style:italic"># + +</span>                                                  
+<span style="color:#080;font-style:italic"># + +</span>                                                                     
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + VCL Installation paramters + + + + + + + + + + + +</span>
+#
+/bin/echo <span style="color:#b44">&#34;Installing packages used by VCL&#34;</span> <span style="color:#b8860b">$logging</span>
+/bin/echo <span style="color:#b44">&#34;&#34;</span> <span style="color:#b8860b">$logging</span>
+/bin/echo <span style="color:#b44">&#34;Some of these packages may already be installed, but we&#34;</span> <span style="color:#b8860b">$logging</span>
+/bin/echo <span style="color:#b44">&#34;check them anyway to see if they need updating.&#34;</span> <span style="color:#b8860b">$logging</span>
+/bin/echo <span style="color:#b44">&#34;&#34;</span> <span style="color:#b8860b">$logging</span>
+#
+<span style="color:#080;font-style:italic"># Install these packages</span>
+#
+/bin/echo <span style="color:#b44">&#34;httpd - Apache HTTP Server&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install httpd
+#
+#
+/bin/echo <span style="color:#b44">&#34;mod_ssl - SSL/TLS module for the Apache HTTP server&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install mod_ssl
+#
+#
+/bin/echo <span style="color:#b44">&#34;php - The PHP HTML-embedded scripting language&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install php
+#
+#
+/bin/echo <span style="color:#b44">&#34;We will not use libmcrypt - Encryption algorithms library&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#080;font-style:italic">#yum -y install libmcrypt</span>
+#
+<span style="color:#080;font-style:italic"># Required PHP Modules:</span>
+#
+/bin/echo <span style="color:#b44">&#34;&#34;</span> <span style="color:#b8860b">$logging</span>
+/bin/echo <span style="color:#b44">&#34;We need the following PHP modules.&#34;</span> <span style="color:#b8860b">$logging</span>
+/bin/echo <span style="color:#b44">&#34;&#34;</span> <span style="color:#b8860b">$logging</span>
+#
+/bin/echo <span style="color:#b44">&#34;php-gd&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install php-gd
+#
+#
+/bin/echo <span style="color:#b44">&#34;php-json (required if your PHP version is 5.2 or later)&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install php-json
+#
+#
+/bin/echo <span style="color:#b44">&#34;We will not use php-mcrypt&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#080;font-style:italic">#yum -y install php-mcrypt</span>
+#
+#
+/bin/echo <span style="color:#b44">&#34;php-mysql&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install php-mysql
+#
+#
+/bin/echo <span style="color:#b44">&#34;php-openssl&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install php-openssl
+#
+#
+/bin/echo <span style="color:#b44">&#34;php-sysvsem&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install php-sysvsem
+#
+#
+/bin/echo <span style="color:#b44">&#34;php-xml&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install php-xml
+#
+#
+/bin/echo <span style="color:#b44">&#34;php-xmlrpc&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install php-xmlrpc
+#
+#
+/bin/echo <span style="color:#b44">&#34;php-ldap&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install php-ldap
+#
+#
+<span style="color:#080;font-style:italic"># Management Node packages</span>
+<span style="color:#080;font-style:italic">#Required Linux Packages:</span>
+
+<span style="color:#080;font-style:italic"># The VCL management node daemon (vcld) requires the following Linux packages and</span> 
+<span style="color:#080;font-style:italic"># Perl modules in order to run (see step 2 below for installation instructions):</span>
+
+#
+/bin/echo <span style="color:#b44">&#34;expat - A library for parsing XML&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install expat
+#
+/bin/echo <span style="color:#b44">&#34;expat-devel - Libraries and include files to develop XML applications with expat&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install expat-devel
+#
+/bin/echo <span style="color:#b44">&#34;gcc - Various compilers C, C++, Objective-C, Java, ...&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install gcc
+#
+/bin/echo <span style="color:#b44">&#34;krb5-libs - The shared libraries used by Kerberos 5&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install krb5-libs
+#
+/bin/echo <span style="color:#b44">&#34;krb5-devel - Development files needed to compile Kerberos 5 programs&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install krb5-devel
+#
+/bin/echo <span style="color:#b44">&#34;libxml2 - Library providing XML and HTML support&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install libxml2
+#
+/bin/echo <span style="color:#b44">&#34;libxml2-devel - Libraries, includes, etc. to develop XML and HTML applications&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install libxml2-devel
+#
+/bin/echo <span style="color:#b44">&#34;mysql - MySQL client programs and shared libraries&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install mysql
+#
+/bin/echo <span style="color:#b44">&#34;nmap - Network exploration tool and security scanner&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install nmap
+#
+/bin/echo <span style="color:#b44">&#34;openssh - The OpenSSH implementation of SSH protocol versions 1 and 2&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install openssh
+#
+/bin/echo <span style="color:#b44">&#34;openssl - The OpenSSL toolkit&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install openssl
+#
+/bin/echo <span style="color:#b44">&#34;openssl-devel - Files for development of applications which will use OpenSSL&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install openssl-devel
+#
+/bin/echo <span style="color:#b44">&#34;perl - The Perl programming language&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install perl
+#
+/bin/echo <span style="color:#b44">&#34;perl-DBD-MySQL - A MySQL interface for perl&#34;</span> <span style="color:#b8860b">$logging</span>
+yum -y install perl-DBD-MySQL
+#
+<span style="color:#080;font-style:italic">#          ------------------------- /bin/echo &#34;xmlsec1-openssl - OpenSSL crypto plugin for XML Security Library&#34; $logging</span>
+<span style="color:#080;font-style:italic">#          ------------------------- yum -y install xmlsec1-openssl</span>
+#
+#
+#
+<span style="color:#a2f;font-weight:bold">if</span> <span style="color:#666">[</span> <span style="color:#b8860b">$arch</span> <span style="color:#666">=</span><span style="color:#666">=</span> <span style="color:#b44">&#34;i386&#34;</span> <span style="color:#666">]</span>
+<span style="color:#a2f;font-weight:bold">then</span>
+<span style="color:#b8860b">perlarch</span><span style="color:#666">=</span><span style="color:#b44">&#34;i686&#34;</span>
+<span style="color:#a2f;font-weight:bold">else</span>
+<span style="color:#b8860b">perlarch</span><span style="color:#666">=</span><span style="color:#b44">&#34;x86_64&#34;</span>
+<span style="color:#a2f;font-weight:bold">fi</span>
+/bin/echo <span style="color:#b44">&#34;</span><span style="color:#b44">Perl Architecture for download is </span><span style="color:#b8860b">$perlarch</span><span style="color:#b44">&#34;</span> <span style="color:#b8860b">$logging</span>
+wget ftp://rpmfind.net/linux/epel/beta/6/<span style="color:#b8860b">$arch</span>/xmlsec1-1.2.16-2.el6.<span style="color:#b8860b">$perlarch</span>.rpm
+yum -y install xmlsec1-1.2.16-2.el6.<span style="color:#b8860b">$perlarch</span>.rpm
+#
+#
+<span style="color:#080;font-style:italic">#wget ftp://rpmfind.net/linux/epel/beta/6/x86_64/xmlsec1-1.2.16-2.el6.x86_64.rpm</span>
+<span style="color:#080;font-style:italic">#yum -y install xmlsec1-1.2.16-2.el6.x86_64.rpm</span>
+#
+<span style="color:#080;font-style:italic">#wget http://rpmfind.net/linux/epel/beta/6/i386/xmlsec1-1.2.16-2.el6.i686.rpm</span>
+<span style="color:#080;font-style:italic">#yum -y install xmlsec1-1.2.16-2.el6.i686.rpm</span>
+</code></pre></div><h2 id="create_a_new_self_signed_certificatesh">create_a_new_self_signed_certificate.sh</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080">#!/bin/bash
+</span><span style="color:#080"></span>#
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + +</span>
+<span style="color:#080;font-style:italic"># + +</span>                                                                      
+<span style="color:#080;font-style:italic"># + + Filename:     create_new_self-signed_ca.sh</span>
+<span style="color:#080;font-style:italic"># + + Author:       Larry Burton</span>
+<span style="color:#080;font-style:italic"># + + Copyright:    Copyright 2012 Larry Burton All rights reserved.</span>
+<span style="color:#080;font-style:italic"># + + Revision:     20120324</span>
+<span style="color:#080;font-style:italic"># + + Description:</span>                                                        
+<span style="color:#080;font-style:italic"># + + A script to create a new self-signed digital certificate</span>
+<span style="color:#080;font-style:italic"># + + Usage:        create_new_self-signed_ca.sh</span>
+<span style="color:#080;font-style:italic"># + +</span>                                  
+<span style="color:#080;font-style:italic"># + +</span>                                                                     
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+#
+#
+<span style="color:#080;font-style:italic"># This script will create a new self-signed Certificate Authority (CA)</span>
+<span style="color:#080;font-style:italic"># digital certificate. The CA certificate can be posted on a web server for</span>
+<span style="color:#080;font-style:italic"># the public to download in order to verify digital certificates signed by</span>
+<span style="color:#080;font-style:italic"># this CA certificate.</span>
+#
+<span style="color:#080;font-style:italic"># When creating the CA, we will NOT ENCRYPT the private key because we wish</span>
+<span style="color:#080;font-style:italic"># to store the unencrypted private key on a server for access by software</span>
+<span style="color:#080;font-style:italic"># such as httpd. If we encrypted the private key, we would have to type in the</span>
+<span style="color:#080;font-style:italic"># passphrase every time the software needed to use the key. The &#34;-nodes&#34;</span>
+<span style="color:#080;font-style:italic"># option specifies no encryption.</span>
+
+<span style="color:#080;font-style:italic"># Prepare subject text</span>
+<span style="color:#080;font-style:italic"># If you have a problem</span>
+<span style="color:#b8860b">ca_subj</span><span style="color:#666">=</span>/C<span style="color:#666">=</span><span style="color:#b8860b">$ca_country</span>/ST<span style="color:#666">=</span><span style="color:#b8860b">$ca_state</span>/O<span style="color:#666">=</span><span style="color:#b8860b">$ca_org</span>/localityName<span style="color:#666">=</span><span style="color:#b8860b">$ca_city</span>/commonName<span style="color:#666">=</span><span style="color:#b8860b">$ca_common_name</span>/organizationalUnitName<span style="color:#666">=</span><span style="color:#b8860b">$ca_ou</span>/emailAddress<span style="color:#666">=</span><span style="color:#b8860b">$ca_email</span>
+#
+<span style="color:#a2f">echo</span> <span style="color:#b44">&#34;The subject text is:&#34;</span>
+<span style="color:#a2f">echo</span> <span style="color:#b44">&#34;</span><span style="color:#b8860b">$ca_subj</span><span style="color:#b44">&#34;</span>
+#
+<span style="color:#080;font-style:italic"># Create the self-signed certificate</span>
+<span style="color:#080;font-style:italic">#    PEM format is default, but specify it to make sure we do not have DER format</span>
+openssl req -x509 <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -nodes <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -keyform PEM <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -inform PEM <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -outform PEM <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -days <span style="color:#666">3650</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -newkey rsa:2048 <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -set_serial <span style="color:#b8860b">$ca_starting_serial_number</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -batch <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -subj <span style="color:#b44">&#34;</span><span style="color:#b8860b">$ca_subj</span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -keyout <span style="color:#b8860b">$ca_certificate_private_unencrypted_key_file_name</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -out <span style="color:#b8860b">$ca_certificate_file_name</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    -passin pass:<span style="color:#b8860b">$ca_passphrase</span>
+#
+<span style="color:#080;font-style:italic"># Self-signed certificate is complete</span>
+/bin/echo <span style="color:#b44">&#34;</span><span style="color:#b44">Here is the unencrypted private key stored in </span><span style="color:#b8860b">$ca_certificate_private_unencrypted_key_file_name</span><span style="color:#b44">:</span><span style="color:#b44">&#34;</span>
+cat <span style="color:#b8860b">$ca_certificate_private_unencrypted_key_file_name</span>
+/bin/echo <span style="color:#b44">&#34;</span><span style="color:#b44">Here is the self-signed Certificate Authority certificate stored in </span><span style="color:#b8860b">$ca_certificate_file_name</span><span style="color:#b44">:</span><span style="color:#b44">&#34;</span>
+cat <span style="color:#b8860b">$ca_certificate_file_name</span>
+#
+/bin/echo <span style="color:#b44">&#34;Here is the information contained in the self-signed CA certificate:&#34;</span>
+openssl x509 -text -in <span style="color:#b8860b">$ca_certificate_file_name</span>
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + Copy Cert and Key to local directory + + + + + + + + + + + +</span>
+#
+mkdir -p <span style="color:#b8860b">$ca_path_to_local_certs_files</span>
+mkdir -p <span style="color:#b8860b">$ca_path_to_local_key_files</span>
+cp <span style="color:#b8860b">$ca_certificate_file_name</span> <span style="color:#b8860b">$ca_path_to_local_certs_files</span>/<span style="color:#b8860b">$ca_certificate_file_name</span>
+cp <span style="color:#b8860b">$ca_certificate_private_unencrypted_key_file_name</span> <span style="color:#b8860b">$ca_path_to_local_key_files</span>/<span style="color:#b8860b">$ca_certificate_private_unencrypted_key_file_name</span>
+#
+/bin/echo <span style="color:#b44">&#34;</span><span style="color:#b44">The CA certificate has been copied to </span><span style="color:#b8860b">$ca_path_to_local_certs_files</span><span style="color:#b44">&#34;</span>
+/bin/echo <span style="color:#b44">&#34;</span><span style="color:#b44">The CA unecrypted private key has been copied to </span><span style="color:#b8860b">$ca_path_to_local_key_files</span><span style="color:#b44">&#34;</span>
+<span style="color:#080;font-style:italic"># end of script</span>
+</code></pre></div><h2 id="install_vclsh">install_vcl.sh</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080">#!/bin/bash
+</span><span style="color:#080"></span>#
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + +</span>                                                                      
+<span style="color:#080;font-style:italic"># + +</span>                                                                      
+<span style="color:#080;font-style:italic"># + + Filename:     install_vcl.sh</span>
+<span style="color:#080;font-style:italic"># + + Author:       Larry Burton</span>
+<span style="color:#080;font-style:italic"># + + Copyright:    Copyright 2012 Larry Burton All rights reserved.</span>
+<span style="color:#080;font-style:italic"># + + Revision:     20120324</span>
+<span style="color:#080;font-style:italic"># + + Description:</span>                                                        
+<span style="color:#080;font-style:italic"># + + A script to install Apache VCL on a LAMP server</span>
+<span style="color:#080;font-style:italic"># + + Usage:        install_vcl.sh repo_url host</span>
+<span style="color:#080;font-style:italic"># + + Example:      install_vcl.sh &#34;http://linuxlab.ncat.edu/inet_boot&#34; &#34;1&#34;</span>
+<span style="color:#080;font-style:italic"># + +               Must be run as root</span>    
+<span style="color:#080;font-style:italic"># + +               The second paraeter is appended to the parameters filename</span>
+<span style="color:#080;font-style:italic"># + +                  to allow multiple different VCL installations to use the same script</span>
+<span style="color:#080;font-style:italic"># + +               The target server, which is the computer upon which this</span>
+<span style="color:#080;font-style:italic"># + +               script is executing, must have:</span>
+<span style="color:#080;font-style:italic"># + +                  Internet access and must</span>
+<span style="color:#080;font-style:italic"># + +                  A valid forward and reverse DNS entry</span>
+<span style="color:#080;font-style:italic"># + +                  Access to a valid DS server</span>
+<span style="color:#080;font-style:italic"># + +                  Access to a valid DHCP server</span>                                  
+<span style="color:#080;font-style:italic"># + +</span>                                                                     
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +</span>
+#
+<span style="color:#b8860b">repo_url</span><span style="color:#666">=</span><span style="color:#b8860b">$1</span>
+<span style="color:#b8860b">target_host</span><span style="color:#666">=</span><span style="color:#b8860b">$2</span>
+#
+mkdir -p /tmp/install
+#
+<span style="color:#080;font-style:italic"># Get installation parameters</span>
+wget --no-host-directories --output-document<span style="color:#666">=</span><span style="color:#b44">&#34;/tmp/install/vcl_parameters&#34;</span> <span style="color:#b8860b">$repo_url</span>/vcl_parameters_<span style="color:#b8860b">$target_host</span>.sh
+#
+<span style="color:#080;font-style:italic"># All the host paramters are now in /tmp/install/host_parameters</span>
+#
+<span style="color:#080;font-style:italic"># Source the customization variables</span>
+. /tmp/install/vcl_parameters
+/bin/echo <span style="color:#b44">&#34;Following are the VCL installation parameters&#34;</span> <span style="color:#b8860b">$logging</span>
+cat /tmp/install/vcl_parameters
+#
+#
+<span style="color:#080;font-style:italic"># Use yum to install the necessary repository packages</span>
+wget --no-host-directories --output-document<span style="color:#666">=</span><span style="color:#b44">&#34;/tmp/install/vcl_packages&#34;</span> <span style="color:#b8860b">$repo_url</span>/vcl_packages.sh
+. /tmp/install/vcl_packages
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + Start the VCL Installation + + + + + + + + + + + +</span>
+#
+<span style="color:#080;font-style:italic"># The starting point is an installed and hardened LAMP server created by</span>
+<span style="color:#080;font-style:italic"># Larry Burton&#39;s RPMs</span>
+#
+<span style="color:#080;font-style:italic"># Create the VCL source code directory</span>
+/bin/echo <span style="color:#b44">&#34;</span><span style="color:#b44">Creating VCL source code directory as </span><span style="color:#b8860b">$vcl_source_directory</span><span style="color:#b44">&#34;</span> <span style="color:#b8860b">$logging</span>
+mkdir -p <span style="color:#b8860b">$vcl_source_directory</span>
+<span style="color:#080;font-style:italic"># Change the working directory to the source code directory</span>
+/bin/echo <span style="color:#b44">&#34;Changing working directory to source code directory&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#a2f">pushd</span> <span style="color:#b8860b">$vcl_source_directory</span>
+<span style="color:#080;font-style:italic"># Download &amp; Extract the Apache VCL Source</span>
+/bin/echo <span style="color:#b44">&#34;</span><span style="color:#b44">Downloading the VCL source tarball from </span><span style="color:#b8860b">$source_url</span><span style="color:#b44">&#34;</span> <span style="color:#b8860b">$logging</span>
+wget <span style="color:#b8860b">$source_url</span>/apache-VCL-<span style="color:#b8860b">$vcl_version</span>.tar.bz2
+<span style="color:#080;font-style:italic"># Extract the files</span>
+/bin/echo <span style="color:#b44">&#34;Extracting the VCL source tarball&#34;</span> <span style="color:#b8860b">$logging</span>
+tar -jxvf apache-VCL-2.2.1-incubating.tar.bz2
+#
+<span style="color:#080;font-style:italic"># Configure MySQL for VCL (MySQL is already installed and configured by LAMP)</span>
+#
+<span style="color:#080;font-style:italic"># Make sure the firewall on the database server is configured to allow</span>
+<span style="color:#080;font-style:italic"># traffic from the web server and management node servers to connect to</span>
+<span style="color:#080;font-style:italic"># the MySQL daemon TCP port: 3306.  See the firewall documentation for</span>
+<span style="color:#080;font-style:italic"># more information.</span>
+#
+<span style="color:#080;font-style:italic"># Create a VCL database</span>
+/bin/echo <span style="color:#b44">&#34;Creating VCL database&#34;</span> <span style="color:#b8860b">$logging</span>
+
+<span style="color:#080;font-style:italic">#mysql --user=root --password=$mysql_password -e &#39;DROP DATABASE vcl;&#39;</span>
+mysql --user<span style="color:#666">=</span>root --password<span style="color:#666">=</span><span style="color:#b8860b">$mysql_password</span> -e <span style="color:#b44">&#39;CREATE DATABASE vcl; USE vcl; source apache-VCL-2.2.1-incubating/mysql/vcl.sql; SHOW TABLES;&#39;</span>
+
+mysql --user<span style="color:#666">=</span>root --password<span style="color:#666">=</span><span style="color:#b8860b">$mysql_password</span> -e <span style="color:#b44">&#34;</span><span style="color:#b44">GRANT SELECT,INSERT,UPDATE,DELETE,CREATE TEMPORARY TABLES ON vcl.* TO &#39;</span><span style="color:#b8860b">$vcl_mysql_user_name</span><span style="color:#b44">&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;</span><span style="color:#b8860b">$vcl_mysql_user_password</span><span style="color:#b44">&#39;;</span><span style="color:#b44">&#34;</span>
+
+mysql --user<span style="color:#666">=</span>root --password<span style="color:#666">=</span><span style="color:#b8860b">$mysql_password</span> -e <span style="color:#b44">&#34;USE mysql; SELECT * FROM user WHERE User=&#39;vcluser&#39;;&#34;</span>
+
+<span style="color:#080;font-style:italic"># Create the VCL user for the MySQL database</span>
+<span style="color:#080;font-style:italic"># Note this user is created with access from the localhost only since the</span>
+<span style="color:#080;font-style:italic"># database server is assumed to be on the same physical machine as the vcl daemon</span>
+
+/bin/echo <span style="color:#b44">&#34;These are the tables in the VCL database:&#34;</span> <span style="color:#b8860b">$logging</span>
+mysql --user<span style="color:#666">=</span>root --password<span style="color:#666">=</span><span style="color:#b8860b">$mysql_password</span> -e <span style="color:#b44">&#34;USE vcl;SHOW TABLES;&#34;</span>
+#
+<span style="color:#080;font-style:italic"># At this point, VCL support in MySQL is complete</span>
+/bin/echo <span style="color:#b44">&#34;&#34;</span> <span style="color:#b8860b">$logging</span>
+#
+/bin/echo <span style="color:#b44">&#34;MySQL configuration for VCL complete&#34;</span> <span style="color:#b8860b">$logging</span>
+/bin/echo <span style="color:#b44">&#34;&#34;</span> <span style="color:#b8860b">$logging</span>
+#
+<span style="color:#080;font-style:italic">#  NOTE ----------- Change http.conf document root to correct document root</span>
+sed -i -e <span style="color:#b44">&#34;</span><span style="color:#b44">s:DocumentRoot \&#34;/var/www/html\&#34;:DocumentRoot \&#34;</span><span style="color:#b8860b">$web_content_base</span><span style="color:#b44">/</span><span style="color:#b8860b">$vcl_FQDN</span><span style="color:#b44">\&#34;:g</span><span style="color:#b44">&#34;</span> /etc/httpd/conf/httpd.conf
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + Set up Apache httpd for https + + + + + + + + + + + +</span>
+#
+/bin/echo <span style="color:#b44">&#34;Creating digital certificates for web server&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#080;font-style:italic"># Download and run the https configuration script</span>
+wget --no-host-directories --output-document<span style="color:#666">=</span><span style="color:#b44">&#34;/tmp/install/create_new_self-signed_ca.sh&#34;</span> <span style="color:#b8860b">$repo_url</span>/create_new_self-signed_ca.sh
+sh /tmp/install/create_new_self-signed_ca.sh
+
+#
+<span style="color:#080;font-style:italic"># Note: The certificates must be in place before trying to start https</span>
+#
+/bin/echo <span style="color:#b44">&#34;Beginning httpd configuration for VCL&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#080;font-style:italic"># Download and run the https configuration script</span>
+wget --no-host-directories --output-document<span style="color:#666">=</span><span style="color:#b44">&#34;/tmp/install/https_setup.sh&#34;</span> <span style="color:#b8860b">$repo_url</span>/https_setup.sh
+sh /tmp/install/https_setup.sh
+#
+<span style="color:#080;font-style:italic"># At this point, VCL support in httpd is complete</span>
+/bin/echo <span style="color:#b44">&#34;&#34;</span> <span style="color:#b8860b">$logging</span>
+/bin/echo <span style="color:#b44">&#34;httpd configuration for VCL complete&#34;</span> <span style="color:#b8860b">$logging</span>
+/bin/echo <span style="color:#b44">&#34;&#34;</span> <span style="color:#b8860b">$logging</span>
+#
+
+<span style="color:#080;font-style:italic">#4. If SELinux is enabled, run the following command to allow the web server to connect to the database:</span>
+<span style="color:#080;font-style:italic">#/usr/sbin/setsebool -P httpd_can_network_connect=1</span>
+<span style="color:#080;font-style:italic">#5. If the iptables firewall is being used, port 80 and 443 should be opened up:</span>
+<span style="color:#080;font-style:italic">#vi /etc/sysconfig/iptables</span>
+#
+<span style="color:#080;font-style:italic">#-A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT</span>
+<span style="color:#080;font-style:italic">#-A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT</span>
+<span style="color:#080;font-style:italic">#service iptables restart</span>
+#
+#
+#
+<span style="color:#080;font-style:italic">#  + + + + + + + + Install the VCL Frontend Web Code + + + + + + + + + + + +</span>
+#
+#
+/bin/echo <span style="color:#b44">&#34;Beginning VCL Frontend Web Code Installation&#34;</span> <span style="color:#b8860b">$logging</span>
+#
+<span style="color:#080;font-style:italic"># Copy the web directory to a location under the web root of your web server</span>
+<span style="color:#080;font-style:italic"># and navigate to the destination .ht-inc subdirectory</span>
+<span style="color:#080;font-style:italic"># Create the VCL web server document root directory</span>
+mkdir -p <span style="color:#b8860b">$vcl_web_document_root</span>
+<span style="color:#080;font-style:italic"># Copy the VCL web documents to the VCL web server document root</span>
+cp -r apache-VCL-<span style="color:#b8860b">$vcl_version</span>/web/ <span style="color:#b8860b">$vcl_web_document_root</span>/vcl
+<span style="color:#080;font-style:italic"># Change the working directory to the web server document root patch file directory</span>
+<span style="color:#a2f">pushd</span> <span style="color:#b8860b">$vcl_web_document_root</span>/vcl/.ht-inc
+<span style="color:#080;font-style:italic"># Apply patch to fix editing reservations</span>
+wget https://issues.apache.org/jira/secure/attachment/12477101/utils_virtual_undefined.patch
+patch &lt; utils_virtual_undefined.patch
+<span style="color:#080;font-style:italic"># Apply patch to fix processing of block allocations</span>
+wget https://issues.apache.org/jira/secure/attachment/12485328/vmhostcheck_fix.patch
+patch &lt; vmhostcheck_fix.patch
+#
+<span style="color:#080;font-style:italic"># Configure the PHP secrets file</span>
+#
+
+<span style="color:#080;font-style:italic"># Copy secrets-default.php to secrets.php:</span>
+cp secrets-default.php secrets.php
+<span style="color:#080;font-style:italic"># Edit the secrets.php file</span>
+/bin/echo <span style="color:#b44">&#34;Editing the PHP secrets.php file&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#080;font-style:italic"># Set the VCL hostname</span>
+<span style="color:#080;font-style:italic">####### default is ok sed -i -e &#34;s/\$vclhost = &#39;localhost&#39;; # name of mysql server/###\$vclhost = &#39;localhost&#39;; # name of mysql server/g&#34; \</span>
+<span style="color:#080;font-style:italic">####### default is ok        -e &#34;/\$vclhost = &#39;localhost&#39;; # name of mysql server/a\ \n\</span>
+<span style="color:#080;font-style:italic">####### default is ok ####### default is ok \$vclhost = &#39;$host_name&#39;; # name of mysql server/</span>
+<span style="color:#080;font-style:italic">####### default is ok  \</span>
+<span style="color:#080;font-style:italic">####### default is ok &#34; \</span>
+<span style="color:#080;font-style:italic">####### default is ok secrets.php</span>
+#
+<span style="color:#080;font-style:italic"># Set the VCL database name</span>
+<span style="color:#080;font-style:italic">####### default is ok sed -i -e &#34;s/\$vcldb = &#39;vcl&#39;;         # name of mysql database/###\$vcldb = &#39;vcl&#39;;         # name of mysql database/g&#34; \</span>
+<span style="color:#080;font-style:italic">####### default is ok        -e &#34;/\$vcldb = &#39;vcl&#39;;         # name of mysql database/a\ \n\</span>
+<span style="color:#080;font-style:italic">####### default is ok \$vcldb = &#39;$vcl_database_name&#39;;         # name of mysql database/</span>
+<span style="color:#080;font-style:italic">####### default is ok  \</span>
+<span style="color:#080;font-style:italic">####### default is ok &#34; \</span>
+<span style="color:#080;font-style:italic">####### default is ok secrets.php</span>
+#
+<span style="color:#080;font-style:italic"># Set the VCL user name</span>
+sed -i -e <span style="color:#b44">&#34;s/\$vclusername = &#39;&#39;;      # username to access database/###\$vclusername = &#39;&#39;;      # username to access database/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/\$vclusername = &#39;&#39;;      # username to access database/a\ \n\
+</span><span style="color:#b44">\$vclusername = &#39;</span><span style="color:#b8860b">$vcl_mysql_user_name</span><span style="color:#b44">&#39;;      # username to access database/
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>secrets.php
+#
+<span style="color:#080;font-style:italic"># Set the VCL password</span>
+sed -i -e <span style="color:#b44">&#34;s/\$vclpassword = &#39;&#39;;      # password to access database/###\$vclpassword = &#39;&#39;;      # password to access database/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/\$vclpassword = &#39;&#39;;      # password to access database/a\ \n\
+</span><span style="color:#b44">\$vclpassword = &#39;</span><span style="color:#b8860b">$vcl_mysql_user_password</span><span style="color:#b44">&#39;;      # password to access database/
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>secrets.php
+#
+<span style="color:#080;font-style:italic"># Set the VCL password</span>
+sed -i -e <span style="color:#b44">&#34;s/\$mcryptkey = &#39;&#39;;  # random password - won&#39;t ever have to type it so make it long/###\$mcryptkey = &#39;&#39;;  # random password - won&#39;t ever have to type it so make it long/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/\$mcryptkey = &#39;&#39;;  # random password - won&#39;t ever have to type it so make it long/a\ \n\
+</span><span style="color:#b44">\$mcryptkey = &#39;</span><span style="color:#b8860b">$vcl_mcryptkey</span><span style="color:#b44">&#39;;  # random password - won&#39;t ever have to type it so make it long/
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>secrets.php
+#
+<span style="color:#080;font-style:italic"># $mcryptiv = &#39;12345678&#39;; // must be 8 hex chars</span>
+#
+<span style="color:#080;font-style:italic"># Set the VCL passphrase</span>
+sed -i -e <span style="color:#b44">&#34;s/\$pemkey = &#39;&#39;; # random passphrase - same as given to genkeys.sh - should be long/###\$pemkey = &#39;&#39;; # random passphrase - same as given to genkeys.sh - should be long/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/\$pemkey = &#39;&#39;; # random passphrase - same as given to genkeys.sh - should be long/a\ \n\
+</span><span style="color:#b44">\$pemkey = &#39;</span><span style="color:#b8860b">$vcl_pemkey</span><span style="color:#b44">&#39;; # random passphrase - same as given to genkeys.sh - should be long/
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>secrets.php
+#
+
+#
+<span style="color:#080;font-style:italic">#  + + Create the public and private keys for the vcl user + + + + + + + + +</span>
+#
+/bin/echo <span style="color:#b44">&#34;Creating the public and private keys for the vcl user&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#080;font-style:italic"># The 2048 MUST come after the passphrase</span>
+
+<span style="color:#a2f">echo</span> <span style="color:#b44">&#34;</span><span style="color:#b44">openssl genrsa -aes256 -out keys.pem -passout pass:</span><span style="color:#b8860b">$vcl_pemkey</span><span style="color:#b44"> 2048</span><span style="color:#b44">&#34;</span>
+openssl genrsa -aes256 -out keys.pem -passout pass:<span style="color:#b8860b">$vcl_pemkey</span> <span style="color:#666">2048</span>
+<span style="color:#a2f">echo</span> <span style="color:#b44">&#34;</span><span style="color:#b44">openssl rsa -pubout -in keys.pem -out pubkey.pem -passin pass:</span><span style="color:#b8860b">$vcl_pemkey</span><span style="color:#b44">&#34;</span>
+openssl rsa -pubout -in keys.pem -out pubkey.pem -passin pass:<span style="color:#b8860b">$vcl_pemkey</span>
+#
+#
+#
+<span style="color:#080;font-style:italic">#  + + Configure the PHP conf.php + + + + + + + + +</span>
+#
+/bin/echo <span style="color:#b44">&#34;Configuring the PHP conf.php&#34;</span> <span style="color:#b8860b">$logging</span>
+#
+
+<span style="color:#080;font-style:italic"># Copy conf-default.php to conf.php:</span>
+cp conf-default.php conf.php
+#
+<span style="color:#080;font-style:italic"># Modify conf.php to match your site</span>
+<span style="color:#080;font-style:italic"># Basically this consists of specifying the FQDN and domain name of the server.</span>
+<span style="color:#080;font-style:italic"># NOTE: use = as delimiter instead of slash to avoid escaping slashes</span>
+sed -i -e <span style="color:#b44">&#34;</span><span style="color:#b44">s:define(\&#34;COOKIEDOMAIN\&#34;, \&#34;.example.org\&#34;);       // domain in which cookies are set:define(\&#34;COOKIEDOMAIN\&#34;, \&#34;</span><span style="color:#b8860b">$vcl_FQDN</span><span style="color:#b44">\&#34;);       // domain in which cookies are set:g</span><span style="color:#b44">&#34;</span> conf.php
+sed -i -e <span style="color:#b44">&#34;</span><span style="color:#b44">s=define(\&#34;BASEURL\&#34;, \&#34;https:\/\/vcl.example.org\&#34;);=define(\&#34;BASEURL\&#34;, \&#34;https:\/\/</span><span style="color:#b8860b">$vcl_FQDN</span><span style="color:#b44">/vcl\&#34;);=g</span><span style="color:#b44">&#34;</span> conf.php
+sed -i -e <span style="color:#b44">&#34;</span><span style="color:#b44">s=define(\&#34;HOMEURL\&#34;, \&#34;http:\/\/vcl.example.org\/\&#34;);=define(\&#34;HOMEURL\&#34;, \&#34;http:\/\/</span><span style="color:#b8860b">$vcl_FQDN</span><span style="color:#b44">\/vcl\/\&#34;);=g</span><span style="color:#b44">&#34;</span> conf.php
+sed -i -e <span style="color:#b44">&#34;</span><span style="color:#b44">s=vcl.example.org=</span><span style="color:#b8860b">$vcl_FQDN</span><span style="color:#b44">=g</span><span style="color:#b44">&#34;</span> conf.php
+sed -i -e <span style="color:#b44">&#34;</span><span style="color:#b44">s=example.org=</span><span style="color:#b8860b">$search_path</span><span style="color:#b44">=g</span><span style="color:#b44">&#34;</span> conf.php
+<span style="color:#080;font-style:italic"># Did not set timezone</span>
+#
+#  
+#
+#
+<span style="color:#080;font-style:italic"># Set the owner of the .ht-inc/maintenance directory to the web server user (normally &#39;apache&#39;):</span>
+chown apache maintenance
+#
+#
+#
+<span style="color:#080;font-style:italic">#  + + Install phpseclib and apply a patch to remove the requirement of having mcrypt installed + + + + + + + + +</span>
+#
+<span style="color:#080;font-style:italic"># Optionally, you can install phpseclib and apply a patch to remove the requirement of having mcrypt installed</span>
+/bin/echo <span style="color:#b44">&#34;Patching to remove the mcrypt dependency&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#080;font-style:italic">#Here are the steps to remove the dependency:</span>
+<span style="color:#080;font-style:italic">#Download phpseclib to /tmp (version 0.2.2 was used for testing)</span>
+<span style="color:#a2f">pushd</span> /tmp
+wget http://downloads.sourceforge.net/project/phpseclib/phpseclib0.2.2.zip
+<span style="color:#080;font-style:italic">#Create a directory named phpseclib in your .ht-inc directory</span>
+mkdir <span style="color:#b8860b">$vcl_web_document_root</span>/vcl/.ht-inc/phpseclib
+<span style="color:#080;font-style:italic">#unzip phpseclib in the phpseclib directory</span>
+<span style="color:#a2f">pushd</span> <span style="color:#b8860b">$vcl_web_document_root</span>/vcl/.ht-inc/phpseclib
+unzip /tmp/phpseclib0.2.2.zip
+<span style="color:#080;font-style:italic">#Download no_mcrypt.patch to your .ht-inc directory</span>
+<span style="color:#a2f">pushd</span> <span style="color:#b8860b">$vcl_web_document_root</span>/vcl/.ht-inc
+wget http://people.apache.org/~jfthomps/no_mcrypt.patch
+<span style="color:#080;font-style:italic">#Apply the patch</span>
+patch &lt; no_mcrypt.patch
+#
+/bin/echo <span style="color:#b44">&#34;The VCL web server is now set up&#34;</span> <span style="color:#b8860b">$logging</span>
+#
+#
+#
+<span style="color:#080;font-style:italic"># Test the webserver</span>
+<span style="color:#080;font-style:italic"># Open the testsetup.php page in a web browser</span>
+firefox https://<span style="color:#b8860b">$host_name</span>/vcl/testsetup.php &amp;
+
+<span style="color:#080;font-style:italic"># ---------------------------- Must manually use web interface to setup management node !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span style="color:#080;font-style:italic"># Right now, before completing remaining steps</span>
+<span style="color:#080;font-style:italic"># It is easier to just let the script run, then use the web interface, and then restart vcld</span>
+
+<span style="color:#a2f">pushd</span> <span style="color:#b8860b">$vcl_web_document_root</span>/vcl/.ht-inc
+
+
+#
+<span style="color:#080;font-style:italic"># At this point, the VCL webserver is configured</span>
+#
+#
+#
+#
+<span style="color:#080;font-style:italic">#  + + Install the Management Node + + + + + + + + +</span>
+#
+/bin/echo <span style="color:#b44">&#34;Installing VCL Management Node&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#a2f">popd</span>
+<span style="color:#a2f">popd</span>
+<span style="color:#a2f">popd</span>
+<span style="color:#a2f">cd</span>
+<span style="color:#080;font-style:italic"># Change the working directory to the source code directory</span>
+/bin/echo <span style="color:#b44">&#34;Changing working directory to source code directory&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#a2f">pushd</span> <span style="color:#b8860b">$vcl_source_directory</span>
+#
+cp -r apache-VCL-2.2.1-incubating/managementnode /usr/local/vcl
+#
+/bin/echo <span style="color:#b44">&#34;Installing perl modules&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#080;font-style:italic"># Skip the Linux package installation in the perl script and say YES</span>
+sed -i -e <span style="color:#b44">&#34;s=install_linux_packages();=###install_linux_packages()=g&#34;</span> /usr/local/vcl/bin/install_perl_libs.pl
+sed -i -e <span style="color:#b44">&#34;s:my \$input = &lt;&gt;;:my \$input = &#39;YES&#39;;:g&#34;</span> /usr/local/vcl/bin/install_perl_libs.pl
+<span style="color:#080;font-style:italic">#sed -i -e &#34;s=my @ERRORS;=###my @ERRORS;=g&#34; /usr/local/vcl/bin/install_perl_libs.pl</span>
+
+
+<span style="color:#080;font-style:italic"># Now install the perl modules</span>
+perl /usr/local/vcl/bin/install_perl_libs.pl
+#
+<span style="color:#080;font-style:italic">#  + + Configure vcld.conf + + + + + + + + +</span>
+#
+/bin/echo <span style="color:#b44">&#34;Configuring /etc/vcld.conf&#34;</span> <span style="color:#b8860b">$logging</span>
+<span style="color:#080;font-style:italic">#Create the */etc/vcl* directory:</span>
+mkdir /etc/vcl
+<span style="color:#080;font-style:italic">#Copy the stock *vcld.conf* file to */etc/vcl*:</span>
+cp /usr/local/vcl/etc/vcl/vcld.conf /etc/vcl
+<span style="color:#080;font-style:italic">#Edit */etc/vcl/vcld.conf*:</span>
+#
+<span style="color:#b8860b">vcl_conf_file</span><span style="color:#666">=</span><span style="color:#b44">&#34;/etc/vcl/vcld.conf&#34;</span>
+#
+<span style="color:#a2f">echo</span> <span style="color:#b8860b">$vcl_management_node_name</span>
+<span style="color:#080;font-style:italic"># You can use any delimiter you like in an address by prepending a \ i.e. \|...| for the substitute command the \ is not necessary.</span>
+#
+<span style="color:#080;font-style:italic"># Set the FQDN for the management server (vcld)</span>
+sed -i -e <span style="color:#b44">&#34;s/FQDN=/###FQDN=/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/###FQDN=/a \
+</span><span style="color:#b44">FQDN=</span><span style="color:#b8860b">$vcl_management_node_name</span><span style="color:#b44">
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span><span style="color:#b8860b">$vcl_conf_file</span>
+#
+#
+<span style="color:#080;font-style:italic"># Set the MySQL database name for the management server (vcld)</span>
+sed -i -e <span style="color:#b44">&#34;s/database=vcl/###database=vcl/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/##database=vcl/a \
+</span><span style="color:#b44">database=</span><span style="color:#b8860b">$vcl_database_name</span><span style="color:#b44">
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span><span style="color:#b8860b">$vcl_conf_file</span>
+#
+<span style="color:#080;font-style:italic"># Set the MySQL database name for the management server (vcld)</span>
+sed -i -e <span style="color:#b44">&#34;s/server=/###server=/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/###server=/a \
+</span><span style="color:#b44">server=</span><span style="color:#b8860b">$vcl_mysql_server_name</span><span style="color:#b44">
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span><span style="color:#b8860b">$vcl_conf_file</span>
+#
+<span style="color:#080;font-style:italic"># Set the MySQL database name for the management server (vcld)</span>
+sed -i -e <span style="color:#b44">&#34;s/LockerWrtUser=vcl-wr/###LockerWrtUser=vcl-wr/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/###LockerWrtUser=vcl-wr/a \
+</span><span style="color:#b44">LockerWrtUser=</span><span style="color:#b8860b">$vcl_mysql_user_name</span><span style="color:#b44">
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span><span style="color:#b8860b">$vcl_conf_file</span>
+#
+<span style="color:#080;font-style:italic"># Set the MySQL database name for the management server (vcld)</span>
+sed -i -e <span style="color:#b44">&#34;s/wrtPass=/###wrtPass=/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/###wrtPass=/a \
+</span><span style="color:#b44">wrtPass=</span><span style="color:#b8860b">$vcl_mysql_user_password</span><span style="color:#b44">
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span><span style="color:#b8860b">$vcl_conf_file</span>
+#
+#
+<span style="color:#080;font-style:italic"># Set the MySQL database name for the management server (vcld)</span>
+sed -i -e <span style="color:#b44">&#34;s/xmlrpc_username=vclsystem/###xmlrpc_username=vclsystem/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/###xmlrpc_username=vclsystem/a \
+</span><span style="color:#b44">xmlrpc_username=</span><span style="color:#b8860b">$vcl_mysql_user_name</span><span style="color:#b44">
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span><span style="color:#b8860b">$vcl_conf_file</span>
+#
+<span style="color:#080;font-style:italic"># Set the MySQL database name for the management server (vcld)</span>
+sed -i -e <span style="color:#b44">&#34;s/xmlrpc_pass=insecureDefault/###xmlrpc_pass=insecureDefault/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/###xmlrpc_pass=insecureDefault/a \
+</span><span style="color:#b44">xmlrpc_pass=</span><span style="color:#b8860b">$vcl_mysql_user_password</span><span style="color:#b44">
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span><span style="color:#b8860b">$vcl_conf_file</span>
+#
+#
+<span style="color:#080;font-style:italic"># Set the MySQL database name for the management server (vcld)</span>
+sed -i -e <span style="color:#b44">&#34;s/xmlrpc_url=/###xmlrpc_url=/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span><span style="color:#b44">/###xmlrpc_url=/a \
+</span><span style="color:#b44">xmlrpc_url=https:\/\/</span><span style="color:#b8860b">$vcl_management_node_name</span><span style="color:#b44">\/vcl\/index.php\?mode=xmlrpccall
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span><span style="color:#b8860b">$vcl_conf_file</span>
+#
+#
+<span style="color:#080;font-style:italic">#  + + Configure the SSH Client + + + + + + + + +</span>
+#
+/bin/echo <span style="color:#b44">&#34;Configuring SSH Client&#34;</span> <span style="color:#b8860b">$logging</span>
+#
+<span style="color:#080;font-style:italic"># Locate the UserKnownHostsFile and StrictHostKeyChecking lines and change them to the following:</span>
+<span style="color:#080;font-style:italic"># Note: These lines may not exist, so just comment them out if they do exist</span>
+<span style="color:#080;font-style:italic">#       and add the new lines at the end of the file.</span>
+sed -i -e <span style="color:#b44">&#34;s/UserKnownHostsFile/###UserKnownHostsFile/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span>$<span style="color:#b44"> a\ \n\
+</span><span style="color:#b44">UserKnownHostsFile \/dev\/null
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>/etc/ssh/ssh_config
+#
+sed -i -e <span style="color:#b44">&#34;s/StrictHostKeyChecking/###StrictHostKeyChecking/g&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>       -e <span style="color:#b44">&#34;</span>$<span style="color:#b44"> a\ \n\
+</span><span style="color:#b44">StrictHostKeyChecking no
+</span><span style="color:#b44"> \
+</span><span style="color:#b44"></span><span style="color:#b44">&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>/etc/ssh/ssh_config
+#
+#
+<span style="color:#080;font-style:italic">#  + + Install and Start the VCL Daemon (vcld) Service + + + + + + + + +</span>
+#
+/bin/echo <span style="color:#b44">&#34;Install and Start the VCL Daemon (vcld) Service&#34;</span> <span style="color:#b8860b">$logging</span>
+#
+<span style="color:#080;font-style:italic"># Copy the vcld service script to /etc/init.d and name it vcld:</span>
+cp /usr/local/vcl/bin/S99vcld.linux /etc/init.d/vcld
+<span style="color:#080;font-style:italic"># Add the vcld service using chkconfig:</span>
+/sbin/chkconfig --add vcld
+<span style="color:#080;font-style:italic"># Configure the vcld service to automatically run at runtime levels 3-5:</span>
+/sbin/chkconfig --level <span style="color:#666">345</span> vcld on
+<span style="color:#080;font-style:italic"># Start the vcld service:</span>
+/sbin/service vcld start
+#
+<span style="color:#080;font-style:italic">#       You should see output similar to the following:</span>
+#
+<span style="color:#080;font-style:italic">#       Starting vcld daemon:</span>
+<span style="color:#080;font-style:italic">#       ============================================================================</span>
+<span style="color:#080;font-style:italic">#       VCL Management Node Daemon (vcld) | 2011-03-15 10:23:04</span>
+<span style="color:#080;font-style:italic">#       ============================================================================</span>
+<span style="color:#080;font-style:italic">#       bin path:      /usr/local/vcl/bin</span>
+<span style="color:#080;font-style:italic">#       config file:   /etc/vcl/vcld.conf</span>
+<span style="color:#080;font-style:italic">#       log file:      /var/log/vcld.log</span>
+<span style="color:#080;font-style:italic">#       pid file:      /var/run/vcld.pid</span>
+<span style="color:#080;font-style:italic">#       daemon mode:   1</span>
+<span style="color:#080;font-style:italic">#       setup mode:    0</span>
+<span style="color:#080;font-style:italic">#       verbose mode:  1</span>
+<span style="color:#080;font-style:italic">#       ============================================================================</span>
+<span style="color:#080;font-style:italic">#       Created VCL daemon process: 8465</span>
+<span style="color:#080;font-style:italic">#                                                                  [  OK  ]</span>
+#
+<span style="color:#080;font-style:italic"># The vcld service can also be started by running the service script directly: /etc/init.d/vcld start</span>
+<span style="color:#080;font-style:italic"># Check the vcld service by monitoring the vcld.log file:</span>
+tail -f /var/log/vcld.log
+#
+<span style="color:#080;font-style:italic"># You should see the following being added to the log file every few seconds if</span>
+<span style="color:#080;font-style:italic"># the management node is checking in with the database:</span>
+#
+<span style="color:#080;font-style:italic">#       2009-06-16 16:57:15|15792|vcld:main(165)|lastcheckin time updated for management node 18: 2009-06-16 16:57:15</span>
+#
+
+<span style="color:#080;font-style:italic"># Print instructions for web setup</span>
+#
+cat <span style="color:#b44">&lt;&lt; WEBSETUP
+</span><span style="color:#b44">
+</span><span style="color:#b44">+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+</span><span style="color:#b44">+ +  
+</span><span style="color:#b44">+ +                       VCL Web Set Up Instructions
+</span><span style="color:#b44">+ +
+</span><span style="color:#b44">+ + All VCL installation is now complete except for a few administrative tasks
+</span><span style="color:#b44">+ + you must complete using the VCL web-based administration tools.
+</span><span style="color:#b44">+ +
+</span><span style="color:#b44">+ + Please use a web browser to complete the following steps.
+</span><span style="color:#b44">+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+</span><span style="color:#b44">
+</span><span style="color:#b44">Step 1: Log In to the VCL Website with the following URL
+</span><span style="color:#b44">
+</span><span style="color:#b44">        https://$vcl_FQDN/vcl/index.php
+</span><span style="color:#b44">
+</span><span style="color:#b44">        Then select &#34;Local Account&#34;
+</span><span style="color:#b44">        The username is:    admin
+</span><span style="color:#b44">        The password is:    adminVc1passw0rd
+</span><span style="color:#b44">
+</span><span style="color:#b44">        (Note: You may change the password at this time, but be certain to
+</span><span style="color:#b44">               REMEMBER your new password!)
+</span><span style="color:#b44">
+</span><span style="color:#b44">Step 2: Click the Management Nodes link
+</span><span style="color:#b44">
+</span><span style="color:#b44">        Click Add
+</span><span style="color:#b44">        Fill in these required fields:
+</span><span style="color:#b44"># Owner - admin@Local
+</span><span style="color:#b44">             Hostname = $vcl_FQDN
+</span><span style="color:#b44">             IP address = $(hostname -i)
+</span><span style="color:#b44">             SysAdmin Email Address = sysadmin@$search_path
+</span><span style="color:#b44">             Install Path = /var/data
+</span><span style="color:#b44">             End Node SSH Identity Key Files = /etc/vcl/vcl.key
+</span><span style="color:#b44">
+</span><span style="color:#b44">        Click Confirm Management Node
+</span><span style="color:#b44">        Click Submit
+</span><span style="color:#b44">
+</span><span style="color:#b44">Step 3: Click the Management Nodes link
+</span><span style="color:#b44">             ( Note: You must click the anagement Nodes link to get out of
+</span><span style="color:#b44">                     of the previous screen state.)
+</span><span style="color:#b44">        Select Edit Management Node Grouping
+</span><span style="color:#b44">        Click Submit
+</span><span style="color:#b44">        Select the checkbox for your management node
+</span><span style="color:#b44">        Click Submit Changes
+</span><span style="color:#b44">
+</span><span style="color:#b44">Congratualations! You VCL head node installation is complete!
+</span><span style="color:#b44">
+</span><span style="color:#b44">Now, restart the vcld daemon with the following command:
+</span><span style="color:#b44">
+</span><span style="color:#b44">/sbin/service vcld restart
+</span><span style="color:#b44">
+</span><span style="color:#b44">You may monitor vlcd with this command
+</span><span style="color:#b44">
+</span><span style="color:#b44">tail -f /var/log/vcld.log
+</span><span style="color:#b44">
+</span><span style="color:#b44">
+</span><span style="color:#b44">WEBSETUP</span>
+
+#
+#
+<span style="color:#080;font-style:italic">#  + + Install and Start the DHCP Service + + + + + + + + +</span>
+<span style="color:#080;font-style:italic"># Note: We use dnsmasq rather than dhcpd</span>
+#
+<span style="color:#a2f">exit</span>
+#
+<span style="color:#080;font-style:italic"># End of script</span>
+</code></pre></div><p>Larry Burton 3 May 2012</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

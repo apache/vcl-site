@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Customization of Email messages with HTML content</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Customization of Email messages with HTML content</h1>
+    
+	<p>Email messages sent out to VCL users can be customized under the Site Configuration part of the
+site. However, HTML content is not allowed to be entered via the web form for security reasons.
+VCL 2.5.1 introduced a method of including HTML content in the email messages using a command
+line script run from a management node. The script is in the bin directory of the management node
+code. The same substitution available in plain text messages can be used in the HTML messages.</p>
+<p>Usage:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vclmessages.pl --getmessagenames
+vclmessages.pl --dumpmessage <span style="color:#b44">&#39;&lt;name of message&gt;&#39;</span>
+vclmessages.pl --setmessage <span style="color:#b44">&#39;&lt;name of message&gt;&#39;</span> --htmlfile &lt;filename&gt; --subject &lt;message subject&gt;
+vclmessages.pl --resetmessage <span style="color:#b44">&#39;&lt;name of message&gt;&#39;</span>
+
+vclmessages.pl --help|-?
+</code></pre></div><p>Where</p>
+<p>&ndash;<strong>getmessagenames</strong> displays a list of all available names that can be used<br>
+&ndash;<strong>dumpmessage</strong> displays the current value of a message<br>
+&ndash;<strong>setmessage</strong> sets the value of a message to the contents of the specified file<br>
+&ndash;<strong>resetmessage</strong> sets the value of a message back to the original value as distributed with VCL<br></p>
+<p>&lt;<strong>name of message</strong>&gt; = the name of the message from the database (enclose in single quotes)<br>
+<span style="margin-left:40px;">(use &ndash;getmessagenames to get a list of message names)</span></p>
+<p>&lt;<strong>filename</strong>&gt; = filename (including path) of file containing html contents for email message</p>
+<p>&lt;<strong>message subject</strong>&gt; = subject for email message (enclose in single quotes)</p>
+<p>So, use &ndash;<strong>getmessagenames</strong> to get a list of all of the messages that can be set.  Use
+&ndash;<strong>dumpmessage</strong> to see the current contents of a message.</p>
+<p>To set a new message, create a file containing the HTML that you would like used as the message.
+Then, use &ndash;<strong>setmessage</strong> to set the contents of the message, specifying both a message subject and
+the file containing the contents of the HTML message.  To reset a message back to the stock message
+supplied at VCL installation, use &ndash;<strong>resetmessage</strong>.  Only the &ldquo;Global&rdquo; messages can be reset.</p>
+<p>To set a new message for a specific affiliation, an affiliation specific message, plain text
+message needs to be created through the web UI first. Then, that message can be converted to HTML
+using the script.</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

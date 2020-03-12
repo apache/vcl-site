@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Advanced Image Options</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Advanced Image Options</h1>
+    
+	<p>There are several advanced options for each image that can be modified.
+Normally, they can be left alone. However, there are times where it is
+useful to set them. These are the advanced options and their descriptions.
+They are listed in the same order they appear on the Edit Image page.</p>
+<p>The following advanced options are compared directly to corresponding
+computer attributes of the VCL computers. Configuring these fields
+restricts which computers can be assigned to run the image based on
+computer specs.</p>
+<table>
+<tr>
+<th>Minimum RAM (MB)</th>
+<td>This is the minimum RAM required for the image to
+function and is specified in MB. This is useful if the image has software
+installed that will not function without at least some specific amount of
+RAM. The VCL scheduler will not assign a user a computer to run the image
+that has less RAM than what is specified here.</td>
+</tr>
+<tr>
+<th>Minimum Num of Processors</th>
+<td>This is the minimum number of processors
+required for the image to function. This is useful if the image has
+software installed that will not function without at least some specific
+number of processors. The VCL scheduler will not assign a user a computer
+to run the image that has fewer processors than what is specified here.
+**NOTE**: It is up to the VCL site administrators to determine if this field
+and the corresponding **No. Processors** computer field mean actual
+processors or processor cores. Most often, it makes the most sense to have
+it mean processor cores.</td>
+</tr>
+<tr>
+<th>Minimum Processor Speed (MHz)</th>
+<td>This is the minimum processor speed
+required for the image to function and is specified in MHz. This is useful
+if the image has software installed that will not function without at least
+a specific processor speed. The VCL scheduler will not assign a user a
+computer to run the image that has a slower processor speed than what is
+specified here.</td>
+</tr>
+<tr>
+<th>Minimum Network Speed (Mbps)</th>
+<td>This is the minimum network speed required
+for the image to function and is specified in Mbps. This is useful if the
+image has software installed that will not function without at least a
+specific network speed. The VCL scheduler will not assign a user a computer
+to run the image that has a slower network speed than what is specified
+here. This only refers to the speed at which the VCL computer is connected
+to the network. It is not related to the end user's network connection.</td>
+</tr>
+</table>
+<br/>
+These advanced options are only related to the image itself.<br/>
+<br/>
+<table>
+<tr>
+<th>Maximum Concurrent Usage</th>
+<td>This field allows the concurrent usage of the
+image to be limited. It is very useful if you only have a fixed number of
+licenses for an application installed in the image, but no network license
+manager to limit concurrent use. Leave the field empty for unlimited use.
+Enter a number to limit concurrent use of the image to that number.</td>
+</tr>
+<tr>
+<th>Estimated Reload Time (min)</th>
+<td>This is the estimated amount of time it will
+take the image to be loaded. It is only relevant for the first few
+reservations of an image. After that, historical data is used to estimate
+the load time.</td>
+</tr>
+<tr>
+<th>Available for checkout</td>
+<td>This field controls whether this image can show up
+on the New Reservations page (if set to yes, the appropriate permissions
+still need to be set for it to show up). The intended use of this field is
+for cluster environments where an image will have several sub images. In
+some of those cases, it doesn't make sense for end users to be able to make
+a reservation for the sub  images directly. In those cases, set this field
+to **No**. Otherwise, you should leave it as **Yes**.</td>
+</tr>
+<tr>
+<th>Check for logged in user</th>
+<td>If set to **yes**, VCL will perform checks to see
+if a user is connected to a reservation for this image. If a user has
+connected, but disconnects and stays disconnected for 15 minutes, then VCL
+will consider the reservation to be inactive. It will time out the
+reservation and reclaim the machine for someone else to use. Setting this
+option to **no** disables this check, causing the reservation to exist until
+its end time, even if no one is connected to it.</td>
+</tr>
+<tr>
+<th>User group allowed to log in</th>
+<td>This options is antiquated and should be
+left as **Any**.</td>
+</tr>
+<tr>
+<th>Subimages</th>
+<td>This is used to create [Cluster Environments](creating-a-cluster-enviroment.html)
+. Any subimages listed here will be checked out in addition to this image
+when a reservation is made for this image.</td>
+</tr>
+</table>
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

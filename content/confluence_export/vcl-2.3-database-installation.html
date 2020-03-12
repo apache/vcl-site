@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VCL 2.3 Database Installation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VCL 2.3 Database Installation</h1>
+    
+	<p>{excerpt:hidden=true}How to install MySQL Server, create the VCL database,
+and import the VCL database schema{excerpt}</p>
+<p><a name="VCL2.3DatabaseInstallation-Install&ConfiguretheDatabase"></a></p>
+<h1 id="install--configure-the-database">Install &amp; Configure the Database</h1>
+<ol>
+<li>h2. Download &amp; Extract the Apache VCL Source</li>
+<li>
+<h1 id="if-you-have-not-already-done-so-download-and-the-apache-vcl-source-to">If you have not already done so, download and the Apache VCL source to</h1>
+</li>
+</ol>
+<p>the database server:
+{tip}wget &ndash;trust-server-names
+&lsquo;{nolink:http://vcl.apache.org/downloads/download.cgi?action=download&amp;filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2}'{tip}</p>
+<ol>
+<li>
+<h1 id="extract-the-files">Extract the files:</h1>
+</li>
+</ol>
+<p>{tip}tar -jxvf apache-VCL-2.3.tar.bz2{tip}</p>
+<ol>
+<li>h2. Install MySQL Server</li>
+<li>
+<h1 id="install-mysql-server-5x-tipyum-install-mysql-server--ytip">Install MySQL Server 5.x: {tip}yum install mysql-server -y{tip}</h1>
+</li>
+<li>
+<h1 id="configure-the-mysql-daemon-mysqld-to-start-automatically">Configure the MySQL daemon (mysqld) to start automatically:</h1>
+</li>
+</ol>
+<p>{tip}/sbin/chkconfig --level 345 mysqld on{tip}</p>
+<ol>
+<li>
+<h1 id="start-the-mysql-daemon">Start the MySQL daemon:</h1>
+</li>
+</ol>
+<p>{tip}/sbin/service mysqld start{tip}</p>
+<ol>
+<li>
+<h1 id="if-the-iptables-firewall-is-being-used-and-the-web-server-and-management">If the iptables firewall is being used and the web server and management</h1>
+</li>
+</ol>
+<p>nodes will be on different machines, port 3306 should be opend up
+{tip}
+vi /etc/sysconfig/iptables
+{tip}</p>
+<pre><code>-A RH-Firewall-1-INPUT -m state --state NEW -s &lt;web server IP&gt; -p tcp
+</code></pre>
+<p>&ndash;dport 3306 -j ACCEPT
+-A RH-Firewall-1-INPUT -m state &ndash;state NEW -s <management node IP> -p tcp
+&ndash;dport 3306 -j ACCEPT
+service iptables restart</p>
+<ol>
+<li>h2. Create the VCL Database</li>
+<li>
+<h1 id="run-the-mysql-command-line-client-tipmysqltip">Run the MySQL command-line client: {tip}mysql{tip}</h1>
+</li>
+<li>
+<h1 id="create-a-database">Create a database:</h1>
+</li>
+</ol>
+<p>{tip}CREATE DATABASE vcl;{tip}</p>
+<ol>
+<li>
+<h1 id="create-a-user-with-select-insert-update-delete-and-create-temporary">Create a user with SELECT, INSERT, UPDATE, DELETE, and CREATE TEMPORARY</h1>
+</li>
+</ol>
+<p>TABLES privileges on the database you just created:
+{tip}GRANT SELECT,INSERT,UPDATE,DELETE,CREATE TEMPORARY TABLES ON vcl.* TO
+&lsquo;<em>vcluser</em>'@&lsquo;localhost&rsquo; IDENTIFIED BY &lsquo;<em>vcluserpassword</em>';{tip}
+{note}Replace <em>vcluser</em> and <em>vcluserpassword</em> with that of the user you
+want to use to connect to the database{note}
+{info}The GRANT command will automatically create the user if it doesn&rsquo;t
+already exist{info}</p>
+<ol>
+<li>
+<h1 id="exit-the-mysql-command-line-client-tipexittip">Exit the MySQL command-line client: {tip}exit{tip}</h1>
+</li>
+<li>
+<h1 id="import-the-vclsql-file-into-the-database">Import the vcl.sql file into the database:</h1>
+</li>
+</ol>
+<p>{tip}mysql vcl &lt; apache-VCL-2.3/mysql/vcl.sql{tip}
+{info}The <em>vcl.sql</em> file is included in the <em>mysql</em> directory within the
+Apache VCL source code{info}</p>
+<hr>
+<p>Next step: <a href="vcl:vcl-2.3-web-code-installation.html">VCL:VCL 2.3 Web Code Installation</a></p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

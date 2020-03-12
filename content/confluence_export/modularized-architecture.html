@@ -1,0 +1,356 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Modularized Architecture</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Modularized Architecture</h1>
+    
+	<p><a name="ModularizedArchitecture-Background"></a></p>
+<h1 id="background">Background</h1>
+<p>The VCL backend code was significantly reworked in version 2.0
+to utilize a &ldquo;modularized&rdquo; framework.  This framework allows
+certain parts of the code to be separated from the core code through the
+implementation of modules.</p>
+<p>VCL interacts with external technologies including:</p>
+<ul>
+<li>provisioning engines</li>
+<li>operating systems</li>
+<li>monitoring utilities</li>
+</ul>
+<p>The technology being used may vary based on the VCL deployment, management
+node, image, computer, and so on.  Modules make configuring VCL to use
+a certain technology easy while simplifying the core code.</p>
+<p>The advantages of implementing modules are not limited to external
+technologies.  Modules may be implemented for functions
+applicable only to VCL, but may vary based on the environment.  For
+example, research is being conducted to compare different algorithms
+which are used to select the image that is loaded on a computer after
+a reservation is complete.  A module is created for each algorithm,
+and configuring a management node to use a certain algorithm is as simple
+as changing one value in the database.</p>
+<p><a name="ModularizedArchitecture-ObjectOrientationandInheritance"></a></p>
+<h2 id="object-orientation-and-inheritance">Object Orientation and Inheritance</h2>
+<p>Object orientation and inheritance are used in the VCL modular framework,
+allowing modules to access functionality from the classes which they
+inherit from.  This relieves module developers from having
+to worry about many underlying details and reduces code
+duplication.</p>
+<p>The following diagram shows how inheritance is organized:
+!inheritance.jpg|align=center!
+<em>Figure: VCL module inheritance organization</em>
+  A few notes about the diagram:</p>
+<ul>
+<li>The yellow modules represent the core VCL modules</li>
+<li>The blue and green modules represent auxiliary modules</li>
+<li>Core modules that should not need to be changed regardless of the
+auxiliary modules being used</li>
+<li>The core modules provide many functions to the auxiliary modules
+including:
+** default constructors
+** data access
+** module initialization
+** access to other auxiliary modules where appropriate</li>
+</ul>
+<p>{color:#6600ff}{<em>}Explain:</em>{color}</p>
+<ul>
+<li>{color:#6600ff}{<em>}abstract and concrete classes - abstract are not
+instantiated{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}classes can be empty, contain no subs, but act as a
+placeholder in case it&rsquo;s decided later on that a sub would be
+useful{</em>}{color}{color:#6600ff} {color}</li>
+</ul>
+<p><a name="ModularizedArchitecture-Advantages"></a></p>
+<h2 id="advantages">Advantages</h2>
+<ul>
+<li>Modules make it easier for developers to implement new technologies to be
+used with VCL easily</li>
+<li>Core VCL code does not need to be altered in order to support additional
+technologies or functionality</li>
+<li>Increased flexibility for different configurations</li>
+<li>Consistent methods to access data stored in the database</li>
+<li>Code maintainability is increased because each module focuses on a
+distinct task and the core code does not need to check for numerous
+different conditions based on the technology being used</li>
+</ul>
+<p>{color:#6600ff}{<em>}Explain: </em>{color}</p>
+<ul>
+<li>{color:#6600ff}{<em>}more about benefits of inheritance{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}give OS example and include diagram{</em>}{color}
+** {color:#6600ff}{<em>}Windows - Desktop - XP - Vista{</em>}{color}
+** {color:#6600ff}{<em>}implement subs as high up as possible so child classes
+inherit them{</em>}{color}
+** {color:#6600ff}{<em>}child classes can override an inherited sub if it
+doesn&rsquo;t fit its needs{</em>}{color}
+** {color:#6600ff}{<em>}use example of firewalls in Windows.  Windows.pm
+implements a firewall sub which works for everything but Vista. 
+Vista.pm can implement a sub with the same name and it will override the
+one in Windows.pm, yet Vista.pm still enjoys everthing else Windows.pm
+offers.</em>{color}</li>
+</ul>
+<p><a name="ModularizedArchitecture-CoreModules"></a></p>
+<h1 id="core-modules">Core Modules</h1>
+<p>  {color:#6600ff}{<em>}Explain:</em>{color}</p>
+<ul>
+<li>{color:#6600ff}{<em>}only core modules should ever change the request
+state/laststate/computer state{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}only core modules should change anything in the request
+and rsvp tables{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}provide state flow{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}provide data access{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}provide utility functions </em>{color}</li>
+<li>{color:#6600ff}{<em>}database and data structure are abstracted from
+auxiliary modules{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}ongoing - should not contain code specific to something
+that can be modularized such as &ldquo;if windows&hellip; else linux&hellip;&quot;</em>{color}</li>
+</ul>
+<p><a name="ModularizedArchitecture-vcld(VCL::vcld)"></a></p>
+<h3 id="vcld-vclvcld">vcld (VCL::vcld)</h3>
+<p>{color:#6600ff}{<em>}Explain:</em>{color}</p>
+<ul>
+<li>{color:#6600ff}{<em>}main exe{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}loops every 12 seconds by default{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}doesn&rsquo;t inherit{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}creates DataStructure object{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}forks{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}sets some $ENV variables{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}reaps dead processes{</em>}{color}</li>
+</ul>
+<p><a name="ModularizedArchitecture-DataStructure.pm(VCL::DataStructure)"></a></p>
+<h3 id="datastructurepm-vcldatastructure">DataStructure.pm (VCL::DataStructure)</h3>
+<p>{color:#6600ff}{<em>}Explain:</em>{color}</p>
+<ul>
+<li>{color:#6600ff}{<em>}abstracts database and data structure{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}aux modules shouldn&rsquo;t know about the DB or data
+structure{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}should be able to change db or data structure and still
+have aux modules work{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}uses &ldquo;Inside Out&rdquo; technique to accessing modules can&rsquo;t
+get to the underlying data{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}data is encapsulated, can only be accessed using
+accessor functions{</em>}{color}
+** {color:#6600ff}{<em>}encapsulation is good, explain what it is{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}usage: $self-&gt;data-&gt;get_image_name()</em>{color}</li>
+<li>{color:#6600ff}{<em>}need to list methods somewhere (not here), there are
+tons of them{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}gets created by vcld when it finds a
+reservation{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}passed to module constructor{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}Module.pm sets up access via data()</em>{color}</li>
+<li>{color:#6600ff}{<em>}Result: any class that inherits from VCL::Module gets
+access{</em>}{color}</li>
+</ul>
+<p><a name="ModularizedArchitecture-utils.pm(VCL::utils)"></a></p>
+<h3 id="utilspm-vclutils">utils.pm (VCL::utils)</h3>
+<p>{color:#6600ff}{<em>}Explain:</em>{color}</p>
+<ul>
+<li>{color:#6600ff}{<em>}contains several utility subs{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}doesn&rsquo;t inherit from Module.pm (might be a good idea to
+look into this)</em>{color}</li>
+<li>{color:#6600ff}{<em>}contains some legacy stuff - some subs will be removed
+and moved to OS or provisioing modules{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}should probably make a page describing utility subs
+such as notify, run_ssh_command&hellip;</em>{color}
+** {color:#6600ff}{<em>}This should really get sucked out of POD comments in
+the actual code{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}have to &lsquo;use VCL::utils&rsquo; in order to use it{</em>}{color}</li>
+</ul>
+<p><a name="ModularizedArchitecture-Module.pm(VCL::Module)"></a></p>
+<h3 id="modulepm-vclmodule">Module.pm (VCL::Module)</h3>
+<ul>
+<li>Provides a constructor for all derived objects to use
+** Objects which inherit from VCL::Module do not need to implement their
+own new() subroutines
+** Objects which inherit from VCL::Module do not need to deal with
+&ldquo;blessing&rdquo; themselves</li>
+<li>Provides access to the database data for the reservation via the data()
+subroutine implemented by Module.pm
+** Any module derived from VCL::Module can call $self-&gt;data-&gt;[get_something](get_something.html)
+or $self-&gt;data-&gt;[set_something]</li>
+</ul>
+<p><a name="ModularizedArchitecture-State.pm(VCL::Module::State)"></a></p>
+<h3 id="statepm-vclmodulestate">State.pm (VCL::Module::State)</h3>
+<ul>
+<li>Supports the core VCL state modules such as new.pm, image.pm, reclaim.pm,
+and others</li>
+<li>Provides an initialize() subroutine which performs common tasks whenever
+a state object is created
+** initialize() creates the provisioning and OS objects</li>
+<li>Provides an os() subroutine which allows the state objects to interact with the resource&rsquo;s operating system by calling $self-&gt;os-&gt;[subroutine](subroutine.html)</li>
+<li>Provides a provisioner() subroutine which allows the state objects to interact with the provisioning engine that has been configured for the resource by calling $self-&gt;provisioner-&gt;[subroutine](subroutine.html)</li>
+<li>Provides other subroutines such as reservation_failed() which
+performs a consistent set of tasks when a reservation fails</li>
+</ul>
+<p><a name="ModularizedArchitecture-Provisioning.pm(VCL::Module::Provisioning)"></a></p>
+<h3 id="provisioningpm-vclmoduleprovisioning">Provisioning.pm (VCL::Module::Provisioning)</h3>
+<ul>
+<li>Provisioning engine modules should inherit from VCL::Module::Provisioning</li>
+<li>Modules which are a subclass of VCL::Module::Provisioning
+also receive the functionality provided by VCL::Module through
+inheritance</li>
+<li>VCL::Module::Provisioning provides provisioning modules with access to
+the OS object created for the reservation</li>
+</ul>
+<p><a name="ModularizedArchitecture-OS.pm(VCL::Module::OS)"></a></p>
+<h3 id="ospm-vclmoduleos">OS.pm (VCL::Module::OS)</h3>
+<ul>
+<li>OS modules should inherit from VCL::Module::OS</li>
+<li>Modules which are a subclass of VCL::Module::OS also receive
+the functionality provided by VCL::Module through inheritance</li>
+<li>VCL::Module::OS provides OS modules with access to the provisioning
+object created for the reservation
+** This is useful if the OS needs to perform a task such as power cycling
+the computer if a reboot fails</li>
+</ul>
+<p><a name="ModularizedArchitecture-ImplementationDetails"></a></p>
+<h1 id="implementation-details">Implementation Details</h1>
+<p><a name="ModularizedArchitecture-WorkingwithInheritance"></a></p>
+<h3 id="working-with-inheritance">Working with Inheritance</h3>
+<p>{color:#6600ff}{<em>}Explain:</em>{color}</p>
+<ul>
+<li>{color:#6600ff}{<em>}code to set up inheritance{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}using $self-&gt;</em>{color}</li>
+<li>{color:#6600ff}{<em>}when to use $self-&gt; (object method) and when to call a
+sub directly (class method)</em>{color}</li>
+<li>{color:#6600ff}how to check if sub was called as an object method or
+not{color}</li>
+</ul>
+<p><a name="ModularizedArchitecture-IncludingNon-InheritedModules"></a></p>
+<h3 id="including-non-inherited-modules">Including Non-Inherited Modules</h3>
+<p> {color:#6600ff}{<em>}Explain:</em>{color}</p>
+<ul>
+<li>{color:#6600ff}{<em>}use{</em>}{color} {color:#6600ff}<em><a href="file::bin.html">file::bin</a>
+<em>{color} {color:#6600ff}{</em>}to include the lib directory{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}use warnings, strict, diagnostics are a good
+practice{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}use &lsquo;VCL::utils&rsquo; is the only VCL module you should need
+to include, all else should be handled by inheritance/objects{</em>}{color}</li>
+</ul>
+<p><a name="ModularizedArchitecture-ModuleInitialization"></a></p>
+<h3 id="module-initialization">Module Initialization</h3>
+<p>{color:#6600ff}{<em>}Explain how modules can implement initialize() subs which
+are automatically called{</em>}{color}</p>
+<p><a name="ModularizedArchitecture-DatabaseConfigurationforModules"></a></p>
+<h3 id="database-configuration-for-modules">Database Configuration for Modules</h3>
+<p>{color:#6600ff}{<em>}Explain module table, computer.moduleid,
+managementnode.predictivemoduleid{</em>}{color}</p>
+<p><a name="ModularizedArchitecture-Cross-ModuleAccess"></a></p>
+<h3 id="cross-module-access">Cross-Module Access</h3>
+<p>{color:#6600ff}{<em>}Explain why some modules shouldn&rsquo;t have access to others,
+which is why Module.pm doesn&rsquo;t make os() and provisioner()
+available{</em>}{color}</p>
+<p><a name="ModularizedArchitecture-Required&OptionalModuleSubroutines"></a></p>
+<h3 id="required--optional-module-subroutines">Required &amp; Optional Module Subroutines</h3>
+<p>{color:#6600ff}{<em>}Explain:</em>{color}</p>
+<ul>
+<li>{color:#6600ff}{<em>}Perl&rsquo;s can() function{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}core modules use can() to check if module
+implements a subroutine{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}some subs should be required such as OS::load(), most
+should not{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}if you can think of an exception why a sub wouldn&rsquo;t be
+needed it shouldn&rsquo;t be required{</em>}{color}</li>
+</ul>
+<p><a name="ModularizedArchitecture-PackageOrganization"></a></p>
+<h3 id="package-organization">Package Organization</h3>
+<p>{color:#6600ff}{<em>}Explain:</em>{color}</p>
+<ul>
+<li>{color:#6600ff}{<em>}how directories under lib/VCL should be
+organized{</em>}{color}</li>
+<li>{color:#6600ff}{<em>}the &lsquo;package&rsquo; line in the modules should match the
+location of the file{</em>}{color}
+** {color:#6600ff}{<em>}Example: &ldquo;package VCL::Module::OS::Windows&rdquo; resides in
+&ldquo;lib/VCL/Module/OS/Windows.pm&rdquo;</em>{color}</li>
+<li>{color:#6600ff}{<em>}some core modules don&rsquo;t follow this - the state modules
+reside directly under lib/VCL, should eventually reside under
+lib/VCL/Module/State{</em>}{color}</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

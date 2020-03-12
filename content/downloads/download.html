@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Downloads</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Downloads</h1>
+    
+	<h2 id="download-links">Download Links</h2>
+<p>Use the links below to download Apache VCL from one of our mirrors. You <strong>must</strong>
+<a href="download.cgi#verify">verify the integrity</a> of the downloaded files using
+signatures downloaded from our main distribution directory, <strong>not</strong> from a mirror.</p>
+<p>Only current recommended releases are available on the main distribution site and
+its mirrors. Older releases are available from the <a href="http://archive.apache.org/dist/vcl/">archive download site</a>.</p>
+<p>Stable Release - Latest Version:</p>
+<ul>
+<li><a href="[location]?Preferred=[preferred]&action=download&filename=%2Fvcl%2F2.5.1%2Fapache-VCL-2.5.1.tar.bz2">apache-VCL-2.5.1.tar.bz2</a>
+[ <a href="https://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.asc">GPG</a> ]
+[ <a href="https://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.sha512">SHA512</a> ]
+(released 2019-07-25)</li>
+</ul>
+<p>Previous Releases:</p>
+<ul>
+<li>apache-VCL-2.5.tar.bz2 (released 2017-08-18)</li>
+<li>apache-VCL-2.4.2.tar.bz2 (released 2015-04-16)</li>
+<li>(Apache VCL 2.4.1 was never officially released)</li>
+<li>(Apache VCL 2.4 was never officially released)</li>
+<li>apache-VCL-2.3.2.tar.bz2 (released 2013-03-25)</li>
+<li>apache-VCL-2.2.2.tar.bz2 (released 2013-03-25)</li>
+<li>apache-VCL-2.3.1.tar.bz2 (released 2012-12-20)</li>
+<li>apache-VCL-2.3.tar.bz2 (released 2012-07-20)</li>
+<li>apache-VCL-2.2.1-incubating.tar.bz2 (released 2011-04-08)</li>
+<li>apache-VCL-2.2-incubating.tar.bz2 (released 2010-10-05)</li>
+<li>apache-VCL-2.1-incubating.tar.bz2 (released 2009-12-04)</li>
+</ul>
+<h2 id="mirror">Mirror</h2>
+<p>The currently selected mirror is <strong>[preferred]</strong>. If you encounter a problem with this
+mirror, please select another mirror. If all mirrors are failing, there are backup
+mirrors (at the end of the mirrors list) that should be available.</p>
+<form name="setmirror" method="get" action="[location]">
+Other mirrors: 
+<select name="Preferred">
+[if-any http]
+  [for http]
+    <option value="[http]">[http]</option>
+  [end]
+[end]
+[if-any ftp]
+  [for ftp]
+    <option value="[ftp]">[ftp]</option>
+  [end]
+[end]
+[if-any backup]
+  [for backup]
+    <option value="[backup]">[backup] (backup)</option>
+  [end]
+[end]
+</select>
+<input type="submit" value="Change"></input>
+</form>
+<p>You may also consult the <a href="http://www.apache.org/mirrors/">complete list of mirrors</a>.</p>
+<p><a name="verify"></a></p>
+<h2 id="verifying-the-integrity-of-the-files">Verifying the integrity of the files</h2>
+<p>It is essential that you verify the integrity of the downloaded files using the PGP or
+MD5 signatures. Security of the mirrors cannot be guaranteed, which means malicious code
+could be added to the downloads from the mirrors. By verifying the integrity of
+downloaded release files, you ensure they have not been tainted.</p>
+<p>Run the following command to verify the SHA256 sum. You should get output
+similar to &ldquo;apache-VCL-2.5.1.tar.bz2: OK&rdquo;:</p></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sha256sum -c apache-VCL-2.5.1.tar.bz2.sha256
+</code></pre></div><p>Similarly, run the following command to verify the MD5 sum. It should give output similar to
+&ldquo;apache-VCL-2.5.1.tar.bz2: OK&rdquo;:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">md5sum -c apache-VCL-2.5.1.tar.bz2.md5
+</code></pre></div><p>To verify the GPG signature (you&rsquo;ll need to have <a href="http://www.gnupg.org/">GnuPG</a> installed):</p>
+<ol>
+<li>
+<p>download and import the <a href="https://www.apache.org/dist/vcl/KEYS">VCL KEYS file</a> (if you&rsquo;ve imported the KEYS file for previously
+releases, you do not need to import it again):</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --import KEYS
+</code></pre></div></li>
+<li>
+<p>download the GPG Signature to the same location as the release file</p>
+</li>
+<li>
+<p>from the directory containing both the release file and the GPG signature, run</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --verify apache-VCL-2.5.1.tar.bz2.asc
+</code></pre></div></li>
+</ol>
+<h2 id="tsu-notification---encryption">TSU Notification - Encryption</h2>
+<p>This distribution includes cryptographic software. The country in which you
+currently reside may have restrictions on the import, possession, use, and/or
+re-export to another country, of encryption software. BEFORE using any
+encryption software, please check your country&rsquo;s laws, regulations and policies
+concerning the import, possession, or use, and re-export of encryption software,
+to see if this is permitted. See <a href="http://www.wassenaar.org/">http://www.wassenaar.org/</a> for more
+information.</p>
+<p>The U.S. Government Department of Commerce, Bureau of Industry and Security
+(BIS), has classified this software as Export Commodity Control Number (ECCN)
+5D002.C.1, which includes information security software using or performing
+cryptographic functions with asymmetric algorithms. The form and manner of this
+Apache Software Foundation distribution makes it eligible for export under the
+License Exception ENC Technology Software Unrestricted (TSU) exception (see the
+BIS Export Administration Regulations, Section 740.13) for both object code and
+source code.</p>
+<p>The following provides more details on the included cryptographic software:</p>
+<p>The web and backend portions of the code utilize php and perl functions to
+encrypt password information stored in the database. The web code utilizes php
+functions to encrypt cookie information passed to and stored in users&rsquo; browsers.
+The backend code uses openssh to connect to and control deployed nodes. openssh
+heavily uses encryption.</p>
+<p>Addionally, the web portion of the code includes portions of the phpseclib
+library. This library is only used for PHP versions not supporting the function
+&ldquo;openssl_encrypt&rdquo; (supported since PHP 5.3.0).</p>
+<h2 id="installation">Installation</h2>
+<p>For new installs, visit the on-line installation guide:</p>
+<p>Latest Version:</p>
+<ul>
+<li><a href="/docs/VCL251InstallGuide.html">Apache VCL 2.5.1 Installation Guide</a></li>
+</ul>
+<p>Previous Versions:</p>
+<ul>
+<li><a href="/docs/VCL25InstallGuide.html">Apache VCL 2.5 Installation Guide</a></li>
+<li><a href="/docs/VCL242InstallGuide.html">Apache VCL 2.4.2 Installation Guide</a></li>
+<li><a href="/docs/VCL232InstallGuide.html">Apache VCL 2.3.2 Installation Guide</a></li>
+<li><a href="/docs/VCL231InstallGuide.html">Apache VCL 2.3.1 Installation Guide</a></li>
+<li><a href="/docs/VCL23Installation.html">Apache VCL 2.3 Installation Guide</a></li>
+<li><a href="http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation">Apache VCL 2.2.1 Installation Guide</a></li>
+<li><a href="http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation">Apache VCL 2.2 Installation Guide</a></li>
+<li><a href="http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation">Apache VCL 2.1 Installation Guide</a></li>
+</ul>
+<h2 id="upgrading">Upgrading</h2>
+<p>For upgrades, visit the on-line upgrade guide:</p>
+<p>Upgrade to latest version:</p>
+<ul>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.5to2.5.1.html">upgrade 2.5 to 2.5.1</a></li>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.4.2to2.5.1.html">upgrade 2.4.2 to 2.5.1</a></li>
+</ul>
+<p>Upgrade to 2.5</p>
+<ul>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.4.2to2.5.html">upgrade 2.4.2 to 2.5</a></li>
+</ul>
+<p>Upgrade to 2.4.2</p>
+<ul>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.3.2to2.4.2.html">upgrade 2.3.2 to 2.4.2</a></li>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.2.2to2.4.2.html">upgrade 2.2.2 to 2.4.2</a></li>
+</ul>
+<p>Upgrade to 2.3.2</p>
+<ul>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.3.1to2.3.2.html">upgrade 2.3.1 to 2.3.2</a></li>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.3to2.3.2.html">upgrade 2.3 to 2.3.2</a></li>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3.2.html">upgrade 2.2.1 to 2.3.2</a></li>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3.2.html">upgrade 2.2 to 2.3.2</a></li>
+</ul>
+<p>Upgrade to 2.2.2:</p>
+<ul>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.2.2.html">upgrade 2.2.1 to 2.2.2</a></li>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.2.2.html">upgrade 2.2 to 2.2.2</a></li>
+</ul>
+<p>Upgrade really old versions to older versions:</p>
+<p>to 2.3.1</p>
+<ul>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.3to2.3.1.html">upgrade 2.3 to 2.3.1</a></li>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3.1.html">upgrade 2.2.1 to 2.3.1</a></li>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3.1.html">upgrade 2.2 to 2.3.1</a></li>
+</ul>
+<p>to 2.3</p>
+<ul>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3">upgrade 2.2.1 to 2.3</a></li>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3">upgrade 2.2 to 2.3</a></li>
+<li><a href="http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.3%29">upgrade 2.1 to 2.3</a></li>
+</ul>
+<p>to 2.2.1</p>
+<ul>
+<li><a href="http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.2+to+2.2.1%29">upgrade 2.2 to 2.2.1</a></li>
+<li><a href="http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.2.1%29">upgrade 2.1 to 2.2.1</a></li>
+</ul>
+<p>to 2.2</p>
+<ul>
+<li><a href="http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version">upgrade 2.1 to 2.2</a></li>
+</ul>
+<h2 id="release-notes">Release Notes</h2>
+<p>See the <a href="/docs/releasenotes.html">release notes page</a> for information about each release.</p>
+<h2 id="change-log">Change Log</h2>
+<p>See the <a href="/docs/changelog.html">change log page</a> for changes made in each release.</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

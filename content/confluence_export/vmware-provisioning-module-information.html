@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VMware Provisioning Module Information</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VMware Provisioning Module Information</h1>
+    
+	<p><a name="VMwareProvisioningModuleInformation-VMwareProvisioningModule"></a></p>
+<h2 id="vmware-provisioning-module">VMware Provisioning Module</h2>
+<ul>
+<li>Source file: managementnode/lib/VCL/Module/Provisioning/VMware/VMware.pm</li>
+</ul>
+<p><a name="VMwareProvisioningModuleInformation-SupportedVMwareProducts"></a></p>
+<h4 id="supported-vmware-products">Supported VMware Products</h4>
+<ul>
+<li>VMware Server 2.0</li>
+<li>VMware ESX/ESXi 3.5</li>
+<li>VMware ESX/ESXi 4.0</li>
+</ul>
+<p><a name="VMwareProvisioningModuleInformation-SupportedVMware&nbsp;APIs,SDKs,&CLIs"></a></p>
+<h4 id="supported-vmwarenbspapis-sdks--clis">Supported VMware APIs, SDKs, &amp; CLIs</h4>
+<p>There are several different methods to control VMware hosts and virtual
+machines.  The main VMware.pm module should remain as
+SDK/API/CLI-agnostic as possible.  All code which interacts with a
+VMware remote control method should reside in utility modules located in
+the lib/VCL/Module/Provisioning/VMware directory.</p>
+<ul>
+<li>vSphere SDK - lib/VCL/Module/Provisioning/VMware/vSphere_SDK.pm
+** Provides full VM and VM host remote access functionality
+** Provides VM host datastore file access
+** Can only be used if the VMware host is not running with a
+restricted license
+** SSH access is not required to the VM host
+** Installed by default on ESX/ESXi hosts
+** Can be installed on Server 2.0 hosts</li>
+<li>-VIX API - lib/VCL/Module/Provisioning/VMware/VIX_API.pm-
+<em>Although a utility module has been written to use the VIX API, it is not
+supported and will not be maintained.  Everything that the VIX API can
+do can be done by the vim-cmd CLI and SSH access to the VM host is required
+for both methods.  Therefore, there is no benefit to maintain the
+VIX API module.</em>
+** -Provides basic VM control functions-
+** -Does not provide any file access-
+** -SSH access is required to the VM host in order to manipulate the file
+system-
+** -Can only be used if the VMware host is not running with a
+restricted license-
+** -Installed by default on Server 2.0 hosts-</li>
+<li>vim-cmd CLI via SSH - lib/VCL/Module/Provisioning/VMware/VIM_SSH.pm
+** Provides full VM host remote access functionality
+** Does not provide file access
+** SSH access is required to the VM host in order to manipulate the file
+system
+** Can be used if the the VMware host is running with a restricted license</li>
+</ul>
+<p><a name="VMwareProvisioningModuleInformation-RequiredUtilityModuleSubroutines"></a></p>
+<h3 id="required-utility-module-subroutines">Required Utility Module Subroutines</h3>
+<ul>
+<li>get_registered_vms</li>
+<li>vm_register</li>
+<li>vm_unregister</li>
+<li>get_vm_power_state</li>
+<li>vm_power_on</li>
+<li>vm_power_off</li>
+<li>copy_virtual_disk</li>
+<li>move_virtual_disk</li>
+<li>get_virtual_disk_controller_type</li>
+<li>get_virtual_disk_hardware_version</li>
+<li>get_virtual_disk_type</li>
+</ul>
+<p><a name="VMwareProvisioningModuleInformation-RequiredOSModuleSubroutines"></a></p>
+<h3 id="required-os-module-subroutines">Required OS Module Subroutines</h3>
+<ul>
+<li>find_files</li>
+<li>copy_file</li>
+<li>copy_file_to</li>
+<li>copy_file_from</li>
+<li>delete_file</li>
+<li>move_file</li>
+<li>file_exists</li>
+<li>get_available_space</li>
+<li>create_directory</li>
+<li>get_file_contents</li>
+<li>get_file_size</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

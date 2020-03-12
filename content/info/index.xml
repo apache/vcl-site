@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Infos on Apache VCL</title>
+    <link>https://vcl.apache.org/info.html</link>
+    <description>Recent content in Infos on Apache VCL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="https://vcl.apache.org/info/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Architecture</title>
+      <link>https://vcl.apache.org/info/architecture.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/info/architecture.html</guid>
+      <description>The VCL architecture consists of 4 main components:
+ Web Portal Database Management Node Compute Nodes (physical servers, virtual machines, traditional computing lab machines, cloud compute resources)  </description>
+    </item>
+    
+    <item>
+      <title>Features</title>
+      <link>https://vcl.apache.org/info/features.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/info/features.html</guid>
+      <description>Free &amp; Open Source Self-Service Web Portal Support for Multiple Authentication Methods Simple Image Creation Robust Privilege &amp; Authorization Model Support for Multiple Provisioning Methods Block Allocations Cluster Environments Statistics &amp; Log Data     Free &amp;amp; Open Source There are no commercial product requirements in order to deploy a fully functional VCL cloud.
+Self-Service Web Portal  Designed to present simple interface to end users Scheduling  Support for Multiple Authentication Methods  Built-in LDAP Shibboleth  Simple Image Creation  Image revision control Delegation of image creation  Robust Privilege &amp;amp; Authorization Model Robust privilege model allows for granular access to be granted&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Frequently Asked Questions</title>
+      <link>https://vcl.apache.org/info/faq.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/info/faq.html</guid>
+      <description> What storage is required? What are the networking requirements?   What storage is required? What are the networking requirements? </description>
+    </item>
+    
+    <item>
+      <title>License</title>
+      <link>https://vcl.apache.org/info/license.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/info/license.html</guid>
+      <description>Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. &amp;#34;License&amp;#34; shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. &amp;#34;Licensor&amp;#34; shall mean the copyright owner or entity authorized by the copyright owner that is granting the License. &amp;#34;Legal Entity&amp;#34; shall mean the union of the acting entity and all other entities that control, are controlled by, or are under common control with that entity.</description>
+    </item>
+    
+    <item>
+      <title>Network Layout</title>
+      <link>https://vcl.apache.org/info/networklayout.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/info/networklayout.html</guid>
+      <description>This page describes the basic network layout required in order for VCL to function. It also describes the recommended network layout if a blade chassis management module is used.
+At the simplest form VCL uses two networks  Private - applies to provisioning modules where node is reloaded, esx, vmware, etc.  loading and boot strapping images managing reservations, adding/deleting accounts, controlling the OS on the node opens access ports on node for user requests on public network interface image creation DHCP serves fixed-addresses over this network to the eth0 adapter of the node DHCP is run on the management node - prerequisite   Public  user accessible VCL can either use dhcp(preferred) or statically assign addresses to the node on the public network    The diagram below shows the simple layout:</description>
+    </item>
+    
+    <item>
+      <title>Use Cases</title>
+      <link>https://vcl.apache.org/info/use-cases.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/info/use-cases.html</guid>
+      <description>stub page</description>
+    </item>
+    
+    <item>
+      <title>What is VCL?</title>
+      <link>https://vcl.apache.org/info/about.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/info/about.html</guid>
+      <description>VCL stands for Virtual Computing Lab. It is a free &amp;amp; open-source cloud computing platform with the primary goal of delivering dedicated, custom compute environments to users.
+This compute environments can range from something as simple as a virtual machine running productivity software to a cluster of powerful physical servers running complex HPC simulations.
+VCL supports provisioning several different types of compute resources including physical bare-metal machines, virtual machines hosted on several different hypervisors, and traditional computing lab computers you would normally find on a university campus.</description>
+    </item>
+    
+  </channel>
+</rss>

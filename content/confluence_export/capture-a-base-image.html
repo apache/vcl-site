@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Capture A Base Image</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Capture A Base Image</h1>
+    
+	<p><a name="CaptureABaseImage-Runvcld\-setup"></a></p>
+<h3 id="run-vcld--setup">Run vcld -setup</h3>
+<ol>
+<li>Run the following command on the management node:
+{tip}/usr/local/vcl/bin/vcld -setup{tip}</li>
+<li>Navigate the menu options
+(Note: the names and numbers of the menu items may not match your
+installation):</li>
+<li>
+<h1 id="color808080select-a-module-to-configurecolor-vcl-image-state">{color:#808080}Select a module to configure:{color} *VCL Image State</h1>
+</li>
+</ol>
+<p>Module*</p>
+<ol>
+<li>
+<h1 id="color808080choose-an-operationcolor-capture-base-image">{color:#808080}Choose an operation:{color} <em>Capture Base Image</em></h1>
+</li>
+<li>
+<h1 id="color808080enter-the-vcl-login-name-or-id-of-the-user-who-will-own">{color:#808080}Enter the VCL login name or ID of the user who will own</h1>
+</li>
+</ol>
+<p>the image:{color}
+Enter your VCL user ID or the user ID of the user you want to own the
+image.  Pressing Enter without entering a user login ID will cause
+admin to be the owner of the new base image.</p>
+<ol>
+<li>
+<h1 id="color808080enter-the-hostname-or-ip-address-of-the-computer-to-be">{color:#808080}Enter the hostname or IP address of the computer to be</h1>
+</li>
+</ol>
+<p>captured:{color}
+Enter the name or private IP address of the computer which has already
+added to the VCL database.</p>
+<ol>
+<li>
+<h1 id="color808080select-the-os-to-be-capturedcolor">{color:#808080}Select the OS to be captured:{color}</h1>
+</li>
+</ol>
+<p>{color:#888888}1. VMware Linux{color}
+{color:#888888}2. VMware Windows 2003 Server{color}
+{color:#888888}3. VMware Windows 7{color}
+{color:#888888}4. VMware Windows Server 2008{color}
+{color:#888888}5. VMware Windows Vista{color}
+{color:#888888}6. VMware Windows XP{color}</p>
+<ol>
+<li>
+<h1 id="color808080image-architecturecolor">{color:#808080}Image architecture:{color}</h1>
+</li>
+</ol>
+<p>{color:#888888}1. x86{color}
+{color:#888888}2. x86_64{color}</p>
+<ol>
+<li>
+<h1 id="color808080use-sysprepcolor">{color:#808080}Use Sysprep:{color}</h1>
+</li>
+</ol>
+<p>{color:#888888}1. Yes{color}
+{color:#888888}2. No{color}
+Sysprep is usually only required if the image will be loaded on bare
+metal computers with varying different hardware.</p>
+<ol>
+<li>
+<h1 id="color808080enter-the-name-of-the-image-to-be-capturedcolor">{color:#808080}Enter the name of the image to be captured:{color}</h1>
+</li>
+</ol>
+<p>The name you enter is the name that will be displayed in the list of
+environments.  It may contain spaces but including
+other special characters is not recommended.</p>
+<p>The following happens once you enter an image name and press enter:</p>
+<ul>
+<li>A new image is added to the VCL database</li>
+<li>An imaging request is added to the VCL database</li>
+<li>The vcld -setup automatically initiates &lsquo;tail -f /var/log/vcld.log&rsquo; to
+monitor the vcld log file.  The output should be displayed on the
+screen.</li>
+</ul>
+<p>Watch the vcld logfile output to determine if the image capture process is
+successful or terminated because a problem occurred.  When the capture
+process terminates, there will either be a message near the end of the
+output saying &ldquo;image capture successful&rdquo; or there will be several WARNING
+messages, the last of which says something to the effect &ldquo;image failed to
+be captured&rdquo;.  Further troubleshooting is required if the image fails
+to be captured.</p>
+<p><a name="CaptureABaseImage-AddtheBaseImagetoanImageGroup"></a></p>
+<h3 id="add-the-base-image-to-an-image-group">Add the Base Image to an Image Group</h3>
+<p>The vcld -setup utility does not add the new base image to any image
+groups.  You must add the image to an image group using the VCL
+website after the image capture process is complete.  Reservations for
+the image cannot be made until this is done.  To add the image to an
+image group, browse to the VCL website and select Manage Images &gt; Edit
+Image Grouping.</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

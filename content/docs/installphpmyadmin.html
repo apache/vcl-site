@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - phpMyAdmin Installation &amp; Configuration</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">phpMyAdmin Installation &amp; Configuration</h1>
+    
+	<div class="docnote">
+phpMyAdmin is a free and optional tool which allows MySQL to be administered using a web 
+browser. It makes administering the VCL database easier. This tool can be installed on 
+the VCL web server.
+</div>
+<ol>
+<li>
+<p>phpmyadmin recommends performing installation using packages available from you Linux
+distribution</p>
+<p>For CentOS, the EPEL yum repository needs to have been added (which is done for installing
+the VCL management node code; use <strong>yum install -y epel-release</strong> in not already installed). Use the
+following to install phpMyAdmin from EPEL:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install -y phpMyAdmin
+</code></pre></div></li>
+<li>
+<p>By default phpMyAdmin on Red Hat based distros restrict access to localhost only. Modify
+<strong>/etc/httpd/conf.d/phpMyAdmin.conf</strong> to change that.  It is advisable to only allow access from some
+specific IP addresses or IP ranges so that phpMyAdmin is not open to everyone to try to access.</p>
+<ul>
+<li>
+<p>In the <code>&lt;Directory /usr/share/phpMyAdmin/&gt;</code> section, add</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Require ip x.x.x.x/y
+</code></pre></div><p>Where x.x.x.x/y represents an IP range such as 192.168.100.1/24. Multiple lines can be added
+to match multiple ranges.</p>
+</li>
+<li>
+<p>restart httpd to active the changes</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl restart httpd
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>A special database needs to be created to enable some of the more helpful phpMyAdmin functionality.
+phpMyAdmin provides a script for creating the database. Look for create_tables.sql (for v4.4.15.10,
+it was at /usr/share/phpMyAdmin/sql/create_tables.sql). Create the database using</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql &lt; /usr/share/phpMyAdmin/sql/create_tables.sql
+</code></pre></div></li>
+<li>
+<p>A control user must be created in mysql/mariadb for phpMyAdmin to use (we&rsquo;ll use pmacontrol,
+<strong>replace mypassword with your own password!</strong>):</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql -e <span style="color:#b44">&#34;CREATE USER &#39;pmacontrol&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;mypassword&#39;;&#34;</span>
+</code></pre></div><p>Save the following in a file named <strong>pmaprivs.sql</strong> to grant the pmacontrol user access to various parts tables:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#a2f;font-weight:bold">GRANT</span> <span style="color:#a2f;font-weight:bold">USAGE</span> <span style="color:#a2f;font-weight:bold">ON</span> mysql.<span style="color:#666">&amp;</span>ast; <span style="color:#a2f;font-weight:bold">TO</span> <span style="color:#b44">&#39;</span><span style="color:#b44">pmacontrol</span><span style="color:#b44">&#39;</span><span style="color:#666">@</span><span style="color:#b44">&#39;</span><span style="color:#b44">localhost</span><span style="color:#b44">&#39;</span>;
+<span style="color:#a2f;font-weight:bold">GRANT</span> <span style="color:#a2f;font-weight:bold">SELECT</span> (
+<span style="color:#a2f;font-weight:bold">Host</span>, <span style="color:#a2f;font-weight:bold">User</span>, Select_priv, Insert_priv, Update_priv, Delete_priv,
+Create_priv, Drop_priv, Reload_priv, Shutdown_priv, Process_priv,
+File_priv, Grant_priv, References_priv, Index_priv, Alter_priv,
+Show_db_priv, Super_priv, Create_tmp_table_priv, Lock_tables_priv,
+Execute_priv, Repl_slave_priv, Repl_client_priv
+) <span style="color:#a2f;font-weight:bold">ON</span> mysql.<span style="color:#a2f;font-weight:bold">user</span> <span style="color:#a2f;font-weight:bold">TO</span> <span style="color:#b44">&#39;</span><span style="color:#b44">pmacontrol</span><span style="color:#b44">&#39;</span><span style="color:#666">@</span><span style="color:#b44">&#39;</span><span style="color:#b44">localhost</span><span style="color:#b44">&#39;</span>;
+<span style="color:#a2f;font-weight:bold">GRANT</span> <span style="color:#a2f;font-weight:bold">SELECT</span> <span style="color:#a2f;font-weight:bold">ON</span> mysql.db <span style="color:#a2f;font-weight:bold">TO</span> <span style="color:#b44">&#39;</span><span style="color:#b44">pmacontrol</span><span style="color:#b44">&#39;</span><span style="color:#666">@</span><span style="color:#b44">&#39;</span><span style="color:#b44">localhost</span><span style="color:#b44">&#39;</span>;
+<span style="color:#a2f;font-weight:bold">GRANT</span> <span style="color:#a2f;font-weight:bold">SELECT</span> <span style="color:#a2f;font-weight:bold">ON</span> mysql.<span style="color:#a2f;font-weight:bold">host</span> <span style="color:#a2f;font-weight:bold">TO</span> <span style="color:#b44">&#39;</span><span style="color:#b44">pmacontrol</span><span style="color:#b44">&#39;</span><span style="color:#666">@</span><span style="color:#b44">&#39;</span><span style="color:#b44">localhost</span><span style="color:#b44">&#39;</span>;
+<span style="color:#a2f;font-weight:bold">GRANT</span> <span style="color:#a2f;font-weight:bold">SELECT</span> (<span style="color:#a2f;font-weight:bold">Host</span>, Db, <span style="color:#a2f;font-weight:bold">User</span>, <span style="color:#a2f;font-weight:bold">Table_name</span>, Table_priv, Column_priv)
+<span style="color:#a2f;font-weight:bold">ON</span> mysql.tables_priv <span style="color:#a2f;font-weight:bold">TO</span> <span style="color:#b44">&#39;</span><span style="color:#b44">pmacontrol</span><span style="color:#b44">&#39;</span><span style="color:#666">@</span><span style="color:#b44">&#39;</span><span style="color:#b44">localhost</span><span style="color:#b44">&#39;</span>;
+<span style="color:#a2f;font-weight:bold">GRANT</span> <span style="color:#a2f;font-weight:bold">SELECT</span>, <span style="color:#a2f;font-weight:bold">INSERT</span>, <span style="color:#a2f;font-weight:bold">UPDATE</span>, <span style="color:#a2f;font-weight:bold">DELETE</span> <span style="color:#a2f;font-weight:bold">ON</span> phpmyadmin.<span style="color:#666">&amp;</span>ast; <span style="color:#a2f;font-weight:bold">TO</span> <span style="color:#b44">&#39;</span><span style="color:#b44">pmacontrol</span><span style="color:#b44">&#39;</span><span style="color:#666">@</span><span style="color:#b44">&#39;</span><span style="color:#b44">localhost</span><span style="color:#b44">&#39;</span>;
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql &lt; pmaprivs.sql
+</code></pre></div></li>
+<li>
+<p>Configure the phpMyAdmin-VCL Table relationships:</p>
+<p>A file named phpmyadmin.sql file is provided in the mysql directory in the Apache VCL source
+code. It will add entries to the pma_table_info table in the phpmyadmin database. These entries
+cause useful information to be displayed when you hover over values in the VCL database.</p>
+<p>Import the SQL file into the phpmyadmin database:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql phpmyadmin &lt; apache-VCL-2.5.1/mysql/phpmyadmin.sql
+</code></pre></div></li>
+<li>
+<p>You should now be able to log in to phpMyAdmin using the account set up for VCL to access the
+database (can be referenced in /etc/vcl/vcld.conf or /var/www/html/vcl/.ht-inc/secrets.php).</p>
+</li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

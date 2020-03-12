@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Apache VCL Security</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Apache VCL Security</h1>
+    
+	<h1 id="security-issues">Security Issues</h1>
+<p>The Apache Software Foundation takes security issues seriously and has a
+<a href="https://www.apache.org/security/">security team</a> that helps Apache projects work through security
+issues. If you discover any potential vulnerabilities in Apache VCL, please report them to
+<a href="mailto:security@apache.org">security@apache.org</a>.</p>
+<h2 id="known-security-issues">Known Security Issues</h2>
+<p>Here is a list of known security issues with Apache VCL along with the versions affected, versions
+in which they were fixed, and information on patching vulnerable versions.</p>
+<h3 id="cve-2018-11772">CVE-2018-11772</h3>
+<ul>
+<li>
+<p>Announced: July 29th, 2019</p>
+</li>
+<li>
+<p>Affected versions: versions 2.1 through 2.5</p>
+</li>
+<li>
+<p>Fixed in version: 2.5.1</p>
+</li>
+<li>
+<p><a href="/patches/patching-CVE-2018.html">Installing patches</a></p>
+</li>
+<li>
+<p>Problem type: SQL injection</p>
+</li>
+<li>
+<p>Description:</p>
+<p>Apache VCL versions 2.1 through 2.5 do not properly validate cookie input when determining what
+node (if any) was previously selected in the privilege tree. The cookie data is then used in an
+SQL statement. This allows for an SQL injection attack. Access to this portion of a VCL system
+requires admin level rights.  Other layers of security seem to protect against malicious attack.
+However, all VCL systems running versions earlier than 2.5.1 should be upgraded or patched.
+This vulnerability was found and reported to the Apache VCL project by ADLab of Venustech.</p>
+</li>
+</ul>
+<h3 id="cve-2018-11773">CVE-2018-11773</h3>
+<ul>
+<li>
+<p>Announced: July 29th, 2019</p>
+</li>
+<li>
+<p>Affected versions: versions 2.1 through 2.5</p>
+</li>
+<li>
+<p>Fixed in version: 2.5.1</p>
+</li>
+<li>
+<p><a href="/patches/patching-CVE-2018.html">Installing patches</a></p>
+</li>
+<li>
+<p>Problem type: improper form validation</p>
+</li>
+<li>
+<p>Description:</p>
+<p>Apache VCL versions 2.1 through 2.5 do not properly validate form input when processing a
+submitted block allocation. The form data is then used as an argument to the php built in
+function strtotime. This allows for an attack against the underlying implementation of that
+function. The implementation of strtotime at the time the issue was discovered appeared to be
+resistant to a malicious attack. However, all VCL systems running versions earlier than 2.5.1
+should be upgraded or patched. This vulnerability was found and reported to the Apache VCL
+project by ADLab of Venustech.</p>
+</li>
+</ul>
+<h3 id="cve-2018-11774">CVE-2018-11774</h3>
+<ul>
+<li>
+<p>Announced: July 29th, 2019</p>
+</li>
+<li>
+<p>Affected versions: versions 2.1 through 2.5</p>
+</li>
+<li>
+<p>Fixed in version: 2.5.1</p>
+</li>
+<li>
+<p><a href="/patches/patching-CVE-2018.html">Installing patches</a></p>
+</li>
+<li>
+<p>Problem type: SQL Injection</p>
+</li>
+<li>
+<p>Description:</p>
+<p>Apache VCL versions 2.1 through 2.5 do not properly validate form input when adding and
+removing VMs to and from hosts. The form data is then used in SQL statements. This allows for
+an SQL injection attack. Access to this portion of a VCL system requires admin level rights.<br>
+Other layers of security seem to protect against malicious attack. However, all VCL systems
+running versions earlier than 2.5.1 should be upgraded or patched. This vulnerability was
+found and reported to the Apache VCL project by ADLab of Venustech.</p>
+</li>
+</ul>
+<h3 id="cve-2013-0267">CVE-2013-0267</h3>
+<ul>
+<li>
+<p>Announced: May 6th, 2013</p>
+</li>
+<li>
+<p>Affected versions: versions 2.1, 2.2, 2.2.1, 2.3, 2.3.1</p>
+</li>
+<li>
+<p>Fixed in version: 2.2.2, 2.3.2</p>
+</li>
+<li>
+<p>Problem type: improper input validation</p>
+</li>
+<li>
+<p>Description:</p>
+<p>Some parts of VCL did not properly validate input data. This problem was present both in the
+Privileges portion of the web GUI and in the XMLRPC API.</p>
+<p>A malicious user having a minimal level of administrative rights could
+manipulate the data submitted by the web GUI or submit non-standard data to
+the API to gain additional administrative rights.</p>
+<p>The API functions that are vulnerable were introduced in 2.3.1.  Some of those
+API functions can also be exploited to perform a DOS attack on the site to
+remove access from other users and to perform an XSS attack to gain elevated
+privileges.</p>
+<p>The vulnerabilities were found by an Apache VCL developer doing a code review.</p>
+</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

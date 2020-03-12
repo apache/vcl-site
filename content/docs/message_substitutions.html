@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Site Configuration Message Substitutions</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Site Configuration Message Substitutions</h1>
+    
+	<h1 id="message-substitutions">Message Substitutions</h1>
+<p>Messages sent to users and admins can be configured via the VCL web
+site under Site Configuration as of version 2.5. There are many
+variables that can be substituted into the messages by the backend
+before a message is sent to a user. Variables are included in
+square brackets ( [ ] ). For example:</p>
+<pre><code>Your reservation for [image_name] is now available.
+</code></pre>
+<p>The list of variables that can be substituted is quite large. So,
+listing all of them out results in a list that can easily become
+difficult to maintain and quickly out of date. The best place to
+look for a list of variables that could be used is in the
+<a href="http://svn.apache.org/viewvc/vcl/trunk/managementnode/lib/VCL/DataStructure.pm?view=markup">Datastructure.pm</a> module of the backend code in the
+$SUBROUTINE_MAPPINGS hash (though, not all of those make sense in
+some of the messages and may not be available).</p>
+<p>After saving a message, the backend will analyze it for any invalid
+variables. If any are found, a notice will be displayed about which
+messages have invalid variables, and which variables are invalid.</p>
+<p>As of VCL 2.5, here is the list of variables included in the default
+set of messages:</p>
+<pre>
+[IMAGE_CAPTURE_TYPE]
+[IMAGE_SIZE_OLD]
+[NOTICE_INTERVAL]
+[PID]
+[computer_id]
+[computer_provisioning_module_perl_package]
+[computer_provisioning_name]
+[computer_provisioning_pretty_name]
+[computer_short_name]
+[image_id]
+[image_name]
+[image_os_module_perl_package]
+[image_prettyname]
+[image_size]
+[imagemeta_sysprep]
+[imagerevision_id]
+[imagerevision_revision]
+[management_node_short_name]
+[request_id]
+[reservation_id]
+[user_affiliation_helpaddress]
+[user_affiliation_name]
+[user_affiliation_sitewwwaddress]
+[user_firstname]
+[user_id]
+[user_lastname]
+[user_login_id]
+[vmhost_computer_id]
+[vmhost_id]
+[vmhost_profile_id]
+[vmhost_profile_name]
+[vmhost_short_name]
+</pre>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

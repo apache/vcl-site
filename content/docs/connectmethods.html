@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Connect Methods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Connect Methods</h1>
+    
+	<h2 id="overview">Overview</h2>
+<p>A <strong>connect method</strong> is the software used to connect to a reserved node.</p>
+<p>Before 2.3, there were only a few, fixed connect methods used - RDP for Windows
+and ssh for Linux. In 2.3, the first stage of configurable connect methods
+was introduced. Potentially any connect method can now be configured for
+an image. For stage one, VCL admins must manually add available connect
+methods to the VCL database.  Stage two will provide a way for available
+connect methods to be managed through the VCL web site.</p>
+<p>There are two types of connect methods: those that can be automatically
+provisioned by vcld (or are considered to be part of an OS by default)
+and those that must be manually installed in the image by the image
+maintainer. Either type can be added to VCL and mapped to an image.</p>
+<h2 id="connect-method-schema">Connect Method schema</h2>
+<p>Understanding the connect method database schema is key to managing the
+available connect methods. There are two tables:</p>
+<ul>
+<li>connectmethod - defines what connect methods exist</li>
+<li>connectmethodmap - defines how connect methods can be mapped and maps them to images</li>
+</ul>
+<p>connectmethod definition:</p>
+<ul>
+<li>
+<p><strong>id</strong> - id of connect method</p>
+</li>
+<li>
+<p><strong>name</strong> - name of connect method</p>
+</li>
+<li>
+<p><strong>description</strong> - description of connect method - displayed on edit image page</p>
+</li>
+<li>
+<p><strong>protocol</strong> - TCP/UDP - type of protocol (for firewall rules)</p>
+</li>
+<li>
+<p><strong>port</strong> - port connect method will be listening on (for firewall rules and Connect page)</p>
+</li>
+<li>
+<p><strong>connecttext</strong> - text to be displayed on the Connect page - some special keys for string substitution can be used in this</p>
+</li>
+<li>
+<p><strong>servicename</strong> - Windows service name or Linux process name that can be found when the service is running</p>
+</li>
+<li>
+<p><strong>startupscript</strong> - script that can be run to start the service</p>
+</li>
+<li>
+<p>**description_&lt;locale&gt;** - description in a different language; replace &lt;locale&gt; with the desired locale (ex: description_ja_JP)</p>
+</li>
+<li>
+<p>**connecttext_&lt;locale&gt;** - connecttext in a different language; replace &lt;locale&gt; with the desired locale (ex: connecttext_ja_JP)</p>
+<p>keys for <strong>connecttext</strong> string substitution:</p>
+<ul>
+<li>#userid# - replaced with user.unityid for the current user</li>
+<li>#password# - replaced with reservation.pw for the selected reservation</li>
+<li>#connectIP# - replaced with computer.IPaddress for the currently reserved node</li>
+<li>#connectport# - replaced with reservation.connectport if populated or connectmethod.port for this connect method if not</li>
+</ul>
+</li>
+</ul>
+<p>connectmethodmap definition:</p>
+<ul>
+<li><strong>connectmethodid</strong> - reference to connectmethod.id</li>
+<li><strong>OStypeid</strong> - reference to OStype.id (can be NULL)</li>
+<li><strong>OSid</strong> - reference to OS.id (can be NULL)</li>
+<li><strong>imagerevisionid</strong> - reference to imagerevision.id (can be NULL)</li>
+<li><strong>disabled</strong> - 0/1</li>
+<li><strong>autoprovisioned</strong> - 0/1/NULL</li>
+</ul>
+<blockquote>
+<p>This table is &ldquo;overloaded&rdquo;, meaning it is used for two things. It both describes which
+connect methods <strong>can</strong> be mapped to an image/OS/OStype (entries with autoprovisioned set to 0 or 1)
+and which connect methods <strong>are</strong> mapped to an image/OS/OStype or not (entries with
+autoprovisioned set to NULL).</p>
+</blockquote>
+<blockquote>
+<p>Only one of OStypeid, OSid, or imagerevisionid can have a non-NULL value.  (i.e. A mapping
+is only done to an OS type <strong>or</strong> an OS <strong>or</strong> an image revision.)</p>
+</blockquote>
+<blockquote>
+<p>The <strong>disabled</strong> field allows exceptions to be made. For example, if RDP is mapped to the
+Windows OS type, but there was an image where VNC should be used instead, entries would
+be added for any imagerevisionid of that image for RDP with disabled set to 1.</p>
+</blockquote>
+<h2 id="default-entries">Default entries</h2>
+<p>The schema provided with Apache VCL 2.3 has four connect methods by default:</p>
+<ul>
+<li>ssh</li>
+<li>RDP</li>
+<li>iRAPP RDP</li>
+</ul>
+<p>The default mapping for these methods is as follows:</p>
+<ul>
+<li>ssh can be autoprovisioned to linux</li>
+<li>ssh can be autoprovisioned to unix</li>
+<li>RDP can be autoprovisioned to windows</li>
+<li>iRAPP RDP can be autoprovisioned to osx</li>
+<li>ssh is mapped to linux</li>
+<li>ssh is mapped to unix</li>
+<li>RDP is mapped to windows</li>
+<li>iRAPP RDP is mapped to osx</li>
+</ul>
+<p>Here are two of the actual table entries in connectmethodmap (values from referenced tables are in ()&lsquo;s):</p>
+<table>
+<tr><th>connectmethodid</th><th>OStypeid</th><th>OSid</th><th>imagerevisionid</th><th>disabled</th><th>autoprovisioned</th></tr>
+<tr align="center"><td>1 (ssh)</td><td>2 (linux)</td><td>NULL</td><td>NULL</td><td>0</td><td>1</td></tr>
+<tr align="center"><td>2 (RDP)</td><td>1 (windows)</td><td>NULL</td><td>NULL</td><td>0</td><td>1</td></tr>
+<tr align="center"><td>1 (ssh)</td><td>2 (linux)</td><td>NULL</td><td>NULL</td><td>0</td><td>NULL</td></tr>
+<tr align="center"><td>2 (RDP)</td><td>1 (windows)</td><td>NULL</td><td>NULL</td><td>0</td><td>NULL</td></tr>
+</table>
+<p>The first two entries listed above mean that those connect methods can be selected for
+being autoprovisioned for the specified OS. Specifically, the first entry means that
+on the edit image profile page for any linux images, ssh will be available as a connect
+method that can be selected for that image. The second entry means that on the edit
+image profile page for any windows images, RDP will be available as a connect method
+that can be selected for that image.</p>
+<p>The second two entries mean that those connect methods are enabled for the specified
+OS. Specifically, the third entry means that on the edit image profile page for any
+linux images, ssh will be selected as one of the enabled connect methods. The fourth
+entry means that on the edit image profile page for any windows images, RDP will be
+selected as one of the enabled connect methods.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="adding-vnc-as-an-available-option-for-linux">Adding VNC as an available option for Linux</h3>
+<p>In this example, we add VNC as an available connect method that can be selected on
+edit image profile page for any Linux images. However, we&rsquo;ll set it with autoprovisioned
+set to 0, meaning that the image maintainer is responsible for installing VNC in
+the image.</p>
+<p>First, we need to add VNC to the connectmethod table:</p>
+<table>
+<tr><th>id</th><th>name</th><th>description</th><th>protocol</th><th>port</th><th>connecttext</th><th>servicename</th><th>startupscript</th></tr>
+<tr align="center"><td>4</td><td>VNC</td><td>VNC on port 5900</td><td>TCP</td><td>5900</td><td>(listed below)</td><td>Xvnc</td><td>/etc/init.d/vncserver start</td></tr>
+</table>
+<p>This could be used as the connecttext:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">You will need to have a VNC client on your local computer to connect to the system. 
+Open your VNC client and use the following information when you are ready to connect:&lt;br&gt;
+&lt;UL&gt;&lt;br&gt;
+&lt;LI&gt;&lt;b&gt;Remote Computer&lt;/b&gt;: #connectIP#&lt;/LI&gt;&lt;br&gt;
+&lt;LI&gt;&lt;b&gt;Remote Port&lt;/b&gt;: #connectport#&lt;/LI&gt;;&lt;br&gt;
+&lt;LI&gt;&lt;b&gt;User ID&lt;/b&gt;: #userid#&lt;/LI&gt;&lt;br&gt;
+&lt;LI&gt;&lt;b&gt;Password&lt;/b&gt;: #password#&lt;/LI&gt;&lt;br&gt;
+&lt;/UL&gt;
+</code></pre></div><p>Next, we create an entry in the connectmethodmap table that allows VNC to be selected
+for any Linux images, but not as an autoprovisioned method (note that this only <strong>allows</strong> it to be selected, it does not
+actually assign it to be selected for anything):</p>
+<table>
+<tr><th>connectmethodid</th><th>OStypeid</th><th>OSid</th><th>imagerevisionid</th><th>disabled</th><th>autoprovisioned</th></tr>
+<tr align="center"><td>4</td><td>2</td><td>NULL</td><td>NULL</td><td>0</td><td>0</td></tr>
+</table>
+<p>Now, under the subimages section of the edit image profile page for any Linux images,
+&ldquo;VNC on port 5900&rdquo; will be available as a connect method that can be assigned. If it
+is selected, a warning message will be displayed stating that VCL cannot autoprovision
+VNC and that it must have already been installed in the image by the image maintainer.</p>
+<h3 id="adding-xrdp-for-linux-and-enabling-it-for-os-type-fedora-16">Adding xRDP for Linux and Enabling it for OS type Fedora 16</h3>
+<p>In this example, we&rsquo;ll add xRDP as an available option for any Linux images and set
+it as enabled for the OS type Fedora 16. We&rsquo;ll use 23 as OS.id for Fedora 16.</p>
+<p>First, we need to add xRDP to the connectmethod table:</p>
+<table>
+<tr><th>id</th><th>name</th><th>description</th><th>protocol</th><th>port</th><th>connecttext</th><th>servicename</th><th>startupscript</th></tr>
+<tr align="center"><td>5</td><td>xRDP</td><td>xRDP</td><td>TCP</td><td>3389</td><td>(listed below)</td><td>xrdp</td><td>/etc/init.d/xrdp start</td></tr>
+</table>
+<p>This could be used as the connecttext:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">You will need to have an RDP client to connect to the system. 
+Open your RDP client and use the following information when you are ready to connect:&lt;br&gt;
+&lt;UL&gt;&lt;br&gt;
+&lt;LI&gt;&lt;b&gt;Remote Computer&lt;/b&gt;: #connectIP#&lt;/LI&gt;&lt;br&gt;
+&lt;LI&gt;&lt;b&gt;User ID&lt;/b&gt;: #userid#&lt;/LI&gt;&lt;br&gt;
+&lt;LI&gt;&lt;b&gt;Password&lt;/b&gt;: #password#&lt;/LI&gt;&lt;br&gt;
+&lt;/UL&gt;
+</code></pre></div><p>Next, we create an entry in the connectmethodmap table that allows xRDP to be selected
+for any Linux images, and another entry that enables it for all Fedora 16 images.</p>
+<table>
+<tr><th>connectmethodid</th><th>OStypeid</th><th>OSid</th><th>imagerevisionid</th><th>disabled</th><th>autoprovisioned</th></tr>
+<tr align="center"><td>5</td><td>2</td><td>NULL</td><td>NULL</td><td>0</td><td>0</td></tr>
+<tr align="center"><td>5</td><td>NULL</td><td>23</td><td>NULL</td><td>0</td><td>NULL</td></tr>
+</table>
+<p>Now, under the subimages section of the edit image profile page for any Linux images,
+&ldquo;xRDP&rdquo; will be available as a connect method that can be assigned. If it
+is selected, a warning message will be displayed stating that VCL cannot autoprovision
+xRDP and that it must have already been installed in the image by the image maintainer.
+Additionally, for any Fedora 16 images, it will be listed as an assigned connect
+method by default (note: Fedora 16 does not include xRDP by default, it&rsquo;s just being
+used an example here).</p>
+<h3 id="understanding-entries-created-by-removing-a-default-entry-from-an-image">Understanding entries created by removing a default entry from an image</h3>
+<p>This is not something that a VCL admin would need to do manually in the
+database, but it is useful to understand what happens in the database
+when a connect method that is mapped by OS type or OS is removed from an
+image revision. Building on the xRDP example above, we start with the following
+entries in the connectmethodmap table, remember that connectmethod.id 5 is xRDP,
+OStype.id 2 is Linux, and OS.id 23 is Fedora 16:</p>
+<table>
+<tr><th>connectmethodid</th><th>OStypeid</th><th>OSid</th><th>imagerevisionid</th><th>disabled</th><th>autoprovisioned</th></tr>
+<tr align="center"><td>5</td><td>2</td><td>NULL</td><td>NULL</td><td>0</td><td>0</td></tr>
+<tr align="center"><td>5</td><td>NULL</td><td>23</td><td>NULL</td><td>0</td><td>NULL</td></tr>
+</table>
+<p>Let&rsquo;s say we&rsquo;ve created a web server image based on Fedora 16 from which we&rsquo;ve removed X11,
+meaning that xRDP will no longer work as a connect method for this image. Instead, we
+just want to have ssh as the only connect method available for this image. We&rsquo;d go to
+<strong>Manage Images-&gt;Edit Image Profiles-&gt;Edit</strong> for that image. Then, we&rsquo;d expand the
+<strong>Advanced Options</strong> section, and click on <strong>Modify Connection Methods</strong>. Next, if ssh is
+not already enabled as a connect method, we&rsquo;d select it from the drop-down box and click
+<strong>Add Method</strong>. Finally, we&rsquo;d select xRDP from the list of enabled connect methods, and
+click <strong>Remove Selected Method(s)</strong>. This final step of removing xRDP would add the
+following entry to the connectmethodmap table (we&rsquo;ll use 582 as the imagerevisionid of
+the web server image):</p>
+<table>
+<tr><th>connectmethodid</th><th>OStypeid</th><th>OSid</th><th>imagerevisionid</th><th>disabled</th><th>autoprovisioned</th></tr>
+<tr align="center"><td>5</td><td>NULL</td><td>NULL</td><td>582</td><td>1</td><td>NULL</td></tr>
+</table>
+<p>The above entry means, &ldquo;disable connect method 5 (xRDP) for image revision 582 (web server)
+even if it is enabled for the image&rsquo;s OS or OS type&rdquo;.</p>
+<h2 id="screen-shots">Screen Shots</h2>
+<p>Here are some screen shots to know what things look like in the web interface.</p>
+<p>This image has the Connect Methods section of the Edit Image Profile page
+highlighted.</p>
+<img src="/docs/connectmethodhighlight.png" alt="connect method region highlighted">
+<p>This image has the Connect Methods dialog open.</p>
+<img src="/docs/connectmethoddialog.png" alt="connect method dialog opened">
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

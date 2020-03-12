@@ -1,0 +1,341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - managegroups.py - Remotely managing user groups</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">managegroups.py - Remotely managing user groups</h1>
+    
+	<p>managegroups.py is a script for remotely managing VCL user groups. It uses
+VCL&rsquo;s XML RPC API to provide an easy command line driven way of doing group
+management.</p>
+<p>{color:#ff0000}{<em>}NOTE: This script does not work with python 2.7. It
+relies on the xmlrpclib module which changed from 2.6 to 2.7 in a way that
+broke the script. You need to use python 2.6 for it to work.</em>{color}</p>
+<p><a name="managegroups.py-Remotelymanagingusergroups-Downloadinformation"></a></p>
+<h2 id="download-information">Download information</h2>
+<p>managegroups.py is not included in any official releases. You can download
+it from our subversion repository.</p>
+<p><a href="https://svn.apache.org/repos/asf/vcl/sandbox/useful_scripts/managegroups.py">Download managegroups.py</a></p>
+<p><a name="managegroups.py-Remotelymanagingusergroups-AvailableCommands"></a></p>
+<h2 id="available-commands">Available Commands</h2>
+<p>Running managegroups.py with no arguments provides help on how to use it.
+It is used by specifying one of the following commands along with
+parameters specific to each command.</p>
+<ul>
+<li><a href="#addusergroup.html">#addUserGroup</a>
+- creates a new user group</li>
+<li><a href="#getusergroupattributes.html">#getUserGroupAttributes</a>
+- gets information about a user group</li>
+<li><a href="#deleteusergroup.html">#deleteUserGroup</a>
+- deletes a user group</li>
+<li><a href="#editusergroup.html">#editUserGroup</a>
+- modifies attributes of a user group</li>
+<li><a href="#getusergroupmembers.html">#getUserGroupMembers</a>
+- gets members of a user group</li>
+<li><a href="#adduserstogroup.html">#addUsersToGroup</a>
+- adds users to a group</li>
+<li><a href="#removeusersfromgroup.html">#removeUsersFromGroup</a>
+- removes users from a group</li>
+<li><a href="#emptygroupmembership.html">#emptyGroupMembership</a>
+- removes all users currently in a group</li>
+</ul>
+<p><a name="managegroups.py-Remotelymanagingusergroups-ReturnStatus"></a></p>
+<h2 id="return-status">Return Status</h2>
+<p>These are the possible values of the return status:</p>
+<ul>
+<li>0 - successful execution</li>
+<li>1 - missing authentication information</li>
+<li>2 - problem with command line parameters</li>
+<li>3 - for commands that pass in a filename, problems encountered reading
+the file</li>
+<li>4 - no users specified to add to or remove from a group</li>
+<li>5 - error encountered while performing XML RPC API call</li>
+</ul>
+<p><a name="managegroups.py-Remotelymanagingusergroups-ReturnOutput"></a></p>
+<h2 id="return-output">Return Output</h2>
+<p>The output of managegroups.py will always start with one of:</p>
+<ul>
+<li>SUCCESS: - indicates successful run of the command</li>
+<li>ERROR: - indicates a problem running the command</li>
+<li>WARNING: - indicates a no errors, but possibly unexpected results (i.e.
+specifying a file when adding users to a group, but the file is empty)
+There is one exception. If you specify a parameter, but omit the argument
+for it, the option parser used in the script will generate an error.
+However, in those cases, the return status of the command will always be 2.</li>
+</ul>
+<p><a name="managegroups.py-Remotelymanagingusergroups-Authentication"></a></p>
+<h2 id="authentication">Authentication</h2>
+<p>The script needs to know what userid/password to use and what URL to
+access. These can either be defined as variables within the script (look at
+the very top of the file) or specified as parameters on the command line,
+before specifying which of managegroups&rsquo;s commands to use.</p>
+<p>There are two ways to specify authentication information because some
+people may prefer to have the password saved in the file, but not in a
+command line history, while others may prefer to have the password saved in
+command line history, but not in the file. Any of the authentication
+options specified on the command line will override any defined in the
+file.</p>
+<p>The options for specifying authentication on the command line are</p>
+<ul>
+<li>-u username - log in to VCL site with this user, must be in
+username@affiliation form</li>
+<li>-p &ldquo;vclpass&rdquo; - password used when logging in to VCL site, use quotes if
+it contains spaces</li>
+<li>-r vclurl - XMLRPC URL of VCL site (it will end with
+index.php?mode=xmlrpccall - i.e. <a href="https://vcl.ncsu.edu/scheduling/index.php?mode=xmlrpccall">https://vcl.ncsu.edu/scheduling/index.php?mode=xmlrpccall</a>
+)</li>
+</ul>
+<p><a name="managegroups.py-Remotelymanagingusergroups-{anchor:addUserGroup}addUserGroup"></a></p>
+<h2 id="anchoraddusergroupaddusergroup">{anchor:addUserGroup}addUserGroup</h2>
+<p>Use this command to create a new user group.</p>
+<p>parameters:</p>
+<ul>
+<li>-n name - name of new user group</li>
+<li>-a affiliation - affiliation of new user group</li>
+<li>-o owner - user that will be the owner of the group in
+username@affiliation form</li>
+<li>-m ManagingGroup - name of user group that can manage membership of the
+new group</li>
+<li>-i InitialMaxTime - (minutes) max initial time users in this group can
+select for length of reservations</li>
+<li>-t TotalMaxTime - (minutes) total length users in the group can have for
+a reservation (including all extensions)</li>
+<li>-x MaxExtendTime - (minutes) max length of time users can request as an
+extension to a reservation at a time</li>
+</ul>
+<p>on success, returns:
+SUCCESS: User group sucessfully created</p>
+<p><a name="managegroups.py-Remotelymanagingusergroups-{anchor:getUserGroupAttributes}getUserGroupAttributes"></a></p>
+<h2 id="anchorgetusergroupattributesgetusergroupattributes">{anchor:getUserGroupAttributes}getUserGroupAttributes</h2>
+<p>Use this command to get existing information about a user group&rsquo;s
+attributes (it does not include the current membership of the group).
+parameters:</p>
+<ul>
+<li>-n name - name of an existing user group</li>
+<li>-a affiliation - affiliation of user group</li>
+</ul>
+<p>on success, returns:
+SUCCESS: Attributes retreived
+followed by:
+owner: <user group owner>
+managingGroup: <name of managing user group>
+initialMaxTime: <max allowed initial reservation time>
+totalMaxTime: <total allowed reservation time>
+maxExtendTime: <make time allowed per extension></p>
+<p><a name="managegroups.py-Remotelymanagingusergroups-{anchor:deleteUserGroup}deleteUserGroup"></a></p>
+<h2 id="anchordeleteusergroupdeleteusergroup">{anchor:deleteUserGroup}deleteUserGroup</h2>
+<p>Use this command to delete an existing user group.
+parameters:</p>
+<ul>
+<li>-n name - name of an existing user group</li>
+<li>-a affiliation - affiliation of user group</li>
+</ul>
+<p>on success, returns:
+SUCCESS: User group sucessfully deleted</p>
+<p><a name="managegroups.py-Remotelymanagingusergroups-{anchor:editUserGroup}editUserGroup"></a></p>
+<h2 id="anchoreditusergroupeditusergroup">{anchor:editUserGroup}editUserGroup</h2>
+<p>Use this command to modify attributes of an existing user group (it is not
+used for editing the membership of the group). You can specify any
+combination of the parameters labeled as optional.
+parameters:</p>
+<ul>
+<li>-n name - name of an existing user group</li>
+<li>-a affiliation - affiliation of user group</li>
+<li>-N NewName - (optional) new name for the user group</li>
+<li>-A NewAffiliation - (optional) new affiliation for the user group</li>
+<li>-O NewOwner - (optional) new owner for the user group in
+username@affiliation form</li>
+<li>-M NewManagingGroup - (optional) new user group that can manage
+membership of the user group in group@affiliation form</li>
+<li>-I NewInitialMaxTime - (optional) new max initial time users in the
+group can select for length of reservations</li>
+<li>-T NewTotalMaxTime - (optional) new total length users in the group can
+have for a reservation (including all extensions)</li>
+<li>-X NewMaxExtendTime - (optional) new max length of time users can
+request as an extension to a reservation at a time</li>
+</ul>
+<p>on success, returns:
+SUCCESS: User group sucessfully updated</p>
+<p><a name="managegroups.py-Remotelymanagingusergroups-{anchor:getUserGroupMembers}getUserGroupMembers"></a></p>
+<h2 id="anchorgetusergroupmembersgetusergroupmembers">{anchor:getUserGroupMembers}getUserGroupMembers</h2>
+<p>Use this command to get the current members of a group. Note that it is
+possible for a group to have no members.
+parameters:</p>
+<ul>
+<li>-n name - name of an existing user group</li>
+<li>-a affiliation - affiliation of user group</li>
+</ul>
+<p>on success, returns:
+SUCCESS: Membership retrieved
+followed by one user per line in username@affiliation form</p>
+<p><a name="managegroups.py-Remotelymanagingusergroups-{anchor:addUsersToGroup}addUsersToGroup"></a></p>
+<h2 id="anchoradduserstogroupadduserstogroup">{anchor:addUsersToGroup}addUsersToGroup</h2>
+<p>Use this command to add users to an existing user group. <em>Note</em>: The users
+will either need to already exist in VCL or be part of an affiliation that
+is backed by LDAP so that the users can be verified.
+parameters:</p>
+<ul>
+<li>-n name - name of an existing user group</li>
+<li>-a affiliation - affiliation of user group</li>
+</ul>
+<p>Additionally, at least one of these must be specified:</p>
+<ul>
+<li>-l UserList - comma delimited list of users to add (no spaces) in
+username@affiliation form</li>
+<li>-f filename - name of file containing users to add (one user per line)
+in username@affiliation form</li>
+</ul>
+<p>on success, returns:
+SUCCESS: Users sucessfully added to group</p>
+<p><a name="managegroups.py-Remotelymanagingusergroups-{anchor:removeUsersFromGroup}removeUsersFromGroup"></a></p>
+<h2 id="anchorremoveusersfromgroupremoveusersfromgroup">{anchor:removeUsersFromGroup}removeUsersFromGroup</h2>
+<p>Use this command to remove users from an existing user group.
+parameters:</p>
+<ul>
+<li>-n name - name of an existing user group</li>
+<li>-a affiliation - affiliation of user group</li>
+</ul>
+<p>Additionally, at least one of these must be specified:</p>
+<ul>
+<li>-l UserList - comma delimited list of users to add (no spaces) in
+username@affiliation form</li>
+<li>-f filename - name of file containing users to add (one user per line)
+in username@affiliation form</li>
+</ul>
+<p>on success, returns:
+SUCCESS: Users sucessfully removed from group</p>
+<p><a name="managegroups.py-Remotelymanagingusergroups-{anchor:emptyGroupMembership}emptyGroupMembership"></a></p>
+<h2 id="anchoremptygroupmembershipemptygroupmembership">{anchor:emptyGroupMembership}emptyGroupMembership</h2>
+<p>Use this command to empty the membership of an existing user group.
+parameters:</p>
+<ul>
+<li>-n name - name of an existing user group</li>
+<li>-a affiliation - affiliation of user group</li>
+</ul>
+<p>on success, returns:
+SUCCESS: Users sucessfully removed from group</p>
+<p><a name="managegroups.py-Remotelymanagingusergroups-Examples"></a></p>
+<h2 id="examples">Examples</h2>
+<p>The last example includes the authentication information on the command
+line. For the other examples, the authentication would have been specified
+inline in the script. Authentication information was only included in one
+example to make the others more readable.</p>
+<p>Create a new user group with name FallUsers, affiliation Local, admin as
+the owner, and adminUsers@Local as the managing group:</p>
+<pre><code>managegroups.py addUserGroup -n FallUsers -a Local -o admin@Local -m
+</code></pre>
+<p>adminUsers@Local -i 240 -t 360 -x 30</p>
+<p>Change the name of an existing user group named FallUsers, affiliation
+Local to be SpringUsers:</p>
+<pre><code>managegroups.py editUserGroup -n FallUsers -a Local -N SpringUsers
+</code></pre>
+<p>Add two users specified on the command line to a group:</p>
+<pre><code>managegroups.py addUsersToGroup -n FallUsers -a Local -l
+</code></pre>
+<p>student1@Local,student2@Local</p>
+<p>Add all users in a specified file to a group:</p>
+<pre><code>managegroups.py addUsersToGroup -n FallUsers -a Local -f newusers.txt
+</code></pre>
+<p>The file would contain something like the following:</p>
+<pre><code>userid1@Local
+userid2@Local
+userid3@Local
+</code></pre>
+<p>Remove all members of a group:</p>
+<pre><code>managegroups.py emptyGroupMembership -n CS101 -a Local
+</code></pre>
+<p>Delete a user group:</p>
+<pre><code>managegroups.py -u admin@Local -p passwordhere -r
+</code></pre>
+<p>&lsquo;<a href="https://your.vcl.site/index.php?mode=xmlrpccall'">https://your.vcl.site/index.php?mode=xmlrpccall'</a> deleteUserGroup -n CS101
+-a Local</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

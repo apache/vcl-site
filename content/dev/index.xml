@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Devs on Apache VCL</title>
+    <link>https://vcl.apache.org/dev.html</link>
+    <description>Recent content in Devs on Apache VCL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="https://vcl.apache.org/dev/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Code Documentation</title>
+      <link>https://vcl.apache.org/dev/code-documentation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/dev/code-documentation.html</guid>
+      <description>Backend Code Documentation Image Capture Sequence</description>
+    </item>
+    
+    <item>
+      <title>Database Schema</title>
+      <link>https://vcl.apache.org/dev/database-schema.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/dev/database-schema.html</guid>
+      <description>affiliation table blockComputers table blockRequest table blockTimes table blockWebDate table blockWebTime table changelog table clickThroughs table computer table computerloadflow table computerloadlog table computerloadstate table connectlog table connectmethod table connectmethodmap table connectmethodport continuations table documentation table image table imagemeta table imagerevision table imagerevisioninfo imagetype IMtype table localauth table log table loginlog table managementnode table module table nathost nathostcomputermap natlog natport openstackcomputermap openstackimagerevision OS table OSinstalltype table OStype table platform table privnode table provisioning table provisioningOSinstalltype table querylog table request table reservation table reservationaccounts table resource table resourcegroup table resourcegroupmembers table resourcemap table resourcepriv table resourcetype table schedule table scheduletimes table semaphone table serverprofile table serverrequest table shibauth table sitemaintenance table state table statgraphcache table subimages table sublog table user table usergroup table usergroupmembers table usergrouppriv table usergroupprivtype table userpriv table userprivtype table variable table vmhost table vmprofile table vmtype table winKMS table winProductKey table xmlrpcLog table     affiliation table This table contains a list of affiliations that can access this VCL site.</description>
+    </item>
+    
+    <item>
+      <title>Development</title>
+      <link>https://vcl.apache.org/dev/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/dev/</guid>
+      <description>Understanding the VCL System design Database Schema
+Web Code Overview
+Plans for New Features Configuration management system Release Prodecures</description>
+    </item>
+    
+    <item>
+      <title>Image Capture Sequence</title>
+      <link>https://vcl.apache.org/dev/image-capture-sequence.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/dev/image-capture-sequence.html</guid>
+      <description>Modularization Example The following diagram shows how the image capture sequence differs if different provisioning modules are used &amp;ndash; xCAT and VMWare.
+Take note of the following:
+ The calls made by image.pm to the xCAT and VMWare capture() subroutines are identical. The image.pm state module does not care which provisioning engine is being used. All it knows is that a provisioning engine object has been created before image.pm::process() was called, the object can be accessed via $self-&amp;gt;provisioner, and the name of the subroutine to call is capture().</description>
+    </item>
+    
+    <item>
+      <title>Jira</title>
+      <link>https://vcl.apache.org/dev/jira.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/dev/jira.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>New Configuration System</title>
+      <link>https://vcl.apache.org/dev/configsystem.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/dev/configsystem.html</guid>
+      <description>Database schema Examples  Assigning a VLAN to an image Hadoop cluster with variable amount of slave nodes SAS cluster     This page describes a new configuration system that will be added to VCL that can be used to dynamically configure deployed systems.
+Database schema config:
+ id - id of record name - name of record ownerid - owner of this record (reference to user.id) configtypeid - type of record (reference to configtype.</description>
+    </item>
+    
+    <item>
+      <title>Roadmap</title>
+      <link>https://vcl.apache.org/dev/roadmap.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/dev/roadmap.html</guid>
+      <description>Future 
+VCL 2.4  Configuration management system Scripted installation VCL Broker  
+VCL 2.5  Improve additional connect methods NAT support Remove requirement for 2 NICs Support for Spice remote display protocol Support for ESX OS for end users Initial support for EC2 API and OpenStack  
+VCL 2.6  Power management Improve cluster reservations Service deployment configuration management Initial support for Libcloud  
+VCL 2.7  develop tools for managing both system and user storage  Current</description>
+    </item>
+    
+    <item>
+      <title>VCL Release Procedures</title>
+      <link>https://vcl.apache.org/dev/releaseprocedures.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/dev/releaseprocedures.html</guid>
+      <description>Prerequisites: Things that must be done before a release  all items from the JIRA roadmap for the release must be completed or moved to a future release ALL human readable files must contain the Apache license header  this includes style sheets, test code, and documentation - when in doubt, add a header files that are part of other software packages that are bundled with a release must not contain the header (unless that software is also ASF software) and should be clearly documented as being bundled software   LICENSE and NOTICE files should be reviewed  LICENSE: This file should have the Apache License at the top of it; any third party artifacts or documents included in the release should have their licenses included in this file along with a clear explanation of which files each license applies to.</description>
+    </item>
+    
+    <item>
+      <title>VCL Release Procedures - 2.3.1 ToDo</title>
+      <link>https://vcl.apache.org/dev/releaseprocedures231.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/dev/releaseprocedures231.html</guid>
+      <description>Prerequisites: Things that must be done before a release  all items from the JIRA roadmap for the release must be completed or moved to a future release ALL human readable files must contain the Apache license header  this includes style sheets, test code, and documentation - when in doubt, add a header files that are part of other software packages that are bundled with a release must not contain the header (unless that software is also ASF software) and should be clearly documented as being bundled software   LICENSE and NOTICE files should be reviewed  LICENSE: This file should have the Apache License at the top of it; any third party artifacts or documents included in the release should have their licenses included in this file along with a clear explanation of which files each license applies to.</description>
+    </item>
+    
+    <item>
+      <title>Web Code Overview</title>
+      <link>https://vcl.apache.org/dev/web-code-overview.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/dev/web-code-overview.html</guid>
+      <description>General Overview The code is broken up into multiple files, based on sections of the site (as divided up by the navigation area). There are also several general purpose files:
+ index.php - This is the only file used in any URLs. It includes other files based on the passed in &amp;ldquo;mode&amp;rdquo;. states.php - builds an array of modes, which function should be called for each mode, and the part of the site each mode belongs to utils.</description>
+    </item>
+    
+  </channel>
+</rss>

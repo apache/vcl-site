@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Updating an Existing Image</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Updating an Existing Image</h1>
+    
+	<p>This is a continuation of other pages, if you did not come from <a href="save-the-image.html">Save the Image</a>
+, you should start at <a href="creating-a-new-image-from-a-base-image.html">Creating a New Image from a Base Image</a>
+.</p>
+<p><a name="UpdatinganExistingImage-UnderstandingImageRevisions"></a></p>
+<h2 id="understanding-image-revisions">Understanding Image Revisions</h2>
+<p>Each VCL image can have multiple revisions. When a VCL image is saved, all
+data from the image&rsquo;s disk is saved in disk image files. A revision is
+still a full set of disk image files, but information about each revision
+allows them to be tracked as a series of updates to a VCL image. Think
+about it like writing a paper. If you print a first draft, you end up with
+the 1st revision of the paper. After making some changes and printing it
+again, you end up with the 2nd revision of the paper.  Now, you have two
+physical copies of the paper. The 2nd one is based on and very similar to
+the 1st one, but it is still a separate copy of it. You could end up with
+more revisions if you make more changes. When you decide to publish it, you
+can choose any of the revisions, though you&rsquo;ll most likely choose the most
+recent one.</p>
+<p>With VCL, you can make as many revisions as you want, and you can select
+which is the <strong>production</strong> image, that is, the one users get when they make
+a reservation. You can select which revision is in production by going to
+Manage Images-&gt;Edit Image Profiles, and clicking Edit next to the
+desired image. Then, scroll down to the bottom of the page and select the
+radio button for the revision you would like to be in production.</p>
+<p>Only the owner of an image can create new revisions of it. If you need
+someone else to update an image, simply change the owner of the image to
+that person (and make sure they have access to update images).</p>
+<h2 id="steps-to-finish-updating-an-existing-image">Steps to Finish Updating an Existing Image</h2>
+<ol>
+<li>After selecting Update Existing Image, click Submit</li>
+<li>The next page will present you with an Install Agreement stating that all
+software in the image is appropriately licensed</li>
+<li>Click <strong>I agree</strong> (clicking <em>I do not agree</em> will take you back to Current
+Reservations)</li>
+<li>On the next page, enter any notes for yourself and other admins about the
+image. These notes are not viewable by normal users - only people with
+access to manage the image.</li>
+<li>Click <strong>Create New Revision</strong> to start the imaging process</li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

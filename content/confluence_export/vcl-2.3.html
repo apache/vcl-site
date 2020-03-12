@@ -1,0 +1,736 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VCL 2.3</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VCL 2.3</h1>
+    
+	<p>VCL 2.3 was release on July 20th, 2012</p>
+<p><a name="VCL2.3-TableofContents"></a></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#VCL2.3-Downloadlinks">Download links</a></li>
+<li><a href="#VCL2.3-ReleaseNotes">Release Notes</a>
+* <a href="#VCL2.3-I.IntroandDescription">I. Intro and Description</a>
+* <a href="#VCL2.3-II.VCLRoadmap">II. VCL Roadmap</a>
+* <a href="#VCL2.3-III.GettingInvolvedintheASFVCLCommunity">III. Getting Involved in the ASF VCL Community</a>
+* <a href="#VCL2.3-IV.HowtoSubmitBugsandFeatureRequests">IV. How to Submit Bugs and Feature Requests</a></li>
+<li><a href="#VCL2.3-ChangeLog">Change Log</a>
+* <a href="#VCL2.3-Sub-task">Sub-task</a>
+* <a href="#VCL2.3-Bug">Bug</a>
+* <a href="#VCL2.3-Improvement">Improvement</a>
+* <a href="#VCL2.3-NewFeature">New Feature</a>
+* <a href="#VCL2.3-Task">Task</a></li>
+</ul>
+<p><a name="VCL2.3-Downloadlinks"></a></p>
+<h2 id="download-links">Download links</h2>
+<p>Please make sure to download VCL from a mirror server. The following link
+will automatically select one for you that should be close to you. After
+downloading it <em>make sure</em> you verify it with MD5 or SHA1 sums <em>AND</em> the
+GPG signature (sums and signature files should be downloaded directly from
+Apache, not from mirrors).</p>
+<p><a href="http://vcl.apache.org/downloads/download.cgi">Download ASF VCL 2.3</a>
+<a href="http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2.asc">GPG Signature</a>
+<a href="http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2.md5">MD5 Sum</a>
+<a href="http://www.apache.org/dist/vcl/apache-VCL-2.3.tar.bz2.sha1">SHA1 Sum</a>
+<a href="http://www.apache.org/dist/vcl/KEYS">VCL KEYS file</a></p>
+<ol>
+<li>Verify the MD5 sum (output should be &ldquo;apache-VCL-2.3.tar.bz2: OK&rdquo;):
+{tip}
+md5sum -c apache-VCL-2.3.tar.bz2.md5
+{tip}</li>
+<li>Verify the SHA1 sum (output should be &ldquo;apache-VCL-2.3.tar.bz2: OK&rdquo;):
+{tip}
+sha1sum -c apache-VCL-2.3.tar.bz2.sha1
+{tip}</li>
+<li>Verify the GPG signature (you&rsquo;ll need to have <a href="http://www.gnupg.org/">GnuPG</a>
+installed):</li>
+<li>
+<h1 id="download-and-import-the-vcl-keys-file-if-youve-imported-the-keys-file">download and import the VCL KEYS file (if you&rsquo;ve imported the KEYS file</h1>
+</li>
+</ol>
+<p>for previously releases, you do not need to import it again):
+{tip}
+gpg --import KEYS
+{tip}</p>
+<ol>
+<li>
+<h1 id="download-the-gpg-signature-to-the-same-location-as-the-release-file">download the GPG Signature to the same location as the release file</h1>
+</li>
+<li>
+<h1 id="from-the-directory-containing-both-the-release-file-and-the-gpg">from the directory containing both the release file and the GPG</h1>
+</li>
+</ol>
+<p>signature, run
+{tip}
+gpg --verify apache-VCL-2.3.tar.bz2.asc
+{tip}</p>
+<ol>
+<li>For new installs, visit the on-line <a href="vcl-2.3-installation.html">installation guide</a>
+.</li>
+<li>For upgrades, visit the on-line guide for your installed version (you can
+find your version number after the Apache license header in vcl/index.php
+in the web code - i.e. &ldquo;ASF VCL 2.2.1&rdquo;):</li>
+<li>
+<ul>
+<li><a href="vcl:upgrade-from-previous-version-(2.2.1-to-2.3).html">2.2.1 upgrade guide</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="vcl:upgrade-from-previous-version-(2.2-to-2.3).html">2.2 upgrade guide</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="vcl:upgrade-from-previous-version-(2.1-to-2.3).html">2.1 upgrade guide</a></li>
+</ul>
+</li>
+</ol>
+<p><a name="VCL2.3-ReleaseNotes"></a></p>
+<h2 id="release-notes">Release Notes</h2>
+<p><a name="VCL2.3-I.IntroandDescription"></a></p>
+<h4 id="i-intro-and-description">I. Intro and Description</h4>
+<p>VCL, Virtual Computing Lab. The VCL can be many things, first and foremost
+it is an open-source system used to dynamically provision and broker remote
+access to a dedicated compute environment for an end-user. The provisioned
+computers are typically housed in a data center and may be physical blade
+servers, traditional rack mounted servers, or virtual machines. VCL can
+also broker access to standalone machines such as a lab computers on a
+university campus.</p>
+<p>One of the primary goals of VCL is to deliver a dedicated compute
+environment to a user for a limited time through a web interface. This
+compute environment can range from something as simple as a virtual machine
+running productivity software to a machine room blade running high end
+software (i.e. a CAD, GIS, statistical package or an Enterprise level
+application) to a cluster of interconnected physical (bare metal) compute
+nodes.</p>
+<p>Also using the scheduling API it can be used to automate the provisioning
+of servers in a server farm or HPC cluster.</p>
+<p>The release supports provisioning compute nodes using</p>
+<ul>
+<li>xCAT 1.3 and 2.x</li>
+<li>VMware Server 1.x and 2.x</li>
+<li>VMware ESX 3.5</li>
+<li>VMware ESXi 4.x and 5.x</li>
+<li>VMware vCenter</li>
+<li>KVM</li>
+<li>Virtual Box</li>
+</ul>
+<p><a name="VCL2.3-II.VCLRoadmap"></a></p>
+<h4 id="ii-vcl-roadmap">II. VCL Roadmap</h4>
+<p>VCL 2.3 (this release)</p>
+<ul>
+<li>Service deployments</li>
+<li>Allow for additional connect methods for environments (port, other
+protocols, etc)</li>
+<li>Added framework support for libvirt</li>
+<li>Added support for KVM</li>
+<li>Added support for OS X under ESX</li>
+<li>Added support for VMware VCenter</li>
+<li>Added multilingualization to frontend</li>
+</ul>
+<p>VCL 2.4</p>
+<ul>
+<li>Improve additional connect methods</li>
+<li>NAT support</li>
+<li>Remove requirement for 2 NICs</li>
+<li>Support for Spice remote display protocol</li>
+<li>Scripted installation</li>
+<li>Support for ESX OS for end users</li>
+<li>Initial support for EC2 API and OpenStack</li>
+</ul>
+<p>VCL 2.5</p>
+<ul>
+<li>Power management</li>
+<li>Improve cluster reservations</li>
+<li>Service deployment configuration management</li>
+<li>Initial support for Libcloud</li>
+</ul>
+<p>VCL 2.6</p>
+<ul>
+<li>develop tools for managing both system and user storage</li>
+</ul>
+<p>With each release, we&rsquo;ll be working toward making VCL easier to install. As
+part of our move to development at the Apache Software Foundation, it is an
+obvious goal to create a community of users and more developers around VCL.
+Bringing in more developers should become easier as VCL becomes easier to
+install.</p>
+<p><a name="VCL2.3-III.GettingInvolvedintheASFVCLCommunity"></a></p>
+<h4 id="iii-getting-involved-in-the-asf-vcl-community">III. Getting Involved in the ASF VCL Community</h4>
+<p>There are five ways to become involved in the ASF VCL community.</p>
+<ul>
+<li>
+<p>Join the mailing lists and participate in discussion. There are two
+mailing lists: <a href="mailto:user@vcl.apache.org">user@vcl.apache.org</a>
+<a href="mailto:dev@vcl.apache.org">dev@vcl.apache.org</a>
+To join user, send an empty message to
+<a href="mailto:user-subscribe@vcl.apache.org%7Cclick-to-subscribe.html">user-subscribe@vcl.apache.org</a>
+. To join dev, send an empty
+message to <a href="mailto:dev-subscribe@vcl.apache.org%7Cclick-to-subscribe.html">dev-subscribe@vcl.apache.org</a>
+.</p>
+</li>
+<li>
+<p>Submit bug reports and feature requests to our JIRA bug tracking system.
+See section IV below for more information on doing this.</p>
+</li>
+<li>
+<p>Create documentation on our Confluence site. Create an account at <a href="http://cwiki.apache.org/confluence/display/VCL/Index">http://cwiki.apache.org/confluence/display/VCL/Index</a>
+and just start adding content. (Note to current community: We should
+create a page explaining the layout so new people will know where to add
+content better.)</p>
+</li>
+<li>
+<p>Submit patches through the vcl-dev mailing list and via the JIRA bug
+tracking system. Once you have become familiar with VCL, you can begin
+assisting with the development of it by picking a JIRA issue to fix or by
+adding a feature needed at your site. Then, contribute a patch of your
+changes through the JIRA tracking system and send a message to the vcl-dev
+list explaining what you have done.</p>
+</li>
+<li>
+<p>Become an official committer to the project. Once you have shown that you
+have a good grasp of the project by submitting patches, you can further
+join the development work by submitting a contributor license agreement
+(CLA) to ASF and having a committer account created to directly contribute
+code to the project.</p>
+</li>
+<li>
+<p>If you are interested in contributing something to the project, please
+discuss it on the vcl-dev list BEFORE starting work on it. This allows the
+community to be involved in decisions and allows current developers to
+provide some guidance.</p>
+</li>
+</ul>
+<p><a name="VCL2.3-IV.HowtoSubmitBugsandFeatureRequests"></a></p>
+<h4 id="iv-how-to-submit-bugs-and-feature-requests">IV. How to Submit Bugs and Feature Requests</h4>
+<p>If you find a bug, please submit a bug report to our JIRA bug tracking
+system at <a href="http://issues.apache.org/jira/browse/VCL">http://issues.apache.org/jira/browse/VCL</a>
+(you will need to set up an account there if you haven&rsquo;t already done so -
+it&rsquo;s free to anyone). Also, we would appreciate it if you mentioned that
+you filed a bug on the vcl-dev list to make sure we don&rsquo;t miss it.</p>
+<p>If you would like to requrest a new feature, you can also submit that in
+the same way through JIRA (just select &ldquo;New Feature&rdquo; or &ldquo;Improvement&rdquo; as
+the Issue Type). Again, it would be helpful if you mentioned that you filed
+a feature request on the vcl-dev list.</p>
+<p>After you have created a JIRA issue, you have the option to vote on it to
+help us know how to prioritize issues. You can also &ldquo;watch&rdquo; the issue to
+see when activity related to it is submitted.</p>
+<p><a name="VCL2.3-ChangeLog"></a></p>
+<h2 id="change-log">Change Log</h2>
+<p>Release Notes - VCL - Version 2.3</p>
+<p><a name="VCL2.3-Sub-task"></a></p>
+<h4 id="sub-task">Sub-task</h4>
+<ul>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-319">VCL-319</a>
+] -	     API LDAP authentication problem with servers where DN must be
+looked up</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-339">VCL-339</a>
+] -	     Add the KVM support for VCL</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-419">VCL-419</a>
+] -	     allow private IP address to be set and modified for computers</li>
+</ul>
+<p><a name="VCL2.3-Bug"></a></p>
+<h4 id="bug">Bug</h4>
+<ul>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-114">VCL-114</a>
+] -	     catch-22 with new installs for creating a vmprofile</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-154">VCL-154</a>
+] -	     run_scp_command() is not catching some errors</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-192">VCL-192</a>
+] -	     xCAT21.pm - does_image_exist routine</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-225">VCL-225</a>
+] -	     no user groups to select from when adding a new user group</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-230">VCL-230</a>
+] -	     duplicate entries created in userpriv table</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-297">VCL-297</a>
+] -	     Windows code is using the private IP address from the database
+rather than the hosts file</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-328">VCL-328</a>
+] -	     shibboleth sp logout URL not using SSL</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-342">VCL-342</a>
+] -	     problem selecting image revision id when making a cluster
+reservation with identical subimages</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-344">VCL-344</a>
+] -	     local admin account make sure has full access</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-345">VCL-345</a>
+] -	     check for whitespace in add computers IP address field</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-348">VCL-348</a>
+] -	     Setting privileges in web gui &ndash; Slightly broken</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-387">VCL-387</a>
+] -	     xcat 1.3 getmac regex not account for A-F</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-396">VCL-396</a>
+] -	     vmprofiles displayed as 'Array' when changing a
+computer to vmhostinuse on computer utilities</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-400">VCL-400</a>
+] -	     virtual hosts page shows all unassigned vms instead of
+checking which ones the user can access</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-420">VCL-420</a>
+] -	     Linux code not setting static IP address correctly</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-422">VCL-422</a>
+] -	     Windows image capture may hang when cleanmgr.exe is executed
+or the utility may not be installed</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-427">VCL-427</a>
+] -	     for block allocations, setting the managing user group to none
+means no one can edit it if a normal user created it</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-429">VCL-429</a>
+] -	     Windows code does not always detect the correct public network
+interface</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-433">VCL-433</a>
+] -	     new revisions can be captured of kickstart images</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-447">VCL-447</a>
+] -	     Notice: Uninitialized string offset: 0 in
+&hellip;/vcl/.ht-inc/utils.php on line 3206</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-452">VCL-452</a>
+] -	     Linux.pm get_file_size does not handle thinly-provisioned
+files correctly</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-456">VCL-456</a>
+] -	     groupwasnone variable is not properly initialized</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-458">VCL-458</a>
+] -	     $virtual undefined in utils.php line 3678</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-464">VCL-464</a>
+] -	     SSH password authentication not enabled for Linux images</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-466">VCL-466</a>
+] -	     Support for Cygwin 1.7</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-467">VCL-467</a>
+] -	     Members of a group from one affiliation have access to groups
+with the same name from other affiliations</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-468">VCL-468</a>
+] -	     health_check update</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-469">VCL-469</a>
+] -	     Windows.pm may fail to return public IP address if the same
+interface also has a non-public IP address bound</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-470">VCL-470</a>
+] -	     The vSphere module does not implement the get_total_space
+subroutine</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-471">VCL-471</a>
+] -	     Problem copying vmware files from a datastore to a management
+node using the vSphere API</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-472">VCL-472</a>
+] -	     xCAT.pm fails if boot image mounts storage from a host other
+than the management node</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-473">VCL-473</a>
+] -	     query in findManagementNode in utils.php doesn't have
+conditional to join tables</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-474">VCL-474</a>
+] -	     recent versions of mysql don't accept double quotes to
+signify strings in where clauses</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-475">VCL-475</a>
+] -	     addShibUser in shibauth.php returns an array when it should be
+returning a user id</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-476">VCL-476</a>
+] -	     manage block allocation page may show incorrect next start
+time</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-478">VCL-478</a>
+] -	     Windows 6.x Sysprep code results in incorrect root password</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-480">VCL-480</a>
+] -	     XMLRPCproccessBlockTime can throw an error about VMhostCheck
+table already existing</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-482">VCL-482</a>
+] -	     scheduler does not order VMs properly when no VMs are
+preloaded with the selected image</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-483">VCL-483</a>
+] -	     RPC::XML fails with latest version of libwww-perl</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-484">VCL-484</a>
+] -	     Requests in the inuse and image states may be changed to
+failed</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-486">VCL-486</a>
+] -	     Measures against cross site scripting on the Login form</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-487">VCL-487</a>
+] -	     Problem in screen transition after successful login
+authentication</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-488">VCL-488</a>
+] -	     Injected user's UID is hardcoded</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-492">VCL-492</a>
+] -	     edit computer info for VM in maintenance state</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-494">VCL-494</a>
+] -	     Typo in testsetup.php</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-500">VCL-500</a>
+] -	     tomaintenance requests may start too early or fail if
+scheduled in the future</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-501">VCL-501</a>
+] -	     Linux.pm does not set the default gateway in the ifcfg file
+for statically assigned addresses</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-507">VCL-507</a>
+] -	     Deleted VMs appear in the list of unassigned VMs</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-508">VCL-508</a>
+] -	     Modifying reservations to overlap past max causes hang</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-509">VCL-509</a>
+] -	     error when adding computer with no groups selected</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-510">VCL-510</a>
+] -	     insert correct architecture in image table when adding new
+entry</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-511">VCL-511</a>
+] -	     Errors in vcl.sql connectmethodmap</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-512">VCL-512</a>
+] -	     Linux.pm does not determine correct block size for some
+versions of Linux</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-519">VCL-519</a>
+] -	     New-line control bug in an Edit Image page</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-522">VCL-522</a>
+] -	     Error in vcl.sql line 1694</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-523">VCL-523</a>
+] -	     Windows code does not set scheduled task credentials when
+changing user passwords</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-524">VCL-524</a>
+] -	     Windows get_network_configuration may return an empty hash</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-529">VCL-529</a>
+] -	     invalid IP addresses are marked as valid in the
+is_public_ip_address</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-530">VCL-530</a>
+] -	     Database field for computer.RAM is limited to 65535</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-533">VCL-533</a>
+] -	     error when trying to download dhcp data when private IP
+address was not entered</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-534">VCL-534</a>
+] -	     $cluster not reset in for loop in viewRequests</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-536">VCL-536</a>
+] -	     xCAT partimage and image_architecture x86_64</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-540">VCL-540</a>
+] -	     manageMapping not added to update-vcl.sql and vcl.sql files</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-541">VCL-541</a>
+] -	     Remove &quot;return 0&quot; from all subroutines which
+normally return an array or hash</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-546">VCL-546</a>
+] -	     OS.pm does not determine the correct public interface name</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-547">VCL-547</a>
+] -	     removing site maintenance entry from .ht-inc/maintenance
+directory doesn't fully remove site from maintenance</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-548">VCL-548</a>
+] -	     server reservations not owned by a user count toward that
+user's overlapping reservation count</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-549">VCL-549</a>
+] -	     AJAX error when creating a new schedule</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-556">VCL-556</a>
+] -	     edit schedule groups code not doing permissions correctly</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-558">VCL-558</a>
+] -	     vcld_cron_check uses incorrect name of VCL Daemon</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-563">VCL-563</a>
+] -	     DHCP is not enabled during image capture</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-567">VCL-567</a>
+] -	     image profile page does not reflect owner change after
+changing the owner</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-569">VCL-569</a>
+] -	     Incorrect public IP address being used if value in database
+does not match computer's actual IP address</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-573">VCL-573</a>
+] -	     Reservations which alter default imagemeta values may affect
+other reservations</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-574">VCL-574</a>
+] -	     reinstall option not happening when detecting inuse state</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-588">VCL-588</a>
+] -	     Windows may retrieve network configuration before all network
+interfaces are initialized</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-589">VCL-589</a>
+] -	     Windows 7 and 2008 Sysprep not working</li>
+</ul>
+<p><a name="VCL2.3-Improvement"></a></p>
+<h4 id="improvement">Improvement</h4>
+<ul>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-82">VCL-82</a>
+] -	     Add additional information to notify() messages</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-92">VCL-92</a>
+] -	     modify predictive loading algorithm level 1 to have 2
+computers loaded with an image</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-141">VCL-141</a>
+] -	     allow users to delete images that are set as currentimage</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-168">VCL-168</a>
+] -	     Windows Media Player shortcut gets added to desktop for all
+users</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-219">VCL-219</a>
+] -	     Improve VMware disk cleanup - add checks for reservations</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-234">VCL-234</a>
+] -	     give error when block reservations requests more resources
+than concurrent use of image</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-236">VCL-236</a>
+] -	     make Groups first tab on Manage Computers page</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-249">VCL-249</a>
+] -	     denote which management node fields are required</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-276">VCL-276</a>
+] -	     log Block reservation data</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-311">VCL-311</a>
+] -	     add more fields to edit computer page</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-313">VCL-313</a>
+] -	     need a way to set computers as vmhosts without a bare metal
+provisioning engine</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-321">VCL-321</a>
+] -	     user lookup tool doesn't show user group affiliation</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-354">VCL-354</a>
+] -	     View Computers Table - State Coloring</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-358">VCL-358</a>
+] -	     Improve VMware Windows image loading speed</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-360">VCL-360</a>
+] -	     Allow users to delete images preloaded on computers which
+aren't being used</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-376">VCL-376</a>
+] -	     mark imagerevisions deleted when user deletes image.</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-379">VCL-379</a>
+] -	     alert user if reservation has timed out when they click
+Connect or Get RDP File</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-381">VCL-381</a>
+] -	     Move firewall_compare_update to OS modules</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-383">VCL-383</a>
+] -	     make future reservations that would be part of a block
+allocation included in the block allocation</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-384">VCL-384</a>
+] -	     Remove MAC addresses from ifcfg-eth* files for Linux images
+during capture</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-385">VCL-385</a>
+] -	     Hide noimage from showing in the list of images in Edit Image
+Profiles</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-390">VCL-390</a>
+] -	     Prevent auto-generated or invalid public IP address from being
+displayed to user</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-391">VCL-391</a>
+] -	     Windows Server 2003 shutdown and reboot fails</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-393">VCL-393</a>
+] -	     Handle Windows computers going to sleep</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-398">VCL-398</a>
+] -	     make block allocations tie up concurrent usage of image</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-402">VCL-402</a>
+] -	     Login screensaver not needed for VMs</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-404">VCL-404</a>
+] -	     Prevent and/or remove color code escape characters from SSH
+output</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-407">VCL-407</a>
+] -	     Add makesshgkh check in gen_node_key.sh</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-408">VCL-408</a>
+] -	     Imaging reservations that fail very early on may not be put
+into the maintenance state</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-410">VCL-410</a>
+] -	     Update and improve install_perl_libs.pl script for VCL 2.3</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-413">VCL-413</a>
+] -	     Management node OS object</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-418">VCL-418</a>
+] -	     simplify adding LDAP authentication</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-421">VCL-421</a>
+] -	     Update Windows code to work with Cygwin 1.7</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-423">VCL-423</a>
+] -	     Suppress unnecessary warning messages from vcld.log</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-432">VCL-432</a>
+] -	     auto capture for imaging and long-term reservations</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-435">VCL-435</a>
+] -	     Add support for ESXi 4.1 scripted installs</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-438">VCL-438</a>
+] -	     allow new users to be added to VCL when shibboleth
+authentication is used without LDAP</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-441">VCL-441</a>
+] -	     getPossibleRecentFailures in isAvailable can end up removing
+only available machine</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-444">VCL-444</a>
+] -	     time delay the display of the Get RDP File button to allow
+vcld to grant access</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-446">VCL-446</a>
+] -	     End of reservation notices</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-450">VCL-450</a>
+] -	     Backend VMware improvements for 2.3 release</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-453">VCL-453</a>
+] -	     iptables</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-455">VCL-455</a>
+] -	     put alt text with a image generated by textimage.php</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-460">VCL-460</a>
+] -	     Send critical notification if KMS or MAK activation fails</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-461">VCL-461</a>
+] -	     Color depth is limited when connecting to Windows images via
+RDP</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-462">VCL-462</a>
+] -	     Remove Windows service pack installation files during image
+capture</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-479">VCL-479</a>
+] -	     remove dependency on mcrypt</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-489">VCL-489</a>
+] -	     allow dhcp and hosts info to be downloaded about computers any
+time instead of just when adding</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-490">VCL-490</a>
+] -	     restrict fields when adding computers</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-491">VCL-491</a>
+] -	     adding multiple computers - confusing error messages when
+incorrect count entered</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-495">VCL-495</a>
+] -	     Allow change of vmprofile for an active vmhost</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-496">VCL-496</a>
+] -	     DataStructure.pm does not implement a
+set_computer_private_ip_address subroutine</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-497">VCL-497</a>
+] -	     dedup eppn</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-498">VCL-498</a>
+] -	     simplify group time inputs</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-499">VCL-499</a>
+] -	     support for controlling VMware vCenter infrastructure through
+the vSphere SDK</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-502">VCL-502</a>
+] -	     allow aspects of automatic user groups to be managed through
+UI</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-504">VCL-504</a>
+] -	     Multiple critical messages are generated if inuse process
+fails to initialize</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-505">VCL-505</a>
+] -	     Dojo is slow to load, especially on pages with many ancillary
+class files</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-506">VCL-506</a>
+] -	     Retrieve accurate computer hardware specs and update the
+computer table</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-513">VCL-513</a>
+] -	     allow block allocation control per affiliation</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-514">VCL-514</a>
+] -	     decrease the number of queries done by the frontend</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-515">VCL-515</a>
+] -	     suggest available time when selection not available instead of
+showing time table</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-517">VCL-517</a>
+] -	     Linux udev net-persistent rule</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-520">VCL-520</a>
+] -	     Improving display control, on an detailed information of an
+image</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-521">VCL-521</a>
+] -	     An OS image named in japanese 2byte characters doesn't run</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-528">VCL-528</a>
+] -	     customizing image capture flow using vcl_exclude_list</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-543">VCL-543</a>
+] -	     OSX under ESXi 4.1</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-544">VCL-544</a>
+] -	     Linux systemd services</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-553">VCL-553</a>
+] -	     Make OS.pm wait_for_reboot arguments consistent with other
+wait_* subroutines</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-554">VCL-554</a>
+] -	     Add check to image capture to determine if user shutdown
+computer</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-557">VCL-557</a>
+] -	     xCAT2 reset node to boot state on DESTROY</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-565">VCL-565</a>
+] -	     Convert code which directly accesses
+$ENV{management_node_info}</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-575">VCL-575</a>
+] -	     Improvements to gen-node-key.sh</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-578">VCL-578</a>
+] -	     Improve how inuse reservations which aren't responding to
+SSH are handled</li>
+</ul>
+<p><a name="VCL2.3-NewFeature"></a></p>
+<h4 id="new-feature">New Feature</h4>
+<ul>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-30">VCL-30</a>
+] -	     additional user access methods for connecting to reserved
+compute node</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-323">VCL-323</a>
+] -	     ESX provisioning modules - based on snapshots</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-367">VCL-367</a>
+] -	     make Connect and Get RDP File buttons check for reservation
+being timed out</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-399">VCL-399</a>
+] -	     add a dashboard where admins can see current state of VCL
+system</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-417">VCL-417</a>
+] -	     Provisioning module for VirtualBox</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-463">VCL-463</a>
+] -	     add ability to deploy images as servers</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-477">VCL-477</a>
+] -	     add caching of statistics data</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-485">VCL-485</a>
+] -	     Multilingualization of Web UI</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-527">VCL-527</a>
+] -	     Allow users to reinstall newer revisions</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-545">VCL-545</a>
+] -	     Libvirt Provisioning Module</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-550">VCL-550</a>
+] -	     Add post_reserve functionality to Windows code</li>
+</ul>
+<p><a name="VCL2.3-Task"></a></p>
+<h4 id="task">Task</h4>
+<ul>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-443">VCL-443</a>
+] -	     update XMLRPC example to use API v2</li>
+<li>[<a href="https://issues.apache.org/jira/browse/VCL-576">VCL-576</a>
+] -	     Finalizing for 2.3 release</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

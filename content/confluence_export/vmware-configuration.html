@@ -1,0 +1,550 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VMware Configuration</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VMware Configuration</h1>
+    
+	<p><a name="VMwareConfiguration-Terminology"></a></p>
+<h2 id="terminology">Terminology</h2>
+<p><a name="VMwareConfiguration-VMHost"></a></p>
+<h4 id="vm-host">VM Host</h4>
+<ul>
+<li>A VM host is a physical computer running a VMware hypervisor</li>
+<li>A VCL computer entry must be added for each VM
+host ({color:#000000}{<em>}Manage Computers &gt; Edit Computer
+Information)</em>{color}</li>
+<li>{color:#000000}After the computer has been added to VCL, it is designated
+as a VM host by changing the computer state to vmhostinuse{color}
+{color:#000000}<em>(Manage Computers &gt; Computer Utilities)</em>{color}</li>
+</ul>
+<p><a name="VMwareConfiguration-VM"></a></p>
+<h4 id="vm">VM</h4>
+<ul>
+<li>A VM is a virtual machine managed by VCL</li>
+<li>A computer entry must be added to VCL for each VM
+({color:#000000}{<em>}Manage Computers &gt; Edit Computer Information)</em>{color}</li>
+<li>{color:#000000}Each VM must be assigned to a VM host{color}
+{color:#000000}<em>(Virtual Hosts &gt; VM Hosts tab &gt; Configure Host)</em>{color}</li>
+<li>VMs do not need to be created manually in VMware, VCL automatically
+creates and deletes VMs</li>
+</ul>
+<p><a name="VMwareConfiguration-VMHostProfile"></a></p>
+<h4 id="vm-host-profile">VM Host Profile</h4>
+<ul>
+<li>A VM host profile contains several parameters which describe how a
+VM host is configured so that VCL knows how to manage it</li>
+<li>Each VM host is assigned a VM host profile</li>
+<li>A VM host profile may be assigned to multiple VM hosts if they are
+configured identically</li>
+<li>VM host profiles may be added or modified via <em>Virtual Hosts &gt; VM Host
+Profiles tab</em></li>
+</ul>
+<p><a name="VMwareConfiguration-VMwareProductsSupported"></a></p>
+<h2 id="vmware-products-supported">VMware Products Supported</h2>
+<ul>
+<li>VMware Server 2.x</li>
+<li>VMware ESX 3.5 - 4.x</li>
+<li>VMware ESXi 4.x</li>
+<li>VMware ESXi 5.x</li>
+</ul>
+<p><a name="VMwareConfiguration-VMHost&nbsp;ManagementOptions"></a></p>
+<h3 id="vm-hostnbspmanagement-options">VM Host Management Options</h3>
+<p> The VCL management node must be able to control the VM host and
+the VMs running on it.  VMware provides several different ways of
+doing this.  VCL currently supports the following methods for remote
+VM host management:</p>
+<ul>
+<li>VMware vSphere SDK</li>
+<li>Use SSH to execute commands directly on the VM (<em>not officially
+supported by VMware</em>)</li>
+</ul>
+<p>The vSphere SDK can only be used if management is not restricted
+due to the VMware license key installed on the host.  This mainly
+affects hosts running the free version of ESXi.  Remote management
+using any of the methods supported by VMware is restricted once a
+free license key is entered.</p>
+<p>If remote management is restricted, the VM host can be managed if SSH is
+enabled on it.  VCL will execute vim-cmd and other commands on the VM
+host via SSH. </p>
+<p><a name="VMwareConfiguration-HowtoenableSSHontheVMhost:"></a></p>
+<h4 id="how-to-enable-ssh-on-the-vm-host">How to enable SSH on the VM host:</h4>
+<p><a name="VMwareConfiguration-VMwareServer2.x"></a></p>
+<h5 id="vmware-server-2x">VMware Server 2.x</h5>
+<p>Enable the SSH daemon and configure identity key authentication according
+to the underlying VM host OS</p>
+<p><a name="VMwareConfiguration-ESX/ESXi3.5&4.0"></a></p>
+<h5 id="esxesxi-35--40">ESX/ESXi 3.5 &amp; 4.0</h5>
+<ul>
+<li>Connect to the console of the ESX/ESXi host</li>
+<li>Press <em>ALT-F1</em> - you should see a black screen with the VMware product
+name at the top</li>
+<li>Type the word <em>unsupported</em> and press <em>Enter</em> (you won&rsquo;t see the letters
+appear as you type them)</li>
+<li>You should see a password prompt, type in the <em>root
+password</em> and press <em>Enter</em></li>
+<li>Edit the file: <em>vi /etc/inetd.conf</em></li>
+<li>Uncomment the first line beginning with <em>#ssh</em> by deleting the #
+character</li>
+<li>Save the file - press <em>Esc</em> and then <em>:wq</em></li>
+<li>Kill the inetd process
+** Determine the PID of the inetd process: <em>ps | grep inetd</em>
+You should see a line that looks like: <em>5065 5065 busybox inetd</em>
+** Kill the process (enter the PID from the output of the previous
+command): <em>kill -HUP 5065</em></li>
+</ul>
+<p><a name="VMwareConfiguration-ESXi4.1"></a></p>
+<h5 id="esxi-41">ESXi 4.1</h5>
+<p>Beginning with <em>ESXi 4.1</em>, SSH can be enabled using the vSphere
+Client:</p>
+<ul>
+<li>Select the ESXi host</li>
+<li>Select the <em>Configuration</em> tab</li>
+<li>Select <em>Security Profile</em> under Software</li>
+<li>Click <em>Properties</em></li>
+<li>Select <em>Remote Tech Support (SSH)</em></li>
+<li>Click <em>Options</em></li>
+<li>Select <em>Start automatically</em></li>
+<li>Click <em>Start</em></li>
+<li>Click <em>OK</em></li>
+</ul>
+<p><a name="VMwareConfiguration-ESX5.0"></a></p>
+<h5 id="esx-50">ESX 5.0</h5>
+<p>In the case of <em>ESX 5.0</em>:</p>
+<ul>
+<li>Select the ESXi host</li>
+<li>Select the <em>Configuration</em> tab</li>
+<li>Select <em>Security Profile</em> under Software</li>
+<li>Click <em>Properties</em></li>
+<li>Select <em>SSH Server</em></li>
+<li>Click <em>Options</em></li>
+<li>Confirm that <em>Start automatically</em> is selected</li>
+<li>Click <em>OK</em></li>
+</ul>
+<p><a name="VMwareConfiguration-HowtoconfigureESX/ESXitouseSSHidentitykeyauthentication:"></a></p>
+<h4 id="how-to-configure-esxesxi-to-use-ssh-identity-key-authentication">How to configure ESX/ESXi to use SSH identity key authentication:</h4>
+<p>SSH identity key authentication must be configured if SSH is used to
+manage the VM host.</p>
+<ul>
+<li>Create an SSH key pair on the management node (or use a key you
+previously created):
+{tip}
+ssh-keygen -t rsa -f /etc/vcl/vcl.key -N '&rsquo; -b 1024 -C &lsquo;VCL root
+account&rsquo;
+{tip}</li>
+<li>Log into the ESX host via SSH (password authentication should work) and
+create the directory:
+{tip}
+ssh <ESXi host> &lsquo;mkdir /.ssh&rsquo;
+{tip}</li>
+<li>Copy the public key to the ESXi host:
+ESXi 4.x:
+{tip}
+scp /etc/vcl/vcl.key.pub <ESXi host>:/.ssh/authorized_keys
+{tip}
+ESXi 5.x:
+{tip}
+scp /etc/vcl/vcl.key.pub <ESXi host>:/etc/ssh/keys-root/authorized_keys
+{tip}</li>
+<li>Test making an SSH connection using the key:
+{tip}
+ssh -i /etc/vcl/vcl.key <ESXi host>
+{tip}</li>
+</ul>
+<p>{color:#ff0000}{<em>}IMPORTANT:</em>{color} Under ESXi 4.x, the authorized_keys
+file is erased when the ESXi VM host is rebooted. Complete the
+following steps to make the authorized_keys file persistent:</p>
+<p><em>Note: VCL will perform these steps automatically when the 1st reservation
+assigned to the host is processed.</em></p>
+<ul>
+<li>Create a compressed tarball file containing the /.ssh directory:
+{tip}
+tar -C / -czf bootbank/vcl.tgz .ssh
+{tip}</li>
+<li>Edit the /bootbank/boot.cfg file and append <em><em>&rsquo; --- vcl.tgz&rsquo;</em></em> to
+modules line as shown in the following example:
+{panel}
+kernel=b.z
+kernelopt=
+modules=k.z &mdash; s.z &mdash; c.z &mdash; oem.tgz &mdash; license.tgz &mdash; m.z &mdash;
+state.tgz &mdash; vcl.tgz
+build=4.1.0-260247
+updated=2
+bootstate=0
+{panel}
+{tip}
+Optionally you can run the following two commands:
+tar -C / -czf vcl.tgz .ssh
+BootModuleConfig.sh --add=vcl.tgz --verbose
+{tip}</li>
+</ul>
+<p><a name="VMwareConfiguration-VMHostProfileParameters"></a></p>
+<h2 id="vm-host-profile-parameters">VM Host Profile Parameters</h2>
+<p><a name="VMwareConfiguration-GeneralParameters"></a></p>
+<h3 id="general-parameters">General Parameters</h3>
+<p><a name="VMwareConfiguration-"></a></p>
+<h4 id="heading"></h4>
+<p><a name="VMwareConfiguration-*Name*"></a></p>
+<h5 id="name"><em>Name</em></h5>
+<ul>
+<li>Descriptive name of the VM host profile</li>
+</ul>
+<p><a name="VMwareConfiguration-*Type*_(deprecated)_"></a></p>
+<h5 id="type-_deprecated_"><em>Type</em> <em>(deprecated)</em></h5>
+<ul>
+<li>Removed in VCL 2.3</li>
+</ul>
+<p><a name="VMwareConfiguration-*Image*_(optional)_"></a></p>
+<h5 id="image-_optional_"><em>Image</em> <em>(optional)</em></h5>
+<ul>
+<li>VCL hypervisor image installed on VM host computers using xCAT
+{info}{<em>}xCAT is not required.  VM host computers may be installed
+manually or by some other means.</em>{info}</li>
+<li>If xCAT is not used, select &ldquo;No Image&rdquo;</li>
+<li>VCL has the ability to install a hypervisor image on bare-metal computers
+using xCAT.  If the image property is configured, the image is
+installed when a computer&rsquo;s state is changed to vmhostinuse via <em>Manage
+Computers &gt; Computer Utilities</em></li>
+</ul>
+<p><a name="VMwareConfiguration-*Username/Password*_(optional)_"></a></p>
+<h5 id="usernamepassword-_optional_"><em>Username/Password</em> <em>(optional)</em></h5>
+<ul>
+<li>Name and password of the administrative or root user residing
+on the VM host</li>
+<li>This account is used to manage the VM host and VMs assigned to the host</li>
+<li>The username and password are currently only used if the vSphere SDK is
+used to manage the VM host and VMs</li>
+</ul>
+<p><a name="VMwareConfiguration-StorageParameters"></a></p>
+<h3 id="storage-parameters">Storage Parameters</h3>
+<p>{anchor:resource}</p>
+<p><a name="VMwareConfiguration-ResourcePath_(optional)_"></a></p>
+<h5 id="resource-path-_optional_">Resource Path <em>(optional)</em></h5>
+<p>Resource Path only needs to be configured if VMware vCenter is used. It
+defines the location where VMs will be created in the vCenter inventory
+tree. The inventory tree contains at least one Datacenter, and may also
+contain Folders, Clusters, and Resource Pools.
+Example: /DatacenterA/Folder1/Cluster2/ResourcePool3</p>
+<p>{anchor:repository}</p>
+<p><a name="VMwareConfiguration-*RepositoryPath*_(optional)_"></a></p>
+<h5 id="repository-path-_optional_"><em>Repository Path</em> <em>(optional)</em></h5>
+<ul>
+<li>Path where master copies of images are stored which are used to
+transfer images to VM host datastores or to other repositories:
+** If a reservation is assigned to a host but the image does not  exist in
+that host&rsquo;s datastore, it is copied from the repository to the virtual disk
+path when the VM is loaded
+** If the VCL environment contains multiple management nodes and the  image
+does not exist in the repository or the host&rsquo;s datastore, the  image will
+be retrieved from another management node&rsquo;s repository by  copying it via
+SCP</li>
+<li>The Repository Path parameter does not need to be configured if the  VCL
+environment contains a single management node and all VM hosts	share the
+same Virtual Disk Path</li>
+<li>Example: <em>/vmfs/volumes/nfs-repository1</em></li>
+<li>VMs do not run directly off of the images stored in the repository</li>
+<li>Setting the Repository Path parameter determines whether or not an
+additional copy of an image is created when an image is captured
+** If repository path is not configured then only a single copy of the
+image will exist in the virtual disk path after an image is captured
+** If repository path is configured then two copies of the image will
+exist after an image is captured - one in the virtual disk path and one in
+the  repository</li>
+<li>Repository Path location can refer to and be mounted on either the
+management node or VM host
+** It is highly recommended that the repository be mounted on the VM host
+*** When mounted on the VM host, vmdk operations can be done directly on
+the VM host in a single step</li>
+<li>Images in the repository are stored in the 2 GB sparse vmdk format
+** The size of the vmdk files will approximately be equal to the  amount of
+actual data saved in the image regardless of the size of the  VM&rsquo;s hard
+drive
+** Storing images in the 2 GB sparse format is necessary to allow  images
+to be transferred via SCP without having to transfer data equal  to the
+entire size of the VM&rsquo;s hard drive</li>
+</ul>
+<p><a name="VMwareConfiguration-RepositoryImageType"></a></p>
+<h5 id="repository-image-type">Repository Image Type</h5>
+<p>Virtual disk file format for images stored in the repository.
+{anchor:datastore}</p>
+<p><a name="VMwareConfiguration-*VirtualDiskPath(previouslyDatastorePath)*"></a></p>
+<h5 id="virtual-disk-path-previously-datastore-path"><em>Virtual Disk Path (previously Datastore Path)</em></h5>
+<ul>
+<li>Location where master copies of images are stored which are used by
+running VMs</li>
+<li>Example: <em>/vmfs/volumes/nfs-datastore1</em>
+{info}For ESXi, the path configured in the profile may simply be the short
+datastore name as it appears in the vSphere Client: nfs-datastore1{info}</li>
+<li>Storage location should be large enough to store all of the images which
+may be loaded on the VM host <em>(from 100&rsquo;s of GB to several TB)</em></li>
+<li>VCL creates a directory for each image in the Virtual Disk Path</li>
+<li>Images are stored in the <a href="http://www.sanbarrow.com/vmdk-basics.html">vmfs thin vmdk format</a></li>
+<li>Virtual Disk Path may either reside on local or network storage</li>
+<li>Multiple VM hosts can share the same datastore if network storage is used
+** A single datastore may be used by all VM hosts if performance is
+adequate
+** Multiple VMs on different hosts may access the same Virtual Disk Path
+image at the same time
+** It is recommended that datastores are shared among hosts so that fewer
+copies of each image have to be stored
+** The underlying storage hardware and network connectivity from the hosts
+to the storage must be adequate
+** Storage where the datastore is located should be optimized for read
+performance</li>
+<li>VCL configures VMs to access images stored in the Virtual Disk Path in
+read-only mode
+** Changes made to the VM&rsquo;s hard drive are written to delta files located
+in the VM Working Directory Path dedicated for the VM</li>
+</ul>
+<p><a name="VMwareConfiguration-VirtualDiskImageType"></a></p>
+<h5 id="virtual-disk-image-type">Virtual Disk Image Type</h5>
+<p>Virtual disk file format for images stored in the virtual disk path.</p>
+<p><a name="VMwareConfiguration-VirtualDiskMode(previously*VMDisk)*"></a></p>
+<h5 id="virtual-disk-mode-previously-vm-disk">Virtual Disk Mode (previously <em>VM Disk)</em></h5>
+<ul>
+<li>Defines whether the storage where the VM host&rsquo;s Virtual Disk Path
+resides is dedicated to a single host or shared among multiple hosts:
+** dedicated (previously localdisk)
+*** The VM host&rsquo;s Virtual Disk Path is located on local disks or
+dedicated network storage
+*** The VM host is the only host which accesses the Virtual Disk Path
+*** Repository Path must be configured
+** shared (previously networkdisk)
+*** The VM host&rsquo;s Virtual Disk Path is located on network storage
+which is shared by other VM hosts
+*** Repository Path is optional</li>
+</ul>
+<p>{note}
+The Virtual Disk Mode (VM Disk) parameter does <em>not</em> determine whether or
+not:
+&hellip;images are copied from the datastore to the repository during image
+capture
+&hellip;images are copied from the repository to the datastore during image load
+These are determined by whether or not Repository Path is configured in the
+profile
+{note}</p>
+<p>{anchor:vmpath}</p>
+<p><a name="VMwareConfiguration-VMWorkingDirectoryPath_(optional)_(previously*VMPath*)"></a></p>
+<h5 id="vm-working-directory-path-_optional_-previously-vm-path">VM Working Directory Path <em>(optional)</em> (previously <em>VM Path</em>)</h5>
+<ul>
+<li>Defines path on VM host where VM working directories will reside
+(contains .vmx, delta, .vswp, nvram files)</li>
+<li>If not configured, the Virtual Disk Path location will be used</li>
+<li>VCL creates a directory under the VM Working Directory Path for each VM
+it creates
+** Contains the .vmx file which defines the VM
+** Contains delta vmdk files which are written to as changes are made to
+the VM&rsquo;s hard drive</li>
+<li>VM Working Directory Path may either reside on local or network storage</li>
+<li>Location should be dedicated for each VM host
+** Multiple VM hosts should not share the same VM Working Directory Path
+location for performance and image safety reasons
+** VM Working Directory Paths of multiple hosts may reside on the same
+volume but a subdirectory should be created for each host</li>
+<li>Storage where the VM Working Directory Path is located should be
+optimized for read-write performance</li>
+</ul>
+<p><a name="VMwareConfiguration-"></a></p>
+<h5 id="heading-1"></h5>
+<p><a name="VMwareConfiguration-NetworkingParameters"></a></p>
+<h4 id="networking-parameters">Networking Parameters</h4>
+<p><a name="VMwareConfiguration-*VMNetwork(previouslyVirtualSwitch)*"></a></p>
+<h5 id="vm-network-previously-virtual-switch"><em>VM Network (previously Virtual Switch)</em></h5>
+<ul>
+<li>
+<p>VM Network 0 (previously Virtual Switch 0) - private VCL
+management network</p>
+</li>
+<li>
+<p>VM Network 1 (previously Virtual Switch 1) - public network used by user
+making reservation to access the VMs</p>
+</li>
+<li>
+<p>The VM Network parameters should match the network names configured on
+the VM host
+** For ESXi, the <em>VM Network</em> parameters must match the <em>Virtual Machine
+Port Group Network Labels</em> configured in the vSphere Client, example:
+*** VM Network 0: Public
+*** VM Network 1: Private
+  !vmware-network-labels.gif|border=1!</p>
+</li>
+<li>
+<p>For VMware Server 2.x, the <em>VM Network</em> parameters must match the
+<em>Network Names</em> configured by running vmware-config.pl</p>
+</li>
+</ul>
+<p><a name="VMwareConfiguration-*Generateeth0/eth1MAC*"></a></p>
+<h5 id="generate-eth0eth1-mac"><em>Generate eth0/eth1 MAC</em></h5>
+<ul>
+<li>New in VCL 2.3</li>
+<li>Determines whether VMs are assigned MAC addresses defined in the VCL
+database or if random MAC addresses should be assigned</li>
+</ul>
+<p><a name="VMwareConfiguration-ConfigurationExamples"></a></p>
+<h2 id="configuration-examples">Configuration Examples</h2>
+<p><a name="VMwareConfiguration-LocalDiskOnly-RepositoryMountedviaNFS"></a></p>
+<h3 id="local-disk-only---repository-mounted-via-nfs">Local Disk Only - Repository Mounted via NFS</h3>
+<p><a name="VMwareConfiguration-!local-only-nfs.gif!"></a></p>
+<h3 id="local-only-nfsgif">!local-only-nfs.gif!</h3>
+<p>The diagram above shows a simple VCL configuration with 1 management node
+and 2 VMware ESXi hosts.  Network storage is not used.
+The local disks on the VM hosts are used to store all of the files used by
+running VMs including the VM&rsquo;s working directory and the master vmdk image.</p>
+<p>A directory on the local disk on the management node is used to as the
+image repository.   This directory is exported via NFS.  VM hosts
+mount this directory  as a datastore named &ldquo;repository&rdquo;.  Mounting the
+repository directly on	the VM hosts allows the vmkfstools utility to be
+used on the VM hosts to  copy and convert images directly from the
+repository to the local  datastore in a single step.</p>
+<p>If an image is to be loaded on a VM host and that image does not already
+exist in the VM host&rsquo;s local datastore (Virtual Disk Path), it is
+automatically copied from the repository to the VM host&rsquo;s local datastore
+(Virtual Disk Path) at the beginning of the load process.</p>
+<p>During image capture, images are automatically copied to from the VM host&rsquo;s
+local datastore (Virtual Disk Path) to the repository.  This allows
+images captured on a VM host to be loaded on any other VM host.</p>
+<p>The VM host profile Virtual Disk Mode parameter is set to dedicated. 
+This indicates to the load process that the VM host&rsquo;s Virtual Disk Path is
+dedicated to the VM host and not shared by other VM hosts.  This
+allows images to be deleted from the VM host&rsquo;s local datastore (Virtual
+Disk Path) if another image must be copied from the repository and not
+enough space is available.</p>
+<p><a name="VMwareConfiguration-LocalDiskOnly-RepositoryNotAvailableviaNFS"></a></p>
+<h3 id="local-disk-only---repository-not-available-via-nfs">Local Disk Only - Repository Not Available via NFS</h3>
+<p>!local-only-scp.gif!</p>
+<p>This example is identical to the one above except that the repository
+located on the management node&rsquo;s local disk is not exported via NFS. 
+Because of this, images must be transferred using SCP instead of
+vmkfstools.  This is less desirable than mounting the repository
+directly on the VM hosts because images cannot be copied and converted in a
+single step.  Images are stored in the repository in the 2GB sparse
+format.  This allows the images to be copied via SCP while only
+transferring the data stored in the image, not the entire size of the hard
+drive stored in the image.  VMware ESXi cannot run VMs using vmdk
+images stored in the 2GB sparse format.  Images are converted to the
+vmfs thin format so that they can be loaded on VMware ESXi.  This adds
+extra time to the load process if an image does not exist in the VM&rsquo;s local
+datastore (Virtual Disk Path) and must be copied from the repository. 
+It also requires additional space in the VM host&rsquo;s local datastore (Virtual
+Disk Path) becuase 2 copies of the image exist while it is being converted.
+Note that the VM host profile Repository Path parameter is set to the path
+on the management node&rsquo;s hard drive.  The code first checks if the
+path exists on the VM host.  If not, it assumes the repository is not
+mounted directly on the VM host and the Repository Path value refers to a
+location on the management node.</p>
+<p><a name="VMwareConfiguration-NetworkStorageOnly-NoRepository"></a></p>
+<h3 id="network-storage-only---no-repository">Network Storage Only - No Repository</h3>
+<p>!network-only-no-repo.gif!</p>
+<p>This is an example of a simple configuration where the network storage is
+used.</p>
+<p>A repository is not used in this configuration.  This implies that all
+VM hosts which will ever be added to this VCL environment will need to be
+able to connect to the network storage.</p>
+<p>A datastore to be used as the Virtual Disk Path named &ldquo;datastore&rdquo; is
+mounted on every VM host.  Each of these mounts points to the same
+location on the network storage.  The datastore will contain the
+master vmdk images.  VMs loaded on the VM hosts will read from these
+master vmdk images.</p>
+<p>A datastore to be used as the VM Working Directory Path named &ldquo;vmpath&rdquo; is
+also mounted on each VM host.  However, the location to which each VM
+host points should be different.  In the example above, vmhost-a-01
+points to th the /vmpath01 directory on the network storage and vmhost-a-02
+points to the /vmpath02 directory.  These locations may be different
+network storage filesystems or may be different directories on the same
+network filesystem.  Even though the mounts on the VM hosts point to
+different locations, the datastore names configured under ESXi are
+identical.  This allows you to use the same VCL VM host profile for
+all of the VM hosts.</p>
+<p>The VM host profile Virtual Disk Mode parameter is set to shared. 
+This indicates to the load process that the VM host&rsquo;s Virtual Disk Path is
+shared by other VM hosts.</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

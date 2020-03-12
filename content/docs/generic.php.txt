@@ -1,0 +1,64 @@
+<?php
+
+$server = ''; # hostname of ldap server
+$ldapacct = ''; # full DN of account VCL uses to log in to LDAP server
+$ldappass = ''; # password for $ldapacct
+$toplevel = ''; # base DN to use
+$search = ''; # what to search for, examples: uid=someuserid, cn=someuserid, samaccountname=someuserid; follows normal LDAP query rules
+$results = array("*","+");
+#$results = array("dn");
+#$results = array('dn', 'givenname', 'sn', 'mail');
+
+#-------------------------------------------------------
+
+if(ldap_set_option(NULL, LDAP_OPT_DEBUG_LEVEL, 7))
+	print "debugging set<br>\n";
+$ds = ldap_connect("ldaps://$server/");
+if (!$ds) {
+	die("Unable to connect to $server/");
+}
+
+if(ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3))
+	print "protocol 3 set<br>\n";
+
+# disable LDAP referrals
+ldap_set_option($ds, LDAP_OPT_REFERRALS, 0);
+
+$res = ldap_bind($ds, $ldapacct, $ldappass); # use this to login with specific credentials
+#$res = ldap_bind($ds); # use this to do an anonymous bind
+flush(); ob_flush();
+if(! $res) {
+	print "error: " . ldap_error($ds) . "<br>\n";
+	die("bind failed<br>\n");
+}
+else {
+	print "Bind was successful<br>\n";
+}
+$srch = ldap_search($ds,
+	$toplevel,
+	$search,
+	$results,
+	0,
+	10
+);
+print "search time: " . (microtime(1) - $start) . "<br>\n";
+flush(); ob_flush();
+
+if (ldap_errno($ds) == 4) {		# Error code for "too many results"
+	print "<B>More than 10 results were returned.  Only 10 displayed.</B><BR>\n";
+}
+
+if ($srch) {
+	$results = @ldap_get_entries($ds, $srch);    # Retrieve all results
+	print "results time: " . (microtime(1) - $start) . "<br>\n";
+	flush(); ob_flush();
+	print "<pre>\n";
+	print_r($results);
+	print "</pre>\n";
+}
+else {
+	print "<B>Directory lookup failed: ".ldap_error($ds)."</B><BR>\n";
+}
+
+@ldap_close($ds);			# Close off my connection
+?>

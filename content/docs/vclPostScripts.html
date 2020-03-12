@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VCL Image Scripts: Post-Load, Post-Reserve, &amp; Post-Reservation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VCL Image Scripts: Post-Load, Post-Reserve, &amp; Post-Reservation</h1>
+    
+	<p>Scripts may be saved within VCL images which are automatically executed at specific stages of the
+VCL
+reservation process.  The scripts are added by the image creator prior to saving the image.  They
+must be
+located and named exactly as specified below.</p>
+<p>For Windows image scripts, the output is saved in C:\Cygwin\root\VCL\Scripts\Logs.  The name of
+the log file name corresponds to the name of the script.  Example:
+C:\Cygwin\root\VCL\Scripts\Logs\vcl_post_load.log</p>
+<h2 id="post-load">Post-Load</h2>
+<p>Location:</p>
+<ul>
+<li>Linux: /usr/local/vcl/vcl_post_load</li>
+<li>Windows: C:\Windows\vcl_post_load.cmd</li>
+</ul>
+<p>The post-load script will be executed every time a compute node is loaded, meaning:</p>
+<ul>
+<li>Whether or not the compute node is assigned to a user&rsquo;s reservation</li>
+<li>After a user&rsquo;s reservation ends and the compute node is automatically reloaded with another
+image</li>
+<li>After a compute node is reloaded with a specific image via the Manage Computers utility</li>
+</ul>
+<p>The post-load script is executed after all of the standard <em>post-load</em> steps are performed via
+SSH by the
+management node&rsquo;s vcld process.  For Linux images, these steps include:</p>
+<ul>
+<li>Secure the firewall to only allow access from the management node</li>
+<li>Configure the SSH service so access is only permitted from the management node</li>
+<li>Randomize the root password</li>
+<li>Set the node&rsquo;s hostname</li>
+</ul>
+<p>It is <strong>important</strong> to recognize that the steps listed above to not include any steps related to
+the creation
+or configuration of user accounts intended for end user connections.  The user accounts have not
+been created
+prior to the stage when the post-load script is executed.</p>
+<p>The post-load script is useful for:</p>
+<ul>
+<li>Making changes to configuration files which require the IP address of the compute node to be
+known</li>
+<li>Registering the compute node with an external service such as for OS activation or software
+licensing</li>
+<li>Mounting external storage intended for system files or logs</li>
+</ul>
+<h2 id="post-reserve">Post-Reserve</h2>
+<p>Location:</p>
+<ul>
+<li>Linux: /usr/local/vcl/vcl_post_reserve</li>
+<li>Windows: C:\Windows\vcl_post_reserve.cmd</li>
+</ul>
+<p>The post-reserve script is only executed when a user makes a reservation for an image and
+acknowledges the
+reservation by clicking the Connect button.  It is executed after the standard <em>reserve</em> steps
+are performed
+via SSH by the management node&rsquo;s vcld process.  These steps include:</p>
+<ul>
+<li>Add user account(s) and set passwords if applicable</li>
+<li>Grant access via SSH and other connect methods</li>
+<li>For cluster reservations, the /etc/cluster_info file is created</li>
+</ul>
+<p>The post-reserve script is useful for:</p>
+<ul>
+<li>Making changes to configuration files which require the username(s) to be known</li>
+<li>Starting services which should only run when the compute node is available to an end user</li>
+<li>Configuring the firewall to allow access to a particular service</li>
+<li>Configuring interaction with other compute nodes assigned to a cluster by parsing the
+cluster_info file and
+modifying configuration files with information about the other cluster nodes</li>
+<li>Mounting external storage intended for user files</li>
+</ul>
+<h2 id="post-reservation">Post-Reservation</h2>
+<p>Location:</p>
+<ul>
+<li>Linux: /usr/local/vcl/vcl_post_reservation</li>
+<li>Windows: C:\Windows\vcl_post_reservation.cmd</li>
+</ul>
+<p>The post-reservation script is executed prior to a compute node being reloaded.  It does not
+matter if the
+compute node is reloaded with the same or a different image, nor does it matter if the compute
+node was
+assigned to an end user reservation or simply is being reloaded via the <em>Manage Computers</em>
+utility.</p>
+<p>The post-reservation script is useful for:</p>
+<ul>
+<li>Stopping services</li>
+<li>Unregistering the compute node from external services such as a license server in order to free
+up a license
+for other users</li>
+<li>Removing/unregistering the node from an external shared filesystem</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

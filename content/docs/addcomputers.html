@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Add computers</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Add computers</h1>
+    
+	<p>Adding computers is done by going to Manage Computers-&gt;Edit Computer
+Profiles and clicking Add New Computer</p>
+<p><a href="#individualbare">Adding Individual Bare Metal Computers</a><br>
+<a href="#individualvirtual">Adding Individual Virtual Computers</a><br>
+<a href="#multiplebare">Adding Multiple Bare Metal Computers</a><br>
+<a href="#multiplevirtual">Adding Multiple Virtual Computers</a></p>
+<h4 id="individualbare">Adding Individual Bare Metal Computers</h4>
+<ol>
+<li>Click Manage Computers</li>
+<li>Select the Edit Computer Profiles radio button</li>
+<li>Click Submit</li>
+<li>Click the Add New Computer button at the top of the page</li>
+<li>Ensure Single Computer is selected for Add at the top of the dialog</li>
+<li>Fill in the following:
+<ul>
+<li>Name - hostname of the computer</li>
+<li>Owner - admin@Local</li>
+<li>Type - Bare Metal</li>
+<li>Public IP Address</li>
+<li>Private IP Address (optional)</li>
+<li>Public MAC Address (optional)</li>
+<li>Private MAC Address (optional)</li>
+<li>Provisioning Engine - None or xCAT</li>
+<li>State - one of
+<ul>
+<li>available (only if xCAT is selected for Provisioning Engine)</li>
+<li>vmhostinuse (only if None is selected for Provisioning Engine)</li>
+<li>maintenance - if you do not want it to be immediately available</li>
+</ul>
+</li>
+<li>VM Host Profile - (only if vmhostinuse is selected for State) profile for this VM Host</li>
+<li>RAM</li>
+<li>No. Cores</li>
+<li>Processor Speed</li>
+<li>Network Speed</li>
+<li>Connect Using NAT - check if this computer should be connected to using NAT (optional)</li>
+<li>NAT Host - Host that will provide NAT to this host (optional)</li>
+<li>Use as NAT Host - check if this host will provide NAT to other hosts (optional)</li>
+<li>NAT Public IP Address - Public address for this NAT host (optional)</li>
+<li>NAT Internal IP Address - internal IP address for this NAT Host (optional)</li>
+<li>Location (optional)</li>
+</ul>
+</li>
+<li>Click Add Computer</li>
+<li>A dialog will be displayed for adding the computer to computer groups</li>
+<li>Select allComputers and newimages on the right</li>
+<li>Click &lt;-Add</li>
+<li>Click Close</li>
+</ol>
+<h4 id="individualvirtual">Adding Individual Virtual Computers</h4>
+<ol>
+<li>Click Manage Computers</li>
+<li>Select the Edit Computer Profiles radio button</li>
+<li>Click Submit</li>
+<li>Click the Add New Computer button at the top of the page</li>
+<li>Ensure Single Computer is selected for Add at the top of the dialog</li>
+<li>Fill in the following:
+<ul>
+<li>Name - hostname of the computer</li>
+<li>Owner - admin@Local</li>
+<li>Type - Virtual Machine</li>
+<li>Public IP Address</li>
+<li>Private IP Address (optional)</li>
+<li>Public MAC Address</li>
+<li>Private MAC Address</li>
+<li>Provisioning Engine - select the desired Provisioning Engine (use Libvirt when using KVM)</li>
+<li>State - maintenance is the only option (will be moved to available when assigned to a VM Host)</li>
+<li>RAM</li>
+<li>No. Cores</li>
+<li>Processor Speed</li>
+<li>Network Speed</li>
+<li>Connect Using NAT - check if this computer should be connected to using NAT (optional)</li>
+<li>NAT Host - Host that will provide NAT to this host (optional)</li>
+<li>Use as NAT Host - check if this host will provide NAT to other hosts (optional)</li>
+<li>NAT Public IP Address - Public address for this NAT host (optional)</li>
+<li>NAT Internal IP Address - internal IP address for this NAT Host (optional)</li>
+<li>Location (optional)</li>
+</ul>
+</li>
+<li>Click Add Computer</li>
+<li>A dialog will be displayed for adding the computer to computer groups</li>
+<li>Select All VM Computers and newvmimages on the right</li>
+<li>Click &lt;-Add</li>
+<li>Click Close</li>
+</ol>
+<h4 id="multiplebare">Adding Multiple Bare Metal Computers</h4>
+<ol>
+<li>Click Manage Computers</li>
+<li>Select the Edit Computer Profiles radio button</li>
+<li>Click Submit</li>
+<li>Click the Add New Computer button at the top of the page</li>
+<li>Select Multiple Computers for Add at the top of the dialog</li>
+<li>Fill in the following:
+<ul>
+<li>Name - the hostnames of all the computers must have a
+numerical part that is sequential, use a % as a placeholder
+where that part would be</li>
+<li>Start - the first number of the numerical part of the hostname</li>
+<li>End - the last number of the numerical part of the hostname</li>
+<li>Owner - admin@Local</li>
+<li>Type - Bare Metal</li>
+<li>Start Public IP Address - if using static public addresses,
+the IP addresses must be sequential; enter the first address
+here; if using DHCP, just enter something like 1.1.1.1</li>
+<li>End Public IP address - the last IP address of the sequence; if
+using DHCP, you&rsquo;ll need to enter something that would work out
+to the last address relative to Start IP Address (i.e. if
+adding 3 computers, use 1.1.1.1 for start and 1.1.1.3 for end)</li>
+<li>Start Private IP Address (optional) - the IP addresses must be
+sequential; enter the first private address here</li>
+<li>End Private IP Address (optional) - the last IP address of the sequence</li>
+<li>Start MAC Address (optional) - if MAC addresses are sequential,
+with the first one being the private MAC address for the first
+computer, the second one being the public MAC address for the
+first computer, the third one being the private MAC address of
+the second computer, etc, you can enter the first one here and
+then have the option of downloading data to add to your
+dhcpd.conf file from the Computer Utilities page</li>
+<li>Provisioning Engine - None or xCAT</li>
+<li>State - one of
+<ul>
+<li>available (only if xCAT is selected for Provisioning Engine)</li>
+<li>vmhostinuse (only if None is selected for Provisioning Engine)</li>
+<li>maintenance - if you do not want it to be immediately available</li>
+</ul>
+</li>
+<li>VM Host Profile - (only if vmhostinuse is selected for State) profile for these VM Hosts</li>
+<li>RAM</li>
+<li>No. Cores</li>
+<li>Processor Speed</li>
+<li>Network Speed</li>
+<li>Connect Using NAT - check if these computers should be connected to using NAT (optional)</li>
+<li>NAT Host - Host that will provide NAT to these computers (optional)</li>
+<li>Location (optional)</li>
+</ul>
+</li>
+<li>Click Add Computers</li>
+<li>A dialog will be displayed for adding the computers to computer groups</li>
+<li>Select allComputers and newimages on the right</li>
+<li>Click &lt;-Add</li>
+<li>Click Close</li>
+</ol>
+<h4 id="multiplevirtual">Adding Multiple Virtual Computers</h4>
+<ol>
+<li>Click Manage Computers</li>
+<li>Select the Edit Computer Profiles radio button</li>
+<li>Click Submit</li>
+<li>Click the Add New Computer button at the top of the page</li>
+<li>Select Multiple Computers for Add at the top of the dialog</li>
+<li>Fill in the following:
+<ul>
+<li>Name - the hostnames of all the computers must have a
+numerical part that is sequential, use a % as a placeholder
+where that part would be</li>
+<li>Start - the first number of the numerical part of the hostname</li>
+<li>End - the last number of the numerical part of the hostname</li>
+<li>Owner - admin@Local</li>
+<li>Type - Virtual Machine</li>
+<li>Start Public IP Address - if using static public addresses,
+the IP addresses must be sequential; enter the first address
+here; if using DHCP, just enter something like 1.1.1.1</li>
+<li>End Public IP address - the last IP address of the sequence; if
+using DHCP, you&rsquo;ll need to enter something that would work out
+to the last address relative to Start IP Address (i.e. if
+adding 3 computers, use 1.1.1.1 for start and 1.1.1.3 for end)</li>
+<li>Start Private IP Address - the IP addresses must be
+sequential; enter the first private address here</li>
+<li>End Private IP Address - the last IP address of the sequence</li>
+<li>Start MAC Address - if MAC addresses are sequential,
+with the first one being the private MAC address for the first
+computer, the second one being the public MAC address for the
+first computer, the third one being the private MAC address of
+the second computer, etc, you can enter the first one here and
+then have the option of downloading data to add to your
+dhcpd.conf file from the Computer Utilities page</li>
+<li>Provisioning Engine - select the desired Provisioning Engine (use Libvirt when using KVM)</li>
+<li>State - maintenance is the only option (will be moved to available when assigned to a VM Host)</li>
+<li>RAM</li>
+<li>No. Cores</li>
+<li>Processor Speed</li>
+<li>Network Speed</li>
+<li>Connect Using NAT - check if these computers should be connected to using NAT (optional)</li>
+<li>NAT Host - Host that will provide NAT to these computers (optional)</li>
+<li>Location (optional)</li>
+</ul>
+</li>
+<li>Click Add Computers</li>
+<li>A dialog will be displayed for adding the computers to computer groups</li>
+<li>Select All VM Computers and newvmimages on the right</li>
+<li>Click &lt;-Add</li>
+<li>Click Close</li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Comms on Apache VCL</title>
+    <link>https://vcl.apache.org/comm.html</link>
+    <description>Recent content in Comms on Apache VCL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 19 Dec 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://vcl.apache.org/comm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2012-12-19 Apache VCL Board Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</link>
+      <pubDate>Wed, 19 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</guid>
+      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
+CURRENT ACTIVITY  Work continues to migrate content from Confluence to the new CMS website and to improve the design. VCL 2.</description>
+    </item>
+    
+    <item>
+      <title>2012-09-19 Apache VCL Board Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</link>
+      <pubDate>Wed, 19 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</guid>
+      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
+CURRENT ACTIVITY  The community has completed the post-graduation tasks. Work continues to migrate content from Confluence to the new CMS website and to improve the design.</description>
+    </item>
+    
+    <item>
+      <title>2012-08-15 Apache VCL Board Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</link>
+      <pubDate>Wed, 15 Aug 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</guid>
+      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
+CURRENT ACTIVITY  The community has completed most of the post-graduation tasks with the help of Infrastructure. [1] A CMS website has been created.</description>
+    </item>
+    
+    <item>
+      <title>2012-07-25 Apache VCL Board Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</link>
+      <pubDate>Wed, 25 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</guid>
+      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
+CURRENT ACTIVITY  The community is working to complete the post-graduation tasks with the help of Infrastructure. [1] Mailing lists have been moved to vcl.</description>
+    </item>
+    
+    <item>
+      <title>2009-01 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2009-01-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2009-01-incubator-vcl-report.html</guid>
+      <description>Included is the monthly status report for VCL to the Incubator PMC for January 2009
+ Community The community has been active on the vcl-dev mailing list. Some new interested parties have subscribed and open discussion about goals, development processes, etc. have been happening.  There has been some discussion about the use of the project name VCL as NC State is still using this name for their student computing lab.</description>
+    </item>
+    
+    <item>
+      <title>2009-02 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2009-02-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2009-02-incubator-vcl-report.html</guid>
+      <description>February 2009 VCL Incubator status report
+VCL has been incubating since December 2008
+VCL is a framework for doing cloud management of physical and virtual machines
+ Community There has been discussion on the vcl-dev list about how to handle JIRA issues, discussion on development and design of various aspects of VCL, the role of parts of the database component of VCL and how to use it, and whether or not having design meetings via phone conference are a good idea.</description>
+    </item>
+    
+    <item>
+      <title>2009-05 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2009-05-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2009-05-incubator-vcl-report.html</guid>
+      <description>May 2009 VCL Incubator status report VCL has been incubating since December 2008. VCL is a framework for doing cloud management of physical and virtual machines.
+Project Name  Discussion about using the name VCL has continued but the issue has not been resolved. A question was posed on the legal discussion list regarding the use of the VCL name. A response was givin indicating that NCSU should make it obvious that both the VCL name and code are donated to the ASF.</description>
+    </item>
+    
+    <item>
+      <title>2009-11 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2009-11-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2009-11-incubator-vcl-report.html</guid>
+      <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines.
+Community Involvement  The Apache VCL community is growing and people from several organizations are contributing Questions about administration and end user use of Apache VCL are being asked and answered on the project&amp;rsquo;s vcl-dev and vcl-user lists A growing number of community members from multiple organizations are answering questions Collaboration is occurring for architectural design and release planning via the vcl-dev list Code patches have been discussed on the vcl-dev list and submitted to the Jira issue tracking system  Release Preparation - Apache VCL 2.</description>
+    </item>
+    
+    <item>
+      <title>2010-02 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2010-02-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2010-02-incubator-vcl-report.html</guid>
+      <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines.
+Community Involvement  The Apache VCL community continues to grow. We&amp;rsquo;re seeing more and more people start to contribute to our online documentation and file JIRA issues   some with patches attached.   We&amp;rsquo;re seeing more feature requests come in which means more people are using VCL. More people have joined the vcl-dev list and are asking questions as they install VCL at new locations.</description>
+    </item>
+    
+    <item>
+      <title>2010-05 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2010-05-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2010-05-incubator-vcl-report.html</guid>
+      <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines.
+Community Involvement  As stated in the previous report, the Apache VCL community continues to grow. We&amp;rsquo;re seeing more and more people start to contribute to our online documentation and file JIRA issues. A few people from the community have been contacted by PPMC members encouraging them to become more involved in the project.</description>
+    </item>
+    
+    <item>
+      <title>2010-08 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2010-08-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2010-08-incubator-vcl-report.html</guid>
+      <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines.
+Community Involvement  As stated in the previous report, the Apache VCL community continues to grow. We&amp;rsquo;re seeing more people start to contribute to our online documentation and file JIRA issues. As reported in the last board report a few people from the community have been contacted by PPMC members encouraging them to become more involved in the project.</description>
+    </item>
+    
+    <item>
+      <title>2010-11 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2010-11-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2010-11-incubator-vcl-report.html</guid>
+      <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines.
+Community Involvement  The Apache VCL user community continues to grow. We really need to get more committers. We have asked on our development list for more people to get involved and also individually contacted people encouraging them to get involved, but are still having trouble getting people on board.</description>
+    </item>
+    
+    <item>
+      <title>2011-02 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2011-02-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2011-02-incubator-vcl-report.html</guid>
+      <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines.https://cwiki.apache.org/VCL/
+Community Involvement  We are very excited to introduce a new committer, David Hutchins. As stated in the previous report, the Apache VCL community continues to grow. We&amp;rsquo;re seeing more people start to contribute to our online documentation and file JIRA issues. We continue to see growing interest in the VCL project from a variety of locations.</description>
+    </item>
+    
+    <item>
+      <title>2011-05 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2011-05-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2011-05-incubator-vcl-report.html</guid>
+      <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines.https://cwiki.apache.org/VCL/
+Community Involvement  As stated in the previous report, the Apache VCL community continues to grow. We&amp;rsquo;re seeing more people start to contribute to our online documentation and file JIRA issues. We&amp;rsquo;re also starting to see more patches attached to JIRA issues. We continue to see growing interest in the VCL project from a variety of locations.</description>
+    </item>
+    
+    <item>
+      <title>2011-08 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2011-08-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2011-08-incubator-vcl-report.html</guid>
+      <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines. https://vcl.apache.org/
+Community Involvement  As stated in the previous report, the Apache VCL community continues to grow. We&amp;rsquo;re seeing more people start to contribute to our online documentation and file JIRA issues. We&amp;rsquo;re also starting to see more patches attached to JIRA issues. We continue to see growing interest in the VCL project from a variety of locations.</description>
+    </item>
+    
+    <item>
+      <title>2011-11 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2011-11-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2011-11-incubator-vcl-report.html</guid>
+      <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines. https://vcl.apache.org/
+
+Community Involvement  Numerous Apache VCL community members have gained enough knowledge and are actively answering questions on the mailing lists. Questions have been posted to the lists related to several new installations from around the world. Development issues are being discussed with participants from many different organizations.</description>
+    </item>
+    
+    <item>
+      <title>2012-02 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2012-02-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2012-02-incubator-vcl-report.html</guid>
+      <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines.
+New Committers  The Apache VCL community recently added Aaron Coburn of Amherst College as a committer. We welcome Aaron and look forward to his expertise and knowledge to help advance VCL software. There are a couple of other potential committers that might be able to join the community as committers.</description>
+    </item>
+    
+    <item>
+      <title>2012-05 Incubator VCL Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2012-05-incubator-vcl-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2012-05-incubator-vcl-report.html</guid>
+      <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines. It provides comparatively easy and simple base line install with a end-user self service interface.
+New Committers  The Apache VCL community recently added James O&amp;rsquo;Dell from California State University at Fullerton as a committer. We welcome James and look forward to his expertise and knowledge to help advance VCL project and community.</description>
+    </item>
+    
+    <item>
+      <title>Apache Derby Database</title>
+      <link>https://vcl.apache.org/comm/commprojects/apache-derby-database.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/commprojects/apache-derby-database.html</guid>
+      <description>Using Apache Derby Database **NOTE: The current code in the trunk does not support Derby (21 Aug 2009)**
+Prerequisites You should have installed:
+ JDK (it is maybe possible to work with jre only)  Downloading and Setting Up the Database for VCL   Download Apache Derby and install it.
+cd ~ wget http://apache.g5searchmarketing.com/db/derby/db-derby-10.5.1.1/db-derby-10.5.1.1-bin.tar.gz tar -xzf db-derby-10.5.1.1-bin.tar.gz mkdir /opt/Apache mv db-derby-10.5.1.1-bin /opt/Apache/derby export DERBY_HOME=&amp;#34;/opt/Apache/derby&amp;#34; export CLASSPATH=&amp;#34;${DERBY_HOME}/lib/derby.jar:${DERBY_HOME}/lib/derbytools.jar:${CLASSPATH}&amp;#34; PATH=&amp;#34;$DERBY_HOME/bin:$PATH&amp;#34;   Create a database in Apache Derby.</description>
+    </item>
+    
+    <item>
+      <title>Automated Installation of VCL</title>
+      <link>https://vcl.apache.org/comm/commprojects/automated-installation-of-vcl.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/commprojects/automated-installation-of-vcl.html</guid>
+      <description>I developed a set of scripts to automate the installation of VCL for my own purposes. I used the scripts in an advanced Linux class I taught at NCA&amp;amp;T as an example of scripting. Several student teams installed VCL on their individual servers, and the installation had to be repeated after the students experimented with the setup. The script made installation relatively quick and always consistent. The installation is basically one click.</description>
+    </item>
+    
+    <item>
+      <title>Board Reports</title>
+      <link>https://vcl.apache.org/comm/boardreports/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/</guid>
+      <description>2012 Feb 2012
+May 2012
+Jul 2012
+Aug 2012
+Sep 2012
+Dec 2012
+2011 Feb 2011
+May 2011
+Aug 2011
+Nov 2011
+2010 Feb 2010
+May 2010
+Aug 2010
+Nov 2010
+2009 Jan 2009
+Feb 2009
+May 2009
+Nov 2009</description>
+    </item>
+    
+    <item>
+      <title>Committer Guidelines</title>
+      <link>https://vcl.apache.org/comm/committer-guidelines.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/committer-guidelines.html</guid>
+      <description>Projects at Apache operate under a meritocracy, meaning those that the developers notice participating to a high extent will be invited to join the project as a committer.
+There are 4 steps you need to go through to become an eligible for consideration as a committer.
+  Politely and respectively answer questions on the Apache VCL dev and user lists. By answering questions on the community mailing lists, you show an interest in the community.</description>
+    </item>
+    
+    <item>
+      <title>Community</title>
+      <link>https://vcl.apache.org/comm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/</guid>
+      <description>The Apache VCL community strives to be open and inviting. Our mission is to advance the adoption and development of Apache VCL around the world.
+ Getting Involved Mailing Lists IRC Channel How do I Join the Project Board Reports Community Contributed Pages and Projects   Getting Involved One of the many benefits of Apache VCL being an open-source, community-driven project is that there are many ways to become involved and engaged.</description>
+    </item>
+    
+    <item>
+      <title>Contribute Documentation</title>
+      <link>https://vcl.apache.org/comm/contribute-documentation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/contribute-documentation.html</guid>
+      <description>Anyone can submit changes for our web site. ASF CMS sites follow a &amp;ldquo;Review-Then-Commit&amp;rdquo; model for anonymous commits.
+The CMS documentation provides further information on anonymously editing a CMS site.
+Steps for non-committers to modify the VCL CMS  drag and drop the javascript anonymous CMS bookmarklet to your browser bookmarks select a page on our site you would like to edit open the bookmarklet you just added to your bookmarks click the Edit link for the page you&amp;rsquo;d like to modify make any changes to the page ensure the Quick Mail checkbox is selected leave dev@vcl.</description>
+    </item>
+    
+    <item>
+      <title>Getting Involved</title>
+      <link>https://vcl.apache.org/comm/getting-involved.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/getting-involved.html</guid>
+      <description>stub page</description>
+    </item>
+    
+    <item>
+      <title>Mailing Lists</title>
+      <link>https://vcl.apache.org/comm/mailing-lists.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/mailing-lists.html</guid>
+      <description>stub page</description>
+    </item>
+    
+    <item>
+      <title>Wiki</title>
+      <link>https://vcl.apache.org/comm/wiki.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/wiki.html</guid>
+      <description> </description>
+    </item>
+    
+  </channel>
+</rss>

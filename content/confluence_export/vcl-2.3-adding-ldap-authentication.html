@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - VCL 2.3 - Adding LDAP Authentication</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">VCL 2.3 - Adding LDAP Authentication</h1>
+    
+	<p><a name="VCL2.3-AddingLDAPAuthentication-*AddingLDAPAuthenciation*"></a></p>
+<h2 id="adding-ldap-authenciation"><em>Adding LDAP Authenciation</em></h2>
+<p><a name="VCL2.3-AddingLDAPAuthentication-PrerequisitesforyourLDAPserver:"></a></p>
+<h3 id="prerequisites-for-your-ldap-server">Prerequisites for your LDAP server:</h3>
+<ul>
+<li>SSL should be enabled on your LDAP server</li>
+<li>An LDAP account that can look up a user&rsquo;s first and last names, user id,
+and email address (email address is optional) - this will be referred to as
+&lsquo;vcllookup&rsquo; on this page. You can skip this step if anonymous binds are
+enabled on your LDAP server and an anonymous bind will be able to look up
+userids, names, and email addresses.</li>
+<li>If your LDAP server is behind a firewall, you will need to allow your VCL
+web server to access tcp port 636 on your LDAP server</li>
+</ul>
+<p><a name="VCL2.3-AddingLDAPAuthentication-PrerequisitesforyourVCLwebserver:"></a></p>
+<h3 id="prerequisites-for-your-vcl-web-server">Prerequisites for your VCL web server:</h3>
+<ul>
+<li>
+<p><em>php-ldap</em> needs to be installed</p>
+</li>
+<li>
+<p>If your LDAP server&rsquo;s SSL certificate is self-signed, your VCL web server
+needs to have the root CA certificate that was used to sign the LDAP server
+certificate installed. The PEM formatted certificate needs to be added to
+the ca-bundle.crt file. On CentOS, the file is located at
+/etc/pki/tls/certs/ca-bundle.crt. The hostname in the certificate must
+match the hostname entered in the conf.php file further down. If your
+certificate does not have the correct hostname in it, you can put an entry
+in /etc/hosts for the hostname in the certificate.</p>
+</li>
+<li>
+<p>After adding the certificate, restart httpd:
+{tip}
+service httpd restart
+{tip}</p>
+</li>
+<li>
+<p>You can verify that the certificate is properly installed using this
+command:
+{tip}
+openssl s_client -showcerts -CAfile /etc/pki/tls/certs/ca-bundle.crt
+-connect your.ldap.server.here:636
+{tip}
+If you see &ldquo;Verify return code: 0 (ok)&rdquo; at the end of the output then it is
+installed correctly. If you see a different return code, then you&rsquo;ll need
+to troubleshoot the problem.</p>
+</li>
+<li>
+<p>You may need to add a line to <em>/etc/openldap/ldap.conf</em> to point to the
+ca-bundle.crt file. If so, add the following:</p>
+<p>TLS_CACERT /etc/pki/tls/certs/ca-bundle.crt</p>
+</li>
+</ul>
+<p><a name="VCL2.3-AddingLDAPAuthentication-AddingLDAPAuthenticationtotheWebCode"></a></p>
+<h3 id="adding-ldap-authentication-to-the-web-code">Adding LDAP Authentication to the Web Code</h3>
+<ul>
+<li>You will need to manually add an entry to the affiliation table in the
+VCL database. Choose a name for the affiliation. This will be appended to
+all userids for the affiliation to distinguish them from other affiliations
+you may configure later. <em>Do not</em> use the Global affiliation for this.
+Initials or a short name of your organization are a good idea. The
+affiliation name cannot contain spaces. Use the following to add the
+affiliation, replacing &lsquo;EXAMPLE&rsquo; with the name you chose. Take note of the
+id from the 2nd SQL statement as you will need it later. It is the
+numerical id for this affiliation.
+{tip}
+mysql vcl
+{tip}
+{tip}
+INSERT INTO affiliation (name) VALUES (&lsquo;EXAMPLE&rsquo;);
+{tip}
+{tip}
+SELECT id FROM affiliation WHERE name = &lsquo;EXAMPLE&rsquo;;
+{tip}
+{tip}
+exit
+{tip}</li>
+<li>Edit <em>conf.php</em> and search for &ldquo;EXAMPLE1 LDAP&rdquo;</li>
+<li>Uncomment the &ldquo;EXAMPLE1 LDAP&rdquo; section by removing the &lsquo;/*&rsquo; before it and
+the &lsquo;*/&rsquo; at the end of &lsquo;to use this login mechanism&rsquo;</li>
+<li>Change &lsquo;EXAMPLE1 LDAP&rsquo; to something to match your location, for example
+at NCSU, it is &lsquo;NCSU LDAP&rsquo;. This string is what users will see where they
+select the authentication mechanism to use when logging in.</li>
+<li>Modify the following fields:
+** <em>server</em> - this is the hostname of your LDAP server - this must match
+the hostname in the certificate.
+** <em>binddn</em> - typically, you&rsquo;ll want to use the base DN of your LDAP
+server; for Active Directory, this is usually dc= for each of your domain
+name components. For example, your your domain name was ad.example.org, it
+would be &ldquo;dc=ad,dc=example,dc=org&rdquo;
+** <em>userid</em> - this is a string that is added to the userid a user enters
+on the login page. Place a &lsquo;%s&rsquo; where the entered userid should go. Some
+examples are:
+*** %s@example.org
+*** %s@ad.example.org
+*** uid=%s,ou=accounts,dc=example,dc=org&rsquo;
+** <em>unityid</em> - this is the ldap field that contains a user&rsquo;s login id (for
+Active Directory, this is usually sAMAccountName)
+** <em>firstname</em> - this is the ldap field that contains a user&rsquo;s first name
+** <em>lastname</em> - this is the ldap field that contains a user&rsquo;s last name
+** <em>email</em> - this is the ldap field that contains a user&rsquo;s email address
+** <em>defaultemail</em> - if an email address is not provided by the ldap
+server, this will be appended to the end of the userid to create an email
+address. In this case, email notifications will be disabled by default.
+** <em>masterlogin</em> - this is the vcllookup account referred to in the
+&ldquo;Prerequisites for your LDAP server&rdquo; section - comment out this line if
+using anonymous binds
+** <em>masterpwd</em> - password for the masterlogin account - comment out this
+line if using anonymous binds
+** <em>affiliationid</em> - this is the id from the SELECT statement in the first
+step
+** <em>lookupuserbeforeauth</em> - Some LDAP servers will only allow the full DN
+of a user to be used when authenticating. If this is the case, you will
+need to set this to 1 and set a value for <em>lookupuserfield</em>. You can
+probably start out with this set to 0. If your LDAP server has users in
+multiple containers, you will probably need to set this to 1.
+** <em>lookupuserfield</em> - If you need to set <em>lookupuserbeforeauth</em> to 1, set
+this to the attribute to use to search for the user in ldap. Typical values
+are &lsquo;cn&rsquo;, &lsquo;uid&rsquo;, and &lsquo;samaccountname&rsquo;.
+** <em>help</em> - this is some text that will show up on the page where users
+select the authentication method explaining why they would select this
+option</li>
+<li>Uncomment the <em>require_once</em> line for <em>ldapauth.php</em> toward the bottom of
+the file</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

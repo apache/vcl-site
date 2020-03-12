@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Install a Windows Base Image</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Install a Windows Base Image</h1>
+    
+	<p>This page describes how to mount the Windows installation media and install Windows for a base image.</p>
+<p><strong>Mount the Installation Media</strong></p>
+<p>The Windows installation media needs to be mounted as a drive on the computer. The method to do this varies widely based on the provisioning engine being used and resources available. The following lists some ways to mount the installation media:</p>
+<p><strong>VMware - Configure the VM to mount the ISO image as a CD-ROM drive</strong></p>
+<p>Note: these instructions assume a VM has already been created</p>
+<ol>
+<li>Copy the Windows installation ISO file to the VMware host server</li>
+<li>Add a CD-ROM drive which mounts the Windows installation ISO image by
+editing the virtual machine settings:
+<ul>
+<li>Connection: <strong>Use ISO image</strong>:</li>
+<li>Browse to path of Windows installation ISO image</li>
+<li>Save the VM configuration</li>
+</ul>
+</li>
+</ol>
+<p><strong>xCAT using IBM Advanced Management Module</strong></p>
+<ol>
+<li>Copy the Windows installation ISO file to the management node</li>
+<li>Determine the IP address or hostname of the IBM Advanced Management Module (AMM) for the BladeCenter chassis which contains the blade you are installing</li>
+<li>Open a web browser and enter the AMM&rsquo;s address</li>
+<li>Log in to the AMM</li>
+<li>Select Inactive session timeout value: no timeout</li>
+<li>Click Start New Session</li>
+<li>Click Remote Control</li>
+<li>Click Start Remote Control</li>
+<li>Set the Media Tray and KVM dropdown menus to the blade you are installing</li>
+<li>Click Select Image and click the arrow button to the right of it</li>
+<li>Navigate to the Windows installation ISO file which was saved to the management node and click Open
+12 . Click Mount All</li>
+</ol>
+<p><strong>Boot to the Windows Installation CD or DVD</strong></p>
+<ol>
+<li>Power on the computer</li>
+<li>Press the key to display the boot menu as soon as the computer&rsquo;s POST screen is displayed (usually F12 for bare metal blades or ESC for VMware)</li>
+<li>Boot from the CD-ROM drive</li>
+<li>Press a key to boot from the CD (this may be displayed at bottom of screen as soon as the computer begins to boot)</li>
+</ol>
+<p><strong>Install Windows</strong></p>
+<p>The Windows installation sequence varies by version. The next 2 sections describe the recommended answers for Windows XP and Windows 7.</p>
+<p><strong>Windows XP Installation</strong></p>
+<ol>
+<li>Press Enter to setup up Windows XP now</li>
+<li>Press F8 to agree to the license agreement</li>
+<li>Configure the Windows partition
+<ul>
+<li>Press Enter to set up Windows XP on the selected item (should be called &ldquo;Unpartitioned space&rdquo;)</li>
+<li>Format the partition using the NTFS file system (Quick)</li>
+</ul>
+</li>
+<li>Region and Language Options - click Next</li>
+<li>Name: VCL</li>
+<li>Organization: Apache.org</li>
+<li>Enter your Windows XP product key</li>
+<li>Computer name: (doesn&rsquo;t matter)</li>
+<li>Administrator password: (doesn&rsquo;t matter, but it&rsquo;s recommended that password should match the WINDOWS_ROOT_PASSWORD setting in /etc/vcl/vcld.conf)</li>
+<li>Select the timezone</li>
+<li>Networking settings: Typical</li>
+<li>Member of a domain: No, leave default workgroup settings</li>
+<li>Automatic updates: Not right now</li>
+<li>Connect to Internet: Skip</li>
+<li>Register: no</li>
+<li>User name: root
+<ul>
+<li>Windows XP setup should finish and the root account created during installation should automatically log on</li>
+</ul>
+</li>
+<li>Once the desktop appears, set root&rsquo;s password via the Windows GUI or by executing the following command from a command prompt:
+net user root <password></li>
+</ol>
+<p><strong>Windows 7 Installation</strong></p>
+<ol>
+<li>Enter the regional information:
+<ul>
+<li>Language to install: English</li>
+<li>Time and currency format: English (United States)</li>
+<li>Keyboard or input method: US</li>
+</ul>
+</li>
+<li>Click Next</li>
+<li>Click Install now
+<em>Setup is starting&hellip;</em></li>
+<li>Click the checkbox next to &ldquo;I accept the license terms&rdquo;</li>
+<li>Click Next</li>
+<li>Click Custom (advanced)</li>
+<li>On the &ldquo;Where do you want to install Windows?&rdquo; page, delete all existing partitions and create a new partition using all of the available space:
+<ul>
+<li>Click Drive options (advanced)</li>
+<li>Click Delete, then click OK to confirm</li>
+<li>Click New</li>
+<li>Click Apply (the size should be set to the maximum amount available
+<em>To ensure that all Windows features work correctly, Windows might create additional partitions for system files.</em></li>
+<li>Click OK</li>
+</ul>
+</li>
+<li>Click Next
+<ul>
+<li><em>Installing Windows&hellip;</em></li>
+<li><em>Windows restarts</em></li>
+<li><em>Starting Windows</em></li>
+<li><em>Setup is updating registry settings</em></li>
+</ul>
+</li>
+<li>A screen titled &ldquo;Set Up Windows&rdquo; appears:
+<ul>
+<li>Type a user name: root</li>
+<li>Type a computer name: it&rsquo;s best to name the computer after the OS (Example: win7sp1-ent)</li>
+</ul>
+</li>
+<li>Enter a password, password hint, and click Next</li>
+<li>Help protect your computer and improve Windows automatically: Ask me later</li>
+<li>Select a time zone, set the correct time, and click Next
+- <em>Windows is finalizing your settings</em>
+- <em>Preparing your desktop</em>
+- <em>Desktop appears</em></li>
+<li>If asked to set a network location, choose Work network
+<ul>
+<li><em>The root account logs in&hellip;</em></li>
+</ul>
+</li>
+</ol>
+<p><strong>Windows Server 2008</strong></p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

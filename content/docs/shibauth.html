@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Shibboleth Authentication</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Shibboleth Authentication</h1>
+    
+	<p>The VCL is designed to support Shibboleth authentication for one or more affiliations. Using Shibboleth
+does not preclude the use of LDAP for other affiliations in the same VCL infrastructure. The principal
+advantage of using Shibboleth with the VCL is the ability to completely externalize authentication
+(and, to a certain degree, authorization) decisions. That is, by using Shibboleth authentication, a user&rsquo;s
+password will never pass through the VCL system.</p>
+<h2 id="configure-apache">Configure Apache</h2>
+<p>The first step is to configure Apache by protecting the <code>/shibauth</code> directory on your webserver.
+If the VCL is installed in the webserver root, the configuration will look like this:</p>
+<pre><code>&lt;Location /shibauth&gt;
+    AuthType shibboleth
+    ShibRequestSetting requireSession 1
+    require valid-user
+&lt;/Location&gt;
+</code></pre>
+<h2 id="test-shibboleth-attributes">Test Shibboleth Attributes</h2>
+<p>Before proceeding, it is generally a good idea to test that the shibboleth attributes are being correctly sent
+from the Identity Provider (IdP) to the Service Provider (SP). To do that, create a PHP file in your
+<code>/shibauth</code> directory (e.g. <code>test.php</code>):</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;title&gt;Shibboleth Test&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Shibboleth Test&lt;/h1&gt;
+&lt;?php
+// Include the Shibboleth attributes you intend to test here
+$attributes = array('displayName', 'mail', 'eppn',
+                    'givenName', 'sn', 'affiliation', 'unscoped-affiliation');
+foreach($attributes as $a){
+    print &quot;&lt;p&gt;&quot;;
+    print &quot;&lt;strong&gt;$a&lt;/strong&gt; = &quot;;
+    print isset($_SERVER[$a]) ? $_SERVER[$a] : &quot;&lt;em&gt;Undefined&lt;/em&gt;&quot;;
+    print &quot;&lt;/p&gt;&quot;;
+}
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Then visit this page at <code>https://vcl.yourdomain.edu/shibauth/test.php</code></p>
+<p>The only attribute that is absolutely required is <code>eppn</code>, but the VCL also expects
+the following attributes to be defined:</p>
+<ul>
+<li>either <code>displayName</code> or both <code>givenName</code> and <code>sn</code></li>
+<li><code>mail</code></li>
+<li><code>affiliation</code></li>
+</ul>
+<p>If these attributes are not present or not correct, then you may need to fix the configuration of
+Shibboleth on your system. Either the SP is not mapping the attributes properly or the IdP is not
+releasing them. Some good places to start include inspecting the full contents of the
+<code>$_SERVER</code> array or write a script that calls <code>phpinfo();</code>.</p>
+<h2 id="configure-the-vcl-for-shibboleth-authentication">Configure the VCL for Shibboleth authentication</h2>
+<p>Open the <code>.ht-inc/conf.php</code> file in a text editor</p>
+<p>Define your institution in the <code>$authMechs</code> array like so:</p>
+<pre><code>$authMechs = array(
+    &quot;My Institution&quot; =&gt; array(
+            &quot;type&quot; =&gt; &quot;redirect&quot;,
+            &quot;URL&quot; =&gt; &quot;/Shibboleth.sso/Login?target=/shibauth&amp;entityID={the URL-encoded location of your IdP}&quot;,
+            &quot;affiliationid&quot; =&gt; 0,
+            &quot;help&quot; =&gt; &quot;...&quot;),
+    ....
+);
+</code></pre>
+<p>Notice that affiliationid is set to 0.</p>
+<p>If you wish to be able to manually add users to groups through the web interface (that is, Shibboleth users who
+have not previously logged in), then you will need to have this line in the configuration:</p>
+<pre><code>define(&quot;ALLOWADDSHIBUSERS&quot;, 1);
+</code></pre>
+<p>By default this is set as 0.</p>
+<p>Finallly, uncomment this line at the bottom of the configuration file:</p>
+<pre><code>require_once(&quot;.ht-inc/authmethods/shibauth.php&quot;);
+</code></pre>
+<h2 id="test-the-login-process">Test the login process</h2>
+<p>At this point, you should be able to login via shibboleth. A user account will be created for you
+and if there is an <code>affiliation</code> attribute sent from the IdP, you will be placed into any groups listed
+there: for instance, if the <code>affiliation</code> attribute is <code>faculty;staff</code>, then the user will be placed in the
+<code>shib-faculty@AFFILIATION</code> and <code>shib-staff@AFFILIATION</code> groups. You should confirm that this works.
+Please also note that Shibboleth uses the word affiliation to refer to groups that a user is associated with;
+for example, &ldquo;employee&rdquo; or &ldquo;student&rdquo;. The VCL uses the word affiliation to refer to an institution that uses
+the system. This can be confusing.</p>
+<h2 id="further-configuration">Further configuration</h2>
+<p>If you wish to further customize how Shibboleth works, you can edit the <code>shibauth/index.php</code> file.
+If, for instance, you wish to add all users to an <code>All users@AFFILIATION</code> group, then add this line of
+code (after the <code>$affilid</code> variable has been defined):</p>
+<pre><code>updateGroups(array(getUserGroupID('All users', $affilid)), $usernid);
+</code></pre>
+<p>This file would also be a good place to define a <code>Shib-logouturl</code> and a <code>Shib-IdP-Logout</code> value in the
+<code>$shibdata</code> array. More about that below.</p>
+<h2 id="logging-out">Logging out</h2>
+<p>Logging out is very complicated when it comes to Shibboleth. The best way to log out is to completely
+close (i.e. quit) your browser. However, if you would like the &ldquo;logout&rdquo; link to work as users will generally
+expect, these instructions will explain how to set that up.</p>
+<p><strong>Please note</strong>: these instructions do not describe the so-called &ldquo;global logout&rdquo;. That is, these examples
+only provide a means for logging the user out of the VCL. If a user is also logged into another shibbolized
+application, he or she will continue (depending to some degree on the server settings) to be logged in to
+that application, even after logging out of the VCL.</p>
+<p>The main thing to realize is that for any shib-enabled VCL session, there are (at least) three session cookies,
+and for a user to truly &ldquo;logout&rdquo;, all three of them must be destroyed. The first cookie is the VCL application
+cookie, &ldquo;VCLAUTH&rdquo;. That can be destroyed by overwriting it from within the VCL application &ndash; this typically
+happens automatically.</p>
+<p>The next cookie is the for the SP session. If that cookie continues to exist, then when a browser lands on
+the <code>/shibauth</code> directory, the previous SP session will be used and the user will be immediately back in the
+application. To destroy the SP session, you need to issue a GET request to <code>/Shibboleth.sso/Logout</code>.</p>
+<p>The third cookie exists on the IdP. If that cookie isn&rsquo;t destroyed (and hasn&rsquo;t timed out), then the next time a
+user is redirected to the IdP, she or he will be immediately be sent back to the SP with a valid session &ndash; and then
+on to the application with a valid session. To destroy the cookie on the IdP, you will need to have code placed
+there to destroy the cookie. If the IdP cookie is named _idp_session, then you could, for instance, have a script
+on the IdP that looks like this:</p>
+<pre><code>https://idp.yourinstitution.edu/logout.php
+
+&lt;?php
+setcookie(_idp_session&quot;, 0, 0, &quot;/idp&quot;, &quot;&quot;, TRUE);
+header(&quot;Content-type: text/html&quot;);
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;&lt;title&gt;Session Logout&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Session Logout&lt;/h1&gt;
+  &lt;p&gt;You have logged out of your application session.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>The way the VCL handles logout is that it loads a page that overwrites the application cookie and which loads
+two hidden iframes &ndash; the first one destroys the SP cookie, and the second one tries to destroy the IdP cookie.
+The problem is just that it assumes your IdP logout script is located at this address:</p>
+<pre><code>https://MYIDP/idp/logout.jsp
+</code></pre>
+<p>The best way to override this behavior is to modify the <code>shibauth/index.php</code> script and set a <code>Shib-logouturl</code>
+value in the <code>$shibdata</code> array. You may also want to define a value for <code>Shib-IdP-Logout</code> so that it is
+available to your script. This is useful if there are multiple institutions using your VCL system.</p>
+<p>That should be a path to a file within the VCL web directory, such as <code>/logout.php</code>.</p>
+<p>You can then customize this new file to display whatever you like; here is a bare-bones example:</p>
+<pre><code>&lt;?php
+require_once(&quot;.ht-inc/conf.php&quot;);
+require_once(&quot;.ht-inc/utils.php&quot;);
+require_once(&quot;.ht-inc/states.php&quot;);
+dbConnect();
+initGlobals();
+
+$shibdata = getShibauthData($shibauthed);
+
+setcookie(&quot;VCLAUTH&quot;, &quot;&quot;, time() - 10, &quot;/&quot;, COOKIEDOMAIN);
+
+doQuery(&quot;DELETE FROM shibauth WHERE id = $shibauthed&quot;, 101);
+stopSession();
+dbDisconnect();
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;title&gt;Virtual Computing Lab&lt;/title&gt;
+  &lt;style type=&quot;text/css&quot;&gt;
+    iframe { display: none; }
+    article { text-align: center; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;&lt;a href=&quot;https://vcl.MYINSTITUTION.edu&quot;&gt;Virtual Computing Lab&lt;/a&gt;&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Logging out of the VCL...&lt;/h2&gt;
+    &lt;p&gt;In order to completely log out of this application, please quit your browser.&lt;/p&gt;
+  &lt;/article&gt;
+  &lt;iframe src=&quot;https://&lt;?php print $_SERVER['SERVER_NAME']; ?&gt;/Shibboleth.sso/Logout&quot;&gt;
+  &lt;/iframe&gt;
+&lt;?php
+if(array_key_exists('Shib-IdP-Logout', $shibdata) &amp;&amp;
+        ! empty($shibdata['Shib-IdP-Logout'])) {
+    print &quot;&lt;iframe src=\&quot;{$shibdata['Shib-IdP-Logout']}\&quot;&gt;\n&quot;;
+    print &quot;&lt;/iframe&gt;\n&quot;;
+}
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

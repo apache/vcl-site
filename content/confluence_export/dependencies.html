@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Dependencies</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Dependencies</h1>
+    
+	<p><a name="Dependencies-Frontend"></a></p>
+<h2 id="frontend">Frontend</h2>
+<ul>
+<li>Apache HTTP Server v1.3 or v2.x with SSL enabled - while VCL may run
+under another webserver capable of running PHP code, it has only been
+tested to work with Apache HTTP Server</li>
+<li>PHP 4 or 5, including these modules:
+** php-mcrypt
+** php-mysql
+** php-xmlrpc
+** php-gd
+** php-xml</li>
+<li>Dojo Toolkit</li>
+<li>JPGraph</li>
+<li>FCKEditor (optional)</li>
+<li>useful to have the server set up to be able to send debugging emails</li>
+</ul>
+<p><a name="Dependencies-Backend"></a></p>
+<h2 id="backend">Backend</h2>
+<ul>
+<li>Perl</li>
+<li>Perl Modules (available from cpan.org)
+** <a href="http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-2.04.tar.gz">http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-2.04.tar.gz</a>
+** <a href="http://search.cpan.org/CPAN/authors/id/T/TM/TMTM/Class-Data-Inheritable-0.08.tar.gz">http://search.cpan.org/CPAN/authors/id/T/TM/TMTM/Class-Data-Inheritable-0.08.tar.gz</a>
+** <a href="http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Devel-StackTrace-1.20.tar.gz">http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Devel-StackTrace-1.20.tar.gz</a>
+** <a href="http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Exception-Class-1.26.tar.gz">http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Exception-Class-1.26.tar.gz</a>
+** <a href="http://search.cpan.org/CPAN/authors/id/J/JD/JDHEDDEN/Object-InsideOut-3.52.tar.gz">http://search.cpan.org/CPAN/authors/id/J/JD/JDHEDDEN/Object-InsideOut-3.52.tar.gz</a>
+** <a href="http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Module-Build-0.30.tar.gz">http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Module-Build-0.30.tar.gz</a>
+** <a href="http://search.cpan.org/CPAN/authors/id/A/AG/AGROLMS/GSSAPI-0.26.tar.gz">http://search.cpan.org/CPAN/authors/id/A/AG/AGROLMS/GSSAPI-0.26.tar.gz</a>
+** <a href="http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Authen-SASL-2.12.tar.gz">http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Authen-SASL-2.12.tar.gz</a>
+** <a href="http://search.cpan.org/CPAN/authors/id/R/RE/REATMON/XML-Stream-1.22.tar.gz">http://search.cpan.org/CPAN/authors/id/R/RE/REATMON/XML-Stream-1.22.tar.gz</a>
+** <a href="http://search.cpan.org/CPAN/authors/id/H/HA/HACKER/Net-XMPP-1.02.tar.gz">http://search.cpan.org/CPAN/authors/id/H/HA/HACKER/Net-XMPP-1.02.tar.gz</a>
+** <a href="http://search.cpan.org/CPAN/authors/id/R/RE/REATMON/Net-Jabber-2.0.tar.gz">http://search.cpan.org/CPAN/authors/id/R/RE/REATMON/Net-Jabber-2.0.tar.gz</a>
+** <a href="http://www.cpan.org/modules/by-module/XML/XML-Parser-2.36.tar.gz">http://www.cpan.org/modules/by-module/XML/XML-Parser-2.36.tar.gz</a>
+** <a href="http://www.cpan.org/modules/by-module/RPC/RPC-XML-0.64.tar.gz">http://www.cpan.org/modules/by-module/RPC/RPC-XML-0.64.tar.gz</a>
+** <a href="http://www.cpan.org/modules/by-module/Crypt/Crypt-SSLeay-0.57.tar.gz">http://www.cpan.org/modules/by-module/Crypt/Crypt-SSLeay-0.57.tar.gz</a></li>
+</ul>
+<p><a name="Dependencies-BackendScripting&ProgrammingLanguages"></a></p>
+<h3 id="backend-scripting--programming-languages">Backend Scripting &amp; Programming Languages</h3>
+<ul>
+<li>Perl - the backend is predominantly driven by Perl code</li>
+<li>DOS/Windows Batch - several batch (.cmd) files perform tasks
+to configure Windows images </li>
+<li>VBScript - several VBScript (.vbs) files perform tasks to configure
+Windows images</li>
+<li>INI files - Windows .ini files need to be configured to customize the
+Windows installation (sysprep.ini, cmdlines.ini)</li>
+</ul>
+<p><a name="Dependencies-ProvisioningEngines"></a></p>
+<h2 id="provisioning-engines">Provisioning Engines</h2>
+<ul>
+<li>xCAT 1.3 or xCAT 2.1 <a href="http://xcat.sourceforge.net">xCAT.org</a></li>
+<li>VMWare Free Server</li>
+<li>VMWare ESX can use native vmware-cmd or VMware perl toolkit</li>
+<li>VMWare ESXi requires <a href="http://www.vmware.com/support/developer/viperltoolkit/">VMware perl toolkit</a></li>
+<li>KVM</li>
+<li>IBM Smart Cloud computing ( in development, ask on the mailing list)</li>
+</ul>
+<p><a name="Dependencies-Images"></a></p>
+<h2 id="images">Images</h2>
+<p><a name="Dependencies-WindowsImageUtilities&OtherFiles"></a></p>
+<h3 id="windows-image-utilities--other-files">Windows Image Utilities &amp; Other Files</h3>
+<ul>
+<li>Windows Sysprep for each version of Windows being used, available from
+microsoft.com( only needed for bare-metal loads)</li>
+<li>Driver files specific to each version/platform of Windows being used</li>
+<li>spdrvscn.exe utility - scans Windows drivers before an image is saved,
+available from vernalex.com</li>
+<li>wsname.exe utility - renames computer according to registered DNS name,
+available from mystuff.clarke.co.nz</li>
+<li>Cygwin with OpenSSH - allows management nodes to control loaded Windows
+OS on blades, available from cygwin.com</li>
+</ul>
+<p><a name="Dependencies-LinuxKickstartDeployment"></a></p>
+<h3 id="linux-kickstart-deployment">Linux Kickstart Deployment</h3>
+<ul>
+<li>installation media for Linux distribution that is supported by xCAT</li>
+</ul>
+<p><a name="Dependencies-Database"></a></p>
+<h2 id="database">Database</h2>
+<ul>
+<li>MySQL</li>
+<li>PHPMyAdmin (optional)</li>
+</ul>
+<p><a name="Dependencies-Network"></a></p>
+<h2 id="network">Network</h2>
+<p>Two or Three networks (see <a href="network-layout.html">Network Layout</a>
+):</p>
+<ol>
+<li>private network - where most control operations happen and where images
+are pushed around</li>
+<li>public network - how end users connect to the nodes</li>
+<li>Blade Center management network - this is only needed if doing bare metal
+deployment; it is used to communicate with the blade server management
+modules to power on/off the blades and to configure the boot process</li>
+</ol>
+<p><a name="Dependencies-Hardware"></a></p>
+<h2 id="hardware">Hardware</h2>
+<p>VCL can deploy images on various types of hardware depending on your needs.
+The following deployment methods have been tested with the listed hardware:</p>
+<ul>
+<li>bare metal kickstart deploys using xCAT:
+** IBM BladeCenter Blade models HS20, HS21, HS22&rsquo;s
+** Sun blade models X6220 and X6250</li>
+<li>bare metal image deploys using xCAT:
+** IBM BladeCenter Blade models HS20 and HS21</li>
+<li>VMWare Free Server image deploys should work on any hardware with VMWare
+Free Server installed and 2 network interfaces</li>
+<li>VMWare ESX or ESXi image deploys should work on any hardware with VMWare
+ESX installed and 2 network interfaces</li>
+<li>VMWare vcenter</li>
+<li>KVM based image deploys should work on any VT capable hardware with KVM
+hypervisor installed and 2 network interfaces</li>
+</ul>
+<p><a name="Dependencies-DevelopmenttoolsusedbyVCLcommitters"></a></p>
+<h2 id="development-tools-used-by-vcl-committers">Development tools used by VCL committers</h2>
+<ul>
+<li>ActiveState Komodo IDE - used to develop several types of files,
+commercial product</li>
+<li>SlickEdit</li>
+<li>VI/VIM</li>
+<li>Firebug plugin for Firefox</li>
+<li>WinSCP - used to manually transfer files to/from Windows images and
+to/from Windows development machines</li>
+<li>PuTTY</li>
+</ul>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

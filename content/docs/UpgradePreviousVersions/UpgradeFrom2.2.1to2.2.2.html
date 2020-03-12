@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Upgrade From 2.2.1 to 2.2.2</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Upgrade From 2.2.1 to 2.2.2</h1>
+    
+	<p>This page provides information on how to upgrade from VCL 2.2.1 to VCL 2.2.2. Please
+note it only applies for the upgrade from 2.2.1 to 2.2.2, this may or may not work for
+other versions.</p>
+<p><strong>The basic steps that will be performed</strong></p>
+<ul>
+<li>Download and Extract 2.2.2 code</li>
+<li>Shutdown httpd service</li>
+<li>Create backup of vcl database</li>
+<li>Create backup of web code</li>
+<li>Upgrade web code</li>
+<li>Restart httpd service</li>
+</ul>
+<h1 id="detailed-steps-for-upgrade-from-221-to-222">Detailed steps for upgrade from 2.2.1 to 2.2.2</h1>
+<ol>
+<li>
+<p>follow instructions on the <a href="http://vcl.apache.org/downloads/download.cgi">VCL download</a>
+page to download and verify apache-VCL-2.2.2.tar.bz2 and put in in /root</p>
+</li>
+<li>
+<p><strong>extract VCL 2.2.2 code</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar xjf apache-VCL-2.2.2.tar.bz2
+</code></pre></div></li>
+<li>
+<p><strong>Shutdown</strong> the httpd service</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service httpd stop or /etc/init.d/httpd stop
+</code></pre></div></li>
+<li>
+<p>We will <strong>create a backup of the vcl database</strong>. This will provide a restore point
+if necessary. There are no updates to the database in this upgrade, but it is still a
+good idea to have a backup.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysqldump vcl &gt; ~/vcl-pre2.2.2-upgrade.sql
+</code></pre></div></li>
+<li>
+<p><strong>Backup the web code</strong>. This step will move the 2.2.1 web directory out of the
+way so we can copy in the new web code base. These instructions assume that you installed the
+vcl web code at /var/www/html/vcl. If you installed it elsewhere, replace
+/var/www/html/vcl with your vcl web root.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> /var/www/html
+mv vcl ~/vcl_2.2.1_web
+</code></pre></div></li>
+<li>
+<p><strong>Copy the new code</strong> in place</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> /root/apache-VCL-2.2.2
+cp -r web /var/www/html/vcl
+</code></pre></div></li>
+<li>
+<p><strong>Copy your 2.2.1 config files</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> ~/vcl_2.2.1_web/.ht-inc
+cp conf.php secrets.php pubkey.pem keys.pem /var/www/html/vcl/.ht-inc
+</code></pre></div></li>
+<li>
+<p><strong>Make the maintenance directory writable by the web server user</strong>. Normally this is
+the apache user. If using a different user, change the below command accordingly.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chown apache /var/www/html/vcl/.ht-inc/maintenance
+</code></pre></div></li>
+<li>
+<p><strong>Restart httpd service</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service httpd start or /etc/init.d/httpd start
+</code></pre></div></li>
+<li>
+<p>Make some test reservations and watch the vcld.log to verify everything is working
+correctly.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f /var/log/vcld.log
+</code></pre></div></li>
+</ol>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

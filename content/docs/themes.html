@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Themes</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Themes</h1>
+    
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#file-system-structure">File system structure</a></li>
+    <li><a href="#vcl-html-generation">VCL HTML generation</a></li>
+    <li><a href="#understanding-pagephp">Understanding page.php</a></li>
+    <li><a href="#path-references">Path references</a></li>
+    <li><a href="#example-bare-minimal-theme">Example: bare minimal theme</a></li>
+    <li><a href="#using-a-new-theme">Using a new theme</a></li>
+    <li><a href="#tips-and-tricks">Tips and Tricks</a></li>
+  </ul>
+</nav>
+<h2 id="overview">Overview</h2>
+<p>Custom themes can be created in VCL for each affiliation. This allows a multi-site
+installation of VCL to have themes that match each affiliation&rsquo;s primary web site
+theme. When a user logs in, the site will be displayed using the theme specified
+for that user&rsquo;s affiliation. Additionally, when using <a href="/docs/ldapauth.html">LDAP
+authentication</a>, the login page for the affiliation will be
+displayed with the theme matching that affiliation.</p>
+<h2 id="file-system-structure">File system structure</h2>
+<p>The themes are in a <strong>themes</strong> directory in the web code. If you installed your web
+frontend under a directory named <strong>vcl</strong>, you would look in vcl/themes. Each VCL
+release comes with a <strong>default</strong> theme, which you should see at vcl/themes/default.
+Typically, you would set up the following directory structure for a new theme:</p>
+<ul>
+<li>vcl/themes/mynewtheme</li>
+<li>vcl/themes/mynewtheme/page.php</li>
+<li>vcl/themes/mynewtheme/images</li>
+<li>vcl/themes/mynewtheme/js</li>
+<li>vcl/themes/mynewtheme/css</li>
+</ul>
+<p>The page.php file and css directory are the only ones that are required. After creating
+the directory structure, you will need to go to the themes directory and run the
+copydojocss.sh script, passing it the name of the directory containing your new theme as
+an argument:</p>
+<pre><code>cd vcl/themes
+./copydojocss.sh mynewtheme
+</code></pre>
+<h2 id="vcl-html-generation">VCL HTML generation</h2>
+<p>There are a few parts to how VCL generates the HTML for any given page. There are some
+important functions of which to be aware. The first two must be in the page.php file:</p>
+<ul>
+<li>getHeader - generates all content up to and including the opening of a div element
+that will contain the main page content (typically what is to the right of the
+navigation menu); this div element must have an <strong>id</strong> of <strong>content</strong>; must have
+$refresh passed to it as an argument, which is then passed to getDojoHTML</li>
+<li>getFooter - closes the div element containing the main page content and generates any
+remaining content to close out the HTML for the page</li>
+</ul>
+<p>These are functions that exist in utils.php that are available to be called from
+getHeader and getFooter:</p>
+<ul>
+<li>getDojoHTML - returns a string of Dojo related style and javascript; needs to be
+called in the &lt;head&gt; part of the page; needs to be passed $refresh as an argument</li>
+<li>getExtraCSS - returns an array of css files expected to exist in the vcl/css directory
+that need to be included for the current value of $mode; a link tag needs to be created
+for each of these files</li>
+<li>getSelectLanguagePulldown - returns the html for a form that has a select element for
+changing the locale of the site</li>
+<li>getNavMenu - returns a string of list items that make up the navigation part of the
+site; needs to be wrapped in &lt;ul&gt; tags; accepts 3 arguments:
+<ul>
+<li>$inclogout - 0/1 - should a <strong>Logout</strong> item be at the bottom of the navigation list</li>
+<li>$inchome - 0/1 - should a <strong>HOME</strong> item be at the top of the navigation list</li>
+<li>$homeurl - (optional) - if $inchome is 1, use this as the href of the HOME link;
+if $inchome is 1 and $homeurl is not specified, HOME from conf.php is used</li>
+</ul>
+</li>
+</ul>
+<h2 id="understanding-pagephp">Understanding page.php</h2>
+<p>As noted above, this file must contain getHeader and getFooter. <strong>getHeader</strong> must
+contain these elements, all of which can be seen in the default theme&rsquo;s page.php file:</p>
+<ul>
+<li>opening html and head tags</li>
+<li>stylesheet link to &ldquo;css/vcl.css&rdquo;</li>
+<li>script tag with src=&quot;js/code.js&rdquo;</li>
+<li>script block setting the javascript variable <em>cookiedomain</em> to the php define
+<em>COOKIEDOMAIN</em> and setting usenls = 0</li>
+<li>a call to getDojoHTML($refresh) in the head section of the HTML</li>
+<li>a call to getExtraCSS() with a foreach to add a stylesheet link for each file in the
+array returned by getExtraCSS()</li>
+<li>closing head tag</li>
+<li>body tag with its class set to the name of the theme</li>
+<li>an unordered list wrapping the string returned by a call to getNavMenu() - this should
+be inside an if conditional checking for $authed to be true</li>
+<li>must end with an opening div tag with an id of <em>content</em></li>
+</ul>
+<p><strong>getFooter</strong> must contain these elements:</p>
+<ul>
+<li>closing div tag for the content div element</li>
+<li>closing body and html tags</li>
+</ul>
+<h2 id="path-references">Path references</h2>
+<p>There are a few things to keep in mind with respect to path references. From a web
+browser&rsquo;s perspective, all HTML generated by getHeader and getFooter will be part of the
+vcl/index.php file. So, any paths referenced in getHeader and getFooter need to be
+relative to that - example: &lt;img src=&quot;themes/mynewtheme/images/someimage.png&rdquo;&gt;. Any
+files referenced in css files in the theme&rsquo;s css directory will be relative to that css
+file. So, if you were to include a reference to an image in the theme&rsquo;s image directory
+in a css file in the css directory, you would reference it relative to the css directory</p>
+<ul>
+<li>example: url(../images/someimage.png)</li>
+</ul>
+<h2 id="example-bare-minimal-theme">Example: bare minimal theme</h2>
+<p>This example shows the bare minimum that must be included. For a more detailed example,
+look at the default theme include in each release. We&rsquo;ll call the theme &ldquo;minimal&rdquo;. First,
+we create a directory under the themes directory for it:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir vcl/themes/minimal
+</code></pre></div><p>Next, we create a css directory and run the copydojocss.sh script:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir vcl/themes/minimal/css
+<span style="color:#a2f">cd</span> vcl/themes
+./copydojocss.sh minimal
+</code></pre></div><p>Now, we create vcl/themes/minimal/page.php with this content:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">function getHeader($refresh) {
+    global $user, $mode, $authed, $locale, $VCLversion;
+    $rt  = &#34;<span style="color:#080">&lt;!DOCTYPE html&gt;</span>\n&#34;;
+    $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">html</span>&gt;\n&#34;;
+    $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">head</span>&gt;\n&#34;;
+    $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">title</span>&gt;VCL&lt;/<span style="color:#008000;font-weight:bold">title</span>&gt;\n&#34;;
+    $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">link</span> <span style="color:#b44">rel</span><span style="color:#666">=</span><span style="color:#b44">stylesheet</span> <span style="color:#b44">type</span><span style="color:#666">=</span><span style="color:#b44">\&#34;text/css\&#34;</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">\&#34;css/vcl.css\&#34;</span>&gt;\n&#34;;
+    $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">link</span> <span style="color:#b44">rel</span><span style="color:#666">=</span><span style="color:#b44">stylesheet</span> <span style="color:#b44">type</span><span style="color:#666">=</span><span style="color:#b44">\&#34;text/css\&#34;</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">\&#34;themes/minimal/css/minimal.css\&#34;</span>&gt;\n&#34;;
+    $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">script</span> <span style="color:#b44">src</span><span style="color:#666">=</span><span style="color:#b44">\&#34;js/code.js\&#34;</span> <span style="color:#b44">type</span><span style="color:#666">=</span><span style="color:#b44">\&#34;text/javascript\&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">script</span>&gt;\n&#34;;
+    $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">script</span> <span style="color:#b44">type</span><span style="color:#666">=</span><span style="color:#b44">\&#34;text/javascript\&#34;</span>&gt;<span style="">\</span>n<span style="color:#b44">&#34;;
+</span><span style="color:#b44">    $rt .= &#34;</span><span style="color:#a2f;font-weight:bold">var</span> cookiedomain <span style="color:#666">=</span> <span style="color:#b44">&#39;&#34; . COOKIEDOMAIN . &#34;&#39;</span>;<span style="">\</span>n<span style="color:#b44">&#34;;
+</span><span style="color:#b44">    $rt .= &#34;</span>&lt;/<span style="color:#008000;font-weight:bold">script</span>&gt;\n&#34;;
+    $rt .= getDojoHTML($refresh);
+    $extracss = getExtraCSS();
+    foreach($extracss as $file)
+        $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">link</span> <span style="color:#b44">rel</span><span style="color:#666">=</span><span style="color:#b44">stylesheet</span> <span style="color:#b44">type</span><span style="color:#666">=</span><span style="color:#b44">\&#34;text/css\&#34;</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">\&#34;css/$file\&#34;</span>&gt;\n&#34;;
+    $rt .= &#34;&lt;/<span style="color:#008000;font-weight:bold">head</span>&gt;\n\n&#34;;
+    $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">body</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">minimal</span>&gt;\n\n&#34;;
+    $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">menulist</span>&gt;\n&#34;;
+    if($authed) {
+        $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">ul</span>&gt;\n&#34;;
+        $rt .= getNavMenu(1, 1);
+        $rt .= &#34;&lt;/<span style="color:#008000;font-weight:bold">ul</span>&gt;\n&#34;;
+    }
+    $rt .= &#34;&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;\n&#34;;
+    $rt .= &#34;&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">content</span>&gt;\n&#34;;
+    return $rt;
+}
+
+function getFooter() {
+    $year = date(&#34;Y&#34;);
+    $rt  = &#34;&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;\n&#34;;
+    $rt .= &#34;&lt;/<span style="color:#008000;font-weight:bold">body</span>&gt;\n&#34;;
+    $rt .= &#34;&lt;/<span style="color:#008000;font-weight:bold">html</span>&gt;\n&#34;;
+    return $rt;
+}
+</code></pre></div><p>Finally, we create a basic css file at vcl/themes/minimal/css/minimal.css:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">#<span style="color:#00f;font-weight:bold">menulist</span> {
+    <span style="color:#a2f;font-weight:bold">float</span>: <span style="color:#a2f;font-weight:bold">left</span>;
+}
+
+#<span style="color:#00f;font-weight:bold">content</span> {
+    <span style="color:#a2f;font-weight:bold">margin-left</span>: <span style="color:#666">15</span><span style="color:#0b0;font-weight:bold">em</span>;
+}
+</code></pre></div><h2 id="using-a-new-theme">Using a new theme</h2>
+<p>Themes are assigned on a per-affiliation basis in the affiliation table. This must
+be done directly in the database by setting the <strong>affiliation.theme</strong> field for an
+affiliation to the name of a theme in the themes directory. For example, to use our new
+<em>minimal</em> theme, you would set <strong>affiliation.theme</strong> to <strong>minimal</strong> for the desired
+affiliation.</p>
+<h2 id="tips-and-tricks">Tips and Tricks</h2>
+<p>The VCL web site has some administrative pages that can generate very large tables. If
+you want them to be completely wrapped in your theme, you will probably need to use
+tables as part of you main layout instead of just using div elements and css. (Hopefully,
+all of those large tables will be converted to dojo grids like the Manage Groups page by
+the 2.4 release.)</p>
+<p>Mobile themes - If you would like to use a modified theme for mobile devices, you can add
+a section of code to the top of getHeader and getFooter that detects mobile devices
+based on $_SERVER[&lsquo;HTTP_USER_AGENT&rsquo;]. If a mobile browser is detected, you can then
+call a different function that generates mobile specific HTML and returns it to the
+calling function.  Here is an example that could be used in getHeader:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">    if(array_key_exists(&#39;HTTP_USER_AGENT&#39;, $_SERVER) <span style="">&amp;</span><span style="">&amp;</span>
+         (eregi(&#39;iphone&#39;, $_SERVER[&#39;HTTP_USER_AGENT&#39;]) ||
+         eregi(&#39;android&#39;, $_SERVER[&#39;HTTP_USER_AGENT&#39;])))
+       return mobileHeader($refresh);
+</code></pre></div><p>mobileHeader would still need to meet all of the requirements of getHeader, but it
+would just generate mobile specific HTML. A similar block of code would then be
+added to getFooter, calling a function named something like mobileFooter.</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - How to Increase the Size of a Virtual Machine Hard Drive under VMware ESXi</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">How to Increase the Size of a Virtual Machine Hard Drive under VMware ESXi</h1>
+    
+	<p>This page describes how to increase the size of a VM&rsquo;s hard drive. This is useful if additional space is needed to install large applications.</p>
+<p><strong>Create a Full Copy of the Virtual Disk</strong></p>
+<ul>
+<li>Determine the VMware host the VM is on</li>
+<li>Shutdown the VM</li>
+<li>Log in to the VM host via SSH</li>
+</ul>
+<p>Navigate to the VM&rsquo;s working directory (under the VM Working Directory Path configured in the VM profile)</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> /vmfs/volumes/vmpath/vclv99-77_1846-v14
+</code></pre></div><p>You should see several files in the directory:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/vmfs/volumes/19873c05-fcd3d912/vclv99-77_1846-v14 <span style="color:#080;font-style:italic"># ls -l</span>
+-rw-rw----    <span style="color:#666">1</span> root     root               <span style="color:#666">8684</span> Aug <span style="color:#666">13</span> 16:34 nvram
+-rw-------    <span style="color:#666">1</span> root     root         <span style="color:#666">4294967296</span> Aug <span style="color:#666">13</span> 16:32 vclv99-77_1846-v14-6197888b.vswp
+-rw-rw----    <span style="color:#666">1</span> root     root              <span style="color:#666">18926</span> Aug <span style="color:#666">13</span> 16:32 vclv99-77_1846-v14-Snapshot1.vmsn
+-rw-rw----    <span style="color:#666">1</span> root     root                <span style="color:#666">498</span> Aug <span style="color:#666">13</span> 16:32 vclv99-77_1846-v14.vmsd
+--wxrw--wx    <span style="color:#666">1</span> root     root               <span style="color:#666">3464</span> Aug <span style="color:#666">13</span> 16:37 vclv99-77_1846-v14.vmx
+--w-rw--w-    <span style="color:#666">1</span> root     root                <span style="color:#666">273</span> Aug <span style="color:#666">13</span> 16:32 vclv99-77_1846-v14.vmxf
+-rw-r--r--    <span style="color:#666">1</span> root     root             <span style="color:#666">137538</span> Aug <span style="color:#666">13</span> 16:43 vmware.log
+-rw-rw----    <span style="color:#666">1</span> root     root          <span style="color:#666">268505088</span> Aug <span style="color:#666">13</span> 19:50 vmwarewin7-Windows764bit1846-v14-000001-delta.vmdk
+-rw-rw----    <span style="color:#666">1</span> root     root                <span style="color:#666">432</span> Aug <span style="color:#666">13</span> 16:32 vmwarewin7-Windows764bit1846-v14-000001.vmdk
+</code></pre></div><p>The VM is configured to run in linked clone mode because a snapshot was created before the VM was powered on for the first time. The .vmdk files in this directory only contain changes made to the master image. The master image can be determined by lookin in the vmsn file:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">snapshot0.disk0.fileName = &#34;/vmfs/volumes/e17be478-2ac3b743/vmwarewin7-Windows764bit1846-v14/vmwarewin7-Windows764bit1846-v14.vmdk&#34;
+</code></pre></div><p>A full copy of the master image and delta files needs to be created in order to be able to resize the virtual disk. Run the following command from the VM&rsquo;s working directory on the VM host:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vmkfstools -i vmwarewin7-Windows764bit1846-v14-000001.vmdk copy.vmdk -d thin
+</code></pre></div><p>Example output of command</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/vmfs/volumes/19873c05-fcd3d912/vclv99-77_1846-v14 <span style="color:#080;font-style:italic"># vmkfstools -i vmwarewin7-Windows764bit1846-v14-000001.vmdk copy.vmdk -d thin</span>
+Destination disk format: VMFS thin-provisioned
+Cloning disk <span style="color:#b44">&#39;vmwarewin7-Windows764bit1846-v14-000001.vmdk&#39;</span>...
+Clone: 100% <span style="color:#a2f;font-weight:bold">done</span>.
+</code></pre></div><p><strong>Resize the Virtual Disk</strong></p>
+<p>Run the following command to resize the virtual disk. The -X argument should specify the total size you want the virtual disk to be, not the amount of space to add to it:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vmkfstools -X 50G copy.vmdk
+</code></pre></div><p><strong>Download Gparted Live CD</strong></p>
+<p>Download the GParted Live CD ISO image to one of the datastores mounted on the VM host.  The .iso file must reside on one of the datastores in order to be able to mount it on a VM.</p>
+<p><strong>Replace the VM&rsquo;s Hard Drive with the Full Copy</strong></p>
+<p>After the copy has been created, reconfigure the VM to use the copy of the disk instead of the original linked clone.</p>
+<ul>
+<li>Open vSphere Client</li>
+<li>Right-click on the VM and select <strong>Edit Settings</strong>&hellip;</li>
+<li>Select <strong>Hard disk 1</strong></li>
+<li>Click <strong>Remove</strong></li>
+<li>Click <strong>Add</strong>&hellip;</li>
+<li>Select <strong>Hard Disk</strong></li>
+<li>Click <strong>Next</strong></li>
+<li>Select <strong>Use an existing virtual disk</strong></li>
+<li>Click <strong>Next</strong></li>
+<li>Navigate to the VM&rsquo;s working directory and select the .vmdk corresponding to the full copy of the virtual disk you created earlier (copy.vmdk)</li>
+<li>Select copy.vmdk</li>
+<li>Click <strong>Next</strong></li>
+<li>Click <strong>Next</strong></li>
+<li>Click <strong>Finish</strong></li>
+</ul>
+<p><strong>Add a CD Drive to the VM Pointing to the GParted Live CD ISO File</strong></p>
+<ul>
+<li>Click <strong>Add</strong>&hellip;</li>
+<li>Select <strong>CD/DVD Drive</strong></li>
+<li><strong>Use ISO image</strong></li>
+<li>Navigate to the Gparted ISO image you downloaded earlier</li>
+<li>Make sure Connect at power on is selected</li>
+<li>Click <strong>Finish</strong></li>
+</ul>
+<p><strong>Increase the Power On Boot Delay</strong></p>
+<p>It can be difficult to catch the initial boot screen when the VM is powered on in order to press Escape to display the boot menu.  Add a delay:</p>
+<ul>
+<li>Click on the <strong>Options</strong> tab</li>
+<li>Select <strong>Boot Options</strong></li>
+<li>Set the <strong>Power On Boot Delay</strong> to a few seconds <em>(4000 = 4 seconds)</em></li>
+<li>Click <strong>OK</strong></li>
+</ul>
+<p><strong>Use GParted to Reconfigure the Partitions</strong></p>
+<p>Simply increasing the size of the virtual disk does not cause the amount of usable space within the VM to increase.  The partitions within the virtual disk need to be reconfigured to use all of the available space.  This cannot be done from the OS of the image stored on the virtual disk.  You must boot the VM using a live CD containing a partition reconfiguration utility.  The GParted Live CD is free and easy to use.</p>
+<ul>
+<li>With the VM powered off, select the <strong>Console</strong> tab</li>
+<li>Power on the VM</li>
+<li>Quickly click inside the <strong>Console</strong> pane</li>
+<li>Press <strong>Esc</strong> to display the Boot Menu</li>
+<li>Select <strong>CD-ROM Drive</strong></li>
+</ul>
+<p>The GParted menu should appear.</p>
+<ul>
+<li>Select <strong>GParted Live (Default settings)</strong></li>
+<li>Accept the defaults</li>
+</ul>
+<p>Increase the size of the main partition to use all of the space</p>
+<ul>
+<li>Select the main partition <em>(should be the largest)</em></li>
+<li>Open the <strong>Partition</strong> menu <em>(use the mouse of press Alt-p if mouse operations are difficult)</em></li>
+<li>Select Resize/Move</li>
+<li>Set New Size (MiB) to the <em>Maximum size</em> listed above in the box</li>
+<li>Click Resize/Move</li>
+<li>Open the Edit menu</li>
+<li>Click Apply All Operations</li>
+<li>Click Apply
+<em>You should eventually see a message stating All operations successfully completed</em></li>
+<li>Click Close</li>
+<li>Reboot the VM to its hard drive
+<em>If a message appears saying the hard drive needs to be checked for consistency allow the procedure to complete.</em></li>
+<li>Once the VM is rebooted, log in to the image and verify the size of the hard drive has been increased</li>
+</ul>
+<p>The saved VCL image will contain the larger hard drive.</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

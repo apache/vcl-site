@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - LDAP Authentication</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">LDAP Authentication</h1>
+    
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#why-ldap-authentication">Why LDAP Authentication?</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites-for-your-ldap-server">Prerequisites for your LDAP server:</a></li>
+    <li><a href="#prerequisites-for-your-vcl-web-server">Prerequisites for your VCL web server:</a></li>
+    <li><a href="#adding-ldap-authentication-to-the-web-code">Adding LDAP Authentication to the Web Code</a></li>
+    <li><a href="#mirroring-ldap-user-groups">Mirroring LDAP User Groups</a>
+      <ul>
+        <li><a href="#some-things-to-be-aware-of-with-mirrored-groups">Some things to be aware of with mirrored groups</a></li>
+        <li><a href="#debugging-ldap-configuration">Debugging LDAP Configuration</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h2 id="why-ldap-authentication">Why LDAP Authentication?</h2>
+<p>Authenticating your users to VCL via LDAP allows you to use your enterprise managed
+accounts to log in to the VCL web site. Additionally, you can mirror certain user
+groups from your LDAP system into VCL so that you do not need to manage the user
+group memberships both in your enterprise system and in VCL.</p>
+<h2 id="overview">Overview</h2>
+<p>First, you need an LDAP server with SSL enabled. You already have this if you have
+an Active Directory system set up. Next, you (probably) need to add an affiliation
+to VCL so that users logging in via the new LDAP connection will all be associated
+together. Finally, you need to modify the web code conf.php file to have information
+about how to connect to the LDAP server. You will also need to make sure your web
+server can trust the SSL certificate and access it through any firewalls.</p>
+<h2 id="prerequisites-for-your-ldap-server">Prerequisites for your LDAP server:</h2>
+<ul>
+<li>
+<p>SSL must be enabled on your LDAP server</p>
+</li>
+<li>
+<p>An LDAP account that can look up these items for users:</p>
+<ul>
+<li>first name</li>
+<li>last name</li>
+<li>user id</li>
+<li>email (optional)</li>
+</ul>
+<p>This will be referred to as &lsquo;vcllookup&rsquo; on
+this page. You can skip this step if anonymous binds are enabled on your LDAP server
+and an anonymous bind will be able to look up the listed items.</p>
+</li>
+<li>
+<p>If your LDAP server is behind a firewall, you will need to allow your VCL web
+server to access tcp port 636 on your LDAP server</p>
+</li>
+</ul>
+<h2 id="prerequisites-for-your-vcl-web-server">Prerequisites for your VCL web server:</h2>
+<ul>
+<li>
+<p><strong>php-ldap</strong> needs to be installed</p>
+</li>
+<li>
+<p><strong>SSL certificate</strong> - If your LDAP server&rsquo;s SSL certificate is self-signed, your VCL web server needs
+to have the root CA certificate that was used to sign the LDAP server certificate
+installed. The PEM formatted certificate needs to be added to the ca-bundle.crt file.
+On CentOS, the file is located at /etc/pki/tls/certs/ca-bundle.crt
+(<a href="/docs/ldap-ca-bundle-ex.html">example</a>). The hostname in
+the certificate must match the hostname entered in the conf.php file further down.
+If your certificate does not have the correct hostname in it, you must put an entry
+in /etc/hosts for the hostname in the certificate (<a href="/docs/ldap-showhostname.html">viewing the hostname in the
+certificate</a>).</p>
+</li>
+<li>
+<p>After adding the certificate, restart httpd:</p>
+<p>service httpd restart</p>
+</li>
+<li>
+<p>You can verify that the certificate is properly installed using this command:</p>
+<p>openssl s_client -showcerts -CAfile /etc/pki/tls/certs/ca-bundle.crt -connect
+your.ldap.server.here:636</p>
+<p>If you see &ldquo;Verify return code: 0 (ok)&rdquo; at the end of the output then it is
+installed correctly. If you see a different return code, then you&rsquo;ll need to
+troubleshoot the problem.</p>
+</li>
+<li>
+<p>You may need to add a line to <strong>/etc/openldap/ldap.conf</strong> to point to the
+ca-bundle.crt file. If so, add the following:</p>
+<p>TLS_CACERT /etc/pki/tls/certs/ca-bundle.crt</p>
+</li>
+</ul>
+<h2 id="adding-ldap-authentication-to-the-web-code">Adding LDAP Authentication to the Web Code</h2>
+<ul>
+<li>
+<p>You will need to manually add an entry to the affiliation table in the VCL
+database. Choose a name for the affiliation. This will be appended to all userids
+for the affiliation to distinguish them from other affiliations you may configure
+later. <strong>Do not</strong> use the Global affiliation for this. Initials or a short name of
+your organization are a good idea. The affiliation name cannot contain spaces. Use
+the following to add the affiliation, replacing &lsquo;EXAMPLE&rsquo; with the name you chose.
+Take note of the id from the 2nd SQL statement as you will need it later. It is the
+numerical id for this affiliation.</p>
+<p>mysql vcl</p>
+<p>INSERT INTO affiliation (name) VALUES (&lsquo;EXAMPLE&rsquo;);</p>
+<p>SELECT id FROM affiliation WHERE name = &lsquo;EXAMPLE&rsquo;;</p>
+<p>exit</p>
+</li>
+<li>
+<p>Edit <em>conf.php</em> and search for &ldquo;EXAMPLE1 LDAP&rdquo;</p>
+</li>
+<li>
+<p>Uncomment the &ldquo;EXAMPLE1 LDAP&rdquo; section by removing the &lsquo;/*&rsquo; before it and the &lsquo;*/&rsquo;
+at the end of &lsquo;to use this login mechanism&rsquo;</p>
+</li>
+<li>
+<p>Change &lsquo;EXAMPLE1 LDAP&rsquo; to something to match your location, for example at NCSU,
+it is &lsquo;NCSU LDAP&rsquo;. This string is what users will see where they select the
+authentication mechanism to use when logging in.</p>
+</li>
+<li>
+<p>Modify the following fields:</p>
+<ul>
+<li><strong>server</strong> - this is the hostname of your LDAP server - this must match the
+hostname in the certificate.</li>
+<li><strong>binddn</strong> - typically, you&rsquo;ll want to use the base DN of your LDAP server; for
+Active Directory, this is usually dc= for each of your domain name components. For
+example, your your domain name was ad.example.org, it would be
+&ldquo;dc=ad,dc=example,dc=org&rdquo;</li>
+<li><strong>userid</strong> - this is a string that is added to the userid a user enters on the
+login page. Place a &lsquo;%s&rsquo; where the entered userid should go. Some examples are:
+<ul>
+<li>%s@example.org</li>
+<li>%s@ad.example.org</li>
+<li>uid=%s,ou=accounts,dc=example,dc=org&rsquo;</li>
+</ul>
+</li>
+<li><strong>unityid</strong> - this is the ldap field that contains a user&rsquo;s login id (for Active
+Directory, this is usually sAMAccountName)</li>
+<li><strong>firstname</strong> - this is the ldap field that contains a user&rsquo;s first name</li>
+<li><strong>lastname</strong> - this is the ldap field that contains a user&rsquo;s last name</li>
+<li><strong>email</strong> - this is the ldap field that contains a user&rsquo;s email address</li>
+<li><strong>defaultemail</strong> - if an email address is not provided by the ldap server, this
+will be appended to the end of the userid to create an email address. In this case,
+email notifications will be disabled by default.</li>
+<li><strong>masterlogin</strong> - this is the vcllookup account referred to in the &ldquo;Prerequisites
+for your LDAP server&rdquo; section - comment out this line if using anonymous binds</li>
+<li><strong>masterpwd</strong> - password for the masterlogin account - comment out this line if
+using anonymous binds</li>
+<li><strong>affiliationid</strong> - this is the id from the SELECT statement in the first step</li>
+<li><strong>lookupuserbeforeauth</strong> - Some LDAP servers will only allow the full DN of a
+user to be used when authenticating. If this is the case, you will need to set this
+to 1 and set a value for <em>lookupuserfield</em>. You can probably start out with this set
+to 0. If your LDAP server has users in multiple containers, you will probably need
+to set this to 1.</li>
+<li><strong>lookupuserfield</strong> - If you need to set <em>lookupuserbeforeauth</em> to 1, set
+this to the attribute to use to search for the user in ldap. Typical values are &lsquo;cn&rsquo;,
+&lsquo;uid&rsquo;, and &lsquo;samaccountname&rsquo;.</li>
+<li><strong>help</strong> - this is some text that will show up on the page where users select the
+authentication method explaining why they would select this option</li>
+</ul>
+</li>
+<li>
+<p>Uncomment the <strong>require_once</strong> line for <strong>ldapauth.php</strong> toward the bottom of the file</p>
+</li>
+</ul>
+<h2 id="mirroring-ldap-user-groups">Mirroring LDAP User Groups</h2>
+<p>This part is a little more complicated because it actually requires modifying some
+of the VCL code. Before modifying VCL, you first need to create user groups in your
+LDAP system and configure things so that a lookup of a user in your LDAP system will
+list the groups of which the user is a member. Doing these items is beyond the scope
+of this document.</p>
+<p>In the vcl/.ht-inc/authmethods/ldapauth.php file, there is an example function at
+the end named <strong>updateEXAMPLE1Groups</strong>. In a previous step, you modified conf.php
+and changed <strong>EXAMPLE1 LDAP</strong> to something to match your location. <strong>NCSU LDAP</strong>
+was used as an example. We&rsquo;ll continue using that here.</p>
+<p>You need to change the name of <strong>updateEXAMPLE1Groups</strong> to match your location.
+We&rsquo;ll change it to <strong>updateNCSUGroups</strong> for our example. Next, on the 2nd line of
+the function, change <strong>EXAMPLE1 LDAP</strong> to match your location (ex. <strong>NCSU LDAP</strong>).
+Next, you need to determine what attribute is used when looking up users in your
+LDAP system to reference user group memberships. For Active Directory, this is typically
+<strong>memberof</strong>. Now, if needed, change the two references in the function from <strong>memberof</strong>
+to the attribute used in your LDAP system. Finally, there are three example regular
+expressions in the <strong>for</strong> loop at the bottom of the function that match various
+example names of user groups. You&rsquo;ll need to modify these to match the OU structure
+of your LDAP system.</p>
+<p>These are the three example rules in VCL 2.3:</p>
+<pre><code>^CN=(.+),OU=CourseRolls,DC=example1,DC=com
+^CN=(Students_Enrolled),OU=Students,DC=example1,DC=com$
+^CN=(Staff),OU=IT,DC=example1,DC=com$
+</code></pre>
+<p>The first one matches any groups under the CourseRolls OU. The second one specifically
+matches the <strong>Students_Enrolled</strong> group under the Students OU. The third one matches
+the <strong>Staff</strong> group under the IT OU. If you need help creating regular expressions
+to match your LDAP system, please feel free to ask on our user email list or via IRC.</p>
+<p>Finally, you&rsquo;ll also need to modify the updateLDAPUser function in the same file.
+Toward the end of the function is a <strong>switch</strong> statement based on affiliation names.
+Change the <strong>EXAMPLE1</strong> entry to the affiliation you created for your site. Then,
+change the name of the function called for that affiliation to your new name for the
+<strong>updateEXAMPLE1Groups</strong> function. Here is an example of that part of the function:</p>
+<pre><code>switch(getAffiliationName($affilid)) {
+   case 'NCSU':
+      updateNCSUGroups($user);
+      break;
+   default:
+      //TODO possibly add to a default group
+}
+</code></pre>
+<p>Here is an example function using NCSU instead of EXAMPLE1, and using an Active
+Directory LDAP system:</p>
+<pre><code>function updateNCSUGroups($user) {
+   global $authMechs;
+   $auth = $authMechs['NCSU LDAP'];
+   $ds = ldap_connect(&quot;ldaps://{$auth['server']}/&quot;);
+   if(! $ds)
+      return 0;
+   ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+   ldap_set_option($ds, LDAP_OPT_REFERRALS, 0);
+
+   $res = ldap_bind($ds, $auth['masterlogin'],
+                     $auth['masterpwd']);
+   if(! $res)
+      return 0;
+
+   $search = ldap_search($ds,
+                         $auth['binddn'],
+                         &quot;{$auth['unityid']}={$user['unityid']}&quot;,
+                         array('memberof'), 0, 10, 15);
+   if(! $search)
+      return 0;
+
+   $data = ldap_get_entries($ds, $search);
+   $newusergroups = array();
+   if(! array_key_exists('memberof', $data[0]))
+      return;
+   for($i = 0; $i &lt; $data[0]['memberof']['count']; $i++) {
+      if(preg_match('/^CN=(.+),OU=VCLGroups,DC=ad,DC=ncsu,DC=edu/', $data[0]['memberof'][$i], $match))
+         array_push($newusergroups, getUserGroupID($match[1], $user['affiliationid']));
+   }
+   $newusergroups = array_unique($newusergroups);
+   updateGroups($newusergroups, $user[&quot;id&quot;]);
+}
+</code></pre>
+<p>If you add other affiliations that need to be tied in with LDAP, you can copy this
+function and rename things in a similar fashion to match the new LDAP system.</p>
+<h3 id="some-things-to-be-aware-of-with-mirrored-groups">Some things to be aware of with mirrored groups</h3>
+<p>There are a few things to be aware of when working with mirrored groups in VCL. A
+group isn&rsquo;t mirrored in to VCL until someone that is a member of the group logs in
+to VCL, or a user with the membership is looked up using the <strong>User Lookup</strong> page.
+So, what is generally suggest is to create an LDAP user that you make a member of
+all user groups. Then, when you need to get a new group in to VCL, you can force
+a lookup of that user on the <strong>User Lookup</strong> page.</p>
+<p>The second gotcha is that VCL
+caches a user&rsquo;s LDAP information for up to 24 hours. So, if you log in to VCL, then add
+yourself to a group on your LDAP server, you will have to wait for up to 24 hours
+before VCL looks up your LDAP information again. Alternatively, you can
+force a lookup on the <strong>User Lookup</strong> page.</p>
+<h3 id="debugging-ldap-configuration">Debugging LDAP Configuration</h3>
+<p>If you run in to problems getting an LDAP configuration to work,
+you can download a <a href="/docs/generic.php.txt">LDAP Debug Script</a> and save it as generic.php (remove .txt
+from the name) somewhere you can access it on you web server. There
+are 5 variables at the top of the script that need to be set
+according to your site&rsquo;s configuration. There is a comment in the
+file explaining what each variable needs to be set to. Once you get
+the script to show you search results, you should have a good idea
+what you need to set the variables to in conf.php.</p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>

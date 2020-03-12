@@ -1,0 +1,350 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+  <link href="/css/vcl.css" rel="stylesheet" type="text/css">
+  <link href="/css/code.css" rel="stylesheet" type="text/css">
+  <title>Apache VCL - Creating Base Images from an ISO - Part 1</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <div id="sitetitle">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+         <td><a href="/index.html"><img src="/img/vcl-logo.png" height="100" align="left" alt="Apache VCL logo"></a></td>
+         <td><a href="http://www.apache.org"><img src="/img/asf-logo.png" align="right" alt="Apache Software Foundation logo"></a></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="left-column">
+    <div id="navigation">
+      <ul>
+<li><a href="/index.html">Information</a>
+<ul>
+<li><a href="/info/features.html">Features</a></li>
+<li><a href="/info/architecture.html">Architecture</a></li>
+<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="http://www.apache.org/licenses/">License</a></li>
+<li><a href="http://www.apache.org/security/">Security</a></li>
+</ul>
+</li>
+<li><a href="/docs/index.html">Documentation</a>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/x/yQdG">Using VCL</a></li>
+<li><a href="https://cwiki.apache.org/confluence/x/ywdG">Administration</a></li>
+<li><a href="/docs/installation.html">Installation</a></li>
+</ul>
+</li>
+<li><a href="https://cwiki.apache.org/confluence/display/VCL/Apache+VCL" target="_blank">Confluence Wiki</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="https://issues.apache.org/jira/browse/VCL" target="_blank">Jira Issue Tracking</a>
+  <ul>
+      <li></li>
+  </ul>
+</li>
+<li><a href="/comm/index.html">Community</a>
+<ul>
+<li><a href="/comm/index.html#getInvolved">Getting Involved</a></li>
+<li><a href="/comm/index.html#mail-list">Mailing Lists</a></li>
+<li><a href="/dev/index.html">Development</a>
+<ul>
+<li><a href="/dev/code-documentation.html">Code Documentation</a></li>
+<li><a href="/dev/roadmap.html">Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.apache.org">Apache Software Foundation</a>
+<ul>
+<li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+<li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+</ul>
+</li>
+</ul>
+    </div>
+    <div id="current-event"> 
+      <a  href="https://www.apache.org/events/current-event.html">
+        <img src="https://www.apache.org/events/current-event-125x125.png" alt="Apache current event" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="content">
+    <h1 class="title">Creating Base Images from an ISO - Part 1</h1>
+    
+	<p>This page describes how to create a base image from an install media.</p>
+<p>These instructions are broken up into parts to assist in providing
+detailed instructions based on the supported provisioning modules and
+Operating Systems. The supported provisioning methods for VCL are (xCAT,
+VMware, and KVM).</p>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#preparing-node-under-a-supported-provisioning-system">Preparing node under a supported provisioning system</a>
+          <ul>
+            <li><a href="#vmware-esxesxi-4x-5x-vcenter">VMware ESX/ESXi 4.x, 5.x, vCenter</a></li>
+            <li><a href="#kvm">KVM</a></li>
+            <li><a href="#bare-metal-via-xcat">Bare Metal via xCAT</a></li>
+          </ul>
+        </li>
+        <li><a href="#next-steps---installing-os">Next Steps - Installing OS</a>
+          <ul>
+            <li><a href="#install-windows-os-for-a-base-image">Install Windows OS for a Base Image</a></li>
+            <li><a href="#install-linux-os-for-a-base-image">Install Linux OS for a Base Image</a></li>
+          </ul>
+        </li>
+        <li><a href="#capture-the-image">Capture the Image</a></li>
+        <li><a href="#add-the-base-image-to-an-image-group">Add the Base Image to an Image Group</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h3 id="requirements">Requirements</h3>
+<p>Before getting started make sure you have the following requirements
+completed or on hand:</p>
+<ul>
+<li>A working VCL web,database, and management node</li>
+<li>A Hypervisor either VMWare or KVM(if using hypervisor based images)</li>
+<li>A working xCAT system(if using bare-metal images)</li>
+<li>Install media ISO file</li>
+<li>Appropriate licensing for Windows or RedHat</li>
+</ul>
+<p>The following must be done before an image can be captured:</p>
+<ul>
+<li>A computer for the machine being captured has already been added to
+the VCL database</li>
+<li>VMware or KVM:
+<ul>
+<li>A VM host computer on which the guest is running has been added
+to the VCL database</li>
+<li>The guest VM has been assigned to the VM host via the Virtual
+Hosts link on the VCL website</li>
+<li>Obtain the <strong>private</strong> IP address of the VM from the
+<strong>Manage Computers &gt; Edit Computer Information</strong> part of the site
+for use later in the process</li>
+</ul>
+</li>
+</ul>
+<p>These instructions assume you have root access on your management
+node and are using a bash shell.</p>
+<h3 id="preparing-node-under-a-supported-provisioning-system">Preparing node under a supported provisioning system</h3>
+<h4 id="vmware-esxesxi-4x-5x-vcenter">VMware ESX/ESXi 4.x, 5.x, vCenter</h4>
+<p>The instructions assume that VMware has been configured with the
+following bridged networks:</p>
+<ul>
+<li>
+<p><strong>Private</strong>: bridged to private interface: eth0</p>
+</li>
+<li>
+<p><strong>Public</strong>: bridged to public interface: eth1</p>
+</li>
+<li>
+<p>Launch the vSphere Client, connect to the ESXi host and login</p>
+</li>
+<li>
+<p>Click File &gt; New &gt; Virtual Machine</p>
+</li>
+<li>
+<p>Configuration: <strong>Custom</strong></p>
+</li>
+<li>
+<p>Name: (doesn&rsquo;t matter)</p>
+</li>
+<li>
+<p>Select a datastore where the VM will reside</p>
+</li>
+<li>
+<p>Virtual Machine Version: <strong>7</strong></p>
+</li>
+<li>
+<p>Select the appropriate guest OS</p>
+</li>
+<li>
+<p>Number of virtual processors: <strong>1</strong></p>
+</li>
+<li>
+<p>Memory: <strong>4GB</strong></p>
+</li>
+<li>
+<p>How many NICs: <strong>2</strong></p>
+<ul>
+<li>NIC 1: <strong>Private</strong>, E1000, Connect at Power On: <strong>Yes</strong></li>
+<li>NIC 2: <strong>Public</strong>, E1000, Connect at Power On: <strong>Yes</strong></li>
+</ul>
+</li>
+<li>
+<p>SCSI controller: <strong>LSI Logic Parallel</strong></p>
+</li>
+<li>
+<p>Create a new virtual disk</p>
+<ul>
+<li>Disk Size: <strong>at least 30 GB</strong></li>
+<li>Allocate and commit space on demand (Thin Provisioning): <strong>Yes</strong></li>
+<li>Location: Store with the virtual machine</li>
+<li>Virtual Device Node: <strong>SCSI (0:0)</strong></li>
+<li>Mode: <strong>Not Independent (unchecked)</strong></li>
+</ul>
+</li>
+<li>
+<p>Edit the virtual machine settings before completion: <strong>Yes</strong></p>
+</li>
+<li>
+<p>In the Hardware pane, select <strong>Add&hellip;</strong></p>
+<ul>
+<li>Device Type: CD/DVD Drive</li>
+<li>Select CD/DVD Media: <strong>Use ISO image</strong></li>
+<li>Select ISO Image:
+<ul>
+<li>Click <strong>Browse</strong></li>
+<li>Select the datastore where the ISO is located</li>
+<li>Click <strong>Open</strong></li>
+<li>Select the ISO file</li>
+<li>Click <strong>Open</strong></li>
+</ul>
+</li>
+<li>Connect at power on: <strong>Yes</strong>
+-Select the New NIC (adding) entry with <strong>Private</strong> listed next to it</li>
+</ul>
+</li>
+<li>
+<p>Under MAC Address, select <strong>Manual</strong></p>
+</li>
+<li>
+<p>Enter the private MAC address you retrieved earlier</p>
+</li>
+<li>
+<p>Click <strong>Finish</strong></p>
+</li>
+</ul>
+<h4 id="kvm">KVM</h4>
+<ul>
+<li>Create guest OS on KVM host&hellip;</li>
+</ul>
+<h4 id="bare-metal-via-xcat">Bare Metal via xCAT</h4>
+<p>The requirement in this section is to have a working xCAT system.</p>
+<h3 id="next-steps---installing-os">Next Steps - Installing OS</h3>
+<h4 id="install-windows-os-for-a-base-image">Install Windows OS for a Base Image</h4>
+<h4 id="install-linux-os-for-a-base-image">Install Linux OS for a Base Image</h4>
+<ul>
+<li>
+<p>Power on the VM and follow the installation instructions for the
+Linux distribution and version you are installing.</p>
+</li>
+<li>
+<p>On the Linux computer being captured, create a /root/.ssh directory:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir /root/.ssh
+</code></pre></div></li>
+<li>
+<p>On the management node, copy the public SSH identity key to the
+authorized_keys file on the Linux computer being captured:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scp /etc/vcl/vcl.key.pub &lt;hostname or IP address&gt;:/root/.ssh/authorized_keys
+</code></pre></div></li>
+<li>
+<p>Or replace the above two steps with the following on the management
+node:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh-copy-id -i /etc/vcl/vcl.key &lt;hostname or IP address&gt;
+</code></pre></div></li>
+<li>
+<p>Make sure you can login from the management node to the Linux
+computer being captured using the identity key:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -i /etc/vcl/vcl.key &lt;hostname or IP address&gt;
+</code></pre></div></li>
+</ul>
+<p>Configure the ifcfg-* Files</p>
+<ul>
+<li>
+<p>Navigate to the network-scripts directory:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> /etc/sysconfig/network-scripts
+</code></pre></div></li>
+<li>
+<p>Delete any ifcfg-*.bak files:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rm -f /etc/sysconfig/network-scripts/ifcfg-*.bak
+</code></pre></div></li>
+<li>
+<p>Edit every ifcfg-eth* file in the network-scripts directory. Remove
+the HWADDRESS= line if it exists:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi ifcfg-eth0
+vi ifcfg-eth1
+</code></pre></div></li>
+<li>
+<p>The ifcfg-eth0 file should contain the following:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#b8860b">DEVICE</span><span style="color:#666">=</span>eth0
+<span style="color:#b8860b">BOOTPROTO</span><span style="color:#666">=</span>dhcp
+<span style="color:#b8860b">ONBOOT</span><span style="color:#666">=</span>yes
+</code></pre></div></li>
+<li>
+<p>The ifcfg-eth1 file should contain the following:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#b8860b">DEVICE</span><span style="color:#666">=</span>eth1
+<span style="color:#b8860b">BOOTPROTO</span><span style="color:#666">=</span>dhcp
+<span style="color:#b8860b">ONBOOT</span><span style="color:#666">=</span>yes
+</code></pre></div></li>
+<li>
+<p>Reboot the computer:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">shutdown -r now
+</code></pre></div></li>
+<li>
+<p>Check the ifcfg-eth* files to make sure there are no new ifcfg-eth*
+files and that the HWADDRESS= lines have not been automatically added
+back:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls /etc/sysconfig/network-scripts
+cat /etc/sysconfig/network-scripts/ifcfg-eth0
+cat /etc/sysconfig/network-scripts/ifcfg-eth1
+</code></pre></div></li>
+</ul>
+<h3 id="capture-the-image">Capture the Image</h3>
+<ul>
+<li>
+<p>Run the following command on the management node:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/usr/local/vcl/bin/vcld --setup
+</code></pre></div></li>
+<li>
+<p>Navigate through the menu options to capture the image</p>
+</li>
+</ul>
+<p>The following happens once you enter an image name and press enter:</p>
+<ul>
+<li>A new image is added to the VCL database</li>
+<li>An imaging request is added to the VCL database</li>
+<li>The vcld -setup automatically initiates &lsquo;tail -f /var/log/vcld.log&rsquo;
+to monitor the vcld log file.  The output should be displayed on the
+screen.</li>
+</ul>
+<p>Watch the vcld logfile output to determine if the image capture process
+is successful or terminated because a problem occurred.  When the
+capture process terminates, there will either be a message near the end
+of the output saying &ldquo;image capture successful&rdquo; or there will be several
+WARNING messages, the last of which says something to the effect &ldquo;image
+failed to be captured&rdquo;.  Further troubleshooting is required if the
+image fails to be captured.</p>
+<h3 id="add-the-base-image-to-an-image-group">Add the Base Image to an Image Group</h3>
+<p>The vcld &ndash;setup utility does not add the new base image to any image
+groups.  You must add the image to an image group using the VCL website
+after the image capture process is complete.  Reservations for the
+image cannot be made until this is done.  To add the image to an image
+group, browse to the VCL website and select
+<strong>Manage Images &gt; Edit Grouping &amp; Mapping.</strong></p>
+
+
+  </div>
+  
+  <div id="footer">
+    <div class="copyright">
+      <p>
+        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+        <br />
+        Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html>
