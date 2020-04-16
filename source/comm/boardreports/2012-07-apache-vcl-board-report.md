@@ -1,5 +1,6 @@
 ---
 title: 2012-07-25 Apache VCL Board Report
+slug: 2012-07-25-apache-vcl-board-report
 ---
 
 ### DESCRIPTION
