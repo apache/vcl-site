@@ -1,0 +1,10 @@
+publish:
+  whoami: asf-site
+
+github:
+  description: "Website sources for the Apache VCL website"
+  homepage: https://vcl.apache.org/
+  labels:
+    - apache
+    - vcl
+    - hugo
