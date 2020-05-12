@@ -11,46 +11,6 @@
     
     
     <item>
-      <title>2012-12-19 Apache VCL Board Report</title>
-      <link>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</link>
-      <pubDate>Wed, 19 Dec 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</guid>
-      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
-CURRENT ACTIVITY  Work continues to migrate content from Confluence to the new CMS website and to improve the design. VCL 2.</description>
-    </item>
-    
-    <item>
-      <title>2012-09-19 Apache VCL Board Report</title>
-      <link>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</link>
-      <pubDate>Wed, 19 Sep 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</guid>
-      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
-CURRENT ACTIVITY  The community has completed the post-graduation tasks. Work continues to migrate content from Confluence to the new CMS website and to improve the design.</description>
-    </item>
-    
-    <item>
-      <title>2012-08-15 Apache VCL Board Report</title>
-      <link>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</link>
-      <pubDate>Wed, 15 Aug 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</guid>
-      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
-CURRENT ACTIVITY  The community has completed most of the post-graduation tasks with the help of Infrastructure. [1] A CMS website has been created.</description>
-    </item>
-    
-    <item>
-      <title>2012-07-25 Apache VCL Board Report</title>
-      <link>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</link>
-      <pubDate>Wed, 25 Jul 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://vcl.apache.org/comm/boardreports/apache-vcl-board-report.html</guid>
-      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
-CURRENT ACTIVITY  The community is working to complete the post-graduation tasks with the help of Infrastructure. [1] Mailing lists have been moved to vcl.</description>
-    </item>
-    
-    <item>
       <title></title>
       <link>https://vcl.apache.org/docs/using-vcl.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -245,6 +205,46 @@ New Committers  The Apache VCL community recently added Aaron Coburn of Amherst 
       <guid>https://vcl.apache.org/comm/boardreports/2012-05-incubator-vcl-report.html</guid>
       <description>VCL has been incubating since December 2008. VCL is a cloud computing platform for the management of physical and virtual machines. It provides comparatively easy and simple base line install with a end-user self service interface.
 New Committers  The Apache VCL community recently added James O&amp;rsquo;Dell from California State University at Fullerton as a committer. We welcome James and look forward to his expertise and knowledge to help advance VCL project and community.</description>
+    </item>
+    
+    <item>
+      <title>2012-07-25 Apache VCL Board Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2012-07-25-apache-vcl-board-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2012-07-25-apache-vcl-board-report.html</guid>
+      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
+CURRENT ACTIVITY  The community is working to complete the post-graduation tasks with the help of Infrastructure. [1] Mailing lists have been moved to vcl.</description>
+    </item>
+    
+    <item>
+      <title>2012-08-15 Apache VCL Board Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2012-08-15-apache-vcl-board-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2012-08-15-apache-vcl-board-report.html</guid>
+      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
+CURRENT ACTIVITY  The community has completed most of the post-graduation tasks with the help of Infrastructure. [1] A CMS website has been created.</description>
+    </item>
+    
+    <item>
+      <title>2012-09-19 Apache VCL Board Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2012-09-19-apache-vcl-board-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2012-09-19-apache-vcl-board-report.html</guid>
+      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
+CURRENT ACTIVITY  The community has completed the post-graduation tasks. Work continues to migrate content from Confluence to the new CMS website and to improve the design.</description>
+    </item>
+    
+    <item>
+      <title>2012-12-19 Apache VCL Board Report</title>
+      <link>https://vcl.apache.org/comm/boardreports/2012-12-19-apache-vcl-board-report.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/comm/boardreports/2012-12-19-apache-vcl-board-report.html</guid>
+      <description>DESCRIPTION VCL is a modular cloud computing platform which dynamically provisions and brokers remote access to compute resources including virtual machines, bare-metal computers, and resources in other cloud platforms. A self-service web portal is used to request resources and for administration. VCL became a TLP on June 20, 2012.
+CURRENT ACTIVITY  Work continues to migrate content from Confluence to the new CMS website and to improve the design. VCL 2.</description>
     </item>
     
     <item>
