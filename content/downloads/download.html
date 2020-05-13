@@ -133,8 +133,8 @@ Other mirrors:
 <p>You may also consult the <a href="http://www.apache.org/mirrors/">complete list of mirrors</a>.</p>
 <p><a name="verify"></a></p>
 <h2 id="verifying-the-integrity-of-the-files">Verifying the integrity of the files</h2>
-<p>It is essential that you verify the integrity of the downloaded files using the PGP or
-MD5 signatures. Security of the mirrors cannot be guaranteed, which means malicious code
+<p>It is essential that you verify the integrity of the downloaded files using the GPG and
+SHA signatures. Security of the mirrors cannot be guaranteed, which means malicious code
 could be added to the downloads from the mirrors. By verifying the integrity of
 downloaded release files, you ensure they have not been tainted.</p>
 <p>Run the following command to verify the SHA256 sum. You should get output
@@ -146,7 +146,7 @@ similar to &ldquo;apache-VCL-2.5.1.tar.bz2: OK&rdquo;:</p></p>
 </code></pre></div><p>To verify the GPG signature (you&rsquo;ll need to have <a href="http://www.gnupg.org/">GnuPG</a> installed):</p>
 <ol>
 <li>
-<p>download and import the <a href="https://www.apache.org/dist/vcl/KEYS">VCL KEYS file</a> (if you&rsquo;ve imported the KEYS file for previously
+<p>download and import the <a href="https://www.apache.org/dist/vcl/KEYS">VCL KEYS file</a> (if you&rsquo;ve imported the KEYS file for previous
 releases, you do not need to import it again):</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --import KEYS
 </code></pre></div></li>

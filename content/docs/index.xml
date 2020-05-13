@@ -325,6 +325,17 @@ These instructions are broken up into parts to assist in providing detailed inst
     </item>
     
     <item>
+      <title>Cygwin SSHD Service Name Change Patch for VCL 2.5.1</title>
+      <link>https://vcl.apache.org/docs/cygsshd_patch.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vcl.apache.org/docs/cygsshd_patch.html</guid>
+      <description>When Microsoft made openssh available as an installable package on Windows, they used the same service name (sshd) that cygwin had been using for many years. This caused the Cygwin project to change the name of the sshd service they install from sshd to cygsshd. VCL 2.5.1 needs a patch applied to handle the service name change.
+Download Patch The patch is available from the ASF distribution servers.
+Download patch [ GPG ] [ SHA512 ]</description>
+    </item>
+    
+    <item>
       <title>Deployment Planning</title>
       <link>https://vcl.apache.org/docs/deployment-planning.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
