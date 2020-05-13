@@ -37,12 +37,13 @@ installation of various system level requirements needed for the code to run.
 vcl-install.sh [-h|--help] [-d|--database] [-w|--web] [-m|--managementnode]
         [--dbhost <hostname> --dbpass <password>] 
         [--mnhost <hostname>] [--webhost <hostname>]
+        [-t|--timezone <timezone>]
 
 -d|--database - install database server components
         --dbpass, --mnhost, --mnip, --webhost, and --adminpass must also be specified
 
 -w|--web - install web server components
-        --dbhost and --dbpass must also be specified
+        --dbhost, --dbpass, and -t|--timezone must also be specified
 
 -m|--managementnode - install management node (vcld) components
         --dbhost, --dbpass, and --adminpass must also be specified
@@ -57,6 +58,8 @@ vcl-install.sh [-h|--help] [-d|--database] [-w|--web] [-m|--managementnode]
 --webhost <hostname> - hostname of web server (default=localhost)
 
 --adminpass <password> - password for VCL admin user
+
+-t|--timezone - timezone for web components
 ```
 
 # Manual Installation 
