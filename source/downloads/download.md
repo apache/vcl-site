@@ -63,8 +63,8 @@ You may also consult the [complete list of mirrors](http://www.apache.org/mirror
 <a name="verify"></a>
 ## Verifying the integrity of the files
 
-It is essential that you verify the integrity of the downloaded files using the PGP or 
-MD5 signatures. Security of the mirrors cannot be guaranteed, which means malicious code 
+It is essential that you verify the integrity of the downloaded files using the GPG and 
+SHA signatures. Security of the mirrors cannot be guaranteed, which means malicious code 
 could be added to the downloads from the mirrors. By verifying the integrity of 
 downloaded release files, you ensure they have not been tainted.
 
@@ -85,7 +85,7 @@ md5sum -c apache-VCL-2.5.1.tar.bz2.md5
 To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/) installed):
 
 
-1. download and import the [VCL KEYS file](https://www.apache.org/dist/vcl/KEYS) (if you've imported the KEYS file for previously 
+1. download and import the [VCL KEYS file](https://www.apache.org/dist/vcl/KEYS) (if you've imported the KEYS file for previous 
 releases, you do not need to import it again):
 
     ```bash

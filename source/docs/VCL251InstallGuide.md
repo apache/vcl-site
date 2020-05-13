@@ -21,6 +21,13 @@ wget https://www.apache.org/dist/vcl/2.5.1/vcl-install.sh.asc
 gpg --verify vcl-install.sh.asc
 ```
 
+<span class="docnote">
+<b>Required Patch for Windows Images</b><br>
+Microsoft added openssh as a package that can be installed on Windows. This forced
+the Cygwin project to change the name of their ssh service from sshd to cygsshd.
+<a href="/docs/cygsshd_patch.html">A patch</a> needs to be applied to VCL 2.5.1 to accommodate this change.
+</span>
+
 Running the installation script with no arguments will step you through installing all
 three parts of VCL.  Alternatively, the following explains optional arguments.  If
 installing the management node part of VCL, it will also prompt you to agree to the 
