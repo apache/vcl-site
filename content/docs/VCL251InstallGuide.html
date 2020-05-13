@@ -104,12 +104,13 @@ installation of various system level requirements needed for the code to run.</p
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vcl-install.sh <span style="color:#666">[</span>-h|--help<span style="color:#666">]</span> <span style="color:#666">[</span>-d|--database<span style="color:#666">]</span> <span style="color:#666">[</span>-w|--web<span style="color:#666">]</span> <span style="color:#666">[</span>-m|--managementnode<span style="color:#666">]</span>
         <span style="color:#666">[</span>--dbhost &lt;hostname&gt; --dbpass &lt;password&gt;<span style="color:#666">]</span> 
         <span style="color:#666">[</span>--mnhost &lt;hostname&gt;<span style="color:#666">]</span> <span style="color:#666">[</span>--webhost &lt;hostname&gt;<span style="color:#666">]</span>
+        <span style="color:#666">[</span>-t|--timezone &lt;timezone&gt;<span style="color:#666">]</span>
 
 -d|--database - install database server components
         --dbpass, --mnhost, --mnip, --webhost, and --adminpass must also be specified
 
 -w|--web - install web server components
-        --dbhost and --dbpass must also be specified
+        --dbhost, --dbpass, and -t|--timezone must also be specified
 
 -m|--managementnode - install management node <span style="color:#666">(</span>vcld<span style="color:#666">)</span> components
         --dbhost, --dbpass, and --adminpass must also be specified
@@ -124,6 +125,8 @@ installation of various system level requirements needed for the code to run.</p
 --webhost &lt;hostname&gt; - hostname of web server <span style="color:#666">(</span><span style="color:#b8860b">default</span><span style="color:#666">=</span>localhost<span style="color:#666">)</span>
 
 --adminpass &lt;password&gt; - password <span style="color:#a2f;font-weight:bold">for</span> VCL admin user
+
+-t|--timezone - timezone <span style="color:#a2f;font-weight:bold">for</span> web components
 </code></pre></div><h1 id="manual-installation">Manual Installation</h1>
 <p>This section provides a list of commands for installing VCL if you prefer to manually
 install it.</p>
