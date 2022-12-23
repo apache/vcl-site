@@ -24,20 +24,20 @@ tested to work with Apache HTTP Server
 
 * Perl
 * Perl Modules (available from cpan.org)
-** [http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-2.04.tar.gz](http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-2.04.tar.gz)
-** [http://search.cpan.org/CPAN/authors/id/T/TM/TMTM/Class-Data-Inheritable-0.08.tar.gz](http://search.cpan.org/CPAN/authors/id/T/TM/TMTM/Class-Data-Inheritable-0.08.tar.gz)
-** [http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Devel-StackTrace-1.20.tar.gz](http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Devel-StackTrace-1.20.tar.gz)
-** [http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Exception-Class-1.26.tar.gz](http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Exception-Class-1.26.tar.gz)
-** [http://search.cpan.org/CPAN/authors/id/J/JD/JDHEDDEN/Object-InsideOut-3.52.tar.gz](http://search.cpan.org/CPAN/authors/id/J/JD/JDHEDDEN/Object-InsideOut-3.52.tar.gz)
-** [http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Module-Build-0.30.tar.gz](http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Module-Build-0.30.tar.gz)
-** [http://search.cpan.org/CPAN/authors/id/A/AG/AGROLMS/GSSAPI-0.26.tar.gz](http://search.cpan.org/CPAN/authors/id/A/AG/AGROLMS/GSSAPI-0.26.tar.gz)
-** [http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Authen-SASL-2.12.tar.gz](http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Authen-SASL-2.12.tar.gz)
-** [http://search.cpan.org/CPAN/authors/id/R/RE/REATMON/XML-Stream-1.22.tar.gz](http://search.cpan.org/CPAN/authors/id/R/RE/REATMON/XML-Stream-1.22.tar.gz)
-** [http://search.cpan.org/CPAN/authors/id/H/HA/HACKER/Net-XMPP-1.02.tar.gz](http://search.cpan.org/CPAN/authors/id/H/HA/HACKER/Net-XMPP-1.02.tar.gz)
-** [http://search.cpan.org/CPAN/authors/id/R/RE/REATMON/Net-Jabber-2.0.tar.gz](http://search.cpan.org/CPAN/authors/id/R/RE/REATMON/Net-Jabber-2.0.tar.gz)
-** [http://www.cpan.org/modules/by-module/XML/XML-Parser-2.36.tar.gz](http://www.cpan.org/modules/by-module/XML/XML-Parser-2.36.tar.gz)
-** [http://www.cpan.org/modules/by-module/RPC/RPC-XML-0.64.tar.gz](http://www.cpan.org/modules/by-module/RPC/RPC-XML-0.64.tar.gz)
-** [http://www.cpan.org/modules/by-module/Crypt/Crypt-SSLeay-0.57.tar.gz](http://www.cpan.org/modules/by-module/Crypt/Crypt-SSLeay-0.57.tar.gz)
+** [https://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-2.04.tar.gz](https://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-2.04.tar.gz)
+** [https://search.cpan.org/CPAN/authors/id/T/TM/TMTM/Class-Data-Inheritable-0.08.tar.gz](https://search.cpan.org/CPAN/authors/id/T/TM/TMTM/Class-Data-Inheritable-0.08.tar.gz)
+** [https://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Devel-StackTrace-1.20.tar.gz](https://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Devel-StackTrace-1.20.tar.gz)
+** [https://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Exception-Class-1.26.tar.gz](https://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Exception-Class-1.26.tar.gz)
+** [https://search.cpan.org/CPAN/authors/id/J/JD/JDHEDDEN/Object-InsideOut-3.52.tar.gz](https://search.cpan.org/CPAN/authors/id/J/JD/JDHEDDEN/Object-InsideOut-3.52.tar.gz)
+** [https://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Module-Build-0.30.tar.gz](https://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Module-Build-0.30.tar.gz)
+** [https://search.cpan.org/CPAN/authors/id/A/AG/AGROLMS/GSSAPI-0.26.tar.gz](https://search.cpan.org/CPAN/authors/id/A/AG/AGROLMS/GSSAPI-0.26.tar.gz)
+** [https://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Authen-SASL-2.12.tar.gz](https://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Authen-SASL-2.12.tar.gz)
+** [https://search.cpan.org/CPAN/authors/id/R/RE/REATMON/XML-Stream-1.22.tar.gz](https://search.cpan.org/CPAN/authors/id/R/RE/REATMON/XML-Stream-1.22.tar.gz)
+** [https://search.cpan.org/CPAN/authors/id/H/HA/HACKER/Net-XMPP-1.02.tar.gz](https://search.cpan.org/CPAN/authors/id/H/HA/HACKER/Net-XMPP-1.02.tar.gz)
+** [https://search.cpan.org/CPAN/authors/id/R/RE/REATMON/Net-Jabber-2.0.tar.gz](https://search.cpan.org/CPAN/authors/id/R/RE/REATMON/Net-Jabber-2.0.tar.gz)
+** [https://www.cpan.org/modules/by-module/XML/XML-Parser-2.36.tar.gz](https://www.cpan.org/modules/by-module/XML/XML-Parser-2.36.tar.gz)
+** [https://www.cpan.org/modules/by-module/RPC/RPC-XML-0.64.tar.gz](https://www.cpan.org/modules/by-module/RPC/RPC-XML-0.64.tar.gz)
+** [https://www.cpan.org/modules/by-module/Crypt/Crypt-SSLeay-0.57.tar.gz](https://www.cpan.org/modules/by-module/Crypt/Crypt-SSLeay-0.57.tar.gz)
 
 <a name="Dependencies-BackendScripting&ProgrammingLanguages"></a>
 ### Backend Scripting & Programming Languages
@@ -53,10 +53,10 @@ Windows installation (sysprep.ini, cmdlines.ini)
 <a name="Dependencies-ProvisioningEngines"></a>
 ## Provisioning Engines
 
-* xCAT 1.3 or xCAT 2.1 [xCAT.org](http://xcat.sourceforge.net)
+* xCAT 1.3 or xCAT 2.1 [xCAT.org](https://xcat.sourceforge.net)
 * VMWare Free Server
 * VMWare ESX can use native vmware-cmd or VMware perl toolkit
-* VMWare ESXi requires [VMware perl toolkit](http://www.vmware.com/support/developer/viperltoolkit/)
+* VMWare ESXi requires [VMware perl toolkit](https://www.vmware.com/support/developer/viperltoolkit/)
 * KVM
 * IBM Smart Cloud computing ( in development, ask on the mailing list)
 

@@ -64,19 +64,19 @@ open-source or educational use (JpGraph Professional License for commercial
 use).  If you are planning to use this for commercial use and don't want to
 pay for JpGraph, you can safely skip this step with the only side effect of
 not being able to display a few graphs on the statistics page.
-Download JpGraph from [http://www.aditus.nu/jpgraph/jpdownload.php](http://www.aditus.nu/jpgraph/jpdownload.php)
+Download JpGraph from [https://www.aditus.nu/jpgraph/jpdownload.php](https://www.aditus.nu/jpgraph/jpdownload.php)
 1. * For PHP5, download the 3.x series, extract it, and copy the src
 directory from it to vcl/.ht-inc/jpgraph
-1. download version 0.4.0 of Dojo Toolkit: [http://download.dojotoolkit.org/release-0.4.0/dojo-0.4.0-ajax.tar.gz](http://download.dojotoolkit.org/release-0.4.0/dojo-0.4.0-ajax.tar.gz)
+1. download version 0.4.0 of Dojo Toolkit: [https://download.dojotoolkit.org/release-0.4.0/dojo-0.4.0-ajax.tar.gz](https://download.dojotoolkit.org/release-0.4.0/dojo-0.4.0-ajax.tar.gz)
 1. * extract it under the vcl directory and rename "dojo-0.4.0-ajax" to
 "dojoAjax"
-1. download version 1.1.0 of Dojo Toolkit: [http://download.dojotoolkit.org/release-1.1.0/dojo-release-1.1.0.tar.gz](http://download.dojotoolkit.org/release-1.1.0/dojo-release-1.1.0.tar.gz)
+1. download version 1.1.0 of Dojo Toolkit: [https://download.dojotoolkit.org/release-1.1.0/dojo-release-1.1.0.tar.gz](https://download.dojotoolkit.org/release-1.1.0/dojo-release-1.1.0.tar.gz)
 1. * extract it under the vcl directory and rename "dojo-release-1.1.0" to
 "dojo"
 1. go into the themes directory (vcl/themes) and run "./copydojocss.sh
 default" to copy parts of dojo's css into the "default" theme
 1. if you want to be able to edit any of the documentation that comes
-bundled with the vcl web code, download fckeditor from [http://www.fckeditor.net/download](http://www.fckeditor.net/download)
+bundled with the vcl web code, download fckeditor from [https://www.fckeditor.net/download](https://www.fckeditor.net/download)
  (most people can skip this step)
 1. * extract it under the vcl directory
 1. open a browser and open the testsetup.php page

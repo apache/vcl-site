@@ -4,7 +4,7 @@ title: 2011-08 Incubator VCL Report
 
 VCL has been incubating since December 2008. VCL is a cloud computing 
 platform for the management of physical and virtual machines.
-[https://vcl.apache.org/](http://vcl.apache.org/)
+[https://vcl.apache.org/](https://vcl.apache.org/)
 
 ### Community Involvement
 * As stated in the previous report, the Apache VCL community continues to

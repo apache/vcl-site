@@ -54,8 +54,8 @@ To install these packages using yum:
 ## Install Required Perl Modules
 
 The VCL Perl code running on the management node requires additional Perl
-modules in order to run.  These Perl modules are available from [CPAN - The Comprehensive Perl Archive Network](http://cpan.org/)
-.  A search engine for CPAN modules is available at [search.cpan.org|http://search.cpan.org/]
+modules in order to run.  These Perl modules are available from [CPAN - The Comprehensive Perl Archive Network](https://cpan.org/)
+.  A search engine for CPAN modules is available at [search.cpan.org|https://search.cpan.org/]
 .
 
 *{_}Note:_* _Licensing information for each required Perl module is
@@ -63,9 +63,9 @@ included below.&nbsp; The content of the "License:" lines was copied from
 the CPAN page for each module.&nbsp; The content of the other line was
 copied from the copyright section in the module's source code or from the
 module's readme file._
-* [Class-Data-Inheritable](http://search.cpan.org/dist/Class-Data-Inheritable/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [Class-Data-Inheritable](https://search.cpan.org/dist/Class-Data-Inheritable/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** Copyright (c) 2000-2005, Damian Conway and Michael G Schwern. All Rights
  Reserved.
@@ -73,17 +73,17 @@ module's readme file._
   
 This module is free software. It may be used, redistributed and/or modified
  under the same terms as Perl itself.
-* [Compress-Raw-Zlib](http://search.cpan.org/dist/Compress-Raw-Zlib/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [Compress-Raw-Zlib](https://search.cpan.org/dist/Compress-Raw-Zlib/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
   
   
 This program is free software; you can redistribute it and/or modify it
 under  the same terms as Perl itself.
-* [Crypt-SSLeay](http://search.cpan.org/dist/Crypt-SSLeay/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [Crypt-SSLeay](https://search.cpan.org/dist/Crypt-SSLeay/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** Copyright (c) 2006-2007 David Landgren.
 Copyright (c) 1999-2003 Joshua Chamas.
@@ -91,9 +91,9 @@ Copyright (c) 1998 Gisle Aas.
 This program is free software; you can redistribute it and/or modify it
 under
 the same terms as Perl itself.
-* [DBI](http://search.cpan.org/dist/DBI/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [DBI](https://search.cpan.org/dist/DBI/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** The DBI module is Copyright (c) 1994-2009 Tim Bunce. Ireland. All rights
  reserved.
@@ -101,52 +101,52 @@ the same terms as Perl itself.
   
 You may distribute under the terms of either the GNU General Public License
 or the Artistic License, as specified in the Perl 5.10.0 README file.
-* [Devel-StackTrace](http://search.cpan.org/dist/Devel-StackTrace/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [Devel-StackTrace](https://search.cpan.org/dist/Devel-StackTrace/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** Copyright (c) 2000-2006 David Rolsky. All rights reserved. This program
 is free software; you can redistribute it and/or modify it under the same
 terms as Perl itself.
   
   
-* [Exception-Class](http://search.cpan.org/dist/Exception-Class/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [Exception-Class](https://search.cpan.org/dist/Exception-Class/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** Copyright (c) 2000-2009 David Rolsky. All rights reserved. This program
 is  free software; you can redistribute it and/or modify it under the same
 terms as  Perl itself.
   
   
-* [HTML-Parser](http://search.cpan.org/dist/HTML-Parser/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [HTML-Parser](https://search.cpan.org/dist/HTML-Parser/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** Copyright 1996-2008 Gisle Aas. All rights reserved.
 Copyright 1999-2000 Michael A. Chase.  All rights reserved.
 This library is free software; you can redistribute it and/or modify it
 under  the same terms as Perl itself.
-* [IO-Compress](http://search.cpan.org/dist/IO-Compress/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [IO-Compress](https://search.cpan.org/dist/IO-Compress/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
   
   
 This program is free software; you can redistribute it and/or modify it
 under  the same terms as Perl itself.
-* [libwww-perl](http://search.cpan.org/dist/libwww-perl/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [libwww-perl](https://search.cpan.org/dist/libwww-perl/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** Copyright 1995-2004 Gisle Aas.
   
   
 This library is free software; you can redistribute it and/or modify it
 under  the same terms as Perl itself.
-* [MailTools](http://search.cpan.org/dist/MailTools/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [MailTools](https://search.cpan.org/dist/MailTools/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** Copyrights 1995-2000 Graham Barr <gbarr@pobox.com> and 2001-2007 Mark 
 Overmeer <perl@overmeer.net>.
@@ -154,40 +154,40 @@ Overmeer <perl@overmeer.net>.
   
 This program is free software; you can redistribute it and/or modify it
 under  the same terms as Perl itself.
-* [Object-InsideOut](http://search.cpan.org/dist/Object-InsideOut/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [Object-InsideOut](https://search.cpan.org/dist/Object-InsideOut/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** Copyright 2005 - 2009 Jerry D. Hedden. All rights reserved.
   
   
 This program is free software; you can redistribute it and/or modify it
 under  the same terms as Perl itself.
-* [RPC-XML](http://search.cpan.org/dist/RPC-XML/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [RPC-XML](https://search.cpan.org/dist/RPC-XML/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** This file and the code within are copyright (c) 2009 by Randy J. Ray.
   
   
-Copying and distribution are permitted under the terms of the Artistic  License 2.0 ([http://www.opensource.org/licenses/artistic-license-2.0.php](http://www.opensource.org/licenses/artistic-license-2.0.php)
+Copying and distribution are permitted under the terms of the Artistic  License 2.0 ([https://www.opensource.org/licenses/artistic-license-2.0.php](https://www.opensource.org/licenses/artistic-license-2.0.php)
 )  or the GNU LGPL 2.1
-([http://www.opensource.org/licenses/lgpl-2.1.php|http://www.opensource.org/licenses/lgpl-2.1.php]).
-* [XML-Parser](http://search.cpan.org/dist/XML-Parser/)
+([https://www.opensource.org/licenses/lgpl-2.1.php|https://www.opensource.org/licenses/lgpl-2.1.php]).
+* [XML-Parser](https://search.cpan.org/dist/XML-Parser/)
 ** License: Unknown
-** _Note: The license type is shown as "Unknown" on the_ _[CPAN page](http://search.cpan.org/dist/XML-Parser/)
+** _Note: The license type is shown as "Unknown" on the_ _[CPAN page](https://search.cpan.org/dist/XML-Parser/)
 _ _for this module and the_ _[POD
-documentation|http://search.cpan.org/dist/XML-Parser/Parser.pm]_ _conained
+documentation|https://search.cpan.org/dist/XML-Parser/Parser.pm]_ _conained
 within the source code does not contain a copyright section.&nbsp; The_
-_[README|http://cpansearch.perl.org/src/MSERGEANT/XML-Parser-2.36/README]_
+_[README|https://cpansearch.perl.org/src/MSERGEANT/XML-Parser-2.36/README]_
 \_file for this module does, however, contain a heading with the following
 information:_Copyright (c) 1998-2000 Larry Wall and Clark Cooper. All
 rights reserved.
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
-* [YAML](http://search.cpan.org/dist/YAML/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [YAML](https://search.cpan.org/dist/YAML/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** Copyright (c) 2005, 2006, 2008. Ingy d�t Net.
   
@@ -207,46 +207,46 @@ disabled by configuring the "jabber=" line in the vcld.conf file.&nbsp; The
 following modules do not need to be installed if Jabber support is
 disabled.
 
-* [Net-Jabber](http://search.cpan.org/dist/Net-Jabber/)
+* [Net-Jabber](https://search.cpan.org/dist/Net-Jabber/)
 ** License: Unknown
-** _Note: The license type is shown as "Unknown" on the_ _[CPAN page](http://search.cpan.org/dist/Net-Jabber/)
+** _Note: The license type is shown as "Unknown" on the_ _[CPAN page](https://search.cpan.org/dist/Net-Jabber/)
 _ _for this module.&nbsp; However, the_
-_[http://search.cpan.org/dist/XML-Parser/Parser.pm]__[POD
-documentation|http://search.cpan.org/~reatmon/Net-Jabber-2.0/lib/Net/Jabber.pm]_
+_[https://search.cpan.org/dist/XML-Parser/Parser.pm]__[POD
+documentation|https://search.cpan.org/~reatmon/Net-Jabber-2.0/lib/Net/Jabber.pm]_
 \_conained within the source code contains a copyright section with the
 following text:_This module is free software, you can redistribute it
 and/or modify it under	the same terms as Perl itself.
-* [Net-XMPP](http://search.cpan.org/dist/Net-XMPP/)
-** License: [LGPL](http://www.opensource.org/licenses/lgpl-license.php)
+* [Net-XMPP](https://search.cpan.org/dist/Net-XMPP/)
+** License: [LGPL](https://www.opensource.org/licenses/lgpl-license.php)
 ** This module is free software, you can redistribute it and/or modify it
 under  the LGPL.
-* [Module-Build](http://search.cpan.org/dist/Module-Build/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [Module-Build](https://search.cpan.org/dist/Module-Build/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** Copyright (c) 2001-2006 Ken Williams. All rights reserved.
   
   
 This library is free software; you can redistribute it and/or modify it
 under  the same terms as Perl itself.
-* [XML-Stream](http://search.cpan.org/dist/XML-Stream/)
+* [XML-Stream](https://search.cpan.org/dist/XML-Stream/)
 ** License: Unknown
-** _Note: The license type is shown as "Unknown" on the_ _[CPAN page](http://search.cpan.org/dist/XML-Stream/)
+** _Note: The license type is shown as "Unknown" on the_ _[CPAN page](https://search.cpan.org/dist/XML-Stream/)
 _ _for this module.&nbsp; However, the_ _[POD
-documentation|http://search.cpan.org/dist/XML-Stream/lib/XML/Stream.pm#COPYRIGHT]_
+documentation|https://search.cpan.org/dist/XML-Stream/lib/XML/Stream.pm#COPYRIGHT]_
 \_conained within the source code contains a copyright section with the
 following text:_This module is free software; you can redistribute it
 and/or modify it under	the same terms as Perl itself.
-* [Authen-SASL](http://search.cpan.org/dist/Authen-SASL/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [Authen-SASL](https://search.cpan.org/dist/Authen-SASL/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** Copyright (c) 1998-2005 Graham Barr. All rights reserved. This program
 is  free software; you can redistribute it and/or modify it under the same
 terms as  Perl itself.
-* [Digest::SHA1](http://search.cpan.org/dist/Digest-SHA1/)
-** License: Perl ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [Digest::SHA1](https://search.cpan.org/dist/Digest-SHA1/)
+** License: Perl ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 ** This library is free software; you can redistribute it and/or modify it
 under  the same terms as Perl itself.
@@ -269,7 +269,7 @@ Run the script a 2nd time to check if all of the modules the script is
 configured to install were successfully installed. Output similar to the
 following should be displayed for each module:
 
-    URL: http://search.cpan.org/CPAN/authors/id/T/TI/TIMB/DBI-1.609.tar.gz
+    URL: https://search.cpan.org/CPAN/authors/id/T/TI/TIMB/DBI-1.609.tar.gz
     Module filename: DBI-1.609.tar.gz
     Module name: DBI-1.609
     Module package: DBI
@@ -314,7 +314,7 @@ line
 1. Change directories to /tmp:
 *cd /tmp*&nbsp;
 1. Download the module's source package using wget:
-*wget* *[http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz](http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz)
+*wget* *[https://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz](https://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-5.827.tar.gz)
 *
 1. Unpack the source package using tar:
 *tar xzf libwww-perl-5.827.tar.gz*
@@ -376,9 +376,9 @@ installed correctly using the SP3 version of the deployment tools so the
 SP2 version is recommended.
 
 
-Download: [Windows XP Service Pack 2 Deployment Tools](http://www.microsoft.com/downloads/details.aspx?familyid=3E90DC91-AC56-4665-949B-BEDA3080E0F6&displaylang=en)
-Download: [Windows XP Service Pack 3 Deployment Tools](http://www.microsoft.com/downloads/details.aspx?FamilyID=673a1019-8e3e-4be0-ac31-70dd21b5afa7&displaylang=en)
-Download: [System Preparation tool for Windows Server 2003 Service Pack 2 Deployment](http://www.microsoft.com/downloads/details.aspx?familyid=93F20BB1-97AA-4356-8B43-9584B7E72556&displaylang=en)
+Download: [Windows XP Service Pack 2 Deployment Tools](https://www.microsoft.com/downloads/details.aspx?familyid=3E90DC91-AC56-4665-949B-BEDA3080E0F6&displaylang=en)
+Download: [Windows XP Service Pack 3 Deployment Tools](https://www.microsoft.com/downloads/details.aspx?FamilyID=673a1019-8e3e-4be0-ac31-70dd21b5afa7&displaylang=en)
+Download: [System Preparation tool for Windows Server 2003 Service Pack 2 Deployment](https://www.microsoft.com/downloads/details.aspx?familyid=93F20BB1-97AA-4356-8B43-9584B7E72556&displaylang=en)
 
 The Sysprep files need to be extracted from the file you download which is
 in Microsoft's .cab format.&nbsp; It is easiest to extract the files on a
@@ -512,7 +512,7 @@ ID = "C:\Sysprep\Drivers\<driver directory>\<.inf file path>"
 Example: LSI SAS drivers commonly need to be downloaded and the hardware
 IDs need to be added to the sysprep.inf files in order for computers with
 LSI SAS controllers to boot.
-1. Download the LSI SAS driver from [ibm.com](http://www-947.ibm.com/systems/support/supportsite.wss/docdisplay?lndocid=MIGR-5073138&brandind=5000020)
+1. Download the LSI SAS driver from [ibm.com](https://www-947.ibm.com/systems/support/supportsite.wss/docdisplay?lndocid=MIGR-5073138&brandind=5000020)
 : ibm_dd_mptsas_1.30.02.00_windows_32-64.exe
 1. Extract the ZIP file (it's a self-extracting zip; you can unzip it with
 whatever unzip tool you prefer)
@@ -621,7 +621,7 @@ the  management node:
 NewSID.exe is used to change the SID of a Windows computer if Sysprep is
 not used.&nbsp; Download the NewSID.exe utility:
 
-Download: [NewSID.exe](http://technet.microsoft.com/en-us/sysinternals/bb897418.aspx)
+Download: [NewSID.exe](https://technet.microsoft.com/en-us/sysinternals/bb897418.aspx)
 
 Save the NewSID.exe utility in the following location on the management
 node:
@@ -636,7 +636,7 @@ SPDrvScn.exe is used before an image is captured to enter the paths of
 drivers to the Windows registry so that they are loaded when Sysprep
 attempts to install devices.&nbsp; Download the SPDrvScn.exe utility:
 
-Download: [SPDrvScn.exe](http://vernalex.com/tools/spdrvscn/)
+Download: [SPDrvScn.exe](https://vernalex.com/tools/spdrvscn/)
 
 Save the SPDrvScn.exe utility in the following location on the management
 node:

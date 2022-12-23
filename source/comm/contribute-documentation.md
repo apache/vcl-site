@@ -6,7 +6,7 @@ Anyone can submit changes for our web site. ASF CMS sites follow a "Review-Then-
 model for anonymous commits.
 
 The CMS documentation provides further information on 
-[anonymously editing a CMS site](http://www.apache.org/dev/cmsref#non-committer).
+[anonymously editing a CMS site](https://www.apache.org/dev/cmsref#non-committer).
 
 ## Steps for non-committers to modify the VCL CMS
 1. drag and drop the javascript <a href="javascript:void(location.href='https://anonymous@cms.apache.org/redirect?uri='+escape(location.href))">anonymous CMS bookmarklet</a> to your browser bookmarks
@@ -23,5 +23,5 @@ After your diff has been emailed, a committer can then review and commit your ch
 
 **NOTE**: All contributions submitted in this way are presumed to be licensed 
 under the 
-[Apache License (AL) version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html). 
+[Apache License (AL) version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html). 
 So, by submitting content, you are allowing your content to be licensed in this way.

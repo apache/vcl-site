@@ -38,7 +38,7 @@ the VCL web server.
         sed -i "s|/usr/share/|/var/www/html/|g" /etc/httpd/conf.d/phpMyAdmin.conf
         ```
 
-* Follow the latest setup instructions at [http://docs.phpmyadmin.net][1]
+* Follow the latest setup instructions at [https://docs.phpmyadmin.net][1]
     <pre class="docnote">
 
     The "Securing your phpMyAdmin installation" instructions can be followed 
@@ -93,4 +93,4 @@ a set of known IP addresses.
     mysql phpmyadmin < apache-VCL-2.4/mysql/phpmyadmin.sql
     ```
 
-[1]: http://docs.phpmyadmin.net
+[1]: https://docs.phpmyadmin.net

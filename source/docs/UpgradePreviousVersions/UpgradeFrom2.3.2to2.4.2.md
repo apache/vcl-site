@@ -70,7 +70,7 @@ versions.
 
 ### Upgrade steps
 
-1. follow instructions on the [VCL download](http://vcl.apache.org/downloads/download.cgi) 
+1. follow instructions on the [VCL download](https://vcl.apache.org/downloads/download.cgi) 
 page to download and verify apache-VCL-2.4.2.tar.bz2 and put in in /root
 2. **extract VCL 2.4.2 code**
     
@@ -158,7 +158,7 @@ array() definition):
     # documentation links to display on login page and page
     #   where authentication method is selected when NOAUTH_HOMENAV is set to 1
     $NOAUTH_HOMENAV = array (
-        "What is VCL" => "http://vcl.apache.org/",
+        "What is VCL" => "https://vcl.apache.org/",
         "How to use VCL" => "https://cwiki.apache.org/confluence/display/VCL/Using+VCL",
         "Report a Problem" => "mailto:" . HELPEMAIL,
     );

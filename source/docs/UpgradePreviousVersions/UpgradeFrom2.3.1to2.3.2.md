@@ -19,7 +19,7 @@ There are no updates to the VCL database schema between 2.3.1 and 2.3.2.
 
 # Detailed steps for upgrade from 2.3 to 2.3.2
 
-1. follow instructions on the [VCL download](http://vcl.apache.org/downloads/download.cgi) 
+1. follow instructions on the [VCL download](https://vcl.apache.org/downloads/download.cgi) 
 page to download and verify apache-VCL-2.3.2.tar.bz2 and put in in /root
 2. **extract VCL 2.3.2 code**
     

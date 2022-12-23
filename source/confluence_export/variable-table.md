@@ -30,14 +30,14 @@ components from overwriting the variable.
 
 The variable value is completely flexible. &nbsp;It can be a
 simple&nbsp;integer or a complex data structure.&nbsp; This is accomplished
-by [serializing](http://en.wikipedia.org/wiki/Serialization)
- the value before saving it to the database.&nbsp; [YAML|http://en.wikipedia.org/wiki/Yaml]
+by [serializing](https://en.wikipedia.org/wiki/Serialization)
+ the value before saving it to the database.&nbsp; [YAML|https://en.wikipedia.org/wiki/Yaml]
  is used to serialize the data.&nbsp; YAML is a human friendly data
 serialization standard for all programming languages
-([http://yaml.org/]).&nbsp; YAML modules are available for Perl, PHP, and
+([https://yaml.org/]).&nbsp; YAML modules are available for Perl, PHP, and
 many other languages:
-* Perl: [http://search.cpan.org/~ingy/YAML-0.68/lib/YAML.pm](http://search.cpan.org/~ingy/YAML-0.68/lib/YAML.pm)
-* PHP: [http://code.google.com/p/spyc](http://code.google.com/p/spyc)
+* Perl: [https://search.cpan.org/~ingy/YAML-0.68/lib/YAML.pm](https://search.cpan.org/~ingy/YAML-0.68/lib/YAML.pm)
+* PHP: [https://code.google.com/p/spyc](https://code.google.com/p/spyc)
 
 Because the data is serialized into a highly compatible format, the backend
 and frontend can utilize common variables.&nbsp; It will be easy for the

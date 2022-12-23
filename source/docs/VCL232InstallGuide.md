@@ -556,6 +556,6 @@ After you have installed the VCL components, you need to do some initial adminis
 ------
 
 
-[1]: http://www.phpmyadmin.net/
-[2]: http://www.mysql.com/
+[1]: https://www.phpmyadmin.net/
+[2]: https://www.mysql.com/
 [3]: installphpmyadmin

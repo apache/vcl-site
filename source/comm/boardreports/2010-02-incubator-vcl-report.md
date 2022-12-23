@@ -24,7 +24,7 @@ hopes of getting releases out more quickly.
 ### 3rd Party Dependencies
 Procedures for handling 3rd party dependencies have been worked out. All
 dependencies that have incompatible licenses are now specified as "System
-Requirements" as stated under "System Requirements" at [http://www.apache.org/legal/3party.html](http://www.apache.org/legal/3party.html)
+Requirements" as stated under "System Requirements" at [https://www.apache.org/legal/3party.html](https://www.apache.org/legal/3party.html)
 
 ### Documentation
 * A large amount of documentation has been added to the project's

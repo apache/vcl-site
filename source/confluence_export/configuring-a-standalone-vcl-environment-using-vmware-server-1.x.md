@@ -208,7 +208,7 @@ reboot
 <a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer1.x-InstallVMwareServer"></a>
 ## Install VMware Server
 
-Download the latest VMware Server 1.x RPM from [http://www.vmware.com](http://www.vmware.com)
+Download the latest VMware Server 1.x RPM from [https://www.vmware.com](https://www.vmware.com)
 (Note: these instructions assume you saved the RPM into /install)
 
 Install the VMware Server RPM:

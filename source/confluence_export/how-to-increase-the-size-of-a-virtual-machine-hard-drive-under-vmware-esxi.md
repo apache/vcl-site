@@ -67,7 +67,7 @@ amount of space to add to it:
     
     h3. Download Gparted Live CD
     
-    Download the [GParted Live CD ISO image|http://gparted.sourceforge.net/download.php]
+    Download the [GParted Live CD ISO image|https://gparted.sourceforge.net/download.php]
  to one of the datastores mounted on the VM host.&nbsp; The .iso file must
 reside on one of the datastores in order to be able to mount it on a VM.
     

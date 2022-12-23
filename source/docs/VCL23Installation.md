@@ -16,7 +16,7 @@ VCL currently supports the use of mysql database.
     * If you have not already done so, download and the Apache VCL source to the database server:
 
         ```bash
-        wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2'
+        wget --trust-server-names 'https://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2'
         ```
 
     * Extract the files:
@@ -172,7 +172,7 @@ VCL currently supports the use of mysql database.
     * If you have not already done so, download and extract the source files on the web server:
 
         ```bash
-        wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2'
+        wget --trust-server-names 'https://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2'
         tar -jxvf apache-VCL-2.3.tar.bz2
         ```
 
@@ -331,7 +331,7 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
     * If you have not already done so, download and extract the source files on the web server:
 
         ```bash
-        wget --trust-server-names 'http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2'
+        wget --trust-server-names 'https://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2'
         tar -jxvf apache-VCL-2.3.tar.bz2
         ```
 
@@ -505,5 +505,5 @@ The VCL management node daemon (vcld) is written in Perl and has been tested on 
 ------
 
 
-[1]: http://www.phpmyadmin.net/
-[2]: http://www.mysql.com/
+[1]: https://www.phpmyadmin.net/
+[2]: https://www.mysql.com/

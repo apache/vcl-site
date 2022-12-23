@@ -13,11 +13,11 @@ downloading it *make sure* you verify it with MD5 or SHA1 sums *AND* the
 GPG signature (sums and signature files should be downloaded directly from
 Apache, not from mirrors).
 
-[Download ASF VCL 2.2](http://vcl.apache.org/downloads/download.cgi?Preferred=http://archive.apache.org/dist/&action=download&filename=%2Fincubator%2Fvcl%2Fapache-VCL-2.2-incubating.tar.bz2)<br>
-[GPG Signature](http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.asc)<br>
-[MD5 Sum](http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.md5)<br>
-[SHA1 Sum](http://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.sha1)<br>
-[VCL KEYS file](http://www.apache.org/dist/vcl/KEYS)
+[Download ASF VCL 2.2](https://vcl.apache.org/downloads/download.cgi?Preferred=https://archive.apache.org/dist/&action=download&filename=%2Fincubator%2Fvcl%2Fapache-VCL-2.2-incubating.tar.bz2)<br>
+[GPG Signature](https://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.asc)<br>
+[MD5 Sum](https://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.md5)<br>
+[SHA1 Sum](https://archive.apache.org/dist/incubator/vcl/apache-VCL-2.2-incubating.tar.bz2.sha1)<br>
+[VCL KEYS file](https://www.apache.org/dist/vcl/KEYS)
 
 Run the following command to verify the MD5 sum. You should get the same
 number that is in apache-VCL-2.2-incubating.tar.bz2.md5:
@@ -29,7 +29,7 @@ the same number that is in apache-VCL-2.2-incubating.tar.bz2.sha1:
 
     sha1sum apache-VCL-2.2-incubating.tar.bz2
 
-To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/)
+To verify the GPG signature (you'll need to have [GnuPG](https://www.gnupg.org/)
  installed):
 
 1. download and import the VCL KEYS file:
@@ -150,7 +150,7 @@ provide some guidance.
 #### IV. How to Submit Bugs and Feature Requests
 
 If you find a bug, please submit a bug report to our JIRA bug tracking
-system at [http://issues.apache.org/jira/browse/VCL](http://issues.apache.org/jira/browse/VCL)
+system at [https://issues.apache.org/jira/browse/VCL](https://issues.apache.org/jira/browse/VCL)
  (you will need to set up an account there if you haven't already done so -
 it's free to anyone). Also, we would appreciate it if you mentioned that
 you filed a bug on the dev list to make sure we don't miss it.

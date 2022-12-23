@@ -87,7 +87,7 @@ same.
 ## How could these scripts help the VCL project?
 
 I mentioned the automated installation in a poster session at the first ICA-CON 
-conference hosted by IBM in April, 2012 ([ICA-CON](http://www.ibm.com/solutions/education/cloudacademy/us/en/cloud_academy_conference.html)). Several people expressed an interest in access to the scripts, and I
+conference hosted by IBM in April, 2012 ([ICA-CON](https://www.ibm.com/solutions/education/cloudacademy/us/en/cloud_academy_conference.html)). Several people expressed an interest in access to the scripts, and I
 agreed to post the scripts in support of the Apache VCL project. I suppose
 with a few tweaks the script could be embedded in a no-arch RPM (or at
 least a self-determining arch) so that those who are interested in using
@@ -105,9 +105,9 @@ folks get on with exploring new ways to actually **use** a vcl cloud.
 ntpd -gq
 service ntpd start
 cd /root
-wget http://linuxlab.ncat.edu/inet_boot/install_vcl.sh
+wget https://linuxlab.ncat.edu/inet_boot/install_vcl.sh
 chmod +x install_vcl.sh
-./install_vcl.sh "http://linuxlab.ncat.edu/inet_boot" "13"
+./install_vcl.sh "https://linuxlab.ncat.edu/inet_boot" "13"
 ```
 
 ### vcl_parameters_13.sh
@@ -138,7 +138,7 @@ export log_file="/tmp/vcllog.log"
 # Logging device
 export logging="| tee $log_file"
 # Location of the VCL source tarball
-export source_url="http://www.apache.org/dist/incubator/vcl"
+export source_url="https://www.apache.org/dist/incubator/vcl"
 # VCL version
 export vcl_version="2.2.1-incubating"
 # tarball directory
@@ -499,7 +499,7 @@ yum -y install xmlsec1-1.2.16-2.el6.$perlarch.rpm
 #wget ftp://rpmfind.net/linux/epel/beta/6/x86_64/xmlsec1-1.2.16-2.el6.x86_64.rpm
 #yum -y install xmlsec1-1.2.16-2.el6.x86_64.rpm
 #
-#wget http://rpmfind.net/linux/epel/beta/6/i386/xmlsec1-1.2.16-2.el6.i686.rpm
+#wget https://rpmfind.net/linux/epel/beta/6/i386/xmlsec1-1.2.16-2.el6.i686.rpm
 #yum -y install xmlsec1-1.2.16-2.el6.i686.rpm
 ```
 
@@ -596,7 +596,7 @@ cp $ca_certificate_private_unencrypted_key_file_name $ca_path_to_local_key_files
 # + + Description:                                                        
 # + + A script to install Apache VCL on a LAMP server
 # + + Usage:        install_vcl.sh repo_url host
-# + + Example:      install_vcl.sh "http://linuxlab.ncat.edu/inet_boot" "1"
+# + + Example:      install_vcl.sh "https://linuxlab.ncat.edu/inet_boot" "1"
 # + +               Must be run as root    
 # + +               The second paraeter is appended to the parameters filename
 # + +                  to allow multiple different VCL installations to use the same script
@@ -837,7 +837,7 @@ chown apache maintenance
 #Here are the steps to remove the dependency:
 #Download phpseclib to /tmp (version 0.2.2 was used for testing)
 pushd /tmp
-wget http://downloads.sourceforge.net/project/phpseclib/phpseclib0.2.2.zip
+wget https://downloads.sourceforge.net/project/phpseclib/phpseclib0.2.2.zip
 #Create a directory named phpseclib in your .ht-inc directory
 mkdir $vcl_web_document_root/vcl/.ht-inc/phpseclib
 #unzip phpseclib in the phpseclib directory
@@ -845,7 +845,7 @@ pushd $vcl_web_document_root/vcl/.ht-inc/phpseclib
 unzip /tmp/phpseclib0.2.2.zip
 #Download no_mcrypt.patch to your .ht-inc directory
 pushd $vcl_web_document_root/vcl/.ht-inc
-wget http://people.apache.org/~jfthomps/no_mcrypt.patch
+wget https://people.apache.org/~jfthomps/no_mcrypt.patch
 #Apply the patch
 patch < no_mcrypt.patch
 #
