@@ -26,11 +26,11 @@ downloading it *make sure* you verify it with MD5 or SHA1 sums *AND* the
 GPG signature (sums and signature files should be downloaded directly from
 Apache, not from mirrors).
 
-[Download ASF VCL 2.1](http://www.apache.org/dyn/closer.cgi/incubator/vcl/apache-VCL-2.1-incubating.tar.bz2)
-[GPG Signature](http://www.apache.org/dist/incubator/vcl/apache-VCL-2.1-incubating.tar.bz2.asc)
-[MD5 Sum](http://www.apache.org/dist/incubator/vcl/apache-VCL-2.1-incubating.tar.bz2.md5)
-[SHA1 Sum](http://www.apache.org/dist/incubator/vcl/apache-VCL-2.1-incubating.tar.bz2.sha1)
-[VCL KEYS file](http://www.apache.org/dist/incubator/vcl/KEYS)
+[Download ASF VCL 2.1](https://www.apache.org/dyn/closer.cgi/incubator/vcl/apache-VCL-2.1-incubating.tar.bz2)
+[GPG Signature](https://www.apache.org/dist/incubator/vcl/apache-VCL-2.1-incubating.tar.bz2.asc)
+[MD5 Sum](https://www.apache.org/dist/incubator/vcl/apache-VCL-2.1-incubating.tar.bz2.md5)
+[SHA1 Sum](https://www.apache.org/dist/incubator/vcl/apache-VCL-2.1-incubating.tar.bz2.sha1)
+[VCL KEYS file](https://www.apache.org/dist/incubator/vcl/KEYS)
 
 Run the following command to verify the MD5 sum. You should get the same
 number that is in apache-VCL-2.1-incubating.tar.bz2.md5:
@@ -40,7 +40,7 @@ Similarly, Run the following command to verify the SHA1 sum. You should get
 the same number that is in apache-VCL-2.1-incubating.tar.bz2.sha1:
 sha1sum apache-VCL-2.1-incubating.tar.bz2
 
-To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/)
+To verify the GPG signature (you'll need to have [GnuPG](https://www.gnupg.org/)
  installed):
 1. download and import the VCL KEYS file:
 gpg \--import KEYS
@@ -132,7 +132,7 @@ message to [vcl-dev-subscribe@incubator.apache.org](mailto:vcl-dev-subscribe@inc
 * Submit bug reports and feature requests to our JIRA bug tracking system.
 See section IV below for more information on doing this.
 
-* Create documentation on our Confluence site. Create an account at [http://cwiki.apache.org/confluence/display/VCL/Index](http://cwiki.apache.org/confluence/display/VCL/Index)
+* Create documentation on our Confluence site. Create an account at [https://cwiki.apache.org/confluence/display/VCL/Index](https://cwiki.apache.org/confluence/display/VCL/Index)
  and just start adding content. (Note to current community: We should
 create a page explaining the layout so new people will know where to add
 content better.)
@@ -154,7 +154,7 @@ code to the project.
 #### IV. How to Submit Bugs and Feature Requests
 
 If you find a bug, please submit a bug report to our JIRA bug tracking
-system at [http://issues.apache.org/jira/browse/VCL](http://issues.apache.org/jira/browse/VCL)
+system at [https://issues.apache.org/jira/browse/VCL](https://issues.apache.org/jira/browse/VCL)
  (you will need to set up an account there if you haven't already done so -
 it's free to anyone). Also, we would appreciate it if you mentioned that
 you filed a bug on the vcl-dev list to make sure we don't miss it.

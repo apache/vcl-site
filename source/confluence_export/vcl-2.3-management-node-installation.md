@@ -61,7 +61,7 @@ OpenSSL
 ##### Required Perl Modules:
 
 The VCL management node daemon (vcld) is written in Perl and has been
-tested on Perl 5.8.x. The following Perl modules available from [CPAN ](http://www.cpan.org)
+tested on Perl 5.8.x. The following Perl modules available from [CPAN ](https://www.cpan.org)
 are also required (see step 2 below for installation instructions):
 * *DBI* \- Generic Database Interface
 * *Digest::SHA1* \- NIST SHA message digest algorithm
@@ -92,7 +92,7 @@ output._
     The install_perl_libs.pl script included in the VCL distribution will
 attempt to download and install the required Linux packages and Perl
 modules. It uses the yum utility to install the required Linux packages.
-The required Perl modules are available from [CPAN - The Comprehensive Perl Archive Network|http://www.cpan.org]
+The required Perl modules are available from [CPAN - The Comprehensive Perl Archive Network|https://www.cpan.org]
 . The install_perl_libs.pl script attempts to download and install the
 required Perl modules by using the CPAN.pm module which is included with
 most Perl distributions.
@@ -241,13 +241,13 @@ contained within can be copied elsewhere.
     \\
     \\
     ## Windows XP
-    ### Download Sysprep for Windows XP: [Windows XP Service Pack 3 Deployment Tools|http://www.microsoft.com/downloads/details.aspx?FamilyID=673a1019-8e3e-4be0-ac31-70dd21b5afa7&displaylang=en]
+    ### Download Sysprep for Windows XP: [Windows XP Service Pack 3 Deployment Tools|https://www.microsoft.com/downloads/details.aspx?FamilyID=673a1019-8e3e-4be0-ac31-70dd21b5afa7&displaylang=en]
     ### Extract the Windows XP Sysprep Files
     ### Copy the extracted Windows XP Sysprep files to the following directory
 the management node:
 {noformat}/usr/local/vcl/tools/Windows_XP/Utilities/Sysprep{noformat}
     ## Windows Server 2003
-    ### Download Sysprep for Windows Server 2003: [System Preparation tool for Windows Server 2003 Service Pack 2 Deployment|http://www.microsoft.com/downloads/details.aspx?familyid=93F20BB1-97AA-4356-8B43-9584B7E72556&displaylang=en]
+    ### Download Sysprep for Windows Server 2003: [System Preparation tool for Windows Server 2003 Service Pack 2 Deployment|https://www.microsoft.com/downloads/details.aspx?familyid=93F20BB1-97AA-4356-8B43-9584B7E72556&displaylang=en]
     ### Extract the Windows Server 2003 Sysprep Files
     ### Copy the extracted Windows Server 2003 Sysprep files to the following
 directory the management node:
@@ -324,9 +324,9 @@ installation and configuration instructions:
     ##* Versions Supported:
     ##** 1.3
     ##** 2.x
-    ##* See the xCAT website for installation & configuration information: [http://xcat.sourceforge.net|http://xcat.sourceforge.net]
+    ##* See the xCAT website for installation & configuration information: [https://xcat.sourceforge.net|https://xcat.sourceforge.net]
     ## VMware
-    ### See the VMware website for installation & configuration information: [http://www.vmware.com|http://www.vmware.com]
+    ### See the VMware website for installation & configuration information: [https://www.vmware.com|https://www.vmware.com]
     ### See the following pages for additional VCL VMware configuration
 information:
     #### [VCL:VMware Configuration]

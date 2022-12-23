@@ -98,7 +98,7 @@ reboot
 <a name="ConfiguringaStandaloneVCLEnvironmentusingVMwareServer2.0-DownloadVMwareServer2.0"></a>
 #### Download VMware Server 2.0
 
-Download the latest VMware Server 2.0 RPM from [http://www.vmware.com](http://www.vmware.com)
+Download the latest VMware Server 2.0 RPM from [https://www.vmware.com](https://www.vmware.com)
 {info}
 These instructions assume you saved the RPM into */root*
 {info}
@@ -228,8 +228,8 @@ installed on the host is newer than *2.5-34*:
 
 For CentOS, you will need to download the glibc RPM included with CentOS
 5.3. This is available from vault.centos.org:
-* For 32-bit CentOS installations: [http://vault.centos.org/5.3/updates/i386/RPMS/glibc-2.5-34.el5_3.1.i686.rpm](http://vault.centos.org/5.3/updates/i386/RPMS/glibc-2.5-34.el5_3.1.i686.rpm)
-* For 64-bit CentOS installations: [http://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm](http://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm)
+* For 32-bit CentOS installations: [https://vault.centos.org/5.3/updates/i386/RPMS/glibc-2.5-34.el5_3.1.i686.rpm](https://vault.centos.org/5.3/updates/i386/RPMS/glibc-2.5-34.el5_3.1.i686.rpm)
+* For 64-bit CentOS installations: [https://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm](https://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm)
 
 Create a temp directory and cd to it:
 {tip}
@@ -238,7 +238,7 @@ mkdir /tmp/glibc ; cd /tmp/glibc
 
 Download the glibc RPM (change the URL accordingly):
 {tip}
-wget [http://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm](http://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm)
+wget [https://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm](https://vault.centos.org/5.3/updates/x86_64/RPMS/glibc-2.5-34.el5_3.1.x86_64.rpm)
 {tip}
 
 Extract the cpio archive from the glibc RPM:

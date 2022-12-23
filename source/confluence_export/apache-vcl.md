@@ -36,7 +36,7 @@ of servers in a server farm or HPC cluster.
 ** [Granting Access to a New Image](granting-access-to-a-new-image.html)
 ** [Example - Granting Two Sets of Users Access to Two Different Sets of Images](example---granting-two-sets-of-users-access-to-two-different-sets-of-images.html)
 ** [managegroups.py - Remotely managing user groups](managegroups.py---remotely-managing-user-groups.html)
-** The VCL [XMLRPC API](http://people.apache.org/~jfthomps/vcl_xmlrpc_api.html)
+** The VCL [XMLRPC API](https://people.apache.org/~jfthomps/vcl_xmlrpc_api.html)
 * Documentation for VCL Administrators (those doing a VCL installation)
 ** [VCL&nbsp;Architecture](https://cwiki.apache.org/confluence/display/VCL/VCL+Architecture)
 ** [Administrator's FAQ](administrator's-faq.html)
@@ -65,21 +65,21 @@ Mailing lists
 * Development List [dev-subscribe@vcl.apache.org](mailto:dev-subscribe@vcl.apache.org.html)
 
 Archives
-* Search: [http://markmail.org/set/jlmr2rdvup4w2](http://markmail.org/set/jlmr2rdvup4w2)
-* User (old): [http://mail-archives.apache.org/mod_mbox/incubator-vcl-user](http://mail-archives.apache.org/mod_mbox/incubator-vcl-user)
-* User (current): [http://mail-archives.apache.org/mod_mbox/vcl-user](http://mail-archives.apache.org/mod_mbox/vcl-user)
-* Development (old): [http://mail-archives.apache.org/mod_mbox/incubator-vcl-dev](http://mail-archives.apache.org/mod_mbox/incubator-vcl-dev)
-* Development (current): [http://mail-archives.apache.org/mod_mbox/vcl-dev](http://mail-archives.apache.org/mod_mbox/vcl-dev)
+* Search: [https://markmail.org/set/jlmr2rdvup4w2](https://markmail.org/set/jlmr2rdvup4w2)
+* User (old): [https://mail-archives.apache.org/mod_mbox/incubator-vcl-user](https://mail-archives.apache.org/mod_mbox/incubator-vcl-user)
+* User (current): [https://mail-archives.apache.org/mod_mbox/vcl-user](https://mail-archives.apache.org/mod_mbox/vcl-user)
+* Development (old): [https://mail-archives.apache.org/mod_mbox/incubator-vcl-dev](https://mail-archives.apache.org/mod_mbox/incubator-vcl-dev)
+* Development (current): [https://mail-archives.apache.org/mod_mbox/vcl-dev](https://mail-archives.apache.org/mod_mbox/vcl-dev)
 
 <a name="ApacheVCL-ProjectResources"></a>
 # Project Resources
 
 <table>
-<tr><td> Confluence </td><td> [http://cwiki.apache.org/confluence/display/VCL](http://cwiki.apache.org/confluence/display/VCL)
+<tr><td> Confluence </td><td> [https://cwiki.apache.org/confluence/display/VCL](https://cwiki.apache.org/confluence/display/VCL)
  </td></tr>
 <tr><td> Subversion Repository </td><td> [https://svn.apache.org/repos/asf/vcl](https://svn.apache.org/repos/asf/vcl)
  </td></tr>
-<tr><td> JIRA </td><td> [http://issues.apache.org/jira/browse/VCL](http://issues.apache.org/jira/browse/VCL)
+<tr><td> JIRA </td><td> [https://issues.apache.org/jira/browse/VCL](https://issues.apache.org/jira/browse/VCL)
  </td></tr>
 <tr><td> Current version </td><td> [VCL 2.2.1](vcl-2.2.1.html)
  </td></tr>
@@ -143,18 +143,18 @@ assigned by the scheduler; does the provisioning
 <a name="ApacheVCL-SystemRequirements"></a>
 # System Requirements
 
-See the [VCL Installation](http://cwiki.apache.org/confluence/display/VCL/VCL+Installation)
+See the [VCL Installation](https://cwiki.apache.org/confluence/display/VCL/VCL+Installation)
  documentation for more information
 
 <a name="ApacheVCL-WebFrontend"></a>
 #### Web Frontend
 
-* [Apache HTTP Server](http://httpd.apache.org/)
+* [Apache HTTP Server](https://httpd.apache.org/)
  1.3 or 2.x with SSL enabled ([Apache
-License|http://www.apache.org/licenses/LICENSE-2.0])
-* [PHP](http://www.php.net/)
-&nbsp;5.0 or later ([PHP License|http://www.php.net/license/3_01.txt])
-* PHP&nbsp;modules ([PHP License](http://www.php.net/license/3_01.txt)
+License|https://www.apache.org/licenses/LICENSE-2.0])
+* [PHP](https://www.php.net/)
+&nbsp;5.0 or later ([PHP License|https://www.php.net/license/3_01.txt])
+* PHP&nbsp;modules ([PHP License](https://www.php.net/license/3_01.txt)
 ):
 ** php-gd
 ** php-json
@@ -164,80 +164,80 @@ License|http://www.apache.org/licenses/LICENSE-2.0])
 ** php-sysvsem
 ** php-xml
 ** php-xmlrpc
-* [libmcrypt and mcrypt](http://sourceforge.net/projects/mcrypt/)
+* [libmcrypt and mcrypt](https://sourceforge.net/projects/mcrypt/)
  libraries installed for php-mcrypt
-([GPL|http://www.opensource.org/licenses/gpl-license.php])
-* [Dojo Toolkit](http://dojotoolkit.org/)
+([GPL|https://www.opensource.org/licenses/gpl-license.php])
+* [Dojo Toolkit](https://dojotoolkit.org/)
  0.4.0 and 1.1.0 ([modified BSD license or the Academic Free License
-version 2.1|http://dojotoolkit.org/license])
+version 2.1|https://dojotoolkit.org/license])
 
 <a name="ApacheVCL-Database"></a>
 #### Database
 
-* [MySQL](http://dev.mysql.com)
- 5.0 or later ([GPL|http://www.opensource.org/licenses/gpl-license.php])
+* [MySQL](https://dev.mysql.com)
+ 5.0 or later ([GPL|https://www.opensource.org/licenses/gpl-license.php])
 
 <a name="ApacheVCL-ManagementNodeBackend"></a>
 #### Management Node Backend
 
-* Operating system - tested on CentOS 5 ([GPL](http://www.opensource.org/licenses/gpl-license.php)
+* Operating system - tested on CentOS 5 ([GPL](https://www.opensource.org/licenses/gpl-license.php)
 ), RedHat Advanced Server 4 and 5 ([Red
-Hat|http://www.redhat.com/licenses/advancedservereula.html]), and RedHat
+Hat|https://www.redhat.com/licenses/advancedservereula.html]), and RedHat
 Fedora Core 7 and 9
-([GPL|http://www.opensource.org/licenses/gpl-license.php])
-* perl-DBD-MySQL ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+([GPL|https://www.opensource.org/licenses/gpl-license.php])
+* perl-DBD-MySQL ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-* MySQL 5 client ([GPL](http://www.opensource.org/licenses/gpl-license.php)
+* MySQL 5 client ([GPL](https://www.opensource.org/licenses/gpl-license.php)
 )
-* [Nmap](http://nmap.org/)
- security scanner ([Nmap|http://nmap.org/svn/COPYING] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* [Nmap](https://nmap.org/)
+ security scanner ([Nmap|https://nmap.org/svn/COPYING] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-* [OpenSSH](http://www.openssh.org/index.html)
+* [OpenSSH](https://www.openssh.org/index.html)
  client (BSD)
-* Perl 5.8.x ([Artistic](http://dev.perl.org/licenses/artistic.html)
- and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+* Perl 5.8.x ([Artistic](https://dev.perl.org/licenses/artistic.html)
+ and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
 * Perl modules available from CPAN
-** [Class-Data-Inheritable](http://search.cpan.org/dist/Class-Data-Inheritable/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [Class-Data-Inheritable](https://search.cpan.org/dist/Class-Data-Inheritable/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [Compress-Raw-Zlib](http://search.cpan.org/dist/Compress-Raw-Zlib/)
-([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [Compress-Raw-Zlib](https://search.cpan.org/dist/Compress-Raw-Zlib/)
+([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [Crypt-SSLeay](http://search.cpan.org/dist/Crypt-SSLeay/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [Crypt-SSLeay](https://search.cpan.org/dist/Crypt-SSLeay/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [DBI](http://search.cpan.org/dist/DBI/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [DBI](https://search.cpan.org/dist/DBI/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [Devel-StackTrace](http://search.cpan.org/dist/Devel-StackTrace/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [Devel-StackTrace](https://search.cpan.org/dist/Devel-StackTrace/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [Exception-Class](http://search.cpan.org/dist/Exception-Class/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [Exception-Class](https://search.cpan.org/dist/Exception-Class/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [HTML-Parser](http://search.cpan.org/dist/HTML-Parser/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [HTML-Parser](https://search.cpan.org/dist/HTML-Parser/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [IO-Compress](http://search.cpan.org/dist/IO-Compress/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [IO-Compress](https://search.cpan.org/dist/IO-Compress/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [libwww-perl](http://search.cpan.org/dist/libwww-perl/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [libwww-perl](https://search.cpan.org/dist/libwww-perl/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [MailTools](http://search.cpan.org/dist/MailTools/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [MailTools](https://search.cpan.org/dist/MailTools/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [Object-InsideOut](http://search.cpan.org/dist/Object-InsideOut/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [Object-InsideOut](https://search.cpan.org/dist/Object-InsideOut/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [RPC-XML](http://search.cpan.org/dist/RPC-XML/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [LGPL|http://www.opensource.org/licenses/lgpl-2.1.php]
+** [RPC-XML](https://search.cpan.org/dist/RPC-XML/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [LGPL|https://www.opensource.org/licenses/lgpl-2.1.php]
 )
-** [XML-Parser](http://search.cpan.org/dist/XML-Parser/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [XML-Parser](https://search.cpan.org/dist/XML-Parser/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )
-** [YAML](http://search.cpan.org/dist/YAML/)
- ([Artistic|http://dev.perl.org/licenses/artistic.html] and [GPL|http://www.opensource.org/licenses/gpl-license.php]
+** [YAML](https://search.cpan.org/dist/YAML/)
+ ([Artistic|https://dev.perl.org/licenses/artistic.html] and [GPL|https://www.opensource.org/licenses/gpl-license.php]
 )

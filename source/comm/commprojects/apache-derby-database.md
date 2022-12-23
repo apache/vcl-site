@@ -19,7 +19,7 @@ You should have installed:
 
     ```bash
     cd ~
-    wget http://apache.g5searchmarketing.com/db/derby/db-derby-10.5.1.1/db-derby-10.5.1.1-bin.tar.gz
+    wget https://apache.g5searchmarketing.com/db/derby/db-derby-10.5.1.1/db-derby-10.5.1.1-bin.tar.gz
     tar -xzf db-derby-10.5.1.1-bin.tar.gz
     mkdir /opt/Apache
     mv db-derby-10.5.1.1-bin /opt/Apache/derby
@@ -48,7 +48,7 @@ and the
 
     ```bash
     svn export https://svn.apache.org/repos/asf/vcl/trunk/mysql/vcl.sql
-    wget http://vcl.apache.org/comm/commprojects/derby-parser.pl
+    wget https://vcl.apache.org/comm/commprojects/derby-parser.pl
     chmod a+x derby-parser.pl
     ./derby-parser.pl
     ```
@@ -65,7 +65,7 @@ output to file and check if there were any errors.
 
     ```bash
     cd ~
-    wget http://www.apache.org/dyn/closer.cgi/logging/log4j/1.2.15/apache-log4j-1.2.15.tar.gz
+    wget https://www.apache.org/dyn/closer.cgi/logging/log4j/1.2.15/apache-log4j-1.2.15.tar.gz
     tar -zxf apache-log4j-1.2.15.tar.gz
     mv apache-log4j-1.2.15 /opt/Apache/derby/lib/
     ```
@@ -76,8 +76,8 @@ installed for Derby. Open the file *'install_perl_libs.pl'* and in the list
 of modules to download add the following two modules.
 
     ```text
-    http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Convert-BER-1.3101.tar.gz
-    http://search.cpan.org/CPAN/authors/id/V/VI/VIZDOM/DBD-JDBC-0.71.tar.gz
+    https://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Convert-BER-1.3101.tar.gz
+    https://search.cpan.org/CPAN/authors/id/V/VI/VIZDOM/DBD-JDBC-0.71.tar.gz
     ```
 
 1. Run the scrips as normal

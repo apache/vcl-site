@@ -14,7 +14,7 @@ the month:
 * August 8, 2012
 
 The incubator project board reporting schedule is at:
-[http://wiki.apache.org/incubator/ReportingSchedule](http://wiki.apache.org/incubator/ReportingSchedule)
+[https://wiki.apache.org/incubator/ReportingSchedule](https://wiki.apache.org/incubator/ReportingSchedule)
 
 
 

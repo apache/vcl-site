@@ -9,7 +9,7 @@ versions of LSI SAS drivers (1.30.02.00) used on IBM blades.&nbsp; The
 driver available from&nbsp;LSI's website&nbsp;is not correctly signed.
 &nbsp;The same version is available from IBM's website&nbsp;and is
 correctly signed. &nbsp;It can be downloaded from:
-[(Critical update) IBM and LSI Basic or Integrated RAID SAS driver v1.30.02.00 for Microsoft Windows Server 2008 and Windows Server 2003 - IBM BladeCenter and System x](http://www-947.ibm.com/systems/support/supportsite.wss/docdisplay?lndocid=MIGR-5073138&brandind=5000020)
+[(Critical update) IBM and LSI Basic or Integrated RAID SAS driver v1.30.02.00 for Microsoft Windows Server 2008 and Windows Server 2003 - IBM BladeCenter and System x](https://www-947.ibm.com/systems/support/supportsite.wss/docdisplay?lndocid=MIGR-5073138&brandind=5000020)
 
 <a name="SysprepFailsBecauseofUnsignedStorageDrivers-HowtoTellifthisProblemOccurred&nbsp;"></a>
 #### How to Tell if this Problem Occurred&nbsp;

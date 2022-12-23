@@ -24,19 +24,19 @@ The **user@vcl.apache.org** mailing list is for general questions, information, 
 
 * To subscribe, send a message to: [user-subscribe@vcl.apache.org][1]
 * To unsubscribe, send a message to: [user-unsubscribe@vcl.apache.org][2]
-* Archives: [http://vcl.markmail.org/search/?q=list:vcl-user][3]
+* Archives: [https://vcl.markmail.org/search/?q=list:vcl-user][3]
 
 The **dev@vcl.apache.org** mailing list is for topics related to the development of the Apache VCL software.
 
 * To subscribe, send a message to: [dev-subscribe@vcl.apache.org][4]
 * To unsubscribe, send a message to: [dev-unsubscribe@vcl.apache.org][5]
-* Archives: [http://vcl.markmail.org/search/?q=list:vcl-dev][6]
+* Archives: [https://vcl.markmail.org/search/?q=list:vcl-dev][6]
 
 The **commits@vcl.apache.org** mailing list allows you to stay up to date on Apache VCL development activity. By subscribing to this list, you will receive messages whenever a change is committed to the Apache VCL codebase or website.
 
 * To subscribe, send a message to: [commits-subscribe@vcl.apache.org][7]
 * To unsubscribe, send a message to: [commits-unsubscribe@vcl.apache.org][8]
-* Archives: [http://vcl.markmail.org/search/?q=list:vcl-commits][9]
+* Archives: [https://vcl.markmail.org/search/?q=list:vcl-commits][9]
 
 ## IRC Channel
 
@@ -61,13 +61,13 @@ to the Apache Board.
 
 [1]: mailto:user-subscribe@vcl.apache.org
 [2]: mailto:user-unsubscribe@vcl.apache.org
-[3]: http://vcl.markmail.org/search/?q=list%3Avcl-user
+[3]: https://vcl.markmail.org/search/?q=list%3Avcl-user
 [4]: mailto:dev-subscribe@vcl.apache.org
 [5]: mailto:dev-unsubscribe@vcl.apache.org
-[6]: http://vcl.markmail.org/search/?q=list:vcl-dev
+[6]: https://vcl.markmail.org/search/?q=list:vcl-dev
 [7]: mailto:commits-subscribe@vcl.apache.org
 [8]: mailto:commits-unsubscribe@vcl.apache.org
-[9]: http://vcl.markmail.org/search/?q=list:vcl-commits
+[9]: https://vcl.markmail.org/search/?q=list:vcl-commits
 [10]: irc://irc.freenode.net/asfvcl
-[11]: http://www.apache.org/foundation/how-it-works.html#meritocracy
+[11]: https://www.apache.org/foundation/how-it-works.html#meritocracy
 [12]: committer-guidelines

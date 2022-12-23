@@ -62,4 +62,4 @@ set of messages:
 [vmhost_short_name]
 </pre>
 
-  [1]: http://svn.apache.org/viewvc/vcl/trunk/managementnode/lib/VCL/DataStructure.pm?view=markup
+  [1]: https://svn.apache.org/viewvc/vcl/trunk/managementnode/lib/VCL/DataStructure.pm?view=markup

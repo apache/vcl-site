@@ -64,7 +64,7 @@ components&nbsp;can be installed with:
 yum install httpd mod_ssl php php-gd php-mcrypt php-mysql php-xml
 php-xmlrpc php-ldap \-y
 {tip}
-1. #* If you will be using a self-signed certificate for SSL, [this is a great HOWTO ](http://wiki.centos.org/HowTos/Https)
+1. #* If you will be using a self-signed certificate for SSL, [this is a great HOWTO ](https://wiki.centos.org/HowTos/Https)
 explaining how to set it up on CentOS
 1. #* It is useful to configure the server to be able to send debugging
 emails
@@ -96,7 +96,7 @@ up:
 on the web server:
 {tip}
 wget
-{nolink:http://www.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2}
+{nolink:https://www.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2}
 tar \-jxvf apache-VCL-2.2.1-incubating.tar.bz2
 {tip}
 1. # Copy the *web* directory to a location under the web root of your web
