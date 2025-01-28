@@ -45,14 +45,15 @@ Next, you need to create an image group for each set of images.
 
 1. Click Manage Groups if you're not still on that page
 2. Under the Resource Groups section (further down the page):
+3. Click Add New Resource Group
     <ol type="a">
     <li>Select Image as the type
     <li>Enter a name for the group (it can contain spaces)
     <li>Select a user group that will own the resource group (this user group 
 will have access to manage some aspects of the resource group)
     </ol>
-3. Click Add
-4. Repeat the steps for the second group
+4. Click Add
+5. Repeat the steps for the second group
 
 For the rest of the page, I'll call the groups **faculty images** and **student images**
 
