@@ -143,9 +143,9 @@ found, a new .Z release should be made.
 
 
   [1]: https://issues.apache.org/jira/secure/ConfigureReleaseNote.jspa?projectId=12310840&version=12322740
-  [2]: http://www.apache.org/dev/release-signing.html#sign-release
-  [3]: http://www.apache.org/foundation/voting.html#ReleaseVotes
-  [4]: http://markmail.org/message/ysdor5uddhviawln
-  [5]: http://markmail.org/message/kanwckkfrnbcs2s7
-  [6]: http://vcl.apache.org/downloads/download.cgi
+  [2]: https://www.apache.org/dev/release-signing.html#sign-release
+  [3]: https://www.apache.org/foundation/voting.html#ReleaseVotes
+  [4]: https://markmail.org/message/ysdor5uddhviawln
+  [5]: https://markmail.org/message/kanwckkfrnbcs2s7
+  [6]: https://vcl.apache.org/downloads/download.cgi
   [7]: https://issues.apache.org/jira/browse/VCL#selectedTab=com.atlassian.jira.plugin.system.project%3Aversions-panel

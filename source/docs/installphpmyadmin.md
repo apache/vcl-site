@@ -91,5 +91,5 @@ database (can be referenced in /etc/vcl/vcld.conf or /var/www/html/vcl/.ht-inc/s
 
 
 [1]: VCL251InstallGuide.html
-[2]: http://www.phpmyadmin.net/home_page/downloads.php
-[3]: http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/
+[2]: https://www.phpmyadmin.net/home_page/downloads.php
+[3]: https://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/

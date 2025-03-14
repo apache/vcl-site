@@ -14,8 +14,8 @@ installs.
 Prerequisites are that you need to have a working xCAT install. Please
 see xCAT installation guide in order to install and configure xCAT.
 
-* xCAT main page: [http://xcat.sourceforge.net/](http://xcat.sourceforge.net/)
-* xCAT Getting Started guide: [http://sourceforge.net/apps/mediawiki/xcat/index.php?title=XCAT_Documentation](http://sourceforge.net/apps/mediawiki/xcat/index.php?title=XCAT_Documentation)
+* xCAT main page: [https://xcat.sourceforge.net/](https://xcat.sourceforge.net/)
+* xCAT Getting Started guide: [https://sourceforge.net/apps/mediawiki/xcat/index.php?title=XCAT_Documentation](https://sourceforge.net/apps/mediawiki/xcat/index.php?title=XCAT_Documentation)
 
 ## Kickstart Template files
 

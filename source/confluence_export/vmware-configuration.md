@@ -297,7 +297,7 @@ datastore name as it appears in the vSphere Client: nfs-datastore1{info}
 * Storage location should be large enough to store all of the images which
 may be loaded on the VM host _(from 100's of GB to several TB)_
 * VCL creates a directory for each image in the Virtual Disk Path
-* Images are stored in the [vmfs thin vmdk format](http://www.sanbarrow.com/vmdk-basics.html)
+* Images are stored in the [vmfs thin vmdk format](https://www.sanbarrow.com/vmdk-basics.html)
 * Virtual Disk Path may either reside on local or network storage
 * Multiple VM hosts can share the same datastore if network storage is used
 ** A single datastore may be used by all VM hosts if performance is

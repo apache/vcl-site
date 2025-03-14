@@ -55,10 +55,10 @@ chmod +x listener.py
 
 <p>There are three parts:</p>
 <ul>
-	<li><a href="http://people.apache.org/~jfthomps/partimageng_xCAT2x/vmlinuz" class="external-link" rel="nofollow">kernel - vmlinuz</a></li>
-	<li><a href="http://people.apache.org/~jfthomps/partimageng_xCAT2x/initrd.img" class="external-link" rel="nofollow">initial RAM disk - initrd.img</a></li>
+	<li><a href="https://people.apache.org/~jfthomps/partimageng_xCAT2x/vmlinuz" class="external-link" rel="nofollow">kernel - vmlinuz</a></li>
+	<li><a href="https://people.apache.org/~jfthomps/partimageng_xCAT2x/initrd.img" class="external-link" rel="nofollow">initial RAM disk - initrd.img</a></li>
 
-	<li><a href="http://people.apache.org/~jfthomps/partimageng_xCAT2x/rootimg.gz" class="external-link" rel="nofollow">root image - rootimg.gz</a></li>
+	<li><a href="https://people.apache.org/~jfthomps/partimageng_xCAT2x/rootimg.gz" class="external-link" rel="nofollow">root image - rootimg.gz</a></li>
 </ul>
 
 

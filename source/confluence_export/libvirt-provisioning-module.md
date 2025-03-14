@@ -8,7 +8,7 @@ just directly check in the manually created part as a plain html file instead of
 a .mdtext file)**
 
 
-[Libvirt ](http://libvirt.org/)
+[Libvirt ](https://libvirt.org/)
 is an open source toolkit which can interact with KVM, Xen, and several
 other virtualization architectures.
 
@@ -30,7 +30,7 @@ initialization by examining the host
 ### Hypervisor Driver Modules {#hypervisordrivermodules}
 
 Libvirt hypervisor drivers allow it to interact with and control various
-types of hypervisors. The drivers are listed at [http://libvirt.org/drivers.html](http://libvirt.org/drivers.html).
+types of hypervisors. The drivers are listed at [https://libvirt.org/drivers.html](https://libvirt.org/drivers.html).
 A hypervisor driver module must be written in order for VCL to support
 any of the hypervisors supported by libvirt. These driver modules
 only contain code specific to the driver in order to perform functions not
@@ -146,7 +146,7 @@ libvirt toolkit</p>
 <pre>
  Provides support allowing VCL to provisioning resources supported by the
  libvirt toolkit.
- <a href="http://libvirt.org">http://libvirt.org</a></pre>
+ <a href="https://libvirt.org">https://libvirt.org</a></pre>
 <p>
 </p>
 <hr />

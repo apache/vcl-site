@@ -43,4 +43,4 @@ separate non-ASF project independent of the Apache VCL.
 * There are no issues requiring board attention at this time.
 
 <a name="1" />
-\[1\] [http://markmail.org/thread/leb6jw5e3d45lswy](http://markmail.org/thread/leb6jw5e3d45lswy)
+\[1\] [https://markmail.org/thread/leb6jw5e3d45lswy](https://markmail.org/thread/leb6jw5e3d45lswy)

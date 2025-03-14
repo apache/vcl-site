@@ -28,7 +28,7 @@ similar to "cygwin_sshd_for_2.5.1.patch: OK":</p>
 sha512sum -c cygwin_sshd_for_2.5.1.patch.sha512
 ```
 
-To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/) installed):
+To verify the GPG signature (you'll need to have [GnuPG](https://www.gnupg.org/) installed):
 
 1. download and import the [VCL KEYS file](https://www.apache.org/dist/vcl/KEYS) (if you've imported the KEYS file for previously,
 you do not need to import it again):

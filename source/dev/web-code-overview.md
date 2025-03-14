@@ -48,7 +48,7 @@ When a continuation is submitted, some checks are run and, if everything passes,
 
 ## Javascript and AJAX
 
-Efforts have been made to ensure the pages required for making and connecting to a reservation work without requiring any javascript. However, enhancements have been made to enrich those parts of the site if javascript is enabled. For some of the administrative parts of the site, javascript and AJAX have been used heavily, particularly the Privileges page. The [Dojo Toolkit](http://dojotoolkit.org) is what is being used for javascript widgets and to handle some of the AJAX.
+Efforts have been made to ensure the pages required for making and connecting to a reservation work without requiring any javascript. However, enhancements have been made to enrich those parts of the site if javascript is enabled. For some of the administrative parts of the site, javascript and AJAX have been used heavily, particularly the Privileges page. The [Dojo Toolkit](https://dojotoolkit.org) is what is being used for javascript widgets and to handle some of the AJAX.
 
 ## A Few Examples
 

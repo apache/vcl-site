@@ -791,7 +791,7 @@ virtual computers
 ------
 
 
-[1]: http://www.phpmyadmin.net/
-[2]: http://www.mysql.com/
+[1]: https://www.phpmyadmin.net/
+[2]: https://www.mysql.com/
 [3]: installphpmyadmin
 [4]: https://www.apache.org/dist/vcl/2.5.1/vcl-install.sh

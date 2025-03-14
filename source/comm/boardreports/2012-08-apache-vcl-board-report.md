@@ -35,4 +35,4 @@ few months.
 <a name="1" />
 \[1\] [https://issues.apache.org/jira/browse/INFRA-4761](https://issues.apache.org/jira/browse/INFRA-4761)<br>
 <a name="2" />
-\[2\] [http://vcl.apache.org](http://vcl.apache.org)
+\[2\] [https://vcl.apache.org](https://vcl.apache.org)

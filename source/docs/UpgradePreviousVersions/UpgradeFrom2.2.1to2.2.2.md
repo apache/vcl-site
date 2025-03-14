@@ -18,7 +18,7 @@ other versions.
 
 # Detailed steps for upgrade from 2.2.1 to 2.2.2
 
-1. follow instructions on the [VCL download](http://vcl.apache.org/downloads/download.cgi) 
+1. follow instructions on the [VCL download](https://vcl.apache.org/downloads/download.cgi) 
 page to download and verify apache-VCL-2.2.2.tar.bz2 and put in in /root
 1. **extract VCL 2.2.2 code**
     

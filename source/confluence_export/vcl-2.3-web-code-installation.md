@@ -105,7 +105,7 @@ service iptables restart
 on the web server:
 {tip}
 wget --trust-server-names
-'{nolink:http://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2}'
+'{nolink:https://vcl.apache.org/downloads/download.cgi?action=download&filename=%2Fvcl%2Fapache-VCL-2.3.tar.bz2}'
 tar \-jxvf apache-VCL-2.3.tar.bz2
 {tip}
 1. # Copy the *web* directory to a location under the web root of your web

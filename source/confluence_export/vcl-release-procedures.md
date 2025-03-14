@@ -42,7 +42,7 @@ Perl, MySQL versions in addition to perl and php modules, dojo, etc.) for
 running VCL, any changes in dependencies since the last release must be
 listed in the CHANGLOG file
 * generate a CHANGELOG file
-** go to the [JIRA site](http://issues.apache.org/jira/browse/VCL)
+** go to the [JIRA site](https://issues.apache.org/jira/browse/VCL)
 ** click *Release Notes*
 ** select the release version
 ** select *text* as the style
@@ -92,7 +92,7 @@ version of Dojo Toolkit under 'web'
 included if Y > 0)
 * create MD5 and SHA-1 sums of the tarball
 * sign the tarball with GPG
-** [This document](http://www.apache.org/dev/release-signing.html#sign-release)
+** [This document](https://www.apache.org/dev/release-signing.html#sign-release)
  contains information on how to sign the tarball
 * distribute the RC through the release manager's personal web space on
 people.apache.org (RC are not to be release from the main distribution area
@@ -102,8 +102,8 @@ to cut down on archive storage and mirroring bandwidth)
 ## Community and PMC voting process
 
 *NOTICE: these steps may not be completely correct*
-* release manager should start a [VOTE](http://incubator.apache.org/guides/releasemanagement.html#note-votes)
- thread on the dev list; [this is a good example|http://mail-archives.apache.org/mod_mbox/incubator-stdcxx-dev/200601.mbox/%3C43C1C0A0.7040401%40roguewave.com%3E]
+* release manager should start a [VOTE](https://incubator.apache.org/guides/releasemanagement.html#note-votes)
+ thread on the dev list; [this is a good example|https://mail-archives.apache.org/mod_mbox/incubator-stdcxx-dev/200601.mbox/%3C43C1C0A0.7040401%40roguewave.com%3E]
 ; however, the example is missing an explicit vote block that needs to be
 included:
 \[ \](-\.html)
@@ -115,7 +115,7 @@ included:
 * the release manage's vote should be posted in a separate message from the
 one calling for the vote
 * the VOTE thread should be ended with a reply post including \[RESULT\](result\.html)
- in the subject; [this is a good example|http://mail-archives.apache.org/mod_mbox/incubator-general/200605.mbox/<5BDE9EBE-2645-4940-9CB9-C038E531B8A2%40gmail.com>]
+ in the subject; [this is a good example|https://mail-archives.apache.org/mod_mbox/incubator-general/200605.mbox/<5BDE9EBE-2645-4940-9CB9-C038E531B8A2%40gmail.com>]
 
 <a name="VCLReleaseProcedures-StepstomaketheRCavailableasareleaseartifact"></a>
 ## Steps to make the RC available as a release artifact

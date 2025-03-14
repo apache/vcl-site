@@ -418,7 +418,7 @@ loaded.
 following&nbsp;page&nbsp;must be installed i{color}f you are
 installing&nbsp;the 64-bit version of Windows XP or Windows&nbsp;Server
 2003:
-[http://support.microsoft.com/kb/942589](http://support.microsoft.com/kb/942589)
+[https://support.microsoft.com/kb/942589](https://support.microsoft.com/kb/942589)
 
 
 You will need to click on the *View and request hotfix downloads* link,

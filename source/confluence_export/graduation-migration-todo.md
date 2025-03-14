@@ -13,7 +13,7 @@ out when completed.
 {color:#008000}*(subscribed)*{color}
 * -Subscribe to the infrastructure mailing list- {color:#008000}*(was
 already subscribed)*{color}
-* -Ensure that they have been added to the- -[PMC chairs group (pmc-chairs) in LDAP](http://people.apache.org/committers-by-project.html#pmc-chairs)
+* -Ensure that they have been added to the- -[PMC chairs group (pmc-chairs) in LDAP](https://people.apache.org/committers-by-project.html#pmc-chairs)
 --. The pmc-chairs group is maintained by infrastructure. If they don't add
 you, give them a nudge...- {color:#008000}*(confirmed)*{color}
 * -Check out the foundation/officers folder from the private repository.
@@ -23,18 +23,18 @@ Users with member or pmc-chairs karma can do this.-
 foundation/officers/irs-disclosures.txt files with the appropriate
 information.- {color:#008000}*(done)*{color}
 * Review appropriate documentation:
-** [PMC Chair Duties](http://www.apache.org/dev/pmc.html#chair)
-** PMC [documentation](http://www.apache.org/dev/#pmc)
-** Jakarta [Chair guide](http://wiki.apache.org/jakarta/RoleOfChair)
-** Incubator [Chair guide](http://incubator.apache.org/guides/chair.html)
-** -Reporting- -[calendar ](http://www.apache.org/foundation/board/calendar.html)
+** [PMC Chair Duties](https://www.apache.org/dev/pmc.html#chair)
+** PMC [documentation](https://www.apache.org/dev/#pmc)
+** Jakarta [Chair guide](https://wiki.apache.org/jakarta/RoleOfChair)
+** Incubator [Chair guide](https://incubator.apache.org/guides/chair.html)
+** -Reporting- -[calendar ](https://www.apache.org/foundation/board/calendar.html)
 --\- Work out a reporting schedule with the Board. For the first three
 months after graduation this will be monthly. After that, the project
 should slot into a quarterly reporting schedule. Now is a good time to
 remove the project from the Incubator reporting schedule.-
 {color:#008000}*(March, June, September, December)*{color}
 
-* -Add the PMC chair details to the foundation web site Officer list at- -[http://www.apache.org/foundation/index.html](http://www.apache.org/foundation/index.html)
+* -Add the PMC chair details to the foundation web site Officer list at- -[https://www.apache.org/foundation/index.html](https://www.apache.org/foundation/index.html)
 - {color:#008000}*(done)*{color}
 * -Add the new project's PMC chair to the
 foundation/officers/irs-disclosures.txt file. You will need a member to
@@ -72,7 +72,7 @@ repository location.
 ** Transfer the podling website (request svnsubpub site)
 ** Load the website into its new home. See infra notes.
 ** Update the incubator/site-publish/.htaccess entry to redirect traffic
-from the old URLs to the new. (svn location is at [http://svn.apache.org/repos/asf/incubator/public/trunk/content/.htaccess](http://svn.apache.org/repos/asf/incubator/public/trunk/content/.htaccess)
+from the old URLs to the new. (svn location is at [https://svn.apache.org/repos/asf/incubator/public/trunk/content/.htaccess](https://svn.apache.org/repos/asf/incubator/public/trunk/content/.htaccess)
 )
 ** Delete the podling website from /www/incubator.apache.org/content/vcl on
 people.apache.org. If you do not have the necessary privileges, file a

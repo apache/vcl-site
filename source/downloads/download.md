@@ -8,7 +8,7 @@ Use the links below to download Apache VCL from one of our mirrors. You **must**
 signatures downloaded from our main distribution directory, **not** from a mirror.
 
 Only current recommended releases are available on the main distribution site and
-its mirrors. Older releases are available from the [archive download site](http://archive.apache.org/dist/vcl/).
+its mirrors. Older releases are available from the [archive download site](https://archive.apache.org/dist/vcl/).
 
 Stable Release - Latest Version:
 
@@ -58,7 +58,7 @@ Other mirrors:
 <input type="submit" value="Change"></input>
 </form>
 
-You may also consult the [complete list of mirrors](http://www.apache.org/mirrors/).
+You may also consult the [complete list of mirrors](https://www.apache.org/mirrors/).
 
 <a name="verify"></a>
 ## Verifying the integrity of the files
@@ -82,7 +82,7 @@ Similarly, run the following command to verify the MD5 sum. It should give outpu
 md5sum -c apache-VCL-2.5.1.tar.bz2.md5
 ```
 
-To verify the GPG signature (you'll need to have [GnuPG](http://www.gnupg.org/) installed):
+To verify the GPG signature (you'll need to have [GnuPG](https://www.gnupg.org/) installed):
 
 
 1. download and import the [VCL KEYS file](https://www.apache.org/dist/vcl/KEYS) (if you've imported the KEYS file for previous 
@@ -105,7 +105,7 @@ currently reside may have restrictions on the import, possession, use, and/or
 re-export to another country, of encryption software. BEFORE using any
 encryption software, please check your country's laws, regulations and policies
 concerning the import, possession, or use, and re-export of encryption software,
-to see if this is permitted. See <http://www.wassenaar.org/> for more
+to see if this is permitted. See <https://www.wassenaar.org/> for more
 information.
 
 The U.S. Government Department of Commerce, Bureau of Industry and Security
@@ -143,9 +143,9 @@ Previous Versions:
 * [Apache VCL 2.3.2 Installation Guide](/docs/VCL232InstallGuide.html)
 * [Apache VCL 2.3.1 Installation Guide](/docs/VCL231InstallGuide.html)
 * [Apache VCL 2.3 Installation Guide](/docs/VCL23Installation.html)
-* [Apache VCL 2.2.1 Installation Guide](http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation)
-* [Apache VCL 2.2 Installation Guide](http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation)
-* [Apache VCL 2.1 Installation Guide](http://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation)
+* [Apache VCL 2.2.1 Installation Guide](https://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation)
+* [Apache VCL 2.2 Installation Guide](https://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation)
+* [Apache VCL 2.1 Installation Guide](https://cwiki.apache.org/confluence/display/VCL/VCL+2.3+Installation)
 
 
 ## Upgrading
@@ -189,16 +189,16 @@ to 2.3
 
 * [upgrade 2.2.1 to 2.3](/docs/UpgradePreviousVersions/UpgradeFrom2.2.1to2.3)
 * [upgrade 2.2 to 2.3](/docs/UpgradePreviousVersions/UpgradeFrom2.2to2.3)
-* [upgrade 2.1 to 2.3](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.3%29)
+* [upgrade 2.1 to 2.3](https://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.3%29)
 
 to 2.2.1
 
-* [upgrade 2.2 to 2.2.1](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.2+to+2.2.1%29)
-* [upgrade 2.1 to 2.2.1](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.2.1%29)
+* [upgrade 2.2 to 2.2.1](https://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.2+to+2.2.1%29)
+* [upgrade 2.1 to 2.2.1](https://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version+%282.1+to+2.2.1%29)
 
 to 2.2
 
-* [upgrade 2.1 to 2.2](http://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version)
+* [upgrade 2.1 to 2.2](https://cwiki.apache.org/confluence/display/VCL/Upgrade+From+Previous+Version)
 
 ## Release Notes
 See the [release notes page](/docs/releasenotes.html) for information about each release.

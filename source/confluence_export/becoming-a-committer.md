@@ -14,7 +14,7 @@ how the Apache VCL community works.
 1. Sign an Individual Contributor License Agreement (ICLA)
 To contribute any code or documentation, you must have an ICLA on file with
 the Apache Software Foundation. More information about the ICLA is
-available on the [licenses page](http://www.apache.org/licenses/#clas)
+available on the [licenses page](https://www.apache.org/licenses/#clas)
 . Once you have done this, you should express interest on the vcl-dev list
 that you are interested in becoming a committer.
 1. [\[1\](\[1\.html)

@@ -12,7 +12,7 @@ and import the VCL database schema{excerpt}
 1. # If you have not already done so, download and the Apache VCL source to
 the database server:
 {tip}wget
-{nolink:http://www.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2}{tip}
+{nolink:https://www.apache.org/dist/incubator/vcl/apache-VCL-2.2.1-incubating.tar.bz2}{tip}
 1. # Extract the files:
 {tip}tar \-jxvf apache-VCL-2.2.1-incubating.tar.bz2{tip}
 1. h2. Install MySQL Server
