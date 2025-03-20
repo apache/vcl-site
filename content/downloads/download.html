@@ -26,7 +26,7 @@
 <ul>
 <li><a href="/info/features.html">Features</a></li>
 <li><a href="/info/architecture.html">Architecture</a></li>
-<li><a href="/downloads/download.cgi">Download</a></li>
+<li><a href="/downloads/download.html">Download</a></li>
 <li><a href="http://www.apache.org/licenses/">License</a></li>
 <li><a href="http://www.apache.org/security/">Security</a></li>
 </ul>
@@ -79,20 +79,20 @@
     <h1 class="title">Downloads</h1>
     
 	<h2 id="download-links">Download Links</h2>
-<p>Use the links below to download Apache VCL from one of our mirrors. You <strong>must</strong>
-<a href="download.cgi#verify">verify the integrity</a> of the downloaded files using
-signatures downloaded from our main distribution directory, <strong>not</strong> from a mirror.</p>
-<p>Only current recommended releases are available on the main distribution site and
-its mirrors. Older releases are available from the <a href="http://archive.apache.org/dist/vcl/">archive download site</a>.</p>
+<p>Use the links below to download Apache VCL. You <strong>must</strong>
+<a href="download.html#verify">verify the integrity</a> of the downloaded files.</p>
+<p>Only current recommended releases are available on the main distribution site.
+Older releases are available from the <a href="http://archive.apache.org/dist/vcl/">archive download site</a>.</p>
 <p>Stable Release - Latest Version:</p>
 <ul>
-<li><a href="[location]?Preferred=[preferred]&action=download&filename=%2Fvcl%2F2.5.1%2Fapache-VCL-2.5.1.tar.bz2">apache-VCL-2.5.1.tar.bz2</a>
-[ <a href="https://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.asc">GPG</a> ]
-[ <a href="https://www.apache.org/dist/vcl/2.5.1/apache-VCL-2.5.1.tar.bz2.sha512">SHA512</a> ]
-(released 2019-07-25)</li>
+<li><a href="http://www.apache.org/dyn/closer.lua/vcl/2.5.2/apache-VCL-2.5.2.tar.bz2?action=download">apache-VCL-2.5.2.tar.bz2</a>
+[ <a href="https://www.apache.org/dist/vcl/2.5.2/apache-VCL-2.5.2.tar.bz2.asc">GPG</a> ]
+[ <a href="https://www.apache.org/dist/vcl/2.5.2/apache-VCL-2.5.2.tar.bz2.sha512">SHA512</a> ]
+(released 2025-03-19)</li>
 </ul>
 <p>Previous Releases:</p>
 <ul>
+<li>apache-VCL-2.5.1.tar.bz2 (released 2019-07-25)</li>
 <li>apache-VCL-2.5.tar.bz2 (released 2017-08-18)</li>
 <li>apache-VCL-2.4.2.tar.bz2 (released 2015-04-16)</li>
 <li>(Apache VCL 2.4.1 was never officially released)</li>
@@ -105,44 +105,17 @@ its mirrors. Older releases are available from the <a href="http://archive.apach
 <li>apache-VCL-2.2-incubating.tar.bz2 (released 2010-10-05)</li>
 <li>apache-VCL-2.1-incubating.tar.bz2 (released 2009-12-04)</li>
 </ul>
-<h2 id="mirror">Mirror</h2>
-<p>The currently selected mirror is <strong>[preferred]</strong>. If you encounter a problem with this
-mirror, please select another mirror. If all mirrors are failing, there are backup
-mirrors (at the end of the mirrors list) that should be available.</p>
-<form name="setmirror" method="get" action="[location]">
-Other mirrors: 
-<select name="Preferred">
-[if-any http]
-  [for http]
-    <option value="[http]">[http]</option>
-  [end]
-[end]
-[if-any ftp]
-  [for ftp]
-    <option value="[ftp]">[ftp]</option>
-  [end]
-[end]
-[if-any backup]
-  [for backup]
-    <option value="[backup]">[backup] (backup)</option>
-  [end]
-[end]
-</select>
-<input type="submit" value="Change"></input>
-</form>
-<p>You may also consult the <a href="http://www.apache.org/mirrors/">complete list of mirrors</a>.</p>
 <p><a name="verify"></a></p>
 <h2 id="verifying-the-integrity-of-the-files">Verifying the integrity of the files</h2>
 <p>It is essential that you verify the integrity of the downloaded files using the GPG and
-SHA signatures. Security of the mirrors cannot be guaranteed, which means malicious code
+SHA signatures. The download link above redirects you to download from a mirror site.
+security of the mirrors cannot be guaranteed, which means malicious code
 could be added to the downloads from the mirrors. By verifying the integrity of
-downloaded release files, you ensure they have not been tainted.</p>
-<p>Run the following command to verify the SHA256 sum. You should get output
-similar to &ldquo;apache-VCL-2.5.1.tar.bz2: OK&rdquo;:</p></p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sha256sum -c apache-VCL-2.5.1.tar.bz2.sha256
-</code></pre></div><p>Similarly, run the following command to verify the MD5 sum. It should give output similar to
-&ldquo;apache-VCL-2.5.1.tar.bz2: OK&rdquo;:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">md5sum -c apache-VCL-2.5.1.tar.bz2.md5
+downloaded release files particularly with the GPG signature, you ensure they
+have not been tainted.</p>
+<p>Run the following command to verify the SHA512 sum. You should get output
+similar to &ldquo;apache-VCL-2.5.2.tar.bz2: OK&rdquo;:</p></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sha512sum -c apache-VCL-2.5.2.tar.bz2.sha512
 </code></pre></div><p>To verify the GPG signature (you&rsquo;ll need to have <a href="http://www.gnupg.org/">GnuPG</a> installed):</p>
 <ol>
 <li>
@@ -155,7 +128,7 @@ releases, you do not need to import it again):</p>
 </li>
 <li>
 <p>from the directory containing both the release file and the GPG signature, run</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --verify apache-VCL-2.5.1.tar.bz2.asc
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --verify apache-VCL-2.5.2.tar.bz2.asc
 </code></pre></div></li>
 </ol>
 <h2 id="tsu-notification---encryption">TSU Notification - Encryption</h2>
@@ -187,10 +160,11 @@ library. This library is only used for PHP versions not supporting the function
 <p>For new installs, visit the on-line installation guide:</p>
 <p>Latest Version:</p>
 <ul>
-<li><a href="/docs/VCL251InstallGuide.html">Apache VCL 2.5.1 Installation Guide</a></li>
+<li><a href="/docs/VCL252InstallGuide.html">Apache VCL 2.5.2 Installation Guide</a></li>
 </ul>
 <p>Previous Versions:</p>
 <ul>
+<li><a href="/docs/VCL251InstallGuide.html">Apache VCL 2.5.1 Installation Guide</a></li>
 <li><a href="/docs/VCL25InstallGuide.html">Apache VCL 2.5 Installation Guide</a></li>
 <li><a href="/docs/VCL242InstallGuide.html">Apache VCL 2.4.2 Installation Guide</a></li>
 <li><a href="/docs/VCL232InstallGuide.html">Apache VCL 2.3.2 Installation Guide</a></li>
@@ -203,6 +177,10 @@ library. This library is only used for PHP versions not supporting the function
 <h2 id="upgrading">Upgrading</h2>
 <p>For upgrades, visit the on-line upgrade guide:</p>
 <p>Upgrade to latest version:</p>
+<ul>
+<li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.5.1to2.5.2.html">upgrade 2.5.1 to 2.5.2</a></li>
+</ul>
+<p>Upgrade to 2.5.1:</p>
 <ul>
 <li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.5to2.5.1.html">upgrade 2.5 to 2.5.1</a></li>
 <li><a href="/docs/UpgradePreviousVersions/UpgradeFrom2.4.2to2.5.1.html">upgrade 2.4.2 to 2.5.1</a></li>
@@ -261,7 +239,7 @@ library. This library is only used for PHP versions not supporting the function
   <div id="footer">
     <div class="copyright">
       <p>
-        Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+        Copyright &copy; 2025 The Apache Software Foundation, Licensed under
         the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
         <br />
         Apache and the Apache feather logo are trademarks of The Apache Software Foundation.
